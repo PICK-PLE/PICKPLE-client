@@ -1,0 +1,33 @@
+name: '버그 제보'
+description: Bug Issue 작성 기본 양식입니다.
+labels: ['🐞 Fix']
+title: '[fix] '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        작성 예시 : "[fix] 버튼 컴포넌트 버그 수정"
+  - type: textarea
+    id: bug-description
+    attributes:
+      label: 버그 설명
+      description: 버그가 언제/어떻게 발생했는지 명확하게 적어주세요.
+      placeholder: 설명을 적어주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 재현 방법
+      description: 버그가 재현되는 상황을 설명해주세요.
+      placeholder: 설명을 적어주세요.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 기대했던 정상 동작
+      description: 기대했던 정상적인 동작에 대해서 설명해주세요.
+      placeholder: 설명을 적어주세요.
+    validations:
+      required: true
