@@ -29,8 +29,8 @@
       "@svg": ["src/assets/svg"],
       "@components": ["src/components/common"],
       "@hooks": ["src/hooks"],
-      "@pages/*": ["src/pages/*"],
-      "@routes/*": ["src/routes/*"],
+      "@pages": ["src/pages"],
+      "@routes": ["src/routes"],
       "@styles/*": ["src/styles/*"],
       "@types/*": ["src/types/*"],
       "@utils/*": ["src/utils/*"]
