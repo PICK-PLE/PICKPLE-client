@@ -1,7 +1,5 @@
 <h1 align="center"> 🌸🌼 PICK!PLE 🌼🌸 </h1>
 <h3 align="center"> 🍀 NOW SOPT AppJam 🍀 </h3>
-<br />
-<br />
 
 ## 💁 서비스 이름 및 소개
 
@@ -186,16 +184,16 @@
 - props명은 camelCase 대문자시 문제 생김
 - 의미없는 div 또는 컴포넌트 최상단은 fragment 사용하기
 
-```jsx
-const InfoText = () => {
-  return (
-    <>
-      <h1>Welcome!</h1>
-      <p>This our new page, we're glad you're are here!</p>
-    </>
-  )
-}
-```
+    ```jsx
+    const InfoText = () => {
+    return (
+        <>
+            <h1>Welcome!</h1>
+            <p>This our new page, we're glad you're are here!</p>
+        </>
+    )
+    }
+    ```
 
 - children이 불필요할 땐 selfClosing사용하기 `<Component />`
 
