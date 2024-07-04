@@ -39,7 +39,7 @@ const GlobalStyle = css`
     margin: 0 auto;
   }
 
-  @media (min-width: 600px) {
+  @media (min-width: 430px) {
     #root {
       max-width: var(--max-width);
       box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);

@@ -23,85 +23,85 @@ const theme = {
   },
   font: {
     'head01-b-22': css`
-      font-size: 22px;
+      font-size: 2.2rem;
       font-weight: 700;
       line-height: 145%;
       letter-spacing: 0px;
     `,
     'head02-b-20': css`
-      font-size: 20px;
+      font-size: 2rem;
       font-weight: 700;
       line-height: normal;
       letter-spacing: 0px;
     `,
     'head03-b-18': css`
-      font-size: 18px;
+      font-size: 1.8rem;
       font-weight: 700;
       line-height: normal;
       letter-spacing: 0px;
     `,
     'head04-b-16': css`
-      font-size: 16px;
+      font-size: 1.6rem;
       font-weight: 700;
       line-height: normal;
       letter-spacing: 0px;
     `,
     'subhead01-sb-18': css`
-      font-size: 18px;
+      font-size: 1.8rem;
       font-weight: 600;
       line-height: normal;
       letter-spacing: 0px;
     `,
     'subhead02-sb-16': css`
-      font-size: 16px;
+      font-size: 1.6rem;
       font-weight: 600;
       line-height: 140%;
       letter-spacing: 0px;
     `,
     'subhead03-m-16': css`
-      font-size: 16px;
+      font-size: 1.6rem;
       font-weight: 500;
       line-height: 140%;
       letter-spacing: 0px;
     `,
     'subhead04-sb-15': css`
-      font-size: 15px;
+      font-size: 1.5rem;
       font-weight: 600;
       line-height: 140%;
       letter-spacing: 0px;
     `,
     'subhead05-sb-14': css`
-      font-size: 14px;
+      font-size: 1.4rem;
       font-weight: 600;
       line-height: 140%;
       letter-spacing: 0px;
     `,
     'body01-r-15': css`
-      font-size: 15px;
+      font-size: 1.5rem;
       font-weight: 400;
       line-height: 140%;
       letter-spacing: 0px;
     `,
     'body02-r-14': css`
-      font-size: 14px;
+      font-size: 1.4rem;
       font-weight: 400;
       line-height: 140%;
       letter-spacing: 0px;
     `,
     'body03-r-12': css`
-      font-size: 12px;
+      font-size: 1.2rem;
       font-weight: 400;
       line-height: normal;
       letter-spacing: 0px;
     `,
     'body04-m-12': css`
-      font-size: 12px;
+      font-size: 1.2rem;
       font-weight: 500;
       line-height: normal;
       letter-spacing: 0px;
     `,
     'body05-r-10': css`
-      font-size: 10px;
+      font-size: 1rem;
       font-weight: 400;
       line-height: 140%;
       letter-spacing: 0px;
