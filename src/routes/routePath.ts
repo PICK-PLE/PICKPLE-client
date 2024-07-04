@@ -1,5 +1,5 @@
 const DEV_STATIC = {
-  DEV: "/",
+  DEV: "/dev",
 };
 
 export default {

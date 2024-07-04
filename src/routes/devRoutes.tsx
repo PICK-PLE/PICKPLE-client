@@ -1,9 +1,10 @@
-import { Dev } from "@pages";
-import { RouteType } from "../types/routeType";
+import { Dev } from '@pages';
+import { RouteType } from '../types/routeType';
+import routePath from './routePath';
 
 const devRoutes: RouteType[] = [
   {
-    path: "/dev",
+    path: routePath.DEV,
     element: <Dev />,
   },
 ];
