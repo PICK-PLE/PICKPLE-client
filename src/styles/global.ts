@@ -14,7 +14,7 @@ const GlobalStyle = css`
 
   :root {
     --min-width: 375px;
-    --max-width: 600px;
+    --max-width: 430px;
   }
 
   html,
