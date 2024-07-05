@@ -20,17 +20,17 @@ export const headerTitle = (theme: Theme) => css`
 
 export const leftWrapper = css`
   ${flexGenerator('row', 'flex-start', 'center')};
-  width: 33.33%;
+  width: 20%;
 `;
 
 export const centerWrapper = css`
   ${flexGenerator()};
-  width: 33.33%;
+  width: 60%;
 `;
 
 export const rightWrapper = css`
   ${flexGenerator('row', 'flex-end', 'center')};
-  width: 33.33%;
+  width: 20%;
 `;
 
 export const iconContainer = css`
