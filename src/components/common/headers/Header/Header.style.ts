@@ -37,6 +37,8 @@ export const iconContainer = css`
   /* ${flexGenerator('row', 'center', 'center')}; */
   width: 2.4rem;
   height: 2.4rem;
+
+  cursor: pointer;
 `;
 
 export const divider = css`
