@@ -1,4 +1,4 @@
-import PayButton from 'src/components/common/button/PayButton/PayButton';
+import PayButton from 'src/components/common/buttons/PayButton/PayButton';
 import { payButtonsStyle } from './Dev.style';
 
 const Dev = () => {
