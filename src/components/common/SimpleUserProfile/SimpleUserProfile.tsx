@@ -7,7 +7,7 @@ export interface SimpleUserProfileProps extends React.HTMLAttributes<HTMLDivElem
 }
 
 const SimpleUserProfile = ({ userImgUrl, username }: SimpleUserProfileProps) => {
-  const defaultImgUrl = '/public/svg/ic_default-userimg.svg';
+  const defaultImgUrl = 'svg/ic_default-userimg.svg';
   return (
     <div css={profileWrapperStyle}>
       <img src={userImgUrl || defaultImgUrl} alt={`${username}의 이미지`} css={imgStyle} />
