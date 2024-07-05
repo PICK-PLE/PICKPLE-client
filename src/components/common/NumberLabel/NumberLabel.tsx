@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */ 
 import { IcNumberLabel } from "@svg"
 import { HTMLAttributes, ReactNode } from "react"
 import { containerStyle, iconStyle, textStyle } from "src/components/common/NumberLabel/NumberLabel.style";
