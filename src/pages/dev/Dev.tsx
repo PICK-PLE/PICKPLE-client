@@ -4,8 +4,8 @@ import { useState } from 'react';
 const Dev = () => {
   const [selected, setSelected] = useState<'오프라인' | '온라인'>('오프라인');
 
-  const handleClickSelectButton = (e: React.MouseEvent<HTMLDivElement>) => {
-    const selectedText = e.currentTarget.textContent;
+  const handleClickSelectButton = (e: React.MouseEvent<HTMLInputElement>) => {
+    const selectedText = e.currentTarget.value;
     if (selectedText === '오프라인' || selectedText === '온라인') {
       setSelected(selectedText);
     }

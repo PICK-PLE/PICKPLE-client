@@ -23,6 +23,17 @@ export const leftButton = css`
 export const rightButton = css`
   border-radius: 0 10px 10px 0;
 `;
+export const inputStyle = css`
+  display: none;
+`;
+
+export const labelStyle = css`
+  width: 100%;
+  height: 100%;
+  ${flexGenerator()};
+
+  cursor: pointer;
+`;
 
 export const selectedButton = (theme: Theme) => css`
   background-color: ${theme.color.purple1};
