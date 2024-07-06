@@ -19,7 +19,9 @@ const QuestionInput = ({ numberLabel, placeholder, ...props }: QuestionInputProp
 
   return (
     <div css={questionInputStyle} {...props}>
-      <NumberLabel css={iconStyle}>{numberLabel}</NumberLabel>
+      <div css={iconStyle}>
+        <NumberLabel>{numberLabel}</NumberLabel>
+      </div>
       <input
         css={inputStyle}
         value={value}
