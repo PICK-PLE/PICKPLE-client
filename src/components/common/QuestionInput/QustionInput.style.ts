@@ -9,7 +9,8 @@ export const questionInputStyle = css`
 `;
 
 export const inputStyle = (theme: Theme) => css`
-  width: 33.6rem;
+  width: 100%;
+  min-width: 33.6rem;
   height: 6.4rem;
   padding: 1rem 1rem 1rem 6.4rem;
   border: none;
