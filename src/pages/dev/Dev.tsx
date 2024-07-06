@@ -1,11 +1,7 @@
 import { ProgressBar } from '@components';
 
 const Dev = () => {
-  return (
-    <div>
-      <ProgressBar progress={50} />
-    </div>
-  );
+  return <></>;
 };
 
 export default Dev;
