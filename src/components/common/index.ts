@@ -4,5 +4,14 @@ import PayButton from './buttons/PayButton/PayButton';
 import Header from './headers/Header/Header';
 import NumberLabel from 'src/components/common/NumberLabel/NumberLabel';
 import ProgressBar from './ProgressBar/ProgressBar';
+import InterestCategoryButton from './buttons/InterestCategoryButton/InterestCategoryButton';
 
-export { IconButton, SocialLoginButton, PayButton, Header, NumberLabel, ProgressBar };
+export {
+  IconButton,
+  SocialLoginButton,
+  PayButton,
+  Header,
+  NumberLabel,
+  ProgressBar,
+  InterestCategoryButton,
+};
