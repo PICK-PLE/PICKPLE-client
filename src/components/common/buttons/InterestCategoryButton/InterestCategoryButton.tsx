@@ -15,12 +15,14 @@ const InterestCategoryButton = ({
   variant,
   icon,
   onClick,
+  ...props
 }: InterestCategoryButtonProps) => {
   const theme = useTheme();
   return (
     <button
       css={[InterestCategoryButtonStyle, InterestCategoryButtonVariant(theme)[variant]]}
-      onClick={onClick}>
+      onClick={onClick}
+      {...props}>
       <span css={iconWrapperStyle}>{icon}</span>
       {children}
     </button>
