@@ -6,6 +6,7 @@ import NumberLabel from 'src/components/common/NumberLabel/NumberLabel';
 import ProgressBar from './ProgressBar/ProgressBar';
 import Notice from 'src/components/common/Notice/Notice';
 import QuestionText from 'src/components/common/QuestionText/QuestionText';
+import QuestionInput from 'src/components/common/QuestionInput/QuestionInput';
 
 export {
   IconButton,
@@ -16,4 +17,5 @@ export {
   ProgressBar,
   Notice,
   QuestionText,
+  QuestionInput,
 };
