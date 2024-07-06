@@ -3,6 +3,7 @@ import { flexGenerator } from '@styles/generator';
 
 export const labelStyle = css`
   ${flexGenerator()}
+  border-radius: 5px;
 `;
 
 export const labelVariant = (theme: Theme) => ({
@@ -12,7 +13,6 @@ export const labelVariant = (theme: Theme) => ({
     height: 2rem;
     align-items: center;
     justify-content: center;
-    border-radius: 5px;
     background-color: ${theme.color.purple2};
     color: ${theme.color.white};
     ${theme.font['body03-r-12']}
@@ -20,7 +20,6 @@ export const labelVariant = (theme: Theme) => ({
   dDay: css`
     display: inline-flex;
     padding: 0.4rem 1rem;
-    border-radius: 5px;
     background-color: ${theme.color.purple2};
     color: ${theme.color.white};
     ${theme.font['subhead05-sb-14']}
@@ -31,7 +30,6 @@ export const labelVariant = (theme: Theme) => ({
     height: 2.7rem;
     padding: 0.5rem 1rem;
     gap: 0.4rem;
-    border-radius: 5px;
     background-color: ${theme.color.purple6};
     color: ${theme.color.purple1};
     ${theme.font['body03-r-12']}
@@ -41,7 +39,6 @@ export const labelVariant = (theme: Theme) => ({
     height: 3.4rem;
     padding: 0.6rem 1rem;
     gap: 0.4rem;
-    border-radius: 5px;
     background-color: ${theme.color.white};
     color: ${theme.color.darkgray};
     ${theme.font['subhead02-sb-16']};
