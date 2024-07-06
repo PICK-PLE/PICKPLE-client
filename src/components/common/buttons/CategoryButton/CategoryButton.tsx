@@ -13,7 +13,7 @@ interface CategoryButtonProps extends HTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactNode;
 }
 
-const CategoryButton = ({ children, onSelect, onClick, icon }: CategoryButtonProps) => {
+const CategoryButton = ({ children, onSelect, onClick, icon, ...props }: CategoryButtonProps) => {
   const theme = useTheme();
   const [isSelected, setIsSelected] = useState(false);
 
@@ -31,7 +31,8 @@ const CategoryButton = ({ children, onSelect, onClick, icon }: CategoryButtonPro
           type="button"
           onSelect={onSelect}
           onClick={handleClick}
-          css={(theme) => [categoryButtonStyle(theme, isSelected)]}>
+          css={(theme) => [categoryButtonStyle(theme, isSelected)]}
+          {...props}>
           <span css={iconWrapper(theme, isSelected)}>{icon}</span>
         </button>
       </div>
