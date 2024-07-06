@@ -1,5 +1,4 @@
 import { IcCountCircle, IcMinus, IcPlus } from '@svg';
-import React, { useState } from 'react';
 import {
   buttonWrapperStyle,
   containerStyle,
@@ -8,16 +7,20 @@ import {
 } from './CountPeople.style';
 
 interface CountPeopleProps {
-  initialPeople: number;
+  people: number;
+  onPeopleChange: (newCount: number) => void;
 }
 
-const CountPeople = ({ initialPeople }: CountPeopleProps) => {
-  const [people, setPeople] = useState(initialPeople);
+const CountPeople = ({ people, onPeopleChange }: CountPeopleProps) => {
   const handleIncrease = () => {
-    setPeople((prev) => (prev < 15 ? prev + 1 : prev));
+    if (people < 15) {
+      onPeopleChange(people + 1);
+    }
   };
   const handleDecrease = () => {
-    setPeople((prev) => (prev > 1 ? prev - 1 : 1));
+    if (people > 1) {
+      onPeopleChange(people - 1);
+    }
   };
   return (
     <div css={containerStyle}>
