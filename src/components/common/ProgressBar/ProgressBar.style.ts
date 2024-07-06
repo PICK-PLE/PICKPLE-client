@@ -1,8 +1,6 @@
-import { Theme } from '@emotion/react';
-import { css } from '@emotion/react';
-import theme from '@styles/theme';
+import { css, Theme } from '@emotion/react';
 
-export const progressBarContainer = css`
+export const progressBarContainer = (theme: Theme) => css`
   width: 100%;
   height: 0.6rem;
   background-color: ${theme.color.lightgray1};
