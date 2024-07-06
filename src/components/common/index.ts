@@ -5,5 +5,15 @@ import Header from './headers/Header/Header';
 import NumberLabel from 'src/components/common/NumberLabel/NumberLabel';
 import ProgressBar from './ProgressBar/ProgressBar';
 import Notice from 'src/components/common/Notice/Notice';
+import QuestionText from 'src/components/common/QuestionText/QuestionText';
 
-export { IconButton, SocialLoginButton, PayButton, Header, NumberLabel, ProgressBar, Notice };
+export {
+  IconButton,
+  SocialLoginButton,
+  PayButton,
+  Header,
+  NumberLabel,
+  ProgressBar,
+  Notice,
+  QuestionText,
+};
