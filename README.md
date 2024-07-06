@@ -30,10 +30,10 @@
         <img src="https://github.com/PICK-PLE/PICKPLE-client/assets/59465914/139c42c5-972f-4943-a2ae-9a8cb036b822" width="200px"/>
      </td>
       <td>
-        <img src="https://github.com/PICK-PLE/PICKPLE-client/assets/59465914/de5db323-473f-4dae-925a-60216b11d63b" width="200px"/>
+        <img src="https://github.com/PICK-PLE/PICKPLE-client/assets/59465914/9a77e7df-5e69-452b-a23a-44fc6e1c4754" width="200px"/>
       </td>
     	<td>
-        <img src="https://github.com/PICK-PLE/PICKPLE-client/assets/59465914/9a77e7df-5e69-452b-a23a-44fc6e1c4754" width="200px"/>
+        <img src="https://github.com/PICK-PLE/PICKPLE-client/assets/59465914/de5db323-473f-4dae-925a-60216b11d63b" width="200px"/>
      </td>
     </tr>
     <tr>
