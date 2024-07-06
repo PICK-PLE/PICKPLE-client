@@ -1,9 +1,8 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { HTMLAttributes } from 'react';
 import { NumberLabel } from '@components';
 import { questionStyle, textStyle } from 'src/components/common/QuestionText/QuestionText.style';
 
 export interface QuestionTextProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
   numberLabel: string;
 }
 
