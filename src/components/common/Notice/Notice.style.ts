@@ -1,9 +1,9 @@
 import { css, Theme } from '@emotion/react';
+import { flexGenerator } from '@styles/generator';
 
 export const noticeStyle = css`
-  display: flex;
+  ${flexGenerator()}
   gap: 1.4rem;
-  align-items: center;
   margin-left: 2rem;
   margin-right: 4.4rem;
 `;
