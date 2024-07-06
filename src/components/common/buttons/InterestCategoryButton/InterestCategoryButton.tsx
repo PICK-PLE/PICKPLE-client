@@ -10,10 +10,17 @@ interface InterestCategoryButtonProps extends HTMLAttributes<HTMLButtonElement> 
   icon: React.ReactNode;
 }
 
-const InterestCategoryButton = ({ children, variant, icon }: InterestCategoryButtonProps) => {
+const InterestCategoryButton = ({
+  children,
+  variant,
+  icon,
+  onClick,
+}: InterestCategoryButtonProps) => {
   const theme = useTheme();
   return (
-    <button css={[InterestCategoryButtonStyle, InterestCategoryButtonVariant(theme)[variant]]}>
+    <button
+      css={[InterestCategoryButtonStyle, InterestCategoryButtonVariant(theme)[variant]]}
+      onClick={onClick}>
       <span css={iconWrapperStyle}>{icon}</span>
       {children}
     </button>
