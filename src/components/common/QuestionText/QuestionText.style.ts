@@ -7,12 +7,12 @@ export const questionStyle = (theme: Theme) => css`
   margin: 0 2rem;
   padding: 1rem;
 
-  background-color: ${theme.color.purple6};
+  background-color: ${theme.color.background};
 
   border-radius: 10px;
 `;
 
 export const textStyle = (theme: Theme) => css`
-  color: ${theme.color.midgray2};
+  color: ${theme.color.black};
   ${theme.font['head04-b-16']}
 `;
