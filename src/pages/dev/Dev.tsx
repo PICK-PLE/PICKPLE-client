@@ -4,7 +4,7 @@ import { IcCopyPlus } from '@svg';
 const Dev = () => {
   return (
     <div>
-      <IconButton icon={<IcCopyPlus />} onClick={() => console.log('clicked')}>
+      <IconButton icon={<IcCopyPlus />} onClick={() => {}}>
         작성하기
       </IconButton>
     </div>
