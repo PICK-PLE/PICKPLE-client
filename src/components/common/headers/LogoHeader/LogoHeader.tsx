@@ -1,19 +1,23 @@
 import { IcLogo, IcPerson } from '@svg';
 import { LogoWrapper, logoHeaderWrapper, iconWrapper } from './LogoHeader.style';
+import { useNavigate } from 'react-router-dom';
 
 interface LogoHeaderProps {
-  leftOnClick?: () => void;
-  rightOnClick?: () => void;
+  handleIconClick?: () => void;
 }
 
-const LogoHeader = ({ leftOnClick, rightOnClick }: LogoHeaderProps) => {
+const LogoHeader = ({ handleIconClick }: LogoHeaderProps) => {
+  const navigate = useNavigate();
+  const goHome = () => {
+    navigate('/home');
+  };
   return (
     <header css={logoHeaderWrapper}>
       <div css={LogoWrapper}>
-        <IcLogo onClick={leftOnClick} />
+        <IcLogo onClick={goHome} />
       </div>
       <div css={iconWrapper}>
-        <IcPerson onClick={rightOnClick} />
+        <IcPerson onClick={handleIconClick} />
       </div>
     </header>
   );
