@@ -26,6 +26,9 @@ const theme = {
     purple6: '#EEEEFF',
 
     error: '#FF4668',
+
+    kakaoyellow: '#FEE500',
+    kakaobrown: '#222',
   },
   font: {
     'head01-b-22': css`
