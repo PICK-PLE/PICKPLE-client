@@ -31,8 +31,8 @@ export const labelVariant = (theme: Theme) => ({
   `,
   category: css`
     display: flex;
-    width: 10.7rem;
-    height: 3.4rem;
+    width: 7.2rem;
+    height: 2.7rem;
     padding: 0.5rem 1rem;
     align-items: center;
     justify-content: center;
@@ -55,17 +55,6 @@ export const labelVariant = (theme: Theme) => ({
     ${theme.font['subhead02-sb-16']};
   `,
 });
-
-export const labelSize = {
-  small: css`
-    width: 7.2rem;
-    height: 2.7rem;
-  `,
-  large: css`
-    width: 10.7rem;
-    height: 3.4rem;
-  `,
-};
 
 export const iconWrapperStyle = css`
   width: 1.6rem;
