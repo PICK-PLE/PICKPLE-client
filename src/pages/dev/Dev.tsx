@@ -1,4 +1,4 @@
-import SimpleUserProfile from 'src/components/common/SimpleUserProfile/SimpleUserProfile';
+import SimpleUserProfile from "src/components/common/SimpleUserProfile/SimpleUserProfile";
 
 const Dev = () => {
   return (
