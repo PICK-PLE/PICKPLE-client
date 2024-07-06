@@ -44,6 +44,6 @@ export const iconWrapper = (theme: Theme, isSelected: boolean) => css`
 `;
 
 export const textStyle = (theme: Theme) => css`
-  ${theme.color.lightgray2};
+  color: ${theme.color.lightgray2};
   ${theme.font['body04-m-12']}
 `;
