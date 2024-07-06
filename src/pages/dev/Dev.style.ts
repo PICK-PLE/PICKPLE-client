@@ -10,3 +10,7 @@ export const payButtonsStyle = () => css`
 export const socialLoginButtonStyle = () => css`
   padding: 1rem 0;
 `;
+
+export const simpleUserProfileStyle = () => css`
+  padding: 1rem 0;
+`;
