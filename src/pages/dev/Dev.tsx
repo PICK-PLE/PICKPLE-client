@@ -1,5 +1,5 @@
 import { IcKakaoLogo } from '@svg';
-import SocialLoginButton from 'src/components/common/button/SocialLoginButton/SocialLoginButton';
+import SocialLoginButton from 'src/components/common/buttons/SocialLoginButton/SocialLoginButton';
 import PayButton from 'src/components/common/buttons/PayButton/PayButton';
 import { payButtonsStyle, socialLoginButtonStyle } from './Dev.style';
 
