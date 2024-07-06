@@ -1,7 +1,11 @@
-import { ProgressBar } from '@components';
+import { ShareButton } from '@components';
 
 const Dev = () => {
-  return <></>;
+  return (
+    <>
+      <ShareButton />
+    </>
+  );
 };
 
 export default Dev;
