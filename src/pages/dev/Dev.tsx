@@ -1,7 +1,12 @@
-import { ProgressBar } from '@components';
+import { DateSelect } from '@components';
 
 const Dev = () => {
-  return <></>;
+  return (
+    <>
+      <br />
+      <DateSelect />
+    </>
+  );
 };
 
 export default Dev;
