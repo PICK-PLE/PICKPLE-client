@@ -1,9 +1,8 @@
-import { HTMLAttributes, ReactNode } from 'react';
+import { HTMLAttributes } from 'react';
 import { NumberLabel } from '@components';
 import { noticeStyle, textStyle } from 'src/components/common/Notice/Notice.style';
 
 export interface NoticeProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
   numberLabel: string;
 }
 
