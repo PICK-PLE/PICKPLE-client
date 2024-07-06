@@ -8,7 +8,7 @@ export const logoHeaderWrapper = css`
   padding: 1.6rem 2rem;
 `;
 
-export const LogoWrapper = css`
+export const logoWrapper = css`
   width: 10.5rem;
   height: 2.8rem;
 
