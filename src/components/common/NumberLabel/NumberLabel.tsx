@@ -1,18 +1,14 @@
 import { IcNumberLabel } from '@svg';
-import { HTMLAttributes, ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import {
-  containerStyle,
+  wrapperStyle,
   iconStyle,
   textStyle,
 } from 'src/components/common/NumberLabel/NumberLabel.style';
 
-export interface NumberLabelProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode;
-}
-
-const NumberLabel = ({ children, ...props }: NumberLabelProps) => {
+const NumberLabel = ({ children, ...props }: PropsWithChildren) => {
   return (
-    <div css={containerStyle} {...props}>
+    <div css={wrapperStyle} {...props}>
       <IcNumberLabel css={iconStyle} />
       <span css={textStyle}>{children}</span>
     </div>

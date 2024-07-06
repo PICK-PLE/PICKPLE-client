@@ -1,6 +1,6 @@
 import { css, Theme } from '@emotion/react';
 
-export const containerStyle = css`
+export const wrapperStyle = css`
   position: relative;
   display: inline-block;
 `;
