@@ -20,8 +20,6 @@ export const labelVariant = (theme: Theme) => ({
   dDay: css`
     display: inline-flex;
     padding: 0.4rem 1rem;
-    align-items: center;
-    justify-content: center;
     border-radius: 5px;
     background-color: ${theme.color.purple2};
     color: ${theme.color.white};
@@ -29,12 +27,9 @@ export const labelVariant = (theme: Theme) => ({
     white-space: nowrap;
   `,
   category: css`
-    display: flex;
     width: 7.2rem;
     height: 2.7rem;
     padding: 0.5rem 1rem;
-    align-items: center;
-    justify-content: center;
     gap: 0.4rem;
     border-radius: 5px;
     background-color: ${theme.color.purple6};
@@ -45,8 +40,6 @@ export const labelVariant = (theme: Theme) => ({
     display: inline-flex;
     height: 3.4rem;
     padding: 0.6rem 1rem;
-    align-items: center;
-    justify-content: center;
     gap: 0.4rem;
     border-radius: 5px;
     background-color: ${theme.color.white};
