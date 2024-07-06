@@ -11,8 +11,6 @@ export const labelVariant = (theme: Theme) => ({
     display: inline-flex;
     width: 5.7rem;
     height: 2rem;
-    align-items: center;
-    justify-content: center;
     background-color: ${theme.color.purple2};
     color: ${theme.color.white};
     ${theme.font['body03-r-12']}
