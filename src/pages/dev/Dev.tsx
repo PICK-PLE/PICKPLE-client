@@ -1,5 +1,7 @@
+import { ProgressBar } from '@components';
+
 const Dev = () => {
-  return <div>dev</div>;
+  return <></>;
 };
 
 export default Dev;
