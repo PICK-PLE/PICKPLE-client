@@ -1,4 +1,4 @@
-import { HTMLAttributes, useState } from 'react';
+import { HTMLAttributes } from 'react';
 import { NumberLabel } from '@components';
 import {
   questionInputStyle,
@@ -9,25 +9,17 @@ import {
 export interface QuestionInputProps extends HTMLAttributes<HTMLInputElement> {
   numberLabel: string;
   placeholder: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const QuestionInput = ({ numberLabel, placeholder, ...props }: QuestionInputProps) => {
-  const [value, setValue] = useState('');
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
-  };
-
+const QuestionInput = ({ numberLabel, placeholder, value, onChange }: QuestionInputProps) => {
   return (
-    <div css={questionInputStyle} {...props}>
+    <div css={questionInputStyle}>
       <div css={iconStyle}>
         <NumberLabel>{numberLabel}</NumberLabel>
       </div>
-      <input
-        css={inputStyle}
-        value={value}
-        onChange={handleInputChange}
-        placeholder={placeholder}
-      />
+      <input css={inputStyle} value={value} onChange={onChange} placeholder={placeholder} />
     </div>
   );
 };
