@@ -7,3 +7,4 @@ export { default as IcCopyPlus } from './IcCopyPlus';
 export { default as IcNumberLabel } from './IcNumberLabel';
 export { default as IcLogo } from './IcLogo';
 export { default as IcPerson } from './IcPerson';
+export { default as IcHouse } from './IcHouse';
