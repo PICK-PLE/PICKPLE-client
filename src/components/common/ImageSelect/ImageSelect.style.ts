@@ -10,6 +10,7 @@ export const thumbnailStyle = (theme: Theme) => css`
   border-radius: 10px;
   cursor: pointer;
   background-color: ${theme.color.lightgray1};
+  position: relative;
 `;
 
 export const labelStyle = css`
@@ -58,5 +59,15 @@ export const iconStyle = css`
 
 export const previewUrlsWrapper = css`
   ${flexGenerator()}
+  position: relative;
   gap: 1rem;
+`;
+
+export const deleteImageIconStyle = css`
+  position: absolute;
+  width: 1.6rem;
+  height: 1.6rem;
+  top: 0.6rem;
+  right: 0.6rem;
+  cursor: pointer;
 `;
