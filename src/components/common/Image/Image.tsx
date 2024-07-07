@@ -9,6 +9,7 @@ interface ImageProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 const Image = ({ label, width, height, variant = 'square' }: ImageProps) => {
+  /**@정안todo Label 컴포넌트 코리 후 겹쳐서 띄우기  */
   return (
     <div css={[imageWrapper(width, height), imageVariant[variant]]}>
       <span>{label}</span>
