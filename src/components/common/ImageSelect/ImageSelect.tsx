@@ -8,14 +8,16 @@ import {
   iconStyle,
   labelStyle,
   previewUrlsWrapper,
+  deleteImageIconStyle,
 } from './ImageSelect.style';
-import { IcCameraAdd } from '@svg';
+import { IcCameraAdd, IcDeletePhoto } from '@svg';
 
 interface ImageSelectProps extends HTMLAttributes<HTMLInputElement> {
   previewImage?: string | undefined;
+  isMultiple?: boolean;
 }
 
-const ImageSelect = ({ onChange }: ImageSelectProps) => {
+const ImageSelect = ({ onChange, isMultiple = false }: ImageSelectProps) => {
   const [previewURLs, setPreviewURLs] = useState<string[]>([]);
 
   const readFile = (file: File): Promise<string> => {
@@ -35,16 +37,23 @@ const ImageSelect = ({ onChange }: ImageSelectProps) => {
   const handleImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
       const files = Array.from(event.target.files);
-      const newPreviewURLs: string[] = [];
 
-      for (const file of files) {
+      // 파일을 읽고 프리뷰 URL을 생성하는 Promise 배열
+      const previewURLPromises = files.map(async (file) => {
         try {
           const result = await readFile(file);
-          newPreviewURLs.push(result);
+          return result;
         } catch (error) {
           console.error('파일 읽기 실패!', error);
+          return null; // 실패할 경우 null을 반환
         }
-      }
+      });
+
+      // Promise 배열을 해결하여 결과를 받아온 후, null이 아닌 값만 필터링
+      const newPreviewURLs = (await Promise.all(previewURLPromises)).filter(
+        (url) => url !== null
+      ) as string[];
+
       setPreviewURLs(newPreviewURLs);
     }
 
@@ -64,7 +73,7 @@ const ImageSelect = ({ onChange }: ImageSelectProps) => {
       </label>
       <input
         type="file"
-        multiple
+        multiple={isMultiple}
         accept="image/jpeg, image/png, image/gif, image/heic, image/webp"
         id="imgInput"
         css={inputStyle}
@@ -72,8 +81,13 @@ const ImageSelect = ({ onChange }: ImageSelectProps) => {
       />
       <div css={previewUrlsWrapper}>
         {previewURLs.map((url, index) => (
-          <div key={index} css={thumbnailStyle}>
+          <div key={`${url} - ${index}`} css={thumbnailStyle}>
             <img css={previewImageStyle} src={url} alt={`미리보기 이미지 ${index + 1}`} />
+            <span
+              css={deleteImageIconStyle}
+              onClick={() => setPreviewURLs(previewURLs.filter((_, i) => i !== index))}>
+              <IcDeletePhoto />
+            </span>
           </div>
         ))}
       </div>
