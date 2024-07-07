@@ -1,6 +1,6 @@
 import { Dev } from '@pages';
 import { RouteType } from '../types/routeType';
-import routePath from './routePath';
+import { routePath } from '@constants';
 
 const devRoutes: RouteType[] = [
   {
