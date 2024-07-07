@@ -1,4 +1,6 @@
-import { HTMLAttributes, useState } from 'react';
+import { HTMLAttributes } from 'react';
+import { useTheme } from '@emotion/react';
+import { Dispatch, SetStateAction } from 'react';
 import {
   inputContainerStyle,
   inputLabelStyle,
@@ -7,56 +9,47 @@ import {
   textLengthStyle,
   errorMessageStyle,
 } from 'src/components/common/inputs/Input/Input.style';
-import { useTheme } from '@emotion/react';
 
 export interface InputProps extends HTMLAttributes<HTMLInputElement> {
+  value: string;
+  setValue: Dispatch<SetStateAction<string>>;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   inputLabel?: string;
   placeholder: string;
   errorMessage?: string;
   maxTextLength: number;
-  error?: boolean;
+  isError: boolean;
+  setIsError: Dispatch<SetStateAction<boolean>>;
 }
 
 const Input = ({
+  value,
+  setValue,
+  onChange,
   inputLabel,
   placeholder,
   errorMessage,
   maxTextLength,
-  error,
-  ...props
+  isError = false,
+  setIsError,
 }: InputProps) => {
-  const [value, setValue] = useState('');
-  const [isError, setIsError] = useState(false); // 외부에서 들어오는 에러 감지
-  const [isTextLengthError, setIsTextLengthError] = useState(false); // 글자 수 에러 감지
-
-  // 글자 수 세서 바로 화면에 반영하는 onChange 함수 (default)
+  // 글자 수 세서 바로 화면에 반영하는 onChange + 외부 onChange
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value.slice(0, maxTextLength)); // 최대 길이 넘어가면 잘리게.
-
-    if (error) {
+    if (e.target.value.length <= maxTextLength) {
+      onChange(e);
+    } else {
+      setValue(value.slice(0, maxTextLength));
       setIsError(true);
-    } else {
-      setIsError(false);
-    }
-
-    if (e.target.value.length > maxTextLength) {
-      setIsTextLengthError(true);
-    } else {
-      setIsTextLengthError(false);
     }
   };
 
-  // 글자 수 세는 함수
-  const getTextLength = () => {
-    return value.length;
-  };
-
+  // TODO: constants 파일에 분리하기!
   // 글자 수 에러 메시지
   const textLengthErrorMessage = `* 글자 수 ${maxTextLength} 이하로 입력해주세요.`;
 
   const theme = useTheme();
   return (
-    <div css={inputContainerStyle} {...props}>
+    <div css={inputContainerStyle}>
       <span css={inputLabelStyle}>{inputLabel}</span>
       <div css={inputWrapperStyle}>
         <input
@@ -66,15 +59,17 @@ const Input = ({
           onChange={handleInputChange}
         />
         <span css={textLengthStyle(theme, isError)}>
-          {getTextLength()}/{maxTextLength}
+          {value.length}/{maxTextLength}
         </span>
       </div>
 
-      {isTextLengthError ? (
-        <span css={errorMessageStyle}>{textLengthErrorMessage} </span>
-      ) : isError ? (
-        <span css={errorMessageStyle}>{errorMessage} </span>
-      ) : null}
+      {isError && value.length >= maxTextLength && (
+        <span css={errorMessageStyle}>{textLengthErrorMessage}</span>
+      )}
+
+      {isError && value.length < maxTextLength && (
+        <span css={errorMessageStyle}>{errorMessage}</span>
+      )}
     </div>
   );
 };
