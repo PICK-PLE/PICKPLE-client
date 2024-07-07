@@ -30,7 +30,7 @@ const Input = ({ placeholder, errorMessage, maxTextLength, error, ...props }: In
       setIsError(false);
     }
 
-    if (e.target.value.length > 15) {
+    if (e.target.value.length > maxTextLength) {
       setIsTextLengthError(true);
     } else {
       setIsTextLengthError(false);
