@@ -6,10 +6,6 @@ const GlobalStyle = css`
   ${Reset}
   * {
     box-sizing: border-box;
-
-    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
-      Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
-      'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
   }
 
   :root {
@@ -34,7 +30,7 @@ const GlobalStyle = css`
     width: 100%;
     min-width: var(--min-width);
     max-width: var(--max-width);
-    min-height: 100vh;
+    min-height: 100dvh;
     background-color: #fff;
     margin: 0 auto;
   }
