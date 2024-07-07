@@ -1,5 +1,3 @@
-import { ProgressBar } from '@components';
-
 const Dev = () => {
   return <></>;
 };
