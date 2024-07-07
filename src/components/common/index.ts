@@ -4,5 +4,6 @@ import PayButton from './buttons/PayButton/PayButton';
 import Header from './headers/Header/Header';
 import NumberLabel from 'src/components/common/NumberLabel/NumberLabel';
 import ProgressBar from './ProgressBar/ProgressBar';
+import Modal from './Modal/Modal';
 
-export { IconButton, SocialLoginButton, PayButton, Header, NumberLabel, ProgressBar };
+export { IconButton, SocialLoginButton, PayButton, Header, NumberLabel, ProgressBar, Modal };
