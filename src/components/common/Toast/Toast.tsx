@@ -1,16 +1,24 @@
 import { IcExclamation } from '@svg';
 import { HTMLAttributes } from 'react';
+import {
+  toastIconStyle,
+  toastMessageStyle,
+  toastWrapperStyle,
+} from 'src/components/common/Toast/Toast.style';
+import { useTheme } from '@emotion/react';
 
 export interface ToastProps extends HTMLAttributes<HTMLDivElement> {
-  icon: boolean;
-  toastMessage: string;
+  toastIcon: boolean;
+  isVisible: boolean;
+  toastBottom: number;
 }
 
-const Toast = ({ icon, toastMessage, ...props }: ToastProps) => {
+const Toast = ({ toastIcon, children, isVisible, toastBottom, ...props }: ToastProps) => {
+  const theme = useTheme();
   return (
-    <div css={} {...props}>
-      {icon ? <IcExclamation /> : null}
-      <span>{toastMessage}</span>
+    <div css={toastWrapperStyle(theme, isVisible, toastBottom)} {...props}>
+      {toastIcon ? <IcExclamation css={toastIconStyle} /> : null}
+      <span css={toastMessageStyle}>{children}</span>
     </div>
   );
 };
