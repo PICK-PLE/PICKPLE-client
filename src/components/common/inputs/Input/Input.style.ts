@@ -7,6 +7,12 @@ export const inputContainerStyle = css`
   margin: 0 2rem;
 `;
 
+export const inputLabelStyle = (theme: Theme) => css`
+  ${theme.font['subhead03-m-16']}
+  position: relative;
+  left: 0.5rem;
+`;
+
 export const inputWrapperStyle = css`
   ${flexGenerator('row', 'first', 'center')}
   position: relative;

@@ -1,6 +1,7 @@
 import { HTMLAttributes, useState } from 'react';
 import {
   inputContainerStyle,
+  inputLabelStyle,
   inputWrapperStyle,
   inputStyle,
   textLengthStyle,
@@ -9,13 +10,21 @@ import {
 import { useTheme } from '@emotion/react';
 
 export interface InputProps extends HTMLAttributes<HTMLInputElement> {
+  inputLabel?: string;
   placeholder: string;
   errorMessage?: string;
   maxTextLength: number;
   error?: boolean;
 }
 
-const Input = ({ placeholder, errorMessage, maxTextLength, error, ...props }: InputProps) => {
+const Input = ({
+  inputLabel,
+  placeholder,
+  errorMessage,
+  maxTextLength,
+  error,
+  ...props
+}: InputProps) => {
   const [value, setValue] = useState('');
   const [isError, setIsError] = useState(false); // 외부에서 들어오는 에러 감지
   const [isTextLengthError, setIsTextLengthError] = useState(false); // 글자 수 에러 감지
@@ -48,6 +57,7 @@ const Input = ({ placeholder, errorMessage, maxTextLength, error, ...props }: In
   const theme = useTheme();
   return (
     <div css={inputContainerStyle} {...props}>
+      <span css={inputLabelStyle}>{inputLabel}</span>
       <div css={inputWrapperStyle}>
         <input
           css={[inputStyle(theme, isError)]}
