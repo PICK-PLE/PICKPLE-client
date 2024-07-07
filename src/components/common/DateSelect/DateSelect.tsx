@@ -34,7 +34,7 @@ const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
 
 const DateSelect = ({ selected, onChange }: DateSelectProps) => {
   const today = new Date();
-  const minSelectableDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 5);
+  const minSelectableDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 3);
 
   return (
     <div css={DataPickerWrapper}>
