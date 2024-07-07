@@ -4,13 +4,20 @@ import { flexGenerator } from '@styles/generator';
 
 export const thumbnailStyle = (theme: Theme) => css`
   ${flexGenerator()};
-  flex-shrink: 0; /* 이미지가 줄어들지 않도록 설정 */
+  flex-shrink: 0;
   width: 7rem;
   height: 7rem;
   border-radius: 10px;
   cursor: pointer;
-
   background-color: ${theme.color.lightgray1};
+`;
+
+export const labelStyle = css`
+  ${flexGenerator()};
+  width: 7rem;
+  height: 7rem;
+  border-radius: 10px;
+  cursor: pointer;
 `;
 
 export const inputStyle = css`
@@ -18,16 +25,14 @@ export const inputStyle = css`
 `;
 
 export const imageSelectWrapper = css`
-  display: flex;
-  flex-direction: row; /* 가로로 나열 */
-  gap: 1rem; /* 이미지 간 간격 */
-  overflow-x: auto; /* 가로 스크롤 */
+  ${flexGenerator('row', 'flex-start', 'center')}
+  gap: 1rem;
+  overflow-x: auto;
   padding: 1rem;
   border-radius: 10px;
 
   & > label {
-    display: flex;
-    flex-shrink: 0; /* 자식 요소가 줄어들지 않도록 설정 */
+    flex-shrink: 0;
   }
 
   img {
@@ -43,11 +48,15 @@ export const previewImageStyle = css`
   border-radius: 10px;
 `;
 
-export const IconStyle = css`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const iconStyle = css`
+  ${flexGenerator()};
+
   width: 3rem;
   height: 3rem;
   border-radius: 10px;
+`;
+
+export const previewUrlsWrapper = css`
+  ${flexGenerator()}
+  gap: 1rem;
 `;

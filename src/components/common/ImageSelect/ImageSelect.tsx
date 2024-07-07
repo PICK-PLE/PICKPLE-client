@@ -5,7 +5,9 @@ import {
   inputStyle,
   previewImageStyle,
   thumbnailStyle,
-  IconStyle,
+  iconStyle,
+  labelStyle,
+  previewUrlsWrapper,
 } from './ImageSelect.style';
 import { IcCameraAdd } from '@svg';
 
@@ -53,6 +55,13 @@ const ImageSelect = ({ onChange }: ImageSelectProps) => {
 
   return (
     <section css={imageSelectWrapper}>
+      <label htmlFor="imgInput" css={labelStyle}>
+        <div css={thumbnailStyle}>
+          <span css={iconStyle}>
+            <IcCameraAdd />
+          </span>
+        </div>
+      </label>
       <input
         type="file"
         multiple
@@ -61,26 +70,13 @@ const ImageSelect = ({ onChange }: ImageSelectProps) => {
         css={inputStyle}
         onChange={handleImageChange}
       />
-      <label htmlFor="imgInput">
-        {previewURLs.length > 0 ? (
-          <div css={thumbnailStyle}>
-            {previewURLs.map((url, index) => (
-              <img
-                key={index}
-                css={previewImageStyle}
-                src={url}
-                alt={`미리보기 이미지 ${index + 1}`}
-              />
-            ))}
+      <div css={previewUrlsWrapper}>
+        {previewURLs.map((url, index) => (
+          <div key={index} css={thumbnailStyle}>
+            <img css={previewImageStyle} src={url} alt={`미리보기 이미지 ${index + 1}`} />
           </div>
-        ) : (
-          <div css={thumbnailStyle}>
-            <span css={IconStyle}>
-              <IcCameraAdd />
-            </span>
-          </div>
-        )}
-      </label>
+        ))}
+      </div>
     </section>
   );
 };
