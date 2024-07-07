@@ -10,16 +10,17 @@ import { useTheme } from '@emotion/react';
 
 export interface InputProps extends HTMLAttributes<HTMLInputElement> {
   placeholder: string;
-  errorMessage: string;
+  errorMessage?: string;
   maxTextLength: number;
-  error: boolean;
+  error?: boolean;
 }
 
 const Input = ({ placeholder, errorMessage, maxTextLength, error, ...props }: InputProps) => {
   const [value, setValue] = useState('');
-  const [isError, setIsError] = useState(false);
+  const [isError, setIsError] = useState(false); // 외부에서 들어오는 에러 감지
+  const [isTextLengthError, setIsTextLengthError] = useState(false); // 글자 수 에러 감지
 
-  // 글자 수 세서 바로 화면에 반영하는 onChange 함수
+  // 글자 수 세서 바로 화면에 반영하는 onChange 함수 (default)
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value.slice(0, maxTextLength)); // 최대 길이 넘어가면 잘리게.
 
@@ -28,6 +29,12 @@ const Input = ({ placeholder, errorMessage, maxTextLength, error, ...props }: In
     } else {
       setIsError(false);
     }
+
+    if (e.target.value.length > 15) {
+      setIsTextLengthError(true);
+    } else {
+      setIsTextLengthError(false);
+    }
   };
 
   // 글자 수 세는 함수
@@ -35,8 +42,10 @@ const Input = ({ placeholder, errorMessage, maxTextLength, error, ...props }: In
     return value.length;
   };
 
-  const theme = useTheme();
+  // 글자 수 에러 메시지
+  const textLengthErrorMessage = `* 글자 수 ${maxTextLength} 이하로 입력해주세요.`;
 
+  const theme = useTheme();
   return (
     <div css={inputContainerStyle} {...props}>
       <div css={inputWrapperStyle}>
@@ -51,7 +60,11 @@ const Input = ({ placeholder, errorMessage, maxTextLength, error, ...props }: In
         </span>
       </div>
 
-      {isError ? <span css={errorMessageStyle}>{errorMessage}</span> : null}
+      {isTextLengthError ? (
+        <span css={errorMessageStyle}>{textLengthErrorMessage} </span>
+      ) : isError ? (
+        <span css={errorMessageStyle}>{errorMessage} </span>
+      ) : null}
     </div>
   );
 };
