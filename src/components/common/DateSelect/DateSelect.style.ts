@@ -31,6 +31,12 @@ export const customInputStyle = (theme: Theme) => css`
   color: ${theme.color.midgray1};
 
   cursor: pointer;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+    background-color: ${theme.color.white};
+  }
 `;
 
 export const iconStyle = css`
@@ -52,12 +58,18 @@ export const DataPickerWrapper = css`
     width: 100%;
     & .react-datepicker__input-container {
       width: 100%;
+
+      &:focus,
+      &:active {
+        outline: none;
+        box-shadow: none;
+      }
     }
   }
 
   & .react-datepicker {
     width: 300px;
-    height: 200px;
+    height: 230px;
 
     font-size: 1.4rem;
 
