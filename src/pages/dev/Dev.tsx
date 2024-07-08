@@ -1,3 +1,6 @@
+import { ProgressBar } from '@components';
+import LogoHeader from 'src/components/common/headers/LogoHeader/LogoHeader';
+import { devContainer } from './Dev.style';
 import { ApplicantAccordion } from '@components';
 import { useState } from 'react';
 import {
@@ -28,19 +31,26 @@ const Dev = () => {
   console.log(checkedApplicant);
 
   return (
-    <div css={accodionAlignStyle}>
-      {mergedData.map((applicant, index) => (
-        <ApplicantAccordion
-          key={applicant.applicantId}
-          applicantName={applicant.nickname}
-          applicantImg={applicant.profileImage}
-          applyDate={applicant.applicationDate}
-          questions={applicant.questions}
-          isChecked={checkedStates[index]}
-          toggleChecked={() => toggleChecked(index)}
-        />
-      ))}
-    </div>
+    <>
+      <LogoHeader />
+      <ProgressBar progress={77} />
+      <section css={devContainer}>
+        {/* 여기에 컴포넌트 추가해보고, 디바이스 크기 조정해보면서 테스트 */}
+        <div css={accodionAlignStyle}>
+          {mergedData.map((applicant, index) => (
+            <ApplicantAccordion
+              key={applicant.applicantId}
+              applicantName={applicant.nickname}
+              applicantImg={applicant.profileImage}
+              applyDate={applicant.applicationDate}
+              questions={applicant.questions}
+              isChecked={checkedStates[index]}
+              toggleChecked={() => toggleChecked(index)}
+            />
+          ))}
+        </div>
+      </section>
+    </>
   );
 };
 
