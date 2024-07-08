@@ -19,7 +19,6 @@ const Select = ({ icon }: SelectProps) => {
   const handleOptionClick = (option: string) => {
     setSelectedOption(option);
     setIsOpen(false);
-    console.log('클릭!!');
   };
 
   return (
