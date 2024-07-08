@@ -14,3 +14,9 @@ export const socialLoginButtonStyle = () => css`
 export const simpleUserProfileStyle = () => css`
   padding: 1rem 0;
 `;
+
+export const accodionAlignStyle = () => css`
+  ${flexGenerator('column', 'center', 'center')}
+  gap: 2rem;
+  margin: 2rem;
+`;
