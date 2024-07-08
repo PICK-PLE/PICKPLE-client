@@ -40,11 +40,12 @@ export const sortItem = (theme: Theme) => css`
   ${flexGenerator('row', 'flex-start', 'center')}
   width: 100%;
   height: 2.8rem;
+  padding: 0.8rem 0.8rem 0.8rem 1rem;
   gap: 0.2rem;
 
   cursor: pointer;
 
   &:hover {
-    ${theme.color.lightgray1}
+    background-color: ${theme.color.lightgray1};
   }
 `;
