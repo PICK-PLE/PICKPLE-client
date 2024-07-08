@@ -57,9 +57,10 @@ export const applyDateStyle = (theme: Theme) => css`
 `;
 
 /* 아코디언 아이콘 및 버튼 */
-export const accodionStyle = css`
+export const accodionStyle = (isAccordionOpen: boolean) => css`
   width: 4.8rem;
   height: 4.8rem;
+  transform: ${isAccordionOpen ? 'rotateX(180deg)' : 'rotateX(0deg)'};
 `;
 
 export const accodionButtonStyle = css`

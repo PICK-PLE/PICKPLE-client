@@ -24,6 +24,8 @@ export interface ApplicantAccordionProps extends React.HTMLAttributes<HTMLDivEle
   applicantImg: string;
   applyDate: string;
   questions: { question: string; answer: string }[];
+  isChecked: boolean;
+  toggleChecked: () => void;
 }
 
 const ApplicantAccordion = ({
@@ -31,13 +33,10 @@ const ApplicantAccordion = ({
   applicantImg,
   applyDate,
   questions,
+  isChecked,
+  toggleChecked,
 }: ApplicantAccordionProps) => {
-  const [isChecked, setIsChecked] = useState(false);
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
-
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
 
   const handleAccodionClick = () => {
     setIsAccordionOpen(!isAccordionOpen);
@@ -56,7 +55,7 @@ const ApplicantAccordion = ({
               type="checkbox"
               css={checkboxStyle}
               checked={isChecked}
-              onChange={handleCheckboxChange}
+              onChange={toggleChecked}
             />
           </label>
           <div css={applicantWrapperStyle}>
@@ -73,7 +72,7 @@ const ApplicantAccordion = ({
           </div>
         </div>
         <button css={accodionButtonStyle} onClick={handleAccodionClick}>
-          <IcApplicantArrcodion css={accodionStyle} />
+          <IcApplicantArrcodion css={accodionStyle(isAccordionOpen)} />
         </button>
       </div>
 
