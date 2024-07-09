@@ -12,6 +12,7 @@ import Label from './Label/Label';
 import CategoryButton from './buttons/CategoryButton/CategoryButton';
 import InterestCategoryButton from './buttons/InterestCategoryButton/InterestCategoryButton';
 import ShareButton from './buttons/ShareButton/ShareButton';
+import Input from 'src/components/common/inputs/Input/Input';
 
 export {
   IconButton,
@@ -24,5 +25,6 @@ export {
   QuestionText,
   QuestionInput,
   SelectButton, 
-  Label
+  Label,
+  Input
 };
