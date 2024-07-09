@@ -1,5 +1,4 @@
-import { Theme } from '@emotion/react';
-import { css } from '@emotion/react';
+import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const selectContainer = (theme: Theme) => css`
@@ -27,8 +26,7 @@ export const sortList = (theme: Theme) => css`
   position: absolute;
   top: 6rem;
   left: -0.25rem;
-  width: 33.5rem;
-  height: 29.5rem;
+  width: 100%;
   padding: 0.4rem;
 
   border-radius: 10px;
