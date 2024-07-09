@@ -20,6 +20,7 @@ import Modal from './Modal/Modal';
 import DateSelect from './DateSelect/DateSelect';
 import FilterSelect from './select/FilterSelect/FilterSelect';
 import CountPeople from './CountPeople/CountPeople';
+import Button from './buttons/Button/Button';
 
 export {
   IconButton,
@@ -40,5 +41,6 @@ export {
   Modal,
   DateSelect,
   FilterSelect,
-  CountPeople
+  CountPeople,
+  Button
 };
