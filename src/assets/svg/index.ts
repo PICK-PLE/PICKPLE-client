@@ -6,6 +6,7 @@ export { default as IcCameraAdd } from './IcCameraAdd';
 export { default as IcBtnMinus } from './IcBtnMinus';
 export { default as IcBtnPlus } from './IcBtnPlus';
 export { default as IcCopyPlus } from './IcCopyPlus';
+export { default as IcRouteArrow } from './IcRouteArrow';
 export { default as IcExclamation } from './IcExclamation';
 export { default as IcDefaultUserimg } from './IcDefaultUserimg';
 export { default as IcHome } from './IcHome';
