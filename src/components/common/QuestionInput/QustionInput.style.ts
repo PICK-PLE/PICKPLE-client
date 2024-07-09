@@ -3,7 +3,6 @@ import { flexGenerator } from '@styles/generator';
 
 export const questionInputStyle = css`
   ${flexGenerator('row', 'first', 'center')}
-  margin: 0 2rem;
   gap: 1rem;
   position: relative;
 `;
