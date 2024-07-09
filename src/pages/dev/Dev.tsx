@@ -1,24 +1,15 @@
-import { Modal, PayButton } from '@components';
-import { useState } from 'react';
+import { ProgressBar, QuestionInput } from '@components';
+import LogoHeader from 'src/components/common/headers/LogoHeader/LogoHeader';
+import { devContainer } from './Dev.style';
 
 const Dev = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const handleModalOpen = () => {
-    setIsOpen(true);
-  };
-  const handleModalClose = () => {
-    setIsOpen(false);
-  };
-
   return (
     <>
-      <button onClick={handleModalOpen}>모달 열기</button>
-      {isOpen && (
-        <Modal onClose={handleModalClose}>
-          {/* 예시로 PayButton을 넣어봤습니다 */}
-          <PayButton variant="toss" totalPrice={10000} />
-        </Modal>
-      )}
+      <LogoHeader />
+      <ProgressBar progress={77} />
+      <section css={devContainer}>
+        {/* 여기에 컴포넌트 추가해보고, 디바이스 크기 조정해보면서 테스트 */}
+      </section>
     </>
   );
 };
