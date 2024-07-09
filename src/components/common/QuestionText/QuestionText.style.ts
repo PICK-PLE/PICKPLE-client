@@ -10,6 +10,6 @@ export const questionStyle = (theme: Theme) => css`
 `;
 
 export const textStyle = (theme: Theme) => css`
-  color: ${theme.color.black};
+  color: ${theme.color.blackgray};
   ${theme.font['head04-b-16']}
 `;
