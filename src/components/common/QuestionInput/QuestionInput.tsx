@@ -24,8 +24,6 @@ const QuestionInput = ({
   onChange,
 }: QuestionInputProps) => {
   const handleQuestionInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(value.length);
-
     if (e.target.value.length < maxTextLength) {
       onChange(e);
     } else {
