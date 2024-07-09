@@ -4,7 +4,7 @@ import { flexGenerator } from '@styles/generator';
 export const questionStyle = (theme: Theme) => css`
   ${flexGenerator('row', 'flex-start', 'center')}
   gap: 1rem;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
   background-color: ${theme.color.background};
   border-radius: 10px;
 `;
