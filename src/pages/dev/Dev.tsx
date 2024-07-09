@@ -3,8 +3,14 @@ import SocialLoginButton from 'src/components/common/button/SocialLoginButton/So
 import PayButton from 'src/components/common/buttons/PayButton/PayButton';
 import { payButtonsStyle, socialLoginButtonStyle } from './Dev.style';
 import { CategoryButton } from '@components';
+import { useState } from 'react';
 
 const Dev = () => {
+  const [isSelected, setIsSelected] = useState(false);
+
+  const handleClick = () => {
+    setIsSelected(!isSelected);
+  };
   return (
     <div css={socialLoginButtonStyle}>
       <SocialLoginButton
@@ -19,7 +25,9 @@ const Dev = () => {
       </div>
 
       <div>
-        <CategoryButton icon={<IcNjob />}>adsf</CategoryButton>
+        <CategoryButton icon={<IcNjob />} isSelected={isSelected} handleClick={handleClick}>
+          adsf
+        </CategoryButton>
       </div>
     </div>
   );
