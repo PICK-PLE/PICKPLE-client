@@ -1,5 +1,4 @@
 import { HTMLAttributes } from 'react';
-import { useTheme } from '@emotion/react';
 import { Dispatch, SetStateAction } from 'react';
 import {
   inputContainerStyle,
@@ -17,9 +16,10 @@ export interface InputProps extends HTMLAttributes<HTMLInputElement> {
   inputLabel?: string;
   placeholder: string;
   errorMessage?: string;
-  maxTextLength: number;
+  maxTextLength?: number;
   isError: boolean;
   setIsError: Dispatch<SetStateAction<boolean>>;
+  countValue: boolean;
 }
 
 const Input = ({
@@ -29,17 +29,22 @@ const Input = ({
   inputLabel,
   placeholder,
   errorMessage,
-  maxTextLength,
+  maxTextLength = 10,
   isError = false,
   setIsError,
+  countValue = false,
 }: InputProps) => {
   // 글자 수 세서 바로 화면에 반영하는 onChange + 외부 onChange
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.value.length <= maxTextLength) {
-      onChange(e);
+    if (countValue) {
+      if (e.target.value.length <= maxTextLength) {
+        onChange(e);
+      } else {
+        setValue(value.slice(0, maxTextLength));
+        setIsError(true);
+      }
     } else {
-      setValue(value.slice(0, maxTextLength));
-      setIsError(true);
+      onChange(e);
     }
   };
 
@@ -47,20 +52,23 @@ const Input = ({
   // 글자 수 에러 메시지
   const textLengthErrorMessage = `* 글자 수 ${maxTextLength} 이하로 입력해주세요.`;
 
-  const theme = useTheme();
   return (
     <div css={inputContainerStyle}>
       <span css={inputLabelStyle}>{inputLabel}</span>
       <div css={inputWrapperStyle}>
         <input
-          css={[inputStyle(theme, isError)]}
+          css={[inputStyle(isError)]}
           placeholder={placeholder}
           value={value}
           onChange={handleInputChange}
         />
-        <span css={textLengthStyle(theme, isError)}>
-          {value.length}/{maxTextLength}
-        </span>
+        {countValue ? (
+          <span css={textLengthStyle(isError)}>
+            {value.length}/{maxTextLength}
+          </span>
+        ) : (
+          ''
+        )}
       </div>
 
       {isError && value.length >= maxTextLength && (
