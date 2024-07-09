@@ -28,7 +28,7 @@ const FilterSelect = ({ options }: SelectProps) => {
   return (
     <div css={selectContainer} onClick={toggleDropdown}>
       <span css={selectedOptionStyle}>{selectedOption}</span>
-      <span css={iconStyle}>{isOpen ? <IcDropUp /> : <IcDropDown />}</span>
+      <span css={iconStyle}>{isOpen ? <IcDropDown /> : <IcDropUp />}</span>
       {isOpen && (
         <ul css={sortList}>
           {options?.map((opt, i) => (
