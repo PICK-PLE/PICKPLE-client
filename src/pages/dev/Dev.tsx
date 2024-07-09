@@ -1,7 +1,12 @@
-import { ProgressBar } from '@components';
+import { Select } from '@components';
 
 const Dev = () => {
-  return <></>;
+  return (
+    <>
+      <Select />
+      <Select placeholder="placeholder" />
+    </>
+  );
 };
 
 export default Dev;
