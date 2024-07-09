@@ -5,7 +5,7 @@ import { flexGenerator } from '@styles/generator';
 export const selectContainer = (theme: Theme) => css`
   ${flexGenerator('row', 'space-between', 'center')};
   position: relative;
-  width: 33.5rem;
+  width: 100%;
   height: 5.2rem;
   padding: 1.5rem;
 
@@ -40,7 +40,7 @@ export const sortList = (theme: Theme) => css`
 export const sortItem = (theme: Theme) => css`
   ${flexGenerator('row', 'flex-start', 'center')}
   display: flex;
-  width: 32.7rem;
+  width: 100%;
   padding: 1rem 1.5rem;
   align-items: center;
   gap: 0.2rem;
