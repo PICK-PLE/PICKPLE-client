@@ -1,4 +1,4 @@
-import { HTMLAttributes } from 'react';
+import { ButtonHTMLAttributes } from 'react';
 import {
   categoryButtonWrapper,
   categoryButtonStyle,
@@ -6,9 +6,8 @@ import {
   textStyle,
   categoryButtonContainer,
 } from './CategoryButton.style';
-import { useTheme } from '@emotion/react';
 
-interface CategoryButtonProps extends HTMLAttributes<HTMLButtonElement> {
+interface CategoryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: React.ReactNode;
   isSelected: boolean;
   setIsSelected?: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,17 +21,15 @@ const CategoryButton = ({
   handleClick,
   ...props
 }: CategoryButtonProps) => {
-  const theme = useTheme();
-
   return (
     <section css={categoryButtonContainer}>
-      <div css={(theme) => [categoryButtonWrapper(theme, isSelected)]}>
+      <div css={[categoryButtonWrapper(isSelected)]}>
         <button
           type="button"
           onClick={handleClick}
-          css={(theme) => [categoryButtonStyle(theme, isSelected)]}
+          css={[categoryButtonStyle(isSelected)]}
           {...props}>
-          <span css={iconWrapper(theme, isSelected)}>{icon}</span>
+          <span css={iconWrapper(isSelected)}>{icon}</span>
         </button>
       </div>
       <p css={textStyle}>{children}</p>

@@ -6,42 +6,46 @@ export const categoryButtonContainer = css`
   width: 5.7rem;
   gap: 0.5rem;
 `;
-export const categoryButtonWrapper = (theme: Theme, isSelected: boolean) => css`
-  ${flexGenerator('column')};
 
-  height: 5.7rem;
-  align-self: stretch;
+export const categoryButtonWrapper = (isSelected: boolean) => (theme: Theme) =>
+  css`
+    ${flexGenerator('column')};
 
-  border-radius: 10px;
-  background: ${isSelected ? theme.color.purple5 : theme.color.background};
-  border: ${isSelected ? `1px solid ${theme.color.purple2}` : 'none'};
+    height: 5.7rem;
+    align-self: stretch;
 
-  color: ${theme.color.lightgray2};
+    border-radius: 10px;
+    background: ${isSelected ? theme.color.purple5 : theme.color.background};
+    border: ${isSelected ? `1px solid ${theme.color.purple2}` : 'none'};
 
-  cursor: pointer;
-`;
+    color: ${theme.color.lightgray2};
 
-export const categoryButtonStyle = (theme: Theme, isSelected: boolean) => css`
-  border: none;
-  background: none;
-  cursor: pointer;
+    cursor: pointer;
+  `;
 
-  & span {
-    fill: ${isSelected ? theme.color.purple2 : theme.color.darkgray}; /* SVG 색상 변경 */
-  }
-`;
+export const categoryButtonStyle = (isSelected: boolean) => (theme: Theme) =>
+  css`
+    border: none;
+    background: none;
+    cursor: pointer;
 
-export const iconWrapper = (theme: Theme, isSelected: boolean) => css`
-  ${flexGenerator()}
-  width: 3.6rem;
-  height: 3.6rem;
-
-  & svg {
-    path {
-      stroke: ${isSelected ? theme.color.purple2 : ''};
+    & span {
+      fill: ${isSelected ? theme.color.purple2 : theme.color.darkgray}; /* SVG 색상 변경 */
     }
-  }
-`;
+  `;
+
+export const iconWrapper = (isSelected: boolean) => (theme: Theme) =>
+  css`
+    ${flexGenerator()}
+    width: 3.6rem;
+    height: 3.6rem;
+
+    & svg {
+      path {
+        stroke: ${isSelected ? theme.color.purple2 : ''};
+      }
+    }
+  `;
 
 export const textStyle = (theme: Theme) => css`
   color: ${theme.color.lightgray2};
