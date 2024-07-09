@@ -1,22 +1,23 @@
 import { css, keyframes, Theme } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
-export const toastWrapperStyle = (theme: Theme, isVisible: boolean, toastBottom: number) => css`
-  ${flexGenerator()};
-  gap: 0.4rem;
-  min-width: 33.5rem;
-  height: 4.5rem;
-  position: fixed;
-  bottom: ${toastBottom}rem;
+export const toastWrapperStyle = (isVisible: boolean, toastBottom: number) => (theme: Theme) =>
+  css`
+    ${flexGenerator()};
+    gap: 0.4rem;
+    min-width: 33.5rem;
+    height: 4.5rem;
+    position: fixed;
+    bottom: ${toastBottom}rem;
 
-  background-color: ${theme.color.darkgray};
-  border-radius: 10px;
-  margin: 0 2rem;
+    background-color: ${theme.color.darkgray};
+    border-radius: 10px;
+    margin: 0 2rem;
 
-  display: ${isVisible ? 'flex' : 'none'};
-  animation: ${isVisible && toastShow} 2s forwards;
-  z-index: 1;
-`;
+    display: ${isVisible ? 'flex' : 'none'};
+    animation: ${isVisible && toastShow} 2s forwards;
+    z-index: 1;
+  `;
 
 const toastShow = keyframes`
 0% {
