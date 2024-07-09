@@ -16,6 +16,7 @@ import Input from 'src/components/common/inputs/Input/Input';
 import TextArea from 'src/components/common/TextArea/TextArea';
 import Toast from 'src/components/common/Toast/Toast';
 import ClipboardCopyButton from './buttons/ClipboardCopyButton/ClipboardCopyButton';
+import Modal from './Modal/Modal';
 
 export {
   IconButton,
@@ -32,5 +33,6 @@ export {
   Input,
   TextArea,
   Toast,
-  ClipboardCopyButton
+  ClipboardCopyButton,
+  Modal
 };
