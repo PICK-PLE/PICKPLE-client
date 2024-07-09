@@ -37,7 +37,7 @@ const TimeSelect = () => {
   };
 
   const focusSelect = (selectRef: React.RefObject<HTMLSelectElement>) => {
-    if (selectRef.current) {
+    if (selectRef.current && !selectRef.current.disabled) {
       selectRef.current.showPicker();
     }
   };
