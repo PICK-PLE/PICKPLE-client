@@ -18,3 +18,9 @@ export const imageVariant = {
     border-radius: 100%;
   `,
 };
+
+export const labelStyle = css`
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+`;
