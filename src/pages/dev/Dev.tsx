@@ -1,7 +1,8 @@
-import { IcKakaoLogo } from '@svg';
+import { IcKakaoLogo, IcNjob } from '@svg';
 import SocialLoginButton from 'src/components/common/button/SocialLoginButton/SocialLoginButton';
 import PayButton from 'src/components/common/buttons/PayButton/PayButton';
 import { payButtonsStyle, socialLoginButtonStyle } from './Dev.style';
+import { CategoryButton } from '@components';
 
 const Dev = () => {
   return (
@@ -15,6 +16,10 @@ const Dev = () => {
       <div css={payButtonsStyle}>
         <PayButton variant="kakao" totalPrice={10000} />
         <PayButton variant="toss" totalPrice={10000} />
+      </div>
+
+      <div>
+        <CategoryButton icon={<IcNjob />}>adsf</CategoryButton>
       </div>
     </div>
   );
