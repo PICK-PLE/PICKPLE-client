@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { HTMLAttributes } from 'react';
 import {
   categoryButtonWrapper,
@@ -10,19 +9,20 @@ import {
 import { useTheme } from '@emotion/react';
 
 interface CategoryButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  icon?: React.ReactNode;
+  icon: React.ReactNode;
+  isSelected: boolean;
+  setIsSelected?: React.Dispatch<React.SetStateAction<boolean>>;
+  handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const CategoryButton = ({ children, onClick, icon, ...props }: CategoryButtonProps) => {
+const CategoryButton = ({
+  children,
+  icon,
+  isSelected = false,
+  handleClick,
+  ...props
+}: CategoryButtonProps) => {
   const theme = useTheme();
-  const [isSelected, setIsSelected] = useState(false);
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    setIsSelected(!isSelected);
-    if (onClick) {
-      onClick(event);
-    }
-  };
 
   return (
     <section css={categoryButtonContainer}>
