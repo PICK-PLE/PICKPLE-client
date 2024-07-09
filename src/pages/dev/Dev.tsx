@@ -1,4 +1,4 @@
-import FilterSelect from 'src/components/common/select/Select/FilterSelect';
+import FilterSelect from 'src/components/common/select/FilterSelect/FilterSelect';
 
 const Dev = () => {
   return (
