@@ -9,5 +9,6 @@ import QuestionText from 'src/components/common/QuestionText/QuestionText';
 import SelectButton from './buttons/SelectButton/SelectButton';
 import Label from './Label/Label';
 import CategoryButton from './buttons/CategoryButton/CategoryButton';
+import InterestCategoryButton from './buttons/InterestCategoryButton/InterestCategoryButton';
 
-export { IconButton, SocialLoginButton, PayButton, Header, NumberLabel, ProgressBar, SelectButton, Label, Notice, QuestionText, CategoryButton };
+export { IconButton, SocialLoginButton, PayButton, Header, NumberLabel, ProgressBar, SelectButton, Label, Notice, QuestionText, CategoryButton, InterestCategoryButton };
