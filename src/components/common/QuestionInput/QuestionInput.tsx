@@ -4,7 +4,8 @@ import {
   questionInputStyle,
   inputStyle,
   iconStyle,
-} from 'src/components/common/QuestionInput/QustionInput.style';
+  textLengthStyle,
+} from 'src/components/common/QuestionInput/QuestionInput.style';
 
 export interface QuestionInputProps extends HTMLAttributes<HTMLInputElement> {
   numberLabel: string;
@@ -26,7 +27,7 @@ const QuestionInput = ({
   const handleQuestionInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(value.length);
 
-    if (e.target.value.length < maxTextLength) {
+    if (e.target.value.length < maxTextLength + 1) {
       onChange(e);
     } else {
       setValue(value.slice(0, maxTextLength));
@@ -44,6 +45,7 @@ const QuestionInput = ({
         onChange={handleQuestionInputChange}
         placeholder={placeholder}
       />
+      <span css={textLengthStyle}>{`${value.length}/${maxTextLength}`}</span>
     </div>
   );
 };

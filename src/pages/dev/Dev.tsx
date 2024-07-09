@@ -19,7 +19,7 @@ const Dev = () => {
         <QuestionInput
           numberLabel="Q1"
           placeholder="(필수) 질문을 입력하세요."
-          maxTextLength={50}
+          maxTextLength={20}
           value={value}
           setValue={setValue}
           onChange={handleInputChange}
