@@ -15,6 +15,7 @@ import ShareButton from './buttons/ShareButton/ShareButton';
 import Input from 'src/components/common/inputs/Input/Input';
 import TextArea from 'src/components/common/TextArea/TextArea';
 import Toast from 'src/components/common/Toast/Toast';
+import ClipboardCopyButton from './buttons/ClipboardCopyButton/ClipboardCopyButton';
 
 export {
   IconButton,
@@ -30,5 +31,6 @@ export {
   Label,
   Input,
   TextArea,
-  Toast
+  Toast,
+  ClipboardCopyButton
 };
