@@ -19,6 +19,7 @@ import ClipboardCopyButton from './buttons/ClipboardCopyButton/ClipboardCopyButt
 import Modal from './Modal/Modal';
 import DateSelect from './DateSelect/DateSelect';
 import FilterSelect from './select/FilterSelect/FilterSelect';
+import CountPeople from './CountPeople/CountPeople';
 
 export {
   IconButton,
@@ -38,5 +39,6 @@ export {
   ClipboardCopyButton,
   Modal,
   DateSelect,
-  FilterSelect
+  FilterSelect,
+  CountPeople
 };

@@ -3,6 +3,8 @@ export { default as IcTossPay } from './IcTossPay';
 export { default as IcClipboardCopy } from './IcClipboardCopy';
 export { default as IcAccordion } from './IcAccordion';
 export { default as IcCameraAdd } from './IcCameraAdd';
+export { default as IcBtnMinus } from './IcBtnMinus';
+export { default as IcBtnPlus } from './IcBtnPlus';
 export { default as IcCopyPlus } from './IcCopyPlus';
 export { default as IcExclamation } from './IcExclamation';
 export { default as IcDefaultUserimg } from './IcDefaultUserimg';
