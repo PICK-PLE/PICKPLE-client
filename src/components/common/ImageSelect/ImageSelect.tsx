@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { HTMLAttributes } from 'react';
+import { InputHTMLAttributes, useState } from 'react';
 import {
   imageSelectWrapper,
   inputStyle,
@@ -12,7 +11,7 @@ import {
 } from './ImageSelect.style';
 import { IcCameraAdd, IcDeletePhoto } from '@svg';
 
-interface ImageSelectProps extends HTMLAttributes<HTMLInputElement> {
+interface ImageSelectProps extends InputHTMLAttributes<HTMLInputElement> {
   previewImage?: string | undefined;
   isMultiple?: boolean;
 }
