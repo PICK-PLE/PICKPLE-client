@@ -4,8 +4,8 @@ import {
   InterestCategoryButtonVariant,
   iconWrapperStyle,
 } from './InterestCategoryButton.style';
-import { HTMLAttributes } from 'react';
-interface InterestCategoryButtonProps extends HTMLAttributes<HTMLButtonElement> {
+import { ButtonHTMLAttributes } from 'react';
+interface InterestCategoryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant: 'default';
   icon: React.ReactNode;
 }
