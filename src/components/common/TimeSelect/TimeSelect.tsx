@@ -16,7 +16,7 @@ const TimeSelect = () => {
   const startTimeRef = useRef<HTMLSelectElement>(null);
   const endTimeRef = useRef<HTMLSelectElement>(null);
 
-  const generateOptions = () => {
+  const generateTimeOptions = () => {
     return Array.from({ length: 25 }, (_, i) => (
       <option key={i} value={i}>
         {i.toString().padStart(2, '0')}:00
@@ -43,58 +43,56 @@ const TimeSelect = () => {
   };
 
   return (
-    <>
-      <section css={timeSelectContainer}>
-        <div css={timeSelectWrapper}>
-          <div css={labelWrapper}>
-            <label htmlFor="start-time" css={textStyle}>
-              시작 시간
-            </label>
-            <label htmlFor="start-time" onClick={() => focusSelect(startTimeRef)}>
-              <span css={iconStyle} onClick={() => focusSelect(startTimeRef)}>
-                <IcDown />
-              </span>
-            </label>
-            <select
-              id="start-time"
-              ref={startTimeRef}
-              css={selectStyle}
-              value={startTime ?? ''}
-              onChange={handleStartTimeChange}>
-              <option value="" disabled>
-                선택
-              </option>
-              {generateOptions()}
-            </select>
-          </div>
-        </div>
-
-        <div css={timeSelectWrapper}>
-          <div css={labelWrapper}>
-            <label css={textStyle} htmlFor="end-time">
-              종료 시간
-            </label>
-            <span css={iconStyle} onClick={() => focusSelect(endTimeRef)}>
+    <section css={timeSelectContainer}>
+      <div css={timeSelectWrapper}>
+        <div css={labelWrapper}>
+          <label htmlFor="start-time" css={textStyle}>
+            시작 시간
+          </label>
+          <label htmlFor="start-time" onClick={() => focusSelect(startTimeRef)}>
+            <span css={iconStyle} onClick={() => focusSelect(startTimeRef)}>
               <IcDown />
             </span>
-            <select
-              ref={endTimeRef}
-              css={selectStyle}
-              value={endTime ?? ''}
-              id="end-time"
-              onChange={handleEndTimeChange}
-              disabled={startTime === null}>
-              <option value="" disabled>
-                선택
-              </option>
-              {generateOptions().filter(
-                (option) => startTime === null || parseInt(option.props.value) > startTime
-              )}
-            </select>
-          </div>
+          </label>
+          <select
+            id="start-time"
+            ref={startTimeRef}
+            css={selectStyle}
+            value={startTime ?? ''}
+            onChange={handleStartTimeChange}>
+            <option value="" disabled>
+              선택
+            </option>
+            {generateTimeOptions()}
+          </select>
         </div>
-      </section>
-    </>
+      </div>
+
+      <div css={timeSelectWrapper}>
+        <div css={labelWrapper}>
+          <label css={textStyle} htmlFor="end-time">
+            종료 시간
+          </label>
+          <span css={iconStyle} onClick={() => focusSelect(endTimeRef)}>
+            <IcDown />
+          </span>
+          <select
+            ref={endTimeRef}
+            css={selectStyle}
+            value={endTime ?? ''}
+            id="end-time"
+            onChange={handleEndTimeChange}
+            disabled={startTime === null}>
+            <option value="" disabled>
+              선택
+            </option>
+            {generateTimeOptions().filter(
+              (option) => startTime === null || parseInt(option.props.value) > startTime
+            )}
+          </select>
+        </div>
+      </div>
+    </section>
   );
 };
 
