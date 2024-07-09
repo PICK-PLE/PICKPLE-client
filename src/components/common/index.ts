@@ -4,8 +4,14 @@ import PayButton from './buttons/PayButton/PayButton';
 import Header from './headers/Header/Header';
 import NumberLabel from 'src/components/common/NumberLabel/NumberLabel';
 import ProgressBar from './ProgressBar/ProgressBar';
+import Notice from 'src/components/common/Notice/Notice';
+import QuestionText from 'src/components/common/QuestionText/QuestionText';
+import QuestionInput from 'src/components/common/QuestionInput/QuestionInput';
 import SelectButton from './buttons/SelectButton/SelectButton';
 import Label from './Label/Label';
+import CategoryButton from './buttons/CategoryButton/CategoryButton';
+import InterestCategoryButton from './buttons/InterestCategoryButton/InterestCategoryButton';
+import ShareButton from './buttons/ShareButton/ShareButton';
 import Input from 'src/components/common/inputs/Input/Input';
 
 export {
@@ -15,7 +21,10 @@ export {
   Header,
   NumberLabel,
   ProgressBar,
-  SelectButton,
+  Notice,
+  QuestionText,
+  QuestionInput,
+  SelectButton, 
   Label,
-  Input,
+  Input
 };
