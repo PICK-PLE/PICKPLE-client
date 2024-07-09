@@ -11,7 +11,8 @@ export const buttonStyle = css`
 
 export const buttonSize = {
   xLarge: (theme: Theme) => css`
-    width: 33.5rem;
+    min-width: 33.5rem;
+    width: 100%;
     height: 6rem;
     padding: 1.4rem 1rem;
 
@@ -22,7 +23,8 @@ export const buttonSize = {
     background-color: ${theme.color.purple1};
   `,
   large: (theme: Theme) => css`
-    width: 33.5rem;
+    min-width: 33.5rem;
+    width: 100%;
     height: 5rem;
     padding: 1.4rem 1rem;
 
@@ -33,7 +35,8 @@ export const buttonSize = {
     background-color: ${theme.color.purple1};
   `,
   medium: (theme: Theme) => css`
-    width: 29.9rem;
+    min-width: 29.9rem;
+    width: 100%;
     height: 4.6rem;
     padding: 0.8rem;
 
@@ -44,7 +47,8 @@ export const buttonSize = {
     background-color: ${theme.color.purple1};
   `,
   small: (theme: Theme) => css`
-    width: 27rem;
+    min-width: 27rem;
+    width: 100%;
     height: 6rem;
     padding: 1rem;
 
@@ -55,7 +59,8 @@ export const buttonSize = {
     background-color: ${theme.color.purple1};
   `,
   xSmall: (theme: Theme) => css`
-    width: 25.4rem;
+    min-width: 25.4rem;
+    width: 100%;
     height: 4.4rem;
     padding: 1.2rem 1rem;
 
@@ -67,7 +72,8 @@ export const buttonSize = {
     background-color: ${theme.color.white};
   `,
   xxSmall: (theme: Theme) => css`
-    width: 17.7rem;
+    min-width: 17.7rem;
+    width: 100%;
     height: 4.8rem;
     padding: 1.4rem 1rem;
 
