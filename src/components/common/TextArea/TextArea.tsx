@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, TextareaHTMLAttributes } from 'react';
+import { TextareaHTMLAttributes, useState } from 'react';
 
 import {
   textAreaStyle,
@@ -11,8 +11,6 @@ import {
 
 export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   value: string;
-  isError: boolean;
-  setIsError: Dispatch<SetStateAction<boolean>>;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   errorMessage?: string;
   maxLength: number;
@@ -20,21 +18,19 @@ export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
 }
 const TextArea = ({
   value,
-  isError,
-  setIsError,
   onChange,
   size = 'small',
   placeholder,
   errorMessage,
   maxLength,
 }: TextAreaProps) => {
+  const [maxLengthError, setMaxLengthError] = useState(false);
   // 글자 수 세서 바로 화면에 반영하는 onChange 함수 (default)
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length <= maxLength) {
       onChange(e);
-      setIsError(false);
     } else {
-      setIsError(true);
+      setMaxLengthError(true);
     }
   };
 
@@ -44,23 +40,21 @@ const TextArea = ({
 
   return (
     <div css={textAreaContainerStyle}>
-      <div css={[textAreaWrapperStyle(isError), textAreaWrapperSize[size]]}>
+      <div css={[textAreaWrapperStyle(maxLengthError), textAreaWrapperSize[size]]}>
         <textarea
-          css={textAreaStyle(isError)}
+          css={textAreaStyle(maxLengthError)}
           value={value}
           onChange={handleTextAreaChange}
           placeholder={placeholder}
         />
-        <span css={textLengthStyle(isError)}>
+        <span css={textLengthStyle(maxLengthError)}>
           {value.length}/{maxLength}
         </span>
       </div>
 
-      {isError && value.length >= maxLength && (
-        <span css={errorMessageStyle}>{textLengthErrorMessage}</span>
-      )}
+      {maxLengthError && <span css={errorMessageStyle}>{textLengthErrorMessage}</span>}
 
-      {isError && value.length < maxLength && <span css={errorMessageStyle}>{errorMessage}</span>}
+      {maxLengthError && <span css={errorMessageStyle}>{errorMessage}</span>}
     </div>
   );
 };

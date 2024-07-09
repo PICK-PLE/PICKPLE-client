@@ -5,7 +5,6 @@ import { useState } from 'react';
 
 const Dev = () => {
   const [value, setValue] = useState('');
-  const [isError, setIsError] = useState(false);
 
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
@@ -23,8 +22,6 @@ const Dev = () => {
           size="small"
           value={value}
           onChange={handleTextAreaChange}
-          isError={isError}
-          setIsError={setIsError}
         />
       </section>
     </>
