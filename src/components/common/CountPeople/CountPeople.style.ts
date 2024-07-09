@@ -18,7 +18,7 @@ export const buttonWrapperStyle = css`
   cursor: pointer;
 `;
 
-export const countCircleStyle = css`
+export const iconStyle = css`
   display: block;
   width: 4.8rem;
   height: 4.8rem;
@@ -30,4 +30,27 @@ export const plusAndMinusIconStyle = css`
   left: 50%;
   transform: translate(-50%, -50%);
   pointer-events: none; /* 클릭 이벤트가 아래 요소에 전달되도록 설정 */
+`;
+
+export const minusStyle = (people: number) => (theme: Theme) =>
+  css`
+    circle {
+      stroke: ${people <= 1 ? theme.color.lightgray1 : theme.color.purple1};
+    }
+    path {
+      fill: ${people <= 1 ? theme.color.lightgray1 : theme.color.purple1};
+    }
+  `;
+export const plusStyle = (people: number) => (theme: Theme) =>
+  css`
+    circle {
+      stroke: ${people >= 15 ? theme.color.lightgray1 : theme.color.purple1};
+    }
+    path {
+      fill: ${people >= 15 ? theme.color.lightgray1 : theme.color.purple1};
+    }
+  `;
+
+export const disabledStyle = css`
+  pointer-events: none;
 `;

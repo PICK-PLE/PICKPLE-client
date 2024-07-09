@@ -1,9 +1,11 @@
-import { IcCountCircle, IcMinus, IcPlus } from '@svg';
+import { IcBtnMinus, IcBtnPlus } from '@svg';
 import {
   buttonWrapperStyle,
   containerStyle,
-  countCircleStyle,
-  plusAndMinusIconStyle,
+  disabledStyle,
+  iconStyle,
+  minusStyle,
+  plusStyle,
 } from './CountPeople.style';
 
 interface CountPeopleProps {
@@ -24,14 +26,12 @@ const CountPeople = ({ people, onPeopleChange }: CountPeopleProps) => {
   };
   return (
     <div css={containerStyle}>
-      <div css={buttonWrapperStyle} onClick={handleDecrease}>
-        <IcCountCircle css={countCircleStyle} />
-        <IcMinus css={plusAndMinusIconStyle} />
+      <div css={[buttonWrapperStyle, people <= 1 && disabledStyle]} onClick={handleDecrease}>
+        <IcBtnMinus css={[iconStyle, minusStyle(people)]} />
       </div>
       <div>{people}명</div>
-      <div css={buttonWrapperStyle} onClick={handleIncrease}>
-        <IcCountCircle css={countCircleStyle} />
-        <IcPlus css={plusAndMinusIconStyle} />
+      <div css={[buttonWrapperStyle, people >= 15 && disabledStyle]} onClick={handleIncrease}>
+        <IcBtnPlus css={[iconStyle, plusStyle(people)]} />
       </div>
     </div>
   );
