@@ -2,13 +2,14 @@ import { css, Theme } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const applicantAccordionLayout = css`
-  ${flexGenerator('column', 'center', 'center')};
+  ${flexGenerator('column')};
   gap: 2rem;
 `;
 
 /* 체크 및 신청자 정보 <--space-between--> 아코디언 버튼  */
 export const applicantLayoutStyle = css`
-  ${flexGenerator('row', 'space-between', 'center')}
+  ${flexGenerator('row', 'space-between')};
+  gap: 0.2rem;
 `;
 
 /* 체크박스 <---> 신청자 정보*/
@@ -71,12 +72,12 @@ export const accodionButtonStyle = css`
 
 /* 아코디언 div */
 export const accdionContentWrapperStyle = css`
-  ${flexGenerator('column', 'center', 'center')}
+  ${flexGenerator('column')}
   gap: 2rem;
 `;
 
 export const accdionContentStyle = css`
-  ${flexGenerator('column', 'center', 'center')}
+  ${flexGenerator('column')}
   gap: 1rem;
 `;
 

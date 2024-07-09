@@ -87,6 +87,7 @@ const ApplicantAccordion = ({
       {isAccordionOpen && (
         <div css={accdionContentWrapperStyle}>
           {questions.map((applicant, index) => (
+            // TODO: 추후 id값으로 key 변경 예정
             <div key={index} css={accdionContentStyle}>
               <div css={questionStyle}>{applicant.question}</div>
               <div css={answerStyle}>{applicant.answer}</div>

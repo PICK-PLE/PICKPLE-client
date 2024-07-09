@@ -30,9 +30,6 @@ export const mergeApplicantData = (
         }))
       : [];
 
-    console.log('applicant', applicant);
-    console.log('questions', questions);
-
     return {
       ...applicant,
       questions,
