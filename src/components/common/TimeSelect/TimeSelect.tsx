@@ -1,9 +1,20 @@
-import React, { useState } from 'react';
-import { timeSelectWrapper, selectStyle, textStyle, timeSelectContainer } from './TimeSelect.style';
+import React, { useRef, useState } from 'react';
+import {
+  timeSelectWrapper,
+  selectStyle,
+  textStyle,
+  timeSelectContainer,
+  iconStyle,
+  labelWrapper,
+} from './TimeSelect.style';
+import { IcDown } from '@svg';
 
 const TimeSelect = () => {
   const [startTime, setStartTime] = useState<number | null>(null);
   const [endTime, setEndTime] = useState<number | null>(null);
+
+  const startTimeRef = useRef<HTMLSelectElement>(null);
+  const endTimeRef = useRef<HTMLSelectElement>(null);
 
   const generateOptions = () => {
     return Array.from({ length: 25 }, (_, i) => (
@@ -25,13 +36,31 @@ const TimeSelect = () => {
     setEndTime(parseInt(e.target.value));
   };
 
+  const focusSelect = (selectRef: React.RefObject<HTMLSelectElement>) => {
+    if (selectRef.current) {
+      selectRef.current.showPicker();
+    }
+  };
+
   return (
     <>
       <section css={timeSelectContainer}>
         <div css={timeSelectWrapper}>
-          <div>
-            <label css={textStyle}>시작 시간</label>
-            <select css={selectStyle} value={startTime ?? ''} onChange={handleStartTimeChange}>
+          <div css={labelWrapper}>
+            <label htmlFor="start-time" css={textStyle}>
+              시작 시간
+            </label>
+            <label htmlFor="start-time" onClick={() => focusSelect(startTimeRef)}>
+              <span css={iconStyle} onClick={() => focusSelect(startTimeRef)}>
+                <IcDown />
+              </span>
+            </label>
+            <select
+              id="start-time"
+              ref={startTimeRef}
+              css={selectStyle}
+              value={startTime ?? ''}
+              onChange={handleStartTimeChange}>
               <option value="" disabled>
                 선택
               </option>
@@ -41,11 +70,18 @@ const TimeSelect = () => {
         </div>
 
         <div css={timeSelectWrapper}>
-          <div>
-            <label css={textStyle}>종료 시간</label>
+          <div css={labelWrapper}>
+            <label css={textStyle} htmlFor="end-time">
+              종료 시간
+            </label>
+            <span css={iconStyle} onClick={() => focusSelect(endTimeRef)}>
+              <IcDown />
+            </span>
             <select
+              ref={endTimeRef}
               css={selectStyle}
               value={endTime ?? ''}
+              id="end-time"
               onChange={handleEndTimeChange}
               disabled={startTime === null}>
               <option value="" disabled>
