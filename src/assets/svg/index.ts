@@ -1,11 +1,13 @@
-export { default as IcHome } from './IcHome';
-export { default as Logo } from './Logo';
-export { default as IcKakaoLogo } from './IcKakaoLogo';
 export { default as IcKakaoPay } from './IcKakaoPay';
 export { default as IcTossPay } from './IcTossPay';
 export { default as IcCopyPlus } from './IcCopyPlus';
+export { default as IcDefaultUserimg } from './IcDefaultUserimg';
+export { default as IcHome } from './IcHome';
+export { default as IcKakaoLogo } from './IcKakaoLogo';
 export { default as IcNumberLabel } from './IcNumberLabel';
 export { default as IcLogo } from './IcLogo';
 export { default as IcPerson } from './IcPerson';
 export { default as IcHouse } from './IcHouse';
 export { default as IcNjob } from './IcNjob';
+export { default as IcShare } from './IcShare';
+export { default as Logo } from './Logo';

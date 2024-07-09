@@ -10,5 +10,6 @@ import SelectButton from './buttons/SelectButton/SelectButton';
 import Label from './Label/Label';
 import CategoryButton from './buttons/CategoryButton/CategoryButton';
 import InterestCategoryButton from './buttons/InterestCategoryButton/InterestCategoryButton';
+import ShareButton from './buttons/ShareButton/ShareButton';
 
-export { IconButton, SocialLoginButton, PayButton, Header, NumberLabel, ProgressBar, SelectButton, Label, Notice, QuestionText, CategoryButton, InterestCategoryButton };
+export { IconButton, SocialLoginButton, PayButton, Header, NumberLabel, ProgressBar, SelectButton, Label, Notice, QuestionText, CategoryButton, InterestCategoryButton, ShareButton };
