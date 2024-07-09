@@ -8,7 +8,8 @@ export const timeSelectContainer = css`
 
 export const timeSelectWrapper = (theme: Theme) => css`
   ${flexGenerator('column', 'center', 'flex-start')};
-  width: 16.2rem;
+  /* width: 16.2rem; */
+  width: 100%;
   padding: 1rem 1.6rem;
   gap: 0.3rem;
   border: 1px solid ${theme.color.lightgray1};
@@ -24,6 +25,7 @@ export const selectStyle = (theme: Theme) => css`
 
   cursor: pointer;
 
+  appearance: none;
   -webkit-appearance: none;
 `;
 
@@ -36,8 +38,7 @@ export const iconStyle = css`
   ${flexGenerator()}
   width: 2.4rem;
   height: 2.4rem;
-  margin-left: 11rem;
-
+  right: 0;
   position: absolute;
 
   cursor: pointer;
