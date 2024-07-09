@@ -4,6 +4,7 @@ import PayButton from './buttons/PayButton/PayButton';
 import Header from './headers/Header/Header';
 import NumberLabel from 'src/components/common/NumberLabel/NumberLabel';
 import ProgressBar from './ProgressBar/ProgressBar';
+import NavigateBox from './NavigateBox/NavigateBox';
 import Notice from 'src/components/common/Notice/Notice';
 import QuestionText from 'src/components/common/QuestionText/QuestionText';
 import QuestionInput from 'src/components/common/QuestionInput/QuestionInput';
@@ -33,7 +34,7 @@ export {
   Notice,
   QuestionText,
   QuestionInput,
-  SelectButton, 
+  SelectButton,
   Label,
   Input,
   TextArea,
@@ -44,5 +45,9 @@ export {
   FilterSelect,
   CountPeople,
   Button,
-  Select
+  Select,
+  NavigateBox,
+  CategoryButton,
+  InterestCategoryButton,
+  ShareButton,
 };
