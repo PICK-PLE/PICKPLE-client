@@ -10,14 +10,13 @@ interface CarouselProps {
 }
 
 const Carousel = ({ imageList }: CarouselProps) => {
-  console.log(imageList);
-
   return (
     <div>
       <Swiper css={swiperStyle} pagination={true} modules={[Pagination]} loop={true}>
         {imageList.map((image, index) => {
           return (
-            <SwiperSlide>
+            // TODO: 추후 이미지 id를 key로 사용하도록 수정
+            <SwiperSlide key={index}>
               <img css={imageStyle} src={image} alt={`Carousel ${index}`} />
             </SwiperSlide>
           );
