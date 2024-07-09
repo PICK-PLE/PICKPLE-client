@@ -22,9 +22,29 @@ export const selectStyle = (theme: Theme) => css`
   border-radius: 4px;
   color: ${theme.color.midgray1};
   ${theme.font['body01-r-15']};
+
+  cursor: pointer;
+
+  -webkit-appearance: none;
 `;
 
 export const textStyle = (theme: Theme) => css`
   color: ${theme.color.midgray1};
   ${theme.font['body03-r-12']};
+`;
+
+export const iconStyle = css`
+  ${flexGenerator()}
+  width: 2.4rem;
+  height: 2.4rem;
+  margin-left: 11rem;
+
+  position: absolute;
+
+  cursor: pointer;
+`;
+
+export const labelWrapper = css`
+  position: relative;
+  /* ${flexGenerator('column', 'center', 'center')} */
 `;
