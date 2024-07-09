@@ -1,23 +1,15 @@
-import FilterSelect from 'src/components/common/select/FilterSelect/FilterSelect';
+import { ProgressBar, QuestionInput } from '@components';
+import LogoHeader from 'src/components/common/headers/LogoHeader/LogoHeader';
+import { devContainer } from './Dev.style';
 
 const Dev = () => {
   return (
     <>
-      <div css={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <FilterSelect
-          options={['전체', '입금 대기', '승인 대기', '승인 완료', '승인 거절', '환불 완료']}
-        />
-      </div>
-      <div css={{ display: 'flex', justifyContent: 'center' }}>
-        <FilterSelect
-          options={['전체', '입금 대기', '승인 대기', '승인 완료', '승인 거절', '환불 완료']}
-        />
-      </div>
-      <div>
-        <FilterSelect
-          options={['전체', '입금 대기', '승인 대기', '승인 완료', '승인 거절', '환불 완료']}
-        />
-      </div>
+      <LogoHeader />
+      <ProgressBar progress={77} />
+      <section css={devContainer}>
+        {/* 여기에 컴포넌트 추가해보고, 디바이스 크기 조정해보면서 테스트 */}
+      </section>
     </>
   );
 };
