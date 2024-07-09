@@ -1,7 +1,12 @@
-import { ProgressBar } from '@components';
+import { InterestCategoryButton } from '@components';
+import { IcHome } from '@svg';
 
 const Dev = () => {
-  return <></>;
+  return (
+    <>
+      <InterestCategoryButton icon={<IcHome />}>asdf</InterestCategoryButton>
+    </>
+  );
 };
 
 export default Dev;
