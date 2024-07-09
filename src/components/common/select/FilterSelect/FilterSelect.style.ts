@@ -24,7 +24,8 @@ export const iconStyle = css`
 export const sortList = (theme: Theme) => css`
   ${flexGenerator('column', 'center', 'flex-start')};
   position: absolute;
-  top: 3.6rem;
+  top: 3.2rem;
+  right: 0;
   width: 11.5rem;
   height: 17.6rem;
   padding: 0.4rem;
