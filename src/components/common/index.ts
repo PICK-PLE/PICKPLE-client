@@ -6,5 +6,16 @@ import NumberLabel from 'src/components/common/NumberLabel/NumberLabel';
 import ProgressBar from './ProgressBar/ProgressBar';
 import SelectButton from './buttons/SelectButton/SelectButton';
 import Label from './Label/Label';
+import Select from './select/Select';
 
-export { IconButton, SocialLoginButton, PayButton, Header, NumberLabel, ProgressBar, SelectButton, Label };
+export {
+  IconButton,
+  SocialLoginButton,
+  PayButton,
+  Header,
+  NumberLabel,
+  ProgressBar,
+  SelectButton,
+  Label,
+  Select,
+};
