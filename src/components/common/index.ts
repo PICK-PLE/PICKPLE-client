@@ -13,6 +13,7 @@ import CategoryButton from './buttons/CategoryButton/CategoryButton';
 import InterestCategoryButton from './buttons/InterestCategoryButton/InterestCategoryButton';
 import ShareButton from './buttons/ShareButton/ShareButton';
 import Input from 'src/components/common/inputs/Input/Input';
+import TextArea from 'src/components/common/TextArea/TextArea';
 
 export {
   IconButton,
@@ -26,5 +27,6 @@ export {
   QuestionInput,
   SelectButton, 
   Label,
-  Input
+  Input,
+  TextArea
 };
