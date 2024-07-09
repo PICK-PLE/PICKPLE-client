@@ -2,20 +2,18 @@ import DatePicker from 'react-datepicker';
 
 import 'react-datepicker/dist/react-datepicker.css';
 import {
-  DataPickerWrapper,
+  dataPickerWrapper,
   customInputContainer,
   customInputLabel,
   customInputStyle,
   iconStyle,
 } from './DateSelect.style';
-import React from 'react';
+import React, { InputHTMLAttributes } from 'react';
 import { IcAccordion } from '@svg';
 import { ko } from 'date-fns/locale';
 
-interface CustomInputProps {
+interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
   value?: string;
-  onClick?: () => void;
-  placeholder: string;
 }
 
 interface DateSelectProps {
@@ -25,7 +23,7 @@ interface DateSelectProps {
 const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
   ({ value, onClick, placeholder }, ref) => (
     <div css={customInputContainer} onClick={onClick}>
-      <div css={customInputLabel}>모임 날짜</div>
+      <label css={customInputLabel}>모임 날짜</label>
       <IcAccordion css={iconStyle} />
       <input css={customInputStyle} ref={ref} value={value} readOnly placeholder={placeholder} />
     </div>
@@ -37,7 +35,7 @@ const DateSelect = ({ selected, onChange }: DateSelectProps) => {
   const minSelectableDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 3);
 
   return (
-    <div css={DataPickerWrapper}>
+    <div css={dataPickerWrapper}>
       <DatePicker
         selected={selected}
         onChange={onChange}

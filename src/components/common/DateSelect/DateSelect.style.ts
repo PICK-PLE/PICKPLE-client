@@ -50,9 +50,9 @@ export const iconStyle = css`
   cursor: pointer;
 `;
 
-export const DataPickerWrapper = css`
+export const dataPickerWrapper = css`
   width: 100%;
-  height: 6.3rem;
+  height: 63px;
 
   & .react-datepicker-wrapper {
     width: 100%;
@@ -71,25 +71,25 @@ export const DataPickerWrapper = css`
     width: 300px;
     height: 230px;
 
-    font-size: 1.4rem;
+    font-size: 14px;
 
     & .react-datepicker__month-container {
       width: 100%;
       height: 100%;
 
       & .react-datepicker__current-month {
-        font-size: 1.6rem;
+        font-size: 16px;
       }
 
       & .react-datepicker__day-names {
         display: flex;
         justify-content: space-evenly;
 
-        margin-top: 1rem;
+        margin-top: 10px;
       }
 
       & .react-datepicker__month {
-        height: calc(100% - 6.5rem);
+        height: calc(100% - 65px);
 
         ${flexGenerator('column', 'space-evenly')};
 
@@ -100,8 +100,8 @@ export const DataPickerWrapper = css`
           & .react-datepicker__day {
             ${flexGenerator()};
 
-            width: 2.4rem;
-            height: 2rem;
+            width: 24px;
+            height: 20px;
           }
         }
       }
