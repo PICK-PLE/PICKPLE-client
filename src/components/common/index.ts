@@ -23,6 +23,7 @@ import FilterSelect from './select/FilterSelect/FilterSelect';
 import CountPeople from './CountPeople/CountPeople';
 import Button from './buttons/Button/Button';
 import Select from './select/Select';
+import Carousel from './Carousel/Carousel';
 
 export {
   IconButton,
@@ -50,4 +51,5 @@ export {
   CategoryButton,
   InterestCategoryButton,
   ShareButton,
+  Carousel
 };
