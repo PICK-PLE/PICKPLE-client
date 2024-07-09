@@ -1,15 +1,14 @@
-import { ReactNode } from 'react';
+import { PropsWithChildren } from 'react';
 import { createPortal } from 'react-dom';
 import { backdropStyle, modalContentStyle } from './Modal.style';
 
 interface ModalProps {
   onClose: () => void;
-  children: ReactNode;
 }
 
 const potalElement = document.getElementById('modal') as HTMLElement;
 
-const Modal = ({ onClose, children }: ModalProps) => {
+const Modal = ({ onClose, children }: PropsWithChildren<ModalProps>) => {
   return createPortal(
     <>
       <div css={backdropStyle} onClick={onClose} />
