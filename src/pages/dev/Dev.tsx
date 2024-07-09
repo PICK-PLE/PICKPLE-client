@@ -1,4 +1,4 @@
-import { ProgressBar } from '@components';
+import { ProgressBar, QuestionInput } from '@components';
 import LogoHeader from 'src/components/common/headers/LogoHeader/LogoHeader';
 import { devContainer } from './Dev.style';
 
