@@ -4,7 +4,6 @@ import { flexGenerator } from '@styles/generator';
 export const inputContainerStyle = css`
   ${flexGenerator('column', 'center', 'flex-start')}
   gap: 0.5rem;
-  margin: 0 2rem;
 `;
 
 export const inputLabelStyle = (theme: Theme) => css`
@@ -14,7 +13,7 @@ export const inputLabelStyle = (theme: Theme) => css`
 `;
 
 export const inputWrapperStyle = css`
-  ${flexGenerator('row', 'first', 'center')}
+  ${flexGenerator('row', 'flex-start', 'center')}
   position: relative;
   width: 100%;
 `;
