@@ -18,6 +18,7 @@ import Toast from 'src/components/common/Toast/Toast';
 import ClipboardCopyButton from './buttons/ClipboardCopyButton/ClipboardCopyButton';
 import Modal from './Modal/Modal';
 import DateSelect from './DateSelect/DateSelect';
+import FilterSelect from './select/FilterSelect/FilterSelect';
 
 export {
   IconButton,
@@ -36,5 +37,6 @@ export {
   Toast,
   ClipboardCopyButton,
   Modal,
-  DateSelect
+  DateSelect,
+  FilterSelect
 };

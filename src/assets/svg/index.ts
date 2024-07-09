@@ -7,6 +7,8 @@ export { default as IcExclamation } from './IcExclamation';
 export { default as IcDefaultUserimg } from './IcDefaultUserimg';
 export { default as IcHome } from './IcHome';
 export { default as IcKakaoLogo } from './IcKakaoLogo';
+export { default as IcDropDown } from './IcDropDown';
+export { default as IcDropUp } from './IcDropUp';
 export { default as IcNumberLabel } from './IcNumberLabel';
 export { default as Logo } from './Logo';
 export { default as IcLogo } from './IcLogo';
