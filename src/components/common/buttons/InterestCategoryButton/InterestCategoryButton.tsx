@@ -1,4 +1,3 @@
-import { useTheme } from '@emotion/react';
 import {
   InterestCategoryButtonStyle,
   InterestCategoryButtonVariant,
@@ -6,21 +5,20 @@ import {
 } from './InterestCategoryButton.style';
 import { ButtonHTMLAttributes } from 'react';
 interface InterestCategoryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: 'default';
+  variant?: 'default';
   icon: React.ReactNode;
 }
 
 const InterestCategoryButton = ({
   children,
-  variant,
+  variant = 'default',
   icon,
   onClick,
   ...props
 }: InterestCategoryButtonProps) => {
-  const theme = useTheme();
   return (
     <button
-      css={[InterestCategoryButtonStyle, InterestCategoryButtonVariant(theme)[variant]]}
+      css={[InterestCategoryButtonStyle, InterestCategoryButtonVariant[variant]]}
       onClick={onClick}
       {...props}>
       <span css={iconWrapperStyle}>{icon}</span>

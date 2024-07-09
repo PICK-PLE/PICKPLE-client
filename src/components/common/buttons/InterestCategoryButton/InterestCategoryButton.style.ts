@@ -6,8 +6,8 @@ export const InterestCategoryButtonStyle = css`
   border: none;
 `;
 
-export const InterestCategoryButtonVariant = (theme: Theme) => ({
-  default: css`
+export const InterestCategoryButtonVariant = {
+  default: (theme: Theme) => css`
     display: flex;
     width: 10.7rem;
     height: 3.4rem;
@@ -22,7 +22,7 @@ export const InterestCategoryButtonVariant = (theme: Theme) => ({
 
     cursor: pointer;
   `,
-});
+};
 
 export const iconWrapperStyle = css`
   width: 1.6rem;
