@@ -1,3 +1,4 @@
+// 서버에서 받는 데이터 가짜로 만든거
 export const APPLICANT_DATA = [
   {
     applicantId: 1,

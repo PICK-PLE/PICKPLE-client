@@ -17,9 +17,11 @@ import {
   accdionContentStyle,
   questionStyle,
   answerStyle,
-} from 'src/components/common/ApplicantAccordion/ApplicantAccordion.style';
+} from 'src/components/common/applicantAccordions/ApplicantAccordion/ApplicantAccordion.style';
 
 export interface ApplicantAccordionProps extends React.HTMLAttributes<HTMLDivElement> {
+  moimId: number;
+  guestId: number;
   applicantName: string;
   applicantImg: string;
   applyDate: string;
@@ -34,6 +36,8 @@ const ApplicantAccordion = ({
   applyDate,
   questions,
   isChecked,
+  moimId,
+  guestId,
   toggleChecked,
 }: ApplicantAccordionProps) => {
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
@@ -43,6 +47,9 @@ const ApplicantAccordion = ({
   };
 
   const defaultImgUrl = 'svg/ic_default-userimg.svg';
+
+  //삭제예정 시비 ㄴㄴ
+  console.log(moimId, guestId);
 
   return (
     <div css={applicantAccordionLayout}>

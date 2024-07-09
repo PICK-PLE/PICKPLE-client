@@ -4,7 +4,7 @@ import PayButton from './buttons/PayButton/PayButton';
 import Header from './headers/Header/Header';
 import NumberLabel from 'src/components/common/NumberLabel/NumberLabel';
 import ProgressBar from './ProgressBar/ProgressBar';
-import ApplicantAccordion from 'src/components/common/ApplicantAccordion/ApplicantAccordion';
+import ApplicantAccordion from 'src/components/common/applicantAccordions/ApplicantAccordion';
 
 export {
   IconButton,

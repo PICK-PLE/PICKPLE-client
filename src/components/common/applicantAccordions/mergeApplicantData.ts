@@ -1,7 +1,7 @@
 import {
   APPLICANT_DATA,
   APPLICANT_ANSWER_LIST,
-} from 'src/components/common/ApplicantAccordion/applicant';
+} from 'src/components/common/applicantAccordions/applicant';
 
 // 통합된 데이터 타입 정의 (TypeScript)
 interface ApplicantData {
