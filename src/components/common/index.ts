@@ -6,14 +6,7 @@ import NumberLabel from 'src/components/common/NumberLabel/NumberLabel';
 import ProgressBar from './ProgressBar/ProgressBar';
 import Notice from 'src/components/common/Notice/Notice';
 import QuestionText from 'src/components/common/QuestionText/QuestionText';
+import SelectButton from './buttons/SelectButton/SelectButton';
+import Label from './Label/Label';
 
-export {
-  IconButton,
-  SocialLoginButton,
-  PayButton,
-  Header,
-  NumberLabel,
-  ProgressBar,
-  Notice,
-  QuestionText,
-};
+export { IconButton, SocialLoginButton, PayButton, Header, NumberLabel, ProgressBar, SelectButton, Label, Notice, QuestionText };
