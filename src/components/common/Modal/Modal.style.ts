@@ -21,8 +21,6 @@ export const modalContentStyle = (theme: Theme) => css`
   transform: translate(-50%, -50%);
   z-index: 5;
   ${flexGenerator()}
-  width: 335px;
-  height: 428px;
 
   border-radius: 10px;
   background-color: ${theme.color.white};
