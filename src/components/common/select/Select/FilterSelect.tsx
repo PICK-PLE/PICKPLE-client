@@ -1,29 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   iconStyle,
   selectContainer,
   sortItem,
   sortList,
-  placeholderStyle,
   selectedOptionStyle,
-} from './Select.style';
+} from './FilterSelect.style';
 import { IcDropDown, IcDropUp } from '@svg';
 
 interface SelectProps {
-  placeholder?: string;
+  options: string[];
 }
 
-const options = ['전체', '입금 대기', '승인 대기', '승인 완료', '승인 거절', '환불 완료'];
-
-const Select = ({ placeholder }: SelectProps) => {
+const FilterSelect = ({ options }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(placeholder || options[0]);
-
-  useEffect(() => {
-    if (placeholder) {
-      setSelectedOption(placeholder);
-    }
-  }, [placeholder]);
+  const [selectedOption, setSelectedOption] = useState(options[0]);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -34,15 +25,13 @@ const Select = ({ placeholder }: SelectProps) => {
     setIsOpen(false);
   };
 
-  const isPlaceholder = selectedOption === placeholder;
-
   return (
     <div css={selectContainer} onClick={toggleDropdown}>
-      <span css={isPlaceholder ? placeholderStyle : selectedOptionStyle}>{selectedOption}</span>
+      <span css={selectedOptionStyle}>{selectedOption}</span>
       <span css={iconStyle}>{isOpen ? <IcDropUp /> : <IcDropDown />}</span>
       {isOpen && (
         <ul css={sortList}>
-          {options.map((opt, i) => (
+          {options?.map((opt, i) => (
             <li css={sortItem} key={i} onClick={() => handleOptionClick(opt)}>
               {opt}
             </li>
@@ -53,4 +42,4 @@ const Select = ({ placeholder }: SelectProps) => {
   );
 };
 
-export default Select;
+export default FilterSelect;

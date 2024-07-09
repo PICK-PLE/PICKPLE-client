@@ -4,8 +4,8 @@ import { flexGenerator } from '@styles/generator';
 
 export const selectContainer = (theme: Theme) => css`
   ${flexGenerator('row', 'space-between', 'center')};
-  display: inline-flex;
   position: relative;
+  width: 8.7rem;
   height: 2.8rem;
   padding: 0.8rem;
 
