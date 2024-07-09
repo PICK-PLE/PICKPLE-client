@@ -37,10 +37,8 @@ export const sortList = (theme: Theme) => css`
 
 export const sortItem = (theme: Theme) => css`
   ${flexGenerator('row', 'flex-start', 'center')}
-  display: flex;
   width: 100%;
   padding: 1rem 1.5rem;
-  align-items: center;
   gap: 0.2rem;
 
   cursor: pointer;
