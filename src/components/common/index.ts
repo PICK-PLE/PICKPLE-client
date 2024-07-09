@@ -14,6 +14,7 @@ import InterestCategoryButton from './buttons/InterestCategoryButton/InterestCat
 import ShareButton from './buttons/ShareButton/ShareButton';
 import Input from 'src/components/common/inputs/Input/Input';
 import TextArea from 'src/components/common/TextArea/TextArea';
+import Toast from 'src/components/common/Toast/Toast';
 
 export {
   IconButton,
@@ -28,5 +29,6 @@ export {
   SelectButton, 
   Label,
   Input,
-  TextArea
+  TextArea,
+  Toast
 };
