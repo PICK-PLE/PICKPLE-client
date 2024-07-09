@@ -6,6 +6,8 @@ export const wrapperStyle = css`
   ${flexGenerator('row', 'space-between', 'center')}
   width: 100%;
   min-width: 33.5rem;
+
+  cursor: pointer;
 `;
 
 export const childrenStyle = (theme: Theme) => css`
