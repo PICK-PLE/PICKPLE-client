@@ -3,16 +3,15 @@ import { buttonSize, buttonStyle, disabledStyle } from './Button.style';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size: 'xLarge' | 'large' | 'medium' | 'small' | 'xSmall' | 'xxSmall';
-  variant?: 'abled' | 'disabled';
+  disabled?: boolean
 }
 
-const Button = ({ size, variant = 'abled', onClick, children }: ButtonProps) => {
-  const isDisabled = variant === 'disabled';
+const Button = ({ size, disabled, onClick, children }: ButtonProps) => {
   return (
     <button
-      css={[buttonStyle, buttonSize[size], isDisabled && disabledStyle]}
+      css={[buttonStyle, buttonSize[size], disabled && disabledStyle]}
       onClick={onClick}
-      disabled={isDisabled}>
+      disabled={disabled}>
       {children}
     </button>
   );
