@@ -24,6 +24,8 @@ import CountPeople from './CountPeople/CountPeople';
 import Button from './buttons/Button/Button';
 import Select from './select/Select';
 import Carousel from './Carousel/Carousel';
+import ApplicantAccordion from 'src/components/common/applicantAccordions/ApplicantAccordion/ApplicantAccordion';
+import ApplicantAccordionList from 'src/components/common/applicantAccordions/ApplicantAccoridonList/ApplicantAccordionList';
 
 export {
   IconButton,
@@ -51,5 +53,8 @@ export {
   CategoryButton,
   InterestCategoryButton,
   ShareButton,
-  Carousel
+  Carousel,
+  ApplicantAccordion,
+  ApplicantAccordionList
 };
+

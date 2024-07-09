@@ -1,8 +1,7 @@
 import { css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
-export const devContainer = css`
-  padding: 0 2rem;
-  ${flexGenerator()}
+export const applicantAccordionListLayout = css`
+  ${flexGenerator('column', 'center', 'center')}
   gap: 2rem;
 `;
