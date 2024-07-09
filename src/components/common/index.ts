@@ -9,6 +9,9 @@ import QuestionText from 'src/components/common/QuestionText/QuestionText';
 import QuestionInput from 'src/components/common/QuestionInput/QuestionInput';
 import SelectButton from './buttons/SelectButton/SelectButton';
 import Label from './Label/Label';
+import CategoryButton from './buttons/CategoryButton/CategoryButton';
+import InterestCategoryButton from './buttons/InterestCategoryButton/InterestCategoryButton';
+import ShareButton from './buttons/ShareButton/ShareButton';
 
 export {
   IconButton,
@@ -20,6 +23,6 @@ export {
   Notice,
   QuestionText,
   QuestionInput,
-  SelectButton, Label
+  SelectButton, 
+  Label
 };
-

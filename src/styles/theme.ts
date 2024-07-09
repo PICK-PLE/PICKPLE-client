@@ -15,7 +15,7 @@ const theme = {
     midgray1: '#9FA4AE',
     midgray2: '#6B6F77',
     darkgray: '#3E3F45',
-    blackgray: '#373737',
+    blackgray: '#222224',
     black: '#17171A',
 
     purple1: '#5451FF',
