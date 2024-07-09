@@ -2,7 +2,7 @@ import { css, Theme } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const questionInputStyle = css`
-  ${flexGenerator('row', 'first', 'center')}
+  ${flexGenerator('row', 'flex-start', 'center')}
   gap: 1rem;
   position: relative;
 `;
