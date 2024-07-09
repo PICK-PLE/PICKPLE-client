@@ -4,8 +4,8 @@ import { flexGenerator } from '@styles/generator';
 
 export const selectContainer = (theme: Theme) => css`
   ${flexGenerator('row', 'space-between', 'center')};
+  display: inline-flex;
   position: relative;
-  width: 8.7rem;
   height: 2.8rem;
   padding: 0.8rem;
 
@@ -48,4 +48,14 @@ export const sortItem = (theme: Theme) => css`
   &:hover {
     background-color: ${theme.color.lightgray1};
   }
+`;
+
+export const placeholderStyle = (theme: Theme) => css`
+  color: ${theme.color.midgray1};
+  ${theme.font['body01-r-15']};
+`;
+
+export const selectedOptionStyle = (theme: Theme) => css`
+  color: ${theme.color.darkgray};
+  ${theme.font['body04-m-12']};
 `;
