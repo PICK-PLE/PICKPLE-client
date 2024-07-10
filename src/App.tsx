@@ -3,9 +3,27 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import theme from './styles/theme';
 import GlobalStyle from './styles/global';
-import { devRoutes } from '@routes';
+import {
+  authRoutes,
+  categoriesRoutes,
+  classRoutes,
+  guestRoutes,
+  homeRoutes,
+  hostRoutes,
+  myPageRoutes,
+  devRoutes,
+} from '@routes';
 
-const router = createBrowserRouter([...devRoutes]);
+const router = createBrowserRouter([
+  ...authRoutes,
+  ...categoriesRoutes,
+  ...classRoutes,
+  ...guestRoutes,
+  ...homeRoutes,
+  ...hostRoutes,
+  ...myPageRoutes,
+  ...devRoutes,
+]);
 
 const App = () => {
   return (
