@@ -15,7 +15,7 @@ export const useFetchHealth = () => {
   return useQuery({
     queryKey: [QUERY_KEY.HEALTH],
     queryFn: () => getHealth(),
-    // staleTime:
-    // gcTime:
+    // staleTime: 3000,
+    // gcTime: 50000,
   });
 };
