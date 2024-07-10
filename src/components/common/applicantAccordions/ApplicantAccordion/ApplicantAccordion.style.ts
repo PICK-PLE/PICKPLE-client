@@ -4,6 +4,7 @@ import { flexGenerator } from '@styles/generator';
 export const applicantAccordionLayout = css`
   ${flexGenerator('column')};
   gap: 2rem;
+  width: 100%;
 `;
 
 /* 체크 및 신청자 정보 <--space-between--> 아코디언 버튼  */

@@ -4,6 +4,7 @@ import { flexGenerator } from '@styles/generator';
 export const textAreaContainerStyle = css`
   ${flexGenerator('column', 'center', 'flex-start')}
   gap: 0.5rem;
+  width: 100%;
 `;
 
 export const textAreaWrapperStyle = (maxLengthError: boolean) => (theme: Theme) =>
