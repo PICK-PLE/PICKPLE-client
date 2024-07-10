@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import theme from './styles/theme';
 import GlobalStyle from './styles/global';
 import {
+  authRoutes,
   categoriesRoutes,
   classRoutes,
   guestRoutes,
@@ -14,6 +15,7 @@ import {
 } from '@routes';
 
 const router = createBrowserRouter([
+  ...authRoutes,
   ...categoriesRoutes,
   ...classRoutes,
   ...guestRoutes,

@@ -1,3 +1,7 @@
+const authPages = {
+  LOGIN: '/login',
+};
+
 const homePages = {
   HOME: '/',
 };
@@ -33,6 +37,7 @@ const devPages = {
 };
 
 export default {
+  ...authPages,
   ...homePages,
   ...categoriesPages,
   ...classPages,
