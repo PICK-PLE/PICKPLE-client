@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IcApplicantArrcodion, IcCheckActive, IcCheckDefault } from '@svg';
+import { IcApplicantArrcodionDown, IcCheckActive, IcCheckDefault } from '@svg';
 import {
   applicantAccordionLayout,
   applicantLayoutStyle,
@@ -79,7 +79,7 @@ const ApplicantAccordion = ({
           </div>
         </div>
         <button css={accodionButtonStyle} onClick={handleAccodionClick}>
-          <IcApplicantArrcodion css={accodionStyle(isAccordionOpen)} />
+          <IcApplicantArrcodionDown css={accodionStyle(isAccordionOpen)} />
         </button>
       </div>
 

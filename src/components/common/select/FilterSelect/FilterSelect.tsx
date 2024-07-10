@@ -6,7 +6,7 @@ import {
   sortList,
   selectedOptionStyle,
 } from './FilterSelect.style';
-import { IcDropDown, IcDropUp } from '@svg';
+import { IcDropdownDown, IcDropdownUp } from '@svg';
 
 interface SelectProps {
   options: string[];
@@ -28,7 +28,7 @@ const FilterSelect = ({ options }: SelectProps) => {
   return (
     <div css={selectContainer} onClick={toggleDropdown}>
       <span css={selectedOptionStyle}>{selectedOption}</span>
-      <span css={iconStyle}>{isOpen ? <IcDropDown /> : <IcDropUp />}</span>
+      <span css={iconStyle}>{isOpen ? <IcDropdownDown /> : <IcDropdownUp />}</span>
       {isOpen && (
         <ul css={sortList}>
           {options?.map((opt, i) => (

@@ -22,10 +22,15 @@ import DateSelect from './DateSelect/DateSelect';
 import FilterSelect from './select/FilterSelect/FilterSelect';
 import CountPeople from './CountPeople/CountPeople';
 import Button from './buttons/Button/Button';
-import Select from './select/Select';
+import Select from './select/Select/Select';
 import Carousel from './Carousel/Carousel';
 import ApplicantAccordion from 'src/components/common/applicantAccordions/ApplicantAccordion/ApplicantAccordion';
 import ApplicantAccordionList from 'src/components/common/applicantAccordions/ApplicantAccoridonList/ApplicantAccordionList';
+import Image from 'src/components/common/Image/Image';
+import LogoHeader from 'src/components/common/headers/LogoHeader/LogoHeader';
+import TimeSelect from 'src/components/common/select/TimeSelect/TimeSelect';
+import ImageSelect from 'src/components/common/ImageSelect/ImageSelect';
+import SimpleUserProfile from 'src/components/common/SimpleUserProfile/SimpleUserProfile';
 
 export {
   IconButton,
@@ -55,6 +60,10 @@ export {
   ShareButton,
   Carousel,
   ApplicantAccordion,
-  ApplicantAccordionList
+  ApplicantAccordionList,
+  Image,
+  LogoHeader,
+  TimeSelect,
+  ImageSelect,
+  SimpleUserProfile
 };
-

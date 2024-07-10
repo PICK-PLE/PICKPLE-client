@@ -4,6 +4,7 @@ import { flexGenerator } from '@styles/generator';
 export const inputContainerStyle = css`
   ${flexGenerator('column', 'center', 'flex-start')}
   gap: 0.8rem;
+  width: 100%;
 `;
 
 export const inputLabelStyle = (theme: Theme) => css`

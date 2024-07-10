@@ -26,12 +26,12 @@
 
     "baseUrl": "./",
     "paths": {
-      "@apis": ["src/apis/*"],
+      "@apis/*": ["src/apis/*"],
       "@svg": ["src/assets/svg"],
       "@components": ["src/components/common"],
       "@constants": ["src/constants"],
       "@hooks": ["src/hooks"],
-      "@pages": ["src/pages"],
+      "@pages/*": ["src/pages/*"],
       "@routes": ["src/routes"],
       "@styles/*": ["src/styles/*"],
       "@types/*": ["src/types/*"],
