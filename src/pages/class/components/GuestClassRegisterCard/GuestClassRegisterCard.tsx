@@ -25,7 +25,7 @@ const GuestClassRegisterCard = () => {
   return (
     <article css={cardContainerStyle}>
       <section css={headSectionStyle}>
-        <Image variant="square" width="84px" height="84px" />
+        <Image variant="square" width="8.4rem" height="8.4rem" />
         <div css={titleAndProfileWrapperStyle}>
           <h4 css={titleStyle}>{title}</h4>
           <SimpleUserProfile username={hostNickName} size="medium" />
