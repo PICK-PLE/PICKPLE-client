@@ -77,7 +77,7 @@ import {
   textStyle,
 } from './Components.style';
 
-const Dev = () => {
+const Components = () => {
   const [value, setValue] = useState('');
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
@@ -485,6 +485,7 @@ const Dev = () => {
           <ImageSelect />
         </section>
       </div>
+      
       <div>
         <section css={secttionContainer}>
           <h2 css={titleStyle}>Header</h2>
@@ -534,4 +535,4 @@ const Dev = () => {
   );
 };
 
-export default Dev;
+export default Components;

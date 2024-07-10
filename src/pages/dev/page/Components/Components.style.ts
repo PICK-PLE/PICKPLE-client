@@ -1,7 +1,9 @@
 import { css, Theme } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
-{/* 데스크탑 뷰 설정을 위해 */}
+{
+  /* 데스크탑 뷰 설정을 위해 */
+}
 export const devContainer = css`
   position: absolute;
   right: 0;
@@ -11,7 +13,7 @@ export const devContainer = css`
   flex-wrap: wrap;
 `;
 
-{/* 각 section 스타일 */}
+// 각 section 스타일
 export const secttionContainer = css`
   width: 37.5rem;
   margin: 2rem;
@@ -23,21 +25,27 @@ export const secttionContainer = css`
   background-color: #ededed;
 `;
 
-{/* icon 묶음 스타일 */}
+{
+  /* icon 묶음 스타일 */
+}
 export const iconContainerStyle = css`
   ${flexGenerator('row', 'flex-start', 'center')}
   flex-wrap: wrap;
   gap: 1rem;
 `;
 
-{/* icon + text 스타일 */}
+{
+  /* icon + text 스타일 */
+}
 export const iconWrapperStyle = css`
   ${flexGenerator('row', 'flex-start', 'center')}
   gap: 1rem;
   width: 9rem;
 `;
 
-{/* icon 스타일 */}
+{
+  /* icon 스타일 */
+}
 export const iconSvgStyle = css`
   width: 2rem;
 `;
