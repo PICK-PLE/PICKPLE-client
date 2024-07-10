@@ -33,7 +33,8 @@ const hostPages = {
 };
 
 const devPages = {
-  DEV: '/dev',
+      DEV_COMPONENTS: '/dev/components',
+  DEV_CARD: '/dev/card',
 };
 
 export default {

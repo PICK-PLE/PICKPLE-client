@@ -1,11 +1,15 @@
-import Dev from '@pages/dev/Dev';
+import { Card, Components } from '@pages/dev/page/index';
 import { RouteType } from '../types/routeType';
 import { routePath } from '@constants';
 
 const devRoutes: RouteType[] = [
   {
-    path: routePath.DEV,
-    element: <Dev />,
+    path: routePath.DEV_COMPONENTS,
+    element: <Components />,
+  },
+  {
+    path: routePath.DEV_CARD,
+    element: <Card />,
   },
 ];
 
