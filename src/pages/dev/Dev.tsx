@@ -18,10 +18,10 @@ const Dev = () => {
       <LogoHeader />
       <ProgressBar progress={77} />
       <Carousel imageList={imageList} />
-      {/* <section css={devContainer}> */}
+      <section css={devContainer}>
       {/* 여기에 컴포넌트 추가해보고, 디바이스 크기 조정해보면서 테스트 */}
-      {/* <ApplicantAccordionList moimId={1} />
-      </section> */}
+      <ApplicantAccordionList moimId={1} />
+      </section>
       <div css={devContainer}>
         <GuestClassRegisterCard />
       </div>
