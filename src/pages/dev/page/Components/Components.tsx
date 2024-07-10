@@ -511,7 +511,9 @@ const Dev = () => {
 
         <section css={secttionContainer}>
           <h2 css={titleStyle}>SimpleUserProfile</h2>
-          <SimpleUserProfile username="채연이" />
+          <SimpleUserProfile size="large" username="신청자" />
+          <SimpleUserProfile size="medium" username="달아오르구마" />
+          <SimpleUserProfile size="small" username="달아아오르구마마마마" />
         </section>
 
         <section css={secttionContainer}>
