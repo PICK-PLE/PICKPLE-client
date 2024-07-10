@@ -1,16 +1,16 @@
-import { Modal } from '@components'
-import React from 'react'
+import React from 'react';
+import { modalContainerStyle } from './ApplicantListModal.style';
 
 const ApplicantListModal = () => {
   return (
-    <article>
-        <section>
-            <h1>아래 계좌로 입금해주세요!</h1>
-        </section>
-        <section></section>
-        <section></section>
+    <article css={modalContainerStyle}>
+      <section>
+        <h1>아래 계좌로 입금해주세요!</h1>
+      </section>
+      <section></section>
+      <section></section>
     </article>
-  )
-}
+  );
+};
 
-export default ApplicantListModal
+export default ApplicantListModal;
