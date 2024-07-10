@@ -25,3 +25,5 @@ export { default as IcHouse } from './IcHouse';
 export { default as IcNjob } from './IcNjob';
 export { default as IcShare } from './IcShare';
 export { default as Logo } from './Logo';
+export { default as IcPlus } from './IcPlus';
+export { default as IcCountCircle } from './IcCountCircle';

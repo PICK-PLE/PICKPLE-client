@@ -1,3 +1,3 @@
-import Dev from "./dev/Dev";
+import Dev from "./dev/page/Components/Components";
 
 export { Dev };
