@@ -6,8 +6,8 @@ export const imageWrapper = (width: string, height: string) => (theme: Theme) =>
     border-radius: 5px;
     background-color: ${theme.color.lightgray1};
     aspect-ratio: ${width} / ${height};
-    width: ${width};
-    height: ${height};
+    min-width: ${width};
+    min-height: ${height};
   `;
 
 export const imageVariant = {
