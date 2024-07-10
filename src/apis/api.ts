@@ -4,15 +4,6 @@ export const instance = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_URL,
   // withCredentials: true,
 
-  /**@notice서로 다른 도메인(크로스 도메인)에 요청을 보낼 때 요청에`credential`정보를 담아서 보낼 지를 결정하는 항목임.
-
-1. 쿠키를 첨부해서 보내는 요청
-2. 헤더에 `Authorization`항목이 있는 요청
-
-따라서, 보내고자 하는 요청이 위 두 가지 항목 중 한 가지라도 포함하고 있다면`withCredentials`옵션을`true`로 설정해야함
-     * 
-    */
-
   // headers: {
   //   // Authorization: `Bearer 엑세스 토큰`,
   // },
@@ -22,7 +13,7 @@ export const instance = axios.create({
 //일단 주석 처리 해놓겠습니다
 // instance.interceptors.request.use(
 //     (config) => {
-//       const memberId = 1;
+//       const memberId = 1; //예시 멤버 ID
 //       config.headers['memberId'] = memberId;
 //       return config;
 //     },
