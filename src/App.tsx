@@ -4,15 +4,19 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import theme from './styles/theme';
 import GlobalStyle from './styles/global';
 import { devRoutes } from '@routes';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const router = createBrowserRouter([...devRoutes]);
 
 const App = () => {
+  const queryClient = new QueryClient();
   return (
-    <ThemeProvider theme={theme}>
-      <Global styles={GlobalStyle} />
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider theme={theme}>
+        <Global styles={GlobalStyle} />
+        <RouterProvider router={router} />
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 };
 
