@@ -17,7 +17,9 @@ const App = () => {
         <Global styles={GlobalStyle} />
         <RouterProvider router={router} />
       </ThemeProvider>
-      <ReactQueryDevtools />
+      <div style={{ fontSize: '16px' }}>
+        <ReactQueryDevtools />
+      </div>
     </QueryClientProvider>
   );
 };
