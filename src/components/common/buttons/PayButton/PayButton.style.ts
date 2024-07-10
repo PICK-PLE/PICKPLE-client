@@ -3,15 +3,15 @@ import { flexGenerator } from '@styles/generator';
 
 export const payButtonStyle = (theme: Theme) => css`
   ${flexGenerator('column')}
-  width: 12.2rem;
-  height: 8.6rem;
+  width: 14.5rem;
+  height: 8rem;
   padding: 1.8rem 1rem;
   gap: 0.5rem;
 
   border: 1px solid ${theme.color.lightgray2};
   outline: none;
   border-radius: 10px;
-  background-color: transparent;
+  background-color: ${theme.color.white};
   cursor: pointer;
 `;
 
