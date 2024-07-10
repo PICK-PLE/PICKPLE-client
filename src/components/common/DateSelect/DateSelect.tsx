@@ -9,7 +9,7 @@ import {
   iconStyle,
 } from './DateSelect.style';
 import React, { InputHTMLAttributes } from 'react';
-import { IcAccordion } from '@svg';
+import { IcDropdownPlatformDown } from '@svg';
 import { ko } from 'date-fns/locale';
 
 interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -24,7 +24,7 @@ const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
   ({ value, onClick, placeholder }, ref) => (
     <div css={customInputContainer} onClick={onClick}>
       <label css={customInputLabel}>모임 날짜</label>
-      <IcAccordion css={iconStyle} />
+      <IcDropdownPlatformDown css={iconStyle} />
       <input css={customInputStyle} ref={ref} value={value} readOnly placeholder={placeholder} />
     </div>
   )
