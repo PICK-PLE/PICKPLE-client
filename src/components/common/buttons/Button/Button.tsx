@@ -2,14 +2,14 @@ import { ButtonHTMLAttributes } from 'react';
 import { buttonSize, buttonStyle, disabledStyle } from './Button.style';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  size: 'xLarge' | 'large' | 'medium' | 'small' | 'xSmall' | 'xxSmall';
-  disabled?: boolean
+  variant: 'large' | 'medium' | 'small' | 'xSmall' | 'stroke' | 'round';
+  disabled?: boolean;
 }
 
-const Button = ({ size, disabled, onClick, children }: ButtonProps) => {
+const Button = ({ variant, disabled, onClick, children }: ButtonProps) => {
   return (
     <button
-      css={[buttonStyle, buttonSize[size], disabled && disabledStyle]}
+      css={[buttonStyle, buttonSize[variant], disabled && disabledStyle]}
       onClick={onClick}
       disabled={disabled}>
       {children}

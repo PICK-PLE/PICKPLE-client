@@ -316,23 +316,28 @@ const Components = () => {
 
           <h3 css={subTitleStyle}>Button</h3>
 
-          <span css={textStyle}>size = xxSmall</span>
-          <Button size="xxSmall">버튼</Button>
+          <span css={textStyle}>variant = round</span>
+          <Button variant="round">버튼</Button>
 
-          <span css={textStyle}>size = xSmall</span>
-          <Button size="xSmall">버튼</Button>
+          <span css={textStyle}>variant = stroke</span>
+          <Button variant="stroke">버튼</Button>
 
-          <span css={textStyle}>size = small</span>
-          <Button size="small">버튼</Button>
+          <span css={textStyle}>variant = xSmall</span>
+          <Button variant="xSmall">버튼</Button>
 
-          <span css={textStyle}>size = medium</span>
-          <Button size="medium">버튼</Button>
+          <span css={textStyle}>variant = small</span>
+          <Button variant="small">버튼</Button>
 
-          <span css={textStyle}>size = large</span>
-          <Button size="large">버튼</Button>
+          <span css={textStyle}>variant = medium</span>
+          <Button variant="medium">버튼</Button>
 
-          <span css={textStyle}>size = xLarge</span>
-          <Button size="xLarge">버튼</Button>
+          <span css={textStyle}>variant = large</span>
+          <Button variant="large">버튼</Button>
+
+          <span css={textStyle}>variant = large(disabled)</span>
+          <Button variant="large" disabled={true}>
+            버튼
+          </Button>
 
           <h3 css={subTitleStyle}>PayButton</h3>
           <span css={textStyle}>variant="toss"</span>
