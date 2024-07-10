@@ -108,7 +108,7 @@ const Dev = () => {
     <div css={devContainer}>
       <div>
         <section css={secttionContainer}>
-          <h2 css={titleStyle}>icon</h2>
+          <h2 css={titleStyle}>Icon</h2>
 
           <div css={iconContainerStyle}>
             <div css={iconWrapperStyle}>
@@ -259,7 +259,7 @@ const Dev = () => {
         </section>
 
         <section css={secttionContainer}>
-          <h2 css={titleStyle}>label</h2>
+          <h2 css={titleStyle}>Label</h2>
 
           <h3 css={subTitleStyle}>numberlaber</h3>
           <NumberLabel>1</NumberLabel>
@@ -307,7 +307,7 @@ const Dev = () => {
 
       <div>
         <section css={secttionContainer}>
-          <h2 css={titleStyle}>button</h2>
+          <h2 css={titleStyle}>Button</h2>
 
           <h3 css={subTitleStyle}>Button</h3>
 
@@ -381,7 +381,7 @@ const Dev = () => {
 
       <div>
         <section css={secttionContainer}>
-          <h2 css={titleStyle}>input</h2>
+          <h2 css={titleStyle}>Input</h2>
           <h3 css={subTitleStyle}>Input</h3>
           <span css={textStyle}>isCountValue = true</span>
           <Input
@@ -403,7 +403,7 @@ const Dev = () => {
             isCountValue={false}
           />
 
-          <h3 css={subTitleStyle}>questionInput</h3>
+          <h3 css={subTitleStyle}>QuestionInput</h3>
 
           <QuestionInput
             numberLabel="Q1"
@@ -473,15 +473,15 @@ const Dev = () => {
         </section>
 
         <section css={secttionContainer}>
-          <h2 css={titleStyle}>image</h2>
+          <h2 css={titleStyle}>Image</h2>
 
           <h3 css={subTitleStyle}>Image</h3>
-          <Image variant="square" width="1" height="1" />
+          <Image variant="square" width="30px" height="30px" />
           <span css={textStyle}>variant='square'</span>
-          <Image variant="round" width="1" height="1" />
+          <Image variant="round" width="30px" height="30px" />
           <span css={textStyle}>variant='round'</span>
 
-          <h3 css={subTitleStyle}>iamgeSelect</h3>
+          <h3 css={subTitleStyle}>IamgeSelect</h3>
           <ImageSelect />
         </section>
       </div>
@@ -523,7 +523,7 @@ const Dev = () => {
         <h2 css={titleStyle}>Modal</h2>
         <Modal></Modal>
       </section> */}
-        <section style={{ width: '500px' }}>
+        <section style={{ width: '400px' }}>
           <h2 css={titleStyle}>Carousel</h2>
           <Carousel imageList={imageList} />
         </section>
