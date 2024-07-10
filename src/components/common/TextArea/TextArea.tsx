@@ -29,6 +29,7 @@ const TextArea = ({
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length <= maxLength) {
       onChange(e);
+      setMaxLengthError(false);
     } else {
       setMaxLengthError(true);
     }
