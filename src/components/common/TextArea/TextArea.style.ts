@@ -16,6 +16,7 @@ export const textAreaWrapperStyle = (maxLengthError: boolean) => (theme: Theme) 
 
     border: 1px solid ${maxLengthError ? theme.color.error : theme.color.lightgray1};
     border-radius: 10px;
+    background-color: ${theme.color.white};
   `;
 
 export const textAreaWrapperSize = {
