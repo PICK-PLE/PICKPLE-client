@@ -1,4 +1,4 @@
-import { IcRouteArrow } from '@svg';
+import { IcNext } from '@svg';
 import { HTMLAttributes } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { iconStyle, wrapperStyle } from './NavigateBox.style';
@@ -16,7 +16,7 @@ const NavigateBox = ({ children, path }: NavigateBoxProps) => {
     <div css={wrapperStyle} onClick={handleButtonClick}>
       <span>{children}</span>
       <span css={iconStyle}>
-        <IcRouteArrow />
+        <IcNext />
       </span>
     </div>
   );

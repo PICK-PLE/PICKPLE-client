@@ -36,8 +36,8 @@ import {
 } from '@components';
 
 import {
-  IcAccordion,
-  IcApplicantArrcodion,
+  IcApplicantArrcodionDown,
+  IcApplicantArrcodionUp,
   IcBtnMinus,
   IcBtnPlus,
   IcCameraAdd,
@@ -47,23 +47,23 @@ import {
   IcCopyPlus,
   IcDefaultUserimg,
   IcDeletePhoto,
-  IcDown,
-  IcDropDown,
-  IcDropUp,
+  IcDropdownDown,
+  IcDropdownPlatformDown,
+  IcDropdownPlatformUp,
+  IcDropdownRight,
+  IcDropdownUp,
   IcExclamation,
   IcHome,
   IcHouse,
   IcKakaoLogo,
   IcKakaoPay,
   IcLogo,
+  IcNext,
   IcNjob,
   IcNumberLabel,
   IcPerson,
-  IcRouteArrow,
   IcShare,
   IcTossPay,
-  IcCountCircle,
-  IcPlus,
 } from '@svg';
 
 import {
@@ -112,148 +112,153 @@ const Components = () => {
 
           <div css={iconContainerStyle}>
             <div css={iconWrapperStyle}>
-              <IcAccordion css={iconSvgStyle} />
-              <span>accordion</span>
+              <IcApplicantArrcodionDown css={iconSvgStyle} />
+              <span>IcApplicantArrcodionDown</span>
             </div>
 
             <div css={iconWrapperStyle}>
-              <IcApplicantArrcodion css={iconSvgStyle} />
-              <span>applicantArrcodio</span>
+              <IcApplicantArrcodionUp css={iconSvgStyle} />
+              <span>IcApplicantArrcodionUp</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcBtnMinus css={iconSvgStyle} />
-              <span>btnMinu</span>
+              <span>IcBtnMinus</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcBtnPlus css={iconSvgStyle} />
-              <span>btnPlus</span>
+              <span>IcBtnPlus</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcCameraAdd css={iconSvgStyle} />
-              <span>cameraAdd</span>
+              <span>IcCameraAdd</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcCheckActive css={iconSvgStyle} />
-              <span>checkActive</span>
+              <span>IcCheckActive</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcCheckDefault css={iconSvgStyle} />
-              <span>checkDefault</span>
+              <span>IcCheckDefault</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcClipboardCopy css={iconSvgStyle} />
-              <span>clipboardCopy</span>
+              <span>IcClipboardCopy</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcCopyPlus css={iconSvgStyle} />
-              <span>copyPlus</span>
-            </div>
-
-            <div css={iconWrapperStyle}>
-              <IcCountCircle css={iconSvgStyle} />
-              <span>countCircle</span>
+              <span>IcCopyPlus</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcDefaultUserimg css={iconSvgStyle} />
-              <span>defaultUserimg</span>
+              <span>IcDefaultUserimg</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcDeletePhoto css={iconSvgStyle} />
-              <span>deletePhoto</span>
+              <span>IcDeletePhoto</span>
             </div>
 
             <div css={iconWrapperStyle}>
-              <IcDown css={iconSvgStyle} />
-              <span>down</span>
+              <IcDropdownDown css={iconSvgStyle} />
+              <span>IcDropdownDown</span>
             </div>
 
             <div css={iconWrapperStyle}>
-              <IcDropDown css={iconSvgStyle} />
-              <span>dropDown</span>
+              <IcDropdownPlatformDown css={iconSvgStyle} />
+              <span>IcDropdownPlatformDown</span>
             </div>
 
             <div css={iconWrapperStyle}>
-              <IcDropUp css={iconSvgStyle} />
-              <span>dropUp</span>
+              <IcDropdownPlatformUp css={iconSvgStyle} />
+              <span>IcDropdownPlatformUp</span>
+            </div>
+
+            <div css={iconWrapperStyle}>
+              <IcDropdownRight css={iconSvgStyle} />
+              <span>IcDropdownRight</span>
+            </div>
+
+            <div css={iconWrapperStyle}>
+              <IcDropdownPlatformUp css={iconSvgStyle} />
+              <span>IcDropdownPlatformUp</span>
+            </div>
+
+            <div css={iconWrapperStyle}>
+              <IcDropdownUp css={iconSvgStyle} />
+              <span>IcDropdownUp</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcExclamation css={iconSvgStyle} />
-              <span>exclamation</span>
+              <span>IcExclamation</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcHome css={iconSvgStyle} />
-              <span>home</span>
+              <span>IcHome</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcHouse css={iconSvgStyle} />
-              <span>house</span>
+              <span>IcHouse</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcKakaoLogo css={iconSvgStyle} />
-              <span>kakaoLogo</span>
+              <span>IcKakaoLogo</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcKakaoPay css={iconSvgStyle} />
-              <span>kakaoPay</span>
+              <span>IcKakaoPay</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcLogo css={iconSvgStyle} />
-              <span>logo</span>
+              <span>IcLogo</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcNjob css={iconSvgStyle} />
-              <span>njob</span>
+              <span>IcNjob</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcNumberLabel css={iconSvgStyle} />
-              <span>numberLabel</span>
+              <span>IcNumberLabel</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcPerson css={iconSvgStyle} />
-              <span>person</span>
+              <span>IcPerson</span>
             </div>
 
             <div css={iconWrapperStyle}>
-              <IcPlus css={iconSvgStyle} />
-              <span>plus</span>
-            </div>
-
-            <div css={iconWrapperStyle}>
-              <IcRouteArrow css={iconSvgStyle} />
-              <span>routeArrow</span>
+              <IcNext css={iconSvgStyle} />
+              <span>IcNext</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcShare css={iconSvgStyle} />
-              <span>share</span>
+              <span>IcShare</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcTossPay css={iconSvgStyle} />
-              <span>tossPay</span>
+              <span>IcTossPay</span>
             </div>
 
             <div css={iconWrapperStyle}>
               <IcLogo css={iconSvgStyle} />
-              <span>logo</span>
+              <span>IcLogo</span>
             </div>
           </div>
         </section>
@@ -485,7 +490,7 @@ const Components = () => {
           <ImageSelect />
         </section>
       </div>
-      
+
       <div>
         <section css={secttionContainer}>
           <h2 css={titleStyle}>Header</h2>

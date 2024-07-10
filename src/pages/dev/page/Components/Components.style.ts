@@ -40,7 +40,7 @@ export const iconContainerStyle = css`
 export const iconWrapperStyle = css`
   ${flexGenerator('row', 'flex-start', 'center')}
   gap: 1rem;
-  width: 9rem;
+  width: 14.5rem;
 `;
 
 {

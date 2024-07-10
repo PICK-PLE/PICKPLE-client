@@ -40,11 +40,10 @@ export const customInputStyle = (theme: Theme) => css`
 `;
 
 export const iconStyle = css`
-  width: 1.3rem;
-  height: 0.7rem;
-
+  width: 2.4rem;
+  height: 2.4rem;
   position: absolute;
-  top: 50%;
+  top: 1.95rem;
   right: 1.7rem;
 
   cursor: pointer;

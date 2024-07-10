@@ -7,7 +7,7 @@ import {
   sortItem,
   sortList,
 } from './Select.style';
-import { IcDropDown, IcDropUp } from '@svg';
+import { IcDropdownPlatformDown, IcDropdownPlatformUp } from '@svg';
 
 interface SelectProps {
   placeholder?: string;
@@ -38,7 +38,7 @@ const Select = ({ placeholder, options }: SelectProps) => {
   return (
     <div css={selectContainer} onClick={toggleDropdown}>
       <span css={isPlaceholder ? placeholderStyle : selectedOptionStyle}>{selectedOption}</span>
-      <span css={iconStyle}>{isOpen ? <IcDropDown /> : <IcDropUp />}</span>
+      <span css={iconStyle}>{isOpen ? <IcDropdownPlatformDown /> : <IcDropdownPlatformUp />}</span>
       {isOpen && (
         <ul css={sortList}>
           {options?.map((opt, i) => (
