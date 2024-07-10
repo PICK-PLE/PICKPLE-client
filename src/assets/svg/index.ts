@@ -29,3 +29,5 @@ export { default as IcPerson } from './IcPerson';
 export { default as IcRouteArrow } from './IcRouteArrow';
 export { default as IcShare } from './IcShare';
 export { default as Logo } from './Logo';
+export { default as IcPlus } from './IcPlus';
+export { default as IcCountCircle } from './IcCountCircle';

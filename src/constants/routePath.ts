@@ -3,7 +3,8 @@ const homePage = {
 };
 
 const devPage = {
-  DEV: '/dev',
+  DEV_COMPONENTS: '/dev/components',
+  DEV_CARD: '/dev/card',
 };
 
 export default {
