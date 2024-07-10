@@ -1,4 +1,4 @@
-import { Dev } from '@pages';
+import Dev from '@pages/dev/Dev';
 import { RouteType } from '../types/routeType';
 import { routePath } from '@constants';
 

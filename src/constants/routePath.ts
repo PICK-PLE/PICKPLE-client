@@ -1,12 +1,43 @@
-const homePage = {
+const homePages = {
   HOME: '/',
 };
 
-const devPage = {
+const categoriesPages = {
+  CATEGORY: '/categories/{category}',
+};
+
+const classPages = {
+  CLASS: '/class/{classId}',
+  CLASS_NOTICE_POST: '/class/notice/post',
+  CLASS_APPLY: '/class/apply',
+  CLASS_POST: '/class/post',
+};
+
+const myPagePages = {
+  HOST_MYPAGE: '/mypage/host',
+  GUEST_MYPAGE: '/mypage/guest',
+};
+
+const guestPages = {
+  GUEST_MY_CLASS: '/guest/myclass',
+};
+
+const hostPages = {
+  HOST_MY_CLASS: '/host/myclass',
+  HOST_MY_CLASS_MANAGE: '/host/myclass/manage',
+  HOST_APPLY: '/host/apply',
+};
+
+const devPages = {
   DEV: '/dev',
 };
 
 export default {
-  ...homePage,
-  ...devPage,
+  ...homePages,
+  ...categoriesPages,
+  ...classPages,
+  ...myPagePages,
+  ...guestPages,
+  ...hostPages,
+  ...devPages,
 };
