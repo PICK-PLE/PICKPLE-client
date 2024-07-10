@@ -1,23 +1,40 @@
-import React from 'react';
 import Image from 'src/components/common/Image/Image';
 import SimpleUserProfile from 'src/components/common/SimpleUserProfile/SimpleUserProfile';
+import {
+  cardContainerStyle,
+  dividerStyle,
+  headSectionStyle,
+  iconAndSpanStyle,
+  titleAndProfileWrapperStyle,
+  titleStyle,
+} from './GuestClassRegisterCard.style';
+import { IcDate, IcOffline, IcOneline } from '@svg';
+import { APPLIED_MOIM_DATA } from './appliedMoimData';
 
-interface GuestClassRegisterCardProps {
-  title: string;
-}
+const appliedMoimData = APPLIED_MOIM_DATA.data;
+console.log(appliedMoimData);
 
-const GuestClassRegisterCard = ({ title }: GuestClassRegisterCardProps) => {
+const GuestClassRegisterCard = () => {
   return (
-    <article>
-      <section>
+    <article css={cardContainerStyle}>
+      <section css={headSectionStyle}>
         <Image variant="square" width="84px" height="84px" />
-        <div>
-          <h4>{title}</h4>
-          <SimpleUserProfile username="달아올랐구마" />
+        <div css={titleAndProfileWrapperStyle}>
+          <h4 css={titleStyle}>{appliedMoimData.title}</h4>
+          <SimpleUserProfile username={appliedMoimData.hostNickName} />
         </div>
       </section>
-      <section></section>
-      <span></span>
+      <section>
+        <div css={iconAndSpanStyle}>
+          {appliedMoimData.isOffline ? <IcOffline /> : <IcOneline />}
+          <span>{appliedMoimData.spot}</span>
+        </div>
+        <div css={iconAndSpanStyle}>
+          <IcDate />
+          <span>{appliedMoimData.dateList.date}</span>
+        </div>
+      </section>
+      <span css={dividerStyle}></span>
       <section></section>
     </article>
   );
