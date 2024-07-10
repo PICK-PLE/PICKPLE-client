@@ -1,3 +1,5 @@
+import { useState } from 'react';
+import useToast from 'src/hooks/useToast';
 import {
   Button,
   Carousel,
@@ -28,6 +30,7 @@ import {
   ImageSelect,
   CountPeople,
   NavigateBox,
+  SimpleUserProfile,
   //Modal,
   Toast,
 } from '@components';
@@ -73,9 +76,6 @@ import {
   iconContainerStyle,
   textStyle,
 } from './Components.style';
-import { useState } from 'react';
-import SimpleUserProfile from 'src/components/common/SimpleUserProfile/SimpleUserProfile';
-import useToast from 'src/hooks/useToast';
 
 const Dev = () => {
   const [value, setValue] = useState('');

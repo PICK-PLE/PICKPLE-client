@@ -30,6 +30,7 @@ import Image from 'src/components/common/Image/Image';
 import LogoHeader from 'src/components/common/headers/LogoHeader/LogoHeader';
 import TimeSelect from 'src/components/common/TimeSelect/TimeSelect';
 import ImageSelect from 'src/components/common/ImageSelect/ImageSelect';
+import SimpleUserProfile from 'src/components/common/SimpleUserProfile/SimpleUserProfile';
 
 export {
   IconButton,
@@ -64,4 +65,5 @@ export {
   LogoHeader,
   TimeSelect,
   ImageSelect,
+  SimpleUserProfile
 };
