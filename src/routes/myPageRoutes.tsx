@@ -1,5 +1,5 @@
 import { GuestMyPage, HostMyPage } from '@pages/myPage/page/index';
-import { RouteType } from '../types/routeType';
+import { RouteType } from '@types';
 import { routePath } from '@constants';
 
 const myPageRoutes: RouteType[] = [
