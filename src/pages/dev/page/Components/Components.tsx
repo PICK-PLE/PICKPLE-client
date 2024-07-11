@@ -78,6 +78,10 @@ import {
   textStyle,
 } from './Components.style';
 import ApplicantListModal from '@pages/host/components/ApplicantListModal/ApplicantListModal';
+import { MOIM_APPLICANT_LIST } from '@pages/host/components/ApplicantListModal/moimApplicantList';
+
+const moimApplicantList = MOIM_APPLICANT_LIST;
+console.log(moimApplicantList.data);
 
 const Components = () => {
   const [value, setValue] = useState('');
@@ -554,7 +558,7 @@ const Components = () => {
           <button onClick={handleModalOpen}>모달 열기</button>
           {isOpen && (
             <Modal onClose={handleModalClose}>
-              <ApplicantListModal />
+              <ApplicantListModal moimApplicantList={moimApplicantList.data}/>
             </Modal>
           )}
         </section>
