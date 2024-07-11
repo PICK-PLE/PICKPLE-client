@@ -2,6 +2,11 @@ import { Theme } from '@emotion/react';
 import { css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
+export const moimCardLayout = css`
+  ${flexGenerator('column')};
+  gap: 1.2rem;
+`;
+
 export const moimCardContainer = css`
   ${flexGenerator('row', 'flex-start', 'flex-start')};
   gap: 1rem;
