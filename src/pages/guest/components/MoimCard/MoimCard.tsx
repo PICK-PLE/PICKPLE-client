@@ -35,8 +35,13 @@ const MoimCard = ({ data }: MoimCardProps) => {
           variant="square"
           width="11.2rem"
           height="11.2rem"
-          label={<Label variant="status">{statusMap[data.moimSubmissionState]}</Label>}
+          label={
+            data.moimSubmissionState !== 'COMPLETED' ? (
+              <Label variant="status">{statusMap[data.moimSubmissionState]}</Label>
+            ) : null
+          }
         />
+
         <article css={detailInfoWrapper}>
           <div css={titleWrapper}>
             <p css={titleStyle}>{data.moimTitle}</p>
