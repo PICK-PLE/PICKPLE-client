@@ -38,14 +38,9 @@ export const cardTitleWrapper = css`
 export const cardTitle = (theme: Theme) => css`
   ${theme.font['subhead04-sb-15']};
   color: ${theme.color.black};
-
-  word-break: keep-all;
-  overflow-wrap: break-word;
 `;
 
 export const cardIcon = css`
   width: 2.4rem;
   height: 2.4rem;
 `;
-
-export const cardButton = css``;

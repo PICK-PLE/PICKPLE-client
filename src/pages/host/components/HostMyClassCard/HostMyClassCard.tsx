@@ -1,7 +1,6 @@
 import { Button, Image, Label } from '@components';
 import { IcDropdownRight } from '@svg';
 import {
-  cardButton,
   cardContainer,
   cardContent,
   cardIcon,
@@ -9,13 +8,7 @@ import {
   cardTitle,
   cardTitleWrapper,
 } from './HostMyClassCard.style';
-
-interface hostMyClassDataResponseType {
-  moimImage: string;
-  title: string;
-  approvedGuest: number;
-  maxGuest: number;
-}
+import { hostMyClassDataResponseType } from '@types';
 
 interface HostMyClassCardProps {
   hostMyClassData: hostMyClassDataResponseType;
@@ -24,8 +17,8 @@ interface HostMyClassCardProps {
 const HostMyClassCard = ({ hostMyClassData }: HostMyClassCardProps) => {
   const { moimImage, title, approvedGuest, maxGuest } = hostMyClassData;
   return (
-    <section css={cardContainer}>
-      <div css={cardContent}>
+    <article css={cardContainer}>
+      <section css={cardContent}>
         <Image src={moimImage} width="8.2rem" />
         <div css={cardText}>
           <div css={cardTitleWrapper} onClick={() => {}}>
@@ -34,11 +27,9 @@ const HostMyClassCard = ({ hostMyClassData }: HostMyClassCardProps) => {
           </div>
           <Label variant="textCount">{`승인 현황 ${approvedGuest} / ${maxGuest}`}</Label>
         </div>
-      </div>
-      <Button css={cardButton} variant="stroke">
-        신청자 관리
-      </Button>
-    </section>
+      </section>
+      <Button variant="stroke">신청자 관리</Button>
+    </article>
   );
 };
 
