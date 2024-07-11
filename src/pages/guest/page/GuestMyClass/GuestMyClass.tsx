@@ -1,5 +1,11 @@
+import { GuestClassAppliedCard } from '@pages/guest/components';
+
 const GuestMyClass = () => {
-  return <div>GuestMyClass</div>;
+  return (
+    <div>
+      <GuestClassAppliedCard />
+    </div>
+  );
 };
 
 export default GuestMyClass;
