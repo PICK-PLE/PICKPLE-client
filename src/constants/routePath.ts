@@ -1,5 +1,6 @@
 const authPages = {
   LOGIN: '/login',
+  KAKAO_REDIRECTION: '/kakao/redirection',
 };
 
 const homePages = {
