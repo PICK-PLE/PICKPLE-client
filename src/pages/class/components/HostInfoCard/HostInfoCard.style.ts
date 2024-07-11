@@ -2,9 +2,8 @@ import { css, Theme } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const hostInfoCardContainer = (theme: Theme) => css`
-  ${flexGenerator()}
+  ${flexGenerator("row", "flex-start", "center")}
   gap: 1.5rem;
-  min-width: 33.5rem;
   width: 100%;
   height: 9.7rem;
   padding: 1rem;

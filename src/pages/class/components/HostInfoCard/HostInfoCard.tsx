@@ -1,6 +1,7 @@
 import { Image, Label } from '@components';
-import { HOST_INFO_DATA } from '@pages/class/components/HostInfoCard/hostInfoData';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
+import { HOST_INFO_DATA } from 'src/constants/mocks/hostInfoCardData';
+
 import {
   hostInfoCardContainer,
   hostInfoCardWrapper,
@@ -10,43 +11,50 @@ import {
   hostNameStyle,
   countStyle,
 } from '@pages/class/components/HostInfoCard/HostInfoCard.style';
+
+interface HostCategories {
+  category1: string;
+  category2: string | null;
+  category3: string | null;
+}
+
 const HostInfoCard = () => {
-  const { category1, category2, category3 } = HOST_INFO_DATA.data.hostCategories;
+  const { hostNickName, hostImageUrl, count, hostCategories } = HOST_INFO_DATA;
 
   const getCategoryIcon = (category: string) => {
-    return CATEGORY_ICON[category]?.small || null;
+    return CATEGORY_ICON[category]?.small;
   };
 
   const getCategoryName = (category: string) => {
-    return CATEGORY_NAME[category] || '';
+    return CATEGORY_NAME[category];
   };
+
+  // 카테고리 키를 배열로 저장하는데, hostCategories 타입 지정! 왜냐면 category2, 3은 null이 나올 수도 있으니까
+  const categoryKeys = Object.keys(hostCategories) as (keyof HostCategories)[];
 
   return (
     <div css={hostInfoCardContainer}>
-      <Image variant="round" width="6.1rem" height="6.1rem" />
+      <Image variant="round" width="6.1rem" src={hostImageUrl} />
 
       <div css={hostInfoCardWrapper}>
         <div>
           <div css={hostInfoTitleStyle}>
             <span css={hostTitleStyle}>호스트</span>
-            <span css={hostNameStyle}>{HOST_INFO_DATA.data.hostNickName}</span>
+            <span css={hostNameStyle}>{hostNickName}</span>
           </div>
 
-          <span css={countStyle}>모임횟수 {HOST_INFO_DATA.data.count} 회</span>
+          <span css={countStyle}>모임횟수 {count} 회</span>
         </div>
 
         <div css={hostInfoLabelStyle}>
-          <Label variant="category" icon={getCategoryIcon(category1)}>
-            {getCategoryName(category1)}
-          </Label>
-          <Label variant="category" icon={getCategoryIcon(category2)}>
-            {' '}
-            {getCategoryName(category2)}
-          </Label>
-          <Label variant="category" icon={getCategoryIcon(category3)}>
-            {' '}
-            {getCategoryName(category3)}
-          </Label>
+          {categoryKeys.map(key => {
+            const category = hostCategories[key];
+            return category ? (
+              <Label key={key} variant="category" icon={getCategoryIcon(category)}>
+                {getCategoryName(category)}
+              </Label>
+            ) : null;
+          })}
         </div>
       </div>
     </div>
@@ -54,3 +62,4 @@ const HostInfoCard = () => {
 };
 
 export default HostInfoCard;
+
