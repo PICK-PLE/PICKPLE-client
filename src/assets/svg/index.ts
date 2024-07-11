@@ -7,6 +7,7 @@ export { default as IcBtnPlus } from './IcBtnPlus';
 export { default as IcCameraAdd } from './IcCameraAdd';
 export { default as IcCheckActive } from './IcCheckActive';
 export { default as IcCheckDefault } from './IcCheckDefault';
+export { default as IcCheckModal } from './IcCheckModal';
 export { default as IcClipboardCopy } from './IcClipboardCopy';
 export { default as IcCopyPlus } from './IcCopyPlus';
 export { default as IcDate } from './IcDate';

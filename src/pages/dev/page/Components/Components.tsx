@@ -76,7 +76,12 @@ import {
   iconContainerStyle,
   textStyle,
 } from './Components.style';
-import DepositModal from '@pages/guest/components/DepositModal/DepositModal';
+import { ApplicantListModal } from '@pages/host/components/index';
+import { DepositModal } from '@pages/guest/components/index';
+
+import { APPLICANT_LIST_DATA } from 'src/constants/mocks/applicantListData';
+
+const applicantListData = APPLICANT_LIST_DATA;
 
 const Components = () => {
   const [value, setValue] = useState('');
@@ -99,7 +104,6 @@ const Components = () => {
   const [people, setPeople] = useState(7);
   const handlePeopleChange = (newCount: number) => {
     setPeople(newCount);
-    console.log(people);
   };
   const { showToast, isToastVisible, toastMessage } = useToast();
 
@@ -565,6 +569,15 @@ const Components = () => {
         <section style={{ width: '400px' }}>
           <h2 css={titleStyle}>Carousel</h2>
           <Carousel imageList={imageList} />
+        </section>
+        <section css={secttionContainer}>
+          <h2 css={titleStyle}>ApplicantListModal</h2>
+          <button onClick={handleModalOpen}>모달 열기</button>
+          {isOpen && (
+            <Modal onClose={handleModalClose}>
+              <ApplicantListModal applicantListData={applicantListData} />
+            </Modal>
+          )}
         </section>
         <section css={secttionContainer}>
           <h2 css={titleStyle}>DepositModal</h2>
