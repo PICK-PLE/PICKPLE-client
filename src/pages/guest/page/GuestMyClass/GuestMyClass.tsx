@@ -1,4 +1,4 @@
-import GuestMyClassCard from '@pages/guest/components/GuestClassAppliedCard/GuestMyClassCard';
+import GuestMyClassCard from '@pages/guest/components/GuestMyClassCard/GuestMyClassCard';
 
 const GuestMyClass = () => {
   return (
