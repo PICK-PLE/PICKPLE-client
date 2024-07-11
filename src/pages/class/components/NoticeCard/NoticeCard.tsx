@@ -1,8 +1,8 @@
 import {
-  noticeBox,
   noticeCardContainer,
   noticeContent,
   noticeDate,
+  noticeImage,
   noticeTitle,
   profileImage,
   profileName,
@@ -25,9 +25,12 @@ const NoticeCard = () => {
           <span css={profileName}>{data.hostNickName}</span>
         </div>
       </section>
-      <section css={noticeBox}>
+      <section>
         <h3 css={noticeTitle}>{data.title}</h3>
         <p css={noticeContent}>{data.content}</p>
+        {data.noticeImageUrl && (
+          <img css={noticeImage} src={data.noticeImageUrl} alt="공지사항 이미지" />
+        )}
         <div css={noticeDate}>{formatCreatedDate(data.date)}</div>
       </section>
     </article>
