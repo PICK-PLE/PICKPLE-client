@@ -33,6 +33,7 @@ import {
   SimpleUserProfile,
   //Modal,
   Toast,
+  Modal,
 } from '@components';
 
 import {
@@ -76,9 +77,20 @@ import {
   iconContainerStyle,
   textStyle,
 } from './Components.style';
+import ApplicantListModal from '@pages/host/components/ApplicantListModal/ApplicantListModal';
+import { APPLICANT_LIST_DATA } from 'src/constants/mocks/applicantListData';
+
+const applicantListData = APPLICANT_LIST_DATA;
 
 const Components = () => {
   const [value, setValue] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const handleModalOpen = () => {
+    setIsOpen(true);
+  };
+  const handleModalClose = () => {
+    setIsOpen(false);
+  };
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
@@ -90,7 +102,6 @@ const Components = () => {
   const [people, setPeople] = useState(7);
   const handlePeopleChange = (newCount: number) => {
     setPeople(newCount);
-    console.log(people);
   };
   const { showToast, isToastVisible } = useToast();
 
@@ -554,6 +565,15 @@ const Components = () => {
         <section style={{ width: '400px' }}>
           <h2 css={titleStyle}>Carousel</h2>
           <Carousel imageList={imageList} />
+        </section>
+        <section css={secttionContainer}>
+          <h2 css={titleStyle}>ApplicantListModal</h2>
+          <button onClick={handleModalOpen}>모달 열기</button>
+          {isOpen && (
+            <Modal onClose={handleModalClose}>
+              <ApplicantListModal applicantListData={applicantListData} />
+            </Modal>
+          )}
         </section>
       </div>
     </div>
