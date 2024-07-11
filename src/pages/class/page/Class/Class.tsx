@@ -1,5 +1,17 @@
+import { AddAmountBox } from '@pages/class/components';
+import { useState } from 'react';
+
 const Class = () => {
-  return <div>Class</div>;
+  const [amountValue, setAmountValue] = useState(0);
+  const handleAmountChange = (value: number) => {
+    setAmountValue(value);
+  };
+
+  return (
+    <div>
+      <AddAmountBox value={amountValue} handleAmountChange={handleAmountChange} />
+    </div>
+  );
 };
 
 export default Class;
