@@ -4,6 +4,8 @@ export const imageWrapper = (width: string, height: string) => css`
   position: relative;
   min-width: ${width};
   min-height: ${height};
+  width: ${width};
+  height: ${height};
 `;
 
 export const imageVariant = {
