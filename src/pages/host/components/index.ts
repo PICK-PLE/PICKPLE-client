@@ -1,3 +1,4 @@
+import HostMyClassCard from './HostMyClassCard/HostMyClassCard';
 import ApplicantListModal from './ApplicantListModal/ApplicantListModal';
 
-export { ApplicantListModal };
+export { HostMyClassCard, ApplicantListModal };

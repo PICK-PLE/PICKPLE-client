@@ -282,16 +282,24 @@ const Components = () => {
 
           <h3 css={subTitleStyle}>label</h3>
           <span css={textStyle}>variant='status'</span>
-          <Label variant="status">status</Label>
+          <Label variant="status">입금 대기</Label>
 
           <span css={textStyle}>variant='dDay'</span>
-          <Label variant="dDay">dDay</Label>
+          <Label variant="dDay">D - 1</Label>
 
           <span css={textStyle}>variant='category'</span>
-          <Label variant="category">category</Label>
+          <Label variant="category" icon={<IcHouse />}>
+            부동산
+          </Label>
+
+          <span css={textStyle}>variant='count'</span>
+          <Label variant="count">03 / 10</Label>
+
+          <span css={textStyle}>variant='countBlack'</span>
+          <Label variant="countBlack">03 / 10</Label>
 
           <span css={textStyle}>variant='textCount'</span>
-          <Label variant="textCount">textCount</Label>
+          <Label variant="textCount">승인 현황 12 / 15</Label>
         </section>
 
         <section css={secttionContainer}>
@@ -497,10 +505,17 @@ const Components = () => {
           <h2 css={titleStyle}>Image</h2>
 
           <h3 css={subTitleStyle}>Image</h3>
-          <Image variant="square" width="30px" height="30px" />
+          <span css={textStyle}>with label</span>
+          <Image
+            src="https://placehold.co/150"
+            variant="square"
+            width="15rem"
+            label={<Label variant="status">입금 대기</Label>}
+          />
           <span css={textStyle}>variant='square'</span>
-          <Image variant="round" width="30px" height="30px" />
+          <Image src="https://placehold.co/50" variant="square" width="50px" height="50px" />
           <span css={textStyle}>variant='round'</span>
+          <Image src="https://placehold.co/50" variant="round" width="50px" />
 
           <h3 css={subTitleStyle}>IamgeSelect</h3>
           <ImageSelect />
