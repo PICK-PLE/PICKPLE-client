@@ -1,12 +1,12 @@
 import {
   applicantCountStyle,
-  firstH1Style,
+  countTextStyle,
   headerStyle,
   iconStyle,
   liStyle,
   mainStyle,
+  modalCommentTitleStyle,
   modalContainerStyle,
-  secondH1Style,
   sectionStyle,
   textDivStyle,
   ulStyle,
@@ -29,8 +29,8 @@ const ApplicantListModal = ({ applicantListData }: ApplicantListModalProps) => {
             <IcCheckModal />
           </span>
           <div css={textDivStyle}>
-            <h1 css={firstH1Style}>승인할 신청자 목록을 확인해주세요!</h1>
-            <h1 css={secondH1Style}>
+            <h1 css={modalCommentTitleStyle}>승인할 신청자 목록을 확인해주세요!</h1>
+            <h1 css={countTextStyle}>
               총 <span css={applicantCountStyle}>{maxGuest}</span>명
             </h1>
           </div>

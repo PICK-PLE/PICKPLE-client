@@ -22,7 +22,7 @@ export type MoimSubmissionState =
   | 'REFUNDED' // 환불 완료
   | 'COMPLETED'; // 참가 완료
 
-export interface SubmitterProps {
+export interface Submitter {
   submitterId: number;
   nickname: string;
   profileImage: string;
@@ -31,5 +31,5 @@ export interface SubmitterProps {
 
 export interface ApplicantListResponseType {
   maxGuest: number;
-  submitterList: SubmitterProps[];
+  submitterList: Submitter[];
 }

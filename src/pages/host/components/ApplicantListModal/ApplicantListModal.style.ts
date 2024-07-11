@@ -25,11 +25,11 @@ export const textDivStyle = css`
   ${flexGenerator('column')}
   gap: 0.6rem
 `;
-export const firstH1Style = (theme: Theme) => css`
+export const modalCommentTitleStyle = (theme: Theme) => css`
   color: ${theme.color.black};
   ${theme.font['head03-b-18']};
 `;
-export const secondH1Style = (theme: Theme) => css`
+export const countTextStyle = (theme: Theme) => css`
   color: ${theme.color.midgray2};
   ${theme.font['head03-b-18']}
 `;
