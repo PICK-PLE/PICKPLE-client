@@ -32,9 +32,8 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
     <div css={moimCardLayout}>
       <article css={moimCardContainer}>
         <Image
-          variant="square"
+          src="https://placehold.co/112x112"
           width="11.2rem"
-          height="11.2rem"
           label={
             guestMyClassData.moimSubmissionState !== 'COMPLETED' ? (
               <Label variant="status">{statusMap[guestMyClassData.moimSubmissionState]}</Label>
