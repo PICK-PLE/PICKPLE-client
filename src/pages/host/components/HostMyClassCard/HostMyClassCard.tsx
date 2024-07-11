@@ -10,19 +10,29 @@ import {
   cardTitleWrapper,
 } from './HostMyClassCard.style';
 
-import { data } from './data';
+interface hostMyClassDataResponseType {
+  moimImage: string;
+  title: string;
+  approvedGuest: number;
+  maxGuest: number;
+}
 
-const HostMyClassCard = () => {
+interface HostMyClassCardProps {
+  hostMyClassData: hostMyClassDataResponseType;
+}
+
+const HostMyClassCard = ({ hostMyClassData }: HostMyClassCardProps) => {
+  const { moimImage, title, approvedGuest, maxGuest } = hostMyClassData;
   return (
     <section css={cardContainer}>
       <div css={cardContent}>
-        <Image src={data.moimImage} width="8.2rem" />
+        <Image src={moimImage} width="8.2rem" />
         <div css={cardText}>
           <div css={cardTitleWrapper} onClick={() => {}}>
-            <h3 css={cardTitle}>{data.title} </h3>
+            <h3 css={cardTitle}>{title} </h3>
             <IcDropdownRight css={cardIcon} />
           </div>
-          <Label variant="textCount">{`승인 현황 ${data.approvedGuest} / ${data.maxGuest}`}</Label>
+          <Label variant="textCount">{`승인 현황 ${approvedGuest} / ${maxGuest}`}</Label>
         </div>
       </div>
       <Button css={cardButton} variant="stroke">
