@@ -18,10 +18,25 @@
     "jsx": "react-jsx",
 
     /* Linting */
+    "jsxImportSource": "@emotion/react",
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    "baseUrl": "./",
+    "paths": {
+      "@apis/*": ["src/apis/*"],
+      "@svg": ["src/assets/svg"],
+      "@components": ["src/components/common"],
+      "@constants": ["src/constants"],
+      "@hooks": ["src/hooks"],
+      "@pages/*": ["src/pages/*"],
+      "@routes": ["src/routes"],
+      "@styles/*": ["src/styles/*"],
+      "@types": ["src/types"],
+      "@utils/*": ["src/utils/*"]
+    }
   },
-  "include": ["src"]
+  "include": ["src", "custom.d.ts", "src/constants/mocks/HostMyClassCardData.ts"]
 }
