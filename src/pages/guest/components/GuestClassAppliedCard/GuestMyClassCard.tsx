@@ -1,6 +1,6 @@
-import { guestClassAppliedCardContainer } from './GuestClassAppliedCard.style';
 import MoimCard from '../MoimCard/MoimCard';
 import { Moim } from '../../../../types/responseType';
+import { guestClassAppliedCardContainer } from './GuestMyClassCard.style';
 
 const MOCK_DATA: { data: Moim[] } = {
   data: [
@@ -46,7 +46,7 @@ const MOCK_DATA: { data: Moim[] } = {
   ],
 };
 
-const GuestClassAppliedCard = () => {
+const GuestMyClassCard = () => {
   return (
     <section css={guestClassAppliedCardContainer}>
       {MOCK_DATA.data.map((data) => (
@@ -56,4 +56,4 @@ const GuestClassAppliedCard = () => {
   );
 };
 
-export default GuestClassAppliedCard;
+export default GuestMyClassCard;

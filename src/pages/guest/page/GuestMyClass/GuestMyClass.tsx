@@ -1,9 +1,9 @@
-import { GuestClassAppliedCard } from '@pages/guest/components';
+import GuestMyClassCard from '@pages/guest/components/GuestClassAppliedCard/GuestMyClassCard';
 
 const GuestMyClass = () => {
   return (
     <div>
-      <GuestClassAppliedCard />
+      <GuestMyClassCard />
     </div>
   );
 };
