@@ -1,5 +1,5 @@
 import { GuestMyClass } from '@pages/guest/page/index';
-import { RouteType } from '../types/routeType';
+import { RouteType } from '@types';
 import { routePath } from '@constants';
 
 const classRoutes: RouteType[] = [

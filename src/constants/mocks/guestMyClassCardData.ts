@@ -1,4 +1,4 @@
-import { MoimResponseType } from '../../types/responseType';
+import { MoimResponseType } from '@types';
 
 export const GUEST_MY_CLASS_DATA: MoimResponseType[] = [
   {

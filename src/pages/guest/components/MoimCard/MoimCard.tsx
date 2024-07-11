@@ -12,7 +12,7 @@ import {
   moimCardLayout,
 } from './MoimCard.style';
 import { IcDropdownRight } from '@svg';
-import { MoimResponseType } from '../../../../types/responseType';
+import { MoimResponseType } from '@types';
 
 interface MoimCardProps {
   guestMyClassData: MoimResponseType;
