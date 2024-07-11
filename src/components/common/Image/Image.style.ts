@@ -3,11 +3,8 @@ import { Theme, css } from '@emotion/react';
 export const imageWrapper = (width: string, height: string) => (theme: Theme) =>
   css`
     position: relative;
-    border-radius: 5px;
-    background-color: ${theme.color.lightgray1};
-    aspect-ratio: ${width} / ${height};
-    min-width: ${width};
-    min-height: ${height};
+    width: ${width};
+    height: ${height};
   `;
 
 export const imageVariant = {
@@ -15,9 +12,15 @@ export const imageVariant = {
     border-radius: 5px;
   `,
   round: css`
-    border-radius: 100%;
+    border-radius: 50%;
   `,
 };
+
+export const imageStyle = css`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
 
 export const labelStyle = css`
   position: absolute;

@@ -494,10 +494,17 @@ const Components = () => {
           <h2 css={titleStyle}>Image</h2>
 
           <h3 css={subTitleStyle}>Image</h3>
-          <Image variant="square" width="30px" height="30px" />
+          <span css={textStyle}>with label</span>
+          <Image
+            src="https://placehold.co/150"
+            variant="square"
+            width="15rem"
+            label={<Label variant="status">입금 대기</Label>}
+          />
           <span css={textStyle}>variant='square'</span>
-          <Image variant="round" width="30px" height="30px" />
+          <Image src="https://placehold.co/50" variant="square" width="50px" height="50px" />
           <span css={textStyle}>variant='round'</span>
+          <Image src="https://placehold.co/50" variant="round" width="50px" />
 
           <h3 css={subTitleStyle}>IamgeSelect</h3>
           <ImageSelect />
