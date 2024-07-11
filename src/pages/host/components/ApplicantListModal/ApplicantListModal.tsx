@@ -21,17 +21,17 @@ interface SubmitterProps {
   submittedDate: string;
 }
 
-interface MoimApplicantListProps {
+interface ApplicantListProps {
   maxGuest: number;
   submitterList: SubmitterProps[];
 }
 
 interface ApplicantListModalProps {
-  moimApplicantList: MoimApplicantListProps;
+  applicantListData: ApplicantListProps;
 }
 
-const ApplicantListModal = ({ moimApplicantList }: ApplicantListModalProps) => {
-  const { maxGuest, submitterList } = moimApplicantList;
+const ApplicantListModal = ({ applicantListData }: ApplicantListModalProps) => {
+  const { maxGuest, submitterList } = applicantListData;
   return (
     <article css={modalContainerStyle}>
       <section css={sectionStyle}>

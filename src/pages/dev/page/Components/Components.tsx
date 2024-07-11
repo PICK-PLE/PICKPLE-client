@@ -78,10 +78,9 @@ import {
   textStyle,
 } from './Components.style';
 import ApplicantListModal from '@pages/host/components/ApplicantListModal/ApplicantListModal';
-import { MOIM_APPLICANT_LIST } from '@pages/host/components/ApplicantListModal/moimApplicantList';
+import { APPLICANT_LIST_DATA } from 'src/constants/mocks/applicantListData';
 
-const moimApplicantList = MOIM_APPLICANT_LIST;
-console.log(moimApplicantList.data);
+const applicantListData = APPLICANT_LIST_DATA;
 
 const Components = () => {
   const [value, setValue] = useState('');
@@ -103,7 +102,6 @@ const Components = () => {
   const [people, setPeople] = useState(7);
   const handlePeopleChange = (newCount: number) => {
     setPeople(newCount);
-    console.log(people);
   };
   const { showToast, isToastVisible } = useToast();
 
@@ -558,7 +556,7 @@ const Components = () => {
           <button onClick={handleModalOpen}>모달 열기</button>
           {isOpen && (
             <Modal onClose={handleModalClose}>
-              <ApplicantListModal moimApplicantList={moimApplicantList.data}/>
+              <ApplicantListModal applicantListData={applicantListData} />
             </Modal>
           )}
         </section>
