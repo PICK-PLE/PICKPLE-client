@@ -2,7 +2,7 @@ import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const labelStyle = css`
-  width: auto;
+  width: fit-content;
   ${flexGenerator()};
   gap: 0.4rem;
 
