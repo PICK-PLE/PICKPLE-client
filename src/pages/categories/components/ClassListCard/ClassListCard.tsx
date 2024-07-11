@@ -7,24 +7,24 @@ import {
   timeTextWraaper,
 } from '@pages/categories/components/ClassListCard/ClassListCard.style';
 
-interface DateListProps {
+interface DateList {
   date: string;
   dayOfWeek: string;
   startTime: string;
   endTime: string;
 }
 
-interface ClassListDataProps {
+interface ClassListData {
   dayOfDay: number;
   moimImageUrl: string;
   moimTitle: string;
   hostImageUrl: string;
   hostNickName: string;
-  dateList: DateListProps;
+  dateList: DateList;
 }
 
 interface ClassListCardProps {
-  classListData: ClassListDataProps;
+  classListData: ClassListData;
 }
 
 const ClassListCard = ({ classListData }: ClassListCardProps) => {
