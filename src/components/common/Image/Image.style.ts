@@ -2,8 +2,8 @@ import { css } from '@emotion/react';
 
 export const imageWrapper = (width: string, height: string) => css`
   position: relative;
-  width: ${width};
-  height: ${height};
+  min-width: ${width};
+  min-height: ${height};
 `;
 
 export const imageVariant = {
