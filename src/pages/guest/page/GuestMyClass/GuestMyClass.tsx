@@ -5,7 +5,9 @@ import {
   tapLine,
   tabWrapper,
   getTabStyle,
-  filterSelectContainer,
+  filterSelectWrapper,
+  guestMyClassCardContainer,
+  filterSelectStyle,
 } from './GuestMyClass.style';
 import { useState } from 'react';
 
@@ -26,12 +28,16 @@ const GuestMyClass = () => {
           </div>
         </div>
       </article>
-      <article css={filterSelectContainer}>
-        <FilterSelect
-          options={['전체', '입금 대기', '승인 대기', '승인 완료', '승인 거절', '환불 완료']}
-        />
-      </article>
-      <GuestMyClassCard />
+      <div css={guestMyClassCardContainer}>
+        <article css={filterSelectWrapper}>
+          <div css={filterSelectStyle}>
+            <FilterSelect
+              options={['전체', '입금 대기', '승인 대기', '승인 완료', '승인 거절', '환불 완료']}
+            />
+          </div>
+        </article>
+        <GuestMyClassCard />
+      </div>
     </>
   );
 };
