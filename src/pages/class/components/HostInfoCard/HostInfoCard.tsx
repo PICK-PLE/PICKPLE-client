@@ -10,7 +10,7 @@ import {
   hostTitleStyle,
   hostNameStyle,
   countStyle,
-} from '@pages/class/components/HostInfoCard/HostInfoCard.style';
+} from './HostInfoCard.style';
 
 interface HostCategories {
   category1: string;
@@ -20,14 +20,6 @@ interface HostCategories {
 
 const HostInfoCard = () => {
   const { hostNickName, hostImageUrl, count, hostCategories } = HOST_INFO_DATA;
-
-  const getCategoryIcon = (category: string) => {
-    return CATEGORY_ICON[category]?.small;
-  };
-
-  const getCategoryName = (category: string) => {
-    return CATEGORY_NAME[category];
-  };
 
   // 카테고리 키를 배열로 저장하는데, hostCategories 타입 지정! 왜냐면 category2, 3은 null이 나올 수도 있으니까
   const categoryKeys = Object.keys(hostCategories) as (keyof HostCategories)[];
@@ -43,15 +35,15 @@ const HostInfoCard = () => {
             <span css={hostNameStyle}>{hostNickName}</span>
           </div>
 
-          <span css={countStyle}>모임횟수 {count} 회</span>
+          <span css={countStyle}>{`모임횟수 ${count} 회`}</span>
         </div>
 
         <div css={hostInfoLabelStyle}>
           {categoryKeys.map(key => {
             const category = hostCategories[key];
             return category ? (
-              <Label key={key} variant="category" icon={getCategoryIcon(category)}>
-                {getCategoryName(category)}
+              <Label key={key} variant="category" icon={CATEGORY_ICON[category]?.small}>
+                {CATEGORY_NAME[category]}
               </Label>
             ) : null;
           })}
