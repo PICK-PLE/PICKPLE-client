@@ -1,5 +1,5 @@
 import { Home } from '@pages/home/page/index';
-import { RouteType } from '../types/routeType';
+import { RouteType } from '@types';
 import { routePath } from '@constants';
 
 const homeRoutes: RouteType[] = [
