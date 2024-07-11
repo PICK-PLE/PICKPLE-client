@@ -11,8 +11,8 @@ export const CLASSLIST_DATA = [
       startTime: '15:00',
       endTime: '18:00',
     },
-    moimImageUrl: 'example.com',
-    hostImageUrl: 'svg/ic_default-userimg.svg',
+    moimImageUrl: 'https://placehold.co/500',
+    hostImageUrl: 'https://placehold.co/100',
   },
   {
     moimId: 2,
@@ -26,8 +26,8 @@ export const CLASSLIST_DATA = [
       startTime: '15:00',
       endTime: '18:00',
     },
-    moimImageUrl: 'example.com',
-    hostImageUrl: 'example.com',
+    moimImageUrl: 'https://placehold.co/100',
+    hostImageUrl: 'https://placehold.co/100',
   },
   {
     moimId: 3,
@@ -41,8 +41,8 @@ export const CLASSLIST_DATA = [
       startTime: '15:00',
       endTime: '18:00',
     },
-    moimImageUrl: 'example.com',
-    hostImageUrl: 'example.com',
+    moimImageUrl: 'https://placehold.co/100',
+    hostImageUrl: 'https://placehold.co/100',
   },
   {
     moimId: 4,
@@ -56,7 +56,7 @@ export const CLASSLIST_DATA = [
       startTime: '15:00',
       endTime: '18:00',
     },
-    moimImageUrl: 'example.com',
-    hostImageUrl: 'example.com',
+    moimImageUrl: 'https://placehold.co/100',
+    hostImageUrl: 'https://placehold.co/100',
   },
 ];
