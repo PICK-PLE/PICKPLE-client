@@ -3,7 +3,7 @@ import { imageStyle, imageVariant, imageWrapper, labelStyle } from './Image.styl
 
 interface ImageProps extends HTMLAttributes<HTMLDivElement> {
   src: string;
-  variant: 'square' | 'round';
+  variant?: 'square' | 'round';
   label?: ReactNode;
   width: string;
   height?: string;
