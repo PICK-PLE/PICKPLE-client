@@ -7,7 +7,6 @@ export const cardContainer = css`
 
   padding: 1.8rem 1.8rem 1.3rem;
 
-  border: 1px solid black;
   border-radius: 10px;
 `;
 
