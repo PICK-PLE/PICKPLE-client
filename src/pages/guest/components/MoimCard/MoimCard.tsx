@@ -56,7 +56,7 @@ const MoimCard = ({ data }: MoimCardProps) => {
             <div css={detailTitleWrapper}>
               <p css={detailTitleStyle}>모임날짜</p>
               <p css={detailInfoStyle}>
-                {data.dateList.date} {data.dateList.dayOfWeek}
+                {data.dateList.date} ({data.dateList.dayOfWeek})
               </p>
             </div>
             <div css={detailTitleWrapper}>
