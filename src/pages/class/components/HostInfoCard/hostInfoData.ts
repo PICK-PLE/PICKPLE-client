@@ -6,9 +6,9 @@ export const HOST_INFO_DATA = {
     hostImageUrl: 'example.com',
     count: 3,
     hostCategories: {
-      category1: '부동산',
-      category2: '부동산',
-      category3: '부동산',
+      category1: 'njob',
+      category2: 'investment',
+      category3: 'startup',
     },
   },
 };
