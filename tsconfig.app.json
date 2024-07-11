@@ -38,5 +38,5 @@
       "@utils/*": ["src/utils/*"]
     }
   },
-  "include": ["src", "custom.d.ts"]
+  "include": ["src", "custom.d.ts", "src/constants/mocks/HostMyClassCardData.ts"]
 }
