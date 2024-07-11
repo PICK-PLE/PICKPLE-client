@@ -6,7 +6,7 @@ const GuestMyClassCard = () => {
   return (
     <section css={guestClassAppliedCardContainer}>
       {GUEST_MY_CLASS_DATA.data.map((data) => (
-        <MoimCard key={data.moimId} data={data} />
+        <MoimCard key={data.moimId} guestMyClassData={data} />
       ))}
     </section>
   );

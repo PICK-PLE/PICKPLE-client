@@ -15,10 +15,10 @@ import { IcDropdownRight } from '@svg';
 import { Moim } from '../../../../types/responseType';
 
 interface MoimCardProps {
-  data: Moim;
+  guestMyClassData: Moim;
 }
 
-const MoimCard = ({ data }: MoimCardProps) => {
+const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
   const statusMap: { [key: string]: string } = {
     PENDING_PAYMENT: '입금 대기',
     PENDING_APPROVAL: '승인 대기',
@@ -36,15 +36,15 @@ const MoimCard = ({ data }: MoimCardProps) => {
           width="11.2rem"
           height="11.2rem"
           label={
-            data.moimSubmissionState !== 'COMPLETED' ? (
-              <Label variant="status">{statusMap[data.moimSubmissionState]}</Label>
+            guestMyClassData.moimSubmissionState !== 'COMPLETED' ? (
+              <Label variant="status">{statusMap[guestMyClassData.moimSubmissionState]}</Label>
             ) : null
           }
         />
 
         <article css={detailInfoWrapper}>
           <div css={titleWrapper}>
-            <p css={titleStyle}>{data.moimTitle}</p>
+            <p css={titleStyle}>{guestMyClassData.moimTitle}</p>
             <span
               css={iconStyle}
               onClick={() => {
@@ -56,22 +56,22 @@ const MoimCard = ({ data }: MoimCardProps) => {
           <div css={detailWrapper}>
             <div css={detailTitleWrapper}>
               <p css={detailTitleStyle}>호스트</p>
-              <p css={detailInfoStyle}>{data.hostNickname}</p>
+              <p css={detailInfoStyle}>{guestMyClassData.hostNickname}</p>
             </div>
             <div css={detailTitleWrapper}>
               <p css={detailTitleStyle}>모임날짜</p>
               <p css={detailInfoStyle}>
-                {data.dateList.date} ({data.dateList.dayOfWeek})
+                {guestMyClassData.dateList.date} ({guestMyClassData.dateList.dayOfWeek})
               </p>
             </div>
             <div css={detailTitleWrapper}>
               <p css={detailTitleStyle}>참가비</p>
-              <p css={detailInfoStyle}>{data.fee.toLocaleString()}원</p>
+              <p css={detailInfoStyle}>{guestMyClassData.fee.toLocaleString()}원</p>
             </div>
           </div>
         </article>
       </article>
-      {data.moimSubmissionState === 'PENDING_PAYMENT' ? (
+      {guestMyClassData.moimSubmissionState === 'PENDING_PAYMENT' ? (
         <Button variant="xSmall" onClick={() => {}}>
           입금하기
         </Button>
