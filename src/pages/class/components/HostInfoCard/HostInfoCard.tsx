@@ -39,10 +39,10 @@ const HostInfoCard = () => {
         </div>
 
         <div css={hostInfoLabelStyle}>
-          {categoryKeys.map(key => {
+          {categoryKeys.map((key) => {
             const category = hostCategories[key];
             return category ? (
-              <Label key={key} variant="category" icon={CATEGORY_ICON[category]?.small}>
+              <Label key={key} variant="category" icon={CATEGORY_ICON[category].small}>
                 {CATEGORY_NAME[category]}
               </Label>
             ) : null;
@@ -54,4 +54,3 @@ const HostInfoCard = () => {
 };
 
 export default HostInfoCard;
-
