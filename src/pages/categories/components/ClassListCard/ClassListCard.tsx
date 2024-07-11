@@ -35,8 +35,7 @@ const ClassListCard = ({ classListData }: ClassListCardProps) => {
 
   return (
     <div css={classListContainer}>
-      {/* <Image src={moimImageUrl} width="9rem" label={`D-${dayOfDay}`/> */}
-      <Image width="9rem" height="9rem" variant="square" label={`D-${dayOfDay}`} />
+      <Image src={moimImageUrl} width="9rem" label={`D-${dayOfDay}`}/>
       <div css={classListTextContainer}>
         <div css={classListTextWrapper}>
           <span css={titleTextWrapper}>{moimTitle}</span>

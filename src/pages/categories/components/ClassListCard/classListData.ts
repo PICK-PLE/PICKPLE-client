@@ -12,7 +12,7 @@ export const CLASSLIST_DATA = [
       endTime: '18:00',
     },
     moimImageUrl: 'example.com',
-    hostImageUrl: 'example.com',
+    hostImageUrl: 'svg/ic_default-userimg.svg',
   },
   {
     moimId: 2,

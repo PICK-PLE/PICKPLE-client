@@ -3,7 +3,8 @@ import { flexGenerator } from '@styles/generator';
 
 export const classListContainer = (theme: Theme) => css`
   ${flexGenerator('row', 'flex-start')};
-  margin: 2rem;
+  width: 100%;
+  min-width: 33.5rem;
   gap: 2.1rem;
   padding: 1.3rem;
   background-color: ${theme.color.background};
