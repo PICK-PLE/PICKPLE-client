@@ -12,10 +12,10 @@ import {
   moimCardLayout,
 } from './MoimCard.style';
 import { IcDropdownRight } from '@svg';
-import { Moim } from '../../../../types/responseType';
+import { MoimResponseType } from '../../../../types/responseType';
 
 interface MoimCardProps {
-  guestMyClassData: Moim;
+  guestMyClassData: MoimResponseType;
 }
 
 const MoimCard = ({ guestMyClassData }: MoimCardProps) => {

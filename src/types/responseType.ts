@@ -1,4 +1,4 @@
-export interface Moim {
+export interface MoimResponseType {
   moimId: number;
   moimSubmissionState: MoimSubmissionState;
   moimTitle: string;
