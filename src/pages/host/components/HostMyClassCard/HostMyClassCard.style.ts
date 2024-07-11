@@ -32,6 +32,8 @@ export const cardTitleWrapper = css`
   ${flexGenerator('row', 'space-between')};
   gap: 0.6rem;
   width: 100%;
+
+  cursor: pointer;
 `;
 
 export const cardTitle = (theme: Theme) => css`

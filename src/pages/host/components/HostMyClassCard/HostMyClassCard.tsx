@@ -18,7 +18,7 @@ const HostMyClassCard = () => {
       <div css={cardContent}>
         <Image src={data.moimImage} width="8.2rem" />
         <div css={cardText}>
-          <div css={cardTitleWrapper}>
+          <div css={cardTitleWrapper} onClick={() => {}}>
             <h3 css={cardTitle}>{data.title} </h3>
             <IcDropdownRight css={cardIcon} />
           </div>
