@@ -5,7 +5,7 @@ import { guestClassAppliedCardContainer } from './GuestMyClassCard.style';
 const GuestMyClassCard = () => {
   return (
     <section css={guestClassAppliedCardContainer}>
-      {GUEST_MY_CLASS_DATA.data.map((data) => (
+      {GUEST_MY_CLASS_DATA.map((data) => (
         <MoimCard key={data.moimId} guestMyClassData={data} />
       ))}
     </section>
