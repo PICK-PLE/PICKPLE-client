@@ -1,18 +1,16 @@
-import { useTheme } from '@emotion/react';
 import { iconWrapperStyle, labelStyle, labelVariant } from './Label.style';
 interface LabelProps {
-  variant: 'status' | 'dDay' | 'category' | 'textCount';
+  variant: 'status' | 'dDay' | 'category' | 'count' | 'countBlack' | 'textCount';
   children: React.ReactNode;
   icon?: React.ReactNode;
 }
 
 const Label = ({ children, variant, icon }: LabelProps) => {
-  const theme = useTheme();
   return (
-    <aside css={[labelStyle, labelVariant(theme)[variant]]}>
+    <div css={[labelStyle, labelVariant[variant]]}>
       {icon ? <span css={iconWrapperStyle}>{icon}</span> : null}
       {children}
-    </aside>
+    </div>
   );
 };
 
