@@ -1,4 +1,3 @@
-import React from 'react';
 import { StepProps } from 'src/types/nextStep';
 import { Button, Input, ProgressBar, QuestionText, TextArea } from '@components';
 import {

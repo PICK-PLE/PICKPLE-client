@@ -21,3 +21,22 @@ export const subTitleStyle = (theme: Theme) => css`
   color: ${theme.color.black};
   ${theme.font['head01-b-22']};
 `;
+
+export const headerSpanStyle = (theme: Theme) => css`
+  color: ${theme.color.midgray2};
+  ${theme.font['body02-r-14']}
+`;
+
+export const mainStyle = css`
+  ${flexGenerator()}
+  margin-top: 3.2rem;
+  margin-bottom: 5.2rem;
+`;
+
+export const iconStyle = css`
+  width: 29rem;
+  height: 29rem;
+`;
+export const footerStyle = css`
+  width: 100%;
+`;

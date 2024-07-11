@@ -1,4 +1,3 @@
-import React from 'react';
 import { StepProps } from 'src/types/nextStep';
 import { Button, Input, ProgressBar, QuestionText, TextArea } from '@components';
 import {
@@ -42,7 +41,7 @@ const StepTwo = ({ onNext }: StepProps) => {
               픽플에서 어떤 주제의 클래스 모임을 진행하고 싶으신가요?
             </QuestionText>
             <div>
-              
+
             </div>
             <h6 css={referTextStyle}>*최대 3개까지 선택 가능합니다.</h6>
           </section>
