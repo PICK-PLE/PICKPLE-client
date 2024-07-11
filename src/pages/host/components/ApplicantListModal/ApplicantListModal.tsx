@@ -13,21 +13,10 @@ import {
 } from './ApplicantListModal.style';
 import { IcCheckModal } from '@svg';
 import { Button, SimpleUserProfile } from '@components';
-
-interface SubmitterProps {
-  submitterId: number;
-  nickname: string;
-  profileImage: string;
-  submittedDate: string;
-}
-
-interface ApplicantListProps {
-  maxGuest: number;
-  submitterList: SubmitterProps[];
-}
+import { ApplicantListResponseType } from '@types';
 
 interface ApplicantListModalProps {
-  applicantListData: ApplicantListProps;
+  applicantListData: ApplicantListResponseType;
 }
 
 const ApplicantListModal = ({ applicantListData }: ApplicantListModalProps) => {

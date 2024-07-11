@@ -21,3 +21,15 @@ export type MoimSubmissionState =
   | 'REJECTED' // 승인 거절
   | 'REFUNDED' // 환불 완료
   | 'COMPLETED'; // 참가 완료
+
+export interface SubmitterProps {
+  submitterId: number;
+  nickname: string;
+  profileImage: string;
+  submittedDate: string;
+}
+
+export interface ApplicantListResponseType {
+  maxGuest: number;
+  submitterList: SubmitterProps[];
+}
