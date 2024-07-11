@@ -35,7 +35,7 @@
       "@routes": ["src/routes"],
       "@styles/*": ["src/styles/*"],
       "@types/*": ["src/types/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils": ["src/utils"]
     }
   },
   "include": ["src", "custom.d.ts"]

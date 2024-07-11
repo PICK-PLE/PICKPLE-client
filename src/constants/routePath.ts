@@ -11,7 +11,7 @@ const categoriesPages = {
 };
 
 const classPages = {
-  CLASS: '/class/{classId}',
+  CLASS: '/class',
   CLASS_NOTICE_POST: '/class/notice/post',
   CLASS_APPLY: '/class/apply',
   CLASS_POST: '/class/post',
@@ -33,7 +33,7 @@ const hostPages = {
 };
 
 const devPages = {
-      DEV_COMPONENTS: '/dev/components',
+  DEV_COMPONENTS: '/dev/components',
   DEV_CARD: '/dev/card',
 };
 
