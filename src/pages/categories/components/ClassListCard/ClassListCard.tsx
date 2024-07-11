@@ -1,4 +1,4 @@
-import { Image, SimpleUserProfile } from '@components';
+import { Image, Label, SimpleUserProfile } from '@components';
 import {
   classListContainer,
   classListTextContainer,
@@ -26,16 +26,15 @@ interface ClassListDataProps {
 interface ClassListCardProps {
   classListData: ClassListDataProps;
 }
-// 페이지에서 api 호출 후 데이터 보내주는 거 받기
+
 const ClassListCard = ({ classListData }: ClassListCardProps) => {
   const { dayOfDay, moimImageUrl, moimTitle, hostImageUrl, hostNickName, dateList } = classListData;
   const { date, dayOfWeek, startTime, endTime } = dateList;
 
-  console.log(moimImageUrl); //TODO: Image 컴포넌트 수정 반영되면 그 이후에 지울 것
-
   return (
     <div css={classListContainer}>
-      <Image src={moimImageUrl} width="9rem" label={`D-${dayOfDay}`}/>
+      <Image src={moimImageUrl} width="9rem" label={<Label variant="status">D-{dayOfDay}</Label>} />
+
       <div css={classListTextContainer}>
         <div css={classListTextWrapper}>
           <span css={titleTextWrapper}>{moimTitle}</span>
