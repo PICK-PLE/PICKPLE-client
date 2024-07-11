@@ -22,10 +22,20 @@ export type MoimSubmissionState =
   | 'REFUNDED' // 환불 완료
   | 'COMPLETED'; // 참가 완료
 
-export interface hostMyClassDataResponseType {
+export interface HostMyClassDataResponseType {
   moimId: number;
   title: string;
   approvedGuest: number;
   maxGuest: number;
   moimImage: string;
+}
+
+export interface NoticeResponseType {
+  noticeId: number;
+  hostNickName: string;
+  hostImageUrl: string;
+  title: string;
+  content: string;
+  date: string;
+  noticeImageUrl: string | null;
 }
