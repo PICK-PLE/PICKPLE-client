@@ -1,11 +1,10 @@
-import { Theme, css } from '@emotion/react';
+import { css } from '@emotion/react';
 
-export const imageWrapper = (width: string, height: string) => (theme: Theme) =>
-  css`
-    position: relative;
-    width: ${width};
-    height: ${height};
-  `;
+export const imageWrapper = (width: string, height: string) => css`
+  position: relative;
+  width: ${width};
+  height: ${height};
+`;
 
 export const imageVariant = {
   square: css`
