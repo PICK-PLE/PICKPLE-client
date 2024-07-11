@@ -56,7 +56,7 @@ export const detailTitleWrapper = css`
 `;
 
 export const detailTitleStyle = (theme: Theme) => css`
-  width: 16%;
+  width: 18%;
   color: ${theme.color.darkgray};
   ${theme.font['body03-r-12']};
 `;
