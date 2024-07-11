@@ -1,5 +1,7 @@
+import { HostApplyPage } from '@pages/host/page';
+
 const Card = () => {
-  return <div>Card</div>;
+  return <HostApplyPage />;
 };
 
 export default Card;
