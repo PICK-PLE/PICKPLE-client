@@ -554,7 +554,7 @@ const Components = () => {
           <button onClick={handleModalOpen}>모달 열기</button>
           {isOpen && (
             <Modal onClose={handleModalClose}>
-              <DepositModal />
+              <DepositModal onClose={handleModalClose} />
             </Modal>
           )}
         </section>

@@ -15,7 +15,11 @@ import {
   payButtonSectionStyle,
 } from './DepositModal.style';
 
-const DepositModal = () => {
+interface DepositModalProps {
+  onClose: () => void;
+}
+
+const DepositModal = ({ onClose }: DepositModalProps) => {
   return (
     <article css={modalContainerStyle}>
       <header css={headerstyle}>
@@ -43,7 +47,9 @@ const DepositModal = () => {
           <PayButton variant="kakao" totalPrice={1} />
           <PayButton variant="toss" totalPrice={1} />
         </section>
-        <Button variant="stroke">입금을 완료했어요</Button>
+        <Button variant="stroke" onClick={onClose}>
+          입금을 완료했어요
+        </Button>
       </main>
     </article>
   );
