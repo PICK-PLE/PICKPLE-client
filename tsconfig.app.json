@@ -34,9 +34,9 @@
       "@pages/*": ["src/pages/*"],
       "@routes": ["src/routes"],
       "@styles/*": ["src/styles/*"],
-      "@types/*": ["src/types/*"],
+      "@types": ["src/types"],
       "@utils/*": ["src/utils/*"]
     }
   },
-  "include": ["src", "custom.d.ts"]
+  "include": ["src", "custom.d.ts", "src/constants/mocks/HostMyClassCardData.ts"]
 }
