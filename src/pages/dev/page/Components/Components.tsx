@@ -31,7 +31,6 @@ import {
   CountPeople,
   NavigateBox,
   SimpleUserProfile,
-  //Modal,
   Toast,
   Modal,
 } from '@components';
@@ -77,7 +76,9 @@ import {
   iconContainerStyle,
   textStyle,
 } from './Components.style';
-import ApplicantListModal from '@pages/host/components/ApplicantListModal/ApplicantListModal';
+import { ApplicantListModal } from '@pages/host/components/index';
+import { DepositModal } from '@pages/guest/components/index';
+
 import { APPLICANT_LIST_DATA } from 'src/constants/mocks/applicantListData';
 
 const applicantListData = APPLICANT_LIST_DATA;
@@ -91,6 +92,7 @@ const Components = () => {
   const handleModalClose = () => {
     setIsOpen(false);
   };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
   };
@@ -103,7 +105,7 @@ const Components = () => {
   const handlePeopleChange = (newCount: number) => {
     setPeople(newCount);
   };
-  const { showToast, isToastVisible } = useToast();
+  const { showToast, isToastVisible, toastMessage } = useToast();
 
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
@@ -322,9 +324,11 @@ const Components = () => {
 
         <section css={secttionContainer}>
           <h2 css={titleStyle}>Toast</h2>
-          <button onClick={showToast}>토스트 나타나라!</button>
+          <button onClick={() => showToast('신청 마감일 이후에 신청자를 승인할 수 있어요.')}>
+            토스트 나타나라!
+          </button>
           <Toast toastIcon={true} isVisible={isToastVisible} toastBottom={3}>
-            신청 마감일 이후에 신청자를 승인할 수 있어요.
+            {toastMessage}
           </Toast>
         </section>
       </div>
@@ -572,6 +576,15 @@ const Components = () => {
           {isOpen && (
             <Modal onClose={handleModalClose}>
               <ApplicantListModal applicantListData={applicantListData} />
+            </Modal>
+          )}
+        </section>
+        <section css={secttionContainer}>
+          <h2 css={titleStyle}>DepositModal</h2>
+          <button onClick={handleModalOpen}>모달 열기</button>
+          {isOpen && (
+            <Modal onClose={handleModalClose}>
+              <DepositModal onClose={handleModalClose} />
             </Modal>
           )}
         </section>

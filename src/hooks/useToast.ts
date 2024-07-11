@@ -3,10 +3,12 @@ import { useState } from 'react';
 const useToast = () => {
   const [isToastVisible, setIsToastVisible] = useState(false);
   const [isToastRunning, setIsToastRunning] = useState(false);
+  const [toastMessage, setToastMessage] = useState('');
 
-  const showToast = () => {
+  const showToast = (message: string) => {
     if (isToastRunning) return;
 
+    setToastMessage(message);
     setIsToastRunning(true);
     setIsToastVisible(true);
     setTimeout(() => {
@@ -15,7 +17,7 @@ const useToast = () => {
     }, 2000);
   };
 
-  return { showToast, isToastVisible };
+  return { showToast, isToastVisible, toastMessage };
 };
 
 export default useToast;
