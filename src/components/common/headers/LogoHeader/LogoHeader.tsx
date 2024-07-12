@@ -14,9 +14,11 @@ const LogoHeader = ({ handleIconClick }: LogoHeaderProps) => {
       <div css={logoWrapper}>
         <IcLogo onClick={goHome} />
       </div>
-      <div css={iconWrapper}>
-        <IcPerson onClick={handleIconClick} />
-      </div>
+      {handleIconClick && (
+        <div css={iconWrapper}>
+          <IcPerson onClick={handleIconClick} />
+        </div>
+      )}
     </header>
   );
 };
