@@ -1,5 +1,11 @@
+import { Header } from '@components';
+
 const HostMyPage = () => {
-  return <div>HostMyPage</div>;
+  return (
+    <>
+      <Header title="my 클래스 모임" />
+    </>
+  );
 };
 
 export default HostMyPage;
