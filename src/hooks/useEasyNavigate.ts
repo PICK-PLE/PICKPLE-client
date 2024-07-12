@@ -8,8 +8,13 @@ const useEasyNavigate = () => {
     navigate(routePath.HOME);
   };
 
+  const goMyPage = () => {
+    navigate(routePath.GUEST_MYPAGE);
+  };
+
   return {
     goHome,
+    goMyPage,
   };
 };
 
