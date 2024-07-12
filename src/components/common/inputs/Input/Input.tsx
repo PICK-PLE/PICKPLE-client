@@ -58,7 +58,7 @@ const Input = ({
 
   return (
     <div css={inputContainerStyle}>
-      <span css={inputLabelStyle}>{inputLabel}</span>
+      {inputLabel && <span css={inputLabelStyle}>{inputLabel}</span>}
       <div css={inputWrapperStyle}>
         <input
           css={[inputStyle(maxLengthError)]}
@@ -76,7 +76,6 @@ const Input = ({
           ''
         )}
       </div>
-
       {isFocused && displayErrorMessage && (
         <span css={errorMessageStyle}>{displayErrorMessage}</span>
       )}

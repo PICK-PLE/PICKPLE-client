@@ -65,5 +65,5 @@ export {
   LogoHeader,
   TimeSelect,
   ImageSelect,
-  SimpleUserProfile
+  SimpleUserProfile,
 };
