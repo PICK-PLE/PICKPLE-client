@@ -11,6 +11,7 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepTwo.style';
+import CategorySelectBox from '../CategorySelectBox/CategorySelectBox';
 
 const StepTwo = ({ onNext }: StepProps) => {
   const handleNextClick = () => {
@@ -40,9 +41,7 @@ const StepTwo = ({ onNext }: StepProps) => {
             <QuestionText numberLabel="Q5">
               픽플에서 어떤 주제의 클래스 모임을 진행하고 싶으신가요?
             </QuestionText>
-            <div>
-
-            </div>
+            <CategorySelectBox />
             <h6 css={referTextStyle}>*최대 3개까지 선택 가능합니다.</h6>
           </section>
           <section css={sectionStyle}>

@@ -80,6 +80,7 @@ import { ApplicantListModal } from '@pages/host/components/index';
 import { DepositModal } from '@pages/guest/components/index';
 
 import { APPLICANT_LIST_DATA } from 'src/constants/mocks/applicantListData';
+import CategorySelectBox from '@pages/host/components/CategorySelectBox/CategorySelectBox';
 
 const applicantListData = APPLICANT_LIST_DATA;
 
@@ -587,6 +588,9 @@ const Components = () => {
               <DepositModal onClose={handleModalClose} />
             </Modal>
           )}
+        </section>
+        <section style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+          <CategorySelectBox />
         </section>
       </div>
     </div>
