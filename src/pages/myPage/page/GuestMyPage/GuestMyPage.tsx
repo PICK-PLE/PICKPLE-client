@@ -18,10 +18,10 @@ const GuestMyPage = () => {
       <LogoHeader />
       <div css={GuestMyPageLayout}>
         <div css={userDistinguishWrapper}>
-          <p css={userSelectedTextStyle} onClick={goHostMyPage}>
+          <p css={userSelectedTextStyle} onClick={goGuestMyPage}>
             게스트
           </p>
-          <p css={userUnselectedTextStyle} onClick={goGuestMyPage}>
+          <p css={userUnselectedTextStyle} onClick={goHostMyPage}>
             호스트
           </p>
         </div>
