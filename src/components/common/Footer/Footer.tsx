@@ -11,7 +11,7 @@ import {
 
 const Footer = () => {
   return (
-    <div css={footerContainer}>
+    <footer css={footerContainer}>
       <div css={footerWrapper}>
         <Logo css={logoStyle} />
         <div css={termsOfUseStyle}>
@@ -22,7 +22,7 @@ const Footer = () => {
           <p css={contactTextStyle}>이메일 | pickpleee@gmail.com</p>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 
