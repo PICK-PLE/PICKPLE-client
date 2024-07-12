@@ -1,8 +1,8 @@
 import React from 'react';
-import { FunnelProps, StepProps } from '@pages/guest/hooks/useFunnel';
 import StepOne from '../StepOne/StepOne';
 import StepTwo from '../StepTwo/StepTwo';
 import StepThree from '../StepThree/StepThree';
+import { FunnelProps, StepProps } from 'src/hooks/useFunnel';
 
 export interface HostApplyProps {
   steps: string[];

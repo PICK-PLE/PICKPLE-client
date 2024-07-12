@@ -1,6 +1,6 @@
 import { LogoHeader } from '@components';
-import { useFunnel } from '@pages/guest/hooks/useFunnel';
 import HostApply from '@pages/host/components/HostApply/HostApply';
+import { useFunnel } from 'src/hooks/useFunnel';
 
 const steps = ['step1', 'step2', 'step3'];
 
