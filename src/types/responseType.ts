@@ -51,3 +51,16 @@ export interface NoticeResponseType {
   date: string;
   noticeImageUrl: string | null;
 }
+
+export interface HostInfoResponseType {
+  hostNickName: string;
+  hostImageUrl: string;
+  hostLink: string;
+  hostCategoryList: HostCategoryList;
+  hostId: number;
+}
+export interface HostCategoryList {
+  category1: string;
+  category2: string | null;
+  category3: string | null;
+}
