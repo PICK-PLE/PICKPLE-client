@@ -72,8 +72,6 @@ const CategorySelectBox = () => {
     }
   };
 
-  console.log(selectedCategories);
-
   return (
     <ul css={ulStyle}>
       {categoryIcons.map((category, i) => (
