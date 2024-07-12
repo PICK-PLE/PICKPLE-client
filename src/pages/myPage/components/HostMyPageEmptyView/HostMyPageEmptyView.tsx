@@ -9,7 +9,7 @@ import { IcHostMypage } from '@svg';
 import { IcHostMypageStyle } from '@pages/myPage/page/HostMyPage/HostMyPage.style';
 
 interface HostMyPageEmptyViewProps {
-  text: string;
+  text: string | boolean;
 }
 
 const HostMyPageEmptyView = ({ text }: HostMyPageEmptyViewProps) => {

@@ -31,9 +31,7 @@ const HostMyPage = () => {
       </article>
 
       {hostMyClassCardData.length !== 0 ? (
-        <HostMyPageEmptyView
-          text={activeTab === '진행 중' ? '아직 신청한 모임이 없어요' : '아직 참가한 모임이 없어요'}
-        />
+        <HostMyPageEmptyView text={activeTab === '진행 중' && '아직 진행 중인 모임이 없어요'} />
       ) : (
         <div css={hostMyClassCardContainer}>
           {hostMyClassCardData.map((data) => (
