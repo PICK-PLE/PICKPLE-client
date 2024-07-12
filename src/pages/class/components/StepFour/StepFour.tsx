@@ -9,7 +9,8 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepFour.style';
-import { ClassPostFinishPng } from '@image';
+// import { ClassPostFinishPng } from '@image';
+import { HostClassOpenImage } from '@image';
 
 const StepFour = () => {
   return (
@@ -26,7 +27,7 @@ const StepFour = () => {
           </span>
         </header>
         <main css={mainStyle}>
-          <img src={ClassPostFinishPng} css={imageStyle} />
+          <img src={HostClassOpenImage} css={imageStyle} />
         </main>
         <footer css={footerStyle}>
           <Button variant="large">개설한 모임 보러가기</Button>

@@ -5,6 +5,7 @@ import {
   Input,
   ProgressBar,
   QuestionText,
+  Select,
   SelectButton,
   TimeSelect,
 } from '@components';
@@ -75,13 +76,17 @@ const StepOne = ({ onNext }: StepProps) => {
                 isCountValue={false}
               />
             ) : (
-              <Input
-                value=""
-                onChange={() => {}}
-                placeholder="사용할 플랫폼을 선택해주세요."
-                isValid={true}
-                isCountValue={false}
-              />
+              <Select
+            placeholder="사용할 플랫폼을 선택해주세요."
+            options={[
+              'ZOOM',
+              'Google Meets',
+              'Webex',
+              'Microsoft Teams',
+              'Skype',
+              'Naver Works',
+              'Zep',
+            ]}></Select>
             )}
           </section>
           <section css={sectionStyle(1)}>
