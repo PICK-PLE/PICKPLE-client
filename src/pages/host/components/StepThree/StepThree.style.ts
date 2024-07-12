@@ -4,6 +4,9 @@ import { flexGenerator } from '@styles/generator';
 export const layoutStyle = css`
   ${flexGenerator('column')};
   padding: 3.2rem 2rem 3rem 2rem;
+
+  //header + progressbar 높이 = 6.6rem
+  min-height: calc(100dvh - 6.6rem);
 `;
 export const headerStyle = css`
   ${flexGenerator('column', 'center', 'start')};
@@ -38,4 +41,5 @@ export const iconStyle = css`
 `;
 export const footerStyle = css`
   width: 100%;
+  margin-top: auto;
 `;
