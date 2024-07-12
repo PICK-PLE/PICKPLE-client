@@ -13,6 +13,7 @@ import {
 } from './MoimCard.style';
 import { IcDropdownRight } from '@svg';
 import { MoimResponseType } from '@types';
+import { statusMapText } from 'src/constants/mappingText';
 
 interface MoimCardProps {
   guestMyClassData: MoimResponseType;
@@ -20,14 +21,6 @@ interface MoimCardProps {
 
 const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
   const { moimSubmissionState, moimTitle, hostNickname, dateList, fee } = guestMyClassData;
-  const statusMap: { [key: string]: string } = {
-    PENDING_PAYMENT: '입금 대기',
-    PENDING_APPROVAL: '승인 대기',
-    APPROVED: '승인 완료',
-    REJECTED: '승인 거절',
-    REFUNDED: '환불 완료',
-    COMPLETED: '참가 완료',
-  };
 
   return (
     <div css={moimCardLayout}>
@@ -37,7 +30,7 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
           width="11.2rem"
           label={
             moimSubmissionState !== 'COMPLETED' ? (
-              <Label variant="status">{statusMap[moimSubmissionState]}</Label>
+              <Label variant="status">{statusMapText[moimSubmissionState]}</Label>
             ) : null
           }
         />
