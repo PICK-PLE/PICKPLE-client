@@ -30,6 +30,18 @@ export interface HostMyClassDataResponseType {
   moimImage: string;
 }
 
+export interface Submitter {
+  submitterId: number;
+  nickname: string;
+  profileImage: string;
+  submittedDate: string;
+}
+
+export interface ApplicantListResponseType {
+  maxGuest: number;
+  submitterList: Submitter[];
+}
+
 export interface NoticeResponseType {
   noticeId: number;
   hostNickName: string;
