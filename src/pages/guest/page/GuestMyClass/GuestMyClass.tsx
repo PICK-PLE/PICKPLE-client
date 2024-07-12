@@ -7,6 +7,7 @@ import {
   filterSelectWrapper,
   guestMyClassCardContainer,
   filterSelectStyle,
+  GuestMyClassBackground,
 } from './GuestMyClass.style';
 import { useState } from 'react';
 import { GUEST_MY_CLASS_DATA } from 'src/constants/mocks/guestMyClassCardData';
@@ -16,7 +17,7 @@ const GuestMyClass = () => {
   const [activeTab, setActiveTab] = useState<'신청한' | '참가한'>('신청한');
 
   return (
-    <>
+    <div css={GuestMyClassBackground}>
       <Header title="my 클래스 모임" onClick={() => {}} />
       <article css={guestMyClassLayout}>
         <div css={tapLine} />
@@ -52,7 +53,7 @@ const GuestMyClass = () => {
           </div>
         ))
       )}
-    </>
+    </div>
   );
 };
 

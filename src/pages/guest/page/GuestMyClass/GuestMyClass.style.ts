@@ -47,18 +47,19 @@ export const getTabStyle = (isActive: boolean) => (theme: Theme) =>
     ${theme.font['subhead02-sb-16']}
   `;
 
-export const filterSelectWrapper = (theme: Theme) => css`
+export const filterSelectWrapper = css`
   ${flexGenerator('row', 'flex-end', 'flex-end')}
   margin-right: 2rem;
-
-  background: ${theme.color.background};
 `;
 
-export const guestMyClassCardContainer = (theme: Theme) => css`
-  background-color: ${theme.color.background};
+export const guestMyClassCardContainer = css`
+  padding: 1.4rem 1rem;
 `;
 
 export const filterSelectStyle = css`
   margin-top: 1.8rem;
 `;
 
+export const GuestMyClassBackground = (theme: Theme) => css`
+  background-color: ${theme.color.background};
+`;
