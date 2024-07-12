@@ -29,7 +29,6 @@ export interface ApplicantData {
   applicationDate: string;
 }
 
-//checkBox 로직
 const MyClassManage = () => {
   const status = APPLICANT_DATA.status;
   const isExpired = APPLICANT_DATA.data.isExpired;
@@ -37,26 +36,23 @@ const MyClassManage = () => {
   const submitterList = APPLICANT_DATA.data.submitterList;
   const submitterListLength = APPLICANT_DATA.data.submitterList.length;
 
-  // 통합된 데이터 생성
+  //checkBox 부분
   const [checkedStates, setCheckedStates] = useState<boolean[]>(
     new Array(submitterListLength).fill(false) // 초기 상태를 모든 항목이 unchecked 상태로 설정
   );
 
   const { showToast, isToastVisible } = useToast();
-  // 특정 아코디언 항목의 체크 상태를 토글
+
   const toggleChecked = (index: number) => {
     if (isExpired) {
       setCheckedStates((prevStates) =>
         prevStates.map((checked, i) => (i === index ? !checked : checked))
       );
-  
     } else {
-      
-      showToast('신청 마감일 이후에 신청자를 승인할 수 있어요.');
+      showToast(''); //Toast에 문제가 있어보이는데 ...
     }
   };
 
-  // checkedApplicant 배열에 체크된 applicant들을 담는 로직
   const checkedApplicant: ApplicantListResponseType = useMemo(
     () => ({
       maxGuest: maxGuest,
@@ -65,21 +61,18 @@ const MyClassManage = () => {
     [maxGuest, submitterList, checkedStates]
   );
 
-  console.log(checkedApplicant);
-
-  // 공유버튼 로직 > share 버튼에서 그대로 가져옴!
+  // 공유버튼 부분 (share 버튼에서 그대로 가져옴)
   const url = 'https://pick-ple.com';
   const title = 'PICK!PLE';
   const text = "내가 PICK!한 바로 '그 사람'과 함께하는 클래스 모임.";
 
-  // 버튼 색깔 변경되는 부분
+  // 버튼 active 상태
   const [isActive, setIsActive] = useState(true);
-  const [isOpenModal, setIsOpenModal] = useState(false);
 
   useEffect(() => {
     let active = true;
 
-    // 신청자 선택 아무것도 안했을 때 false
+    // 신청자 선택 아무것도 안했을 때
     if (checkedApplicant.submitterList.length === 0) {
       active = false;
     }
@@ -96,6 +89,9 @@ const MyClassManage = () => {
 
     setIsActive(active);
   }, [checkedApplicant, status, isExpired]);
+
+  // 모달 부분
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleModalOpen = () => {
     setIsOpenModal(true);
