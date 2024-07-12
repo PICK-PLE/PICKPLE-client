@@ -36,15 +36,9 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
         />
 
         <article css={detailInfoWrapper}>
-          <div css={titleWrapper}>
+          <div css={titleWrapper} onClick={() => {}}>
             <p css={titleStyle}>{moimTitle}</p>
-            <span
-              css={iconStyle}
-              onClick={() => {
-                console.log('아이콘 클릭!!');
-              }}>
-              <IcDropdownRight />
-            </span>
+            <IcDropdownRight css={iconStyle} />
           </div>
           <div css={detailWrapper}>
             <div css={detailTitleWrapper}>

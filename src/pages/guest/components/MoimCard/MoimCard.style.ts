@@ -23,16 +23,17 @@ export const titleStyle = (theme: Theme) => css`
 `;
 
 export const iconStyle = css`
-  ${flexGenerator()}
+  min-width: 2.4rem;
+  min-height: 2.4rem;
   width: 2.4rem;
   height: 2.4rem;
-
-  cursor: pointer;
 `;
 
 export const titleWrapper = css`
   ${flexGenerator()}
   gap: 0.4rem;
+
+  cursor: pointer;
 `;
 
 export const detailInfoWrapper = css`
@@ -56,7 +57,7 @@ export const detailTitleWrapper = css`
 `;
 
 export const detailTitleStyle = (theme: Theme) => css`
-  width: 18%;
+  width: 4.2rem;
   color: ${theme.color.darkgray};
   ${theme.font['body03-r-12']};
 `;
