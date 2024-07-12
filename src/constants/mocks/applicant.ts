@@ -5,10 +5,10 @@
 // status 201 제외 나머지는 일단 엠티 뷰 뜨게 해 둠 (추후 수정)
 
 export const APPLICANT_DATA = {
-  status: 201,
+  status: 200,
   data: {
     maxGuest: 10,
-    isExpired: false,
+    isExpired:true,
     submitterList: [
       {
         applicantId: 1,

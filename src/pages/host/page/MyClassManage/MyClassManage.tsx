@@ -114,9 +114,9 @@ const MyClassManage = () => {
           <div css={labelStyle}>
             <div css={textStyle}>
               <span css={countTitleStyle}>모임 신청자</span>
-              <span css={countTextStyle}>({submitterListLength})</span>
+              <span css={countTextStyle}>{ status === 201 ? submitterListLength : '0' }</span>
             </div>
-            <Label variant="count">{`${checkedApplicant.submitterList.length} / ${maxGuest}`}</Label>
+            <Label variant="count">{ status === 201 ? `${checkedApplicant.submitterList.length} / ${maxGuest}` : `0  / ${maxGuest}`}</Label>
           </div>
 
           <div css={accordionStyle}>
