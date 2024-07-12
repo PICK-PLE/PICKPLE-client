@@ -28,7 +28,7 @@ export const mainStyle = css`
   margin-bottom: 5.5rem;
 `;
 
-export const sectionStyle = (gapSize) => css`
+export const sectionStyle = (gapSize: number) => css`
   ${flexGenerator('column')};
   gap: ${gapSize}rem;
   width: 100%;
