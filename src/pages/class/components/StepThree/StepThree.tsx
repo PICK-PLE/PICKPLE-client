@@ -7,6 +7,7 @@ import {
   imageSelectSection,
   layoutStyle,
   mainStyle,
+  referTextStyle,
   sectionStyle,
   subTitleStyle,
   titleStyle,
@@ -48,7 +49,12 @@ const StepThree = ({ onNext }: StepProps) => {
             />
           </section>
           <section css={imageSelectSection}>
-            <ImageSelect />
+            <ImageSelect isMultiple={true} />
+            <h6 css={referTextStyle}>
+              * 첫번째 사진이 썸네일 이미지로 등록되며
+              <br />
+              &nbsp;최대 3장까지 업로드 가능합니다.
+            </h6>
           </section>
         </main>
         <footer css={footerStyle}>

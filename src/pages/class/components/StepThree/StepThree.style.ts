@@ -42,8 +42,17 @@ export const sectionStyle = css`
   width: 100%;
 `;
 export const imageSelectSection = css`
-  ${flexGenerator('row', 'flex-start')}
+  ${flexGenerator('column', 'center', 'flex-start')}
   width: 100%;
+  gap: 1rem;
+`;
+
+export const referTextStyle = (theme: Theme) => css`
+  ${flexGenerator('row', 'flex-start')};
+  width: 100%;
+
+  color: ${theme.color.midgray1};
+  ${theme.font['body02-r-14']}
 `;
 export const footerStyle = css`
   margin-top: auto;
