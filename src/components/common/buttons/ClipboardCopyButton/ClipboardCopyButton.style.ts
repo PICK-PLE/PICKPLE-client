@@ -8,7 +8,7 @@ export const buttonWrapperStyle = (theme: Theme) => css`
   padding: 0;
 
   color: ${theme.color.darkgray};
-  background-color: ${theme.color.white};
+  background-color: transparent;
   border: none;
   outline: none;
   cursor: pointer;
