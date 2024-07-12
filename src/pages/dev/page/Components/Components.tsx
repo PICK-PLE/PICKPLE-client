@@ -25,7 +25,7 @@ import {
   TextArea,
   Image,
   LogoHeader,
-  ApplicantAccordionList,
+  // ApplicantAccordionList,
   TimeSelect,
   ImageSelect,
   CountPeople,
@@ -532,7 +532,7 @@ const Components = () => {
 
         <section css={secttionContainer}>
           <h2 css={titleStyle}>ApplicantAccordion</h2>
-          <ApplicantAccordionList moimId={1} />
+          {/* <ApplicantAccordionList moimId={1} /> */}
         </section>
 
         <section css={secttionContainer}>

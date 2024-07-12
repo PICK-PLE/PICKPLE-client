@@ -15,32 +15,44 @@ import {
   accodionButtonStyle,
   accdionContentWrapperStyle,
   accdionContentStyle,
-  questionStyle,
   answerStyle,
 } from 'src/components/common/applicantAccordions/ApplicantAccordion/ApplicantAccordion.style';
+import QuestionText from 'src/components/common/QuestionText/QuestionText';
+import Image from 'src/components/common/Image/Image';
 
-export interface ApplicantAccordionProps extends React.HTMLAttributes<HTMLDivElement> {
+import { APPLICANT_ANSWER_1 } from 'src/constants/mocks/applicant';
+import { ApplicantData } from '@pages/host/page/MyClassManage/MyClassManage';
+
+interface ApplicantAccordionProps {
   moimId: number;
   guestId: number;
-  applicantName: string;
-  applicantImg: string;
-  applyDate: string;
-  questions: { question: string; answer: string }[];
+  applicantData: ApplicantData;
   isChecked: boolean;
   toggleChecked: () => void;
 }
 
 const ApplicantAccordion = ({
-  applicantName,
-  applicantImg,
-  applyDate,
-  questions,
+  applicantData,
   isChecked,
   moimId,
   guestId,
   toggleChecked,
 }: ApplicantAccordionProps) => {
+  const { nickname, profileImage, applicationDate } = applicantData;
+
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+
+  const questionObject = APPLICANT_ANSWER_1;
+
+  const questionList = Object.keys(questionObject.questionList).map((key) => {
+    const questionKey = key as keyof typeof questionObject.questionList;
+    const answerKey = `answer${key.slice(-1)}` as keyof typeof questionObject.answerList;
+
+    return {
+      question: questionObject.questionList[questionKey],
+      answer: questionObject.answerList[answerKey],
+    };
+  });
 
   const handleAccodionClick = () => {
     setIsAccordionOpen(!isAccordionOpen);
@@ -49,13 +61,13 @@ const ApplicantAccordion = ({
   const defaultImgUrl = 'svg/ic_default-userimg.svg';
 
   //삭제예정 시비 ㄴㄴ
-  console.log(moimId, guestId);
+  console.log(moimId, guestId, applicantData);
 
   return (
     <div css={applicantAccordionLayout}>
       <div css={applicantLayoutStyle}>
-        {/* 프로필 카드 */}
         <div css={applicantContainerStyle}>
+          {/* 체크박스 */}
           <label css={customCheckboxStyle}>
             {isChecked ? <IcCheckActive /> : <IcCheckDefault />}
             <input
@@ -65,19 +77,24 @@ const ApplicantAccordion = ({
               onChange={toggleChecked}
             />
           </label>
+
+          {/* 신청자 프로필: 이미지 + 이름 + 날짜 */}
           <div css={applicantWrapperStyle}>
-            {/* 신청자 프로필: 이미지 + 이름 + 날짜 */}
-            <img
-              src={applicantImg || defaultImgUrl}
-              alt={`${applicantName}의 이미지`}
+            <Image
+              variant="round"
+              width="4.8rem"
+              src={profileImage || defaultImgUrl}
               css={applicnatImgStyle}
             />
+
             <div css={applicantInfoStyle}>
-              <span css={applicantNameStyle}>{applicantName}</span>
-              <span css={applyDateStyle}>{applyDate}</span>
+              <span css={applicantNameStyle}>{nickname}</span>
+              <span css={applyDateStyle}>{applicationDate}</span>
             </div>
           </div>
         </div>
+
+        {/* 아코디언 버튼 */}
         <button css={accodionButtonStyle} onClick={handleAccodionClick}>
           <IcApplicantArrcodionDown css={accodionStyle(isAccordionOpen)} />
         </button>
@@ -86,13 +103,18 @@ const ApplicantAccordion = ({
       {/* 아코디언 열렸을 때 보이는 부분 */}
       {isAccordionOpen && (
         <div css={accdionContentWrapperStyle}>
-          {questions.map((applicant, index) => (
-            // TODO: 추후 id값으로 key 변경 예정
-            <div key={index} css={accdionContentStyle}>
-              <div css={questionStyle}>{applicant.question}</div>
-              <div css={answerStyle}>{applicant.answer}</div>
-            </div>
-          ))}
+          {questionList.map((item, index) => {
+            const { question, answer } = item;
+            return (
+              question &&
+              answer && (
+                <div key={index} css={accdionContentStyle}>
+                  <QuestionText numberLabel={`Q${index + 1}`}>{question}</QuestionText>
+                  <div css={answerStyle}>{answer}</div>
+                </div>
+              )
+            );
+          })}
         </div>
       )}
     </div>

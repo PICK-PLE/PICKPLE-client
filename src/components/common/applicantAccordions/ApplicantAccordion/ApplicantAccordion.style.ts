@@ -7,15 +7,20 @@ export const applicantAccordionLayout = css`
   width: 100%;
 `;
 
-/* 체크 및 신청자 정보 <--space-between--> 아코디언 버튼  */
+// export const applicantLayoutStyle = css`
+//   ${flexGenerator('row', 'space-between', 'center')};
+//   gap: 2rem;
+// `;
+
+/* 체크박스 <---> 신청자 정보*/
 export const applicantLayoutStyle = css`
   ${flexGenerator('row', 'space-between')};
   gap: 0.2rem;
+  width: 100%;
 `;
 
-/* 체크박스 <---> 신청자 정보*/
 export const applicantContainerStyle = css`
-  ${flexGenerator()}
+  ${flexGenerator('row')}
   gap: 1.3rem;
 `;
 
@@ -45,7 +50,8 @@ export const applicnatImgStyle = css`
 
 export const applicantInfoStyle = css`
   ${flexGenerator('column', 'center', 'flex-start')}
-  min-width: 18.4rem;
+  //min-width: 18.4rem;
+  gap: 0.4rem;
 `;
 
 export const applicantNameStyle = (theme: Theme) => css`
@@ -73,28 +79,20 @@ export const accodionButtonStyle = css`
 
 /* 아코디언 div */
 export const accdionContentWrapperStyle = css`
-  ${flexGenerator('column')}
+  ${flexGenerator('column', 'flex-start', 'flex-start')}
   gap: 2rem;
+  width: 100%;
 `;
 
 export const accdionContentStyle = css`
   ${flexGenerator('column')}
   gap: 1rem;
-`;
-
-/* 질문 div (QuestionText로 대체 예정) */
-export const questionStyle = (theme: Theme) => css`
-  min-width: 33.5rem;
-  height: 6.4rem;
-  padding: 1rem;
-  background-color: ${theme.color.purple5};
-  border-radius: 10px;
-  ${theme.font['body01-r-15']}
+  width: 100%;
 `;
 
 /* 대답 div */
 export const answerStyle = (theme: Theme) => css`
-  min-width: 33.5rem;
+  width: 100%;
   min-height: 17.6rem;
   padding: 1.2rem;
   background-color: ${theme.color.white};
