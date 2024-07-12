@@ -16,6 +16,7 @@ import {
 import { Button, Image, InterestCategoryButton, NavigateBox } from '@components';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
 import { routePath } from '@constants';
+import HostMyPageEmptyView from '../HostMyPageEmptyView/HostMyPageEmptyView';
 
 const HostInfoCardWithLink = () => {
   const { hostNickName, hostLink, hostCategoryList, hostImageUrl } = hostInfoCardWithLinkData;
@@ -25,36 +26,42 @@ const HostInfoCardWithLink = () => {
 
   return (
     <article css={hostInfoCardWithLinkLayout}>
-      <div css={hostInfoCardWithLinkContainer}>
-        <div css={hostInfoCardWithLinkWrapper}>
-          <div css={hostInfoWrapper}>
-            <Image variant="round" width="6rem" src={hostImageUrl} />
-            <div css={hostDetailWrapper}>
-              <p css={hostNameStyle}>{hostNickName}</p>
-              <div css={linkWrapper}>
-                <p css={linkStyle}>{hostLink}</p>
+      {hostInfoCardWithLinkData.hostNickName ? (
+        <>
+          <div css={hostInfoCardWithLinkContainer}>
+            <div css={hostInfoCardWithLinkWrapper}>
+              <div css={hostInfoWrapper}>
+                <Image variant="round" width="6rem" src={hostImageUrl} />
+                <div css={hostDetailWrapper}>
+                  <p css={hostNameStyle}>{hostNickName}</p>
+                  <div css={linkWrapper}>
+                    <p css={linkStyle}>{hostLink}</p>
+                  </div>
+                </div>
               </div>
+              <article css={categoryListWrapper}>
+                {categoryKeys.map((key) => {
+                  const category = hostCategoryList[key];
+                  return category ? (
+                    <InterestCategoryButton key={key} icon={CATEGORY_ICON[category].small}>
+                      {CATEGORY_NAME[category]}
+                    </InterestCategoryButton>
+                  ) : null;
+                })}
+              </article>
+              <Button variant="small">클래스 모임 개설하기</Button>
+              <div css={line} />
+              <article css={navigateBoxWrapper}>
+                <NavigateBox path={routePath.HOST_MY_CLASS}>my 클래스 모임</NavigateBox>
+                <NavigateBox path="오픈 카톡 링크">픽플에 문의하기</NavigateBox>
+                <NavigateBox path="로그아웃 로직">로그아웃</NavigateBox>
+              </article>
             </div>
           </div>
-        </div>
-        <article css={categoryListWrapper}>
-          {categoryKeys.map((key) => {
-            const category = hostCategoryList[key];
-            return category ? (
-              <InterestCategoryButton icon={CATEGORY_ICON[category].small}>
-                {CATEGORY_NAME[category]}
-              </InterestCategoryButton>
-            ) : null;
-          })}
-        </article>
-        <Button variant="small">클래스 모임 개설하기</Button>
-      </div>
-      <div css={line} />
-      <article css={navigateBoxWrapper}>
-        <NavigateBox path={routePath.HOST_MY_CLASS}>my 클래스 모임</NavigateBox>
-        <NavigateBox path="오픈 카톡 링크">픽플에 문의하기</NavigateBox>
-        <NavigateBox path="로그아웃 로직">로그아웃</NavigateBox>
-      </article>
+        </>
+      ) : (
+        <HostMyPageEmptyView />
+      )}
     </article>
   );
 };
