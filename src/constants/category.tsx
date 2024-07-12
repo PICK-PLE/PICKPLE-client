@@ -1,95 +1,119 @@
 import {
-  IcEmploymentActive,
-  IcEmploymentBlack,
-  IcEmploymentSmall,
-  IcHealthActive,
-  IcHealthBlack,
-  IcHealthSmall,
-  IcHobbyActive,
-  IcHobbyBlack,
-  IcHobbySmall,
-  IcInvestmentActive,
-  IcInvestmentBlack,
-  IcInvestmentSmall,
-  IcLanguageActive,
-  IcLanguageBlack,
-  IcLanguageSmall,
-  IcLifestyleActive,
-  IcLifestyleBlack,
-  IcLifestyleSmall,
-  IcMindActive,
-  IcMindBlack,
-  IcMindSmall,
-  IcNjobActive,
-  IcNjobBlack,
-  IcNjobSmall,
-  IcProductivityActive,
-  IcProductivityBlack,
-  IcProductivitySmall,
-  IcStartupActive,
-  IcStartupBlack,
-  IcStartupSmall,
-} from '@svg';
-import { ReactNode } from 'react';
+  EmploymentFillImage,
+  EmploymentFillSelectedImage,
+  EmploymentStrokeImage,
+  EmploymentStrokeSelectedImage,
+  HealthFillImage,
+  HealthFillSelectedImage,
+  HealthStrokeImage,
+  HealthStrokeSelectedImage,
+  HobbyFillImage,
+  HobbyFillSelectedImage,
+  HobbyStrokeImage,
+  HobbyStrokeSelectedImage,
+  InvestmentFillImage,
+  InvestmentFillSelectedImage,
+  InvestmentStrokeImage,
+  InvestmentStrokeSelectedImage,
+  LanguageFillImage,
+  LanguageFillSelectedImage,
+  LanguageStrokeImage,
+  LanguageStrokeSelectedImage,
+  LifestyleFillImage,
+  LifestyleFillSelectedImage,
+  LifestyleStrokeImage,
+  LifestyleStrokeSelectedImage,
+  MindFillImage,
+  MindFillSelectedImage,
+  MindStrokeImage,
+  MindStrokeSelectedImage,
+  NJobFillImage,
+  NJobFillSelectedImage,
+  NJobStrokeImage,
+  NJobStrokeSelectedImage,
+  ProductivityFillImage,
+  ProductivityFillSelectedImage,
+  ProductivityStrokeImage,
+  ProductivityStrokeSelectedImage,
+  StartupFillImage,
+  StartupFillSelectedImage,
+  StartupStrokeImage,
+  StartupStrokeSelectedImage,
+} from 'src/assets/image';
 
 interface CategoryIcon {
-    [key: string]: { small: ReactNode; active: ReactNode; black: ReactNode};
-  }
-  
-  interface CategoryName {
-    [key: string]: string;
-  }
+  [key: string]: {
+    fill_selected: string;
+    fill: string;
+    stroke_selected: string;
+    stroke: string;
+  };
+}
+
+interface CategoryName {
+  [key: string]: string;
+}
 
 export const CATEGORY_ICON: CategoryIcon = {
   njob: {
-    small: <IcNjobSmall />,
-    active: <IcNjobActive />,
-    black: <IcNjobBlack />,
+    fill_selected: NJobFillSelectedImage,
+    fill: NJobFillImage,
+    stroke_selected: NJobStrokeSelectedImage,
+    stroke: NJobStrokeImage,
   },
   investment: {
-    small: <IcInvestmentSmall />,
-    active: <IcInvestmentActive />,
-    black: <IcInvestmentBlack />,
+    fill_selected: InvestmentFillSelectedImage,
+    fill: InvestmentFillImage,
+    stroke_selected: InvestmentStrokeSelectedImage,
+    stroke: InvestmentStrokeImage,
   },
   startup: {
-    small: <IcStartupSmall />,
-    active: <IcStartupActive />,
-    black: <IcStartupBlack />,
+    fill_selected: StartupFillSelectedImage,
+    fill: StartupFillImage,
+    stroke_selected: StartupStrokeSelectedImage,
+    stroke: StartupStrokeImage,
   },
   employment: {
-    small: <IcEmploymentSmall />,
-    active: <IcEmploymentActive />,
-    black: <IcEmploymentBlack />,
+    fill_selected: EmploymentFillSelectedImage,
+    fill: EmploymentFillImage,
+    stroke_selected: EmploymentStrokeSelectedImage,
+    stroke: EmploymentStrokeImage,
   },
   productivity: {
-    small: <IcProductivitySmall />,
-    active: <IcProductivityActive />,
-    black: <IcProductivityBlack />,
+    fill_selected: ProductivityFillSelectedImage,
+    fill: ProductivityFillImage,
+    stroke_selected: ProductivityStrokeSelectedImage,
+    stroke: ProductivityStrokeImage,
   },
   health: {
-    small: <IcHealthSmall />,
-    active: <IcHealthActive />,
-    black: <IcHealthBlack />,
+    fill_selected: HealthFillSelectedImage,
+    fill: HealthFillImage,
+    stroke_selected: HealthStrokeSelectedImage,
+    stroke: HealthStrokeImage,
   },
   lifestyle: {
-    small: <IcLifestyleSmall />,
-    active: <IcLifestyleActive />,
-    black: <IcLifestyleBlack />,
+    fill_selected: LifestyleFillSelectedImage,
+    fill: LifestyleFillImage,
+    stroke_selected: LifestyleStrokeSelectedImage,
+    stroke: LifestyleStrokeImage,
   },
   mind: {
-    small: <IcMindSmall />,
-    active: <IcMindActive />,
-    black: <IcMindBlack />,
+    fill_selected: MindFillSelectedImage,
+    fill: MindFillImage,
+    stroke_selected: MindStrokeSelectedImage,
+    stroke: MindStrokeImage,
   },
   hobby: {
-    small: <IcHobbySmall />,
-    active: <IcHobbyActive />,
-    black: <IcHobbyBlack />,
+    fill_selected: HobbyFillSelectedImage,
+    fill: HobbyFillImage,
+    stroke_selected: HobbyStrokeSelectedImage,
+    stroke: HobbyStrokeImage,
   },
   language: {
-    small: <IcLanguageSmall />,
-    active: <IcLanguageActive />,
-    black: <IcLanguageBlack />,
+    fill_selected: LanguageFillSelectedImage,
+    fill: LanguageFillImage,
+    stroke_selected: LanguageStrokeSelectedImage,
+    stroke: LanguageStrokeImage,
   },
 };
 
