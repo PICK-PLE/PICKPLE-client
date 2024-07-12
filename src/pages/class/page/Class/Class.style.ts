@@ -1,7 +1,10 @@
 import { css, Theme } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
-export const classLayout = css``;
+export const classLayout = css`
+  padding-top: 6rem;
+  padding-bottom: 10rem;
+`;
 
 export const classInfo = css`
   padding: 2.4rem 2rem 4rem;
@@ -19,8 +22,13 @@ export const classInfoList = css`
   margin: 2rem 0 4rem;
 `;
 
-export const tabWrapper = css`
+export const tabWrapper = (theme: Theme) => css`
+  position: sticky;
+  top: 6rem;
+
   ${flexGenerator('row', 'flex-start')};
+
+  background-color: ${theme.color.white};
 
   padding-left: 2.8rem;
   gap: 2.3rem;
@@ -52,11 +60,18 @@ export const infoSectionStyle = (theme: Theme) => css`
   background-color: ${theme.color.white};
 `;
 
-export const buttonContainer = css`
-  ${flexGenerator()};
-  gap: 0.5rem;
+export const buttonContainer = (widowWidth: number) => (theme: Theme) =>
+  css`
+    width: ${widowWidth <= 430 ? `${widowWidth}px` : '430px'};
+    position: fixed;
+    bottom: 0;
 
-  padding: 1rem 2rem 3rem;
+    background-color: ${theme.color.white};
 
-  z-index: 3;
-`;
+    ${flexGenerator()};
+    gap: 0.5rem;
+
+    padding: 1rem 2rem 3rem;
+
+    z-index: 3;
+  `;
