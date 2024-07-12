@@ -1,7 +1,7 @@
 import { Input } from '@components';
 import {
-  AddAmountBoxContainer,
-  AmountBoxWrapper,
+  addAmountBoxContainer,
+  amountBoxWrapper,
   addButtonStyle,
   addBoxWrapper,
   wonStyle,
@@ -31,17 +31,20 @@ const AddAmountBox = ({ value, handleAmountChange }: AddAmountBoxProps) => {
     handleAmountChange(value + amount);
   };
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/[^0-9]/g, '');
+    handleAmountChange(Number(value));
+  };
+
   return (
-    <div css={AddAmountBoxContainer}>
-      <div css={AmountBoxWrapper}>
+    <div css={addAmountBoxContainer}>
+      <div css={amountBoxWrapper}>
         <Input
           value={value === 0 ? '' : value.toLocaleString()}
-          onChange={(e) => {
-            const value = e.target.value.replace(/[^0-9]/g, '');
-            handleAmountChange(Number(value));
-          }}
+          onChange={handleInputChange}
           placeholder="최소 10,000원 이상 가격을 설정해주세요."
           isValid={true}
+          isCountValue={false}
         />
         <div css={wonStyle}>원</div>
       </div>

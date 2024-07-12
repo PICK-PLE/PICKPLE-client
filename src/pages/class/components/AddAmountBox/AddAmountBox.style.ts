@@ -1,12 +1,12 @@
 import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
-export const AddAmountBoxContainer = css`
+export const addAmountBoxContainer = css`
   ${flexGenerator('column')};
   gap: 1rem;
 `;
 
-export const AmountBoxWrapper = css`
+export const amountBoxWrapper = css`
   width: 100%;
   ${flexGenerator('row', 'space-between')};
   gap: 2rem;

@@ -14,7 +14,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   isValid: boolean;
   inputLabel?: string;
   errorMessage?: string;
-  isCountValue?: boolean;
+  isCountValue: boolean;
 }
 
 const Input = ({
