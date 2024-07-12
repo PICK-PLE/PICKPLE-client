@@ -9,9 +9,15 @@ import {
   textStyle,
   countTitleStyle,
   accordionStyle,
+  emptyText,
+  emptyViewImageStyle,
+  emptyViewButtonStyle,
+  emptyViewContainer,
+  emptyViewWrapper,
 } from '@pages/host/page/MyClassManage/MyClassManage.style';
 import { APPLICANT_DATA } from 'src/constants/mocks/applicant';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { IcHostMyclassManageEmptyView } from '@svg';
 
 export interface ApplicantData {
   applicantId: number;
@@ -20,8 +26,9 @@ export interface ApplicantData {
   applicationDate: string;
 }
 
-//maxGuest만 사용하고 나머지 정보인 data는 ApplicantAccordion으로 보내주기
+//checkBox 로직
 const MyClassManage = () => {
+  const status = APPLICANT_DATA.status;
   const maxGuest = APPLICANT_DATA.data.maxGuest;
   const submitterList = APPLICANT_DATA.data.submitterList;
   const submitterListLength = APPLICANT_DATA.data.submitterList.length;
@@ -40,8 +47,42 @@ const MyClassManage = () => {
 
   // checkedApplicant 배열에 체크된 applicant들을 담는 로직
   const checkedApplicant = submitterList.filter((_, index) => checkedStates[index]);
-
   console.log(checkedApplicant);
+
+  // 공유버튼 로직 > share 버튼에서 그대로 가져옴!
+  const url = 'https://pick-ple.com';
+  const title = 'PICK!PLE';
+  const text = "내가 PICK!한 바로 '그 사람'과 함께하는 클래스 모임.";
+
+  // 버튼 색깔 변경되는 부분
+  const [isActive, setIsActive] = useState(true);
+
+  useEffect(() => {
+    let active = true;
+
+    // 신청자 선택 아무것도 안했을 때 false
+    if (checkedApplicant.length === 0) {
+      active = false;
+    }
+
+    // 신청자가 없을 때
+    if (status !== 201) {
+      active = false;
+    }
+
+    // 신청 마감날 이전일 때
+    // if (someCondition) {
+    //   active = false;
+    // }
+
+    setIsActive(active);
+  }, [checkedApplicant, status]);
+
+  const handleClickButton = () => {
+    // if (isActive) {
+    // }
+  };
+
   return (
     <div>
       <Header title="신청자 관리" />
@@ -61,17 +102,49 @@ const MyClassManage = () => {
           </div>
 
           <div css={accordionStyle}>
-            <ApplicantAccordionList
-              applicantData={submitterList}
-              moimId={1}
-              checkedStates={checkedStates}
-              toggleChecked={toggleChecked}
-            />
+            {/* 나중에 에러코드 명확하게 나오면 수정예정!!!! */}
+            {status === 201 ? (
+              <ApplicantAccordionList
+                applicantData={submitterList}
+                moimId={1}
+                checkedStates={checkedStates}
+                toggleChecked={toggleChecked}
+              />
+            ) : (
+              <div css={emptyViewContainer}>
+                <div css={emptyViewWrapper}>
+                  <div css={emptyViewImageStyle}>
+                    <IcHostMyclassManageEmptyView />
+                  </div>
+
+                  <div css={emptyText}>
+                    <span>아직 게스트를 기다리는 중이에요 </span>
+                    <span>모임을 공유해 보세요!</span>
+                  </div>
+                </div>
+
+                <div css={emptyViewButtonStyle}>
+                  <Button
+                    variant="round"
+                    onClick={() => {
+                      navigator.share({
+                        url,
+                        title,
+                        text,
+                      });
+                    }}>
+                    모임 공유하기
+                  </Button>
+                </div>
+              </div>
+            )}
           </div>
         </main>
 
         <footer css={footerStyle}>
-          <Button variant="large">승인하기</Button>
+          <Button variant="large" disabled={!isActive} onClick={handleClickButton}>
+            승인하기
+          </Button>
         </footer>
       </article>
     </div>

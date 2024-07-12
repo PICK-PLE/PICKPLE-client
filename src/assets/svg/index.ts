@@ -19,6 +19,7 @@ export { default as IcDropdownRight } from './IcDropdownRight';
 export { default as IcDropdownUp } from './IcDropdownUp';
 export { default as IcExclamation } from './IcExclamation';
 export { default as IcHome } from './IcHome';
+export { default as IcHostMyclassManageEmptyView } from './IcHostMyclassManageEmptyView';
 export { default as IcHouse } from './IcHouse';
 export { default as IcKakaoLogo } from './IcKakaoLogo';
 export { default as IcLogo } from './IcLogo';
