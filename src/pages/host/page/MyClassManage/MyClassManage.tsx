@@ -1,4 +1,4 @@
-import { ApplicantAccordionList, Button, Header, Label, Modal } from '@components';
+import { ApplicantAccordionList, Button, Header, Label, Modal, Toast } from '@components';
 import {
   articleLayout,
   headerStyle,
@@ -20,6 +20,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { IcHostMyclassManageEmptyView } from '@svg';
 import { ApplicantListModal } from '@pages/host/components';
 import { ApplicantListResponseType } from '@types';
+import useToast from 'src/hooks/useToast';
 
 export interface ApplicantData {
   applicantId: number;
@@ -31,6 +32,7 @@ export interface ApplicantData {
 //checkBox 로직
 const MyClassManage = () => {
   const status = APPLICANT_DATA.status;
+  const isExpired = APPLICANT_DATA.data.isExpired;
   const maxGuest = APPLICANT_DATA.data.maxGuest;
   const submitterList = APPLICANT_DATA.data.submitterList;
   const submitterListLength = APPLICANT_DATA.data.submitterList.length;
@@ -40,32 +42,30 @@ const MyClassManage = () => {
     new Array(submitterListLength).fill(false) // 초기 상태를 모든 항목이 unchecked 상태로 설정
   );
 
+  const { showToast, isToastVisible } = useToast();
   // 특정 아코디언 항목의 체크 상태를 토글
   const toggleChecked = (index: number) => {
-    setCheckedStates((prevStates) =>
-      prevStates.map((checked, i) => (i === index ? !checked : checked))
-    );
+    if (isExpired) {
+      setCheckedStates((prevStates) =>
+        prevStates.map((checked, i) => (i === index ? !checked : checked))
+      );
+  
+    } else {
+      
+      showToast('신청 마감일 이후에 신청자를 승인할 수 있어요.');
+    }
   };
 
   // checkedApplicant 배열에 체크된 applicant들을 담는 로직
-  // const checkedApplicant = useMemo(
-  //   () => ({
-  //     maxGuest: maxGuest,
-  //     submitterList: submitterList.filter((_, index) => checkedStates[index]),
-  //   }),
-  //   [maxGuest, submitterList, checkedStates]
-  // );
-  // console.log(checkedApplicant);
-
-
-    // checkedApplicant 배열에 체크된 applicant들을 담는 로직
-    const checkedApplicant: ApplicantListResponseType = useMemo(() => ({
+  const checkedApplicant: ApplicantListResponseType = useMemo(
+    () => ({
       maxGuest: maxGuest,
       submitterList: submitterList.filter((_, index) => checkedStates[index]),
-    }), [maxGuest, submitterList, checkedStates]);
-  
-    console.log(checkedApplicant);
+    }),
+    [maxGuest, submitterList, checkedStates]
+  );
 
+  console.log(checkedApplicant);
 
   // 공유버튼 로직 > share 버튼에서 그대로 가져옴!
   const url = 'https://pick-ple.com';
@@ -90,21 +90,19 @@ const MyClassManage = () => {
     }
 
     // 신청 마감날 이전일 때
-    // if (someCondition) {
-    //   active = false;
-    // }
+    if (isExpired === false) {
+      active = false;
+    }
 
     setIsActive(active);
-  }, [checkedApplicant, status]);
+  }, [checkedApplicant, status, isExpired]);
 
   const handleModalOpen = () => {
-      setIsOpenModal(true);
-      console.log("모달 열려라")
+    setIsOpenModal(true);
   };
 
   const handleModalClose = () => {
-      setIsOpenModal(false);
-      console.log("모달 꺼져")
+    setIsOpenModal(false);
   };
 
   return (
@@ -171,11 +169,17 @@ const MyClassManage = () => {
           </Button>
         </footer>
 
-        {isOpenModal &&
-        <Modal onClose={handleModalClose}>
-          <ApplicantListModal applicantListData={checkedApplicant} onClose={handleModalClose}/>
-        </Modal>
-        }
+        {isOpenModal && (
+          <Modal onClose={handleModalClose}>
+            <ApplicantListModal applicantListData={checkedApplicant} onClose={handleModalClose} />
+          </Modal>
+        )}
+
+        {isToastVisible && (
+          <Toast isVisible={isToastVisible} toastBottom={10} toastIcon={true}>
+            신청 마감일 이후에 신청자를 승인할 수 있어요.
+          </Toast>
+        )}
       </article>
     </div>
   );
