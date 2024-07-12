@@ -5,10 +5,13 @@ import {
   ruleMainStyle,
   ruleSpanStyle,
   ruleHStyle,
-  ruleFooterStyle
+  ruleFooterStyle,
 } from '@pages/class/page/ClassApply/ClassApplyRule/ClassApplyRule.style';
+import { useEasyNavigate } from '@hooks';
 
 const ClassApplyRule = () => {
+  const { goClassApplyQuestion } = useEasyNavigate();
+
   return (
     <>
       <LogoHeader />
@@ -38,7 +41,9 @@ const ClassApplyRule = () => {
         </div>
 
         <footer css={ruleFooterStyle}>
-          <Button variant="large">다음</Button>
+          <Button variant="large" onClick={goClassApplyQuestion}>
+            다음
+          </Button>
         </footer>
       </article>
     </>

@@ -8,8 +8,23 @@ const useEasyNavigate = () => {
     navigate(routePath.HOME);
   };
 
+  const goClassApplyQuestion = () => {
+    navigate(routePath.CLASS_APPLY_QUESTION);
+  };
+
+  const goClassApplyDeposit = () => {
+    navigate(routePath.CLASS_APPLY_DEPOSIT)
+  }
+
+  const goClassApplyComplete = () => {
+    navigate(routePath.CLASS_APPLY_COMPLETE);
+  };
+
   return {
     goHome,
+    goClassApplyQuestion,
+    goClassApplyDeposit,
+    goClassApplyComplete
   };
 };
 

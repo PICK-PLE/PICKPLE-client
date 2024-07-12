@@ -10,9 +10,12 @@ import {
 } from '@pages/class/page/ClassApply/ClassApplyDeposit/ClassApplyDeposit.style';
 import { DepositModal } from '@pages/guest/components';
 import { useState } from 'react';
+import { useEasyNavigate } from '@hooks';
 
 const ClassApplyDeposit = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const {goClassApplyComplete} = useEasyNavigate();
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -20,6 +23,7 @@ const ClassApplyDeposit = () => {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
+    goClassApplyComplete();
   };
 
   return (

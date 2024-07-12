@@ -15,6 +15,7 @@ import {
 import { IcCaution } from '@svg';
 import { useState } from 'react';
 import { classApplyQuestionData } from 'src/constants/mocks/classApplyQuestionData';
+import { useEasyNavigate } from '@hooks';
 
 const ClassApplyQuestion = () => {
   // 객체를 배열로 변환
@@ -28,7 +29,8 @@ const ClassApplyQuestion = () => {
     setValue(e.target.value);
   };
 
-  console.log(questionData);
+  const { goClassApplyDeposit } = useEasyNavigate();
+
   return (
     <>
       <LogoHeader />
@@ -100,7 +102,7 @@ const ClassApplyQuestion = () => {
         </div>
 
         <footer css={questionFooterStyle}>
-          <Button variant="large">신청하기</Button>
+          <Button variant="large" onClick={goClassApplyDeposit}>신청하기</Button>
         </footer>
       </article>
     </>
