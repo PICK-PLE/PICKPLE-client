@@ -9,15 +9,21 @@ import {
   line,
 } from './GuestMyPage.style';
 import { routePath } from '@constants';
+import { useEasyNavigate } from '@hooks';
 
 const GuestMyPage = () => {
+  const { goGuestMyPage, goHostMyPage } = useEasyNavigate();
   return (
     <>
       <LogoHeader />
       <div css={GuestMyPageLayout}>
         <div css={userDistinguishWrapper}>
-          <p css={userSelectedTextStyle}>게스트</p>
-          <p css={userUnselectedTextStyle}>호스트</p>
+          <p css={userSelectedTextStyle} onClick={goHostMyPage}>
+            게스트
+          </p>
+          <p css={userUnselectedTextStyle} onClick={goGuestMyPage}>
+            호스트
+          </p>
         </div>
         <article css={simpleUserProfileWrapper}>
           <SimpleUserProfile size="large" username="신청자" />
