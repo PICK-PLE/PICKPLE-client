@@ -4,7 +4,7 @@ import { flexGenerator } from '@styles/generator';
 export const completedTabContainer = (theme: Theme) => css`
   ${flexGenerator('column')}
   height: 100dvh;
-  padding: 10.4rem 9.3rem 20.9rem 9.3rem;
+  padding: 9.5rem 9.9rem 20.9rem;
 
   background-color: ${theme.color.background};
 `;
