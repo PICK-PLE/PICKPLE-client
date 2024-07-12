@@ -31,10 +31,10 @@ export interface HostMyClassDataResponseType {
 }
 
 export interface Submitter {
-  submitterId: number;
+  applicantId: number;
   nickname: string;
   profileImage: string;
-  submittedDate: string;
+  applicationDate: string;
 }
 
 export interface ApplicantListResponseType {

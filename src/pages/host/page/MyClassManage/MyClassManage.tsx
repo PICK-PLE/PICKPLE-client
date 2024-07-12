@@ -1,4 +1,4 @@
-import { ApplicantAccordionList, Button, Header, Label } from '@components';
+import { ApplicantAccordionList, Button, Header, Label, Modal } from '@components';
 import {
   articleLayout,
   headerStyle,
@@ -16,8 +16,10 @@ import {
   emptyViewWrapper,
 } from '@pages/host/page/MyClassManage/MyClassManage.style';
 import { APPLICANT_DATA } from 'src/constants/mocks/applicant';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { IcHostMyclassManageEmptyView } from '@svg';
+import { ApplicantListModal } from '@pages/host/components';
+import { ApplicantListResponseType } from '@types';
 
 export interface ApplicantData {
   applicantId: number;
@@ -46,8 +48,24 @@ const MyClassManage = () => {
   };
 
   // checkedApplicant 배열에 체크된 applicant들을 담는 로직
-  const checkedApplicant = submitterList.filter((_, index) => checkedStates[index]);
-  console.log(checkedApplicant);
+  // const checkedApplicant = useMemo(
+  //   () => ({
+  //     maxGuest: maxGuest,
+  //     submitterList: submitterList.filter((_, index) => checkedStates[index]),
+  //   }),
+  //   [maxGuest, submitterList, checkedStates]
+  // );
+  // console.log(checkedApplicant);
+
+
+    // checkedApplicant 배열에 체크된 applicant들을 담는 로직
+    const checkedApplicant: ApplicantListResponseType = useMemo(() => ({
+      maxGuest: maxGuest,
+      submitterList: submitterList.filter((_, index) => checkedStates[index]),
+    }), [maxGuest, submitterList, checkedStates]);
+  
+    console.log(checkedApplicant);
+
 
   // 공유버튼 로직 > share 버튼에서 그대로 가져옴!
   const url = 'https://pick-ple.com';
@@ -56,12 +74,13 @@ const MyClassManage = () => {
 
   // 버튼 색깔 변경되는 부분
   const [isActive, setIsActive] = useState(true);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   useEffect(() => {
     let active = true;
 
     // 신청자 선택 아무것도 안했을 때 false
-    if (checkedApplicant.length === 0) {
+    if (checkedApplicant.submitterList.length === 0) {
       active = false;
     }
 
@@ -78,9 +97,14 @@ const MyClassManage = () => {
     setIsActive(active);
   }, [checkedApplicant, status]);
 
-  const handleClickButton = () => {
-    // if (isActive) {
-    // }
+  const handleModalOpen = () => {
+      setIsOpenModal(true);
+      console.log("모달 열려라")
+  };
+
+  const handleModalClose = () => {
+      setIsOpenModal(false);
+      console.log("모달 꺼져")
   };
 
   return (
@@ -98,7 +122,7 @@ const MyClassManage = () => {
               <span css={countTitleStyle}>모임 신청자</span>
               <span css={countTextStyle}>({submitterListLength})</span>
             </div>
-            <Label variant="count">{`${checkedApplicant.length} / ${maxGuest}`}</Label>
+            <Label variant="count">{`${checkedApplicant.submitterList.length} / ${maxGuest}`}</Label>
           </div>
 
           <div css={accordionStyle}>
@@ -142,10 +166,16 @@ const MyClassManage = () => {
         </main>
 
         <footer css={footerStyle}>
-          <Button variant="large" disabled={!isActive} onClick={handleClickButton}>
+          <Button variant="large" disabled={!isActive} onClick={handleModalOpen}>
             승인하기
           </Button>
         </footer>
+
+        {isOpenModal &&
+        <Modal onClose={handleModalClose}>
+          <ApplicantListModal applicantListData={checkedApplicant} onClose={handleModalClose}/>
+        </Modal>
+        }
       </article>
     </div>
   );
