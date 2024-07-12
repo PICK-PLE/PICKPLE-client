@@ -23,8 +23,6 @@ const HostInfoCardWithLink = () => {
   // 카테고리 키를 배열로 저장하는데, hostCategories 타입 지정! 왜냐면 category2, 3은 null이 나올 수도 있으니까
   const categoryKeys = Object.keys(hostCategoryList) as (keyof HostCategoryList)[];
 
-  console.log({ categoryKeys });
-
   return (
     <article css={hostInfoCardWithLinkLayout}>
       <div css={hostInfoCardWithLinkContainer}>
