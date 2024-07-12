@@ -21,12 +21,6 @@ import { classInfoData } from 'src/constants/mocks/classInfoData';
 import { classDetailData } from 'src/constants/mocks/classDetailData';
 
 const Class = () => {
-  const carouselImageList = [
-    'https://placehold.co/500',
-    'https://placehold.co/500',
-    'https://placehold.co/500',
-  ];
-
   const [selectTab, setSelectTab] = useState<'모임소개' | '공지사항' | '리뷰'>('모임소개');
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -42,25 +36,23 @@ const Class = () => {
     };
   }, []);
 
-  const { date, dayOfWeek, startTime, endTime } = classDetailData.dateList;
+  const { dayOfDay, title, dateList, isOffline, spot, maxGuest, fee, imageList, hostId } =
+    classDetailData;
+  const { date, dayOfWeek, startTime, endTime } = dateList;
+
+  // hostId never used error fix
+  console.log(hostId);
 
   return (
     <div>
       <LogoHeader />
       <div css={classLayout}>
-        <Carousel imageList={carouselImageList} />
+        <Carousel imageList={Object.values(imageList)} />
         <section css={classInfo}>
-          <Label variant="dDay">마감 D-1</Label>
-          <h1 css={classNameStyle}>부산 10년 토박이 달아오르구마와 함께하는 사투리리</h1>
+          <Label variant="dDay">{`마감 D${dayOfDay}`}</Label>
+          <h1 css={classNameStyle}>{title}</h1>
           <ul css={classInfoList}>
-            <li>
-              {
-                <IconText
-                  icon={classDetailData.isOffline ? <IcOffline /> : <IcOneline />}
-                  text={classDetailData.spot}
-                />
-              }
-            </li>
+            <li>{<IconText icon={isOffline ? <IcOffline /> : <IcOneline />} text={spot} />}</li>
             <li>
               <IconText
                 icon={<IcDate />}
@@ -68,10 +60,10 @@ const Class = () => {
               />
             </li>
             <li>
-              <IconText icon={<IcClassPerson />} text={`최대 ${classDetailData.maxGuest}명 모집`} />
+              <IconText icon={<IcClassPerson />} text={`최대 ${maxGuest}명 모집`} />
             </li>
             <li>
-              <IconText icon={<IcMoney />} text={`${classDetailData.fee.toLocaleString()}원`} />
+              <IconText icon={<IcMoney />} text={`${fee.toLocaleString()}원`} />
             </li>
           </ul>
           <HostInfoCard />

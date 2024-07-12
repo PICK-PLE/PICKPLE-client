@@ -12,9 +12,9 @@ export const classDetailData = {
   maxGuest: 5,
   fee: 1000,
   imageList: {
-    imageUrl1: 'http://example.com/image1.jpg',
-    imageUrl2: 'http://example.com/image2.jpg',
-    imageUrl3: 'http://example.com/image3.jpg',
+    imageUrl1: 'https://placehold.co/500',
+    imageUrl2: 'https://placehold.co/500',
+    imageUrl3: 'https://placehold.co/500',
   },
   hostId: 1,
 };
