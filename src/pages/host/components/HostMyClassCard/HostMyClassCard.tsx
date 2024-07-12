@@ -8,10 +8,10 @@ import {
   cardTitle,
   cardTitleWrapper,
 } from './HostMyClassCard.style';
-import { hostMyClassDataResponseType } from '@types';
+import { HostMyClassDataResponseType } from '@types';
 
 interface HostMyClassCardProps {
-  hostMyClassData: hostMyClassDataResponseType;
+  hostMyClassData: HostMyClassDataResponseType;
 }
 
 const HostMyClassCard = ({ hostMyClassData }: HostMyClassCardProps) => {
