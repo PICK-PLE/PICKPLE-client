@@ -2,11 +2,11 @@ import { Button } from '@components';
 import {
   completedTabContainer,
   detailWrapper,
+  IcHostMypageStyle,
   textStyle,
   textWrapper,
 } from './HostMyPageEmptyView.style';
 import { IcHostMypage } from '@svg';
-import { IcHostMypageStyle } from '@pages/myPage/page/HostMyPage/HostMyPage.style';
 
 interface HostMyPageEmptyViewProps {
   text: string;

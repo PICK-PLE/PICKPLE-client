@@ -30,7 +30,7 @@ const HostMyPage = () => {
         </div>
       </article>
 
-      {hostMyClassCardData.length !== 0 ? (
+      {hostMyClassCardData.length === 0 ? (
         <HostMyPageEmptyView text="아직 진행 중인 모임이 없어요" />
       ) : (
         <div css={hostMyClassCardContainer}>

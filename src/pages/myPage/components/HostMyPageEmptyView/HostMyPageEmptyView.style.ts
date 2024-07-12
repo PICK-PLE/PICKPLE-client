@@ -24,3 +24,8 @@ export const detailWrapper = css`
   ${flexGenerator('column', 'center', 'center')}
   gap: 2rem;
 `;
+
+export const IcHostMypageStyle = css`
+  width: 15rem;
+  height: 15rem;
+`;

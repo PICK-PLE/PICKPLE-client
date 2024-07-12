@@ -62,8 +62,3 @@ export const hostMyPageBackground = (theme: Theme) => css`
   background-color: ${theme.color.background};
   min-height: 100dvh;
 `;
-
-export const IcHostMypageStyle = css`
-  width: 15rem;
-  height: 15rem;
-`;
