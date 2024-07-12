@@ -11,7 +11,7 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepTwo.style';
-import CategorySelectBox from '../CategorySelectBox/CategorySelectBox';
+import CategorySelectBox from 'src/components/common/CategorySelectBox/CategorySelectBox';
 
 const StepTwo = ({ onNext }: StepProps) => {
   const handleNextClick = () => {
