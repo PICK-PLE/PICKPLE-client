@@ -17,11 +17,12 @@ export const hostInfoCardWithLinkContainer = css`
 
 export const hostInfoCardWithLinkWrapper = css`
   ${flexGenerator('column', 'flex-start', 'stretch')};
+  width: 100%;
   gap: 1.6rem;
 `;
 
 export const hostInfoWrapper = css`
-  ${flexGenerator()};
+  ${flexGenerator('row', 'flex-start', 'center')};
   gap: 2rem;
 `;
 
@@ -52,7 +53,7 @@ export const linkStyle = (theme: Theme) => css`
 `;
 
 export const categoryListWrapper = css`
-  ${flexGenerator()};
+  ${flexGenerator('row', 'flex-start', 'center')};
   gap: 0.7rem;
 `;
 
