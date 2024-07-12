@@ -7,6 +7,7 @@ import {
   usernameSizeStyle,
   usernameStyle,
 } from './SimpleUserProfile.style';
+import { IcDefaultUserimg } from '@svg';
 
 export interface SimpleUserProfileProps extends React.HTMLAttributes<HTMLDivElement> {
   size: 'small' | 'medium' | 'large';
@@ -15,14 +16,16 @@ export interface SimpleUserProfileProps extends React.HTMLAttributes<HTMLDivElem
 }
 
 const SimpleUserProfile = ({ size, userImgUrl, username }: SimpleUserProfileProps) => {
-  const defaultImgUrl = 'svg/ic_default-userimg.svg';
   return (
     <div css={[profileWrapperStyle, profileWrapperSizeStyle[size]]}>
-      <img
-        src={userImgUrl || defaultImgUrl}
-        alt={`${username}의 이미지`}
-        css={[imgStyle, imgSizeStyle[size]]}
-      />
+      {userImgUrl ? (
+        <img src={userImgUrl} alt={`${username}의 이미지`} css={[imgStyle, imgSizeStyle[size]]} />
+      ) : (
+        <span css={[imgStyle, imgSizeStyle[size]]}>
+          <IcDefaultUserimg />
+        </span>
+      )}
+
       <span css={[usernameStyle, usernameSizeStyle[size]]}>{username}</span>
     </div>
   );

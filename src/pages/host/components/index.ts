@@ -3,5 +3,6 @@ import HostApply from './HostApply/HostApply';
 import StepOne from './StepOne/StepOne';
 import StepTwo from './StepTwo/StepTwo';
 import StepThree from './StepThree/StepThree';
+import ApplicantListModal from './ApplicantListModal/ApplicantListModal';
 
-export { HostMyClassCard, HostApply, StepOne, StepTwo, StepThree };
+export { HostMyClassCard, HostApply, StepOne, StepTwo, StepThree, ApplicantListModal };
