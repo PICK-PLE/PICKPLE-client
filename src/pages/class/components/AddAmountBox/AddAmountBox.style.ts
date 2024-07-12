@@ -4,12 +4,13 @@ import { flexGenerator } from '@styles/generator';
 export const addAmountBoxContainer = css`
   ${flexGenerator('column')};
   gap: 1rem;
+  width: 100%;
 `;
 
 export const amountBoxWrapper = css`
   width: 100%;
   ${flexGenerator('row', 'space-between')};
-  gap: 2rem;
+  gap: 1.9rem;
 `;
 
 export const wonStyle = (theme: Theme) => css`
