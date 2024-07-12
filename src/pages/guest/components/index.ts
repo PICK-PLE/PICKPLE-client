@@ -1,4 +1,4 @@
 import MoimCard from './MoimCard/MoimCard';
-import GuestMyClassCard from './GuestMyClassCard/GuestMyClassCard';
+import GuestMyClassEmptyView from './GuestMyClassEmptyView/GuestMyClassEmptyView';
 
-export { GuestMyClassCard, MoimCard };
+export { MoimCard, GuestMyClassEmptyView };
