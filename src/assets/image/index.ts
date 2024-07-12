@@ -1,3 +1,4 @@
+// category icon
 import NJobFillSelectedImage from './fill-selected/image_njob_fill_selected.png';
 import NJobFillImage from './fill/image_njob_fill.png';
 import NJobStrokeSelectedImage from './stroke-selected/image_njob_stroke_selected.png';
@@ -38,6 +39,18 @@ import LanguageFillSelectedImage from './fill-selected/image_language_fill_selec
 import LanguageFillImage from './fill/image_language_fill.png';
 import LanguageStrokeSelectedImage from './stroke-selected/image_language_stroke_selected.png';
 import LanguageStrokeImage from './stroke/image_language_stroke.png';
+
+// graphic icon
+import ErrorImage from './graphics/image_error.png';
+import GuestMyPageImage from './graphics/image_guest_mypage.png';
+import GuestImage from './graphics/image_guest.png';
+import HostApplyImage from './graphics/image_host_apply.png';
+import HostClassOpenImage from './graphics/image_host_class_open.png';
+import HostMyPageImage from './graphics/image_host_mypage.png';
+import HostApplyFinishImage from './graphics/image_hostapply_finish.png';
+import LoginImage from './graphics/image_login.png';
+import NoticeImage from './graphics/image_notice.png';
+import ReviewImage from './graphics/image_review.png';
 
 export {
   NJobFillSelectedImage,
@@ -80,4 +93,14 @@ export {
   LanguageFillImage,
   LanguageStrokeSelectedImage,
   LanguageStrokeImage,
+  ErrorImage,
+  GuestMyPageImage,
+  GuestImage,
+  HostApplyImage,
+  HostClassOpenImage,
+  HostMyPageImage,
+  HostApplyFinishImage,
+  LoginImage,
+  NoticeImage,
+  ReviewImage,
 };
