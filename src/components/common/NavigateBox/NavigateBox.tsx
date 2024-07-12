@@ -1,7 +1,7 @@
 import { IcNext } from '@svg';
 import { HTMLAttributes } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { iconStyle, wrapperStyle } from './NavigateBox.style';
+import { childrenStyle, iconStyle, wrapperStyle } from './NavigateBox.style';
 
 export interface NavigateBoxProps extends HTMLAttributes<HTMLDivElement> {
   path: string;
@@ -14,7 +14,7 @@ const NavigateBox = ({ children, path }: NavigateBoxProps) => {
   };
   return (
     <div css={wrapperStyle} onClick={handleButtonClick}>
-      <span>{children}</span>
+      <span css={childrenStyle}>{children}</span>
       <span css={iconStyle}>
         <IcNext />
       </span>
