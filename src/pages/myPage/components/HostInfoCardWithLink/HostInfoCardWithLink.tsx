@@ -43,7 +43,10 @@ const HostInfoCardWithLink = () => {
                 {categoryKeys.map((key) => {
                   const category = hostCategoryList[key];
                   return category ? (
-                    <InterestCategoryButton key={key} icon={CATEGORY_ICON[category].small}>
+                    <InterestCategoryButton
+                      key={key}
+                      icon={CATEGORY_ICON[category].small}
+                      onClick={() => {}}>
                       {CATEGORY_NAME[category]}
                     </InterestCategoryButton>
                   ) : null;
