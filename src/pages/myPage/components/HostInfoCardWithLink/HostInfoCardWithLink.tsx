@@ -39,14 +39,16 @@ const HostInfoCardWithLink = () => {
               <article css={categoryListWrapper}>
                 {categoryKeys.map((key) => {
                   const category = hostCategoryList[key];
-                  return category ? (
-                    <InterestCategoryButton
-                      key={key}
-                      icon={CATEGORY_ICON[category].small}
-                      onClick={() => {}}>
-                      {CATEGORY_NAME[category]}
-                    </InterestCategoryButton>
-                  ) : null;
+                  return (
+                    category && (
+                      <InterestCategoryButton
+                        key={key}
+                        icon={CATEGORY_ICON[category].small}
+                        onClick={() => {}}>
+                        {CATEGORY_NAME[category]}
+                      </InterestCategoryButton>
+                    )
+                  );
                 })}
               </article>
               <Button variant="small">클래스 모임 개설하기</Button>

@@ -72,11 +72,3 @@ export const categoryTextStyle = (theme: Theme) => css`
   color: ${theme.color.purple1};
   ${theme.font['body03-r-12']}
 `;
-
-export const line = (theme: Theme) => css`
-  ${flexGenerator('row', 'center')};
-  width: 100%;
-  height: 0.8rem;
-
-  background-color: ${theme.color.background};
-`;
