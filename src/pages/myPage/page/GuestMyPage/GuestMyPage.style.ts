@@ -34,13 +34,12 @@ export const simpleUserProfileWrapper = css`
 export const navigateBoxWrapper = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   width: 100%;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: 0 2rem;
   gap: 2.8rem;
 `;
 
 export const line = (theme: Theme) => css`
-  ${flexGenerator('row', 'center', 'stretch')};
+  ${flexGenerator('row', 'center')};
   width: 100%;
   height: 0.8rem;
 
