@@ -29,7 +29,6 @@ export const imageSelectWrapper = css`
   ${flexGenerator('row', 'flex-start', 'center')}
   gap: 1rem;
   overflow-x: auto;
-  padding: 1rem;
   border-radius: 10px;
 
   & > label {

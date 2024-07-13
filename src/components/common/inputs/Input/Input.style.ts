@@ -20,7 +20,6 @@ export const inputWrapperStyle = css`
 
 export const inputStyle = (maxLengthError: boolean) => (theme: Theme) =>
   css`
-    min-width: 33.5rem;
     width: 100%;
     height: 5.2rem;
     padding: 1.5rem;

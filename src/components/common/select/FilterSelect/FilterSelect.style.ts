@@ -14,6 +14,8 @@ export const selectContainer = (theme: Theme) => css`
   border-radius: 5px;
   border: 1px solid ${theme.color.lightgray1};
   background: ${theme.color.white};
+
+  z-index: 2;
 `;
 
 export const iconStyle = css`
