@@ -15,7 +15,7 @@ const GuestMyPage = () => {
   const { goGuestMyPage, goHostMyPage } = useEasyNavigate();
   return (
     <>
-      <LogoHeader />
+      <LogoHeader isIcon={false} />
       <div css={GuestMyPageLayout}>
         <div css={userDistinguishWrapper}>
           <p css={userSelectedTextStyle} onClick={goGuestMyPage}>

@@ -15,7 +15,7 @@ export const logoWrapper = css`
   cursor: pointer;
 `;
 
-export const iconWrapper = css`
+export const iconStyle = css`
   width: 2.4rem;
   height: 2.4rem;
 
