@@ -29,7 +29,7 @@ export { default as IcHobbyActive } from './IcHobbyActive';
 export { default as IcHobbyBlack } from './IcHobbyBlack';
 export { default as IcHobbySmall } from './IcHobbySmall';
 export { default as IcHome } from './IcHome';
-export { default as IcHostMyclassManageEmptyView } from './IcHostMyclassManageEmptyView';
+export { default as IcHostMypage } from './IcHostMypage';
 export { default as IcHouse } from './IcHouse';
 export { default as IcInvestmentActive } from './IcInvestmentActive';
 export { default as IcInvestmentBlack } from './IcInvestmentBlack';
