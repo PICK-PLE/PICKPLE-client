@@ -1,4 +1,4 @@
-import { Class, ClassApply, ClassNotice, ClassPost } from '@pages/class/page/index';
+import { Class, ClassApply, ClassNotice, ClassPostPage } from '@pages/class/page/index';
 import { RouteType } from '@types';
 import { routePath } from '@constants';
 
@@ -17,7 +17,7 @@ const guestRoutes: RouteType[] = [
   },
   {
     path: routePath.CLASS_POST,
-    element: <ClassPost />,
+    element: <ClassPostPage />,
   },
 ];
 

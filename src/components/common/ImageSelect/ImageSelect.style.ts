@@ -28,6 +28,7 @@ export const inputStyle = css`
 export const imageSelectWrapper = css`
   ${flexGenerator('row', 'flex-start', 'center')}
   gap: 1rem;
+  width: 100%;
   overflow-x: auto;
   border-radius: 10px;
 

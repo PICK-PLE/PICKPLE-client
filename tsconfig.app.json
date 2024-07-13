@@ -28,6 +28,7 @@
     "paths": {
       "@apis/*": ["src/apis/*"],
       "@svg": ["src/assets/svg"],
+      "@image": ["src/assets/image"],
       "@components": ["src/components/common"],
       "@constants": ["src/constants"],
       "@hooks": ["src/hooks"],

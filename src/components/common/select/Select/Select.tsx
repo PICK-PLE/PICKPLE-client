@@ -38,7 +38,7 @@ const Select = ({ placeholder, options }: SelectProps) => {
   return (
     <div css={selectContainer} onClick={toggleDropdown}>
       <span css={isPlaceholder ? placeholderStyle : selectedOptionStyle}>{selectedOption}</span>
-      <span css={iconStyle}>{isOpen ? <IcDropdownPlatformDown /> : <IcDropdownPlatformUp />}</span>
+      <span css={iconStyle}>{isOpen ? <IcDropdownPlatformUp /> : <IcDropdownPlatformDown />}</span>
       {isOpen && (
         <ul css={sortList}>
           {options?.map((opt, i) => (

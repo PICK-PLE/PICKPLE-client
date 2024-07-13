@@ -1,4 +1,5 @@
 import { HostApplyPage } from '@pages/host/page';
+import { ClassPostPage } from '@pages/class/page';
 
 const Card = () => {
   return (
@@ -8,6 +9,7 @@ const Card = () => {
         <ClassListCard key={data.moimId} classListData={data} />
       ))}
       <HostApplyPage />;
+      <ClassPostPage />
     </div>
   );
 };
