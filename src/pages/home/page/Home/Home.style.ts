@@ -19,21 +19,16 @@ export const titleStyle = (theme: Theme) => css`
   ${theme.font['head03-b-18']}
 `;
 
-export const categoryWrapper = css`
-  ${flexGenerator('column', 'center', 'flex-start')};
-  gap: 1.6rem;
-`;
-
 export const categoryStyle = css`
-  ${flexGenerator()};
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  padding: 0 2rem;
   width: 100%;
   gap: 1.2rem;
 `;
 
 export const iconStyle = css`
   ${flexGenerator('column')};
-  width: 5.7rem;
-  height: 5.7rem;
 
   cursor: pointer;
 `;
