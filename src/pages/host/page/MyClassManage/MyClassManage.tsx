@@ -9,32 +9,18 @@ import {
   textStyle,
   countTitleStyle,
   accordionStyle,
-  emptyText,
-  emptyViewImageStyle,
-  emptyViewButtonStyle,
-  emptyViewContainer,
-  emptyViewWrapper,
-} from '@pages/host/page/MyClassManage/MyClassManage.style';
-import { APPLICANT_DATA } from 'src/constants/mocks/applicant';
+} from './MyClassManage.style';
 import { useState, useEffect, useMemo } from 'react';
-import { IcHostMyclassManageEmptyView } from '@svg';
-import { ApplicantListModal } from '@pages/host/components';
+import { ApplicantListModal, ClassManageEmptyView } from '@pages/host/components';
 import { ApplicantListResponseType } from '@types';
-import useToast from 'src/hooks/useToast';
+import { useToast } from '@hooks';
 
-export interface ApplicantData {
-  applicantId: number;
-  nickname: string;
-  profileImage: string;
-  applicationDate: string;
-}
+import { APPLICANT_DATA } from 'src/constants/mocks/applicant';
 
 const MyClassManage = () => {
-  const status = APPLICANT_DATA.status;
-  const isExpired = APPLICANT_DATA.data.isExpired;
-  const maxGuest = APPLICANT_DATA.data.maxGuest;
-  const submitterList = APPLICANT_DATA.data.submitterList;
-  const submitterListLength = APPLICANT_DATA.data.submitterList.length;
+  const { status, data } = APPLICANT_DATA;
+  const { isExpired, maxGuest, submitterList } = data;
+  const submitterListLength = submitterList.length;
 
   //checkBox 부분
   const [checkedStates, setCheckedStates] = useState<boolean[]>(
@@ -60,11 +46,6 @@ const MyClassManage = () => {
     }),
     [maxGuest, submitterList, checkedStates]
   );
-
-  // 공유버튼 부분 (share 버튼에서 그대로 가져옴)
-  const url = 'https://pick-ple.com';
-  const title = 'PICK!PLE';
-  const text = "내가 PICK!한 바로 '그 사람'과 함께하는 클래스 모임.";
 
   // 버튼 active 상태
   const [isActive, setIsActive] = useState(true);
@@ -114,9 +95,13 @@ const MyClassManage = () => {
           <div css={labelStyle}>
             <div css={textStyle}>
               <span css={countTitleStyle}>모임 신청자</span>
-              <span css={countTextStyle}>{ status === 201 ? submitterListLength : '0' }</span>
+              <span css={countTextStyle}>{status === 201 ? submitterListLength : '0'}</span>
             </div>
-            <Label variant="count">{ status === 201 ? `${checkedApplicant.submitterList.length} / ${maxGuest}` : `0  / ${maxGuest}`}</Label>
+            <Label variant="count">
+              {status === 201
+                ? `${checkedApplicant.submitterList.length} / ${maxGuest}`
+                : `0  / ${maxGuest}`}
+            </Label>
           </div>
 
           <div css={accordionStyle}>
@@ -129,32 +114,7 @@ const MyClassManage = () => {
                 toggleChecked={toggleChecked}
               />
             ) : (
-              <div css={emptyViewContainer}>
-                <div css={emptyViewWrapper}>
-                  <div css={emptyViewImageStyle}>
-                    <IcHostMyclassManageEmptyView />
-                  </div>
-
-                  <div css={emptyText}>
-                    <span>아직 게스트를 기다리는 중이에요 </span>
-                    <span>모임을 공유해 보세요!</span>
-                  </div>
-                </div>
-
-                <div css={emptyViewButtonStyle}>
-                  <Button
-                    variant="round"
-                    onClick={() => {
-                      navigator.share({
-                        url,
-                        title,
-                        text,
-                      });
-                    }}>
-                    모임 공유하기
-                  </Button>
-                </div>
-              </div>
+              <ClassManageEmptyView />
             )}
           </div>
         </main>

@@ -51,3 +51,10 @@ export interface NoticeResponseType {
   date: string;
   noticeImageUrl: string | null;
 }
+
+export interface ApplicantDataType {
+  applicantId: number;
+  nickname: string;
+  profileImage: string;
+  applicationDate: string;
+}

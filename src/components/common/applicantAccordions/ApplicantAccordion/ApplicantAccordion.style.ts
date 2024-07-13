@@ -7,12 +7,6 @@ export const applicantAccordionLayout = css`
   width: 100%;
 `;
 
-// export const applicantLayoutStyle = css`
-//   ${flexGenerator('row', 'space-between', 'center')};
-//   gap: 2rem;
-// `;
-
-/* 체크박스 <---> 신청자 정보*/
 export const applicantLayoutStyle = css`
   ${flexGenerator('row', 'space-between')};
   gap: 0.2rem;
@@ -24,7 +18,6 @@ export const applicantContainerStyle = css`
   gap: 1.3rem;
 `;
 
-/* 체크박스 스타일 및 커스텀 */
 export const checkboxStyle = css`
   display: none;
 `;
@@ -50,7 +43,6 @@ export const applicnatImgStyle = css`
 
 export const applicantInfoStyle = css`
   ${flexGenerator('column', 'center', 'flex-start')}
-  //min-width: 18.4rem;
   gap: 0.4rem;
 `;
 

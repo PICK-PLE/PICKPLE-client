@@ -23,7 +23,8 @@ interface ApplicantListModalProps {
 const ApplicantListModal = ({ applicantListData, onClose }: ApplicantListModalProps) => {
   const { maxGuest, submitterList } = applicantListData;
 
-  console.log(maxGuest)
+  // TODO: 삭제 예정 never used error fix
+  console.log(maxGuest);
   return (
     <article css={modalContainerStyle}>
       <section css={sectionStyle}>

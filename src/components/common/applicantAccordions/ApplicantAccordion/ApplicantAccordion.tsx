@@ -16,17 +16,16 @@ import {
   accdionContentWrapperStyle,
   accdionContentStyle,
   answerStyle,
-} from 'src/components/common/applicantAccordions/ApplicantAccordion/ApplicantAccordion.style';
-import QuestionText from 'src/components/common/QuestionText/QuestionText';
-import Image from 'src/components/common/Image/Image';
+} from './ApplicantAccordion.style';
+import { Image, QuestionText } from '@components';
 
 import { APPLICANT_ANSWER_1 } from 'src/constants/mocks/applicant';
-import { ApplicantData } from '@pages/host/page/MyClassManage/MyClassManage';
+import { ApplicantDataType } from '@types';
 
 interface ApplicantAccordionProps {
   moimId: number;
   guestId: number;
-  applicantData: ApplicantData;
+  applicantData: ApplicantDataType;
   isChecked: boolean;
   toggleChecked: () => void;
 }

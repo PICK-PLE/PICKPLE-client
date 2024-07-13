@@ -13,7 +13,6 @@ export const articleLayout = (theme: Theme) => css`
 export const headerStyle = (theme: Theme) => css`
   ${theme.font['head02-b-20']}
   width: 26.2rem;
-  // 단어 단위로 끊기
 `;
 
 export const mainStyle = css`
@@ -23,7 +22,7 @@ export const mainStyle = css`
 `;
 
 export const labelStyle = css`
-  //${flexGenerator('row', 'space-between', 'center')}
+  ${flexGenerator('row', 'space-between')}
 `;
 
 export const accordionStyle = css`
@@ -46,34 +45,8 @@ export const countTextStyle = (theme: Theme) => css`
   color: ${theme.color.black};
 `;
 
-export const emptyViewContainer = css`
-  ${flexGenerator('column', 'center', 'center')};
-  gap: 2.1rem;
-`;
-
-export const emptyViewWrapper = css`
-${flexGenerator('column', 'center', 'center')}
-`
-
-export const emptyViewImageStyle = css`
-  width: 15rem;
-`;
-
-export const emptyViewButtonStyle = css`
-  width: 17.7rem;
-`;
-
-export const emptyText = (theme: Theme) => css`
-  ${flexGenerator('column')};
-  ${theme.font['subhead05-sb-14']};
-  color: ${theme.color.lightgray1};
-`;
 
 export const footerStyle = css`
   width: 100%;
-  //margin: 0 2rem;
   margin-top: auto;
-  //position: fixed;
-  //left: 0;
-  //bottom: 0;
 `;

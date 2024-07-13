@@ -1,10 +1,10 @@
 import { ApplicantAccordion } from '@components';
-import { applicantAccordionListLayout } from 'src/components/common/applicantAccordions/ApplicantAccoridonList/ApplicantAccordionList.style';
-import { ApplicantData } from '@pages/host/page/MyClassManage/MyClassManage';
+import { applicantAccordionListLayout } from './ApplicantAccordionList.style';
+import { ApplicantDataType } from '@types';
 
 interface ApplicantAccordionListProps {
   moimId: number;
-  applicantData: ApplicantData[];
+  applicantData: ApplicantDataType[];
   toggleChecked: (index: number) => void;
   checkedStates: boolean[];
 }
