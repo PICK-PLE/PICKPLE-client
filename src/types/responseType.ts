@@ -76,3 +76,15 @@ export interface ApplicantDataType {
   profileImage: string;
   applicationDate: string;
 }
+export interface HostInfoResponseType {
+  hostNickName: string;
+  hostImageUrl: string;
+  hostLink: string;
+  hostCategoryList: HostCategoryList;
+  hostId: number;
+}
+export interface HostCategoryList {
+  category1: string;
+  category2: string | null;
+  category3: string | null;
+}

@@ -1,29 +1,24 @@
-import { Button } from '@components';
+import { graphicImage } from '@constants';
 import {
-  completedTabContainer,
-  detailWrapper,
-  IcHostMypageStyle,
+  hostMyPageEmptyViewContainer,
+  hostMyPageEmptyViewWrapper,
+  imageStyle,
   textStyle,
-  textWrapper,
 } from './HostMyPageEmptyView.style';
-import { IcHostMypage } from '@svg';
+import { Button } from '@components';
 
-interface HostMyPageEmptyViewProps {
-  text: string;
-}
-
-const HostMyPageEmptyView = ({ text }: HostMyPageEmptyViewProps) => {
+const HostMyPageEmptyView = () => {
   return (
-    <article css={completedTabContainer}>
-      <IcHostMypage css={IcHostMypageStyle} />
-      <div css={detailWrapper}>
-        <div css={textWrapper}>
-          <p css={textStyle}>{text}</p>
-          <p css={textStyle}>다양한 클래스 모임을 둘러보세요:{')'}</p>
-        </div>
-        <Button variant="round">클래스 모임 개설하기</Button>
+    <div css={hostMyPageEmptyViewContainer}>
+      <img css={imageStyle} src={graphicImage.HostApplyImage} alt="HostMyPageImage" />
+      <div css={hostMyPageEmptyViewWrapper}>
+        <p css={textStyle}>아직 호스트로 등록되어 있지 않아요</p>
+        <p css={textStyle}>호스트가 되어 다양한 게스트들을 만나 보세요!</p>
       </div>
-    </article>
+      <Button variant="round" onClick={() => {}}>
+        호스트 신청하러 가기
+      </Button>
+    </div>
   );
 };
 

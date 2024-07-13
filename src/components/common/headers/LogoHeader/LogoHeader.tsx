@@ -1,18 +1,20 @@
 import { IcLogo, IcPerson } from '@svg';
-import { logoHeaderWrapper, iconWrapper, logoWrapper } from './LogoHeader.style';
+import { logoHeaderWrapper, iconStyle, logoWrapper } from './LogoHeader.style';
 import { useEasyNavigate } from '@hooks';
 
-const LogoHeader = () => {
-  const { goHome, goMyPage } = useEasyNavigate();
+interface LogoHeaderProps {
+  isIcon?: boolean;
+}
+
+const LogoHeader = ({ isIcon = true }: LogoHeaderProps) => {
+  const { goHome, goGuestMyPage } = useEasyNavigate();
 
   return (
     <header css={logoHeaderWrapper}>
       <div css={logoWrapper}>
         <IcLogo onClick={goHome} />
       </div>
-      <div css={iconWrapper}>
-        <IcPerson onClick={goMyPage} />
-      </div>
+      {isIcon && <IcPerson onClick={goGuestMyPage} css={iconStyle} />}
     </header>
   );
 };

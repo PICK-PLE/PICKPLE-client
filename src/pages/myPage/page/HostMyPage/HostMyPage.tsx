@@ -1,45 +1,39 @@
-import { Header } from '@components';
+import { LogoHeader, NavigateBox } from '@components';
 import {
-  getTabStyle,
-  hostMyClassCardContainer,
-  hostMyPageBackground,
-  hostMyPageLayout,
-  tabWrapper,
-  tapLine,
+  line,
+  navigateBoxContainer,
+  navigateBoxWrapper,
+  userDistinguishWrapper,
+  userSelectedTextStyle,
+  userUnselectedTextStyle,
 } from './HostMyPage.style';
-import { useState } from 'react';
-import { HostMyPageEmptyView } from '@pages/myPage/components';
-import { hostMyClassCardData } from 'src/constants/mocks/HostMyClassCardData';
-import { HostMyClassCard } from '@pages/host/components';
+import { useEasyNavigate } from '@hooks';
+import HostInfoCardWithLink from '@pages/myPage/components/HostInfoCardWithLink/HostInfoCardWithLink';
+import { routePath } from '@constants';
 
 const HostMyPage = () => {
-  const [activeTab, setActiveTab] = useState<'진행 중' | '완료'>('진행 중');
-
+  const { goGuestMyPage, goHostMyPage } = useEasyNavigate();
   return (
-    <div css={hostMyPageBackground}>
-      <Header title="my 클래스 모임" />
-      <article css={hostMyPageLayout}>
-        <div css={tapLine} />
-        <div css={tabWrapper}>
-          <div css={getTabStyle(activeTab === '진행 중')} onClick={() => setActiveTab('진행 중')}>
-            진행 중
-          </div>
-          <div css={getTabStyle(activeTab === '완료')} onClick={() => setActiveTab('완료')}>
-            완료
-          </div>
-        </div>
-      </article>
-
-      {hostMyClassCardData.length === 0 ? (
-        <HostMyPageEmptyView text="아직 진행 중인 모임이 없어요" />
-      ) : (
-        <div css={hostMyClassCardContainer}>
-          {hostMyClassCardData.map((data) => (
-            <HostMyClassCard key={data.moimId} hostMyClassData={data} />
-          ))}
-        </div>
-      )}
-    </div>
+    <>
+      <LogoHeader isIcon={false} />
+      <div css={userDistinguishWrapper}>
+        <p css={userUnselectedTextStyle} onClick={goGuestMyPage}>
+          게스트
+        </p>
+        <p css={userSelectedTextStyle} onClick={goHostMyPage}>
+          호스트
+        </p>
+      </div>
+      <HostInfoCardWithLink />
+      <section css={navigateBoxContainer}>
+        <div css={line} />
+        <article css={navigateBoxWrapper}>
+          <NavigateBox path={routePath.HOST_MY_CLASS}>my 클래스 모임</NavigateBox>
+          <NavigateBox path="오픈 카톡 링크">픽플에 문의하기</NavigateBox>
+          <NavigateBox path="로그아웃 로직">로그아웃</NavigateBox>
+        </article>
+      </section>
+    </>
   );
 };
 

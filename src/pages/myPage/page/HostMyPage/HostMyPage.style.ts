@@ -1,64 +1,43 @@
 import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
-export const hostMyPageLayout = css`
-  ${flexGenerator('column', 'center', 'stretch')};
-  height: 4.4rem;
+export const userDistinguishWrapper = css`
+  ${flexGenerator('row', 'flex-start', 'flex-start')};
+  padding-left: 2rem;
+  gap: 2rem;
 `;
 
-export const tapLine = (theme: Theme) => css`
-  width: 100%;
-  height: 0.1rem;
-
-  ${theme.color.lightgray1}
-`;
-
-export const tapContainer = (theme: Theme) => css`
-  ${flexGenerator('row', 'center', 'center')}
-  width: 50%;
-  height: 4.4rem;
-  padding: 0.8rem;
-  gap: 0.8rem;
-  flex-shrink: 0;
-
-  background: ${theme.color.white};
+export const userSelectedTextStyle = (theme: Theme) => css`
+  color: ${theme.color.black};
+  ${theme.font['head03-b-18']}
 
   cursor: pointer;
 `;
 
-export const activeTabStyle = (theme: Theme) => css`
-  color: ${theme.color.purple1};
-  border-bottom: 0.1rem solid ${theme.color.purple1};
-`;
-
-export const inactiveTabStyle = (theme: Theme) => css`
+export const userUnselectedTextStyle = (theme: Theme) => css`
   color: ${theme.color.lightgray2};
-  border-bottom: 0.1rem solid ${theme.color.lightgray2};
+  ${theme.font['head03-b-18']}
+
+  cursor: pointer;
 `;
 
-export const tabWrapper = css`
-  ${flexGenerator()}
-`;
+export const line = (theme: Theme) => css`
+  ${flexGenerator('row', 'center', 'stretch')};
+  width: 100%;
+  height: 0.8rem;
+  margin-bottom: 2.8rem;
 
-export const getTabStyle = (isActive: boolean) => (theme: Theme) =>
-  css`
-    ${tapContainer(theme)}
-    ${isActive ? activeTabStyle(theme) : inactiveTabStyle(theme)}
-    ${theme.font['subhead02-sb-16']}
-  `;
-
-export const hostMyClassCardContainer = css`
-  ${flexGenerator('column')};
-  padding: 3rem 1.8rem;
-  gap: 1rem;
-`;
-
-export const hostMyPageContainer = css`
-  ${flexGenerator('column')};
-  gap: 3rem;
-`;
-
-export const hostMyPageBackground = (theme: Theme) => css`
   background-color: ${theme.color.background};
-  min-height: 100dvh;
+`;
+
+export const navigateBoxWrapper = css`
+  ${flexGenerator('column', 'flex-start', 'flex-start')}
+  width: 100%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  gap: 2.8rem;
+`;
+
+export const navigateBoxContainer = css`
+  margin-top: 2.8rem;
 `;
