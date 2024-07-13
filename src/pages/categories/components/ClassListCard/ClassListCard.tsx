@@ -6,22 +6,7 @@ import {
   titleTextWrapper,
   timeTextWraaper,
 } from '@pages/categories/components/ClassListCard/ClassListCard.style';
-
-interface DateList {
-  date: string;
-  dayOfWeek: string;
-  startTime: string;
-  endTime: string;
-}
-
-interface ClassListData {
-  dayOfDay: number;
-  moimImageUrl: string;
-  moimTitle: string;
-  hostImageUrl: string;
-  hostNickName: string;
-  dateList: DateList;
-}
+import { ClassListData } from '@types';
 
 interface ClassListCardProps {
   classListData: ClassListData;

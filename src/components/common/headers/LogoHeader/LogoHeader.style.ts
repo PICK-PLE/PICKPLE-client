@@ -1,11 +1,13 @@
-import { css } from '@emotion/react';
+import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
-export const logoHeaderWrapper = css`
+export const logoHeaderWrapper = (theme: Theme) => css`
   ${flexGenerator('row', 'space-between', 'center')};
   width: 100%;
   height: 6rem;
   padding: 1.6rem 2rem;
+
+  background-color: ${theme.color.white};
 `;
 
 export const logoWrapper = css`

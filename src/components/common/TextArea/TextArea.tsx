@@ -14,7 +14,7 @@ export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
   errorMessage?: string;
   maxLength: number;
-  size: 'small' | 'medium';
+  size?: 'small' | 'medium';
 }
 const TextArea = ({
   value,
