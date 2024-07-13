@@ -25,12 +25,12 @@ const HostInfoCardWithLink = () => {
   const categoryKeys = Object.keys(hostCategoryList) as (keyof HostCategoryList)[];
 
   return (
-    <article css={hostInfoCardWithLinkLayout}>
+    <section css={hostInfoCardWithLinkLayout}>
       {hostInfoCardWithLinkData.hostNickName ? (
         <>
           <div css={hostInfoCardWithLinkContainer}>
-            <div css={hostInfoCardWithLinkWrapper}>
-              <div css={hostInfoWrapper}>
+            <section css={hostInfoCardWithLinkWrapper}>
+              <article css={hostInfoWrapper}>
                 <Image variant="round" width="6rem" src={hostImageUrl} />
                 <div css={hostDetailWrapper}>
                   <p css={hostNameStyle}>{hostNickName}</p>
@@ -38,7 +38,7 @@ const HostInfoCardWithLink = () => {
                     <p css={linkStyle}>{hostLink}</p>
                   </div>
                 </div>
-              </div>
+              </article>
               <article css={categoryListWrapper}>
                 {categoryKeys.map((key) => {
                   const category = hostCategoryList[key];
@@ -59,13 +59,13 @@ const HostInfoCardWithLink = () => {
                 <NavigateBox path="오픈 카톡 링크">픽플에 문의하기</NavigateBox>
                 <NavigateBox path="로그아웃 로직">로그아웃</NavigateBox>
               </article>
-            </div>
+            </section>
           </div>
         </>
       ) : (
         <HostMyPageEmptyView />
       )}
-    </article>
+    </section>
   );
 };
 
