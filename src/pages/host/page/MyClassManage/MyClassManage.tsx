@@ -18,8 +18,9 @@ import { useToast } from '@hooks';
 import { APPLICANT_DATA } from 'src/constants/mocks/applicant';
 
 const MyClassManage = () => {
+  // TODO: 커스텀 훅으로 분리
   const { status, data } = APPLICANT_DATA;
-  const { isExpired, maxGuest, submitterList } = data;
+  const { isApprovable, maxGuest, submitterList } = data;
   const submitterListLength = submitterList.length;
 
   //checkBox 부분
@@ -29,16 +30,6 @@ const MyClassManage = () => {
 
   const { showToast, isToastVisible } = useToast();
 
-  const toggleChecked = (index: number) => {
-    if (isExpired) {
-      setCheckedStates((prevStates) =>
-        prevStates.map((checked, i) => (i === index ? !checked : checked))
-      );
-    } else {
-      showToast(''); //Toast에 문제가 있어보이는데 ...
-    }
-  };
-
   const checkedApplicant: ApplicantListResponseType = useMemo(
     () => ({
       maxGuest: maxGuest,
@@ -47,29 +38,26 @@ const MyClassManage = () => {
     [maxGuest, submitterList, checkedStates]
   );
 
+  const toggleChecked = (index: number) => {
+    if (checkedApplicant.submitterList.length >= maxGuest && !checkedStates[index]) return;
+    if (isApprovable) {
+      setCheckedStates((prevStates) =>
+        prevStates.map((checked, i) => (i === index ? !checked : checked))
+      );
+    } else {
+      showToast(''); //Toast에 문제가 있어보이는데 ...
+    }
+  };
+
   // 버튼 active 상태
-  const [isActive, setIsActive] = useState(true);
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    let active = true;
-
     // 신청자 선택 아무것도 안했을 때
-    if (checkedApplicant.submitterList.length === 0) {
-      active = false;
+    if (status === 201 && checkedApplicant.submitterList.length > 0 && isApprovable) {
+      setIsActive(true);
     }
-
-    // 신청자가 없을 때
-    if (status !== 201) {
-      active = false;
-    }
-
-    // 신청 마감날 이전일 때
-    if (isExpired === false) {
-      active = false;
-    }
-
-    setIsActive(active);
-  }, [checkedApplicant, status, isExpired]);
+  }, [status, checkedApplicant, isApprovable]);
 
   // 모달 부분
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -85,7 +73,6 @@ const MyClassManage = () => {
   return (
     <div>
       <Header title="신청자 관리" />
-
       <article css={articleLayout}>
         <header css={headerStyle}>
           <div>부산 10년 토박이 달아오르구마와 함께하는 사투리리</div>

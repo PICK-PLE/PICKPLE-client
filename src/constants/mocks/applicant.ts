@@ -1,14 +1,14 @@
 // 서버에서 받는 데이터 가짜로 만든거
-// isExpired: true면, 신청자 받는 거 가능하게 > 체크 후 모달
-// isExpired: false면, 신청자 받는 거 불가능하게 > 토스트 메시지
+// isApprovable: true면, 신청자 받는 거 가능하게 > 체크 후 모달
+// isApprovable: false면, 신청자 받는 거 불가능하게 > 토스트 메시지
 // status 201이면 데이터 잘 들어온 거
 // status 201 제외 나머지는 일단 엠티 뷰 뜨게 해 둠 (추후 수정)
 
 export const APPLICANT_DATA = {
-  status: 200,
+  status: 201,
   data: {
     maxGuest: 10,
-    isExpired: true,
+    isApprovable: true,
     submitterList: [
       {
         applicantId: 1,

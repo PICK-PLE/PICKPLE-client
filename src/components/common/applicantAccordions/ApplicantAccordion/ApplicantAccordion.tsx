@@ -59,9 +59,6 @@ const ApplicantAccordion = ({
 
   const defaultImgUrl = 'svg/ic_default-userimg.svg';
 
-  //삭제예정 시비 ㄴㄴ
-  console.log(moimId, guestId, applicantData);
-
   return (
     <div css={applicantAccordionLayout}>
       <div css={applicantLayoutStyle}>
