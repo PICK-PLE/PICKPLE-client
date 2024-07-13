@@ -27,16 +27,19 @@ export const questionHStyle = (theme: Theme) => css`
 export const questionMainStyle = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   gap: 3rem;
+  width: 100%;
 `;
 
 export const questionDataStyle = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
-  gap: 1rem;
+  gap: 1.5rem;
+  width: 100%;
 `;
 
 export const questionCautionStyle = (theme: Theme) => css`
   ${flexGenerator('row', 'flex-start', 'flex-start')};
   gap: 1rem;
+
   padding: 1rem;
   color: ${theme.color.midgray2};
   background-color: ${theme.color.lightgray0};
@@ -57,8 +60,8 @@ export const questionRefundStyle = () => css`
 `;
 
 export const questionRefundTextStyle = (theme: Theme) => css`
-${theme.font['body02-r-14']};
-color: ${theme.color.midgray1};
+  ${theme.font['body02-r-14']};
+  color: ${theme.color.midgray1};
 `;
 
 export const questionFooterStyle = css`
