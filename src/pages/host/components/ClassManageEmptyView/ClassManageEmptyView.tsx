@@ -1,4 +1,3 @@
-import { IcHostMyclassManageEmptyView } from '@svg';
 import {
   emptyText,
   emptyViewButtonStyle,
@@ -7,6 +6,7 @@ import {
   emptyViewWrapper,
 } from './ClassManageEmptyView.style';
 import { Button } from '@components';
+import { graphicImage } from '@constants';
 
 const ClassManageEmptyView = () => {
   // 공유버튼 부분 예시
@@ -18,7 +18,9 @@ const ClassManageEmptyView = () => {
     <div css={emptyViewContainer}>
       <div css={emptyViewWrapper}>
         <div css={emptyViewImageStyle}>
-          <IcHostMyclassManageEmptyView />
+          {/* TODO: 그래픽 이미지 수정 */}
+          <img src={graphicImage.GuestImage} alt="" />
+          {/* <IcHostMyclassManageEmptyView /> */}
         </div>
 
         <div css={emptyText}>

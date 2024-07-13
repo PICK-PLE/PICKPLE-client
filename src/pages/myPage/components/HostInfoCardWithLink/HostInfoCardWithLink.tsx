@@ -40,6 +40,7 @@ const HostInfoCardWithLink = () => {
                 {categoryKeys.map((key) => {
                   const category = hostCategoryList[key];
                   return (
+                    // TODO: small 아이콘 수정
                     category && (
                       <InterestCategoryButton
                         key={key}

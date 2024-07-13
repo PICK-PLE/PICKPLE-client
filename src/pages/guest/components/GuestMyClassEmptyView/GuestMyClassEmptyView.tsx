@@ -1,12 +1,11 @@
 import { Button } from '@components';
 import {
-  svgStyle,
   completedTabContainer,
   detailWrapper,
   textStyle,
   textWrapper,
 } from './GuestMyClassEmptyView.style';
-import { IcGuestMypageEmptyViewIcon } from '@svg';
+import { graphicImage } from '@constants';
 
 interface GuestMyClassEmptyViewProps {
   text: string;
@@ -15,7 +14,8 @@ interface GuestMyClassEmptyViewProps {
 const GuestMyClassEmptyView = ({ text }: GuestMyClassEmptyViewProps) => {
   return (
     <article css={completedTabContainer}>
-      <IcGuestMypageEmptyViewIcon css={svgStyle} />
+      {/* TODO: 그래픽 이미지 수정 */}
+      <img src={graphicImage.GuestMyPageImage} alt="" />
       <div css={detailWrapper}>
         <div css={textWrapper}>
           <p css={textStyle}>{text}</p>

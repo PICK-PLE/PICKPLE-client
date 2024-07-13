@@ -7,7 +7,7 @@ import {
   tapLine,
 } from './HostMyClass.style';
 import { useState } from 'react';
-import { HostMyClassEmptyView } from '@pages/myPage/components';
+import { HostMyClassEmptyView } from '@pages/host/components';
 import { hostMyClassCardData } from 'src/constants/mocks/HostMyClassCardData';
 import { HostMyClassCard } from '@pages/host/components';
 
