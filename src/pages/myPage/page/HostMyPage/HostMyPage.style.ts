@@ -20,3 +20,19 @@ export const userUnselectedTextStyle = (theme: Theme) => css`
 
   cursor: pointer;
 `;
+
+export const line = (theme: Theme) => css`
+  ${flexGenerator('row', 'center', 'stretch')};
+  width: 100%;
+  height: 0.8rem;
+
+  background-color: ${theme.color.background};
+`;
+
+export const navigateBoxWrapper = css`
+  ${flexGenerator('column', 'flex-start', 'flex-start')}
+  width: 100%;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  gap: 2.8rem;
+`;

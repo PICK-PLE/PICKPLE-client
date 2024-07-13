@@ -72,19 +72,3 @@ export const categoryTextStyle = (theme: Theme) => css`
   color: ${theme.color.purple1};
   ${theme.font['body03-r-12']}
 `;
-
-export const line = (theme: Theme) => css`
-  ${flexGenerator('row', 'center', 'stretch')};
-  width: 100%;
-  height: 0.8rem;
-
-  background-color: ${theme.color.background};
-`;
-
-export const navigateBoxWrapper = css`
-  ${flexGenerator('column', 'flex-start', 'flex-start')}
-  width: 100%;
-  padding-left: 2rem;
-  padding-right: 2rem;
-  gap: 2.8rem;
-`;

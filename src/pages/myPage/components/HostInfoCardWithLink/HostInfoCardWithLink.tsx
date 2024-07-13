@@ -10,12 +10,9 @@ import {
   hostNameStyle,
   linkStyle,
   linkWrapper,
-  line,
-  navigateBoxWrapper,
 } from './HostInfoCardWithLink.style';
-import { Button, Image, InterestCategoryButton, NavigateBox } from '@components';
+import { Button, Image, InterestCategoryButton } from '@components';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
-import { routePath } from '@constants';
 import HostMyPageEmptyView from '../HostMyPageEmptyView/HostMyPageEmptyView';
 
 const HostInfoCardWithLink = () => {
@@ -53,12 +50,6 @@ const HostInfoCardWithLink = () => {
                 })}
               </article>
               <Button variant="small">클래스 모임 개설하기</Button>
-              <div css={line} />
-              <article css={navigateBoxWrapper}>
-                <NavigateBox path={routePath.HOST_MY_CLASS}>my 클래스 모임</NavigateBox>
-                <NavigateBox path="오픈 카톡 링크">픽플에 문의하기</NavigateBox>
-                <NavigateBox path="로그아웃 로직">로그아웃</NavigateBox>
-              </article>
             </section>
           </div>
         </>
