@@ -1,7 +1,4 @@
-import HostInfoCard from '@pages/class/components/HostInfoCard/HostInfoCard';
-import ClassListCard from '@pages/categories/components/ClassListCard/ClassListCard';
-import { CLASSLIST_DATA } from 'src/constants/mocks/classListCardData';
-import { CATEGORY_ICON } from 'src/constants/category';
+import { HostApplyPage } from '@pages/host/page';
 
 const Card = () => {
   return (
@@ -10,6 +7,7 @@ const Card = () => {
       {CLASSLIST_DATA.map((data) => (
         <ClassListCard key={data.moimId} classListData={data} />
       ))}
+      <HostApplyPage />;
     </div>
   );
 };
