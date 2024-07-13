@@ -1,13 +1,15 @@
 import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
-export const cardContainer = css`
+export const cardContainer = (theme: Theme) => css`
   ${flexGenerator('column')};
   gap: 1.3rem;
 
   padding: 1.8rem 1.8rem 1.3rem;
 
   border-radius: 10px;
+
+  background: ${theme.color.white};
 `;
 
 export const cardContent = css`

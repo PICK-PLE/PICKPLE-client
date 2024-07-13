@@ -1,20 +1,16 @@
-// import HostInfoCard from '@pages/class/components/HostInfoCard/HostInfoCard';
-// import ClassListCard from '@pages/categories/components/ClassListCard/ClassListCard';
-// import { CLASSLIST_DATA } from 'src/constants/mocks/classListCardData';
-// import { CATEGORY_ICON } from 'src/constants/category';
+import { HostApplyPage } from '@pages/host/page';
 import { ClassPostPage } from '@pages/class/page';
 
 const Card = () => {
   return (
-    // <div style={{ margin: '0 2rem' }}>
-    //   <HostInfoCard />
-    //   {CLASSLIST_DATA.map((data) => (
-    //     <ClassListCard key={data.moimId} classListData={data} />
-    //   ))}
-    //   <img src={CATEGORY_ICON.njob.fill_selected} css={{ width: '20px', height: '20px' }} />
-    //   <img src={CATEGORY_ICON.lifestyle.fill_selected} css={{ width: '20px', height: '20px' }} />
-    // </div>
-    <ClassPostPage />
+    <div style={{ margin: '0 2rem' }}>
+      <HostInfoCard />
+      {CLASSLIST_DATA.map((data) => (
+        <ClassListCard key={data.moimId} classListData={data} />
+      ))}
+      <HostApplyPage />;
+      <ClassPostPage />
+    </div>
   );
 };
 

@@ -85,17 +85,17 @@ export const CATEGORY_ICON: CategoryIcon = {
     stroke_selected: ProductivityStrokeSelectedImage,
     stroke: ProductivityStrokeImage,
   },
-  health: {
-    fill_selected: HealthFillSelectedImage,
-    fill: HealthFillImage,
-    stroke_selected: HealthStrokeSelectedImage,
-    stroke: HealthStrokeImage,
-  },
   lifestyle: {
     fill_selected: LifestyleFillSelectedImage,
     fill: LifestyleFillImage,
     stroke_selected: LifestyleStrokeSelectedImage,
     stroke: LifestyleStrokeImage,
+  },
+  health: {
+    fill_selected: HealthFillSelectedImage,
+    fill: HealthFillImage,
+    stroke_selected: HealthStrokeSelectedImage,
+    stroke: HealthStrokeImage,
   },
   mind: {
     fill_selected: MindFillSelectedImage,
