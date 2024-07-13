@@ -51,3 +51,21 @@ export interface NoticeResponseType {
   date: string;
   noticeImageUrl: string | null;
 }
+
+export interface DateList {
+  date: string;
+  dayOfWeek: string;
+  startTime: string;
+  endTime: string;
+}
+
+export interface ClassListData {
+  moimId: number;
+  dayOfDay: number;
+  moimTitle: string;
+  hostNickName: string;
+  moimDate: string;
+  dateList: DateList;
+  moimImageUrl: string;
+  hostImageUrl: string;
+}

@@ -10,8 +10,6 @@ const Card = () => {
       {CLASSLIST_DATA.map((data) => (
         <ClassListCard key={data.moimId} classListData={data} />
       ))}
-      <img src={CATEGORY_ICON.njob.fill_selected} css={{ width: '20px', height: '20px' }} />
-      <img src={CATEGORY_ICON.lifestyle.fill_selected} css={{ width: '20px', height: '20px' }} />
     </div>
   );
 };
