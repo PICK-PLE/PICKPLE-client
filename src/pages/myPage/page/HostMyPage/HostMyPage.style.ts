@@ -25,6 +25,7 @@ export const line = (theme: Theme) => css`
   ${flexGenerator('row', 'center', 'stretch')};
   width: 100%;
   height: 0.8rem;
+  margin-bottom: 2.8rem;
 
   background-color: ${theme.color.background};
 `;
@@ -35,4 +36,8 @@ export const navigateBoxWrapper = css`
   padding-left: 2rem;
   padding-right: 2rem;
   gap: 2.8rem;
+`;
+
+export const navigateBoxContainer = css`
+  margin-top: 2.8rem;
 `;

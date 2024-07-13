@@ -1,6 +1,7 @@
 import { LogoHeader, NavigateBox } from '@components';
 import {
   line,
+  navigateBoxContainer,
   navigateBoxWrapper,
   userDistinguishWrapper,
   userSelectedTextStyle,
@@ -24,12 +25,14 @@ const HostMyPage = () => {
         </p>
       </div>
       <HostInfoCardWithLink />
-      <div css={line} />
-      <article css={navigateBoxWrapper}>
-        <NavigateBox path={routePath.HOST_MY_CLASS}>my 클래스 모임</NavigateBox>
-        <NavigateBox path="오픈 카톡 링크">픽플에 문의하기</NavigateBox>
-        <NavigateBox path="로그아웃 로직">로그아웃</NavigateBox>
-      </article>
+      <section css={navigateBoxContainer}>
+        <div css={line} />
+        <article css={navigateBoxWrapper}>
+          <NavigateBox path={routePath.HOST_MY_CLASS}>my 클래스 모임</NavigateBox>
+          <NavigateBox path="오픈 카톡 링크">픽플에 문의하기</NavigateBox>
+          <NavigateBox path="로그아웃 로직">로그아웃</NavigateBox>
+        </article>
+      </section>
     </>
   );
 };
