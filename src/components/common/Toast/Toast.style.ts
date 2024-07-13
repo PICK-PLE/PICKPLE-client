@@ -12,7 +12,6 @@ export const toastWrapperStyle = (isVisible: boolean, toastBottom: number) => (t
 
     background-color: ${theme.color.darkgray};
     border-radius: 10px;
-    margin: 0 2rem;
 
     display: ${isVisible ? 'flex' : 'none'};
     animation: ${isVisible && toastShow} 2s forwards;
