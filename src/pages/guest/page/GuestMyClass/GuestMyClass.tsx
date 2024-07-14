@@ -22,7 +22,7 @@ import { userAtom } from '@stores';
 const GuestMyClass = () => {
   const [activeTab, setActiveTab] = useState<'신청한' | '참가한'>('신청한');
   const [user] = useAtom(userAtom);
-  const { data } = useFetchGuestParticipate(user.guestId);
+  const { data } = useFetchGuestParticipate(user.guestId); //참가한 조회
 
   console.log('gusetMyClassData', data);
 
