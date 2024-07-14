@@ -27,9 +27,26 @@ export const useHostApplyInputChange = () => {
     }));
   };
 
+  const resetHostApplyState = () => {
+    setHostApplyState({
+      intro: '',
+      goal: '',
+      link: '',
+      nickname: '',
+      categoryList: {
+        category1: '',
+        category2: '',
+        category3: '',
+      },
+      plan: '',
+      email: '',
+    });
+  };
+
   return {
     hostApplyState,
     handleInputChange,
     handleCategoryChange,
+    resetHostApplyState,
   };
 };

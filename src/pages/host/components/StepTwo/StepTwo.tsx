@@ -13,20 +13,25 @@ import {
 } from './StepTwo.style';
 import CategorySelectBox from 'src/components/common/CategorySelectBox/CategorySelectBox';
 import { useHostApplyInputChange } from 'src/hooks/useHostApplyInputChange';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePostHostApply } from '@apis/domains/host';
 
 const StepTwo = ({ onNext }: StepProps) => {
-  const { hostApplyState, handleInputChange, handleCategoryChange } = useHostApplyInputChange();
+  const { hostApplyState, handleInputChange, handleCategoryChange, resetHostApplyState } =
+    useHostApplyInputChange();
   const [selectedCategories, setSelectedCategories] = useState(hostApplyState.categoryList);
-  const {mutate} = usePostHostApply();
+  const { mutate, isSuccess } = usePostHostApply();
 
   const handleNextClick = () => {
-    // handleCategoryChange(selectedCategories);
-    console.log(hostApplyState);
-    mutate(hostApplyState)
-    onNext();
+    mutate(hostApplyState);
   };
+
+  useEffect(() => {
+    if (isSuccess) {
+      resetHostApplyState();
+      onNext();
+    }
+  }, [isSuccess, onNext, resetHostApplyState]);
 
   const handleUpdateCategories = (newCategories: {
     category1: string;
