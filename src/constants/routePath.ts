@@ -11,10 +11,14 @@ const categoriesPages = {
 };
 
 const classPages = {
-  CLASS: '/class/{classId}',
+  CLASS: '/class',
   CLASS_NOTICE_POST: '/class/notice/post',
-  CLASS_APPLY: '/class/apply',
   CLASS_POST: '/class/post',
+  CLASS_APPLY: '/class/apply',
+  CLASS_APPLY_RULE: '/class/apply/rule',
+  CLASS_APPLY_QUESTION: '/class/apply/question',
+  CLASS_APPLY_DEPOSIT: '/class/apply/deposit',
+  CLASS_APPLY_COMPLETE: '/class/apply/complete',
 };
 
 const myPagePages = {
@@ -33,7 +37,7 @@ const hostPages = {
 };
 
 const devPages = {
-      DEV_COMPONENTS: '/dev/components',
+  DEV_COMPONENTS: '/dev/components',
   DEV_CARD: '/dev/card',
 };
 

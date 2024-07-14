@@ -14,7 +14,7 @@ interface ApplicantData {
 
 // 신청자와 질문/답변을 매핑하는 함수
 export const mergeApplicantData = (
-  applicants: typeof APPLICANT_DATA,
+  applicants: typeof APPLICANT_DATA.data.submitterList,
   answers: typeof APPLICANT_ANSWER_LIST
 ): ApplicantData[] => {
   return applicants.map((applicant) => {

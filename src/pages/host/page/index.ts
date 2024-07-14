@@ -1,5 +1,5 @@
-import HostApply from './HostApply/HostApply';
 import HostMyClass from './HostMyClass/HostMyClass';
 import MyClassManage from './MyClassManage/MyClassManage';
+import HostApplyPage from './HostApplyPage/HostApplyPage';
 
-export { HostApply, HostMyClass, MyClassManage };
+export { HostMyClass, MyClassManage, HostApplyPage };
