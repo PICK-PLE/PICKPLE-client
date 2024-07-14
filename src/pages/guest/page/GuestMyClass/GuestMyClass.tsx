@@ -13,9 +13,17 @@ import {
 import { useState } from 'react';
 import { GUEST_MY_CLASS_DATA } from 'src/constants/mocks/guestMyClassCardData';
 import { GuestMyClassEmptyView, MoimCard } from '@pages/guest/components';
+import { useFetchGuestParticipate } from '@apis/domains/moim/useFetchGuestParticipate';
+import { useAtom } from 'jotai';
+import { userAtom } from '@stores';
 
 const GuestMyClass = () => {
   const [activeTab, setActiveTab] = useState<'신청한' | '참가한'>('신청한');
+  // const [user] = useAtom(userAtom);
+  // console.log({ user });
+  // const { data } = useFetchGuestParticipate();
+
+  // console.log({ data });
 
   return (
     <div css={GuestMyClassBackground}>
