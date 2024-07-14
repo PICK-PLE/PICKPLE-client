@@ -1,6 +1,6 @@
 import { LogoHeader, NavigateBox, SimpleUserProfile } from '@components';
 import {
-  GuestMyPageLayout,
+  guestMyPageLayout,
   navigateBoxWrapper,
   simpleUserProfileWrapper,
   userDistinguishWrapper,
@@ -16,7 +16,7 @@ const GuestMyPage = () => {
   return (
     <>
       <LogoHeader isIcon={false} />
-      <div css={GuestMyPageLayout}>
+      <div css={guestMyPageLayout}>
         <div css={userDistinguishWrapper}>
           <p css={userSelectedTextStyle} onClick={goGuestMyPage}>
             게스트

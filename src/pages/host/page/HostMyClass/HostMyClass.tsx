@@ -28,17 +28,17 @@ const HostMyClass = () => {
             완료
           </div>
         </div>
-      </article>
 
-      {hostMyClassCardData.length === 0 ? (
-        <HostMyClassEmptyView text="아직 진행 중인 모임이 없어요" />
-      ) : (
-        <div css={hostMyClassCardContainer}>
-          {hostMyClassCardData.map((data) => (
-            <HostMyClassCard key={data.moimId} hostMyClassData={data} />
-          ))}
-        </div>
-      )}
+        {hostMyClassCardData.length === 0 ? (
+          <HostMyClassEmptyView text="아직 진행 중인 모임이 없어요" />
+        ) : (
+          <div css={hostMyClassCardContainer}>
+            {hostMyClassCardData.map((data) => (
+              <HostMyClassCard key={data.moimId} hostMyClassData={data} />
+            ))}
+          </div>
+        )}
+      </article>
     </div>
   );
 };

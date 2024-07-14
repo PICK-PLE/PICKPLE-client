@@ -1,6 +1,10 @@
 import { css, Theme } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
+export const classApplyDepositLayout = css`
+  padding-top: 6rem;
+`;
+
 export const depositArticleLayout = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   gap: 5.4rem;
@@ -32,9 +36,9 @@ export const depositFooterStyle = css`
 `;
 
 export const depositCautionTextStyle = (theme: Theme) => css`
-background-color: transparent;
-color: ${theme.color.midgray1};
-border: none;
-border-bottom: 1px solid ${theme.color.midgray1};
-${theme.font['subhead03-m-16']}
-`
+  background-color: transparent;
+  color: ${theme.color.midgray1};
+  border: none;
+  border-bottom: 1px solid ${theme.color.midgray1};
+  ${theme.font['subhead03-m-16']}
+`;

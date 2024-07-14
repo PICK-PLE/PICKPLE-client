@@ -9,7 +9,7 @@ export const backdropStyle = css`
   width: 100%;
   height: 100%;
 
-  z-index: 2;
+  z-index: 3;
 
   background: rgba(0, 0, 0, 0.54);
 `;
@@ -19,7 +19,7 @@ export const modalContentStyle = (theme: Theme) => css`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 5;
+  z-index: 4;
   ${flexGenerator()}
 
   border-radius: 10px;

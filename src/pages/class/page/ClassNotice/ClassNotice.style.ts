@@ -3,7 +3,7 @@ import { flexGenerator } from '@styles/generator';
 
 export const noticePostBackground = (theme: Theme) => css`
   background-color: ${theme.color.background};
-
+  padding-top: 6.3rem;
   min-height: 100dvh;
 `;
 

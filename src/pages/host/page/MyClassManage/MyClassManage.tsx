@@ -1,6 +1,6 @@
 import { ApplicantAccordionList, Button, Header, Label, Modal, Toast } from '@components';
 import {
-  articleLayout,
+  myClassManageLayout,
   headerStyle,
   labelStyle,
   mainStyle,
@@ -73,7 +73,7 @@ const MyClassManage = () => {
   return (
     <div>
       <Header title="신청자 관리" />
-      <article css={articleLayout}>
+      <article css={myClassManageLayout}>
         <header css={headerStyle}>
           <div>부산 10년 토박이 달아오르구마와 함께하는 사투리리</div>
         </header>

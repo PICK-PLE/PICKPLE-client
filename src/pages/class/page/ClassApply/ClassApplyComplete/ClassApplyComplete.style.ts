@@ -1,6 +1,10 @@
 import { css, Theme } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
+export const classApplyCompleteLayout = css`
+  padding-top: 6rem;
+`;
+
 export const completeArticleLayout = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   gap: 8rem;
@@ -39,13 +43,13 @@ export const completeCautionStyle = (theme: Theme) => css`
 `;
 
 export const completeCautionTitleStyle = (theme: Theme) => css`
-${theme.font['subhead05-sb-14']}
-color: ${theme.color.midgray2};
+  ${theme.font['subhead05-sb-14']}
+  color: ${theme.color.midgray2};
 `;
 
 export const completeTextStyle = (theme: Theme) => css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
-${theme.font['body02-r-14']}
+  ${theme.font['body02-r-14']}
 color: ${theme.color.midgray1};
 `;
 

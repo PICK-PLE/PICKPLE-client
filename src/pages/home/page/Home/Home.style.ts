@@ -1,6 +1,10 @@
 import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
+export const homeLayout = () => css`
+  padding-top: 6rem;
+`;
+
 export const homeBannerStyle = css`
   width: 100%;
   height: 28rem;
