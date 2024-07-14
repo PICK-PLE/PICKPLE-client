@@ -11,6 +11,9 @@ import {
 } from './Home.style';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
 import Footer from 'src/components/common/Footer/Footer';
+import { useAtom } from 'jotai';
+import { useFetchMoimCategories } from '@apis/domains/moim/useFetchMoimCategories';
+import { userAtom } from '@stores';
 
 const Home = () => {
   // CATEGORY_ICON 객체의 키와 값을 배열로 변환
@@ -18,10 +21,10 @@ const Home = () => {
     icon: icon.fill_selected,
     name: CATEGORY_NAME[key as keyof typeof CATEGORY_NAME],
   }));
-  // const [user] = useAtom(userAtom);
-  // const { data } = useFetchMoimCategories();
-  // console.log('user', user);
-  // console.log('moim data', data);
+  const [user] = useAtom(userAtom);
+  const { data } = useFetchMoimCategories();
+  console.log('user', user);
+  console.log('moim data', data);
 
   return (
     <>
