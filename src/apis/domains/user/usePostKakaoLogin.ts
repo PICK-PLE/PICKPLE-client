@@ -1,9 +1,13 @@
 import { post } from '@apis/api';
+import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { useEasyNavigate } from '@hooks';
-import { useMutation } from '@tanstack/react-query';
+import { userAtom } from '@stores';
+import { QueryClient, useMutation } from '@tanstack/react-query';
+import { UserType } from '@types';
+import { useAtom } from 'jotai';
 
 const postKakaoLogin = async (authCode: string) => {
-  const response = await post(`/user/login?authorizationCode=${authCode}`, {
+  const response = await post<UserType>(`/user/login?authorizationCode=${authCode}`, {
     socialType: 'KAKAO',
   });
 
@@ -11,14 +15,18 @@ const postKakaoLogin = async (authCode: string) => {
 };
 
 export const usePostKakaoLogin = () => {
+  const [user, setUser] = useAtom(userAtom);
   const { goHome } = useEasyNavigate();
-  // const queryClient = new QueryClient();
+  const queryClient = new QueryClient();
   return useMutation({
     mutationFn: (authCode: string) => postKakaoLogin(authCode),
     onSuccess: (data) => {
-      const { token } = data.data.data;
+      const { data: userData } = data.data;
+      const { guestNickname, guestId, hostNickname, hostId, token } = userData;
+      console.log('userData', userData);
+      setUser({ ...user, guestNickname, guestId, hostNickname, hostId });
 
-      // queryClient.invalidateQueries({ queryKey: [QUERY_KEY.KAKAO_LOGIN] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.KAKAO_LOGIN] });
       localStorage.setItem('accessToken', token.accessToken);
       goHome();
     },
