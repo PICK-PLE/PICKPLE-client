@@ -9,7 +9,7 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepThree.style';
-import { IcHostApplyFinish } from '@svg';
+import { graphicImage } from '@constants';
 
 const StepThree = () => {
   return (
@@ -26,9 +26,7 @@ const StepThree = () => {
           </span>
         </header>
         <main css={mainStyle}>
-          <span css={iconStyle}>
-            <IcHostApplyFinish />
-          </span>
+          <img src={graphicImage.HostApplyFinishImage} alt="호스트 승인 완료" css={iconStyle} />
         </main>
         <footer css={footerStyle}>
           <Button variant="large" onClick={() => {}}>

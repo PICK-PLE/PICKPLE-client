@@ -32,6 +32,7 @@ import TimeSelect from 'src/components/common/TimeSelect/TimeSelect';
 import ImageSelect from 'src/components/common/ImageSelect/ImageSelect';
 import SimpleUserProfile from 'src/components/common/SimpleUserProfile/SimpleUserProfile';
 import IconText from './IconText/IconText';
+import CategorySelectBox from './CategorySelectBox/CategorySelectBox';
 
 export {
   IconButton,
@@ -68,4 +69,5 @@ export {
   ImageSelect,
   SimpleUserProfile,
   IconText,
+  CategorySelectBox,
 };
