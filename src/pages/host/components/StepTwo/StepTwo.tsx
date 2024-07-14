@@ -14,14 +14,17 @@ import {
 import CategorySelectBox from 'src/components/common/CategorySelectBox/CategorySelectBox';
 import { useHostApplyInputChange } from 'src/hooks/useHostApplyInputChange';
 import { useState } from 'react';
+import { usePostHostApply } from '@apis/domains/host';
 
 const StepTwo = ({ onNext }: StepProps) => {
   const { hostApplyState, handleInputChange, handleCategoryChange } = useHostApplyInputChange();
   const [selectedCategories, setSelectedCategories] = useState(hostApplyState.categoryList);
+  const {mutate} = usePostHostApply();
 
   const handleNextClick = () => {
     // handleCategoryChange(selectedCategories);
     console.log(hostApplyState);
+    mutate(hostApplyState)
     onNext();
   };
 

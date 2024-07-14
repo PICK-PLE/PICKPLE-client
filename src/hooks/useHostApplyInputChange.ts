@@ -16,17 +16,6 @@ export const useHostApplyInputChange = () => {
       [key]: value,
     }));
   };
-
-  //   const handleCategoryChange = (categories: {
-  //     category1: string;
-  //     category2: string;
-  //     category3: string;
-  //   }) => {
-  //     setHostApplyState((prevState) => ({
-  //       ...prevState,
-  //       categoryList: categories,
-  //     }));
-  //   };
   const handleCategoryChange = (newCategories: {
     category1: string;
     category2: string;

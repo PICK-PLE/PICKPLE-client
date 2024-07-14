@@ -3,4 +3,5 @@ export const QUERY_KEY = {
   TEST: 'test',
   KAKAO_LOGIN: 'kakaoLogin',
   MOIM_CATEGORIES: 'moimCategories',
+  HOST_APPLY: 'hostApply',
 } as const;

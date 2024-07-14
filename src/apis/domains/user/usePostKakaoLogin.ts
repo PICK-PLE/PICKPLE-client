@@ -3,10 +3,11 @@ import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { useEasyNavigate } from '@hooks';
 import { userAtom } from '@stores';
 import { QueryClient, useMutation } from '@tanstack/react-query';
+import { UserResponse } from '@types';
 import { useAtom } from 'jotai';
 
 const postKakaoLogin = async (authCode: string) => {
-  const response = await post(`/user/login?authorizationCode=${authCode}`, {
+  const response = await post<UserResponse>(`/user/login?authorizationCode=${authCode}`, {
     socialType: 'KAKAO',
   });
 
