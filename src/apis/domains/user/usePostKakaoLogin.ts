@@ -4,12 +4,16 @@ import { useEasyNavigate } from '@hooks';
 import { userAtom } from '@stores';
 import { QueryClient, useMutation } from '@tanstack/react-query';
 import { UserType } from '@types';
+import { AxiosResponse } from 'axios';
 import { useAtom } from 'jotai';
 
 const postKakaoLogin = async (authCode: string) => {
-  const response = await post<UserType>(`/user/login?authorizationCode=${authCode}`, {
-    socialType: 'KAKAO',
-  });
+  const response: AxiosResponse = await post<UserType>(
+    `/user/login?authorizationCode=${authCode}`,
+    {
+      socialType: 'KAKAO',
+    }
+  );
 
   return response;
 };
