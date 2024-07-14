@@ -1,5 +1,5 @@
 import { Image, Label } from '@components';
-import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
+import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
 import { HOST_INFO_DATA } from 'src/constants/mocks/hostInfoCardData';
 
 import {

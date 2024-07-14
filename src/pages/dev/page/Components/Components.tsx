@@ -25,7 +25,7 @@ import {
   TextArea,
   Image,
   LogoHeader,
-  ApplicantAccordionList,
+  // ApplicantAccordionList,
   TimeSelect,
   ImageSelect,
   CountPeople,
@@ -80,6 +80,7 @@ import { ApplicantListModal } from '@pages/host/components/index';
 import { DepositModal } from '@pages/guest/components/index';
 
 import { APPLICANT_LIST_DATA } from 'src/constants/mocks/applicantListData';
+import CategorySelectBox from '@pages/host/components/CategorySelectBox/CategorySelectBox';
 
 const applicantListData = APPLICANT_LIST_DATA;
 
@@ -547,7 +548,7 @@ const Components = () => {
 
         <section css={secttionContainer}>
           <h2 css={titleStyle}>ApplicantAccordion</h2>
-          <ApplicantAccordionList moimId={1} />
+          {/* <ApplicantAccordionList moimId={1} /> */}
         </section>
 
         <section css={secttionContainer}>
@@ -587,6 +588,9 @@ const Components = () => {
               <DepositModal onClose={handleModalClose} />
             </Modal>
           )}
+        </section>
+        <section style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+          <CategorySelectBox />
         </section>
       </div>
     </div>

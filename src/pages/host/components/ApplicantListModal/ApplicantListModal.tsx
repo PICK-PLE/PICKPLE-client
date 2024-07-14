@@ -17,10 +17,14 @@ import { ApplicantListResponseType } from '@types';
 
 interface ApplicantListModalProps {
   applicantListData: ApplicantListResponseType;
+  onClose: () => void;
 }
 
-const ApplicantListModal = ({ applicantListData }: ApplicantListModalProps) => {
+const ApplicantListModal = ({ applicantListData, onClose }: ApplicantListModalProps) => {
   const { maxGuest, submitterList } = applicantListData;
+
+  // TODO: 삭제 예정 never used error fix
+  console.log(maxGuest);
   return (
     <article css={modalContainerStyle}>
       <section css={sectionStyle}>
@@ -31,21 +35,23 @@ const ApplicantListModal = ({ applicantListData }: ApplicantListModalProps) => {
           <div css={textDivStyle}>
             <h1 css={modalCommentTitleStyle}>승인할 신청자 목록을 확인해주세요!</h1>
             <h1 css={countTextStyle}>
-              총 <span css={applicantCountStyle}>{maxGuest}</span>명
+              총 <span css={applicantCountStyle}>{submitterList.length}</span>명
             </h1>
           </div>
         </header>
         <main css={mainStyle}>
           <ul css={ulStyle}>
             {submitterList.map((submitter) => (
-              <li key={submitter.submitterId} css={liStyle}>
+              <li key={submitter.applicantId} css={liStyle}>
                 <SimpleUserProfile size="large" username={submitter.nickname} />
               </li>
             ))}
           </ul>
         </main>
       </section>
-      <Button variant="medium">확인</Button>
+      <Button variant="medium" onClick={onClose}>
+        확인
+      </Button>
     </article>
   );
 };
