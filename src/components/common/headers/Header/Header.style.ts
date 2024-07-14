@@ -1,16 +1,17 @@
 import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
-export const headerContainer = css`
+export const headerContainer = (theme: Theme) => css`
   position: fixed;
   top: 0;
   z-index: 5;
-
   ${flexGenerator('row', 'space-between', 'center')};
   width: 100%;
   max-width: 43rem;
   padding: 1.95rem 1rem;
   gap: 1rem;
+
+  background-color: ${theme.color.white};
 `;
 
 export const headerTitle = (theme: Theme) => css`

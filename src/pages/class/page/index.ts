@@ -1,6 +1,5 @@
 import Class from './Class/Class';
 import ClassApply from './ClassApply/ClassApply';
 import ClassNotice from './ClassNotice/ClassNotice';
-import ClassPost from './ClassPost/ClassPost';
-
-export { Class, ClassApply, ClassNotice, ClassPost };
+import ClassPostPage from './ClassPostPage/ClassPostPage';
+export { Class, ClassApply, ClassNotice, ClassPostPage };
