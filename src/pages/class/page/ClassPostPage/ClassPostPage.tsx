@@ -1,6 +1,7 @@
 import { LogoHeader } from '@components';
 import ClassPost from '@pages/class/components/ClassPost/ClassPost';
 import { useFunnel } from 'src/hooks/useFunnel';
+import { classPostPageLayout } from './ClassPostPage.style';
 
 const steps = ['step1', 'step2', 'step3', 'step4'];
 
@@ -12,7 +13,9 @@ const ClassPostPage = () => {
   return (
     <>
       <LogoHeader />
-      <ClassPost steps={steps} nextClickHandler={nextClickHandler} Funnel={Funnel} Step={Step} />
+      <div css={classPostPageLayout}>
+        <ClassPost steps={steps} nextClickHandler={nextClickHandler} Funnel={Funnel} Step={Step} />
+      </div>
     </>
   );
 };

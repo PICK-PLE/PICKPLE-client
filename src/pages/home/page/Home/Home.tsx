@@ -7,6 +7,7 @@ import {
   iconStyle,
   iconNameStyle,
   homeStyle,
+  homeLayout,
 } from './Home.style';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
 import Footer from 'src/components/common/Footer/Footer';
@@ -25,23 +26,25 @@ const Home = () => {
 
   return (
     <>
-      <LogoHeader handleIconClick={() => {}} />
-      <div css={homeStyle}>
-        <div css={homeBannerStyle}></div>
-        <div css={categoryContainer}>
-          <p css={titleStyle}>이런 클래스 모임 어때요?</p>
+      <LogoHeader isIcon />
+      <main css={homeLayout}>
+        <div css={homeStyle}>
+          <div css={homeBannerStyle}></div>
+          <div css={categoryContainer}>
+            <p css={titleStyle}>이런 클래스 모임 어때요?</p>
 
-          <div css={categoryStyle}>
-            {categories.map((category, index) => (
-              <div key={index} css={iconStyle}>
-                <img src={category.icon} alt={`icon-${index}`} />
-                <p css={iconNameStyle}>{category.name}</p>
-              </div>
-            ))}
+            <div css={categoryStyle}>
+              {categories.map((category, index) => (
+                <div key={index} css={iconStyle}>
+                  <img src={category.icon} alt={`icon-${index}`} />
+                  <p css={iconNameStyle}>{category.name}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-        <Footer />
-      </div>
+      </main>
+      <Footer />
     </>
   );
 };

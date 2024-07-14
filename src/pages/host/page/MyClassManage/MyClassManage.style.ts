@@ -1,9 +1,10 @@
 import { css, Theme } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
-export const articleLayout = (theme: Theme) => css`
+export const myClassManageLayout = (theme: Theme) => css`
   padding: 3.2rem 2rem 3rem 2rem;
   ${flexGenerator('column', 'flex-start', 'flex-start')};
+  padding-top: 6rem;
   gap: 2.4rem;
   width: 100%;
   border-top: 1px solid ${theme.color.lightgray1};
@@ -13,6 +14,7 @@ export const articleLayout = (theme: Theme) => css`
 export const headerStyle = (theme: Theme) => css`
   ${theme.font['head02-b-20']}
   width: 26.2rem;
+  padding-top: 3.2rem;
 `;
 
 export const mainStyle = css`
@@ -44,7 +46,6 @@ export const countTextStyle = (theme: Theme) => css`
   ${theme.font['subhead02-sb-16']};
   color: ${theme.color.black};
 `;
-
 
 export const footerStyle = css`
   width: 100%;

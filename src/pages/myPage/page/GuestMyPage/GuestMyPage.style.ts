@@ -1,8 +1,9 @@
 import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
-export const GuestMyPageLayout = css`
+export const guestMyPageLayout = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')};
+  padding-top: 6rem;
   gap: 2.8rem;
 `;
 
@@ -27,7 +28,6 @@ export const userUnselectedTextStyle = (theme: Theme) => css`
 `;
 
 export const simpleUserProfileWrapper = css`
-  margin-top: 3rem;
   padding-left: 2rem;
 `;
 

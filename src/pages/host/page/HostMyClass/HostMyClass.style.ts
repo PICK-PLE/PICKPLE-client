@@ -2,6 +2,10 @@ import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const hostMyClassLayout = css`
+  padding-top: 6rem;
+`;
+
+export const hostMyClassContainer = css`
   ${flexGenerator('column', 'center', 'stretch')};
   height: 4.4rem;
 `;
@@ -53,10 +57,10 @@ export const hostMyClassCardContainer = css`
   gap: 1rem;
 `;
 
-export const hostMyClassContainer = css`
-  ${flexGenerator('column')};
-  gap: 3rem;
-`;
+// export const hostMyClassContainer = css`
+//   ${flexGenerator('column')};
+//   gap: 3rem;
+// `;
 
 export const hostMyClassBackground = (theme: Theme) => css`
   background-color: ${theme.color.background};
