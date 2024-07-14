@@ -2,6 +2,10 @@ import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const guestMyClassLayout = css`
+  padding-top: 6rem;
+`;
+
+export const guestMyClassContainer = css`
   height: 4.4rem;
   align-self: stretch;
 `;

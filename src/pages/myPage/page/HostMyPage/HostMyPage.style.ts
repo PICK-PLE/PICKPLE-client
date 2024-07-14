@@ -1,6 +1,10 @@
 import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
+export const hostMyPageLayout = css`
+  padding-top: 6rem;
+`;
+
 export const userDistinguishWrapper = css`
   ${flexGenerator('row', 'flex-start', 'flex-start')};
   padding-left: 2rem;

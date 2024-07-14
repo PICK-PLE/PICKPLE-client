@@ -4,7 +4,7 @@ import { flexGenerator } from '@styles/generator';
 export const headerContainer = (theme: Theme) => css`
   position: fixed;
   top: 0;
-  z-index: 5;
+  z-index: 2;
   ${flexGenerator('row', 'space-between', 'center')};
   width: 100%;
   max-width: 43rem;

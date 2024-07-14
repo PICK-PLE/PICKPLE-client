@@ -6,4 +6,8 @@ export const userAtom = atom<UserType>({
   guestId: 0,
   hostNickname: '',
   hostId: 0,
+  token: {
+    accessToken: '',
+    refreshToken: '',
+  },
 });
