@@ -1,10 +1,9 @@
-import { atom } from 'jotai';
 import { UserType } from '@types';
+import { atomWithStorage } from 'jotai/utils';
 
-export const userAtom = atom<UserType>({
+export const userAtom = atomWithStorage<UserType>('user', {
   guestNickname: '',
   guestId: 0,
   hostNickname: '',
   hostId: 0,
-  token: { accessToken: '', refreshToken: '' },
 });

@@ -9,5 +9,4 @@ export interface UserType {
   guestId: number;
   hostNickname: string;
   hostId: number;
-  token: Token;
 }

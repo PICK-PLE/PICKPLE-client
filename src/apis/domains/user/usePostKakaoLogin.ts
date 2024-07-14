@@ -23,7 +23,7 @@ export const usePostKakaoLogin = () => {
     onSuccess: (data) => {
       const { data: userData } = data.data;
       const { guestNickname, guestId, hostNickname, hostId, token } = userData;
-      console.log('userData', userData);
+
       setUser({ ...user, guestNickname, guestId, hostNickname, hostId });
 
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.KAKAO_LOGIN] });
