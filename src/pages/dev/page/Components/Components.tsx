@@ -33,6 +33,7 @@ import {
   SimpleUserProfile,
   Toast,
   Modal,
+  CategorySelectBox,
 } from '@components';
 
 import {
@@ -80,7 +81,6 @@ import { ApplicantListModal } from '@pages/host/components/index';
 import { DepositModal } from '@pages/guest/components/index';
 
 import { APPLICANT_LIST_DATA } from 'src/constants/mocks/applicantListData';
-import CategorySelectBox from '@pages/host/components/CategorySelectBox/CategorySelectBox';
 
 const applicantListData = APPLICANT_LIST_DATA;
 
@@ -576,7 +576,10 @@ const Components = () => {
           <button onClick={handleModalOpen}>모달 열기</button>
           {isOpen && (
             <Modal onClose={handleModalClose}>
-              <ApplicantListModal applicantListData={applicantListData} />
+              <ApplicantListModal
+                applicantListData={applicantListData}
+                onClose={handleModalClose}
+              />
             </Modal>
           )}
         </section>
@@ -589,7 +592,7 @@ const Components = () => {
             </Modal>
           )}
         </section>
-        <section style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+        <section style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           <CategorySelectBox />
         </section>
       </div>

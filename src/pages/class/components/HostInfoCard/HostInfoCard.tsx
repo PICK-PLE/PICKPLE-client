@@ -1,5 +1,5 @@
 import { Image, Label } from '@components';
-import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
+import { CATEGORY_NAME, CATEGORY_SMALL_ICON } from '@constants';
 import { HOST_INFO_DATA } from 'src/constants/mocks/hostInfoCardData';
 
 import {
@@ -42,7 +42,7 @@ const HostInfoCard = () => {
           {categoryKeys.map((key) => {
             const category = hostCategories[key];
             return category ? (
-              <Label key={key} variant="category" icon={CATEGORY_ICON[category].small}>
+              <Label key={key} variant="category" icon={CATEGORY_SMALL_ICON[category]}>
                 {CATEGORY_NAME[category]}
               </Label>
             ) : null;
