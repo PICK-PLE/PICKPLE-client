@@ -1,3 +1,5 @@
 import useEasyNavigate from './useEasyNavigate';
+import useToast from './useToast';
+import useWindowSize from './useWindowSize';
 
-export { useEasyNavigate };
+export { useEasyNavigate, useToast, useWindowSize };

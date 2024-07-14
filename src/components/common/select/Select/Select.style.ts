@@ -33,6 +33,8 @@ export const sortList = (theme: Theme) => css`
   background: ${theme.color.white};
 
   box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.15);
+
+  z-index: 3;
 `;
 
 export const sortItem = (theme: Theme) => css`

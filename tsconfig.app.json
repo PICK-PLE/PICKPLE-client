@@ -28,14 +28,16 @@
     "paths": {
       "@apis/*": ["src/apis/*"],
       "@svg": ["src/assets/svg"],
+      "@image": ["src/assets/image"],
       "@components": ["src/components/common"],
       "@constants": ["src/constants"],
       "@hooks": ["src/hooks"],
       "@pages/*": ["src/pages/*"],
       "@routes": ["src/routes"],
+      "@stores": ["src/stores"],
       "@styles/*": ["src/styles/*"],
       "@types": ["src/types"],
-      "@utils/*": ["src/utils/*"]
+      "@utils": ["src/utils"]
     }
   },
   "include": ["src", "custom.d.ts", "src/constants/mocks/HostMyClassCardData.ts"]

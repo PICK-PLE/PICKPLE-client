@@ -14,3 +14,4 @@ export const textStyle = (theme: Theme) => css`
   color: ${theme.color.blackgray};
   ${theme.font['head04-b-16']}
 `;
+

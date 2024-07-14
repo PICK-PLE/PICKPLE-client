@@ -11,7 +11,7 @@ import {
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  isValid: boolean;
+  isValid?: boolean;
   inputLabel?: string;
   errorMessage?: string;
   isCountValue: boolean;
@@ -58,7 +58,7 @@ const Input = ({
 
   return (
     <div css={inputContainerStyle}>
-      <span css={inputLabelStyle}>{inputLabel}</span>
+      {inputLabel && <span css={inputLabelStyle}>{inputLabel}</span>}
       <div css={inputWrapperStyle}>
         <input
           css={[inputStyle(maxLengthError)]}
@@ -76,7 +76,6 @@ const Input = ({
           ''
         )}
       </div>
-
       {isFocused && displayErrorMessage && (
         <span css={errorMessageStyle}>{displayErrorMessage}</span>
       )}
