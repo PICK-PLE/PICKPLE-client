@@ -12,7 +12,7 @@ import {
   linkWrapper,
 } from './HostInfoCardWithLink.style';
 import { Button, Image, InterestCategoryButton } from '@components';
-import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
+import { CATEGORY_NAME, CATEGORY_SMALL_ICON } from 'src/constants/category';
 import HostMyPageEmptyView from '../HostMyPageEmptyView/HostMyPageEmptyView';
 
 const HostInfoCardWithLink = () => {
@@ -44,7 +44,7 @@ const HostInfoCardWithLink = () => {
                     category && (
                       <InterestCategoryButton
                         key={key}
-                        icon={CATEGORY_ICON[category].small}
+                        icon={CATEGORY_SMALL_ICON[category]}
                         onClick={() => {}}>
                         {CATEGORY_NAME[category]}
                       </InterestCategoryButton>

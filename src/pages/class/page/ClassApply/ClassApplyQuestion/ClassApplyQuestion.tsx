@@ -15,12 +15,13 @@ import {
 import { IcCaution } from '@svg';
 import { useState } from 'react';
 import { classApplyQuestionData } from 'src/constants/mocks/classApplyQuestionData';
-import { useEasyNavigate } from '@hooks';
+import { useNavigate } from 'react-router-dom';
 
 const ClassApplyQuestion = () => {
   // 객체를 배열로 변환
   const questionData = Object.values(classApplyQuestionData.data);
   const [value, setValue] = useState('');
+  const navigate = useNavigate();
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
   };
@@ -29,7 +30,9 @@ const ClassApplyQuestion = () => {
     setValue(e.target.value);
   };
 
-  const { goClassApplyDeposit } = useEasyNavigate();
+  const handleButtonClick = () => {
+    navigate('/class/apply/deposit');
+  };
 
   return (
     <>
@@ -102,7 +105,9 @@ const ClassApplyQuestion = () => {
         </div>
 
         <footer css={questionFooterStyle}>
-          <Button variant="large" onClick={goClassApplyDeposit}>신청하기</Button>
+          <Button variant="large" onClick={handleButtonClick}>
+            신청하기
+          </Button>
         </footer>
       </article>
     </>

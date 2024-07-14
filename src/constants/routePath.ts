@@ -15,7 +15,6 @@ const classPages = {
   CLASS: '/class',
   CLASS_NOTICE_POST: '/class/notice/post',
   CLASS_POST: '/class/post',
-  CLASS_APPLY: '/class/apply',
   CLASS_APPLY_RULE: '/class/apply/rule',
   CLASS_APPLY_QUESTION: '/class/apply/question',
   CLASS_APPLY_DEPOSIT: '/class/apply/deposit',

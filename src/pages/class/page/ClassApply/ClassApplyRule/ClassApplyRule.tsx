@@ -7,10 +7,14 @@ import {
   ruleHStyle,
   ruleFooterStyle,
 } from '@pages/class/page/ClassApply/ClassApplyRule/ClassApplyRule.style';
-import { useEasyNavigate } from '@hooks';
+import { useNavigate } from 'react-router-dom';
 
 const ClassApplyRule = () => {
-  const { goClassApplyQuestion } = useEasyNavigate();
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/class/apply/question');
+  };
 
   return (
     <>
@@ -41,7 +45,7 @@ const ClassApplyRule = () => {
         </div>
 
         <footer css={ruleFooterStyle}>
-          <Button variant="large" onClick={goClassApplyQuestion}>
+          <Button variant="large" onClick={handleButtonClick}>
             다음
           </Button>
         </footer>

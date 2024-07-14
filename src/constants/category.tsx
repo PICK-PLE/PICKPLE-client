@@ -1,4 +1,17 @@
 import {
+  IcEmploymentSmall,
+  IcHealthSmall,
+  IcHobbySmall,
+  IcInvestmentSmall,
+  IcLanguageSmall,
+  IcLifestyleSmall,
+  IcMindSmall,
+  IcNjobSmall,
+  IcProductivitySmall,
+  IcStartupSmall,
+} from '@svg';
+import { ReactNode } from 'react';
+import {
   EmploymentFillImage,
   EmploymentFillSelectedImage,
   EmploymentStrokeImage,
@@ -52,6 +65,10 @@ interface CategoryIcon {
 
 interface CategoryName {
   [key: string]: string;
+}
+
+interface CategorySmallIconType {
+  [key: string]: ReactNode;
 }
 
 export const CATEGORY_ICON: CategoryIcon = {
@@ -115,6 +132,19 @@ export const CATEGORY_ICON: CategoryIcon = {
     stroke_selected: LanguageStrokeSelectedImage,
     stroke: LanguageStrokeImage,
   },
+};
+
+export const CATEGORY_SMALL_ICON: CategorySmallIconType = {
+  njob: <IcNjobSmall />,
+  investment: <IcInvestmentSmall />,
+  startup: <IcStartupSmall />,
+  employment: <IcEmploymentSmall />,
+  productivity: <IcProductivitySmall />,
+  lifestyle: <IcLifestyleSmall />,
+  health: <IcHealthSmall />,
+  mind: <IcMindSmall />,
+  hobby: <IcHobbySmall />,
+  language: <IcLanguageSmall />,
 };
 
 export const CATEGORY_NAME: CategoryName = {
