@@ -14,15 +14,26 @@ import {
   questionWrapperStyle,
 } from '@pages/class/page/ClassApply/ClassApplyQuestion/ClassApplyQuestion.style';
 import { IcCaution } from '@svg';
-import { useState } from 'react';
-import { classApplyQuestionData } from 'src/constants/mocks/classApplyQuestionData';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useFetchQuestionList } from '@apis/domains/moim/useFetchQuestionList';
 
 const ClassApplyQuestion = () => {
-  // 객체를 배열로 변환
-  const questionData = Object.values(classApplyQuestionData.data);
   const [value, setValue] = useState('');
   const navigate = useNavigate();
+
+  const [questionList, setQuestionList] = useState([]);
+
+  const { data } = useFetchQuestionList(1);
+
+  useEffect(() => {
+    if (data) {
+      setQuestionList(Object.values(data.data));
+    }
+  }, [data]);
+  // console.log(data);
+
+  // console.log('questionData', questionData);
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
   };
@@ -51,9 +62,11 @@ const ClassApplyQuestion = () => {
             </header>
 
             <main css={questionMainStyle}>
-              {questionData.map((question, index) => (
+              {questionList.map((question, index) => (
                 <div css={questionDataStyle}>
-                  <QuestionText numberLabel={`Q${index + 1}`}>{question}</QuestionText>
+                  <QuestionText numberLabel={`Q${index + 1}`} key={index}>
+                    {question}
+                  </QuestionText>
                   <TextArea
                     value={value}
                     onChange={handleTextAreaChange}
@@ -74,7 +87,7 @@ const ClassApplyQuestion = () => {
               </div>
 
               <div css={questionDataStyle}>
-                <QuestionText numberLabel={`Q${questionData.length + 1}`}>
+                <QuestionText numberLabel={`Q${questionList.length + 1}`}>
                   승인 거절 시 환불 받을 계좌를 알려주세요
                 </QuestionText>
                 <Input
