@@ -6,7 +6,7 @@ const steps = ['step1', 'step2', 'step3'];
 
 const HostApplyPage = () => {
   const { Funnel, Step, setStep } = useFunnel(steps[0]);
-  const nextClickHandler = (nextStep) => {
+  const nextClickHandler = (nextStep: string) => {
     setStep(nextStep);
   };
   return (
