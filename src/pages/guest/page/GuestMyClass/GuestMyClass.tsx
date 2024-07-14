@@ -1,3 +1,5 @@
+/**@정안TODO 서버에 더미데어터 없어서 404뜸 */
+
 import { FilterSelect, Header } from '@components';
 import {
   guestMyClassLayout,
@@ -19,11 +21,10 @@ import { userAtom } from '@stores';
 
 const GuestMyClass = () => {
   const [activeTab, setActiveTab] = useState<'신청한' | '참가한'>('신청한');
-  // const [user] = useAtom(userAtom);
-  // console.log({ user });
-  // const { data } = useFetchGuestParticipate();
+  const [user] = useAtom(userAtom);
+  const { data } = useFetchGuestParticipate(user.guestId);
 
-  // console.log({ data });
+  console.log('gusetMyClassData', data);
 
   return (
     <div css={GuestMyClassBackground}>
