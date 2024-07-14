@@ -1,3 +1,4 @@
 import useEasyNavigate from './useEasyNavigate';
+import useWindowSize from './useWindowSize';
 
-export { useEasyNavigate };
+export { useEasyNavigate, useWindowSize };

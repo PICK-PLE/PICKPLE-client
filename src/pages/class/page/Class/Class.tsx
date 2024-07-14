@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ClassEmptyReview, ClassInfo, ClassNotice, HostInfoCard } from '@pages/class/components';
 import { Button, Carousel, IconText, Label, LogoHeader, ShareButton } from '@components';
 import {
@@ -19,22 +19,12 @@ import { IcClassPerson, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
 import { NoticeCardData } from 'src/constants/mocks/NoticeCardData';
 import { classInfoData } from 'src/constants/mocks/classInfoData';
 import { classDetailData } from 'src/constants/mocks/classDetailData';
+import { useWindowSize } from '@hooks';
 
 const Class = () => {
+  const { windowWidth } = useWindowSize();
+
   const [selectTab, setSelectTab] = useState<'모임소개' | '공지사항' | '리뷰'>('모임소개');
-
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
 
   const { dayOfDay, title, dateList, isOffline, spot, maxGuest, fee, imageList, hostId } =
     classDetailData;
