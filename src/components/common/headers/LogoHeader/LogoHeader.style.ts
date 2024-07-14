@@ -2,8 +2,14 @@ import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const logoHeaderWrapper = (theme: Theme) => css`
+  position: fixed;
+  top: 0;
+  z-index: 5;
+
   ${flexGenerator('row', 'space-between', 'center')};
   width: 100%;
+  max-width: 43rem;
+
   height: 6rem;
   padding: 1.6rem 2rem;
 
