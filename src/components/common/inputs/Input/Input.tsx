@@ -11,7 +11,7 @@ import {
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  isValid: boolean;
+  isValid?: boolean;
   inputLabel?: string;
   errorMessage?: string;
   isCountValue: boolean;

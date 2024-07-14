@@ -5,6 +5,7 @@ export { default as IcApplicantArrcodionUp } from './IcApplicantArrcodionUp';
 export { default as IcBtnMinus } from './IcBtnMinus';
 export { default as IcBtnPlus } from './IcBtnPlus';
 export { default as IcCameraAdd } from './IcCameraAdd';
+export { default as IcCaution } from './IcCaution';
 export { default as IcCheckActive } from './IcCheckActive';
 export { default as IcCheckDefault } from './IcCheckDefault';
 export { default as IcCheckModal } from './IcCheckModal';
