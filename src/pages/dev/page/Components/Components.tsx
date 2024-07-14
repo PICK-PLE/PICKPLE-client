@@ -494,15 +494,7 @@ const Components = () => {
 
           <h3 css={subTitleStyle}>FilterSelect</h3>
           <FilterSelect
-            options={[
-              'ZOOM',
-              'Google Meets',
-              'Webex',
-              'Microsoft Teams',
-              'Skype',
-              'Naver Works',
-              'Zep',
-            ]}
+            options={['전체', '입금 대기', '승인 대기', '승인 완료', '승인 거절', '환불 완료']}
           />
         </section>
 
