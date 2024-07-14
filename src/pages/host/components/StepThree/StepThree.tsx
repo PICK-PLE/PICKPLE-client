@@ -12,6 +12,11 @@ import {
 import { graphicImage } from '@constants';
 
 const StepThree = () => {
+  // const { hostApplyState } = useHostApplyInputChange();
+
+  // const handleSubmit = () => {
+  //   console.log('최종 데이터', hostApplyState);
+  // };
   return (
     <>
       <ProgressBar progress={100} />
@@ -29,9 +34,7 @@ const StepThree = () => {
           <img src={graphicImage.HostApplyFinishImage} alt="호스트 승인 완료" css={iconStyle} />
         </main>
         <footer css={footerStyle}>
-          <Button variant="large" onClick={() => {}}>
-            다른 모임 둘러보기
-          </Button>
+          <Button variant="large">다른 모임 둘러보기</Button>
         </footer>
       </div>
     </>

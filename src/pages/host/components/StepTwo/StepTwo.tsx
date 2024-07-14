@@ -12,9 +12,13 @@ import {
   titleStyle,
 } from './StepTwo.style';
 import CategorySelectBox from 'src/components/common/CategorySelectBox/CategorySelectBox';
+import { useHostApplyInputChange } from 'src/hooks/useHostApplyInputChange';
 
 const StepTwo = ({ onNext }: StepProps) => {
+  const { hostApplyState, handleInputChange } = useHostApplyInputChange();
+
   const handleNextClick = () => {
+    console.log('최종 데이터', hostApplyState);
     onNext();
   };
   return (
@@ -29,8 +33,8 @@ const StepTwo = ({ onNext }: StepProps) => {
           <section css={sectionStyle}>
             <QuestionText numberLabel="Q4">픽플에서 사용할 닉네임을 작성해주세요.</QuestionText>
             <Input
-              value=""
-              onChange={() => {}}
+              value={hostApplyState.q4}
+              onChange={(e) => handleInputChange(e, 'q4')}
               placeholder="ex. 픽픽이 (최대 15자)"
               isValid={true}
               maxLength={10}
@@ -50,8 +54,8 @@ const StepTwo = ({ onNext }: StepProps) => {
               size="medium"
               maxLength={300}
               placeholder={`픽플에서 개최할 모임의 주제, 운영 방식 등을 작성해 주세요!`}
-              value=""
-              onChange={() => {}}
+              value={hostApplyState.q6}
+              onChange={(e) => handleInputChange(e, 'q6')}
             />
           </section>
           <section css={sectionStyle}>
@@ -59,8 +63,8 @@ const StepTwo = ({ onNext }: StepProps) => {
               승인 결과를 전달 받을 메일 주소를 입력해 주세요.
             </QuestionText>
             <Input
-              value=""
-              onChange={() => {}}
+              value={hostApplyState.q7}
+              onChange={(e) => handleInputChange(e, 'q7')}
               placeholder="ex. pickple@gmail.com"
               isValid={true}
               isCountValue={false}

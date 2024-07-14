@@ -9,8 +9,11 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepOne.style';
+import { useHostApplyInputChange } from 'src/hooks/useHostApplyInputChange';
 
 const StepOne = ({ onNext }: StepProps) => {
+  const { hostApplyState, handleInputChange } = useHostApplyInputChange();
+
   const handleNextClick = () => {
     onNext();
   };
@@ -29,8 +32,8 @@ const StepOne = ({ onNext }: StepProps) => {
               size="medium"
               maxLength={300}
               placeholder={`호스트님에 대해 자유롭게 소개해 주세요! \n모임 참여 및 개최 경험 등도 좋아요.`}
-              value=""
-              onChange={() => {}}
+              value={hostApplyState.q1}
+              onChange={(e) => handleInputChange(e, 'q1')}
             />
           </section>
           <section css={sectionStyle}>
@@ -39,8 +42,8 @@ const StepOne = ({ onNext }: StepProps) => {
               size="medium"
               maxLength={300}
               placeholder={`모임에서 어떤 가치를 공유하고 싶으신가요? \n그 이유는 무엇인가요?`}
-              value=""
-              onChange={() => {}}
+              value={hostApplyState.q2}
+              onChange={(e) => handleInputChange(e, 'q2')}
             />
           </section>
           <section css={sectionStyle}>
@@ -48,8 +51,8 @@ const StepOne = ({ onNext }: StepProps) => {
               호스트님을 잘 알 수 있는 SNS 혹은 홈페이지 링크를 첨부해 주세요!
             </QuestionText>
             <Input
-              value=""
-              onChange={() => {}}
+              value={hostApplyState.q3}
+              onChange={(e) => handleInputChange(e, 'q3')}
               placeholder="URL을 첨부해주세요."
               isValid={true}
               isCountValue={false}
