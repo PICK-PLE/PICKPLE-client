@@ -19,7 +19,8 @@ const getHostMoimInfo = async (hostId: number, moimState: string) => {
 
 export const useFetchHostMoimInfo = (hostId: number, moimState: string) => {
   return useQuery({
-    queryKey: [QUERY_KEY.HOST_MOIM_INFO],
+    //쿼리 키가 여러개로 구성되어 있을 때, 하나만 달라져도 새롭게 캐싱해옴.
+    queryKey: [QUERY_KEY.HOST_MOIM_INFO, hostId, moimState],
     queryFn: () => getHostMoimInfo(hostId, moimState),
   });
 };
