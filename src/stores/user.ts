@@ -2,8 +2,8 @@ import { atom } from 'jotai';
 import { UserType } from '@types';
 
 export const userAtom = atom<UserType>({
-  nickName: '',
-  userId: 0,
+  guestNickname: 'asdfasdf',
+  guestId: 0,
+  hostNickname: '',
   hostId: 0,
-  guestImageUrl: '',
 });
