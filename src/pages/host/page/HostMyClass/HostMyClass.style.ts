@@ -57,11 +57,6 @@ export const hostMyClassCardContainer = css`
   gap: 1rem;
 `;
 
-// export const hostMyClassContainer = css`
-//   ${flexGenerator('column')};
-//   gap: 3rem;
-// `;
-
 export const hostMyClassBackground = (theme: Theme) => css`
   background-color: ${theme.color.background};
   min-height: 100dvh;
