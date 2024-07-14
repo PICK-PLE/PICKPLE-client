@@ -1,21 +1,29 @@
 import { atom } from 'jotai';
 
 export interface HostApplyProps {
-  q1: string;
-  q2: string;
-  q3: string;
-  q4: string;
-  q5: string[];
-  q6: string;
-  q7: string;
+  intro: string;
+  goal: string;
+  link: string;
+  nickname: string;
+  categoryList: {
+    category1: string;
+    category2: string;
+    category3: string;
+  };
+  plan: string;
+  email: string;
 }
 
 export const hostApplyAtom = atom<HostApplyProps>({
-  q1: '',
-  q2: '',
-  q3: '',
-  q4: '',
-  q5: [],
-  q6: '',
-  q7: '',
+  intro: '',
+  goal: '',
+  link: '',
+  nickname: '',
+  categoryList: {
+    category1: '',
+    category2: '',
+    category3: '',
+  },
+  plan: '',
+  email: '',
 });

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { CATEGORY_ICON } from '@constants';
 import { imgStyle, labelStyle, liStyle, ulStyle } from './CategorySelectBox.style';
 
@@ -55,21 +54,42 @@ const categoryIcons = [
   },
 ];
 
-const CategorySelectBox = () => {
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+interface CategorySelectBoxProps {
+  selectedCategories: {
+    category1: string;
+    category2: string;
+    category3: string;
+  };
+  onUpdateCategories: (newCategories: {
+    category1: string;
+    category2: string;
+    category3: string;
+  }) => void;
+}
 
+const CategorySelectBox = ({ selectedCategories, onUpdateCategories }: CategorySelectBoxProps) => {
   const handleIconClick = (name: string) => {
-    // 이미 선택되어있으면 뺀다.
-    if (selectedCategories.includes(name)) {
-      setSelectedCategories(selectedCategories.filter((category) => category !== name));
-      return;
+    const newCategories = { ...selectedCategories };
+
+    // 이미 선택된 항목을 클릭하면 해당 항목을 비운다.
+    if (newCategories.category1 === name) {
+      newCategories.category1 = '';
+    } else if (newCategories.category2 === name) {
+      newCategories.category2 = '';
+    } else if (newCategories.category3 === name) {
+      newCategories.category3 = '';
+    } else {
+      // 빈 슬롯을 찾아서 새로운 항목을 추가한다.
+      if (!newCategories.category1) {
+        newCategories.category1 = name;
+      } else if (!newCategories.category2) {
+        newCategories.category2 = name;
+      } else if (!newCategories.category3) {
+        newCategories.category3 = name;
+      }
     }
 
-    // 선택 안된 카테고리 & 선택된게 3개보다 적으면 추가한다.
-    if (selectedCategories.length < 3) {
-      setSelectedCategories([...selectedCategories, name]);
-      return;
-    }
+    onUpdateCategories(newCategories);
   };
 
   return (
@@ -77,7 +97,11 @@ const CategorySelectBox = () => {
       {categoryIcons.map((category, i) => (
         <li key={i} css={liStyle}>
           <img
-            src={selectedCategories.includes(category.name) ? category.fill : category.stroke}
+            src={
+              Object.values(selectedCategories).includes(category.name)
+                ? category.fill
+                : category.stroke
+            }
             alt={category.name}
             css={imgStyle}
             onClick={() => handleIconClick(category.name)}
