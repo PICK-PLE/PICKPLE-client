@@ -1,5 +1,6 @@
 import { IcExclamation } from '@svg';
 import { HTMLAttributes } from 'react';
+import { createPortal } from 'react-dom';
 import {
   toastIconStyle,
   toastMessageStyle,
@@ -12,12 +13,15 @@ export interface ToastProps extends HTMLAttributes<HTMLDivElement> {
   toastBottom: number;
 }
 
+const portalElement = document.getElementById('modal') as HTMLElement;
+
 const Toast = ({ toastIcon, children, isVisible, toastBottom, ...props }: ToastProps) => {
-  return (
+  return createPortal(
     <div css={toastWrapperStyle(isVisible, toastBottom)} {...props}>
       {toastIcon ? <IcExclamation css={toastIconStyle} /> : null}
       <span css={toastMessageStyle}>{children}</span>
-    </div>
+    </div>,
+    portalElement
   );
 };
 

@@ -11,7 +11,7 @@ export const backdropStyle = css`
 
   z-index: 3;
 
-  background: rgba(0, 0, 0, 0.54);
+  background: rgba(0, 0, 0, 0.7);
 `;
 
 export const modalContentStyle = (theme: Theme) => css`
