@@ -15,15 +15,24 @@ import CategorySelectBox from 'src/components/common/CategorySelectBox/CategoryS
 import { useHostApplyInputChange } from 'src/hooks/useHostApplyInputChange';
 import { useEffect, useState } from 'react';
 import { usePostHostApply } from '@apis/domains/host';
+import { useHostApplyInputValidation } from 'src/hooks/useHostApplyInputValidation';
 
 const StepTwo = ({ onNext }: StepProps) => {
   const { hostApplyState, handleInputChange, handleCategoryChange, resetHostApplyState } =
     useHostApplyInputChange();
+  const { validateStepTwo } = useHostApplyInputValidation();
+
   const [selectedCategories, setSelectedCategories] = useState(hostApplyState.categoryList);
+  const { isNicknameValid, isPlanValid, isEmailValid, isAllValid } = validateStepTwo({
+    ...hostApplyState,
+    categoryList: selectedCategories,
+  });
   const { mutate, isSuccess } = usePostHostApply();
 
   const handleNextClick = () => {
-    mutate(hostApplyState);
+    if (isAllValid) {
+      mutate(hostApplyState);
+    }
   };
 
   useEffect(() => {
@@ -56,7 +65,8 @@ const StepTwo = ({ onNext }: StepProps) => {
               value={hostApplyState.nickname}
               onChange={(e) => handleInputChange(e, 'nickname')}
               placeholder="ex. 픽픽이 (최대 15자)"
-              isValid={true}
+              isValid={isNicknameValid}
+              errorMessage="닉네임을 입력해 주세요."
               maxLength={10}
               isCountValue={true}
             />
@@ -69,7 +79,7 @@ const StepTwo = ({ onNext }: StepProps) => {
               selectedCategories={selectedCategories}
               onUpdateCategories={handleUpdateCategories}
             />
-            <h6 css={referTextStyle}>*최대 3개까지 선택 가능합니다.</h6>
+            <h6 css={referTextStyle}>*최소 1개부터 최대 3개까지 선택 가능합니다.</h6>
           </section>
           <section css={sectionStyle}>
             <QuestionText numberLabel="Q6">클래스 모임의 운영 계획에 대해 말해주세요.</QuestionText>
@@ -79,6 +89,8 @@ const StepTwo = ({ onNext }: StepProps) => {
               placeholder={`픽플에서 개최할 모임의 주제, 운영 방식 등을 작성해 주세요!`}
               value={hostApplyState.plan}
               onChange={(e) => handleInputChange(e, 'plan')}
+              isValid={isPlanValid}
+              errorMessage="운영 계획을 입력해 주세요."
             />
           </section>
           <section css={sectionStyle}>
@@ -89,13 +101,14 @@ const StepTwo = ({ onNext }: StepProps) => {
               value={hostApplyState.email}
               onChange={(e) => handleInputChange(e, 'email')}
               placeholder="ex. pickple@gmail.com"
-              isValid={true}
+              isValid={isEmailValid}
+              errorMessage="유효한 이메일 주소를 입력해 주세요."
               isCountValue={false}
             />
           </section>
         </main>
         <footer css={footerStyle}>
-          <Button variant="large" onClick={handleNextClick}>
+          <Button variant="large" onClick={handleNextClick} disabled={!isAllValid}>
             다음
           </Button>
         </footer>

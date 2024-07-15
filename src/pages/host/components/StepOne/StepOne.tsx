@@ -10,12 +10,17 @@ import {
   titleStyle,
 } from './StepOne.style';
 import { useHostApplyInputChange } from 'src/hooks/useHostApplyInputChange';
+import { useHostApplyInputValidation } from 'src/hooks/useHostApplyInputValidation';
 
 const StepOne = ({ onNext }: StepProps) => {
   const { hostApplyState, handleInputChange } = useHostApplyInputChange();
+  const { validateStepOne } = useHostApplyInputValidation();
+  const { isIntroValid, isGoalValid, isLinkValid, isAllValid } = validateStepOne(hostApplyState);
 
   const handleNextClick = () => {
-    onNext();
+    if (isAllValid) {
+      onNext();
+    }
   };
   return (
     <>
@@ -34,6 +39,8 @@ const StepOne = ({ onNext }: StepProps) => {
               placeholder={`호스트님에 대해 자유롭게 소개해 주세요! \n모임 참여 및 개최 경험 등도 좋아요.`}
               value={hostApplyState.intro}
               onChange={(e) => handleInputChange(e, 'intro')}
+              isValid={isIntroValid}
+              errorMessage="빈칸을 입력해주세요."
             />
           </section>
           <section css={sectionStyle}>
@@ -44,6 +51,8 @@ const StepOne = ({ onNext }: StepProps) => {
               placeholder={`모임에서 어떤 가치를 공유하고 싶으신가요? \n그 이유는 무엇인가요?`}
               value={hostApplyState.goal}
               onChange={(e) => handleInputChange(e, 'goal')}
+              isValid={isGoalValid}
+              errorMessage="빈칸을 입력해주세요."
             />
           </section>
           <section css={sectionStyle}>
@@ -54,13 +63,14 @@ const StepOne = ({ onNext }: StepProps) => {
               value={hostApplyState.link}
               onChange={(e) => handleInputChange(e, 'link')}
               placeholder="URL을 첨부해주세요."
-              isValid={true}
+              isValid={isLinkValid}
+              errorMessage="올바른 URL 형식을 입력해주세요"
               isCountValue={false}
             />
           </section>
         </main>
         <footer css={footerStyle}>
-          <Button variant="large" onClick={handleNextClick}>
+          <Button variant="large" onClick={handleNextClick} disabled={!isAllValid}>
             다음
           </Button>
         </footer>
