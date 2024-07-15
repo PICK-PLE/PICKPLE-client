@@ -16,35 +16,26 @@ import {
 } from './Class.style';
 import { IcClassPerson, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
 
-// mocking data
-import { NoticeCardData } from 'src/constants/mocks/NoticeCardData';
-import { classInfoData } from 'src/constants/mocks/classInfoData';
-import { classDetailData } from 'src/constants/mocks/classDetailData';
 import { useParams } from 'react-router-dom';
 import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
 import { useWindowSize } from '@hooks';
+import { useFetchMoimNoticeList } from '@apis/domains/notice';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
   const [selectTab, setSelectTab] = useState<'모임소개' | '공지사항' | '리뷰'>('모임소개');
   const { classId } = useParams<{ classId: string }>();
+
   const { data: moimDetail } = useFetchMoimDetail(classId ?? '');
   const { data: moimDescription } = useFetchMoimDescription(classId ?? '');
-  // const {data: noticeData}
-
-  console.log(moimDescription);
+  const { data: moimNoticeList } = useFetchMoimNoticeList(classId ?? '', selectTab);
 
   if (!moimDetail) {
     return <div>No details found</div>;
   }
-
-  const { dayOfDay, title, dateList, isOffline, spot, maxGuest, fee, imageList, hostId } =
-    moimDetail;
+  const { dayOfDay, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
 
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
-
-  // hostId never used error fix
-  console.log(hostId);
 
   return (
     <div>
@@ -73,7 +64,7 @@ const Class = () => {
               <IconText icon={<IcMoney />} text={`${fee?.toString().toLocaleString()}원`} />
             </li>
           </ul>
-          <HostInfoCard />
+          <HostInfoCard hostId={moimDetail.hostId ?? 0} />
         </section>
         <div css={tabWrapper}>
           <button
@@ -97,7 +88,7 @@ const Class = () => {
         </div>
         <section css={[tabSectionStyle, selectTab === '모임소개' && infoSectionStyle]}>
           {selectTab === '모임소개' && <ClassInfo content={moimDescription ?? ''} />}
-          {selectTab === '공지사항' && <ClassNotice noticeData={NoticeCardData} />}
+          {selectTab === '공지사항' && <ClassNotice noticeData={moimNoticeList || []} />}
           {selectTab === '리뷰' && <ClassEmptyReview />}
         </section>
         <section css={buttonContainer(windowWidth)}>
