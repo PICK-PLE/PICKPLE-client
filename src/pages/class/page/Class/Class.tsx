@@ -3,6 +3,7 @@ import { ClassEmptyReview, ClassInfo, ClassNotice, HostInfoCard } from '@pages/c
 import { Button, Carousel, IconText, Label, LogoHeader, ShareButton } from '@components';
 import {
   buttonContainer,
+  carouselWrapper,
   classInfo,
   classInfoList,
   classLayout,
@@ -19,16 +20,28 @@ import { IcClassPerson, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
 import { NoticeCardData } from 'src/constants/mocks/NoticeCardData';
 import { classInfoData } from 'src/constants/mocks/classInfoData';
 import { classDetailData } from 'src/constants/mocks/classDetailData';
+import { useParams } from 'react-router-dom';
+import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
 import { useWindowSize } from '@hooks';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
-
   const [selectTab, setSelectTab] = useState<'모임소개' | '공지사항' | '리뷰'>('모임소개');
+  const { classId } = useParams<{ classId: string }>();
+  const { data: moimDetail } = useFetchMoimDetail(classId ?? '');
+  const { data: moimDescription } = useFetchMoimDescription(classId ?? '');
+  // const {data: noticeData}
+
+  console.log(moimDescription);
+
+  if (!moimDetail) {
+    return <div>No details found</div>;
+  }
 
   const { dayOfDay, title, dateList, isOffline, spot, maxGuest, fee, imageList, hostId } =
-    classDetailData;
-  const { date, dayOfWeek, startTime, endTime } = dateList;
+    moimDetail;
+
+  const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
 
   // hostId never used error fix
   console.log(hostId);
@@ -37,12 +50,16 @@ const Class = () => {
     <div>
       <LogoHeader />
       <div css={classLayout}>
-        <Carousel imageList={Object.values(imageList)} />
+        <div css={carouselWrapper}>
+          <Carousel imageList={Object.values(imageList || [])} />
+        </div>
         <section css={classInfo}>
           <Label variant="dDay">{`마감 D${dayOfDay}`}</Label>
           <h1 css={classNameStyle}>{title}</h1>
           <ul css={classInfoList}>
-            <li>{<IconText icon={isOffline ? <IcOffline /> : <IcOneline />} text={spot} />}</li>
+            <li>
+              {<IconText icon={isOffline ? <IcOffline /> : <IcOneline />} text={spot || ''} />}
+            </li>
             <li>
               <IconText
                 icon={<IcDate />}
@@ -53,7 +70,7 @@ const Class = () => {
               <IconText icon={<IcClassPerson />} text={`최대 ${maxGuest}명 모집`} />
             </li>
             <li>
-              <IconText icon={<IcMoney />} text={`${fee.toLocaleString()}원`} />
+              <IconText icon={<IcMoney />} text={`${fee?.toString().toLocaleString()}원`} />
             </li>
           </ul>
           <HostInfoCard />
@@ -79,7 +96,7 @@ const Class = () => {
           </button>
         </div>
         <section css={[tabSectionStyle, selectTab === '모임소개' && infoSectionStyle]}>
-          {selectTab === '모임소개' && <ClassInfo content={classInfoData.description} />}
+          {selectTab === '모임소개' && <ClassInfo content={moimDescription ?? ''} />}
           {selectTab === '공지사항' && <ClassNotice noticeData={NoticeCardData} />}
           {selectTab === '리뷰' && <ClassEmptyReview />}
         </section>

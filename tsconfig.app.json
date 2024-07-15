@@ -34,6 +34,7 @@
       "@hooks": ["src/hooks"],
       "@pages/*": ["src/pages/*"],
       "@routes": ["src/routes"],
+      "@schema": ["src/types/api/schema"],
       "@stores": ["src/stores"],
       "@styles/*": ["src/styles/*"],
       "@types": ["src/types"],
