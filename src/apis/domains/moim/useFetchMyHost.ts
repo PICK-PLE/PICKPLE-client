@@ -18,5 +18,7 @@ export const useFetchMyHost = () => {
   return useQuery({
     queryKey: [QUERY_KEY.MY_HOST_INFO],
     queryFn: () => getMyHostInfo(),
+    refetchOnWindowFocus: false,
+    refetchOnMount: true,
   });
 };
