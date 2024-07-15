@@ -11,11 +11,17 @@ import {
   guestMyClassContainer,
 } from './GuestMyClass.style';
 import { useState } from 'react';
-import { GUEST_MY_CLASS_DATA } from 'src/constants/mocks/guestMyClassCardData';
 import { GuestMyClassEmptyView, MoimCard } from '@pages/guest/components';
+import { useFetchGuestApply } from '@apis/domains/moim/useFetchGuestApply';
+import { useAtom } from 'jotai';
+import { userAtom } from '@stores';
 
 const GuestMyClass = () => {
   const [activeTab, setActiveTab] = useState<'신청한' | '참가한'>('신청한');
+  const [{ guestId }] = useAtom(userAtom);
+
+  //게스트아이디의 타입이 number | undefined입니다. 이 타입을 강제로 Number로 매번 선언해줘야 하네요...
+  const { data: applyData } = useFetchGuestApply(guestId ?? 0, 'pendingPayment');
 
   return (
     <div css={GuestMyClassBackground}>
@@ -34,7 +40,7 @@ const GuestMyClass = () => {
         </article>
 
         {/* filter select */}
-        {GUEST_MY_CLASS_DATA.length !== 0 && activeTab === '신청한' && (
+        {applyData && activeTab === '신청한' && (
           <article css={filterSelectWrapper}>
             <div css={filterSelectStyle}>
               <FilterSelect
@@ -44,14 +50,14 @@ const GuestMyClass = () => {
           </article>
         )}
 
-        {GUEST_MY_CLASS_DATA.length === 0 ? (
+        {!applyData ? (
           <GuestMyClassEmptyView
             text={
               activeTab === '신청한' ? '아직 신청한 모임이 없어요' : '아직 참가한 모임이 없어요'
             }
           />
         ) : (
-          GUEST_MY_CLASS_DATA.map((data) => (
+          applyData.map((data) => (
             <div css={guestMyClassCardContainer}>
               <MoimCard key={data.moimId} guestMyClassData={data} />
             </div>
