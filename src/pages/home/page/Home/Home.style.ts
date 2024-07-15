@@ -6,9 +6,9 @@ export const homeLayout = () => css`
 `;
 
 export const homeBannerStyle = css`
+  min-width: 37.5rem;
   width: 100%;
-  height: 28rem;
-  background-color: pink;
+  aspect-ratio: 375 / 280;
 `;
 
 export const categoryContainer = css`

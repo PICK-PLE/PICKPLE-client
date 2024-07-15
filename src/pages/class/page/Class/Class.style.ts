@@ -6,6 +6,11 @@ export const classLayout = css`
   padding-bottom: 10rem;
 `;
 
+export const carouselWrapper = css`
+  width: 100%;
+  aspect-ratio: 375 / 211;
+`;
+
 export const classInfo = css`
   padding: 2.4rem 2rem 4rem;
 `;

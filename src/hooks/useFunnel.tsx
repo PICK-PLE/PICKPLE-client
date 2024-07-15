@@ -1,4 +1,5 @@
-import { ReactElement, ReactNode, useState } from 'react';
+import { ReactElement, ReactNode, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export interface StepProps {
   name: string;
@@ -10,6 +11,14 @@ export interface FunnelProps {
 
 export const useFunnel = (defaultStep: string) => {
   const [step, setStep] = useState(defaultStep);
+  const navigate = useNavigate();
+  const { step: urlStep } = useParams<{ step: string }>();
+
+  useEffect(() => {
+    if (urlStep) {
+      setStep(urlStep);
+    }
+  }, [urlStep]);
 
   const Step = (props: StepProps): ReactElement => {
     return <>{props.children}</>;
@@ -23,6 +32,7 @@ export const useFunnel = (defaultStep: string) => {
 
   const nextStep = (next: string) => {
     setStep(next);
+    navigate(`/host/apply/${next}`);
   };
 
   return { Funnel, Step, setStep, nextStep, currrendStep: step } as const;

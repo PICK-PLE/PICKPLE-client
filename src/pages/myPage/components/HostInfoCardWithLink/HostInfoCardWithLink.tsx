@@ -1,5 +1,3 @@
-import { HostCategoryList } from '@types';
-import { hostInfoCardWithLinkData } from 'src/constants/mocks/hostInfoCardWithLinkData';
 import {
   categoryListWrapper,
   hostDetailWrapper,
@@ -14,16 +12,19 @@ import {
 import { Button, Image, InterestCategoryButton } from '@components';
 import { CATEGORY_NAME, CATEGORY_SMALL_ICON } from 'src/constants/category';
 import HostMyPageEmptyView from '../HostMyPageEmptyView/HostMyPageEmptyView';
+import { HostCategoryList, HostInfoCardWithLinkDataResponseType } from '@types';
 
-const HostInfoCardWithLink = () => {
-  const { hostNickName, hostLink, hostCategoryList, hostImageUrl } = hostInfoCardWithLinkData;
+interface hostInfoCardWithLinkListProps {
+  hostInfoCardWithLinkList: HostInfoCardWithLinkDataResponseType;
+}
+const HostInfoCardWithLink = ({ hostInfoCardWithLinkList }: hostInfoCardWithLinkListProps) => {
+  const { hostNickName, hostLink, hostCategoryList, hostImageUrl } = hostInfoCardWithLinkList;
 
-  // 카테고리 키를 배열로 저장하는데, hostCategories 타입 지정! 왜냐면 category2, 3은 null이 나올 수도 있으니까
-  const categoryKeys = Object.keys(hostCategoryList) as (keyof HostCategoryList)[];
+  const categoryKeys: (keyof HostCategoryList)[] = ['category1', 'category2', 'category3'];
 
   return (
     <section css={hostInfoCardWithLinkLayout}>
-      {hostInfoCardWithLinkData.hostNickName ? (
+      {hostNickName ? (
         <>
           <div css={hostInfoCardWithLinkContainer}>
             <section css={hostInfoCardWithLinkWrapper}>

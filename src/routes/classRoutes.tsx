@@ -12,7 +12,7 @@ import {
 
 const classRoutes: RouteType[] = [
   {
-    path: routePath.CLASS,
+    path: routePath.CLASS_DETAIL,
     element: <Class />,
   },
   {
