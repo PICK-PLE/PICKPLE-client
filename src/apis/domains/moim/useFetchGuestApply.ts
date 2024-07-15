@@ -1,6 +1,6 @@
 import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { ApiResponseType, MoimResponseType } from '@types';
 
 const getGuestApplyMoim = async (
@@ -19,8 +19,9 @@ const getGuestApplyMoim = async (
 
 export const useFetchGuestApply = (guestId: number, moimSubmissionState: string) => {
   return useQuery({
-    queryKey: [QUERY_KEY.GUEST_APPLY],
+    queryKey: [QUERY_KEY.GUEST_APPLY, moimSubmissionState],
     queryFn: () => getGuestApplyMoim(guestId, moimSubmissionState),
     enabled: !!guestId && guestId > 0,
+    placeholderData: keepPreviousData,
   });
 };
