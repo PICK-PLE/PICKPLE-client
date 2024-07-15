@@ -1,16 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { get } from '@apis/api';
-import { AxiosResponse } from 'axios';
-import { MoimDetailData } from '@pages/class/components/GuestClassRegisterCard/GuestClassRegisterCard';
+import { components } from '@schema';
+import { ApiResponseType } from '@types';
 
-const getMoimDetail = async (moimId: number) => {
-  const response: AxiosResponse = await get<MoimDetailData>(`/submitted-moim/${moimId}`);
+type MoimByGuestResponse = components['schemas']['MoimByGuestResponse'];
 
-  if (!response) {
-    return null;
-  }
-  return response.data;
+const getMoimDetail = async (moimId: number): Promise<MoimByGuestResponse> => {
+  const response = await get<ApiResponseType<MoimByGuestResponse>>(`/submitted-moim/${moimId}`);
+
+  return response.data.data;
 };
 
 export const useGetMoimDetail = (moimId: number) => {

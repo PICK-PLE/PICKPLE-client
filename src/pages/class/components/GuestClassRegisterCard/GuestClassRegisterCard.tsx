@@ -16,59 +16,25 @@ import {
 } from './GuestClassRegisterCard.style';
 import { IcDate, IcOffline, IcOneline } from '@svg';
 import { useGetMoimDetail } from '@apis/domains/moim/useFetchMoimDetail';
-import { useEffect, useState } from 'react';
-
-const initialMoimDetailData: MoimDetailData = {
-  title: '',
-  hostNickName: '',
-  isOffline: false,
-  spot: '',
-  dateList: {
-    date: '',
-    dayOfWeek: '',
-    startTime: '',
-    endTime: ''
-  },
-  fee: 0,
-  hostImageUrl: '',
-  moimImageUrl: ''
-};
-
-export interface MoimDetailData {
-  title: string;
-  hostNickName: string;
-  isOffline: boolean;
-  spot: string;
-  dateList: {
-    date: string;
-    dayOfWeek: string;
-    startTime: string;
-    endTime: string;
-  };
-  fee: number;
-  hostImageUrl: string;
-  moimImageUrl: string;
-}
 
 const GuestClassRegisterCard = () => {
-  const { data } = useGetMoimDetail(1);
-  const [appliedMoimData, setAppliedMoimData] = useState<MoimDetailData>(initialMoimDetailData);
+  const { data: appliedMoimData } = useGetMoimDetail(1);
 
-  useEffect(() => {
-    if (data) {
-      setAppliedMoimData(data.data);
-    }
-  }, [data, appliedMoimData]);
+  if (!appliedMoimData) {
+    return <div>empty view</div>;
+  }
 
-  const {title, hostNickName, isOffline, spot, dateList, fee, hostImageUrl} = appliedMoimData;
+  const { title, hostNickname, isOffline, spot, dateList, fee, hostImageUrl, moimImageUrl } =
+    appliedMoimData;
+  const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
 
   return (
     <article css={cardContainerStyle}>
       <section css={headSectionStyle}>
-        <Image width="8.4rem" src={appliedMoimData?.moimImageUrl} />
+        <Image width="8.4rem" src={moimImageUrl ?? ''} />
         <div css={titleAndProfileWrapperStyle}>
           <h4 css={titleStyle}>{title}</h4>
-          <SimpleUserProfile username={hostNickName} size="medium" userImgUrl={hostImageUrl} />
+          <SimpleUserProfile username={hostNickname ?? ''} size="medium" userImgUrl={hostImageUrl} />
         </div>
       </section>
       <section css={spotAndDateSectionStyle}>
@@ -80,15 +46,13 @@ const GuestClassRegisterCard = () => {
           <span css={iconStyle}>
             <IcDate />
           </span>
-          <span css={textSpanStyle}>
-            {dateList.date}. ({dateList.dayOfWeek}) {dateList.startTime} - {dateList.endTime}
-          </span>
+          <span css={textSpanStyle}>{`${date}. (${dayOfWeek}) ${startTime} - ${endTime}`}</span>
         </div>
       </section>
       <span css={dividerStyle} />
       <section css={feeWrapperStyle}>
         <span css={feeSpanStyle}>참가비</span>
-        <span css={feeStyle}>{fee.toLocaleString()}원</span>
+        <span css={feeStyle}>{fee?.toLocaleString()}원</span>
       </section>
     </article>
   );
