@@ -12,19 +12,12 @@ import {
 import { Button, Image, InterestCategoryButton } from '@components';
 import { CATEGORY_NAME, CATEGORY_SMALL_ICON } from 'src/constants/category';
 import HostMyPageEmptyView from '../HostMyPageEmptyView/HostMyPageEmptyView';
-import { useFetchMyHost } from '@apis/domains/moim/useFetchMyHost';
-import { HostCategoryList } from '@types';
+import { HostCategoryList, HostInfoCardWithLinkDataResponseType } from '@types';
 
-const HostInfoCardWithLink = () => {
-  const { data: hostInfoCardWithLinkList } = useFetchMyHost();
-
-  if (!hostInfoCardWithLinkList) {
-    return (
-      <div>
-        <HostMyPageEmptyView />
-      </div>
-    );
-  }
+interface hostInfoCardWithLinkListProps {
+  hostInfoCardWithLinkList: HostInfoCardWithLinkDataResponseType;
+}
+const HostInfoCardWithLink = ({ hostInfoCardWithLinkList }: hostInfoCardWithLinkListProps) => {
   const { hostNickName, hostLink, hostCategoryList, hostImageUrl } = hostInfoCardWithLinkList;
 
   const categoryKeys: (keyof HostCategoryList)[] = ['category1', 'category2', 'category3'];

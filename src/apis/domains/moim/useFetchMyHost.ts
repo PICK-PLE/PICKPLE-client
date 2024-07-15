@@ -4,14 +4,19 @@ import { useQuery } from '@tanstack/react-query';
 import { HostInfoCardWithLinkDataResponseType } from '@types';
 import { AxiosResponse } from 'axios';
 
-const getMyHostInfo = async () => {
-  const response: AxiosResponse = await get<HostInfoCardWithLinkDataResponseType>(`/host`);
+const getMyHostInfo = async (): Promise<HostInfoCardWithLinkDataResponseType | null> => {
+  try {
+    const response: AxiosResponse = await get<HostInfoCardWithLinkDataResponseType>(`/host`);
 
-  if (!response) {
+    if (!response) {
+      return null;
+    }
+    console.log('response.data.data', response.data.data);
+    return response.data.data;
+  } catch (err) {
+    console.error(err);
     return null;
   }
-
-  return response.data.data;
 };
 
 export const useFetchMyHost = () => {

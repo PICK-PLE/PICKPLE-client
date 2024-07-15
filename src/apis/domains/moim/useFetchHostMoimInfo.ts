@@ -7,14 +7,23 @@ interface GetHostMoimInfoResponse {
   data: HostMyClassDataResponseType[];
 }
 
-const getHostMoimInfo = async (hostId: number, moimState: string) => {
-  const response = await get<GetHostMoimInfoResponse>(
-    `/host/${hostId}/moim-list?moimState=${moimState}`
-  );
-  if (!response) {
+const getHostMoimInfo = async (
+  hostId: number,
+  moimState: string
+): Promise<GetHostMoimInfoResponse | null> => {
+  try {
+    const response = await get<GetHostMoimInfoResponse>(
+      `/host/${hostId}/moim-list?moimState=${moimState}`
+    );
+
+    if (!response) {
+      return null;
+    }
+    return response.data;
+  } catch (err) {
+    console.error(err);
     return null;
   }
-  return response.data;
 };
 
 export const useFetchHostMoimInfo = (hostId: number, moimState: string) => {
