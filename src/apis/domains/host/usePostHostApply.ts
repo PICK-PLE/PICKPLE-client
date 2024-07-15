@@ -1,23 +1,23 @@
 import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+import { components } from '@schema';
 import { QueryClient, useMutation } from '@tanstack/react-query';
-import { HostApplyProps } from 'src/stores/hostApplyData';
+import { MutateResponseType } from '@types';
 
-const postHostApply = async (hostApplyState: HostApplyProps) => {
-  const accessToken = localStorage.getItem('accessToken');
-  const response = await post('submitter', hostApplyState, {
-    headers: {
-      Authorization: `Bearer ${accessToken}`,
-    },
-  });
-  return response;
+type HostApplyRequest = components['schemas']['SubmitterCreateRequest'];
+
+const postHostApply = async (hostApplyState: HostApplyRequest): Promise<MutateResponseType> => {
+  // 여긴 사용자와 query/axios 사이의 데이터 타입
+  const response = await post<MutateResponseType>('submitter', hostApplyState); //여긴 query/axios와 server 사이의 데이터 타입
+
+  return response.data;
 };
 
 export const usePostHostApply = () => {
   const queryClient = new QueryClient();
 
   return useMutation({
-    mutationFn: (hostApplyState: HostApplyProps) => postHostApply(hostApplyState),
+    mutationFn: (hostApplyState: HostApplyRequest) => postHostApply(hostApplyState),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.HOST_APPLY] });
     },

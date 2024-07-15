@@ -8,11 +8,8 @@ import { useParams } from 'react-router-dom';
 const steps = ['step1', 'step2', 'finish'];
 
 const HostApplyPage = () => {
-  const {step} = useParams<{step: string}>();
+  const { step } = useParams<{ step: string }>();
   const { Funnel, Step, nextStep } = useFunnel(step || steps[0]);
-  // const nextClickHandler = (nextStep: string) => {
-  //   setStep(nextStep);
-  // };
   return (
     <Provider>
       <LogoHeader />

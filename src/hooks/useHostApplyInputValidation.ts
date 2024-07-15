@@ -1,8 +1,6 @@
-type Category = {
-  category1: string;
-  category2: string;
-  category3: string;
-};
+import { components } from '@schema';
+
+type Category = components['schemas']['SubmitterCategoryInfo'];
 
 export const useHostApplyInputValidation = () => {
   const validateLength = (answer: string) => {

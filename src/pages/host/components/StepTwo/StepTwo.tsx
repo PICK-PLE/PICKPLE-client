@@ -16,13 +16,17 @@ import { useHostApplyInputChange } from 'src/hooks/useHostApplyInputChange';
 import { useEffect, useState } from 'react';
 import { usePostHostApply } from '@apis/domains/host';
 import { useHostApplyInputValidation } from 'src/hooks/useHostApplyInputValidation';
+import { components } from '@schema';
 
 const StepTwo = ({ onNext }: StepProps) => {
   const { hostApplyState, handleInputChange, handleCategoryChange, resetHostApplyState } =
     useHostApplyInputChange();
   const { validateStepTwo } = useHostApplyInputValidation();
 
-  const [selectedCategories, setSelectedCategories] = useState(hostApplyState.categoryList);
+  const [selectedCategories, setSelectedCategories] = useState<
+    components['schemas']['SubmitterCategoryInfo']
+  >(hostApplyState.categoryList || { category1: '', category2: '', category3: '' });
+
   const { isNicknameValid, isPlanValid, isEmailValid, isAllValid } = validateStepTwo({
     ...hostApplyState,
     categoryList: selectedCategories,
@@ -42,11 +46,9 @@ const StepTwo = ({ onNext }: StepProps) => {
     }
   }, [isSuccess, onNext, resetHostApplyState]);
 
-  const handleUpdateCategories = (newCategories: {
-    category1: string;
-    category2: string;
-    category3: string;
-  }) => {
+  const handleUpdateCategories = (
+    newCategories: components['schemas']['SubmitterCategoryInfo']
+  ) => {
     setSelectedCategories(newCategories);
     handleCategoryChange(newCategories);
   };

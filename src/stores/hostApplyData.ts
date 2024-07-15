@@ -1,20 +1,7 @@
+import { components } from '@schema';
 import { atom } from 'jotai';
 
-export interface HostApplyProps {
-  intro: string;
-  goal: string;
-  link: string;
-  nickname: string;
-  categoryList: {
-    category1: string;
-    category2: string;
-    category3: string;
-  };
-  plan: string;
-  email: string;
-}
-
-export const hostApplyAtom = atom<HostApplyProps>({
+export const hostApplyAtom = atom<components['schemas']['SubmitterCreateRequest']>({
   intro: '',
   goal: '',
   link: '',
