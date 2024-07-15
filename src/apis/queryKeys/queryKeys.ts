@@ -8,4 +8,5 @@ export const QUERY_KEY = {
   GUEST_PARTICIPATE: 'guestParticipateMoim',
   GUEST_APPLY: 'guestApplyMoim',
   HOST_MOIM_INFO: 'hostMoimInfo',
+  MOIM_DETAIL: 'moimDetail',
 } as const;
