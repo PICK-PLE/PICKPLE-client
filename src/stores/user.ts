@@ -1,7 +1,10 @@
-import { UserType } from '@types';
+import { components } from '@schema';
+// import { UserType } from '@types';
 import { atomWithStorage } from 'jotai/utils';
 
-export const userAtom = atomWithStorage<UserType>('user', {
+type LoginSuccessResponse = components['schemas']['LoginSuccessResponse'];
+
+export const userAtom = atomWithStorage<LoginSuccessResponse>('user', {
   guestNickname: '',
   guestId: 0,
   hostNickname: '',
