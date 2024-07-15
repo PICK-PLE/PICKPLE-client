@@ -11,8 +11,7 @@ import {
 } from './Home.style';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
 import Footer from 'src/components/common/Footer/Footer';
-import { useFetchMoimBanner } from '@apis/domains/moim/useFetchMoimBanner';
-import { useFetchMoimCategories } from '@apis/domains/moim/useFetchMoimCategories';
+import { useFetchMoimBanner, useFetchMoimCategories } from 'src/apis/domains/moim';
 
 const Home = () => {
   // TODO: 배너 클릭 시 해당 모임으로 이동
