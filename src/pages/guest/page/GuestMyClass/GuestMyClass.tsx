@@ -12,10 +12,10 @@ import {
 } from './GuestMyClass.style';
 import { useEffect, useState } from 'react';
 import { GuestMyClassEmptyView, MoimCard } from '@pages/guest/components';
-import { useFetchGuestApply } from '@apis/domains/moim/useFetchGuestApply';
 import { useAtom } from 'jotai';
 import { userAtom } from '@stores';
 import { statusMapText } from 'src/constants/mappingText';
+import { useFetchGuestApply } from '@apis/domains/moim';
 
 const GuestMyClass = () => {
   const [activeTab, setActiveTab] = useState<'신청한' | '참가한'>('신청한');
