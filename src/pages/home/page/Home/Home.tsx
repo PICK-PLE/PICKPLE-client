@@ -11,34 +11,40 @@ import {
 } from './Home.style';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
 import Footer from 'src/components/common/Footer/Footer';
+import { useFetchMoimBanner } from '@apis/domains/moim/useFetchMoimBanner';
+import { useFetchMoimCategories } from '@apis/domains/moim/useFetchMoimCategories';
 
 const Home = () => {
-  // CATEGORY_ICON 객체의 키와 값을 배열로 변환
-  const categories = Object.entries(CATEGORY_ICON).map(([key, icon]) => ({
-    icon: icon.fill_selected,
-    name: CATEGORY_NAME[key as keyof typeof CATEGORY_NAME],
-  }));
-  // const [user] = useAtom(userAtom);
-  // const { data } = useFetchMoimCategories();
-  // console.log('user', user);
-  // console.log('moim data', data);
+  // TODO: 배너 클릭 시 해당 모임으로 이동
+  const { data: bannerId } = useFetchMoimBanner();
+  const { data: categories } = useFetchMoimCategories();
 
   return (
     <>
       <LogoHeader isIcon />
       <main css={homeLayout}>
         <div css={homeStyle}>
-          <div css={homeBannerStyle}></div>
+          <img
+            css={homeBannerStyle}
+            src="https://placehold.co/375x280"
+            alt="banner"
+            onClick={() => {
+              console.log('bannerId:', bannerId);
+            }}
+          />
+
           <div css={categoryContainer}>
             <p css={titleStyle}>이런 클래스 모임 어때요?</p>
 
             <div css={categoryStyle}>
-              {categories.map((category, index) => (
-                <div key={index} css={iconStyle}>
-                  <img src={category.icon} alt={`icon-${index}`} />
-                  <p css={iconNameStyle}>{category.name}</p>
-                </div>
-              ))}
+              {(categories || []).map((category, index) => {
+                return (
+                  <div key={index} css={iconStyle}>
+                    <img src={CATEGORY_ICON[category].fill_selected} alt={`icon-${index}`} />
+                    <p css={iconNameStyle}>{CATEGORY_NAME[category]}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
