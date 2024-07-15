@@ -12,6 +12,7 @@ export const moimCardLayout = (theme: Theme) => css`
 
 export const moimCardContainer = css`
   ${flexGenerator('row', 'flex-start', 'flex-start')};
+  width: 100%;
   gap: 1rem;
 
   position: relative;
