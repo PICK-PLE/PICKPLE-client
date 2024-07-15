@@ -17,7 +17,7 @@ import { IcCaution } from '@svg';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFetchQuestionList } from '@apis/domains/moim/useFetchQuestionList';
-import { usePostAnswerList } from '@apis/domains/moim/usePostAnswerList';
+import { usePostAnswerList } from '@apis/domains/moimSubmissionr/usePostAnswerList';
 
 type AnswerListType = {
   [key: string]: string;
@@ -80,8 +80,11 @@ const ClassApplyQuestion = () => {
     }));
   };
 
+  //나중에 moimId 뽑아내면 사라질 아이
+  const moimId = 4;
+
   const requestData = {
-    moimId: 2,
+    moimId: moimId,
     body: answer,
   };
 

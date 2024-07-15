@@ -3,10 +3,14 @@ import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { get } from '@apis/api';
 import { ApiResponseType, QuestionListType } from '@types';
 
-const getQuestionList = async (moimId: number): Promise<QuestionListType> => {
-  const response = await get<ApiResponseType<QuestionListType>>(`/moim/${moimId}/question-list`);
-
-  return response.data.data;
+const getQuestionList = async (moimId: number): Promise<QuestionListType | null> => {
+  try {
+    const response = await get<ApiResponseType<QuestionListType>>(`/moim/${moimId}/question-list`);
+    return response.data.data;
+  } catch (error) {
+    console.error('error:', error);
+    return null; 
+  }
 };
 
 export const useFetchQuestionList = (moimId: number) => {
