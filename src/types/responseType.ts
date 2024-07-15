@@ -91,6 +91,11 @@ export interface HostCategoryList {
   category3: string | null;
 }
 
+export interface QuestionListType {
+  question1: string;
+  question2: string | null;
+  question3: string | null;
+}
 export interface HostInfoCardWithLinkDataResponseType {
   hostNickName: string;
   hostImageUrl: string;

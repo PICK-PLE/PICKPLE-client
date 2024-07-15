@@ -4,6 +4,8 @@ export const QUERY_KEY = {
   KAKAO_LOGIN: 'kakaoLogin',
   MOIM_CATEGORIES: 'moimCategories',
   HOST_APPLY: 'hostApply',
+  QUESTION_LIST: 'questionList',
+  ANSWER_LIST: 'answerList',
   MOIM_BANNER: 'moimBanner',
   MY_HOST_INFO: 'myHostInfo',
   GUEST_PARTICIPATE: 'guestParticipateMoim',
