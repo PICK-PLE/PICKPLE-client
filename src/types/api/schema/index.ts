@@ -722,7 +722,9 @@ export interface operations {
     };
     postSubmitter: {
         parameters: {
-            query?: never;
+            query: {
+                guestId: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -764,7 +766,9 @@ export interface operations {
     };
     createMoim: {
         parameters: {
-            query?: never;
+            query: {
+                hostId: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -828,7 +832,9 @@ export interface operations {
     };
     createMoimSubmission: {
         parameters: {
-            query?: never;
+            query: {
+                guestId: number;
+            };
             header?: never;
             path: {
                 moimId: number;
@@ -1267,7 +1273,9 @@ export interface operations {
     };
     getHost: {
         parameters: {
-            query?: never;
+            query: {
+                hostId: number;
+            };
             header?: never;
             path?: never;
             cookie?: never;

@@ -4,14 +4,3 @@ export interface ApiResponseType<T> {
   message: string;
   data: T;
 }
-export interface Token {
-  accessToken: string;
-  refreshToken: string;
-}
-
-export interface UserType {
-  guestNickname: string;
-  guestId: number;
-  hostNickname: string;
-  hostId: number;
-}
