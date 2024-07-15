@@ -43,7 +43,6 @@ const StepTwo = ({ onNext }: StepProps) => {
   useEffect(() => {
     if (error) {
       const { status, message } = error as ErrorType;
-      // console.error(status, message);
       console.log(status, message);
     } else if (isSuccess) {
       resetHostApplyState();

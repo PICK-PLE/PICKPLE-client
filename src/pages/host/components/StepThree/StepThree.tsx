@@ -14,9 +14,6 @@ import { useEasyNavigate } from '@hooks';
 
 const StepThree = () => {
   const { goHome } = useEasyNavigate();
-  const handleButtonClick = () => {
-    goHome();
-  };
   return (
     <>
       <ProgressBar progress={100} />
@@ -34,7 +31,7 @@ const StepThree = () => {
           <img src={graphicImage.HostApplyFinishImage} alt="호스트 승인 완료" css={iconStyle} />
         </main>
         <footer css={footerStyle}>
-          <Button variant="large" onClick={handleButtonClick}>
+          <Button variant="large" onClick={goHome}>
             다른 모임 둘러보기
           </Button>
         </footer>

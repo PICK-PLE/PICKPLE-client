@@ -10,7 +10,6 @@ const postHostApply = async (hostApplyState: HostApplyRequest): Promise<MutateRe
   // 여긴 사용자와 query/axios 사이의 데이터 타입
   try {
     const response = await post<MutateResponseType>('submitter', hostApplyState); //여긴 query/axios와 server 사이의 데이터 타입
-    console.log(response);
     return response.data;
   } catch (error) {
     const errorResponse = error as ErrorResponse;
