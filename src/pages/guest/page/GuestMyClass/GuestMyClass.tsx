@@ -12,19 +12,50 @@ import {
   GuestMyClassBackground,
   guestMyClassContainer,
 } from './GuestMyClass.style';
-import { useState } from 'react';
-import { GUEST_MY_CLASS_DATA } from 'src/constants/mocks/guestMyClassCardData';
+import { useEffect, useState } from 'react';
 import { GuestMyClassEmptyView, MoimCard } from '@pages/guest/components';
-import { useFetchGuestParticipate } from '@apis/domains/moim/useFetchGuestParticipate';
 import { useAtom } from 'jotai';
 import { userAtom } from '@stores';
+import { statusMapText } from 'src/constants/mappingText';
+import { useFetchGuestApply } from '@apis/domains/moim';
 
 const GuestMyClass = () => {
   const [activeTab, setActiveTab] = useState<'신청한' | '참가한'>('신청한');
-  const [user] = useAtom(userAtom);
-  const { data } = useFetchGuestParticipate(user.guestId); //참가한 조회
+  const [{ guestId }] = useAtom(userAtom);
+  const [selectedStatus, setSelectedStatus] = useState<string>('전체');
+  const [moimSubmissionState, setMoimSubmissionState] = useState<string>('all');
 
-  console.log('gusetMyClassData', data);
+  useEffect(() => {
+    const newMoimSubmissionState =
+      selectedStatus === '전체'
+        ? 'all'
+        : Object.keys(statusMapText).find((key) => statusMapText[key] === selectedStatus) || 'all';
+    setMoimSubmissionState(newMoimSubmissionState);
+  }, [selectedStatus]);
+
+  const {
+    data: applyData,
+    isLoading,
+    error,
+  } = useFetchGuestApply(guestId ?? 0, moimSubmissionState || 'all');
+
+  // 옵션 변경 핸들러
+  const handleStatusChange = (status: string) => {
+    setSelectedStatus(status);
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  /**@정안TODO 엠티 뷰가 이렇게 뜨는건 예시입니다. */
+  if (!applyData) {
+    return <GuestMyClassEmptyView text="아직 신청한 모임이 없어요" />;
+  }
 
   return (
     <div css={GuestMyClassBackground}>
@@ -43,26 +74,27 @@ const GuestMyClass = () => {
         </article>
 
         {/* filter select */}
-        {GUEST_MY_CLASS_DATA.length !== 0 && activeTab === '신청한' && (
+        {applyData && activeTab === '신청한' && (
           <article css={filterSelectWrapper}>
             <div css={filterSelectStyle}>
               <FilterSelect
                 options={['전체', '입금 대기', '승인 대기', '승인 완료', '승인 거절', '환불 완료']}
+                onOptionSelect={handleStatusChange}
               />
             </div>
           </article>
         )}
 
-        {GUEST_MY_CLASS_DATA.length === 0 ? (
+        {!applyData ? (
           <GuestMyClassEmptyView
             text={
               activeTab === '신청한' ? '아직 신청한 모임이 없어요' : '아직 참가한 모임이 없어요'
             }
           />
         ) : (
-          GUEST_MY_CLASS_DATA.map((data) => (
-            <div css={guestMyClassCardContainer}>
-              <MoimCard key={data.moimId} guestMyClassData={data} />
+          applyData.map((data) => (
+            <div css={guestMyClassCardContainer} key={data.moimId}>
+              <MoimCard guestMyClassData={data} />
             </div>
           ))
         )}

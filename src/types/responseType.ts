@@ -1,10 +1,11 @@
 export interface MoimResponseType {
   moimId: number;
   moimSubmissionState: MoimSubmissionState;
-  moimTitle: string;
+  title: string;
   dateList: DateList;
   fee: number;
   hostNickname: string;
+  imageUrl: string;
 }
 
 export interface DateList {
@@ -15,12 +16,12 @@ export interface DateList {
 }
 
 export type MoimSubmissionState =
-  | 'PENDING_PAYMENT' //입금 대기
-  | 'PENDING_APPROVAL' // 승인 완료
-  | 'APPROVED' // 승인 완료
-  | 'REJECTED' // 승인 거절
-  | 'REFUNDED' // 환불 완료
-  | 'COMPLETED'; // 참가 완료
+  | 'pendingPayment' //입금 대기
+  | 'pendingApproval' // 승인 완료
+  | 'approved' // 승인 완료
+  | 'rejected' // 승인 거절
+  | 'refunded' // 환불 완료
+  | 'completed'; // 참가 완료
 
 export interface HostMyClassDataResponseType {
   moimId: number;
@@ -42,14 +43,15 @@ export interface ApplicantListResponseType {
   submitterList: Submitter[];
 }
 
-export interface NoticeResponseType {
+export interface MoimNotceType {
   noticeId: number;
   hostNickName: string;
   hostImageUrl: string;
   title: string;
   content: string;
   date: string;
-  noticeImageUrl: string | null;
+  noticeImageUrl: string;
+  hostId: number;
 }
 
 export interface DateList {
@@ -100,4 +102,11 @@ export interface HostInfoCardWithLinkDataResponseType {
   hostLink: string;
   hostCategoryList: HostCategoryList;
   hostId: number;
+}
+
+export interface MoimHostResponseType {
+  hostNickName: string;
+  hostImageUrl: string;
+  count: string;
+  hostCategoryList: HostCategoryList;
 }

@@ -4,7 +4,7 @@ import { routePath } from '@constants';
 
 const hostRoutes: RouteType[] = [
   {
-    path: routePath.HOST_APPLY,
+    path: `${routePath.HOST_APPLY}/:step`,
     element: <HostApplyPage />,
   },
   {

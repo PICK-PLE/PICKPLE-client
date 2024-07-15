@@ -20,24 +20,22 @@ interface MoimCardProps {
 }
 
 const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
-  const { moimSubmissionState, moimTitle, hostNickname, dateList, fee } = guestMyClassData;
-
+  const { moimSubmissionState, title, hostNickname, dateList, fee, imageUrl } = guestMyClassData;
   return (
     <div css={moimCardLayout}>
       <article css={moimCardContainer}>
         <Image
-          src="https://placehold.co/112x112"
+          src={imageUrl}
           width="11.2rem"
           label={
-            moimSubmissionState !== 'COMPLETED' ? (
+            moimSubmissionState !== 'completed' ? (
               <Label variant="status">{statusMapText[moimSubmissionState]}</Label>
             ) : null
           }
         />
-
         <article css={detailInfoWrapper}>
           <div css={titleWrapper} onClick={() => {}}>
-            <p css={titleStyle}>{moimTitle}</p>
+            <p css={titleStyle}>{title}</p>
             <IcDropdownRight css={iconStyle} />
           </div>
           <div css={detailWrapper}>
@@ -58,7 +56,7 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
           </div>
         </article>
       </article>
-      {moimSubmissionState === 'PENDING_PAYMENT' ? (
+      {moimSubmissionState === 'pendingPayment' ? (
         <Button variant="xSmall" onClick={() => {}}>
           입금하기
         </Button>

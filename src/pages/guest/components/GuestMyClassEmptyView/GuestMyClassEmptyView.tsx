@@ -4,6 +4,7 @@ import {
   detailWrapper,
   textStyle,
   textWrapper,
+  svgStyle,
 } from './GuestMyClassEmptyView.style';
 import { graphicImage } from '@constants';
 
@@ -15,7 +16,7 @@ const GuestMyClassEmptyView = ({ text }: GuestMyClassEmptyViewProps) => {
   return (
     <article css={completedTabContainer}>
       {/* TODO: 그래픽 이미지 수정 */}
-      <img src={graphicImage.GuestMyPageImage} alt="" />
+      <img src={graphicImage.GuestMyPageImage} alt="게스트 마이페이지 이미지" css={svgStyle} />
       <div css={detailWrapper}>
         <div css={textWrapper}>
           <p css={textStyle}>{text}</p>

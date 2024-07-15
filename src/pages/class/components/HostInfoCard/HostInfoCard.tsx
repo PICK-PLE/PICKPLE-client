@@ -1,6 +1,5 @@
 import { Image, Label } from '@components';
 import { CATEGORY_NAME, CATEGORY_SMALL_ICON } from '@constants';
-import { HOST_INFO_DATA } from 'src/constants/mocks/hostInfoCardData';
 
 import {
   hostInfoCardContainer,
@@ -11,22 +10,20 @@ import {
   hostNameStyle,
   countStyle,
 } from './HostInfoCard.style';
+import { useFetchMoimHost } from '@apis/domains/host';
 
-interface HostCategories {
-  category1: string;
-  category2: string | null;
-  category3: string | null;
+interface HostInfoCardProps {
+  hostId: number;
 }
 
-const HostInfoCard = () => {
-  const { hostNickName, hostImageUrl, count, hostCategories } = HOST_INFO_DATA;
+const HostInfoCard = ({ hostId }: HostInfoCardProps) => {
+  const { data: moimHostData } = useFetchMoimHost(hostId);
 
-  // 카테고리 키를 배열로 저장하는데, hostCategories 타입 지정! 왜냐면 category2, 3은 null이 나올 수도 있으니까
-  const categoryKeys = Object.keys(hostCategories) as (keyof HostCategories)[];
+  const { hostNickName, hostImageUrl, count, hostCategoryList } = moimHostData ?? {};
 
   return (
     <div css={hostInfoCardContainer}>
-      <Image variant="round" width="6.1rem" src={hostImageUrl} />
+      <Image variant="round" width="6.1rem" src={hostImageUrl ?? ''} />
 
       <div css={hostInfoCardWrapper}>
         <div>
@@ -39,11 +36,13 @@ const HostInfoCard = () => {
         </div>
 
         <div css={hostInfoLabelStyle}>
-          {categoryKeys.map((key) => {
-            const category = hostCategories[key];
-            return category ? (
-              <Label key={key} variant="category" icon={CATEGORY_SMALL_ICON[category]}>
-                {CATEGORY_NAME[category]}
+          {Object.values(hostCategoryList || []).map((value, index) => {
+            return value ? (
+              <Label
+                key={`host-category-${index}`}
+                variant="category"
+                icon={CATEGORY_SMALL_ICON[value]}>
+                {CATEGORY_NAME[value]}
               </Label>
             ) : null;
           })}
