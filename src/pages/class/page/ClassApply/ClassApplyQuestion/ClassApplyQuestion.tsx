@@ -33,6 +33,8 @@ export interface DataType {
 }
 
 const ClassApplyQuestion = () => {
+  const [questionList, setQuestionList] = useState<string[]>([]);
+  const { data: questionData, isSuccess } = useFetchQuestionList(1);
   const [answer, setValue] = useState<DataType>({
     answerList: {
       answer1: '',
@@ -46,10 +48,6 @@ const ClassApplyQuestion = () => {
     },
   });
 
-  const navigate = useNavigate();
-  const [questionList, setQuestionList] = useState<string[]>([]);
-
-  const { data: questionData, isSuccess } = useFetchQuestionList(1);
   const { mutate } = usePostAnswerList();
 
   useEffect(() => {
@@ -88,11 +86,14 @@ const ClassApplyQuestion = () => {
     body: answer,
   };
 
+  const navigate = useNavigate();
+
   const handleButtonClick = () => {
     mutate(requestData);
-    console.log(answer);
     navigate('/class/apply/deposit');
   };
+
+
 
   return (
     <>
