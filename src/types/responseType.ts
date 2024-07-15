@@ -88,3 +88,11 @@ export interface HostCategoryList {
   category2: string | null;
   category3: string | null;
 }
+
+export interface HostInfoCardWithLinkDataResponseType {
+  hostNickName: string;
+  hostImageUrl: string;
+  hostLink: string;
+  hostCategoryList: HostCategoryList;
+  hostId: number;
+}

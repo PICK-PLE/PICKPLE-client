@@ -1,3 +1,5 @@
+/**@정안TODO 서버에 더미데어터 없어서 404뜸 */
+
 import { FilterSelect, Header } from '@components';
 import {
   guestMyClassLayout,
@@ -13,9 +15,16 @@ import {
 import { useState } from 'react';
 import { GUEST_MY_CLASS_DATA } from 'src/constants/mocks/guestMyClassCardData';
 import { GuestMyClassEmptyView, MoimCard } from '@pages/guest/components';
+import { useFetchGuestParticipate } from '@apis/domains/moim/useFetchGuestParticipate';
+import { useAtom } from 'jotai';
+import { userAtom } from '@stores';
 
 const GuestMyClass = () => {
   const [activeTab, setActiveTab] = useState<'신청한' | '참가한'>('신청한');
+  const [user] = useAtom(userAtom);
+  const { data } = useFetchGuestParticipate(user.guestId); //참가한 조회
+
+  console.log('gusetMyClassData', data);
 
   return (
     <div css={GuestMyClassBackground}>
