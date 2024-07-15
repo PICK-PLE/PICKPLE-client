@@ -3,6 +3,8 @@ import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { useEasyNavigate } from '@hooks';
 import { userAtom } from '@stores';
 import { QueryClient, useMutation } from '@tanstack/react-query';
+import { UserType } from '@types';
+import { AxiosResponse } from 'axios';
 import { useAtom } from 'jotai';
 
 import { components } from '@schema';
