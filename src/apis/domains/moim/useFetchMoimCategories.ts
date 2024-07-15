@@ -3,7 +3,7 @@ import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { get } from '@apis/api';
 import { ApiResponseType } from '@types';
 
-const getMoimBanner = async (): Promise<string[] | null> => {
+const getMoimCategories = async (): Promise<string[] | null> => {
   try {
     const response = await get<ApiResponseType<string[]>>('/moim/categories');
     return response.data.data;
@@ -16,7 +16,7 @@ const getMoimBanner = async (): Promise<string[] | null> => {
 export const useFetchMoimCategories = () => {
   return useQuery({
     queryKey: [QUERY_KEY.MOIM_CATEGORIES],
-    queryFn: () => getMoimBanner(),
+    queryFn: () => getMoimCategories(),
     staleTime: 1000 * 60 * 60 * 24, // 24시간
     gcTime: 1000 * 60 * 60 * 24 * 7, // 1주일
     refetchOnMount: false,
