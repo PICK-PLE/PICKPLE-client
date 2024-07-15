@@ -35,7 +35,7 @@ export interface DataType {
 const ClassApplyQuestion = () => {
   const [questionList, setQuestionList] = useState<string[]>([]);
   const { data: questionData, isSuccess } = useFetchQuestionList(1);
-  const [answer, setValue] = useState<DataType>({
+  const [answer, setAnswer] = useState<DataType>({
     answerList: {
       answer1: '',
       answer2: '',
@@ -58,7 +58,7 @@ const ClassApplyQuestion = () => {
 
   // answerList의 값을 업데이트하는 함수
   const updateAnswerList = (key: string, value: string) => {
-    setValue((prevState) => ({
+    setAnswer((prevState) => ({
       ...prevState,
       answerList: {
         ...prevState.answerList,
@@ -69,7 +69,7 @@ const ClassApplyQuestion = () => {
 
   // accountList의 값을 업데이트하는 함수
   const updateAccountList = (key: string, value: string) => {
-    setValue((prevState) => ({
+    setAnswer((prevState) => ({
       ...prevState,
       accountList: {
         ...prevState.accountList,
@@ -79,7 +79,7 @@ const ClassApplyQuestion = () => {
   };
 
   //나중에 moimId 뽑아내면 사라질 아이
-  const moimId = 4;
+  const moimId = 2;
 
   const requestData = {
     moimId: moimId,
