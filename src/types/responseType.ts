@@ -94,3 +94,10 @@ export interface QuestionListType {
   question2: string | null;
   question3: string | null;
 }
+export interface HostInfoCardWithLinkDataResponseType {
+  hostNickName: string;
+  hostImageUrl: string;
+  hostLink: string;
+  hostCategoryList: HostCategoryList;
+  hostId: number;
+}

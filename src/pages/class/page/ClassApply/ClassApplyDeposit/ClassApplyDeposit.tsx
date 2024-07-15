@@ -7,6 +7,7 @@ import {
   depositFooterStyle,
   depositHStyle,
   depositSpanStyle,
+  depositMainStyle,
   dipositWrapperStyle,
 } from '@pages/class/page/ClassApply/ClassApplyDeposit/ClassApplyDeposit.style';
 import { DepositModal } from '@pages/guest/components';
@@ -41,7 +42,7 @@ const ClassApplyDeposit = () => {
               </h1>
             </header>
 
-            <main>
+            <main css={depositMainStyle}>
               <GuestClassRegisterCard />
             </main>
           </div>

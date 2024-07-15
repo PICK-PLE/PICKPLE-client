@@ -4,7 +4,7 @@ import { flexGenerator } from '@styles/generator';
 export const cardContainer = (theme: Theme) => css`
   ${flexGenerator('column')};
   gap: 1.3rem;
-
+  width: 100%;
   padding: 1.8rem 1.8rem 1.3rem;
 
   border-radius: 10px;
