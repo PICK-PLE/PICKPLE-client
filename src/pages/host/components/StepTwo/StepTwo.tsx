@@ -17,6 +17,7 @@ import { useEffect, useState } from 'react';
 import { usePostHostApply } from '@apis/domains/host';
 import { useHostApplyInputValidation } from 'src/hooks/useHostApplyInputValidation';
 import { components } from '@schema';
+import { ErrorType } from '@types';
 
 const StepTwo = ({ onNext }: StepProps) => {
   const { hostApplyState, handleInputChange, handleCategoryChange, resetHostApplyState } =
@@ -31,7 +32,7 @@ const StepTwo = ({ onNext }: StepProps) => {
     ...hostApplyState,
     categoryList: selectedCategories,
   });
-  const { mutate, isSuccess } = usePostHostApply();
+  const { mutate, isSuccess, error } = usePostHostApply();
 
   const handleNextClick = () => {
     if (isAllValid) {
@@ -40,11 +41,15 @@ const StepTwo = ({ onNext }: StepProps) => {
   };
 
   useEffect(() => {
-    if (isSuccess) {
+    if (error) {
+      const { status, message } = error as ErrorType;
+      // console.error(status, message);
+      console.log(status, message);
+    } else if (isSuccess) {
       resetHostApplyState();
       onNext();
     }
-  }, [isSuccess, onNext, resetHostApplyState]);
+  }, [error, isSuccess, onNext, resetHostApplyState]);
 
   const handleUpdateCategories = (
     newCategories: components['schemas']['SubmitterCategoryInfo']
