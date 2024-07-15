@@ -1,3 +1,4 @@
+import { usePostHostApply } from './usePostHostApply';
 import { useFetchMoimHost } from './useFetchMoimHost';
 
-export { useFetchMoimHost };
+export { usePostHostApply, useFetchMoimHost };

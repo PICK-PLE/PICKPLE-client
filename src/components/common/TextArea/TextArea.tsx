@@ -12,6 +12,7 @@ import {
 export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  isValid: boolean;
   errorMessage?: string;
   maxLength: number;
   size?: 'small' | 'medium';
@@ -19,12 +20,14 @@ export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElemen
 const TextArea = ({
   value,
   onChange,
+  isValid,
   size = 'small',
   placeholder,
   errorMessage,
   maxLength,
 }: TextAreaProps) => {
   const [maxLengthError, setMaxLengthError] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
   // 글자 수 세서 바로 화면에 반영하는 onChange 함수 (default)
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     if (e.target.value.length <= maxLength) {
@@ -47,6 +50,8 @@ const TextArea = ({
           value={value}
           onChange={handleTextAreaChange}
           placeholder={placeholder}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
         />
         <span css={textLengthStyle(maxLengthError)}>
           {value.length}/{maxLength}
@@ -55,7 +60,7 @@ const TextArea = ({
 
       {maxLengthError && <span css={errorMessageStyle}>{textLengthErrorMessage}</span>}
 
-      {maxLengthError && <span css={errorMessageStyle}>{errorMessage}</span>}
+      {isFocused && !isValid && <span css={errorMessageStyle}>{errorMessage}</span>}
     </div>
   );
 };

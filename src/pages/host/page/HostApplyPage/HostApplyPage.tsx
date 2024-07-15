@@ -1,22 +1,22 @@
 import { LogoHeader } from '@components';
 import HostApply from '@pages/host/components/HostApply/HostApply';
+import { Provider } from 'jotai';
 import { useFunnel } from 'src/hooks/useFunnel';
 import { hostApplyPageLayout } from './HostApplyPage.style';
+import { useParams } from 'react-router-dom';
 
-const steps = ['step1', 'step2', 'step3'];
+const steps = ['step1', 'step2', 'finish'];
 
 const HostApplyPage = () => {
-  const { Funnel, Step, setStep } = useFunnel(steps[0]);
-  const nextClickHandler = (nextStep: string) => {
-    setStep(nextStep);
-  };
+  const { step } = useParams<{ step: string }>();
+  const { Funnel, Step, nextStep } = useFunnel(step || steps[0]);
   return (
-    <>
+    <Provider>
       <LogoHeader />
       <div css={hostApplyPageLayout}>
-        <HostApply steps={steps} nextClickHandler={nextClickHandler} Funnel={Funnel} Step={Step} />
+        <HostApply steps={steps} nextClickHandler={nextStep} Funnel={Funnel} Step={Step} />
       </div>
-    </>
+    </Provider>
   );
 };
 

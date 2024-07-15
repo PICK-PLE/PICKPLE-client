@@ -16,6 +16,7 @@ export const depositArticleLayout = css`
 export const dipositWrapperStyle = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   gap: 3.8rem;
+  width: 100%;
 `;
 
 export const depositSpanStyle = (theme: Theme) => css`
@@ -26,6 +27,10 @@ export const depositSpanStyle = (theme: Theme) => css`
 export const depositHStyle = (theme: Theme) => css`
   color: ${theme.color.black};
   ${theme.font['head01-b-22']}
+`;
+
+export const depositMainStyle = css`
+  width: 100%;
 `;
 
 export const depositFooterStyle = css`
