@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { ApiResponseType } from '@types';
 
 type PreSignedUrlResponse = components['schemas']['PreSignedUrlResponse'];
-const getPresignedUrl = async (count: number): Promise<PreSignedUrlResponse[] | null> => {
+export const getPresignedUrl = async (count: number): Promise<PreSignedUrlResponse[] | null> => {
   try {
     const response = await get<ApiResponseType<PreSignedUrlResponse[]>>(
       `/notice-image-list/upload/${count}`
@@ -14,7 +14,8 @@ const getPresignedUrl = async (count: number): Promise<PreSignedUrlResponse[] | 
     if (!response) {
       return null;
     }
-    console.log('response', response);
+    /**@정안todo 데이터 확인용 콘솔이라 나중에 지울거임 시비 ㄴㄴ */
+    console.log('response.data.data', response.data.data);
     return response.data.data;
   } catch (err) {
     console.error(err);
