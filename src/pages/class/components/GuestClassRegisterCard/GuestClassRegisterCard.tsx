@@ -18,7 +18,9 @@ import { IcDate, IcOffline, IcOneline } from '@svg';
 import { useGetMoimDetail } from '@apis/domains/moim/useFetchMoimDetail';
 
 const GuestClassRegisterCard = () => {
-  const { data: appliedMoimData } = useGetMoimDetail(1);
+  //채연 TODO: moimId 고정값 말고 url로 사용할 수 있도록 수정하기!
+  const moimId = 1;
+  const { data: appliedMoimData } = useGetMoimDetail(moimId);
 
   if (!appliedMoimData) {
     return <div>empty view</div>;
