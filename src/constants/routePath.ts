@@ -12,7 +12,7 @@ const categoriesPages = {
 };
 
 const classPages = {
-  CLASS: '/class',
+  CLASS_DETAIL: '/class/:classId',
   CLASS_NOTICE_POST: '/class/notice/post',
   CLASS_POST: '/class/post',
   CLASS_APPLY_RULE: '/class/apply/rule',

@@ -42,14 +42,15 @@ export interface ApplicantListResponseType {
   submitterList: Submitter[];
 }
 
-export interface NoticeResponseType {
+export interface MoimNotceType {
   noticeId: number;
   hostNickName: string;
   hostImageUrl: string;
   title: string;
   content: string;
   date: string;
-  noticeImageUrl: string | null;
+  noticeImageUrl: string;
+  hostId: number;
 }
 
 export interface DateList {
@@ -95,4 +96,11 @@ export interface HostInfoCardWithLinkDataResponseType {
   hostLink: string;
   hostCategoryList: HostCategoryList;
   hostId: number;
+}
+
+export interface MoimHostResponseType {
+  hostNickName: string;
+  hostImageUrl: string;
+  count: string;
+  hostCategoryList: HostCategoryList;
 }
