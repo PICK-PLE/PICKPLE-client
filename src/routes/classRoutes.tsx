@@ -20,7 +20,7 @@ const classRoutes: RouteType[] = [
     element: <ClassNotice />,
   },
   {
-    path: routePath.CLASS_POST,
+    path: `${routePath.CLASS_POST}/:step`,
     element: <ClassPostPage />,
   },
   {

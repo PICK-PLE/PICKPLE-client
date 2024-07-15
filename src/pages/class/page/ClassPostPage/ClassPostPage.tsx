@@ -2,21 +2,21 @@ import { LogoHeader } from '@components';
 import ClassPost from '@pages/class/components/ClassPost/ClassPost';
 import { useFunnel } from 'src/hooks/useFunnel';
 import { classPostPageLayout } from './ClassPostPage.style';
+import { Provider } from 'jotai';
+import { useParams } from 'react-router-dom';
 
-const steps = ['step1', 'step2', 'step3', 'step4'];
+const steps = ['step1', 'step2', 'step3', 'finish'];
 
 const ClassPostPage = () => {
-  const { Funnel, Step, setStep } = useFunnel(steps[0]);
-  const nextClickHandler = (nextStep: string) => {
-    setStep(nextStep);
-  };
+  const { step } = useParams<{ step: string }>();
+  const { Funnel, Step, nextStep } = useFunnel(step || steps[0]);
   return (
-    <>
+    <Provider>
       <LogoHeader />
       <div css={classPostPageLayout}>
-        <ClassPost steps={steps} nextClickHandler={nextClickHandler} Funnel={Funnel} Step={Step} />
+        <ClassPost steps={steps} nextClickHandler={nextStep} Funnel={Funnel} Step={Step} />
       </div>
-    </>
+    </Provider>
   );
 };
 

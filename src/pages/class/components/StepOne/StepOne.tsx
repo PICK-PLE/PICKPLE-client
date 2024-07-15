@@ -1,5 +1,6 @@
 import {
   Button,
+  CategorySelectBox,
   CountPeople,
   DateSelect,
   Input,
@@ -22,8 +23,14 @@ import {
 } from './StepOne.style';
 import { useState } from 'react';
 import AddAmountBox from '../AddAmountBox/AddAmountBox';
+import { components } from '@schema';
 
 const StepOne = ({ onNext }: StepProps) => {
+  
+  const [selectedCategories, setSelectedCategories] = useState<
+    components['schemas']['SubmitterCategoryInfo']
+  >(hostApplyState.categoryList || { category1: '', category2: '', category3: '' });
+
   const [people, setPeople] = useState(7);
   const [amountValue, setAmountValue] = useState(0);
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -53,7 +60,10 @@ const StepOne = ({ onNext }: StepProps) => {
             <QuestionText numberLabel="Q1">
               어떤 주제의 클래스 모임을 진행할 예정이신가요?
             </QuestionText>
-            <div></div>
+            <CategorySelectBox
+              selectedCategories={selectedCategories}
+              onUpdateCategories={handleUpdateCategories}
+            />
             <h6 css={referTextStyle}>*최대 3개까지 선택 가능합니다.</h6>
           </section>
           <section css={sectionStyle(1)}>
@@ -77,16 +87,16 @@ const StepOne = ({ onNext }: StepProps) => {
               />
             ) : (
               <Select
-            placeholder="사용할 플랫폼을 선택해주세요."
-            options={[
-              'ZOOM',
-              'Google Meets',
-              'Webex',
-              'Microsoft Teams',
-              'Skype',
-              'Naver Works',
-              'Zep',
-            ]}></Select>
+                placeholder="사용할 플랫폼을 선택해주세요."
+                options={[
+                  'ZOOM',
+                  'Google Meets',
+                  'Webex',
+                  'Microsoft Teams',
+                  'Skype',
+                  'Naver Works',
+                  'Zep',
+                ]}></Select>
             )}
           </section>
           <section css={sectionStyle(1)}>
