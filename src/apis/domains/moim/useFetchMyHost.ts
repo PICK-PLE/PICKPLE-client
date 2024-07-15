@@ -16,7 +16,7 @@ const getMyHostInfo = async () => {
 
 export const useFetchMyHost = () => {
   return useQuery({
-    queryKey: [QUERY_KEY.HOST_INFO],
+    queryKey: [QUERY_KEY.MY_HOST_INFO],
     queryFn: () => getMyHostInfo(),
   });
 };
