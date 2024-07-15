@@ -10,18 +10,50 @@ import {
   GuestMyClassBackground,
   guestMyClassContainer,
 } from './GuestMyClass.style';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GuestMyClassEmptyView, MoimCard } from '@pages/guest/components';
 import { useFetchGuestApply } from '@apis/domains/moim/useFetchGuestApply';
 import { useAtom } from 'jotai';
 import { userAtom } from '@stores';
+import { statusMapText } from 'src/constants/mappingText';
 
 const GuestMyClass = () => {
   const [activeTab, setActiveTab] = useState<'신청한' | '참가한'>('신청한');
   const [{ guestId }] = useAtom(userAtom);
+  const [selectedStatus, setSelectedStatus] = useState<string>('전체');
+  const [moimSubmissionState, setMoimSubmissionState] = useState<string>('all');
 
-  //게스트아이디의 타입이 number | undefined입니다. 이 타입을 강제로 Number로 매번 선언해줘야 하네요...
-  const { data: applyData } = useFetchGuestApply(guestId ?? 0, 'pendingPayment');
+  useEffect(() => {
+    const newMoimSubmissionState =
+      selectedStatus === '전체'
+        ? 'all'
+        : Object.keys(statusMapText).find((key) => statusMapText[key] === selectedStatus) || 'all';
+    setMoimSubmissionState(newMoimSubmissionState);
+  }, [selectedStatus]);
+
+  const {
+    data: applyData,
+    isLoading,
+    error,
+  } = useFetchGuestApply(guestId ?? 0, moimSubmissionState || 'all');
+
+  // 옵션 변경 핸들러
+  const handleStatusChange = (status: string) => {
+    setSelectedStatus(status);
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  /**@정안TODO 엠티 뷰가 이렇게 뜨는건 예시입니다. */
+  if (!applyData) {
+    return <GuestMyClassEmptyView text="아직 신청한 모임이 없어요" />;
+  }
 
   return (
     <div css={GuestMyClassBackground}>
@@ -45,6 +77,7 @@ const GuestMyClass = () => {
             <div css={filterSelectStyle}>
               <FilterSelect
                 options={['전체', '입금 대기', '승인 대기', '승인 완료', '승인 거절', '환불 완료']}
+                onOptionSelect={handleStatusChange}
               />
             </div>
           </article>
@@ -58,8 +91,8 @@ const GuestMyClass = () => {
           />
         ) : (
           applyData.map((data) => (
-            <div css={guestMyClassCardContainer}>
-              <MoimCard key={data.moimId} guestMyClassData={data} />
+            <div css={guestMyClassCardContainer} key={data.moimId}>
+              <MoimCard guestMyClassData={data} />
             </div>
           ))
         )}
