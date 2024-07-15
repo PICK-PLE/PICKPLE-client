@@ -15,10 +15,24 @@ import {
   titleStyle,
 } from './GuestClassRegisterCard.style';
 import { IcDate, IcOffline, IcOneline } from '@svg';
-//import { APPLIED_MOIM_DATA } from './appliedMoimData';
 import { useGetMoimDetail } from '@apis/domains/moim/useFetchMoimDetail';
 import { useEffect, useState } from 'react';
-import { APPLIED_MOIM_DATA2 } from '@pages/class/components/GuestClassRegisterCard/appliedMoimData';
+
+const initialMoimDetailData: MoimDetailData = {
+  title: '',
+  hostNickName: '',
+  isOffline: false,
+  spot: '',
+  dateList: {
+    date: '',
+    dayOfWeek: '',
+    startTime: '',
+    endTime: ''
+  },
+  fee: 0,
+  hostImageUrl: '',
+  moimImageUrl: ''
+};
 
 export interface MoimDetailData {
   title: string;
@@ -38,21 +52,20 @@ export interface MoimDetailData {
 
 const GuestClassRegisterCard = () => {
   const { data } = useGetMoimDetail(1);
-  const [appliedMoimData, setAppliedMoimData] = useState<MoimDetailData>(APPLIED_MOIM_DATA2);
-
-  const { title, hostNickName, isOffline, spot, dateList, fee, hostImageUrl, moimImageUrl } =
-    appliedMoimData;
+  const [appliedMoimData, setAppliedMoimData] = useState<MoimDetailData>(initialMoimDetailData);
 
   useEffect(() => {
     if (data) {
       setAppliedMoimData(data.data);
     }
-  }, [data]);
+  }, [data, appliedMoimData]);
+
+  const {title, hostNickName, isOffline, spot, dateList, fee, hostImageUrl} = appliedMoimData;
 
   return (
     <article css={cardContainerStyle}>
       <section css={headSectionStyle}>
-        <Image width="8.4rem" src={moimImageUrl} />
+        <Image width="8.4rem" src={appliedMoimData?.moimImageUrl} />
         <div css={titleAndProfileWrapperStyle}>
           <h4 css={titleStyle}>{title}</h4>
           <SimpleUserProfile username={hostNickName} size="medium" userImgUrl={hostImageUrl} />
