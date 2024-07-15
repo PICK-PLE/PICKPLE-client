@@ -12,11 +12,12 @@ import {
 import { IcCameraAdd, IcDeletePhoto } from '@svg';
 
 interface ImageSelectProps extends InputHTMLAttributes<HTMLInputElement> {
+  onFileSelect: (files: File[]) => void;
   previewImage?: string | undefined;
   isMultiple?: boolean;
 }
 
-const ImageSelect = ({ onChange, isMultiple = false }: ImageSelectProps) => {
+const ImageSelect = ({ onFileSelect, isMultiple = false }: ImageSelectProps) => {
   const [previewURLs, setPreviewURLs] = useState<string[]>([]);
 
   const readFile = (file: File): Promise<string> => {
@@ -54,10 +55,7 @@ const ImageSelect = ({ onChange, isMultiple = false }: ImageSelectProps) => {
       ) as string[];
 
       setPreviewURLs(newPreviewURLs);
-    }
-
-    if (onChange) {
-      onChange(event);
+      onFileSelect(files); // 선택된 파일 목록을 부모 컴포넌트에 전달
     }
   };
 
