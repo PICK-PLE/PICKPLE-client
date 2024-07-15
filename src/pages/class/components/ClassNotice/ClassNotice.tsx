@@ -1,10 +1,10 @@
 import { NoticeCard } from '..';
-import { NoticeResponseType } from '@types';
+import { MoimNotceType } from '@types';
 
 import { noticeCardContainer } from './ClassNotice.style';
 
 interface ClassNoticeProps {
-  noticeData: NoticeResponseType[];
+  noticeData: MoimNotceType[];
 }
 
 const ClassNotice = ({ noticeData }: ClassNoticeProps) => {

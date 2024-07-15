@@ -3,6 +3,9 @@ export const QUERY_KEY = {
   TEST: 'test',
   KAKAO_LOGIN: 'kakaoLogin',
   MOIM_CATEGORIES: 'moimCategories',
+  HOST_APPLY: 'hostApply',
+  QUESTION_LIST: 'questionList',
+  ANSWER_LIST: 'answerList',
   MOIM_BANNER: 'moimBanner',
   MY_HOST_INFO: 'myHostInfo',
   GUEST_PARTICIPATE: 'guestParticipateMoim',
@@ -10,4 +13,7 @@ export const QUERY_KEY = {
   HOST_MOIM_INFO: 'hostMoimInfo',
   MOIM_DETAIL: 'moimDetail',
   APPLICANT_LIST: 'applicantList',
+  MOIM_DESCRIPTION: 'moimDescription',
+  MOIM_HOST: 'moimHost',
+  MOIM_NOTICE_LIST: 'moimNoticeList',
 } as const;
