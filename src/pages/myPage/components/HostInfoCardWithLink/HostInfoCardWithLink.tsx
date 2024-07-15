@@ -18,13 +18,13 @@ import { HostCategoryList } from '@types';
 const HostInfoCardWithLink = () => {
   const { data: hostInfoCardWithLinkList } = useFetchMyHost();
 
+  if (!hostInfoCardWithLinkList) {
+    return <div> empty</div>;
+  }
   const { hostNickName, hostLink, hostCategoryList, hostImageUrl } = hostInfoCardWithLinkList;
 
   const categoryKeys: (keyof HostCategoryList)[] = ['category1', 'category2', 'category3'];
 
-  if (!hostInfoCardWithLinkList) {
-    return <div> empty</div>;
-  }
   return (
     <section css={hostInfoCardWithLinkLayout}>
       {hostNickName ? (
