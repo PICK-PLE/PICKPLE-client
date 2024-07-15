@@ -1,17 +1,15 @@
 import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { useQuery } from '@tanstack/react-query';
-import { HostInfoCardWithLinkDataResponseType } from '@types';
-import { AxiosResponse } from 'axios';
+import { ApiResponseType, HostInfoCardWithLinkDataResponseType } from '@types';
 
 const getMyHostInfo = async (): Promise<HostInfoCardWithLinkDataResponseType | null> => {
   try {
-    const response: AxiosResponse = await get<HostInfoCardWithLinkDataResponseType>(`/host`);
+    const response = await get<ApiResponseType<HostInfoCardWithLinkDataResponseType>>(`/host`);
 
     if (!response) {
       return null;
     }
-    console.log('response.data.data', response.data.data);
     return response.data.data;
   } catch (err) {
     console.error(err);
@@ -24,6 +22,5 @@ export const useFetchMyHost = () => {
     queryKey: [QUERY_KEY.MY_HOST_INFO],
     queryFn: () => getMyHostInfo(),
     refetchOnWindowFocus: false,
-    refetchOnMount: true,
   });
 };
