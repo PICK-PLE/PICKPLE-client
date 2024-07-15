@@ -21,19 +21,16 @@ import { useFetchQuestionList } from '@apis/domains/moim/useFetchQuestionList';
 const ClassApplyQuestion = () => {
   const [value, setValue] = useState('');
   const navigate = useNavigate();
+  const [questionList, setQuestionList] = useState<string[]>([]);
 
-  const [questionList, setQuestionList] = useState([]);
-
-  const { data } = useFetchQuestionList(1);
+  const { data: questionData, isSuccess } = useFetchQuestionList(1);
 
   useEffect(() => {
-    if (data) {
-      setQuestionList(Object.values(data.data));
+    if (isSuccess && questionData) {
+      setQuestionList(Object.values(questionData));
     }
-  }, [data]);
-  // console.log(data);
+  }, [isSuccess, questionData]);
 
-  // console.log('questionData', questionData);
   const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setValue(e.target.value);
   };
@@ -63,10 +60,8 @@ const ClassApplyQuestion = () => {
 
             <main css={questionMainStyle}>
               {questionList.map((question, index) => (
-                <div css={questionDataStyle}>
-                  <QuestionText numberLabel={`Q${index + 1}`} key={index}>
-                    {question}
-                  </QuestionText>
+                <div css={questionDataStyle} key={`question-${index}`}>
+                  <QuestionText numberLabel={`Q${index + 1}`}>{question}</QuestionText>
                   <TextArea
                     value={value}
                     onChange={handleTextAreaChange}
