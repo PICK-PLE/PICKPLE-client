@@ -9,4 +9,5 @@ export const QUERY_KEY = {
   GUEST_APPLY: 'guestApplyMoim',
   HOST_MOIM_INFO: 'hostMoimInfo',
   MOIM_DETAIL: 'moimDetail',
+  APPLICANT_LIST: 'applicantList',
 } as const;

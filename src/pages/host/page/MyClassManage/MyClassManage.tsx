@@ -12,30 +12,32 @@ import {
 } from './MyClassManage.style';
 import { useState, useEffect, useMemo } from 'react';
 import { ApplicantListModal, ClassManageEmptyView } from '@pages/host/components';
-import { ApplicantListResponseType } from '@types';
 import { useToast } from '@hooks';
-
-import { APPLICANT_DATA } from 'src/constants/mocks/applicant';
+import { ApplicantListType, useFetchApplicantList } from '@apis/domains/moimSubmissionr/useFetchApplicantList';
 
 const MyClassManage = () => {
   // TODO: 커스텀 훅으로 분리
-  const { status, data } = APPLICANT_DATA;
-  const { isApprovable, maxGuest, submitterList } = data;
+  const { data: applicantData, status } = useFetchApplicantList(1);
+  console.log(applicantData);
+
+  // 초기 상태를 설정
+  const isApprovable = applicantData?.data.isApprovable ?? false;
+  const maxGuest = applicantData?.data.maxGuest ?? 0;
+  const submitterList = applicantData?.data.submitterList ?? [];
   const submitterListLength = submitterList.length;
 
   //checkBox 부분
-  const [checkedStates, setCheckedStates] = useState<boolean[]>(
-    new Array(submitterListLength).fill(false) // 초기 상태를 모든 항목이 unchecked 상태로 설정
-  );
+  const [checkedStates, setCheckedStates] = useState<boolean[]>(new Array(submitterListLength).fill(false)); // 초기 상태를 모든 항목이 unchecked 상태로 설정
 
   const { showToast, isToastVisible } = useToast();
 
-  const checkedApplicant: ApplicantListResponseType = useMemo(
+  const checkedApplicant: ApplicantListType['data'] = useMemo(
     () => ({
       maxGuest: maxGuest,
+      isApprovable: isApprovable,
       submitterList: submitterList.filter((_, index) => checkedStates[index]),
     }),
-    [maxGuest, submitterList, checkedStates]
+    [maxGuest, isApprovable, submitterList, checkedStates]
   );
 
   const toggleChecked = (index: number) => {
@@ -45,7 +47,7 @@ const MyClassManage = () => {
         prevStates.map((checked, i) => (i === index ? !checked : checked))
       );
     } else {
-      showToast(''); //Toast에 문제가 있어보이는데 ...
+      showToast('');
     }
   };
 
@@ -53,11 +55,10 @@ const MyClassManage = () => {
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    // 신청자 선택 아무것도 안했을 때
-    if (status === 201 && checkedApplicant.submitterList.length > 0 && isApprovable) {
+    if (checkedApplicant.submitterList.length > 0 && isApprovable) {
       setIsActive(true);
     }
-  }, [status, checkedApplicant, isApprovable]);
+  }, [checkedApplicant, isApprovable]);
 
   // 모달 부분
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -92,7 +93,6 @@ const MyClassManage = () => {
           </div>
 
           <div css={accordionStyle}>
-            {/* 나중에 에러코드 명확하게 나오면 수정예정!!!! */}
             {status === 201 ? (
               <ApplicantAccordionList
                 applicantData={submitterList}
@@ -129,3 +129,4 @@ const MyClassManage = () => {
 };
 
 export default MyClassManage;
+
