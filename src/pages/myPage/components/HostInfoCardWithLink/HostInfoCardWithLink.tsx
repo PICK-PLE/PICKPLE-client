@@ -19,7 +19,11 @@ const HostInfoCardWithLink = () => {
   const { data: hostInfoCardWithLinkList } = useFetchMyHost();
 
   if (!hostInfoCardWithLinkList) {
-    return <div> empty</div>;
+    return (
+      <div>
+        <HostMyPageEmptyView />
+      </div>
+    );
   }
   const { hostNickName, hostLink, hostCategoryList, hostImageUrl } = hostInfoCardWithLinkList;
 
