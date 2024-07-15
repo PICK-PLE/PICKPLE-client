@@ -71,7 +71,7 @@ const ImageSelect = ({ onFileSelect, isMultiple = false }: ImageSelectProps) => 
       <input
         type="file"
         multiple={isMultiple}
-        accept="image/jpeg, image/png, image/gif, image/heic, image/webp"
+        accept="image/jpeg, image/png, image/jpg, image/webp"
         id="imgInput"
         css={inputStyle}
         onChange={handleImageChange}
