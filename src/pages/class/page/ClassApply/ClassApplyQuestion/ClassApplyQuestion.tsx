@@ -17,13 +17,40 @@ import { IcCaution } from '@svg';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFetchQuestionList } from '@apis/domains/moim/useFetchQuestionList';
+import { usePostAnswerList } from '@apis/domains/moim/usePostAnswerList';
+
+type AnswerListType = {
+  [key: string]: string;
+};
+
+export interface DataType {
+  answerList: AnswerListType;
+  accountList: {
+    holder: string;
+    bank: string;
+    accountNumber: string;
+  };
+}
 
 const ClassApplyQuestion = () => {
-  const [value, setValue] = useState('');
+  const [answer, setValue] = useState<DataType>({
+    answerList: {
+      answer1: '',
+      answer2: '',
+      answer3: '',
+    },
+    accountList: {
+      holder: '',
+      bank: '',
+      accountNumber: '',
+    },
+  });
+
   const navigate = useNavigate();
   const [questionList, setQuestionList] = useState<string[]>([]);
 
   const { data: questionData, isSuccess } = useFetchQuestionList(1);
+  const { mutate } = usePostAnswerList();
 
   useEffect(() => {
     if (isSuccess && questionData) {
@@ -31,15 +58,36 @@ const ClassApplyQuestion = () => {
     }
   }, [isSuccess, questionData]);
 
-  const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(e.target.value);
+  // answerList의 값을 업데이트하는 함수
+  const updateAnswerList = (key: string, value: string) => {
+    setValue((prevState) => ({
+      ...prevState,
+      answerList: {
+        ...prevState.answerList,
+        [key]: value,
+      },
+    }));
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setValue(e.target.value);
+  // accountList의 값을 업데이트하는 함수
+  const updateAccountList = (key: string, value: string) => {
+    setValue((prevState) => ({
+      ...prevState,
+      accountList: {
+        ...prevState.accountList,
+        [key]: value,
+      },
+    }));
+  };
+
+  const requestData = {
+    moimId: 2,
+    body: answer,
   };
 
   const handleButtonClick = () => {
+    mutate(requestData);
+    console.log(answer);
     navigate('/class/apply/deposit');
   };
 
@@ -63,8 +111,10 @@ const ClassApplyQuestion = () => {
                 <div css={questionDataStyle} key={`question-${index}`}>
                   <QuestionText numberLabel={`Q${index + 1}`}>{question}</QuestionText>
                   <TextArea
-                    value={value}
-                    onChange={handleTextAreaChange}
+                    value={answer.answerList[`answer${index + 1}`]}
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                      updateAnswerList(`answer${index + 1}`, e.target.value)
+                    }
                     maxLength={200}
                     size="medium"
                     placeholder="답변을 작성해주세요."
@@ -89,22 +139,28 @@ const ClassApplyQuestion = () => {
                   inputLabel="예금주"
                   placeholder="ex. 홍길동"
                   isCountValue={false}
-                  value={value}
-                  onChange={handleInputChange}
+                  value={answer.accountList.holder}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    updateAccountList('holder', e.target.value)
+                  }
                 />
                 <Input
                   inputLabel="입금 은행"
                   placeholder="은행명을 입력해주세요."
                   isCountValue={false}
-                  value={value}
-                  onChange={handleInputChange}
+                  value={answer.accountList.bank}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    updateAccountList('bank', e.target.value)
+                  }
                 />
                 <Input
                   inputLabel="계좌 번호"
                   placeholder="‘-’ 없이 입력"
                   isCountValue={false}
-                  value={value}
-                  onChange={handleInputChange}
+                  value={answer.accountList.accountNumber}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                    updateAccountList('accountNumber', e.target.value)
+                  }
                 />
                 <span css={questionRefundTextStyle}>
                   * 환불 처리를 위해 계좌 정보를 수집, 이용하며 <br />
