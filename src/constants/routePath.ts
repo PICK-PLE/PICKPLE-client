@@ -15,10 +15,10 @@ const classPages = {
   CLASS_DETAIL: '/class/:classId',
   CLASS_NOTICE_POST: '/class/:classId/notice/post',
   CLASS_POST: '/class/post',
-  CLASS_APPLY_RULE: '/class/apply/rule',
-  CLASS_APPLY_QUESTION: '/class/apply/question',
-  CLASS_APPLY_DEPOSIT: '/class/apply/deposit',
-  CLASS_APPLY_COMPLETE: '/class/apply/complete',
+  CLASS_APPLY_RULE: '/class/:classId/apply/rule',
+  CLASS_APPLY_QUESTION: '/class/:classId/apply/question',
+  CLASS_APPLY_DEPOSIT: '/class/:classId/apply/deposit',
+  CLASS_APPLY_COMPLETE: '/class/:classId/apply/complete',
 };
 
 const myPagePages = {

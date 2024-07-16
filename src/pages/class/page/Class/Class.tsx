@@ -58,6 +58,10 @@ const Class = () => {
     navigate(`/class/${classId}/notice/post`);
   };
 
+  const handleApplyButtonClick = () => {
+    navigate(`/class/${classId}/apply/rule`);
+  };
+
   return (
     <div>
       <LogoHeader />
@@ -128,7 +132,9 @@ const Class = () => {
         )}
         <section css={buttonContainer(windowWidth)}>
           <ShareButton />
-          <Button variant="large">참여하기</Button>
+          <Button variant="large" onClick={handleApplyButtonClick}>
+            참여하기
+          </Button>
         </section>
       </div>
     </div>

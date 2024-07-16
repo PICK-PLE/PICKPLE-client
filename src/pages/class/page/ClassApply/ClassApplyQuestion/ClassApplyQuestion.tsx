@@ -15,9 +15,10 @@ import {
 } from '@pages/class/page/ClassApply/ClassApplyQuestion/ClassApplyQuestion.style';
 import { IcCaution } from '@svg';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchQuestionList } from '@apis/domains/moim/useFetchQuestionList';
 import { usePostAnswerList } from '@apis/domains/moimSubmissionr/usePostAnswerList';
+import { ClassIdPathParameterType } from '@types';
 
 type AnswerListType = {
   [key: string]: string;
@@ -33,6 +34,10 @@ export interface DataType {
 }
 
 const ClassApplyQuestion = () => {
+  const navigate = useNavigate();
+
+  const { classId } = useParams<ClassIdPathParameterType>();
+
   const [questionList, setQuestionList] = useState<string[]>([]);
   const { data: questionData, isSuccess } = useFetchQuestionList(1);
   const [answer, setAnswer] = useState<DataType>({
@@ -77,23 +82,15 @@ const ClassApplyQuestion = () => {
       },
     }));
   };
-
-  //나중에 moimId 뽑아내면 사라질 아이
-  const moimId = 2;
-
   const requestData = {
-    moimId: moimId,
+    classId: Number(classId),
     body: answer,
   };
 
-  const navigate = useNavigate();
-
   const handleButtonClick = () => {
     mutate(requestData);
-    navigate('/class/apply/deposit');
+    navigate(`/class/${classId}/apply/deposit`);
   };
-
-
 
   return (
     <>
@@ -122,6 +119,7 @@ const ClassApplyQuestion = () => {
                     maxLength={200}
                     size="medium"
                     placeholder="답변을 작성해주세요."
+                    isValid
                   />
                 </div>
               ))}

@@ -12,8 +12,13 @@ import {
   completeTextStyle,
   completeWrapperStyle,
 } from '@pages/class/page/ClassApply/ClassApplyComplete/ClassApplyComplete.style';
+import { useNavigate } from 'react-router-dom';
 
 const ClassApplyComplete = () => {
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate(`/categories`);
+  };
   return (
     <div css={classApplyCompleteLayout}>
       <LogoHeader />
@@ -53,7 +58,9 @@ const ClassApplyComplete = () => {
         </div>
 
         <footer css={completeFooterStyle}>
-          <Button variant="large">다른 클래스 모임 둘러보기</Button>
+          <Button variant="large" onClick={handleButtonClick}>
+            다른 클래스 모임 둘러보기
+          </Button>
         </footer>
       </article>
     </div>
