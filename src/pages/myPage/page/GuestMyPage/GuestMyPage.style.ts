@@ -45,3 +45,19 @@ export const line = (theme: Theme) => css`
 
   background-color: ${theme.color.background};
 `;
+
+export const logoutBox = css`
+  ${flexGenerator('row', 'space-between', 'center')}
+  width: 100%;
+
+  cursor: pointer;
+`;
+
+export const logoutTextStyle = (theme: Theme) => css`
+  ${theme.font['subhead03-m-16']}
+  ${theme.color.blackgray}
+`;
+export const iconStyle = css`
+  width: 2.4rem;
+  height: 2.4rem;
+`;

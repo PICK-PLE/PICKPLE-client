@@ -7,12 +7,22 @@ import {
   userSelectedTextStyle,
   userUnselectedTextStyle,
   line,
+  logoutBox,
+  logoutTextStyle,
+  iconStyle,
 } from './GuestMyPage.style';
 import { routePath } from '@constants';
 import { useEasyNavigate } from '@hooks';
+import { IcNext } from '@svg';
+import { usePostLogout } from '@apis/domains/user';
 
 const GuestMyPage = () => {
   const { goGuestMyPage, goHostMyPage } = useEasyNavigate();
+  const { mutate } = usePostLogout();
+
+  const handleLogoutClick = () => {
+    mutate();
+  };
   return (
     <>
       <LogoHeader isIcon={false} />
@@ -32,7 +42,12 @@ const GuestMyPage = () => {
         <article css={navigateBoxWrapper}>
           <NavigateBox path={routePath.GUEST_MY_CLASS}>my 클래스 모임</NavigateBox>
           <NavigateBox path="오픈 카톡 링크">픽플에 문의하기</NavigateBox>
-          <NavigateBox path="로그아웃 로직">로그아웃</NavigateBox>
+          <div css={logoutBox} onClick={handleLogoutClick}>
+            <span css={logoutTextStyle}>로그아웃</span>
+            <span css={iconStyle}>
+              <IcNext />
+            </span>
+          </div>
         </article>
       </div>
     </>
