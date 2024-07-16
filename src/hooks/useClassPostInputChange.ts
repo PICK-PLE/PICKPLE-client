@@ -66,7 +66,9 @@ export const useClassPostInputChange = () => {
 
   const handleDateChange = (date: Date | null) => {
     if (date) {
-      const formattedDate = `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
+      const formattedDate = `${date.getFullYear()}.${(date.getMonth() + 1)
+        .toString()
+        .padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
       const dayOfWeek = ['일', '월', '화', '수', '목', '금', '토'][date.getDay()];
       setClassPostState((prevState) => ({
         ...prevState,
@@ -74,6 +76,20 @@ export const useClassPostInputChange = () => {
         dayOfWeek: dayOfWeek,
       }));
     }
+  };
+
+  const handleQuestionChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    key: keyof ClassPostDataType['questionList']
+  ) => {
+    const value = e.target.value;
+    setClassPostState((prevState) => ({
+      ...prevState,
+      questionList: {
+        ...prevState.questionList,
+        [key]: value,
+      },
+    }));
   };
 
   return {
@@ -85,6 +101,7 @@ export const useClassPostInputChange = () => {
     handleAmountChange,
     handleSelectChange,
     handleAccountChange,
-    handleDateChange
+    handleDateChange,
+    handleQuestionChange,
   };
 };

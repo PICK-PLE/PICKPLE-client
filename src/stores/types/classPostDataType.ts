@@ -20,7 +20,11 @@ export interface ClassPostDataType {
     bank: string;
     accountNumber: string;
   };
-  questionList: string[];
+  questionList: {
+    question1: string;
+    question2?: string;
+    question3?: string;
+  };
   title: string;
   description: string;
   imageList: string[];

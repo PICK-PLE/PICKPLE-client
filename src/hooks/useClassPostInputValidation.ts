@@ -62,10 +62,19 @@ export const useClassPostInputValidation = () => {
       isAllValid,
     };
   };
+
+  const validateStepTwo = (newQuestions: ClassPostDataType['questionList']) => {
+    const isValid = !!newQuestions.question1;
+
+    return {
+      isValid,
+    };
+  };
   return {
     validateLength,
     validateCategory,
     validateAccount,
     validateStepOne,
+    validateStepTwo,
   };
 };

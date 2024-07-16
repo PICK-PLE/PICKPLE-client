@@ -23,7 +23,11 @@ export const classPostAtom = atom<ClassPostDataType>({
     bank: '',
     accountNumber: '',
   },
-  questionList: [],
+  questionList: {
+    question1: '',
+    question2: '',
+    question3: '',
+  },
   title: '',
   description: '',
   imageList: [],
