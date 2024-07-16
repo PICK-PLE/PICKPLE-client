@@ -6,9 +6,12 @@ import {
   noticePostMain,
 } from './ClassNotice.style';
 import { useState, useEffect } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
+import { UseMutateAsyncFunction, useQueryClient } from '@tanstack/react-query';
 import { PutImageUploadParams, usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
-import { getPresignedUrl } from '@apis/domains/presignedUrl/useFetchPresignedUrl';
+import { usePostNotice } from '@apis/domains/notice';
+import { handleUpload } from 'src/utils/imageUpload';
+import { AxiosResponse } from 'axios';
+import { NoticeParams } from '@apis/domains/notice/usePostNotice';
 
 const ClassNotice = () => {
   const [noticeTitle, setNoticeTitle] = useState('');
@@ -17,6 +20,7 @@ const ClassNotice = () => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const queryClient = useQueryClient();
   const putS3UploadMutation = usePutS3Upload();
+  const postNoticeMutation = usePostNotice();
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNoticeTitle(e.target.value);
@@ -34,20 +38,21 @@ const ClassNotice = () => {
     setSelectedFiles(files);
   };
 
-  const handleUpload = async () => {
-    if (selectedFiles.length > 0) {
-      // presigned URL 요청
-      const presignedUrls = await queryClient.fetchQuery({
-        queryKey: ['presignedUrl', selectedFiles.length],
-        queryFn: () => getPresignedUrl(1),
-      });
-
-      if (presignedUrls && presignedUrls.length > 0) {
-        const presignedUrl = presignedUrls[0].url;
-        const file = selectedFiles[0];
-        await putS3UploadMutation.mutateAsync({ presignedUrl, file } as PutImageUploadParams);
-      }
-    }
+  const handleUploadClick = async () => {
+    await handleUpload({
+      selectedFiles,
+      noticeTitle,
+      noticeContent,
+      moimId: 1, // 정안TODO 실제 moimId로 변경
+      queryClient,
+      putS3Upload: putS3UploadMutation.mutateAsync,
+      postNotice: postNoticeMutation.mutateAsync as UseMutateAsyncFunction<
+        AxiosResponse<unknown, PutImageUploadParams> | null,
+        Error,
+        NoticeParams,
+        unknown
+      >,
+    });
   };
 
   return (
@@ -79,7 +84,7 @@ const ClassNotice = () => {
         <Button
           variant="large"
           disabled={isButtonDisabled || selectedFiles.length === 0}
-          onClick={handleUpload}>
+          onClick={handleUploadClick}>
           게시하기
         </Button>
       </div>
