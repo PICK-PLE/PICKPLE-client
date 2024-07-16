@@ -6,7 +6,15 @@ import {
   ClassReviewEmptyView,
   HostInfoCard,
 } from '@pages/class/components';
-import { Button, Carousel, IconText, Label, LogoHeader, ShareButton } from '@components';
+import {
+  Button,
+  Carousel,
+  IconButton,
+  IconText,
+  Label,
+  LogoHeader,
+  ShareButton,
+} from '@components';
 import {
   buttonContainer,
   carouselWrapper,
@@ -14,13 +22,14 @@ import {
   classInfoList,
   classLayout,
   classNameStyle,
+  floatingButtonWrapper,
   infoSectionStyle,
   selectedTabStyle,
   tabButtonStyle,
   tabSectionStyle,
   tabWrapper,
 } from './Class.style';
-import { IcClassPerson, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
+import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
 
 import { useParams } from 'react-router-dom';
 import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
@@ -67,7 +76,7 @@ const Class = () => {
               <IconText icon={<IcClassPerson />} text={`최대 ${maxGuest}명 모집`} />
             </li>
             <li>
-              <IconText icon={<IcMoney />} text={`${fee?.toString().toLocaleString()}원`} />
+              <IconText icon={<IcMoney />} text={`${fee?.toLocaleString()}원`} />
             </li>
           </ul>
           <HostInfoCard hostId={moimDetail.hostId ?? 0} />
@@ -102,6 +111,11 @@ const Class = () => {
             ))}
           {selectTab === '리뷰' && <ClassReviewEmptyView />}
         </section>
+        {selectTab === '공지사항' && (
+          <div css={floatingButtonWrapper(windowWidth)}>
+            <IconButton icon={<IcCopyPlus />}>작성하기</IconButton>
+          </div>
+        )}
         <section css={buttonContainer(windowWidth)}>
           <ShareButton />
           <Button variant="large">참여하기</Button>
