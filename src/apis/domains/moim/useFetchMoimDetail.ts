@@ -1,4 +1,3 @@
-
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { get } from '@apis/api';
@@ -19,7 +18,7 @@ const getMoimDetail = async (classId: string): Promise<MoimDetailResponse | null
 
 export const useFetchMoimDetail = (classId: string) => {
   return useQuery({
-    queryKey: [QUERY_KEY.MOIM_DETAIL],
+    queryKey: [QUERY_KEY.MOIM_DETAIL, classId],
     queryFn: () => getMoimDetail(classId),
     // staleTime: 3000,
     // gcTime: 50000,

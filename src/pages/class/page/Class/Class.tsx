@@ -1,5 +1,11 @@
 import { useState } from 'react';
-import { ClassEmptyReview, ClassInfo, ClassNotice, HostInfoCard } from '@pages/class/components';
+import {
+  ClassInfo,
+  ClassNotice,
+  ClassNoticeEmptyView,
+  ClassReviewEmptyView,
+  HostInfoCard,
+} from '@pages/class/components';
 import { Button, Carousel, IconText, Label, LogoHeader, ShareButton } from '@components';
 import {
   buttonContainer,
@@ -88,8 +94,13 @@ const Class = () => {
         </div>
         <section css={[tabSectionStyle, selectTab === '모임소개' && infoSectionStyle]}>
           {selectTab === '모임소개' && <ClassInfo content={moimDescription ?? ''} />}
-          {selectTab === '공지사항' && <ClassNotice noticeData={moimNoticeList || []} />}
-          {selectTab === '리뷰' && <ClassEmptyReview />}
+          {selectTab === '공지사항' &&
+            ((moimNoticeList || []).length === 0 ? (
+              <ClassNoticeEmptyView />
+            ) : (
+              <ClassNotice noticeData={moimNoticeList || []} />
+            ))}
+          {selectTab === '리뷰' && <ClassReviewEmptyView />}
         </section>
         <section css={buttonContainer(windowWidth)}>
           <ShareButton />

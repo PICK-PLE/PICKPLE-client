@@ -3,7 +3,7 @@ import { flexGenerator } from '@styles/generator';
 
 export const emptyReviewContainer = css`
   ${flexGenerator('column')};
-  height: 50rem;
+  height: 24rem;
 `;
 
 export const imageStyle = css`

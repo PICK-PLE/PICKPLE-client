@@ -17,7 +17,7 @@ const getMoimDescription = async (classId: string): Promise<string | null> => {
 
 export const useFetchMoimDescription = (classId: string) => {
   return useQuery({
-    queryKey: [QUERY_KEY.MOIM_DESCRIPTION],
+    queryKey: [QUERY_KEY.MOIM_DESCRIPTION, classId],
     queryFn: () => getMoimDescription(classId),
     // staleTime: 3000,
     // gcTime: 50000,

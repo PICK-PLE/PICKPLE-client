@@ -17,7 +17,7 @@ const getMoimNoticeList = async (classId: string): Promise<MoimNotceType[] | nul
 
 export const useFetchMoimNoticeList = (classId: string, selectTab: string) => {
   return useQuery({
-    queryKey: [QUERY_KEY.MOIM_NOTICE_LIST],
+    queryKey: [QUERY_KEY.MOIM_NOTICE_LIST, classId],
     queryFn: () => getMoimNoticeList(classId),
     staleTime: 1000 * 60,
     gcTime: 1000 * 60 * 5,

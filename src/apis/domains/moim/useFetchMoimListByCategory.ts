@@ -23,7 +23,7 @@ const getMoimListByCategory = async (
 
 export const useFetchMoimListByCategory = (category: string) => {
   return useQuery({
-    queryKey: [QUERY_KEY.MOIM_LIST_BY_CATEGORY],
+    queryKey: [QUERY_KEY.MOIM_LIST_BY_CATEGORY, category],
     queryFn: () => getMoimListByCategory(category),
     enabled: !!category,
     staleTime: 1000 * 30, // 30초

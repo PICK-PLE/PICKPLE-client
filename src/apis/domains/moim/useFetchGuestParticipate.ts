@@ -11,9 +11,9 @@ const getGuestParticipateMoim = async (guestId: number) => {
   return response;
 };
 
-export const useFetchGuestParticipate = (questId: number) => {
+export const useFetchGuestParticipate = (guestId: number) => {
   return useQuery({
-    queryKey: [QUERY_KEY.GUEST_PARTICIPATE],
-    queryFn: () => getGuestParticipateMoim(questId),
+    queryKey: [QUERY_KEY.GUEST_PARTICIPATE, guestId],
+    queryFn: () => getGuestParticipateMoim(guestId),
   });
 };
