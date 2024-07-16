@@ -35,10 +35,19 @@ const StepOne = ({ onNext }: StepProps) => {
     handleMaxGuestChange,
     handleAmountChange,
     handleSelectChange,
-    handleAccountChange
+    handleAccountChange,
+    handleDateChange,
   } = useClassPostInputChange();
   const [selectedCategories, setSelectedCategories] = useState(classPostState.categoryList);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(
+    classPostState.date ? new Date(classPostState.date.replace(/\./g, '-')) : null
+  );
+  const [startTime, setStartTime] = useState<number | null>(
+    classPostState.startTime ? parseInt(classPostState.startTime) : null
+  );
+  const [endTime, setEndTime] = useState<number | null>(
+    classPostState.endTime ? parseInt(classPostState.endTime) : null
+  );
 
   const handleUpdateCategories = (newCategories: ClassPostDataType['categoryList']) => {
     setSelectedCategories(newCategories);
@@ -47,6 +56,20 @@ const StepOne = ({ onNext }: StepProps) => {
 
   const handleNextClick = () => {
     onNext();
+  };
+
+  const handleDateChangeWrapper = (date: Date | null) => {
+    setSelectedDate(date);
+    handleDateChange(date);
+  };
+  const handleStartTimeChange = (time: number) => {
+    setStartTime(time);
+    handleInputChange({ target: { value: `${time.toString().padStart(2, '0')}:00` } } as React.ChangeEvent<HTMLInputElement>, 'startTime');
+  };
+
+  const handleEndTimeChange = (time: number) => {
+    setEndTime(time);
+    handleInputChange({ target: { value: `${time.toString().padStart(2, '0')}:00` } } as React.ChangeEvent<HTMLInputElement>, 'endTime');
   };
 
   console.log(classPostState);
@@ -106,8 +129,13 @@ const StepOne = ({ onNext }: StepProps) => {
           </section>
           <section css={sectionStyle(1)}>
             <QuestionText numberLabel="Q4">언제 진행할 예정이신가요?</QuestionText>
-            <DateSelect selected={selectedDate} onChange={setSelectedDate} />
-            <TimeSelect />
+            <DateSelect selected={selectedDate} onChange={handleDateChangeWrapper} />
+            <TimeSelect
+              startTime={startTime}
+              endTime={endTime}
+              onStartTimeChange={handleStartTimeChange}
+              onEndTimeChange={handleEndTimeChange}
+            />
           </section>
           <section css={sectionStyle(2)}>
             <QuestionText numberLabel="Q5">몇 명의 게스트와 함께하고 싶으신가요?</QuestionText>

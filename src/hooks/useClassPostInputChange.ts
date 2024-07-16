@@ -64,6 +64,18 @@ export const useClassPostInputChange = () => {
     }));
   };
 
+  const handleDateChange = (date: Date | null) => {
+    if (date) {
+      const formattedDate = `${date.getFullYear()}.${(date.getMonth() + 1).toString().padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
+      const dayOfWeek = ['일', '월', '화', '수', '목', '금', '토'][date.getDay()];
+      setClassPostState((prevState) => ({
+        ...prevState,
+        date: formattedDate,
+        dayOfWeek: dayOfWeek,
+      }));
+    }
+  };
+
   return {
     classPostState,
     handleInputChange,
@@ -73,5 +85,6 @@ export const useClassPostInputChange = () => {
     handleAmountChange,
     handleSelectChange,
     handleAccountChange,
+    handleDateChange
   };
 };
