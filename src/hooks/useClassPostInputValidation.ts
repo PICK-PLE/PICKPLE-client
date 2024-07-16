@@ -5,7 +5,7 @@ type Account = ClassPostDataType['accountList'];
 
 export const useClassPostInputValidation = () => {
   const validateLength = (answer: string | number) => {
-    return typeof answer === 'string' ? answer.trim().length >= 1 : answer > 1;
+    return typeof answer === 'string' ? answer.trim().length >= 1 : answer > 0;
   };
   const validateDescription = (description: string) => {
     return description.trim().length >= 5

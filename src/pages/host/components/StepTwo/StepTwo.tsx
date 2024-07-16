@@ -13,11 +13,12 @@ import {
 } from './StepTwo.style';
 import CategorySelectBox from 'src/components/common/CategorySelectBox/CategorySelectBox';
 import { useHostApplyInputChange } from 'src/hooks/useHostApplyInputChange';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { usePostHostApply } from '@apis/domains/host';
 import { useHostApplyInputValidation } from 'src/hooks/useHostApplyInputValidation';
 import { components } from '@schema';
 import { ErrorType } from '@types';
+import { smoothScroll } from '@utils';
 
 const StepTwo = ({ onNext }: StepProps) => {
   const { hostApplyState, handleInputChange, handleCategoryChange, resetHostApplyState } =
@@ -33,6 +34,7 @@ const StepTwo = ({ onNext }: StepProps) => {
     categoryList: selectedCategories,
   });
   const { mutate, isSuccess, error } = usePostHostApply();
+  const nicknameInputRef = useRef<HTMLInputElement>(null);
 
   const handleNextClick = () => {
     if (isAllValid) {
@@ -44,9 +46,14 @@ const StepTwo = ({ onNext }: StepProps) => {
     if (error) {
       const { status, message } = error as ErrorType;
       console.log(status, message);
+      if (status === 40008) {
+        smoothScroll(110);
+        nicknameInputRef.current?.focus();
+      }
     } else if (isSuccess) {
       resetHostApplyState();
       onNext();
+      smoothScroll(0);
     }
   }, [error, isSuccess, onNext, resetHostApplyState]);
 
@@ -56,6 +63,7 @@ const StepTwo = ({ onNext }: StepProps) => {
     setSelectedCategories(newCategories);
     handleCategoryChange(newCategories);
   };
+
   return (
     <>
       <ProgressBar progress={66.6} />
@@ -68,8 +76,11 @@ const StepTwo = ({ onNext }: StepProps) => {
           <section css={sectionStyle}>
             <QuestionText numberLabel="Q4">픽플에서 사용할 닉네임을 작성해주세요.</QuestionText>
             <Input
+              ref={nicknameInputRef}
               value={hostApplyState.nickname}
-              onChange={(e) => handleInputChange(e, 'nickname')}
+              onChange={(e) => {
+                handleInputChange(e, 'nickname');
+              }}
               placeholder="ex. 픽픽이 (최대 15자)"
               isValid={isNicknameValid}
               errorMessage="닉네임을 입력해 주세요."

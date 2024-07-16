@@ -16,6 +16,7 @@ import {
 import { Button, ProgressBar, QuestionInput } from '@components';
 import { useClassPostInputChange } from 'src/hooks/useClassPostInputChange';
 import { useClassPostInputValidation } from 'src/hooks/useClassPostInputValidation';
+import { smoothScroll } from '@utils';
 
 const StepTwo = ({ onNext }: StepProps) => {
   const { classPostState, handleQuestionChange } = useClassPostInputChange();
@@ -25,6 +26,7 @@ const StepTwo = ({ onNext }: StepProps) => {
   const handleNextClick = () => {
     if (isValid) {
       onNext();
+      smoothScroll(0);
     }
   };
 

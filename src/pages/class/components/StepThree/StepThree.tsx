@@ -15,32 +15,48 @@ import {
 import { useClassPostInputChange } from 'src/hooks/useClassPostInputChange';
 import { useClassPostInputValidation } from 'src/hooks/useClassPostInputValidation';
 import { usePostMoim } from '@apis/domains/moim/usePostMoim';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { ErrorType } from '@types';
+import { handleUpload } from 'src/utils/image';
+import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
+import { smoothScroll } from '@utils';
 
 const StepThree = ({ onNext }: StepProps) => {
-  const { classPostState, handleInputChange } = useClassPostInputChange();
+  const { classPostState, handleInputChange, handleImageList } = useClassPostInputChange();
   const { validateStepThree } = useClassPostInputValidation();
   const { isTitleValid, isDescriptionValid, isAllValid } = validateStepThree(classPostState);
+  const putS3UploadMutation = usePutS3Upload();
+  const postMoim = usePostMoim();
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
-  const { mutate, isSuccess, error } = usePostMoim();
+  const handleFileSelect = (files: File[]) => {
+    setSelectedFiles(files);
+  };
 
-  const handleNextClick = () => {
+  const handleNextClick = async (): Promise<void> => {
     if (isAllValid) {
-      mutate(classPostState);
+      const imageUrlList = await handleUpload({
+        selectedFiles,
+        putS3Upload: putS3UploadMutation.mutateAsync,
+        type: 'moim',
+      });
+      handleImageList(imageUrlList);
+
+      postMoim
+        .mutateAsync(classPostState)
+        .then(() => {
+          onNext();
+          smoothScroll(0);
+        })
+        .catch((error: ErrorType) => {
+          const { status, message } = error;
+          console.error(status, message);
+        });
     }
   };
 
-  useEffect(() => {
-    if (error) {
-      const { status, message } = error as ErrorType;
-      console.log(status, message);
-    } else if (isSuccess) {
-      onNext();
-    }
-  }, [error, isSuccess, onNext]);
+  console.log(classPostState);
   return (
     <>
       <ProgressBar progress={75} />
@@ -76,7 +92,7 @@ const StepThree = ({ onNext }: StepProps) => {
             />
           </section>
           <section css={imageSelectSection}>
-            <ImageSelect isMultiple={true} />
+            <ImageSelect isMultiple={true} onFileSelect={handleFileSelect} />
             <h6 css={referTextStyle}>
               * 첫번째 사진이 썸네일 이미지로 등록되며
               <br />

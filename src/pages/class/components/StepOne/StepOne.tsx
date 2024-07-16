@@ -26,6 +26,7 @@ import AddAmountBox from '../AddAmountBox/AddAmountBox';
 import { useClassPostInputChange } from 'src/hooks/useClassPostInputChange';
 import { ClassPostDataType } from 'src/stores/types/classPostDataType';
 import { useClassPostInputValidation } from 'src/hooks/useClassPostInputValidation';
+import { smoothScroll } from '@utils';
 
 const StepOne = ({ onNext }: StepProps) => {
   const {
@@ -61,6 +62,7 @@ const StepOne = ({ onNext }: StepProps) => {
   const handleNextClick = () => {
     if (validatationResult.isAllValid) {
       onNext();
+      smoothScroll(0);
     }
   };
 
@@ -88,7 +90,6 @@ const StepOne = ({ onNext }: StepProps) => {
     );
   };
 
-  console.log(classPostState);
   return (
     <>
       <ProgressBar progress={25} />

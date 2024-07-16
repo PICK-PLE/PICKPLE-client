@@ -16,4 +16,5 @@ export const QUERY_KEY = {
   MOIM_HOST: 'moimHost',
   MOIM_NOTICE_LIST: 'moimNoticeList',
   POST_MOIM: 'postMoim',
+  PRE_SIGNED_URL: 'presignedUrl',
 } as const;

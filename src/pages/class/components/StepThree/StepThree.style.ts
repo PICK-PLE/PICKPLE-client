@@ -34,6 +34,7 @@ export const mainStyle = css`
   width: 100%;
 
   margin-top: 3.8rem;
+  margin-bottom: 3.8rem;
 `;
 
 export const sectionStyle = css`

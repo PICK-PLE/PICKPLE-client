@@ -11,6 +11,7 @@ import {
 } from './StepOne.style';
 import { useHostApplyInputChange } from 'src/hooks/useHostApplyInputChange';
 import { useHostApplyInputValidation } from 'src/hooks/useHostApplyInputValidation';
+import { smoothScroll } from '@utils';
 
 const StepOne = ({ onNext }: StepProps) => {
   const { hostApplyState, handleInputChange } = useHostApplyInputChange();
@@ -20,8 +21,10 @@ const StepOne = ({ onNext }: StepProps) => {
   const handleNextClick = () => {
     if (isAllValid) {
       onNext();
+      smoothScroll(0);
     }
   };
+
   return (
     <>
       <ProgressBar progress={33.3} />

@@ -1,6 +1,6 @@
 import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
-import { QueryClient, useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ErrorResponse } from '@types';
 import { ClassPostDataType } from 'src/stores/types/classPostDataType';
 import { transformClassPostState } from 'src/utils/postMoimTypeChange';
@@ -18,7 +18,7 @@ const postMoim = async (classPostState: ClassPostDataType) => {
 };
 
 export const usePostMoim = () => {
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (classPostState: ClassPostDataType) => postMoim(classPostState),
