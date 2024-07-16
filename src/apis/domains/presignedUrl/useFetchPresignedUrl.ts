@@ -1,7 +1,5 @@
 import { get } from '@apis/api';
-import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { components } from '@schema';
-import { useQuery } from '@tanstack/react-query';
 import { ApiResponseType } from '@types';
 
 type PreSignedUrlResponse = components['schemas']['PreSignedUrlResponse'];
@@ -27,11 +25,4 @@ export const getPresignedUrl = async (
   }
 
   return null;
-};
-
-export const useFetchPresignedUrl = (count: number, type: PresignedUrlType) => {
-  return useQuery({
-    queryKey: [QUERY_KEY.PRE_SIGNED_URL],
-    queryFn: () => getPresignedUrl(count, type),
-  });
 };
