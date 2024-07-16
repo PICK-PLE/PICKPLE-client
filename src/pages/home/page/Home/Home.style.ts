@@ -1,8 +1,15 @@
 import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
-export const homeLayout = () => css`
+export const pageLayout = css`
+  ${flexGenerator('column')};
+  gap: 6rem;
+  min-height: 100dvh;
   padding-top: 6rem;
+`;
+
+export const homeLayout = () => css`
+  width: 100%;
 `;
 
 export const homeBannerStyle = css`
@@ -40,8 +47,4 @@ export const iconStyle = css`
 export const iconNameStyle = (theme: Theme) => css`
   color: ${theme.color.midgray2};
   ${theme.font['body04-m-12']}
-`;
-
-export const homeStyle = css`
-  min-height: calc(100dvh - 6rem);
 `;

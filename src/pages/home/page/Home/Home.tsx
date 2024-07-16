@@ -6,8 +6,8 @@ import {
   titleStyle,
   iconStyle,
   iconNameStyle,
-  homeStyle,
   homeLayout,
+  pageLayout,
 } from './Home.style';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
 import Footer from 'src/components/common/Footer/Footer';
@@ -21,8 +21,8 @@ const Home = () => {
   return (
     <>
       <LogoHeader isIcon />
-      <main css={homeLayout}>
-        <div css={homeStyle}>
+      <div css={pageLayout}>
+        <main css={homeLayout}>
           <img
             css={homeBannerStyle}
             src="https://placehold.co/375x280"
@@ -46,9 +46,9 @@ const Home = () => {
               })}
             </div>
           </div>
-        </div>
-      </main>
-      <Footer />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 };
