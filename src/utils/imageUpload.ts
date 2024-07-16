@@ -38,7 +38,12 @@ export const handleUpload = async ({
       for (let i = 0; i < selectedFiles.length; i++) {
         const presignedUrl = presignedUrls[i].url;
         const file = selectedFiles[i];
-        await putS3Upload({ presignedUrl, file } as PutImageUploadParams);
+        try {
+          await putS3Upload({ presignedUrl, file } as PutImageUploadParams);
+        } catch (err) {
+          console.error(`${file.name}이 업로드에 실패했음`, err);
+          throw new Error('이미지 업로드에 실패했습니다.');
+        }
       }
 
       await postNotice({
