@@ -12,7 +12,6 @@ const getGuestParticipateMoim = async (
     const response = await get<ApiResponseType<SubmittedMoimByGuestResponse[]>>(
       `/guest/${guestId}/completed-moim-list`
     );
-    console.log('response.data.data', response.data.data);
     return response.data.data;
   } catch (err) {
     console.error(err);
