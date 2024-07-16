@@ -25,7 +25,7 @@ export const handleUpload = async ({
       for (let i = 0; i < selectedFiles.length; i++) {
         const { fileName, url } = presignedUrls[i];
         const file = selectedFiles[i];
-        const baseUrl = url?.split(type.toString())[0]; //최종 파일 경로
+        const baseUrl = url?.split(type)[0]; //최종 파일 경로
         const imageUrl = `${baseUrl}${type}/${fileName}`;
         s3UrlList.push(imageUrl);
 
