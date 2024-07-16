@@ -6,52 +6,52 @@ const categoryIcons = [
   {
     name: 'N잡',
     stroke: CATEGORY_ICON.njob.stroke,
-    fill: CATEGORY_ICON.njob.fill,
+    stroke_selected: CATEGORY_ICON.njob.stroke_selected,
   },
   {
     name: '재테크',
     stroke: CATEGORY_ICON.investment.stroke,
-    fill: CATEGORY_ICON.investment.fill,
+    stroke_selected: CATEGORY_ICON.investment.stroke_selected,
   },
   {
     name: '창업',
     stroke: CATEGORY_ICON.startup.stroke,
-    fill: CATEGORY_ICON.startup.fill,
+    stroke_selected: CATEGORY_ICON.startup.stroke_selected,
   },
   {
     name: '취업',
     stroke: CATEGORY_ICON.employment.stroke,
-    fill: CATEGORY_ICON.employment.fill,
+    stroke_selected: CATEGORY_ICON.employment.stroke_selected,
   },
   {
     name: '생산성',
     stroke: CATEGORY_ICON.productivity.stroke,
-    fill: CATEGORY_ICON.productivity.fill,
+    stroke_selected: CATEGORY_ICON.productivity.stroke_selected,
   },
   {
     name: '건강',
     stroke: CATEGORY_ICON.lifestyle.stroke,
-    fill: CATEGORY_ICON.lifestyle.fill,
+    stroke_selected: CATEGORY_ICON.lifestyle.stroke_selected,
   },
   {
     name: '라이프',
     stroke: CATEGORY_ICON.health.stroke,
-    fill: CATEGORY_ICON.health.fill,
+    stroke_selected: CATEGORY_ICON.health.stroke_selected,
   },
   {
     name: '마인드',
     stroke: CATEGORY_ICON.mind.stroke,
-    fill: CATEGORY_ICON.mind.fill,
+    stroke_selected: CATEGORY_ICON.mind.stroke_selected,
   },
   {
     name: '취미',
     stroke: CATEGORY_ICON.hobby.stroke,
-    fill: CATEGORY_ICON.hobby.fill,
+    stroke_selected: CATEGORY_ICON.hobby.stroke_selected,
   },
   {
     name: '외국어',
     stroke: CATEGORY_ICON.language.stroke,
-    fill: CATEGORY_ICON.language.fill,
+    stroke_selected: CATEGORY_ICON.language.stroke_selected,
   },
 ];
 
@@ -95,7 +95,7 @@ const CategorySelectBox = ({
           <img
             src={
               Object.values(selectedCategories).includes(category.name)
-                ? category.fill
+                ? category.stroke_selected
                 : category.stroke
             }
             alt={category.name}
