@@ -14,13 +14,34 @@ import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
 import { useSearchParams } from 'react-router-dom';
 import { ClassListCard } from '@pages/categories/components';
 import { useFetchMoimListByCategory } from '@apis/domains/moim/useFetchMoimListByCategory';
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 
 const Categories = () => {
   const [categories] = useAtom(categoriesAtom);
+  const categoriesRef = useRef<HTMLUListElement>(null);
+
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedCategory = searchParams.get('category') || categories[0];
   const { data: moimList, refetch } = useFetchMoimListByCategory(selectedCategory);
+
+  useLayoutEffect(() => {
+    if (categoriesRef.current) {
+      const selectedIndex = categories.indexOf(selectedCategory);
+      setTimeout(() => {
+        if (selectedIndex < 5) {
+          categoriesRef.current?.scrollTo({
+            left: 0,
+            behavior: 'smooth',
+          });
+        } else {
+          categoriesRef.current?.scrollTo({
+            left: categoriesRef.current?.scrollWidth,
+            behavior: 'smooth',
+          });
+        }
+      }, 100);
+    }
+  }, [categories, selectedCategory]);
 
   useEffect(() => {
     refetch();
@@ -29,10 +50,11 @@ const Categories = () => {
   const handleCategoryClick = (category: string) => {
     setSearchParams({ category });
   };
+
   return (
     <>
       <LogoHeader />
-      <ul css={categoriesContainer}>
+      <ul css={categoriesContainer} ref={categoriesRef}>
         {categories.map((category) => {
           return (
             <li css={categoryWrapper} key={category} onClick={() => handleCategoryClick(category)}>

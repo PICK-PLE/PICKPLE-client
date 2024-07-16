@@ -14,12 +14,18 @@ import Footer from 'src/components/common/Footer/Footer';
 import { useFetchMoimBanner } from 'src/apis/domains/moim';
 import { useAtom } from 'jotai';
 import { categoriesAtom } from '@stores';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
   // TODO: 배너 클릭 시 해당 모임으로 이동
   const { data: bannerId } = useFetchMoimBanner();
 
   const [categories] = useAtom(categoriesAtom);
+
+  const handleCategoryClick = (category: string) => {
+    navigate(`/categories?category=${category}`);
+  };
 
   return (
     <>
@@ -38,16 +44,16 @@ const Home = () => {
           <div css={categoryContainer}>
             <p css={titleStyle}>이런 클래스 모임 어때요?</p>
 
-            <div css={categoryStyle}>
+            <ul css={categoryStyle}>
               {(categories || []).map((category, index) => {
                 return (
-                  <div key={index} css={iconStyle}>
+                  <li key={index} css={iconStyle} onClick={() => handleCategoryClick(category)}>
                     <img src={CATEGORY_ICON[category].fill_selected} alt={`icon-${index}`} />
                     <p css={iconNameStyle}>{CATEGORY_NAME[category]}</p>
-                  </div>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           </div>
         </main>
         <Footer />
