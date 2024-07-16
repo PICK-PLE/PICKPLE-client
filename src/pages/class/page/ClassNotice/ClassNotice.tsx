@@ -9,6 +9,7 @@ import { useState, useEffect } from 'react';
 import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
 import { usePostNotice } from '@apis/domains/notice';
 import { handleUpload } from 'src/utils/image';
+import { useNavigate } from 'react-router-dom';
 
 const ClassNotice = () => {
   const [noticeTitle, setNoticeTitle] = useState('');
@@ -17,6 +18,12 @@ const ClassNotice = () => {
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const putS3UploadMutation = usePutS3Upload();
   const postNoticeMutation = usePostNotice();
+
+  const navigate = useNavigate();
+
+  const handleNavigateToMoimInfo = (moimId: number) => {
+    navigate(`/class/${moimId}`);
+  };
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNoticeTitle(e.target.value);
@@ -35,20 +42,25 @@ const ClassNotice = () => {
   };
 
   const handleButtonClick = async (): Promise<void> => {
-    const imageUrlList = await handleUpload({
-      selectedFiles,
-      putS3Upload: putS3UploadMutation.mutateAsync,
-      type: 'notice',
-    });
-
+    let imageUrl: undefined | string = undefined;
+    console.log('selectedFiles.length', selectedFiles.length);
+    if (selectedFiles.length === 1) {
+      const imageUrlList = await handleUpload({
+        selectedFiles,
+        putS3Upload: putS3UploadMutation.mutateAsync,
+        type: 'notice',
+      });
+      imageUrl = imageUrlList[0];
+    }
     const params = {
       noticeTitle,
       noticeContent,
-      imageUrl: imageUrlList[0],
+      imageUrl,
     };
 
-    const moimId = 1; //정안TODO 실제 모임ID로 변경
+    const moimId = 5; //정안TODO 실제 모임ID로 변경
     await postNoticeMutation.mutateAsync({ params, moimId });
+    handleNavigateToMoimInfo(moimId);
   };
 
   return (
@@ -77,10 +89,7 @@ const ClassNotice = () => {
           </div>
         </main>
 
-        <Button
-          variant="large"
-          disabled={isButtonDisabled || selectedFiles.length === 0}
-          onClick={() => handleButtonClick()}>
+        <Button variant="large" disabled={isButtonDisabled} onClick={() => handleButtonClick()}>
           게시하기
         </Button>
       </div>
