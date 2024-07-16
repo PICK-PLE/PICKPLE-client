@@ -5,10 +5,16 @@ import { useQuery } from '@tanstack/react-query';
 import { ApiResponseType } from '@types';
 
 type PreSignedUrlResponse = components['schemas']['PreSignedUrlResponse'];
-export const getPresignedUrl = async (count: number): Promise<PreSignedUrlResponse[] | null> => {
+
+export type PresignedUrlType = 'notice' | 'moim';
+
+export const getPresignedUrl = async (
+  count: number,
+  type: PresignedUrlType
+): Promise<PreSignedUrlResponse[] | null> => {
   try {
     const response = await get<ApiResponseType<PreSignedUrlResponse[]>>(
-      `/notice-image-list/upload/${count}`
+      `/${type}-image-list/upload/${count}`
     );
 
     if (!response) {
@@ -24,9 +30,9 @@ export const getPresignedUrl = async (count: number): Promise<PreSignedUrlRespon
   return null;
 };
 
-export const useFetchPresignedUrl = (count: number) => {
+export const useFetchPresignedUrl = (count: number, type: PresignedUrlType) => {
   return useQuery({
     queryKey: [QUERY_KEY.PRE_SIGNED_URL],
-    queryFn: () => getPresignedUrl(count),
+    queryFn: () => getPresignedUrl(count, type),
   });
 };
