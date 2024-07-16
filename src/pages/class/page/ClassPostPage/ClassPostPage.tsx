@@ -9,7 +9,7 @@ const steps = ['step1', 'step2', 'step3', 'finish'];
 
 const ClassPostPage = () => {
   const { step } = useParams<{ step: string }>();
-  const { Funnel, Step, nextStep } = useFunnel(step || steps[0]);
+  const { Funnel, Step, nextStep } = useFunnel(step || steps[0], 'class/post');
   return (
     <Provider>
       <LogoHeader />
