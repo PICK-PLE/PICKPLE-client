@@ -33,8 +33,12 @@ export interface DataType {
 }
 
 const ClassApplyQuestion = () => {
+
+  //나중에 moimId 뽑아내면 사라질 아이
+  const moimId = 7;
+
   const [questionList, setQuestionList] = useState<string[]>([]);
-  const { data: questionData, isSuccess } = useFetchQuestionList(1);
+  const { data: questionData, isSuccess } = useFetchQuestionList(moimId);
   const [answer, setAnswer] = useState<DataType>({
     answerList: {
       answer1: '',
@@ -77,9 +81,6 @@ const ClassApplyQuestion = () => {
       },
     }));
   };
-
-  //나중에 moimId 뽑아내면 사라질 아이
-  const moimId = 2;
 
   const requestData = {
     moimId: moimId,

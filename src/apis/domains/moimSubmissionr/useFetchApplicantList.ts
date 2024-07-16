@@ -2,30 +2,23 @@ import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { useQuery } from '@tanstack/react-query';
 import { ApiResponseType } from '@types';
+import { components } from '@schema';
 
-export interface ApplicantListType {
-  data: {
-    maxGuest: number;
-    isApprovable: boolean;
-    submitterList: {
-      submitterId: number;
-      nickname: string;
-      submitterImageUrl: string;
-      submittedDate: string;
-    }[];
-  };
-}
+type MoimSubmissionByMoimResponse = components['schemas']['MoimSubmissionByMoimResponse'];
 
-const getApplicantList = async (moimId: number): Promise<ApplicantListType | null> => {
-  const response = await get<ApiResponseType<ApplicantListType>>(
-    `/api/v1/moim/${moimId}/submitter-list`
-  );
+const getApplicantList = async (moimId: number): Promise<MoimSubmissionByMoimResponse | null> => {
+  try {
+    const response = await get<ApiResponseType<MoimSubmissionByMoimResponse>>(
+      `/moim/${moimId}/submitter-list`
+    );
 
-  if (!response) {
+    console.log('서버데이터',response.data); // 추가: API 응답 로그
+    return response.data.data;
+    
+  } catch (error) {
+    console.error('error:', error);
     return null;
   }
-
-  return response.data.data;
 };
 
 export const useFetchApplicantList = (moimId: number) => {

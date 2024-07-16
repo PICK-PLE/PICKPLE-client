@@ -15,12 +15,13 @@ import {
   titleStyle,
 } from './GuestClassRegisterCard.style';
 import { IcDate, IcOffline, IcOneline } from '@svg';
-import { useGetMoimDetail } from '@apis/domains/moim/useFetchMoimDetail';
+import { useFetchSubmittedMoimDetail } from '@apis/domains/moim';
+
 
 const GuestClassRegisterCard = () => {
   //채연 TODO: moimId 고정값 말고 url로 사용할 수 있도록 수정하기!
   const moimId = 1;
-  const { data: appliedMoimData } = useGetMoimDetail(moimId);
+  const { data: appliedMoimData } = useFetchSubmittedMoimDetail(moimId);
 
   if (!appliedMoimData) {
     return <div>empty view</div>;

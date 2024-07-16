@@ -13,55 +13,84 @@ import {
 import { useState, useEffect, useMemo } from 'react';
 import { ApplicantListModal, ClassManageEmptyView } from '@pages/host/components';
 import { useToast } from '@hooks';
-import { ApplicantListType, useFetchApplicantList } from '@apis/domains/moimSubmissionr/useFetchApplicantList';
+import { useFetchApplicantList } from '@apis/domains/moimSubmissionr/useFetchApplicantList';
+
+
+//   "appllicantData: {
+//       "maxGuest": 15,
+//       "isApprovable": false,
+
+//       "submitterList": [
+
+//       {
+//         "submitterId": 9,
+//         "nickname": "장정안#9",
+//         "submitterImageUrl": "testImage",
+//         "submittedDate": "2024.07.15 17:04:08"
+//       },
+// 	     {
+//         "submitterId": 9,
+//         "nickname": "장정안#9",
+//         "submitterImageUrl": "testImage",
+//         "submittedDate": "2024.07.15 17:04:08"
+//       },
+// 	     {
+//         "submitterId": 9,
+//         "nickname": "장정안#9",
+//         "submitterImageUrl": "testImage",
+//         "submittedDate": "2024.07.15 17:04:08"
+//       }
+//    ]
+//   }
+
 
 const MyClassManage = () => {
-  // TODO: 커스텀 훅으로 분리
-  const { data: applicantData, status } = useFetchApplicantList(1);
+  const moimId = 8;
+  const { data: applicantData } = useFetchApplicantList(moimId);
+  const { showToast, isToastVisible } = useToast();
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
   console.log(applicantData);
 
-  // 초기 상태를 설정
-  const isApprovable = applicantData?.data.isApprovable ?? false;
-  const maxGuest = applicantData?.data.maxGuest ?? 0;
-  const submitterList = applicantData?.data.submitterList ?? [];
-  const submitterListLength = submitterList.length;
+  // if (isLoading) {
+  //   return <div>Loading...</div>;
+  // }
 
-  //checkBox 부분
-  const [checkedStates, setCheckedStates] = useState<boolean[]>(new Array(submitterListLength).fill(false)); // 초기 상태를 모든 항목이 unchecked 상태로 설정
+  // if (!applicantData || applicantData.submitterList.length) {
+  //   return <ClassManageEmptyView />;
+  // }
 
-  const { showToast, isToastVisible } = useToast();
+    // 모임 정보 추출
+    const { maxGuest, isApprovable, submitterList } = applicantData;
 
-  const checkedApplicant: ApplicantListType['data'] = useMemo(
-    () => ({
-      maxGuest: maxGuest,
-      isApprovable: isApprovable,
-      submitterList: submitterList.filter((_, index) => checkedStates[index]),
-    }),
-    [maxGuest, isApprovable, submitterList, checkedStates]
-  );
+    // 체크박스 상태 관리
+    const [checkedStates, setCheckedStates] = useState(new Array(submitterList.length).fill(false));
 
-  const toggleChecked = (index: number) => {
-    if (checkedApplicant.submitterList.length >= maxGuest && !checkedStates[index]) return;
-    if (isApprovable) {
-      setCheckedStates((prevStates) =>
-        prevStates.map((checked, i) => (i === index ? !checked : checked))
-      );
-    } else {
-      showToast('');
-    }
-  };
+    const checkedApplicant = useMemo(() => {
+      return {
+        maxGuest,
+        isApprovable,
+        submitterList: submitterList.filter((index: number) => checkedStates[index]),
+      };
+    }, [maxGuest, isApprovable, submitterList, checkedStates]);
+  
+    const toggleChecked = (index: number) => {
+      if (checkedApplicant.submitterList.length >= maxGuest && !checkedStates[index]) return;
+      if (isApprovable) {
+        setCheckedStates(prevStates =>
+          prevStates.map((checked, i) => (i === index ? !checked : checked))
+        );
+      } else {
+        showToast('신청 마감일 이후에 신청자를 승인할 수 있어요.');
+      }
+    };
 
-  // 버튼 active 상태
-  const [isActive, setIsActive] = useState(false);
+    const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    if (checkedApplicant.submitterList.length > 0 && isApprovable) {
-      setIsActive(true);
-    }
-  }, [checkedApplicant, isApprovable]);
+    setIsActive(submitterList.length > 0 && isApprovable);
+  }, [submitterList, isApprovable]);  
 
-  // 모달 부분
-  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleModalOpen = () => {
     setIsOpenModal(true);
@@ -69,7 +98,7 @@ const MyClassManage = () => {
 
   const handleModalClose = () => {
     setIsOpenModal(false);
-  };
+  }
 
   return (
     <div>
@@ -83,26 +112,20 @@ const MyClassManage = () => {
           <div css={labelStyle}>
             <div css={textStyle}>
               <span css={countTitleStyle}>모임 신청자</span>
-              <span css={countTextStyle}>{status === 201 ? submitterListLength : '0'}</span>
+              <span css={countTextStyle}>{submitterList.length}</span>
             </div>
             <Label variant="count">
-              {status === 201
-                ? `${checkedApplicant.submitterList.length} / ${maxGuest}`
-                : `0  / ${maxGuest}`}
+              {`${checkedApplicant.submitterList.length} / ${maxGuest}`}
             </Label>
           </div>
 
           <div css={accordionStyle}>
-            {status === 201 ? (
-              <ApplicantAccordionList
-                applicantData={submitterList}
-                moimId={1}
-                checkedStates={checkedStates}
-                toggleChecked={toggleChecked}
-              />
-            ) : (
-              <ClassManageEmptyView />
-            )}
+            <ApplicantAccordionList
+              applicantData={submitterList}
+              moimId={moimId}
+              checkedStates={checkedStates}
+              toggleChecked={toggleChecked}
+            />
           </div>
         </main>
 
@@ -129,4 +152,3 @@ const MyClassManage = () => {
 };
 
 export default MyClassManage;
-

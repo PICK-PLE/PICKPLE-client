@@ -37,7 +37,7 @@ const ApplicantAccordion = ({
   guestId,
   toggleChecked,
 }: ApplicantAccordionProps) => {
-  const { nickname, profileImage, applicationDate } = applicantData;
+  const { nickname, submitterImageUrl, submittedDate } = applicantData;
 
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
 
@@ -55,6 +55,8 @@ const ApplicantAccordion = ({
 
   const handleAccodionClick = () => {
     setIsAccordionOpen(!isAccordionOpen);
+
+    // 여기에서 '신청자에 해당하는 신청 내역 조회 API' 호출하면 됨.
   };
 
   const defaultImgUrl = 'svg/ic_default-userimg.svg';
@@ -79,13 +81,13 @@ const ApplicantAccordion = ({
             <Image
               variant="round"
               width="4.8rem"
-              src={profileImage || defaultImgUrl}
+              src={submitterImageUrl || defaultImgUrl}
               css={applicnatImgStyle}
             />
 
             <div css={applicantInfoStyle}>
               <span css={applicantNameStyle}>{nickname}</span>
-              <span css={applyDateStyle}>{applicationDate}</span>
+              <span css={applyDateStyle}>{submittedDate}</span>
             </div>
           </div>
         </div>

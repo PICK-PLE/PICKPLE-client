@@ -4,7 +4,12 @@ import { DataType } from '@pages/class/page/ClassApply/ClassApplyQuestion/ClassA
 import { QueryClient, useMutation } from '@tanstack/react-query';
 import { ErrorResponse } from '@types';
 
-const postAnswerList = async ({ moimId, body }: { moimId: number; body: DataType }) => {
+interface PostAnswerRequest {
+  moimId: number;
+  body: DataType;
+}
+
+const postAnswerList = async ({ moimId, body }: PostAnswerRequest) => {
   try {
     const response = await post(`/moim/${moimId}`, body);
     return response;
@@ -32,7 +37,7 @@ const postAnswerList = async ({ moimId, body }: { moimId: number; body: DataType
 export const usePostAnswerList = () => {
   const queryClient = new QueryClient();
   return useMutation({
-    mutationFn: postAnswerList,
+    mutationFn: ({ moimId, body }: PostAnswerRequest) => postAnswerList({ moimId, body }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.ANSWER_LIST] });
     },
