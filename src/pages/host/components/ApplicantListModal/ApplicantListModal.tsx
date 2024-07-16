@@ -13,18 +13,16 @@ import {
 } from './ApplicantListModal.style';
 import { IcCheckModal } from '@svg';
 import { Button, SimpleUserProfile } from '@components';
-import { ApplicantListResponseType } from '@types';
+import { components } from '@schema';
 
 interface ApplicantListModalProps {
-  applicantListData: ApplicantListResponseType;
+  applicantListData: components['schemas']['MoimSubmissionByMoimResponse'];
   onClose: () => void;
 }
 
 const ApplicantListModal = ({ applicantListData, onClose }: ApplicantListModalProps) => {
-  const { maxGuest, submitterList } = applicantListData;
+  const { submitterList } = applicantListData;
 
-  // TODO: 삭제 예정 never used error fix
-  console.log(maxGuest);
   return (
     <article css={modalContainerStyle}>
       <section css={sectionStyle}>
@@ -35,15 +33,15 @@ const ApplicantListModal = ({ applicantListData, onClose }: ApplicantListModalPr
           <div css={textDivStyle}>
             <h1 css={modalCommentTitleStyle}>승인할 신청자 목록을 확인해주세요!</h1>
             <h1 css={countTextStyle}>
-              총 <span css={applicantCountStyle}>{submitterList.length}</span>명
+              총 <span css={applicantCountStyle}>{submitterList?.length}</span>명
             </h1>
           </div>
         </header>
         <main css={mainStyle}>
           <ul css={ulStyle}>
-            {submitterList.map((submitter) => (
-              <li key={submitter.applicantId} css={liStyle}>
-                <SimpleUserProfile size="large" username={submitter.nickname} />
+            {submitterList?.map((submitter) => (
+              <li key={submitter.submitterId} css={liStyle}>
+                <SimpleUserProfile size="large" username={submitter.nickname || ''} />
               </li>
             ))}
           </ul>

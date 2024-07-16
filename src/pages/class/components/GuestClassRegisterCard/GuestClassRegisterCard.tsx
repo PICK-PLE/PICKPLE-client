@@ -20,7 +20,7 @@ import { useFetchSubmittedMoimDetail } from '@apis/domains/moim';
 
 const GuestClassRegisterCard = () => {
   //채연 TODO: moimId 고정값 말고 url로 사용할 수 있도록 수정하기!
-  const moimId = 1;
+  const moimId = 5;
   const { data: appliedMoimData } = useFetchSubmittedMoimDetail(moimId);
 
   if (!appliedMoimData) {

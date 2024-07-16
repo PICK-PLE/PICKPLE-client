@@ -16,6 +16,7 @@ export const emptyViewImageStyle = css`
 
 export const emptyViewButtonStyle = css`
   width: 17.7rem;
+  
 `;
 
 export const emptyText = (theme: Theme) => css`

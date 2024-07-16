@@ -34,7 +34,7 @@ export interface DataType {
 
 const ClassApplyQuestion = () => {
   //나중에 moimId 뽑아내면 사라질 아이
-  const moimId = 8;
+  const moimId = 5;
 
   const [questionList, setQuestionList] = useState<string[]>([]);
   const { data: questionData, isSuccess } = useFetchQuestionList(moimId);
@@ -120,6 +120,7 @@ const ClassApplyQuestion = () => {
                     maxLength={200}
                     size="medium"
                     placeholder="답변을 작성해주세요."
+                    isValid
                   />
                 </div>
               ))}
