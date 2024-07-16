@@ -20,8 +20,7 @@ export const getPresignedUrl = async (
     if (!response) {
       return null;
     }
-    /**@정안todo 데이터 확인용 콘솔이라 나중에 지울거임 시비 ㄴㄴ */
-    console.log('response.data.data', response.data.data);
+
     return response.data.data;
   } catch (err) {
     console.error(err);

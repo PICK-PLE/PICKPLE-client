@@ -1,6 +1,7 @@
 import { post } from '@apis/api';
+import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { components } from '@schema';
-import { useMutation } from '@tanstack/react-query';
+import { QueryClient, useMutation } from '@tanstack/react-query';
 
 type MutateFunctionProps = {
   params: NoticeCreateRequest;
@@ -21,10 +22,11 @@ const postNotice = async (params: NoticeCreateRequest, moimId: number) => {
 };
 
 export const usePostNotice = () => {
+  const queryClient = new QueryClient();
   return useMutation({
     mutationFn: ({ params, moimId }: MutateFunctionProps) => postNotice(params, moimId),
     onSuccess: () => {
-      console.log('success');
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.MOIM_NOTICE_LIST] });
     },
   });
 };

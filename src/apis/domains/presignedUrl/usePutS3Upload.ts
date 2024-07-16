@@ -1,5 +1,4 @@
-import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
 export interface PutImageUploadParams {
@@ -15,7 +14,6 @@ const putImageUpload = async ({ url, file }: PutImageUploadParams) => {
       },
     });
 
-    console.log('presigned Put response.data', response.data);
     return response.data;
   } catch (err) {
     console.error(err);
@@ -24,12 +22,7 @@ const putImageUpload = async ({ url, file }: PutImageUploadParams) => {
 };
 
 export const usePutS3Upload = () => {
-  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({ url, file }: PutImageUploadParams) => putImageUpload({ url, file }),
-
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.PRE_SIGNED_URL] });
-    },
   });
 };

@@ -8,7 +8,7 @@ import {
 import { useState, useEffect } from 'react';
 import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
 import { usePostNotice } from '@apis/domains/notice';
-import { handleUpload } from 'src/utils/imageUpload';
+import { handleUpload } from 'src/utils/image';
 
 const ClassNotice = () => {
   const [noticeTitle, setNoticeTitle] = useState('');
@@ -34,7 +34,7 @@ const ClassNotice = () => {
     setSelectedFiles(files);
   };
 
-  const handleUploadClick = async (): Promise<void> => {
+  const handleButtonClick = async (): Promise<void> => {
     const imageUrlList = await handleUpload({
       selectedFiles,
       putS3Upload: putS3UploadMutation.mutateAsync,
@@ -80,7 +80,7 @@ const ClassNotice = () => {
         <Button
           variant="large"
           disabled={isButtonDisabled || selectedFiles.length === 0}
-          onClick={() => handleUploadClick()}>
+          onClick={() => handleButtonClick()}>
           게시하기
         </Button>
       </div>
