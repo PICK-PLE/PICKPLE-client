@@ -1,5 +1,11 @@
+import { LogoHeader } from '@components';
+
 const Categories = () => {
-  return <div>Categories</div>;
+  return (
+    <>
+      <LogoHeader />
+    </>
+  );
 };
 
 export default Categories;

@@ -11,12 +11,15 @@ import {
 } from './Home.style';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
 import Footer from 'src/components/common/Footer/Footer';
-import { useFetchMoimBanner, useFetchMoimCategories } from 'src/apis/domains/moim';
+import { useFetchMoimBanner } from 'src/apis/domains/moim';
+import { useAtom } from 'jotai';
+import { categoriesAtom } from '@stores';
 
 const Home = () => {
   // TODO: 배너 클릭 시 해당 모임으로 이동
   const { data: bannerId } = useFetchMoimBanner();
-  const { data: categories } = useFetchMoimCategories();
+
+  const [categories] = useAtom(categoriesAtom);
 
   return (
     <>
