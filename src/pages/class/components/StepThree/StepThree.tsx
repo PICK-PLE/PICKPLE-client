@@ -15,13 +15,16 @@ import {
 import { useClassPostInputChange } from 'src/hooks/useClassPostInputChange';
 import { useClassPostInputValidation } from 'src/hooks/useClassPostInputValidation';
 import { usePostMoim } from '@apis/domains/moim/usePostMoim';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { ErrorType } from '@types';
 
 const StepThree = ({ onNext }: StepProps) => {
   const { classPostState, handleInputChange } = useClassPostInputChange();
   const { validateStepThree } = useClassPostInputValidation();
   const { isTitleValid, isDescriptionValid, isAllValid } = validateStepThree(classPostState);
+
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+
   const { mutate, isSuccess, error } = usePostMoim();
 
   const handleNextClick = () => {
