@@ -1,6 +1,5 @@
 import { CATEGORY_ICON } from '@constants';
 import { imgStyle, labelStyle, liStyle, ulStyle } from './CategorySelectBox.style';
-import { components } from '@schema';
 
 const categoryIcons = [
   {
@@ -55,9 +54,15 @@ const categoryIcons = [
   },
 ];
 
+interface Category {
+  category1: string;
+  category2?: string;
+  category3?: string;
+}
+
 interface CategorySelectBoxProps {
-  selectedCategories: components['schemas']['SubmitterCategoryInfo'];
-  onUpdateCategories: (newCategories: components['schemas']['SubmitterCategoryInfo']) => void;
+  selectedCategories: Category
+  onUpdateCategories: (newCategories: Category) => void;
 }
 
 const CategorySelectBox = ({

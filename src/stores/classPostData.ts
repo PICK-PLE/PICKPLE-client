@@ -1,31 +1,30 @@
-import { components } from '@schema';
 import { atom } from 'jotai';
+import { ClassPostDataType } from './types/classPostDataType';
 
-export const classPostAtom = atom<components['schemas']['MoimCreateRequest']>({
+export const classPostAtom = atom<ClassPostDataType>({
   categoryList: {
     category1: '',
     category2: '',
     category3: '',
   },
   isOffline: true,
-  spot: '',
-  dateList: {
-    date: '',
-    startTime: '',
-    endTime: '',
-  },
-  maxGuest: 0,
+  offlineSpot: '',
+  onlineSpot: '',
+
+  date: '',
+  dayOfWeek: '',
+  startTime: '',
+  endTime: '',
+
+  maxGuest: 7,
   fee: 0,
   accountList: {
     holder: '',
     bank: '',
     accountNumber: '',
   },
+  questionList: [],
   title: '',
   description: '',
-  imageList: {
-    imageUrl1: '',
-    imageUrl2: '',
-    imageUrl3: '',
-  },
+  imageList: [],
 });
