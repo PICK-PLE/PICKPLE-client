@@ -15,7 +15,6 @@ import { ApplicantListModal, ClassManageEmptyView } from '@pages/host/components
 import { useToast } from '@hooks';
 import { useFetchApplicantList } from '@apis/domains/moimSubmissionr/useFetchApplicantList';
 
-
 //   "appllicantData: {
 //       "maxGuest": 15,
 //       "isApprovable": false,
@@ -43,54 +42,62 @@ import { useFetchApplicantList } from '@apis/domains/moimSubmissionr/useFetchApp
 //    ]
 //   }
 
-
 const MyClassManage = () => {
-  const moimId = 8;
-  const { data: applicantData } = useFetchApplicantList(moimId);
+  const moimId = 3;
+  const { data: applicantData, isLoading } = useFetchApplicantList(moimId);
   const { showToast, isToastVisible } = useToast();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
-  console.log(applicantData);
+  // 모임 정보 추출
+  const { maxGuest, isApprovable, submitterList } = applicantData ?? {};
 
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
+   // 체크박스 상태 관리
+   const [checkedStates, setCheckedStates] = useState(new Array(submitterList?.length).fill(false));
 
-  // if (!applicantData || applicantData.submitterList.length) {
-  //   return <ClassManageEmptyView />;
-  // }
+   useEffect(() => {
+     if (applicantData) {
+       setCheckedStates(new Array(submitterList?.length).fill(false));
+     }
+   }, [applicantData, submitterList?.length]);
+ 
+   const checkedApplicant = useMemo(() => {
+     return {
+       maxGuest,
+       isApprovable,
+       submitterList: submitterList?.filter((_, index: number) => checkedStates[index]),
+     };
+   }, [maxGuest, isApprovable, submitterList, checkedStates]);
+ 
+   const toggleChecked = (index: number) => {
+     const newCheckedState = !checkedStates[index];
+ 
+     const checkedCount = checkedStates.filter((state) => state).length;
+ 
+     if (newCheckedState && checkedCount >= maxGuest) {
+       showToast('최대 인원을 초과할 수 없습니다.');
+       return;
+     }
+ 
+     if (isApprovable) {
+       setCheckedStates((prevStates) =>
+         prevStates.map((checked, i) => (i === index ? newCheckedState : checked))
+       );
+     } else {
+       showToast('신청 마감일 이후에 신청자를 승인할 수 있어요.');
+     }
+   };
 
-    // 모임 정보 추출
-    const { maxGuest, isApprovable, submitterList } = applicantData;
-
-    // 체크박스 상태 관리
-    const [checkedStates, setCheckedStates] = useState(new Array(submitterList.length).fill(false));
-
-    const checkedApplicant = useMemo(() => {
-      return {
-        maxGuest,
-        isApprovable,
-        submitterList: submitterList.filter((index: number) => checkedStates[index]),
-      };
-    }, [maxGuest, isApprovable, submitterList, checkedStates]);
+  console.log(checkedStates)
   
-    const toggleChecked = (index: number) => {
-      if (checkedApplicant.submitterList.length >= maxGuest && !checkedStates[index]) return;
-      if (isApprovable) {
-        setCheckedStates(prevStates =>
-          prevStates.map((checked, i) => (i === index ? !checked : checked))
-        );
-      } else {
-        showToast('신청 마감일 이후에 신청자를 승인할 수 있어요.');
-      }
-    };
 
-    const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    setIsActive(submitterList.length > 0 && isApprovable);
-  }, [submitterList, isApprovable]);  
-
+    if(checkedApplicant.submitterList) {
+      setIsActive(checkedApplicant.submitterList.length > 0 && isApprovable);
+    }
+   
+  }, [checkedApplicant, isApprovable]);
 
   const handleModalOpen = () => {
     setIsOpenModal(true);
@@ -98,8 +105,15 @@ const MyClassManage = () => {
 
   const handleModalClose = () => {
     setIsOpenModal(false);
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
+  if (!applicantData) {
+    return <ClassManageEmptyView />;
+  }
   return (
     <div>
       <Header title="신청자 관리" />

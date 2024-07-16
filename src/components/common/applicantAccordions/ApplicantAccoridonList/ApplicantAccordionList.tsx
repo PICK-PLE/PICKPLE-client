@@ -19,6 +19,7 @@ const ApplicantAccordionList = ({
     <div css={applicantAccordionListLayout}>
       {applicantData.map((applicant, index) => (
         <ApplicantAccordion
+          key={index}
           moimId={moimId}
           guestId={1}
           applicantData={applicant}

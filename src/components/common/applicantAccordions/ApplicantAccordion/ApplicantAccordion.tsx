@@ -21,6 +21,7 @@ import { Image, QuestionText } from '@components';
 
 import { APPLICANT_ANSWER_1 } from 'src/constants/mocks/applicant';
 import { ApplicantDataType } from '@types';
+import { useFetchSubmitRequest } from '@apis/domains/moimSubmissionr/useFetchSubmitRequest';
 
 interface ApplicantAccordionProps {
   moimId: number;
@@ -53,10 +54,18 @@ const ApplicantAccordion = ({
     };
   });
 
+  // const sdjl = {
+  //   moimId: moimId,
+  //   submitterId: submitterId
+  // }
+  // const { data: submitRequest }  = useFetchApplicantList(sdjl);
+
   const handleAccodionClick = () => {
     setIsAccordionOpen(!isAccordionOpen);
 
+    
     // 여기에서 '신청자에 해당하는 신청 내역 조회 API' 호출하면 됨.
+    
   };
 
   const defaultImgUrl = 'svg/ic_default-userimg.svg';
