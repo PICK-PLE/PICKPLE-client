@@ -38,6 +38,7 @@ const ClassNotice = () => {
     const imageUrlList = await handleUpload({
       selectedFiles,
       putS3Upload: putS3UploadMutation.mutateAsync,
+      type: 'notice',
     });
 
     const params = {
