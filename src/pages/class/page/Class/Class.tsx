@@ -31,15 +31,17 @@ import {
 } from './Class.style';
 import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
 
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
 import { useWindowSize } from '@hooks';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
+import { ClassIdPathParameterType } from '@types';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
+  const navigate = useNavigate();
   const [selectTab, setSelectTab] = useState<'모임소개' | '공지사항' | '리뷰'>('모임소개');
-  const { classId } = useParams<{ classId: string }>();
+  const { classId } = useParams<ClassIdPathParameterType>();
 
   const { data: moimDetail } = useFetchMoimDetail(classId ?? '');
   const { data: moimDescription } = useFetchMoimDescription(classId ?? '');
@@ -51,6 +53,10 @@ const Class = () => {
   const { dayOfDay, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
 
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
+
+  const handleNoticePostClick = (classId: string) => {
+    navigate(`/class/${classId}/notice/post`);
+  };
 
   return (
     <div>
@@ -112,7 +118,11 @@ const Class = () => {
           {selectTab === '리뷰' && <ClassReviewEmptyView />}
         </section>
         {selectTab === '공지사항' && (
-          <div css={floatingButtonWrapper(windowWidth)}>
+          <div
+            css={floatingButtonWrapper(windowWidth)}
+            onClick={() => {
+              classId && handleNoticePostClick(classId);
+            }}>
             <IconButton icon={<IcCopyPlus />}>작성하기</IconButton>
           </div>
         )}

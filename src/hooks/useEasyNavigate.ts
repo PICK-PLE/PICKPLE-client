@@ -4,6 +4,10 @@ import { routePath } from '@constants';
 const useEasyNavigate = () => {
   const navigate = useNavigate();
 
+  const goBack = () => {
+    navigate(-1);
+  };
+
   const goHome = () => {
     navigate(routePath.HOME);
   };
@@ -17,6 +21,7 @@ const useEasyNavigate = () => {
   };
 
   return {
+    goBack,
     goHome,
     goHostMyPage,
     goGuestMyPage,

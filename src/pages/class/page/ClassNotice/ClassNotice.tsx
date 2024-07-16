@@ -9,8 +9,13 @@ import { useState, useEffect } from 'react';
 import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
 import { usePostNotice } from '@apis/domains/notice';
 import { handleUpload } from 'src/utils/image';
+import { useParams } from 'react-router-dom';
+import { ClassIdPathParameterType } from '@types';
 
 const ClassNotice = () => {
+  const { classId } = useParams<ClassIdPathParameterType>();
+  const classIdNumber = Number(classId);
+
   const [noticeTitle, setNoticeTitle] = useState('');
   const [noticeContent, setNoticeContent] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -47,8 +52,7 @@ const ClassNotice = () => {
       imageUrl: imageUrlList[0],
     };
 
-    const moimId = 1; //정안TODO 실제 모임ID로 변경
-    await postNoticeMutation.mutateAsync({ params, moimId });
+    await postNoticeMutation.mutateAsync({ params, classId: classIdNumber });
   };
 
   return (

@@ -1,18 +1,21 @@
 import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+import { useEasyNavigate } from '@hooks';
 import { components } from '@schema';
-import { QueryClient, useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { ClassIdPathParameterType } from '@types';
+import { useParams } from 'react-router-dom';
 
 type MutateFunctionProps = {
   params: NoticeCreateRequest;
-  moimId: number;
+  classId: number;
 };
 
 type NoticeCreateRequest = components['schemas']['NoticeCreateRequest'];
 
-const postNotice = async (params: NoticeCreateRequest, moimId: number) => {
+const postNotice = async (params: NoticeCreateRequest, classId: number) => {
   try {
-    const response = await post(`/moim/${moimId}/notice`, params);
+    const response = await post(`/moim/${classId}/notice`, params);
 
     return response.data;
   } catch (err) {
@@ -22,11 +25,15 @@ const postNotice = async (params: NoticeCreateRequest, moimId: number) => {
 };
 
 export const usePostNotice = () => {
-  const queryClient = new QueryClient();
+  const { goBack } = useEasyNavigate();
+  const { classId } = useParams<ClassIdPathParameterType>();
+
+  const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ params, moimId }: MutateFunctionProps) => postNotice(params, moimId),
+    mutationFn: ({ params, classId }: MutateFunctionProps) => postNotice(params, classId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.MOIM_NOTICE_LIST] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.MOIM_NOTICE_LIST, classId] });
+      goBack();
     },
   });
 };

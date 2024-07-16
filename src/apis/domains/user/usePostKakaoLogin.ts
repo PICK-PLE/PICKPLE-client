@@ -2,9 +2,7 @@ import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { useEasyNavigate } from '@hooks';
 import { userAtom } from '@stores';
-import { QueryClient, useMutation } from '@tanstack/react-query';
-import { UserType } from '@types';
-import { AxiosResponse } from 'axios';
+import {  useMutation, useQueryClient } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 
 import { components } from '@schema';
@@ -29,7 +27,7 @@ const postKakaoLogin = async (
 export const usePostKakaoLogin = () => {
   const [user, setUser] = useAtom(userAtom);
   const { goHome } = useEasyNavigate();
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (authCode: string) => postKakaoLogin(authCode),

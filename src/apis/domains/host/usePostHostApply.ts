@@ -1,7 +1,7 @@
 import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { components } from '@schema';
-import { QueryClient, useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ErrorResponse, MutateResponseType } from '@types';
 
 type HostApplyRequest = components['schemas']['SubmitterCreateRequest'];
@@ -19,7 +19,7 @@ const postHostApply = async (hostApplyState: HostApplyRequest): Promise<MutateRe
 };
 
 export const usePostHostApply = () => {
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (hostApplyState: HostApplyRequest) => postHostApply(hostApplyState),
