@@ -13,7 +13,6 @@ const postNotice = async (params: NoticeCreateRequest, moimId: number) => {
   try {
     const response = await post(`/moim/${moimId}/notice`, params);
 
-    // console.log('response.data.data', response.data.data);
     return response.data;
   } catch (err) {
     console.error(err);
