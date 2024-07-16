@@ -9,9 +9,9 @@ interface UploadParams {
 }
 
 export const handleUpload = async ({
-  selectedFiles,
-  putS3Upload,
-  type,
+  selectedFiles, //선택한 파일들 (최대 3개)
+  putS3Upload, // usePutS3Upload 함수
+  type, // 'notice' || 'moin'
 }: UploadParams): Promise<string[]> => {
   const queryClient = new QueryClient();
   const s3UrlList = [];
@@ -23,10 +23,12 @@ export const handleUpload = async ({
 
     if (presignedUrls && presignedUrls.length > 0) {
       for (let i = 0; i < selectedFiles.length; i++) {
-        const { fileName, url } = presignedUrls[i];
+        const { url } = presignedUrls[i];
         const file = selectedFiles[i];
-        const baseUrl = url?.split(type)[0]; //최종 파일 경로
-        const imageUrl = `${baseUrl}${type}/${fileName}`;
+        const imageUrl = url?.split('?')[0]; //최종 파일 경로
+        if (!imageUrl) {
+          return [];
+        }
         s3UrlList.push(imageUrl);
 
         try {
