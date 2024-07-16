@@ -25,6 +25,7 @@ import { useState } from 'react';
 import AddAmountBox from '../AddAmountBox/AddAmountBox';
 import { useClassPostInputChange } from 'src/hooks/useClassPostInputChange';
 import { ClassPostDataType } from 'src/stores/types/classPostDataType';
+import { useClassPostInputValidation } from 'src/hooks/useClassPostInputValidation';
 
 const StepOne = ({ onNext }: StepProps) => {
   const {
@@ -38,6 +39,7 @@ const StepOne = ({ onNext }: StepProps) => {
     handleAccountChange,
     handleDateChange,
   } = useClassPostInputChange();
+  const { validateStepOne } = useClassPostInputValidation();
   const [selectedCategories, setSelectedCategories] = useState(classPostState.categoryList);
   const [selectedDate, setSelectedDate] = useState<Date | null>(
     classPostState.date ? new Date(classPostState.date.replace(/\./g, '-')) : null
@@ -49,13 +51,17 @@ const StepOne = ({ onNext }: StepProps) => {
     classPostState.endTime ? parseInt(classPostState.endTime) : null
   );
 
+  const validatationResult = validateStepOne(classPostState);
+
   const handleUpdateCategories = (newCategories: ClassPostDataType['categoryList']) => {
     setSelectedCategories(newCategories);
     handleCategoryChange(newCategories);
   };
 
   const handleNextClick = () => {
-    onNext();
+    if (validatationResult.isAllValid) {
+      onNext();
+    }
   };
 
   const handleDateChangeWrapper = (date: Date | null) => {
@@ -64,12 +70,22 @@ const StepOne = ({ onNext }: StepProps) => {
   };
   const handleStartTimeChange = (time: number) => {
     setStartTime(time);
-    handleInputChange({ target: { value: `${time.toString().padStart(2, '0')}:00` } } as React.ChangeEvent<HTMLInputElement>, 'startTime');
+    handleInputChange(
+      {
+        target: { value: `${time.toString().padStart(2, '0')}:00` },
+      } as React.ChangeEvent<HTMLInputElement>,
+      'startTime'
+    );
   };
 
   const handleEndTimeChange = (time: number) => {
     setEndTime(time);
-    handleInputChange({ target: { value: `${time.toString().padStart(2, '0')}:00` } } as React.ChangeEvent<HTMLInputElement>, 'endTime');
+    handleInputChange(
+      {
+        target: { value: `${time.toString().padStart(2, '0')}:00` },
+      } as React.ChangeEvent<HTMLInputElement>,
+      'endTime'
+    );
   };
 
   console.log(classPostState);
@@ -175,7 +191,10 @@ const StepOne = ({ onNext }: StepProps) => {
           </section>
         </main>
         <footer css={footerStyle}>
-          <Button variant="large" onClick={handleNextClick}>
+          <Button
+            variant="large"
+            onClick={handleNextClick}
+            disabled={!validatationResult.isAllValid}>
             다음
           </Button>
         </footer>
