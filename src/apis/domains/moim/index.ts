@@ -7,7 +7,6 @@ import { useFetchMoimDescription } from './useFetchMoimDescription';
 import { useFetchMoimDetail } from './useFetchMoimDetail';
 import { useFetchMyHost } from './useFetchMyHost';
 import { useFetchSubmittedMoimDetail } from './useFetchSubmittedMoimDetail';
-import { usePostNotice } from './usePostNotice';
 
 export {
   useFetchGuestApply,
@@ -19,5 +18,4 @@ export {
   useFetchMoimDetail,
   useFetchMyHost,
   useFetchSubmittedMoimDetail,
-  usePostNotice,
 };

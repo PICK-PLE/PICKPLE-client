@@ -17,7 +17,7 @@ import EmploymentStrokeSelectedImage from './stroke-selected/image_employment_st
 import EmploymentStrokeImage from './stroke/image_employment_stroke.png';
 import ProductivityFillSelectedImage from './fill-selected/image_productivity_fill_selected.png';
 import ProductivityFillImage from './fill/image_productivity_fill.png';
-import ProductivityStrokeSelectedImage from './stroke-selected/image_projuctivity_stroke_selected.png';
+import ProductivityStrokeSelectedImage from './stroke-selected/image_productivity_stroke_selected.png';
 import ProductivityStrokeImage from './stroke/image_productivity_stroke.png';
 import LifestyleFillSelectedImage from './fill-selected/image_lifestyle_fill_selected.png';
 import LifestyleFillImage from './fill/image_lifestyle_fill.png';
