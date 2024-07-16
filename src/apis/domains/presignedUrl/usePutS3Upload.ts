@@ -15,10 +15,6 @@ const putImageUpload = async ({ presignedUrl, file }: PutImageUploadParams) => {
       },
     });
 
-    if (!response) {
-      return null;
-    }
-
     console.log('presigned Put response.data', response.data);
     return response.data;
   } catch (err) {

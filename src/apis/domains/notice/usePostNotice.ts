@@ -1,5 +1,6 @@
 import { post } from '@apis/api';
 import { useMutation } from '@tanstack/react-query';
+import { ApiResponseType, MutateResponseType } from '@types';
 
 export interface NoticeParams {
   moimId: number;
@@ -8,16 +9,14 @@ export interface NoticeParams {
   imageUrl: string;
 }
 
-const postNotice = async ({ moimId, noticeTitle, noticeContent, imageUrl }: NoticeParams) => {
+const postNotice = async (params: NoticeParams): Promise<MutateResponseType | null> => {
   try {
-    const response = await post(`/moim/${moimId}/notice`, {
-      noticeTitle,
-      noticeContent,
-      imageUrl,
+    const response = await post<ApiResponseType<NoticeParams>>(`/moim/${params.moimId}/notice`, {
+      params,
     });
 
-    console.log('response', response);
-    return response;
+    console.log('response.data.data', response.data.data);
+    return response.data;
   } catch (err) {
     console.error(err);
   }
@@ -26,8 +25,7 @@ const postNotice = async ({ moimId, noticeTitle, noticeContent, imageUrl }: Noti
 
 export const usePostNotice = () => {
   return useMutation({
-    mutationFn: ({ moimId, noticeTitle, noticeContent, imageUrl }: NoticeParams) =>
-      postNotice({ moimId, noticeTitle, noticeContent, imageUrl }),
+    mutationFn: (params: NoticeParams) => postNotice(params),
     onSuccess: () => {
       console.log('success');
     },
