@@ -42,13 +42,13 @@ const ClassNotice = () => {
     });
 
     const params = {
-      moimId: 1, //정안TODO 실제 모임ID로 변경
       noticeTitle,
       noticeContent,
-      imageUrl: imageUrlList,
+      imageUrl: imageUrlList[0],
     };
 
-    await postNoticeMutation.mutateAsync(params);
+    const moimId = 1; //정안TODO 실제 모임ID로 변경
+    await postNoticeMutation.mutateAsync({ params, moimId });
   };
 
   return (
