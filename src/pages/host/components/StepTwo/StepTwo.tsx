@@ -13,7 +13,7 @@ import {
 } from './StepTwo.style';
 import CategorySelectBox from 'src/components/common/CategorySelectBox/CategorySelectBox';
 import { useHostApplyInputChange } from 'src/hooks/useHostApplyInputChange';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePostHostApply } from '@apis/domains/host';
 import { useHostApplyInputValidation } from 'src/hooks/useHostApplyInputValidation';
 import { components } from '@schema';
@@ -34,7 +34,6 @@ const StepTwo = ({ onNext }: StepProps) => {
     categoryList: selectedCategories,
   });
   const { mutate, isSuccess, error } = usePostHostApply();
-  const nicknameInputRef = useRef<HTMLInputElement>(null);
 
   const handleNextClick = () => {
     if (isAllValid) {
@@ -48,7 +47,6 @@ const StepTwo = ({ onNext }: StepProps) => {
       console.log(status, message);
       if (status === 40008) {
         smoothScroll(110);
-        nicknameInputRef.current?.focus();
       }
     } else if (isSuccess) {
       resetHostApplyState();
@@ -76,7 +74,6 @@ const StepTwo = ({ onNext }: StepProps) => {
           <section css={sectionStyle}>
             <QuestionText numberLabel="Q4">픽플에서 사용할 닉네임을 작성해주세요.</QuestionText>
             <Input
-              ref={nicknameInputRef}
               value={hostApplyState.nickname}
               onChange={(e) => {
                 handleInputChange(e, 'nickname');
