@@ -3,13 +3,13 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 
 export interface PutImageUploadParams {
-  presignedUrl: string;
+  url: string;
   file: File;
 }
 
-const putImageUpload = async ({ presignedUrl, file }: PutImageUploadParams) => {
+const putImageUpload = async ({ url, file }: PutImageUploadParams) => {
   try {
-    const response = await axios.put(presignedUrl, file, {
+    const response = await axios.put(url, file, {
       headers: {
         'Content-Type': file.type,
       },
@@ -26,8 +26,7 @@ const putImageUpload = async ({ presignedUrl, file }: PutImageUploadParams) => {
 export const usePutS3Upload = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ presignedUrl, file }: PutImageUploadParams) =>
-      putImageUpload({ presignedUrl, file }),
+    mutationFn: ({ url, file }: PutImageUploadParams) => putImageUpload({ url, file }),
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.PRE_SIGNED_URL] });
