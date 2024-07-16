@@ -66,7 +66,7 @@ const Class = () => {
           <Carousel imageList={Object.values(imageList || [])} />
         </div>
         <section css={classInfo}>
-          <Label variant="dDay">{`마감 D${dayOfDay}`}</Label>
+          <Label variant="dDay">{`마감 D-${dayOfDay}`}</Label>
           <h1 css={classNameStyle}>{title}</h1>
           <ul css={classInfoList}>
             <li>

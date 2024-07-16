@@ -16,6 +16,8 @@ export const homeBannerStyle = css`
   min-width: 37.5rem;
   width: 100%;
   aspect-ratio: 375 / 280;
+
+  cursor: pointer;
 `;
 
 export const categoryContainer = css`

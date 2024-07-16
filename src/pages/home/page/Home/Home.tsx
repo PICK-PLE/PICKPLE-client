@@ -2,12 +2,12 @@ import { LogoHeader } from '@components';
 import {
   categoryContainer,
   categoryStyle,
-  homeBannerStyle,
   titleStyle,
   iconStyle,
   iconNameStyle,
   homeLayout,
   pageLayout,
+  homeBannerStyle,
 } from './Home.style';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
 import Footer from 'src/components/common/Footer/Footer';
@@ -15,10 +15,11 @@ import { useFetchMoimBanner } from 'src/apis/domains/moim';
 import { useAtom } from 'jotai';
 import { categoriesAtom } from '@stores';
 import { useNavigate } from 'react-router-dom';
+import Lottie from 'lottie-react';
+import { mainBanner } from 'src/assets/lotties';
 
 const Home = () => {
   const navigate = useNavigate();
-  // TODO: 배너 클릭 시 해당 모임으로 이동
   const { data: bannerId } = useFetchMoimBanner();
 
   const [categories] = useAtom(categoriesAtom);
@@ -32,15 +33,13 @@ const Home = () => {
       <LogoHeader isIcon />
       <div css={pageLayout}>
         <main css={homeLayout}>
-          <img
+          <div
             css={homeBannerStyle}
-            src="https://placehold.co/375x280"
-            alt="banner"
             onClick={() => {
-              console.log('bannerId:', bannerId);
-            }}
-          />
-
+              navigate(`class/${bannerId}`);
+            }}>
+            <Lottie animationData={mainBanner} width={'100%'} loop={true} />
+          </div>
           <div css={categoryContainer}>
             <p css={titleStyle}>이런 클래스 모임 어때요?</p>
 
