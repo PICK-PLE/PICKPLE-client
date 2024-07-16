@@ -18,6 +18,7 @@ interface ImageSelectProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const ImageSelect = ({ onFileSelect, isMultiple = false }: ImageSelectProps) => {
   const [previewURLs, setPreviewURLs] = useState<string[]>([]);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   const readFile = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -57,8 +58,17 @@ const ImageSelect = ({ onFileSelect, isMultiple = false }: ImageSelectProps) => 
       ) as string[];
 
       setPreviewURLs((prev) => [...prev, ...newPreviewURLs]);
-      onFileSelect(allowedFiles); // 선택된 파일 목록을 부모 컴포넌트에 전달
+      setSelectedFiles((prev) => [...prev, ...allowedFiles]);
+      onFileSelect([...selectedFiles, ...allowedFiles]); // 선택된 파일 목록을 부모 컴포넌트에 전달
     }
+  };
+
+  const handleDeleteImage = (index: number) => {
+    const updatedPreviewURLs = previewURLs.filter((_, i) => i !== index);
+    const updatedFiles = selectedFiles.filter((_, i) => i !== index);
+    setPreviewURLs(updatedPreviewURLs);
+    setSelectedFiles(updatedFiles);
+    onFileSelect(updatedFiles); // 업데이트된 파일 목록을 부모 컴포넌트에 전달
   };
 
   return (
@@ -82,9 +92,7 @@ const ImageSelect = ({ onFileSelect, isMultiple = false }: ImageSelectProps) => 
         {previewURLs.map((url, index) => (
           <div key={`${url} - ${index}`} css={thumbnailStyle}>
             <img css={previewImageStyle} src={url} alt={`미리보기 이미지 ${index + 1}`} />
-            <span
-              css={deleteImageIconStyle}
-              onClick={() => setPreviewURLs(previewURLs.filter((_, i) => i !== index))}>
+            <span css={deleteImageIconStyle} onClick={() => handleDeleteImage(index)}>
               <IcDeletePhoto />
             </span>
           </div>
