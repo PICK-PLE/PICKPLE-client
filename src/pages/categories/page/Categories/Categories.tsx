@@ -11,18 +11,27 @@ import {
 import { categoriesAtom } from '@stores';
 import { useAtom } from 'jotai';
 import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ClassListCard } from '@pages/categories/components';
 import { useFetchMoimListByCategory } from '@apis/domains/moim/useFetchMoimListByCategory';
 import { useEffect, useLayoutEffect, useRef } from 'react';
 
 const Categories = () => {
+  const navigate = useNavigate();
   const [categories] = useAtom(categoriesAtom);
   const categoriesRef = useRef<HTMLUListElement>(null);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedCategory = searchParams.get('category') || categories[0];
   const { data: moimList, refetch } = useFetchMoimListByCategory(selectedCategory);
+
+  const handleCategoryClick = (category: string) => {
+    setSearchParams({ category });
+  };
+
+  const handleMoimClick = (moimId: number) => {
+    navigate(`/class/${moimId}`);
+  };
 
   useLayoutEffect(() => {
     if (categoriesRef.current) {
@@ -46,10 +55,6 @@ const Categories = () => {
   useEffect(() => {
     refetch();
   }, [selectedCategory, refetch]);
-
-  const handleCategoryClick = (category: string) => {
-    setSearchParams({ category });
-  };
 
   return (
     <>
@@ -76,7 +81,12 @@ const Categories = () => {
         <ul css={moimListContainer}>
           {(moimList || []).map((moim) => {
             return (
-              <li css={moimCardStyle} key={moim.moimId}>
+              <li
+                css={moimCardStyle}
+                key={moim.moimId}
+                onClick={() => {
+                  moim.moimId && handleMoimClick(moim.moimId);
+                }}>
                 <ClassListCard classListData={moim} />
               </li>
             );

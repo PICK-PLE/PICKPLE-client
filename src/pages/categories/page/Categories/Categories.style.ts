@@ -45,4 +45,6 @@ export const moimListContainer = css`
 
 export const moimCardStyle = css`
   width: 100%;
+
+  cursor: pointer;
 `;
