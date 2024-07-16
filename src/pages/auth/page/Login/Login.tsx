@@ -8,7 +8,7 @@ const Login = () => {
   }&redirect_uri=${import.meta.env.VITE_REDIRECT_URI}&response_type=code`;
 
   const handleLoginClick = () => {
-    window.location.href = kakaoLoginUrl;
+    window.location.replace(kakaoLoginUrl);
   };
 
   return (
