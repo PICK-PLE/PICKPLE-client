@@ -12,8 +12,14 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepThree.style';
+import { useClassPostInputChange } from 'src/hooks/useClassPostInputChange';
+import { useClassPostInputValidation } from 'src/hooks/useClassPostInputValidation';
 
 const StepThree = ({ onNext }: StepProps) => {
+  const { classPostState, handleInputChange } = useClassPostInputChange();
+  const { validateStepThree } = useClassPostInputValidation();
+  const { isTitleValid, isDescriptionValid, isAllValid } = validateStepThree(classPostState);
+
   const handleNextClick = () => {
     onNext();
   };
@@ -33,10 +39,11 @@ const StepThree = ({ onNext }: StepProps) => {
         <main css={mainStyle}>
           <section css={sectionStyle}>
             <Input
-              value=""
-              onChange={() => {}}
+              value={classPostState.title}
+              onChange={(e) => handleInputChange(e, 'title')}
               placeholder="제목을 입력하세요."
-              isValid={true}
+              isValid={isTitleValid}
+              errorMessage="제목을 입력해주세요"
               maxLength={28}
               isCountValue={true}
             />
@@ -44,8 +51,10 @@ const StepThree = ({ onNext }: StepProps) => {
               size="medium"
               maxLength={2000}
               placeholder={`5글자 이상 답변을 작성해주세요.`}
-              value=""
-              onChange={() => {}}
+              value={classPostState.description}
+              onChange={(e) => handleInputChange(e, 'description')}
+              isValid={isDescriptionValid}
+              errorMessage="5글자 이상 답변을 작성해주세요."
             />
           </section>
           <section css={imageSelectSection}>
@@ -58,7 +67,7 @@ const StepThree = ({ onNext }: StepProps) => {
           </section>
         </main>
         <footer css={footerStyle}>
-          <Button variant="large" onClick={handleNextClick}>
+          <Button variant="large" onClick={handleNextClick} disabled={!isAllValid}>
             모임 개설하기
           </Button>
         </footer>

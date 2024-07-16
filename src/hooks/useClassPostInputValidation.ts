@@ -7,6 +7,9 @@ export const useClassPostInputValidation = () => {
   const validateLength = (answer: string | number) => {
     return typeof answer === 'string' ? answer.trim().length >= 1 : answer > 1;
   };
+  const validateDescription = (description: string) => {
+    return description.trim().length >= 5
+  }
   const validateCategory = (category: Category) => {
     return !!category.category1 || !!category.category2 || !!category.category3;
   };
@@ -70,11 +73,24 @@ export const useClassPostInputValidation = () => {
       isValid,
     };
   };
+
+  const validateStepThree = (state: { title: string; description: string }) => {
+    const isTitleValid = validateLength(state.title);
+    const isDescriptionValid = validateDescription(state.description);
+    const isAllValid = isTitleValid && isDescriptionValid;
+
+    return {
+      isTitleValid,
+      isDescriptionValid,
+      isAllValid,
+    };
+  };
   return {
     validateLength,
     validateCategory,
     validateAccount,
     validateStepOne,
     validateStepTwo,
+    validateStepThree,
   };
 };
