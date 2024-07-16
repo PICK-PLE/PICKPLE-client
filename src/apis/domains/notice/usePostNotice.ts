@@ -6,7 +6,7 @@ export interface NoticeParams {
   moimId: number;
   noticeTitle: string;
   noticeContent: string;
-  imageUrl: string;
+  imageUrl: string[];
 }
 
 const postNotice = async (params: NoticeParams): Promise<MutateResponseType | null> => {
