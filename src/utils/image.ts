@@ -9,9 +9,14 @@ interface UploadParams {
 }
 
 export const handleUpload = async ({
+  /**@notice
+   * PUT할 때 에러가 발생하면 빈 배열을 리턴합니다.
+   * S3에는 삭제된 이미지가 어쩔 수 없이 업로드되긴 합니다.
+   */
+
   selectedFiles, //선택한 파일들 (최대 3개)
-  putS3Upload, // usePutS3Upload 함수
-  type, // 'notice' || 'moin'
+  putS3Upload, // usePutS3Upload 함수 => react hook은 최상위에서 호출해야하는 규칙 때문에 밖에서 주입되게 하였습니다
+  type, // 'notice' || 'moim' 둘 중 하나로 넣으시면 됩니다
 }: UploadParams): Promise<string[]> => {
   const queryClient = new QueryClient();
   const s3UrlList = [];
