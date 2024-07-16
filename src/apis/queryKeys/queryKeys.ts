@@ -15,4 +15,5 @@ export const QUERY_KEY = {
   MOIM_DESCRIPTION: 'moimDescription',
   MOIM_HOST: 'moimHost',
   MOIM_NOTICE_LIST: 'moimNoticeList',
+  POST_MOIM: 'postMoim',
 } as const;

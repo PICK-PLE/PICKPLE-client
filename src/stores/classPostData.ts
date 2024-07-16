@@ -32,3 +32,4 @@ export const classPostAtom = atom<ClassPostDataType>({
   description: '',
   imageList: [],
 });
+

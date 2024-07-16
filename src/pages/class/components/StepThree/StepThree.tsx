@@ -14,15 +14,30 @@ import {
 } from './StepThree.style';
 import { useClassPostInputChange } from 'src/hooks/useClassPostInputChange';
 import { useClassPostInputValidation } from 'src/hooks/useClassPostInputValidation';
+import { usePostMoim } from '@apis/domains/moim/usePostMoim';
+import { useEffect } from 'react';
+import { ErrorType } from '@types';
 
 const StepThree = ({ onNext }: StepProps) => {
   const { classPostState, handleInputChange } = useClassPostInputChange();
   const { validateStepThree } = useClassPostInputValidation();
   const { isTitleValid, isDescriptionValid, isAllValid } = validateStepThree(classPostState);
+  const { mutate, isSuccess, error } = usePostMoim();
 
   const handleNextClick = () => {
-    onNext();
+    if (isAllValid) {
+      mutate(classPostState);
+    }
   };
+
+  useEffect(() => {
+    if (error) {
+      const { status, message } = error as ErrorType;
+      console.log(status, message);
+    } else if (isSuccess) {
+      onNext();
+    }
+  }, [error, isSuccess, onNext]);
   return (
     <>
       <ProgressBar progress={75} />
