@@ -8,7 +8,7 @@ const homePages = {
 };
 
 const categoriesPages = {
-  CATEGORY: '/categories/{category}',
+  CATEGORY: '/categories',
 };
 
 const classPages = {

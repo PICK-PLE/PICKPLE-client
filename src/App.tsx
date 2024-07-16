@@ -16,6 +16,7 @@ import {
 import { useFetchMoimCategories } from '@apis/domains/moim';
 import { useAtom } from 'jotai';
 import { categoriesAtom } from '@stores';
+import { useEffect } from 'react';
 
 const router = createBrowserRouter([
   ...authRoutes,
@@ -32,9 +33,12 @@ const App = () => {
   const [, setCategories] = useAtom(categoriesAtom);
   const { data, isSuccess } = useFetchMoimCategories();
 
-  if (data && isSuccess) {
-    setCategories(data);
-  }
+  // 렌더링 후에 set을하도록 useEffect를 사용. 이렇게 안하면 콘솔 에러 발생
+  useEffect(() => {
+    if (data && isSuccess) {
+      setCategories(data);
+    }
+  }, [data, isSuccess, setCategories]);
 
   return (
     <>
