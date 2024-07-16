@@ -3,7 +3,7 @@ import { flexGenerator } from '@styles/generator';
 
 export const noticeCardContainer = (theme: Theme) => css`
   ${flexGenerator('column', 'flex-start', 'flex-start')};
-
+  width: 100%;
   padding: 2rem;
 
   background-color: ${theme.color.white};

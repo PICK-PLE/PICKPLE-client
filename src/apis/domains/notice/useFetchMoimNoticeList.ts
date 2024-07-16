@@ -6,7 +6,7 @@ import { ApiResponseType, MoimNotceType } from '@types';
 const getMoimNoticeList = async (classId: string): Promise<MoimNotceType[] | null> => {
   try {
     const response = await get<ApiResponseType<MoimNotceType[]>>(
-      `/moim/${Number(classId)}/noitce-list`
+      `/moim/${Number(classId)}/notice-list`
     );
     return response.data.data;
   } catch (error) {
