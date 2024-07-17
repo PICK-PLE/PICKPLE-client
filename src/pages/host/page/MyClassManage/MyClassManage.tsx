@@ -13,11 +13,12 @@ import {
 import { useState, useEffect, useMemo } from 'react';
 import { ApplicantListModal, ClassManageEmptyView } from '@pages/host/components';
 import { useToast } from '@hooks';
-import { useFetchApplicantList } from '@apis/domains/moimSubmissionr/useFetchApplicantList';
+import { useFetchSubmitterList } from '@apis/domains/moimSubmissionr/useFetchSubmitterList';
 
 const MyClassManage = () => {
-  const moimId = 1;
-  const { data: applicantData, isLoading } = useFetchApplicantList(moimId);
+    /* @채연 TODO: moimId 고정값 말고 url로 사용할 수 있도록 수정하기!*/
+  const moimId = 5;
+  const { data: applicantData, isLoading } = useFetchSubmitterList(moimId);
   const { showToast, isToastVisible } = useToast();
   const [isOpenModal, setIsOpenModal] = useState(false);
 

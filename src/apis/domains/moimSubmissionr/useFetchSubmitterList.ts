@@ -6,7 +6,7 @@ import { ApiResponseType } from '@types';
 
 type MoimSubmissionByMoimResponse = components['schemas']['MoimSubmissionByMoimResponse'];
 
-const getApplicantList = async (moimId: number): Promise<MoimSubmissionByMoimResponse | null> => {
+const getSubmitterList = async (moimId: number): Promise<MoimSubmissionByMoimResponse | null> => {
   try {
     const response = await get<ApiResponseType<MoimSubmissionByMoimResponse>>(
       `/moim/${moimId}/submitter-list`
@@ -18,9 +18,9 @@ const getApplicantList = async (moimId: number): Promise<MoimSubmissionByMoimRes
   }
 };
 
-export const useFetchApplicantList = (moimId: number) => {
+export const useFetchSubmitterList = (moimId: number) => {
   return useQuery({
     queryKey: [QUERY_KEY.APPLICANT_LIST],
-    queryFn: () => getApplicantList(moimId),
+    queryFn: () => getSubmitterList(moimId),
   });
 };
