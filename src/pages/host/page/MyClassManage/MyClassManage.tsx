@@ -16,12 +16,14 @@ import { ApplicantListResponseType } from '@types';
 import { useToast } from '@hooks';
 
 import { APPLICANT_DATA } from 'src/constants/mocks/applicant';
+import { useParams } from 'react-router-dom';
 
 const MyClassManage = () => {
   // TODO: 커스텀 훅으로 분리
   const { status, data } = APPLICANT_DATA;
   const { isApprovable, maxGuest, submitterList } = data;
   const submitterListLength = submitterList.length;
+  const { moimId } = useParams();
 
   //checkBox 부분
   const [checkedStates, setCheckedStates] = useState<boolean[]>(
@@ -94,14 +96,14 @@ const MyClassManage = () => {
           <div css={accordionStyle}>
             {/* 나중에 에러코드 명확하게 나오면 수정예정!!!! */}
             {status === 201 ? (
+              <ClassManageEmptyView moimId={Number(moimId)} />
+            ) : (
               <ApplicantAccordionList
                 applicantData={submitterList}
                 moimId={1}
                 checkedStates={checkedStates}
                 toggleChecked={toggleChecked}
               />
-            ) : (
-              <ClassManageEmptyView />
             )}
           </div>
         </main>
