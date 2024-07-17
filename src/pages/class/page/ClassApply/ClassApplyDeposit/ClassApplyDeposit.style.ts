@@ -38,6 +38,9 @@ export const depositFooterStyle = css`
   gap: 1.5rem;
   width: 100%;
   margin-top: auto;
+
+  /* background-color: pink; */
+  /* position: relative; */
 `;
 
 export const depositCautionTextStyle = (theme: Theme) => css`
@@ -46,4 +49,6 @@ export const depositCautionTextStyle = (theme: Theme) => css`
   border: none;
   border-bottom: 1px solid ${theme.color.midgray1};
   ${theme.font['subhead03-m-16']}
+
+  cursor: pointer;
 `;

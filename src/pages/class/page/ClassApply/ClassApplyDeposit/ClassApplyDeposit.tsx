@@ -11,13 +11,16 @@ import {
   dipositWrapperStyle,
 } from '@pages/class/page/ClassApply/ClassApplyDeposit/ClassApplyDeposit.style';
 import { DepositModal } from '@pages/guest/components';
+import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
 import { MoimIdPathParameterType } from '@types';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
 
 const ClassApplyDeposit = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
   const { moimId } = useParams<MoimIdPathParameterType>();
 
@@ -25,9 +28,17 @@ const ClassApplyDeposit = () => {
     setIsModalOpen(true);
   };
 
+  const handleErrorModalOpen = () => {
+    setIsErrorModalOpen(true);
+  };
+
   const handleModalClose = () => {
     setIsModalOpen(false);
     navigate(`/class/${moimId}/apply/complete`);
+  };
+
+  const handleErrorModalClose = () => {
+    setIsErrorModalOpen(false);
   };
 
   return (
@@ -54,7 +65,14 @@ const ClassApplyDeposit = () => {
             <Button variant="large" onClick={handleModalOpen}>
               송금하기
             </Button>
-            <button css={depositCautionTextStyle}>입금에 문제가 생기셨나요?</button>
+            <button css={depositCautionTextStyle} onClick={handleErrorModalOpen}>
+              입금에 문제가 생기셨나요?
+            </button>
+            {isErrorModalOpen && (
+                <AbsoluteModal onClose={handleErrorModalClose}>
+                  <DepositErrorModal onClose={handleErrorModalClose} />
+                </AbsoluteModal>
+            )}
           </footer>
         </article>
 
