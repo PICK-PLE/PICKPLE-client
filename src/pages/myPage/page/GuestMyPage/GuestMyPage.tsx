@@ -17,8 +17,13 @@ import { usePostLogout } from '@apis/domains/user';
 import { isLoggedIn } from '@utils';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAtom } from 'jotai';
+import { userAtom } from '@stores';
+import { GuestProfileImage } from '@image';
 
 const GuestMyPage = () => {
+  const [user] = useAtom(userAtom);
+
   const navigate = useNavigate();
   const { goHostMyPage } = useEasyNavigate();
   const { mutate } = usePostLogout();
@@ -48,7 +53,11 @@ const GuestMyPage = () => {
           </p>
         </nav>
         <div css={profileWrapper}>
-          <SimpleUserProfile size="xlarge" username="신청자" />
+          <SimpleUserProfile
+            size="xlarge"
+            userImgUrl={GuestProfileImage}
+            username={user.guestNickname || ''}
+          />
         </div>
         <div css={divdier} />
         <article css={navigateBoxWrapper}>

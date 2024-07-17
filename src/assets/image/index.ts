@@ -56,6 +56,10 @@ import ReviewImage from './graphics/image_review.png';
 // icons
 import CheckModalImage from './icons/image_check_modal.png';
 
+// profile
+import GuestProfileImage from './profile/image_guest_profile.png';
+import HostProfileImage from './profile/image_host_profile.png';
+
 export {
   NJobFillSelectedImage,
   NJobFillImage,
@@ -109,4 +113,6 @@ export {
   NoticeImage,
   ReviewImage,
   CheckModalImage,
+  GuestProfileImage,
+  HostProfileImage,
 };
