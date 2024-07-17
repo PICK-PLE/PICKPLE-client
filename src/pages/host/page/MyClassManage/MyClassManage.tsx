@@ -14,11 +14,11 @@ import { useState, useEffect, useMemo } from 'react';
 import { ApplicantListModal, ClassManageEmptyView } from '@pages/host/components';
 import { useToast } from '@hooks';
 import { useFetchSubmitterList } from '@apis/domains/moimSubmission/useFetchSubmitterList';
+import { useParams } from 'react-router-dom';
 
 const MyClassManage = () => {
-  /* @채연 TODO: moimId 고정값 말고 url로 사용할 수 있도록 수정하기!*/
-  const moimId = 5;
-  const { data: applicantData, isLoading } = useFetchSubmitterList(moimId);
+  const { moimId } = useParams();
+  const { data: applicantData, isLoading } = useFetchSubmitterList(Number(moimId));
   const { showToast, isToastVisible } = useToast();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
@@ -92,39 +92,32 @@ const MyClassManage = () => {
           <div>부산 10년 토박이 달아오르구마와 함께하는 사투리리</div>
         </header>
 
-        {submitterList && submitterList?.length > 0 ? (
-          <main css={mainStyle}>
-            <div css={labelStyle}>
-              <div css={textStyle}>
-                <span css={countTitleStyle}>모임 신청자</span>
-                <span css={countTextStyle}>{submitterList?.length}</span>
+        <main css={mainStyle}>
+          {submitterList && submitterList?.length > 0 ? (
+            <>
+              <div css={labelStyle}>
+                <div css={textStyle}>
+                  <span css={countTitleStyle}>모임 신청자</span>
+                  <span css={countTextStyle}>{submitterList?.length}</span>
+                </div>
+                <Label variant="count">
+                  {`${checkedApplicant.submitterList?.length} / ${maxGuest}`}
+                </Label>
               </div>
-              <Label variant="count">
-                {`${checkedApplicant.submitterList?.length} / ${maxGuest}`}
-              </Label>
-            </div>
 
-            <div css={accordionStyle}>
-              <ApplicantAccordionList
-                applicantData={submitterList ?? []}
-                moimId={moimId}
-                checkedStates={checkedStates}
-                toggleChecked={toggleChecked}
-              />
-            </div>
-          </main>
-        ) : (
-          <main css={mainStyle}>
-            <div css={labelStyle}>
-              <div css={textStyle}>
-                <span css={countTitleStyle}>모임 신청자</span>
-                <span css={countTextStyle}>0</span>
+              <div css={accordionStyle}>
+                <ApplicantAccordionList
+                  applicantData={submitterList ?? []}
+                  moimId={Number(moimId)}
+                  checkedStates={checkedStates}
+                  toggleChecked={toggleChecked}
+                />
               </div>
-              <Label variant="count">{`0 / ${maxGuest}`}</Label>
-            </div>
-            <ClassManageEmptyView />
-          </main>
-        )}
+            </>
+          ) : (
+            <ClassManageEmptyView moimId={Number(moimId)} maxGuest={maxGuest ?? 0} />
+          )}
+        </main>
 
         <footer css={footerStyle}>
           <Button variant="large" disabled={!isActive} onClick={handleModalOpen}>

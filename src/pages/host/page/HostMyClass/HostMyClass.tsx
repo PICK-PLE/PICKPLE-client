@@ -31,7 +31,7 @@ const HostMyClass = () => {
     setMoimState('completed');
   };
 
-  const { data } = useFetchHostMoimInfo(hostId ?? 0, moimState || 'ongoing');
+  const { data } = useFetchHostMoimInfo(hostId ?? 0, moimState);
 
   if (!data) {
     return <div>no data</div>;

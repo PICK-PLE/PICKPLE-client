@@ -20,14 +20,13 @@ const HostMyClassCard = ({ hostMyClassData }: HostMyClassCardProps) => {
 
   const navigate = useNavigate();
 
-  const handleButtonClick = () => {
-    navigate(routePath.HOST_MY_CLASS_MANAGE);
-  };
-
   const handleCardClick = () => {
     navigate(`/class/${moimId}`);
   };
 
+  const handleButtonClick = () => {
+    navigate(`/host/myclass/manage/${moimId}`);
+  };
   return (
     <article css={cardContainer}>
       <section css={cardContent}>
