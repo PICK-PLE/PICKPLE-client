@@ -3,8 +3,6 @@ import { buttonStyle, errorBox, errorIconStyle, errorWrapper, textStyle } from '
 import { graphicImage } from '@constants';
 import { useEasyNavigate } from '@hooks';
 
-// interface ErrorProps {}
-
 const Error = () => {
   const { goHome } = useEasyNavigate();
   return (
