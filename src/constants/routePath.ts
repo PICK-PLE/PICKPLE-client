@@ -41,6 +41,10 @@ const devPages = {
   DEV_CARD: '/dev/card',
 };
 
+const errorPages = {
+  ERROR: '/error',
+};
+
 export default {
   ...authPages,
   ...homePages,
@@ -50,4 +54,5 @@ export default {
   ...guestPages,
   ...hostPages,
   ...devPages,
+  ...errorPages,
 };

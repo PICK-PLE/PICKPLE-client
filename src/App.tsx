@@ -14,6 +14,7 @@ import {
   myPageRoutes,
   devRoutes,
 } from '@routes';
+import errorPageRoutes from './routes/errorRoutes';
 
 const router = createBrowserRouter([
   ...authRoutes,
@@ -24,6 +25,7 @@ const router = createBrowserRouter([
   ...hostRoutes,
   ...myPageRoutes,
   ...devRoutes,
+  ...errorPageRoutes,
 ]);
 
 const App = () => {
