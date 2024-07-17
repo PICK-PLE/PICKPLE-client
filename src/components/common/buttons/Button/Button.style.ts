@@ -82,5 +82,5 @@ export const buttonSize = {
 
 export const disabledStyle = (theme: Theme) => css`
   color: ${theme.color.midgray2};
-  background-color: ${theme.color.lightgray2};
+  background-color: ${theme.color.lightgray1};
 `;
