@@ -14,7 +14,7 @@ import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { ClassListCard } from '@pages/categories/components';
 import { useFetchMoimListByCategory } from '@apis/domains/moim/useFetchMoimListByCategory';
-import { useEffect, useLayoutEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 const Categories = () => {
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ const Categories = () => {
     navigate(`/class/${moimId}`);
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (categoriesRef.current) {
       const selectedIndex = categories.indexOf(selectedCategory);
       setTimeout(() => {

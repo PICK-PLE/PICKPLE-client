@@ -44,7 +44,7 @@ export const logoutBox = css`
 
 export const logoutTextStyle = (theme: Theme) => css`
   ${theme.font['subhead03-m-16']}
-  ${theme.color.blackgray}
+  color: ${theme.color.blackgray}
 `;
 export const iconStyle = css`
   width: 2.4rem;
