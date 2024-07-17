@@ -3,16 +3,12 @@ import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { ApiResponseType, HostMyClassDataResponseType } from '@types';
 
-interface GetHostMoimInfoResponse {
-  data: HostMyClassDataResponseType[];
-}
-
 const getHostMoimInfo = async (
   hostId: number,
   moimState: string
-): Promise<GetHostMoimInfoResponse[] | null> => {
+): Promise<HostMyClassDataResponseType[] | null> => {
   try {
-    const response = await get<ApiResponseType<GetHostMoimInfoResponse[]>>(
+    const response = await get<ApiResponseType<HostMyClassDataResponseType[]>>(
       `/host/${hostId}/moim-list?moimState=${moimState}`
     );
 
