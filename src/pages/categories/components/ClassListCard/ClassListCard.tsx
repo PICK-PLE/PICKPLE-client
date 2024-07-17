@@ -5,6 +5,7 @@ import {
   classListTextWrapper,
   titleTextWrapper,
   timeTextWraaper,
+  classCardCustomStyle,
 } from '@pages/categories/components/ClassListCard/ClassListCard.style';
 import { components } from '@schema';
 
@@ -24,6 +25,7 @@ const ClassListCard = ({ classListData }: ClassListCardProps) => {
         src={moimImageUrl || ''}
         width="9rem"
         label={<Label variant="status">D-{dayOfDay}</Label>}
+        customStyle={classCardCustomStyle}
       />
 
       <div css={classListTextContainer}>
