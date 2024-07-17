@@ -1,7 +1,6 @@
 import { patch } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { QueryClient, useMutation } from '@tanstack/react-query';
-// import { ErrorResponse } from '@types';
 
 export interface PatchSubmitterRequest {
   moimId: number;

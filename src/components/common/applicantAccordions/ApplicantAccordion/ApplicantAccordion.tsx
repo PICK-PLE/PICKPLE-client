@@ -17,7 +17,6 @@ import {
   accdionContentStyle,
   answerStyle,
 } from './ApplicantAccordion.style';
-
 import { Image, QuestionText } from '@components';
 import { useFetchSubmitRequest } from '@apis/domains/moimSubmissionr/useFetchSubmitRequest';
 import { components } from '@schema';
@@ -50,13 +49,6 @@ const ApplicantAccordion = ({
   const { data: submitRequest, refetch } = useFetchSubmitRequest({ moimId, submitterId });
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
   const [submitRequestList, setSubmitRequestList] = useState<QuestionAnswerPair[]>([]);
-
-  // submitterId가 변경될 때마다 refetch 호출
-  useEffect(() => {
-    if (submitterId !== null) {
-      refetch();
-    }
-  }, [submitterId, refetch]);
 
   const handleAccordionClick = () => {
     setIsAccordionOpen(!isAccordionOpen);
