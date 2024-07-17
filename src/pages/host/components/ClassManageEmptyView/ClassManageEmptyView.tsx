@@ -17,11 +17,11 @@ const ClassManageEmptyView = () => {
   return (
     <div css={emptyViewContainer}>
       <div css={emptyViewWrapper}>
-        <div css={emptyViewImageStyle}>
+
           {/* TODO: 그래픽 이미지 수정 */}
-          <img src={graphicImage.GuestImage} alt="" />
+          <img src={graphicImage.GuestImage} alt="" css={emptyViewImageStyle}/>
           {/* <IcHostMyclassManageEmptyView /> */}
-        </div>
+
 
         <div css={emptyText}>
           <span>아직 게스트를 기다리는 중이에요 </span>

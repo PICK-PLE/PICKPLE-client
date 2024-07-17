@@ -12,8 +12,11 @@ export const QUERY_KEY = {
   GUEST_APPLY: 'guestApplyMoim',
   HOST_MOIM_INFO: 'hostMoimInfo',
   MOIM_DETAIL: 'moimDetail',
+  APPLICANT_LIST: 'applicantList',
   MOIM_DESCRIPTION: 'moimDescription',
   MOIM_HOST: 'moimHost',
   MOIM_NOTICE_LIST: 'moimNoticeList',
+  MOIM_SUBMIT_REQUEST: 'moimSubmitRequest',
+  MOIM_SUBMITTER: 'moimSubmitter',
   PRE_SIGNED_URL: 'presignedUrl',
 } as const;
