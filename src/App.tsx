@@ -17,7 +17,10 @@ import errorPageRoutes from './routes/errorRoutes';
 import { useAtom } from 'jotai';
 import { categoriesAtom } from '@stores';
 import { useFetchMoimCategories } from '@apis/domains/moim';
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
+import { ErrorBoundary } from 'react-error-boundary';
+import Error from '@pages/error/Error';
+import { Spinner } from './components/common/Spinner/Spinner';
 
 const router = createBrowserRouter([
   ...authRoutes,
@@ -46,7 +49,11 @@ const App = () => {
     <>
       <ThemeProvider theme={theme}>
         <Global styles={GlobalStyle} />
-        <RouterProvider router={router} />
+        <ErrorBoundary FallbackComponent={Error}>
+          <Suspense fallback={<Spinner />}>
+            <RouterProvider router={router} />
+          </Suspense>
+        </ErrorBoundary>
       </ThemeProvider>
       <div style={{ fontSize: '16px' }}>
         <ReactQueryDevtools />
