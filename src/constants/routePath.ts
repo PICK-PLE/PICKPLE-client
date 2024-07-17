@@ -14,7 +14,7 @@ const categoriesPages = {
 const classPages = {
   CLASS_DETAIL: '/class/:classId',
   CLASS_NOTICE_POST: '/class/notice/post',
-  CLASS_POST: '/class/post',
+  CLASS_POST: '/class/post/:step',
   CLASS_APPLY_RULE: '/class/apply/rule',
   CLASS_APPLY_QUESTION: '/class/apply/question',
   CLASS_APPLY_DEPOSIT: '/class/apply/deposit',
@@ -33,7 +33,7 @@ const guestPages = {
 const hostPages = {
   HOST_MY_CLASS: '/host/myclass',
   HOST_MY_CLASS_MANAGE: '/host/myclass/manage/:moimId',
-  HOST_APPLY: '/host/apply',
+  HOST_APPLY: '/host/apply/:step',
 };
 
 const devPages = {

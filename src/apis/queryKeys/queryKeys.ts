@@ -18,5 +18,6 @@ export const QUERY_KEY = {
   MOIM_NOTICE_LIST: 'moimNoticeList',
   MOIM_SUBMIT_REQUEST: 'moimSubmitRequest',
   MOIM_SUBMITTER: 'moimSubmitter',
+  POST_MOIM: 'postMoim',
   PRE_SIGNED_URL: 'presignedUrl',
 } as const;

@@ -9,7 +9,7 @@ export interface FunnelProps {
   children: Array<ReactElement<StepProps>>;
 }
 
-export const useFunnel = (defaultStep: string) => {
+export const useFunnel = (defaultStep: string, basePath: string) => {
   const [step, setStep] = useState(defaultStep);
   const navigate = useNavigate();
   const { step: urlStep } = useParams<{ step: string }>();
@@ -32,7 +32,7 @@ export const useFunnel = (defaultStep: string) => {
 
   const nextStep = (next: string) => {
     setStep(next);
-    navigate(`/host/apply/${next}`);
+    navigate(`/${basePath}/${next}`);
   };
 
   return { Funnel, Step, setStep, nextStep, currrendStep: step } as const;

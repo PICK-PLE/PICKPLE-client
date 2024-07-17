@@ -12,11 +12,49 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepThree.style';
+import { usePostMoim } from '@apis/domains/moim/usePostMoim';
+import { useState } from 'react';
+import { ErrorType } from '@types';
+import { handleUpload } from 'src/utils/image';
+import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
+import { smoothScroll } from '@utils';
+import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
 
 const StepThree = ({ onNext }: StepProps) => {
-  const handleNextClick = () => {
-    onNext();
+  const { classPostState, handleInputChange, handleImageList } = useClassPostInputChange();
+  const { validateStepThree } = useClassPostInputValidation();
+  const { isTitleValid, isDescriptionValid, isAllValid } = validateStepThree(classPostState);
+  const putS3UploadMutation = usePutS3Upload();
+  const postMoim = usePostMoim();
+
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+
+  const handleFileSelect = (files: File[]) => {
+    setSelectedFiles(files);
   };
+
+  const handleNextClick = async (): Promise<void> => {
+    if (isAllValid) {
+      const imageUrlList = await handleUpload({
+        selectedFiles,
+        putS3Upload: putS3UploadMutation.mutateAsync,
+        type: 'moim',
+      });
+      handleImageList(imageUrlList);
+
+      postMoim
+        .mutateAsync(classPostState)
+        .then(() => {
+          onNext();
+          smoothScroll(0);
+        })
+        .catch((error: ErrorType) => {
+          const { status, message } = error;
+          console.error(status, message);
+        });
+    }
+  };
+
   return (
     <>
       <ProgressBar progress={75} />
@@ -33,10 +71,11 @@ const StepThree = ({ onNext }: StepProps) => {
         <main css={mainStyle}>
           <section css={sectionStyle}>
             <Input
-              value=""
-              onChange={() => {}}
+              value={classPostState.title}
+              onChange={(e) => handleInputChange(e, 'title')}
               placeholder="제목을 입력하세요."
-              isValid={true}
+              isValid={isTitleValid}
+              errorMessage="제목을 입력해주세요"
               maxLength={28}
               isCountValue={true}
             />
@@ -44,12 +83,14 @@ const StepThree = ({ onNext }: StepProps) => {
               size="medium"
               maxLength={2000}
               placeholder={`5글자 이상 답변을 작성해주세요.`}
-              value=""
-              onChange={() => {}}
+              value={classPostState.description}
+              onChange={(e) => handleInputChange(e, 'description')}
+              isValid={isDescriptionValid}
+              errorMessage="5글자 이상 답변을 작성해주세요."
             />
           </section>
           <section css={imageSelectSection}>
-            <ImageSelect isMultiple={true} />
+            <ImageSelect isMultiple={true} onFileSelect={handleFileSelect} />
             <h6 css={referTextStyle}>
               * 첫번째 사진이 썸네일 이미지로 등록되며
               <br />
@@ -58,7 +99,7 @@ const StepThree = ({ onNext }: StepProps) => {
           </section>
         </main>
         <footer css={footerStyle}>
-          <Button variant="large" onClick={handleNextClick}>
+          <Button variant="large" onClick={handleNextClick} disabled={!isAllValid}>
             모임 개설하기
           </Button>
         </footer>

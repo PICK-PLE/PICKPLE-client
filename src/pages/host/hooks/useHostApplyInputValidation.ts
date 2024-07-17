@@ -2,7 +2,7 @@ import { components } from '@schema';
 
 type Category = components['schemas']['SubmitterCategoryInfo'];
 
-export const useHostApplyInputValidation = () => {
+const useHostApplyInputValidation = () => {
   const validateLength = (answer: string) => {
     return answer.trim().length >= 1;
   };
@@ -65,3 +65,5 @@ export const useHostApplyInputValidation = () => {
     validateStepTwo,
   };
 };
+
+export default useHostApplyInputValidation;

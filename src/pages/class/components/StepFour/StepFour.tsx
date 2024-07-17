@@ -9,7 +9,6 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepFour.style';
-// import { ClassPostFinishPng } from '@image';
 import { HostClassOpenImage } from '@image';
 
 const StepFour = () => {
