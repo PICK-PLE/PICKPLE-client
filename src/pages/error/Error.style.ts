@@ -2,9 +2,13 @@ import { Theme } from '@emotion/react';
 import { css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
+export const errorContainer = css`
+  ${flexGenerator('column')};
+  height: calc(100dvh - 6rem);
+`;
+
 export const errorWrapper = css`
   ${flexGenerator('column')};
-  padding: 12.8rem 6.2rem 20.9rem 6.2rem;
   gap: 2rem;
 `;
 
