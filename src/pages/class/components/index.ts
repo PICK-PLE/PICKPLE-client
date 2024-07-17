@@ -4,7 +4,8 @@ import GuestClassRegisterCard from './GuestClassRegisterCard/GuestClassRegisterC
 import NoticeCard from './NoticeCard/NoticeCard';
 import ClassInfo from './ClassInfo/ClassInfo';
 import ClassNotice from './ClassNotice/ClassNotice';
-import ClassEmptyReview from './ClassEmptyReview/ClassEmptyReview';
+import ClassReviewEmptyView from './ClassReviewEmptyView/ClassReviewEmptyView';
+import ClassNoticeEmptyView from './ClassNoticeEmptyView/ClassNoticeEmptyView';
 
 export {
   HostInfoCard,
@@ -13,5 +14,6 @@ export {
   NoticeCard,
   ClassInfo,
   ClassNotice,
-  ClassEmptyReview,
+  ClassReviewEmptyView,
+  ClassNoticeEmptyView,
 };

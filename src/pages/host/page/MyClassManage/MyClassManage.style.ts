@@ -8,7 +8,7 @@ export const myClassManageLayout = (theme: Theme) => css`
   gap: 2.4rem;
   width: 100%;
   border-top: 1px solid ${theme.color.lightgray1};
-  min-height: calc(100dvh - 6.3rem);
+  min-height: 100dvh;
 `;
 
 export const headerStyle = (theme: Theme) => css`

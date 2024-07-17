@@ -3,10 +3,10 @@ import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { get } from '@apis/api';
 import { ApiResponseType } from '@types';
 
-const getMoimDescription = async (classId: string): Promise<string | null> => {
+const getMoimDescription = async (moimId: string): Promise<string | null> => {
   try {
     const response = await get<ApiResponseType<{ description: string }>>(
-      `/moim/${Number(classId)}/description`
+      `/moim/${Number(moimId)}/description`
     );
     return response.data.data.description;
   } catch (error) {
@@ -15,10 +15,10 @@ const getMoimDescription = async (classId: string): Promise<string | null> => {
   }
 };
 
-export const useFetchMoimDescription = (classId: string) => {
+export const useFetchMoimDescription = (moimId: string) => {
   return useQuery({
-    queryKey: [QUERY_KEY.MOIM_DESCRIPTION],
-    queryFn: () => getMoimDescription(classId),
+    queryKey: [QUERY_KEY.MOIM_DESCRIPTION, moimId],
+    queryFn: () => getMoimDescription(moimId),
     // staleTime: 3000,
     // gcTime: 50000,
   });

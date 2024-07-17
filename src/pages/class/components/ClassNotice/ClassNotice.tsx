@@ -1,19 +1,21 @@
+import { components } from '@schema';
 import { NoticeCard } from '..';
-import { MoimNotceType } from '@types';
 
 import { noticeCardContainer } from './ClassNotice.style';
 
+type NoticeListGetByMoimResponse = components['schemas']['NoticeListGetByMoimResponse'];
+
 interface ClassNoticeProps {
-  noticeData: MoimNotceType[];
+  noticeData: NoticeListGetByMoimResponse[];
 }
 
 const ClassNotice = ({ noticeData }: ClassNoticeProps) => {
   return (
-    <article css={noticeCardContainer}>
+    <div css={noticeCardContainer}>
       {noticeData.map((data) => (
         <NoticeCard key={data.noticeId} noticeData={data} />
       ))}
-    </article>
+    </div>
   );
 };
 

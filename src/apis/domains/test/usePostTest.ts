@@ -1,6 +1,6 @@
 import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
-import { QueryClient, useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const postTest = async () => {
   const response = await post('/test');
@@ -9,7 +9,7 @@ const postTest = async () => {
 };
 
 export const usePostTest = () => {
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: () => postTest(),
     onSuccess: () => {

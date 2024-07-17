@@ -8,13 +8,15 @@ import {
   ruleFooterStyle,
   classApplyRuleContainer,
 } from '@pages/class/page/ClassApply/ClassApplyRule/ClassApplyRule.style';
-import { useNavigate } from 'react-router-dom';
+import { MoimIdPathParameterType } from '@types';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const ClassApplyRule = () => {
   const navigate = useNavigate();
+  const { moimId } = useParams<MoimIdPathParameterType>();
 
   const handleButtonClick = () => {
-    navigate('/class/apply/question');
+    navigate(`/class/${moimId}/apply/question`);
   };
 
   return (

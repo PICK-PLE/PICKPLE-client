@@ -1,10 +1,11 @@
 import { ApplicantAccordion } from '@components';
 import { applicantAccordionListLayout } from './ApplicantAccordionList.style';
-import { ApplicantDataType } from '@types';
+import { components } from '@schema';
+
 
 interface ApplicantAccordionListProps {
   moimId: number;
-  applicantData: ApplicantDataType[];
+  applicantData: components['schemas']['SubmitterInfo'][];
   toggleChecked: (index: number) => void;
   checkedStates: boolean[];
 }
@@ -19,8 +20,8 @@ const ApplicantAccordionList = ({
     <div css={applicantAccordionListLayout}>
       {applicantData.map((applicant, index) => (
         <ApplicantAccordion
+          key={index}
           moimId={moimId}
-          guestId={1}
           applicantData={applicant}
           isChecked={checkedStates[index]}
           toggleChecked={() => toggleChecked(index)}

@@ -1,7 +1,10 @@
 import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+import { useEasyNavigate } from '@hooks';
 import { components } from '@schema';
-import { QueryClient, useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { MoimIdPathParameterType } from '@types';
+import { useParams } from 'react-router-dom';
 
 type MutateFunctionProps = {
   params: NoticeCreateRequest;
@@ -22,11 +25,15 @@ const postNotice = async (params: NoticeCreateRequest, moimId: number) => {
 };
 
 export const usePostNotice = () => {
-  const queryClient = new QueryClient();
+  const { goBack } = useEasyNavigate();
+  const { moimId } = useParams<MoimIdPathParameterType>();
+
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({ params, moimId }: MutateFunctionProps) => postNotice(params, moimId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.MOIM_NOTICE_LIST] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.MOIM_NOTICE_LIST, moimId] });
+      goBack();
     },
   });
 };

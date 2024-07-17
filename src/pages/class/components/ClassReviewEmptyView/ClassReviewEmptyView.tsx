@@ -1,7 +1,7 @@
 import { graphicImage } from '@constants';
-import { emptyReviewContainer, imageStyle, textStyle } from './ClassEmptyReview.style';
+import { emptyReviewContainer, imageStyle, textStyle } from './ClassReviewEmptyView.style';
 
-const ClassEmptyReview = () => {
+const ClassReviewEmptyView = () => {
   return (
     <article>
       <div css={emptyReviewContainer}>
@@ -12,4 +12,4 @@ const ClassEmptyReview = () => {
   );
 };
 
-export default ClassEmptyReview;
+export default ClassReviewEmptyView;

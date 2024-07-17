@@ -11,12 +11,15 @@ import {
   dipositWrapperStyle,
 } from '@pages/class/page/ClassApply/ClassApplyDeposit/ClassApplyDeposit.style';
 import { DepositModal } from '@pages/guest/components';
+import { MoimIdPathParameterType } from '@types';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const ClassApplyDeposit = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { moimId } = useParams<MoimIdPathParameterType>();
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -24,7 +27,7 @@ const ClassApplyDeposit = () => {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
-    navigate('/class/apply/complete');
+    navigate(`/class/${moimId}/apply/complete`);
   };
 
   return (
@@ -55,11 +58,11 @@ const ClassApplyDeposit = () => {
           </footer>
         </article>
 
-        {isModalOpen ? (
+        {isModalOpen && (
           <Modal onClose={handleModalClose}>
             <DepositModal onClose={handleModalClose} />
           </Modal>
-        ) : null}
+        )}
       </div>
     </>
   );

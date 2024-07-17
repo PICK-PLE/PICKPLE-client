@@ -19,7 +19,7 @@ const getGuestApplyMoim = async (
 
 export const useFetchGuestApply = (guestId: number, moimSubmissionState: string) => {
   return useQuery({
-    queryKey: [QUERY_KEY.GUEST_APPLY, moimSubmissionState],
+    queryKey: [QUERY_KEY.GUEST_APPLY, moimSubmissionState, guestId],
     queryFn: () => getGuestApplyMoim(guestId, moimSubmissionState),
     enabled: !!guestId && guestId > 0,
     placeholderData: keepPreviousData,

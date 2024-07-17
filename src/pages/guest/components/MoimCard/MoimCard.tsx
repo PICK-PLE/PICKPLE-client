@@ -1,4 +1,4 @@
-import { Button, Image, Label } from '@components';
+import { Button, Image, Label, Modal } from '@components';
 import {
   detailWrapper,
   detailInfoWrapper,
@@ -14,13 +14,27 @@ import {
 import { IcDropdownRight } from '@svg';
 import { MoimResponseType } from '@types';
 import { statusMapText } from 'src/constants/mappingText';
+import { useState } from 'react';
+import DepositModal from '../DepositModal/DepositModal';
+import { useNavigate } from 'react-router-dom';
 
 interface MoimCardProps {
   guestMyClassData: MoimResponseType;
 }
 
 const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
-  const { moimSubmissionState, title, hostNickname, dateList, fee, imageUrl } = guestMyClassData;
+  const { moimSubmissionState, title, hostNickname, dateList, fee, imageUrl, moimId } =
+    guestMyClassData;
+  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const handleButtonClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleCardClick = () => {
+    navigate(`/class/${moimId}`);
+  };
+
   return (
     <div css={moimCardLayout}>
       <article css={moimCardContainer}>
@@ -34,7 +48,7 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
           }
         />
         <article css={detailInfoWrapper}>
-          <div css={titleWrapper} onClick={() => {}}>
+          <div css={titleWrapper} onClick={handleCardClick}>
             <p css={titleStyle}>{title}</p>
             <IcDropdownRight css={iconStyle} />
           </div>
@@ -57,10 +71,15 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
         </article>
       </article>
       {moimSubmissionState === 'pendingPayment' ? (
-        <Button variant="xSmall" onClick={() => {}}>
+        <Button variant="xSmall" onClick={handleButtonClick}>
           입금하기
         </Button>
       ) : null}
+      {isOpen && (
+        <Modal onClose={handleButtonClick}>
+          <DepositModal onClose={handleButtonClick} />
+        </Modal>
+      )}
     </div>
   );
 };

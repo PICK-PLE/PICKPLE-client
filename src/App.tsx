@@ -14,6 +14,10 @@ import {
   devRoutes,
 } from '@routes';
 import errorPageRoutes from './routes/errorRoutes';
+import { useAtom } from 'jotai';
+import { categoriesAtom } from '@stores';
+import { useFetchMoimCategories } from '@apis/domains/moim';
+import { useEffect } from 'react';
 
 const router = createBrowserRouter([
   ...authRoutes,
@@ -28,6 +32,16 @@ const router = createBrowserRouter([
 ]);
 
 const App = () => {
+  const [, setCategories] = useAtom(categoriesAtom);
+  const { data, isSuccess } = useFetchMoimCategories();
+
+  // 렌더링 후에 set을하도록 useEffect를 사용. 이렇게 안하면 콘솔 에러 발생
+  useEffect(() => {
+    if (data && isSuccess) {
+      setCategories(data);
+    }
+  }, [data, isSuccess, setCategories]);
+
   return (
     <>
       <ThemeProvider theme={theme}>

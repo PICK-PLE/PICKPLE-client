@@ -1,8 +1,9 @@
 import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { components } from '@schema';
-import { QueryClient, useMutation } from '@tanstack/react-query';
-import { ErrorResponse, MutateResponseType } from '@types';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { ErrorResponse, ErrorType, MutateResponseType } from '@types';
+import { Dispatch, RefObject, SetStateAction } from 'react';
 
 type HostApplyRequest = components['schemas']['SubmitterCreateRequest'];
 
@@ -18,13 +19,26 @@ const postHostApply = async (hostApplyState: HostApplyRequest): Promise<MutateRe
   }
 };
 
-export const usePostHostApply = () => {
-  const queryClient = new QueryClient();
+export const usePostHostApply = (
+  resetHostApplyState: () => void,
+  onNext: () => void,
+  setIsNicknameDuplicate: Dispatch<SetStateAction<boolean>>,
+  nicknameRef: RefObject<HTMLInputElement>
+) => {
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (hostApplyState: HostApplyRequest) => postHostApply(hostApplyState),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.HOST_APPLY] });
+      resetHostApplyState();
+      onNext();
+    },
+    onError: (error: ErrorType) => {
+      if (error.status === 40008) {
+        setIsNicknameDuplicate(true);
+        nicknameRef.current?.focus();
+      }
     },
   });
 };

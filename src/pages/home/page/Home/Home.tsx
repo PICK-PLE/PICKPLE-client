@@ -2,53 +2,61 @@ import { LogoHeader } from '@components';
 import {
   categoryContainer,
   categoryStyle,
-  homeBannerStyle,
   titleStyle,
   iconStyle,
   iconNameStyle,
-  homeStyle,
   homeLayout,
+  pageLayout,
+  homeBannerStyle,
 } from './Home.style';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
 import Footer from 'src/components/common/Footer/Footer';
-import { useFetchMoimBanner, useFetchMoimCategories } from 'src/apis/domains/moim';
+import { useFetchMoimBanner } from 'src/apis/domains/moim';
+import { useAtom } from 'jotai';
+import { categoriesAtom } from '@stores';
+import { useNavigate } from 'react-router-dom';
+import Lottie from 'lottie-react';
+import { mainBanner } from 'src/assets/lotties';
 
 const Home = () => {
-  // TODO: 배너 클릭 시 해당 모임으로 이동
+  const navigate = useNavigate();
   const { data: bannerId } = useFetchMoimBanner();
-  const { data: categories } = useFetchMoimCategories();
+
+  const [categories] = useAtom(categoriesAtom);
+
+  const handleCategoryClick = (category: string) => {
+    navigate(`/categories?category=${category}`);
+  };
 
   return (
     <>
       <LogoHeader isIcon />
-      <main css={homeLayout}>
-        <div css={homeStyle}>
-          <img
+      <div css={pageLayout}>
+        <main css={homeLayout}>
+          <div
             css={homeBannerStyle}
-            src="https://placehold.co/375x280"
-            alt="banner"
             onClick={() => {
-              console.log('bannerId:', bannerId);
-            }}
-          />
-
+              navigate(`class/${bannerId}`);
+            }}>
+            <Lottie animationData={mainBanner} width={'100%'} loop={true} />
+          </div>
           <div css={categoryContainer}>
             <p css={titleStyle}>이런 클래스 모임 어때요?</p>
 
-            <div css={categoryStyle}>
+            <ul css={categoryStyle}>
               {(categories || []).map((category, index) => {
                 return (
-                  <div key={index} css={iconStyle}>
+                  <li key={index} css={iconStyle} onClick={() => handleCategoryClick(category)}>
                     <img src={CATEGORY_ICON[category].fill_selected} alt={`icon-${index}`} />
                     <p css={iconNameStyle}>{CATEGORY_NAME[category]}</p>
-                  </div>
+                  </li>
                 );
               })}
-            </div>
+            </ul>
           </div>
-        </div>
-      </main>
-      <Footer />
+        </main>
+        <Footer />
+      </div>
     </>
   );
 };

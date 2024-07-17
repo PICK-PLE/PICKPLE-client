@@ -9,7 +9,7 @@ const steps = ['step1', 'step2', 'finish'];
 
 const HostApplyPage = () => {
   const { step } = useParams<{ step: string }>();
-  const { Funnel, Step, nextStep } = useFunnel(step || steps[0]);
+  const { Funnel, Step, nextStep } = useFunnel(step || steps[0], 'host/apply');
   return (
     <Provider>
       <LogoHeader />

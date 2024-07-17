@@ -8,17 +8,17 @@ const homePages = {
 };
 
 const categoriesPages = {
-  CATEGORY: '/categories/{category}',
+  CATEGORY: '/categories',
 };
 
 const classPages = {
-  CLASS_DETAIL: '/class/:classId',
-  CLASS_NOTICE_POST: '/class/notice/post',
+  CLASS_DETAIL: '/class/:moimId',
+  CLASS_NOTICE_POST: '/class/:moimId/notice/post',
   CLASS_POST: '/class/post',
-  CLASS_APPLY_RULE: '/class/apply/rule',
-  CLASS_APPLY_QUESTION: '/class/apply/question',
-  CLASS_APPLY_DEPOSIT: '/class/apply/deposit',
-  CLASS_APPLY_COMPLETE: '/class/apply/complete',
+  CLASS_APPLY_RULE: '/class/:moimId/apply/rule',
+  CLASS_APPLY_QUESTION: '/class/:moimId/apply/question',
+  CLASS_APPLY_DEPOSIT: '/class/:moimId/apply/deposit',
+  CLASS_APPLY_COMPLETE: '/class/:moimId/apply/complete',
 };
 
 const myPagePages = {
@@ -32,8 +32,8 @@ const guestPages = {
 
 const hostPages = {
   HOST_MY_CLASS: '/host/myclass',
-  HOST_MY_CLASS_MANAGE: '/host/myclass/manage',
-  HOST_APPLY: '/host/apply',
+  HOST_MY_CLASS_MANAGE: '/host/myclass/manage/:moimId',
+  HOST_APPLY: '/host/apply/:step',
 };
 
 const devPages = {

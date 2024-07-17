@@ -1,7 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { get } from '@apis/api';
-import { ApiResponseType, MoimHostResponseType } from '@types';
+import { ApiResponseType } from '@types';
+import { components } from '@schema';
+
+type MoimHostResponseType = components['schemas']['HostGetResponse'];
 
 const getMoimHost = async (hostId: number): Promise<MoimHostResponseType | null> => {
   try {
@@ -15,7 +18,7 @@ const getMoimHost = async (hostId: number): Promise<MoimHostResponseType | null>
 
 export const useFetchMoimHost = (hostId: number) => {
   return useQuery({
-    queryKey: [QUERY_KEY.MOIM_HOST],
+    queryKey: [QUERY_KEY.MOIM_HOST, hostId],
     queryFn: () => getMoimHost(hostId),
     staleTime: 1000 * 10,
     gcTime: 1000 * 10,
