@@ -16,12 +16,12 @@ import { useToast } from '@hooks';
 import { useFetchApplicantList } from '@apis/domains/moimSubmissionr/useFetchApplicantList';
 
 const MyClassManage = () => {
-  const moimId = 6;
+  const moimId = 5;
   const { data: applicantData, isLoading } = useFetchApplicantList(moimId);
   const { showToast, isToastVisible } = useToast();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
-  // 모임 정보 추출 
+  // 모임 정보 추출
   const { maxGuest, isApprovable, submitterList } = applicantData || {};
 
   // 체크박스 상태 관리
@@ -90,18 +90,17 @@ const MyClassManage = () => {
           <div>부산 10년 토박이 달아오르구마와 함께하는 사투리리</div>
         </header>
 
-        {applicantData ? (
-        <main css={mainStyle}>
-          <div css={labelStyle}>
-            <div css={textStyle}>
-              <span css={countTitleStyle}>모임 신청자</span>
-              <span css={countTextStyle}>{submitterList?.length}</span>
+        {submitterList ?? [].length > 0 ? (
+          <main css={mainStyle}>
+            <div css={labelStyle}>
+              <div css={textStyle}>
+                <span css={countTitleStyle}>모임 신청자</span>
+                <span css={countTextStyle}>{submitterList?.length}</span>
+              </div>
+              <Label variant="count">
+                {`${checkedApplicant.submitterList?.length} / ${maxGuest}`}
+              </Label>
             </div>
-            <Label variant="count">
-              {`${checkedApplicant.submitterList?.length} / ${maxGuest}`}
-            </Label>
-          </div>
-
 
             <div css={accordionStyle}>
               <ApplicantAccordionList
@@ -111,22 +110,19 @@ const MyClassManage = () => {
                 toggleChecked={toggleChecked}
               />
             </div>
-            </main>
-          ) : (
-            <main css={mainStyle}>
+          </main>
+        ) : (
+          <main css={mainStyle}>
             <div css={labelStyle}>
               <div css={textStyle}>
                 <span css={countTitleStyle}>모임 신청자</span>
                 <span css={countTextStyle}>0</span>
               </div>
-              <Label variant="count">
-                {`0 / ${maxGuest}`}
-              </Label>
+              <Label variant="count">{`0 / ${maxGuest}`}</Label>
             </div>
             <ClassManageEmptyView />
-            </main>
-          )}
-
+          </main>
+        )}
 
         <footer css={footerStyle}>
           <Button variant="large" disabled={!isActive} onClick={handleModalOpen}>

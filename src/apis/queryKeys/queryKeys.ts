@@ -17,4 +17,5 @@ export const QUERY_KEY = {
   MOIM_HOST: 'moimHost',
   MOIM_NOTICE_LIST: 'moimNoticeList',
   MOIM_SUBMIT_REQUEST: 'moimSubmitRequest',
+  MOIM_SUBMITTER: 'moimSubmitter',
 } as const;

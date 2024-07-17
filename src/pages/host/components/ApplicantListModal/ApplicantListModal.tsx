@@ -14,14 +14,29 @@ import {
 import { IcCheckModal } from '@svg';
 import { Button, SimpleUserProfile } from '@components';
 import { components } from '@schema';
+import {
+  PatchSubmitterRequest,
+  usePatchSubmitter,
+} from '@apis/domains/moimSubmissionr/usePatchSubmitter';
+import { useNavigate } from 'react-router-dom';
 
 interface ApplicantListModalProps {
   applicantListData: components['schemas']['MoimSubmissionByMoimResponse'];
   onClose: () => void;
 }
-
+const moimId = 5;
 const ApplicantListModal = ({ applicantListData, onClose }: ApplicantListModalProps) => {
   const { submitterList } = applicantListData;
+  const { mutate } = usePatchSubmitter();
+
+  const submitterIdList = submitterList?.map((submitter) => submitter.submitterId);
+
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    mutate({ moimId, submitterIdList } as PatchSubmitterRequest);
+    onClose();
+    navigate('/host/myclass'); // 다시 모임 관리하는 host 페이지로 이동
+  };
 
   return (
     <article css={modalContainerStyle}>
@@ -47,7 +62,7 @@ const ApplicantListModal = ({ applicantListData, onClose }: ApplicantListModalPr
           </ul>
         </main>
       </section>
-      <Button variant="medium" onClick={onClose}>
+      <Button variant="medium" onClick={handleButtonClick}>
         확인
       </Button>
     </article>
