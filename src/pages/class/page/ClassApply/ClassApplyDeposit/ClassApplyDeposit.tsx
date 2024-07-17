@@ -63,7 +63,7 @@ const ClassApplyDeposit = () => {
 
           <footer css={depositFooterStyle}>
             <Button variant="large" onClick={handleModalOpen}>
-              송금하기
+              입금하기
             </Button>
             <button css={depositCautionTextStyle} onClick={handleErrorModalOpen}>
               입금에 문제가 생기셨나요?

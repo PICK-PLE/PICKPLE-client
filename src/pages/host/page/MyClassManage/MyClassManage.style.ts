@@ -13,6 +13,7 @@ export const myClassManageLayout = (theme: Theme) => css`
 
 export const headerStyle = (theme: Theme) => css`
   ${theme.font['head02-b-20']}
+  line-height: 140%;
   width: 26.2rem;
   padding-top: 3.2rem;
 `;
