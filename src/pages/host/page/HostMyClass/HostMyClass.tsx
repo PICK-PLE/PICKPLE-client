@@ -6,7 +6,7 @@ import {
   tabWrapper,
   tapLine,
 } from './HostMyClass.style';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { HostMyClassEmptyView } from '@pages/host/components';
 import { hostMyClassCardData } from 'src/constants/mocks/HostMyClassCardData';
 import { HostMyClassCard } from '@pages/host/components';
@@ -21,11 +21,6 @@ const HostMyClass = () => {
 
   const [{ hostId }] = useAtom(userAtom);
 
-  /**@정안TODO 현재 서버에서 모임을 전부 제거한 이슈로 useEffect 없어도 되는지 테스트 불가 */
-  useEffect(() => {
-    setMoimState(!activeTab ? 'ongoing' : 'completed');
-  }, [moimState, activeTab, hostId]);
-
   const handleOngoingTabClick = () => {
     setActiveTab('진행 중');
     setMoimState('ongoing');
@@ -36,10 +31,7 @@ const HostMyClass = () => {
     setMoimState('completed');
   };
 
-  /**@정안TODO 장정안의 hostId는 5
-   * 현재 hostId가 0찍혔다가 null로 오는 이슈가 있음.
-   */
-  const { data } = useFetchHostMoimInfo(5, moimState || 'ongoing');
+  const { data } = useFetchHostMoimInfo(hostId ?? 0, moimState || 'ongoing');
 
   if (!data) {
     return <div>no data</div>;
