@@ -17,7 +17,7 @@ import { IcCaution } from '@svg';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchQuestionList } from '@apis/domains/moim/useFetchQuestionList';
-import { usePostAnswerList } from '@apis/domains/moimSubmissionr/usePostAnswerList';
+import { usePostAnswerList } from '@apis/domains/moimSubmission/usePostAnswerList';
 import { MoimIdPathParameterType } from '@types';
 
 type AnswerListType = {
@@ -39,7 +39,7 @@ const ClassApplyQuestion = () => {
   const { moimId } = useParams<MoimIdPathParameterType>();
 
   const [questionList, setQuestionList] = useState<string[]>([]);
-  const { data: questionData, isSuccess } = useFetchQuestionList(moimId);
+  const { data: questionData, isSuccess } = useFetchQuestionList(Number(moimId));
   const [answer, setAnswer] = useState<DataType>({
     answerList: {
       answer1: '',
@@ -82,6 +82,16 @@ const ClassApplyQuestion = () => {
       },
     }));
   };
+
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    const { answerList, accountList } = answer;
+    const allAnswersFilled = questionList.every((_, index) => answerList[`answer${index + 1}`].trim() !== '');
+    const allAccountsFilled = Object.values(accountList).every(value => value.trim() !== '');
+    setIsButtonDisabled(!(allAnswersFilled && allAccountsFilled));
+  }, [answer, questionList]);
+
   const requestData = {
     moimId: Number(moimId),
     body: answer,
@@ -110,17 +120,21 @@ const ClassApplyQuestion = () => {
             <main css={questionMainStyle}>
               {questionList.map((question, index) => (
                 <div css={questionDataStyle} key={`question-${index}`}>
-                  <QuestionText numberLabel={`Q${index + 1}`}>{question}</QuestionText>
-                  <TextArea
-                    value={answer.answerList[`answer${index + 1}`]}
-                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                      updateAnswerList(`answer${index + 1}`, e.target.value)
-                    }
-                    maxLength={200}
-                    size="medium"
-                    placeholder="답변을 작성해주세요."
-                    isValid
-                  />
+                  {question && (
+                    <>
+                      <QuestionText numberLabel={`Q${index + 1}`}>{question}</QuestionText>
+                      <TextArea
+                        value={answer.answerList[`answer${index + 1}`]}
+                        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                          updateAnswerList(`answer${index + 1}`, e.target.value)
+                        }
+                        maxLength={200}
+                        size="medium"
+                        placeholder="답변을 작성해주세요."
+                        isValid
+                      />
+                    </>
+                  )}
                 </div>
               ))}
 
@@ -173,7 +187,7 @@ const ClassApplyQuestion = () => {
           </div>
 
           <footer css={questionFooterStyle}>
-            <Button variant="large" onClick={handleButtonClick}>
+            <Button variant="large" onClick={handleButtonClick} disabled={isButtonDisabled}>
               신청하기
             </Button>
           </footer>
