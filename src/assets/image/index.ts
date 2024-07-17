@@ -42,6 +42,7 @@ import LanguageStrokeImage from './stroke/image_language_stroke.png';
 
 // graphic icon
 import ErrorImage from './graphics/image_error.png';
+import GuestMyPageWhite from './graphics/image_guest_mypage_white.png';
 import GuestMyPageImage from './graphics/image_guest_mypage.png';
 import GuestImage from './graphics/image_guest.png';
 import HostApplyImage from './graphics/image_host_apply.png';
@@ -97,6 +98,7 @@ export {
   LanguageStrokeSelectedImage,
   LanguageStrokeImage,
   ErrorImage,
+  GuestMyPageWhite,
   GuestMyPageImage,
   GuestImage,
   HostApplyImage,
