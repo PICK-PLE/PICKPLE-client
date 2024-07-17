@@ -22,8 +22,6 @@ const TimeSelect = ({
   onStartTimeChange,
   onEndTimeChange,
 }: TimeselectProps) => {
-  // const [startTime, setStartTime] = useState<number | null>(null);
-  // const [endTime, setEndTime] = useState<number | null>(null);
 
   const startTimeRef = useRef<HTMLSelectElement>(null);
   const endTimeRef = useRef<HTMLSelectElement>(null);
@@ -38,16 +36,13 @@ const TimeSelect = ({
 
   const handleStartTimeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = parseInt(e.target.value);
-    // setStartTime(value);
     onStartTimeChange(value);
     if (endTime !== null && value >= endTime) {
-      // setEndTime(value + 1);
       onEndTimeChange(value + 1);
     }
   };
 
   const handleEndTimeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    // setEndTime(parseInt(e.target.value));
     onEndTimeChange(parseInt(e.target.value));
   };
 
