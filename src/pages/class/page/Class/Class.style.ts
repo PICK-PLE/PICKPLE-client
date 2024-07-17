@@ -65,6 +65,12 @@ export const infoSectionStyle = (theme: Theme) => css`
   background-color: ${theme.color.white};
 `;
 
+export const floatingButtonWrapper = (widowWidth: number) => css`
+  position: fixed;
+  bottom: 12rem;
+  right: ${widowWidth <= 430 ? '2rem' : `${widowWidth / 20 - 19.5}rem`};
+`;
+
 export const buttonContainer = (widowWidth: number) => (theme: Theme) =>
   css`
     width: ${widowWidth <= 430 ? `${widowWidth}px` : '430px'};

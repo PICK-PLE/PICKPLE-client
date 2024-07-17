@@ -1,4 +1,3 @@
-
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { get } from '@apis/api';
@@ -7,9 +6,9 @@ import { ApiResponseType } from '@types';
 
 type MoimDetailResponse = components['schemas']['MoimDetailResponse'];
 
-const getMoimDetail = async (classId: string): Promise<MoimDetailResponse | null> => {
+const getMoimDetail = async (moimId: string): Promise<MoimDetailResponse | null> => {
   try {
-    const response = await get<ApiResponseType<MoimDetailResponse>>(`/moim/${Number(classId)}`);
+    const response = await get<ApiResponseType<MoimDetailResponse>>(`/moim/${Number(moimId)}`);
     return response.data.data;
   } catch (error) {
     console.error('An error occurred while fetching the class detail:', error);
@@ -17,10 +16,10 @@ const getMoimDetail = async (classId: string): Promise<MoimDetailResponse | null
   }
 };
 
-export const useFetchMoimDetail = (classId: string) => {
+export const useFetchMoimDetail = (moimId: string) => {
   return useQuery({
-    queryKey: [QUERY_KEY.MOIM_DETAIL],
-    queryFn: () => getMoimDetail(classId),
+    queryKey: [QUERY_KEY.MOIM_DETAIL, moimId],
+    queryFn: () => getMoimDetail(moimId),
     // staleTime: 3000,
     // gcTime: 50000,
   });

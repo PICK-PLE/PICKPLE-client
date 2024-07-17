@@ -1,4 +1,4 @@
-import { NoticeResponseType } from '@types';
+import { components } from '@schema';
 import {
   noticeCardContainer,
   noticeContent,
@@ -13,8 +13,10 @@ import {
 } from './NoticeCard.style';
 import { formatCreatedDate } from '@utils';
 
+type NoticeListGetByMoimResponse = components['schemas']['NoticeListGetByMoimResponse'];
+
 interface NoticeCardProps {
-  noticeData: NoticeResponseType;
+  noticeData: NoticeListGetByMoimResponse;
 }
 
 const NoticeCard = ({ noticeData }: NoticeCardProps) => {
@@ -33,7 +35,7 @@ const NoticeCard = ({ noticeData }: NoticeCardProps) => {
         <h3 css={noticeTitle}>{title}</h3>
         <p css={noticeContent}>{content}</p>
         {noticeImageUrl && <img css={noticeImage} src={noticeImageUrl} alt="공지사항 이미지" />}
-        <div css={noticeDate}>{formatCreatedDate(date)}</div>
+        <div css={noticeDate}>{formatCreatedDate(date ?? new Date().toString())}</div>
       </section>
     </article>
   );

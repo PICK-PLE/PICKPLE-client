@@ -20,4 +20,5 @@ export const QUERY_KEY = {
   MOIM_SUBMITTER: 'moimSubmitter',
   POST_MOIM: 'postMoim',
   PRE_SIGNED_URL: 'presignedUrl',
+  MOIM_LIST_BY_CATEGORY: 'moimListByCategory',
 } as const;

@@ -1,6 +1,20 @@
 import { useState } from 'react';
-import { ClassEmptyReview, ClassInfo, ClassNotice, HostInfoCard } from '@pages/class/components';
-import { Button, Carousel, IconText, Label, LogoHeader, ShareButton } from '@components';
+import {
+  ClassInfo,
+  ClassNotice,
+  ClassNoticeEmptyView,
+  ClassReviewEmptyView,
+  HostInfoCard,
+} from '@pages/class/components';
+import {
+  Button,
+  Carousel,
+  IconButton,
+  IconText,
+  Label,
+  LogoHeader,
+  ShareButton,
+} from '@components';
 import {
   buttonContainer,
   carouselWrapper,
@@ -8,27 +22,30 @@ import {
   classInfoList,
   classLayout,
   classNameStyle,
+  floatingButtonWrapper,
   infoSectionStyle,
   selectedTabStyle,
   tabButtonStyle,
   tabSectionStyle,
   tabWrapper,
 } from './Class.style';
-import { IcClassPerson, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
+import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
 
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
 import { useWindowSize } from '@hooks';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
+import { MoimIdPathParameterType } from '@types';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
+  const navigate = useNavigate();
   const [selectTab, setSelectTab] = useState<'모임소개' | '공지사항' | '리뷰'>('모임소개');
-  const { classId } = useParams<{ classId: string }>();
+  const { moimId } = useParams<MoimIdPathParameterType>();
 
-  const { data: moimDetail } = useFetchMoimDetail(classId ?? '');
-  const { data: moimDescription } = useFetchMoimDescription(classId ?? '');
-  const { data: moimNoticeList } = useFetchMoimNoticeList(classId ?? '', selectTab);
+  const { data: moimDetail } = useFetchMoimDetail(moimId ?? '');
+  const { data: moimDescription } = useFetchMoimDescription(moimId ?? '');
+  const { data: moimNoticeList } = useFetchMoimNoticeList(moimId ?? '', selectTab);
 
   if (!moimDetail) {
     return <div>No details found</div>;
@@ -36,6 +53,14 @@ const Class = () => {
   const { dayOfDay, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
 
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
+
+  const handleNoticePostClick = (moimId: string) => {
+    navigate(`/class/${moimId}/notice/post`);
+  };
+
+  const handleApplyButtonClick = () => {
+    navigate(`/class/${moimId}/apply/rule`);
+  };
 
   return (
     <div>
@@ -45,7 +70,7 @@ const Class = () => {
           <Carousel imageList={Object.values(imageList || [])} />
         </div>
         <section css={classInfo}>
-          <Label variant="dDay">{`마감 D${dayOfDay}`}</Label>
+          <Label variant="dDay">{`마감 D-${dayOfDay}`}</Label>
           <h1 css={classNameStyle}>{title}</h1>
           <ul css={classInfoList}>
             <li>
@@ -61,7 +86,7 @@ const Class = () => {
               <IconText icon={<IcClassPerson />} text={`최대 ${maxGuest}명 모집`} />
             </li>
             <li>
-              <IconText icon={<IcMoney />} text={`${fee?.toString().toLocaleString()}원`} />
+              <IconText icon={<IcMoney />} text={`${fee?.toLocaleString()}원`} />
             </li>
           </ul>
           <HostInfoCard hostId={moimDetail.hostId ?? 0} />
@@ -88,12 +113,28 @@ const Class = () => {
         </div>
         <section css={[tabSectionStyle, selectTab === '모임소개' && infoSectionStyle]}>
           {selectTab === '모임소개' && <ClassInfo content={moimDescription ?? ''} />}
-          {selectTab === '공지사항' && <ClassNotice noticeData={moimNoticeList || []} />}
-          {selectTab === '리뷰' && <ClassEmptyReview />}
+          {selectTab === '공지사항' &&
+            ((moimNoticeList || []).length === 0 ? (
+              <ClassNoticeEmptyView />
+            ) : (
+              <ClassNotice noticeData={moimNoticeList || []} />
+            ))}
+          {selectTab === '리뷰' && <ClassReviewEmptyView />}
         </section>
+        {selectTab === '공지사항' && (
+          <div
+            css={floatingButtonWrapper(windowWidth)}
+            onClick={() => {
+              moimId && handleNoticePostClick(moimId);
+            }}>
+            <IconButton icon={<IcCopyPlus />}>작성하기</IconButton>
+          </div>
+        )}
         <section css={buttonContainer(windowWidth)}>
           <ShareButton />
-          <Button variant="large">참여하기</Button>
+          <Button variant="large" onClick={handleApplyButtonClick}>
+            참여하기
+          </Button>
         </section>
       </div>
     </div>

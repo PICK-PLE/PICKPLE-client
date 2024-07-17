@@ -15,9 +15,10 @@ import {
 } from '@pages/class/page/ClassApply/ClassApplyQuestion/ClassApplyQuestion.style';
 import { IcCaution } from '@svg';
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchQuestionList } from '@apis/domains/moim/useFetchQuestionList';
-import { usePostAnswerList } from '@apis/domains/moimSubmission/usePostAnswerList';
+import { usePostAnswerList } from '@apis/domains/moimSubmissionr/usePostAnswerList';
+import { MoimIdPathParameterType } from '@types';
 
 type AnswerListType = {
   [key: string]: string;
@@ -33,8 +34,9 @@ export interface DataType {
 }
 
 const ClassApplyQuestion = () => {
-  /* @채연 TODO: moimId 고정값 말고 url로 사용할 수 있도록 수정하기!*/
-  const moimId = 5;
+  const navigate = useNavigate();
+
+  const { moimId } = useParams<MoimIdPathParameterType>();
 
   const [questionList, setQuestionList] = useState<string[]>([]);
   const { data: questionData, isSuccess } = useFetchQuestionList(moimId);
@@ -80,17 +82,14 @@ const ClassApplyQuestion = () => {
       },
     }));
   };
-
   const requestData = {
-    moimId: moimId,
+    moimId: Number(moimId),
     body: answer,
   };
 
-  const navigate = useNavigate();
-
   const handleButtonClick = () => {
     mutate(requestData);
-    navigate('/class/apply/deposit');
+    navigate(`/class/${moimId}/apply/deposit`);
   };
 
   return (

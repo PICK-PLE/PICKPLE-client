@@ -10,7 +10,7 @@ import {
 import { IcDefaultUserimg } from '@svg';
 
 export interface SimpleUserProfileProps extends React.HTMLAttributes<HTMLDivElement> {
-  size: 'small' | 'medium' | 'large';
+  size: 'small' | 'medium' | 'large' | 'xlarge';
   username: string;
   userImgUrl?: string;
 }

@@ -1,7 +1,7 @@
 import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { DataType } from '@pages/class/page/ClassApply/ClassApplyQuestion/ClassApplyQuestion';
-import { QueryClient, useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ErrorResponse } from '@types';
 
 interface PostAnswerRequest {
@@ -35,7 +35,7 @@ const postAnswerList = async ({ moimId, body }: PostAnswerRequest) => {
 };
 
 export const usePostAnswerList = () => {
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({ moimId, body }: PostAnswerRequest) => postAnswerList({ moimId, body }),
     onSuccess: () => {

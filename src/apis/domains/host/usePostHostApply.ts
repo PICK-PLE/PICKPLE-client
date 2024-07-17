@@ -1,7 +1,7 @@
 import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { components } from '@schema';
-import { QueryClient, useMutation } from '@tanstack/react-query';
+import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { ErrorResponse, ErrorType, MutateResponseType } from '@types';
 import { Dispatch, RefObject, SetStateAction } from 'react';
 
@@ -25,7 +25,7 @@ export const usePostHostApply = (
   setIsNicknameDuplicate: Dispatch<SetStateAction<boolean>>,
   nicknameRef: RefObject<HTMLInputElement>
 ) => {
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationFn: (hostApplyState: HostApplyRequest) => postHostApply(hostApplyState),

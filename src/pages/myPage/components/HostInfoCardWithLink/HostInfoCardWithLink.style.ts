@@ -10,8 +10,6 @@ export const hostInfoCardWithLinkLayout = css`
 export const hostInfoCardWithLinkContainer = css`
   ${flexGenerator('column', 'center', 'flex-start')};
   width: 100%;
-  padding: 0 2rem;
-  margin-top: 3rem;
   gap: 1.5rem;
 `;
 

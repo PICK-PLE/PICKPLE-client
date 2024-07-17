@@ -9,9 +9,13 @@ import { useState, useEffect } from 'react';
 import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
 import { usePostNotice } from '@apis/domains/notice';
 import { handleUpload } from 'src/utils/image';
-import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { MoimIdPathParameterType } from '@types';
 
 const ClassNotice = () => {
+  const { moimId } = useParams<MoimIdPathParameterType>();
+  const moimIdNumber = Number(moimId);
+
   const [noticeTitle, setNoticeTitle] = useState('');
   const [noticeContent, setNoticeContent] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -57,9 +61,7 @@ const ClassNotice = () => {
       imageUrl,
     };
 
-    const moimId = 5; //정안TODO 실제 모임ID로 변경 -> 태승이가 다른 브랜치에서 path에서 받게 설정해둠
-    await postNoticeMutation.mutateAsync({ params, moimId });
-    handleNavigateToMoimInfo(moimId);
+    await postNoticeMutation.mutateAsync({ params, moimId: moimIdNumber });
   };
 
   return (

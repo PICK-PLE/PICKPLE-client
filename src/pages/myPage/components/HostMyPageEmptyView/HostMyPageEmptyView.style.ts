@@ -2,9 +2,10 @@ import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const hostMyPageEmptyViewContainer = css`
+  height: calc(100dvh - 12.55rem);
   ${flexGenerator('column')};
-  padding: 10.6rem 6.2rem 20.9rem 6.2rem;
   gap: 2rem;
+  padding: 0 6.2rem;
 `;
 
 export const imageStyle = css`

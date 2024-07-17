@@ -21,7 +21,7 @@ const getGuestParticipateMoim = async (
 
 export const useFetchGuestParticipate = (guestId: number) => {
   return useQuery({
-    queryKey: [QUERY_KEY.GUEST_PARTICIPATE],
+    queryKey: [QUERY_KEY.GUEST_PARTICIPATE, guestId],
     queryFn: () => getGuestParticipateMoim(guestId),
     enabled: !!guestId && guestId > 0,
   });

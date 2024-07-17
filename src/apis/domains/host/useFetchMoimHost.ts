@@ -18,7 +18,7 @@ const getMoimHost = async (hostId: number): Promise<MoimHostResponseType | null>
 
 export const useFetchMoimHost = (hostId: number) => {
   return useQuery({
-    queryKey: [QUERY_KEY.MOIM_HOST],
+    queryKey: [QUERY_KEY.MOIM_HOST, hostId],
     queryFn: () => getMoimHost(hostId),
     staleTime: 1000 * 10,
     gcTime: 1000 * 10,

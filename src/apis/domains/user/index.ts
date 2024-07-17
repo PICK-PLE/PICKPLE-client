@@ -1,3 +1,4 @@
 import { usePostKakaoLogin } from './usePostKakaoLogin';
+import { usePostLogout } from './usePostLogout';
 
-export { usePostKakaoLogin };
+export { usePostKakaoLogin, usePostLogout };

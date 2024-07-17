@@ -1,15 +1,14 @@
 import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+import { components } from '@schema';
 import { useQuery } from '@tanstack/react-query';
-import { ApiResponseType, HostInfoCardWithLinkDataResponseType } from '@types';
+import { ApiResponseType } from '@types';
 
-const getMyHostInfo = async (): Promise<HostInfoCardWithLinkDataResponseType | null> => {
+type HostGetResponse = components['schemas']['HostGetResponse'];
+
+const getMyHostInfo = async (): Promise<HostGetResponse | null> => {
   try {
-    const response = await get<ApiResponseType<HostInfoCardWithLinkDataResponseType>>(`/host`);
-
-    if (!response) {
-      return null;
-    }
+    const response = await get<ApiResponseType<HostGetResponse>>(`/host`);
     return response.data.data;
   } catch (err) {
     console.error(err);
