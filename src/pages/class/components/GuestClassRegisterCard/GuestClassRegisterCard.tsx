@@ -37,7 +37,11 @@ const GuestClassRegisterCard = () => {
         <Image width="8.4rem" src={moimImageUrl ?? ''} />
         <div css={titleAndProfileWrapperStyle}>
           <h4 css={titleStyle}>{title}</h4>
-          <SimpleUserProfile username={hostNickname ?? ''} size="medium" userImgUrl={hostImageUrl} />
+          <SimpleUserProfile
+            username={hostNickname ?? ''}
+            size="medium"
+            userImgUrl={hostImageUrl}
+          />
         </div>
       </section>
       <section css={spotAndDateSectionStyle}>

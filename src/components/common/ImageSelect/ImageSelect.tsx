@@ -12,12 +12,13 @@ import {
 import { IcCameraAdd, IcDeletePhoto } from '@svg';
 
 interface ImageSelectProps extends InputHTMLAttributes<HTMLInputElement> {
-  previewImage?: string | undefined;
+  onFileSelect: (files: File[]) => void;
   isMultiple?: boolean;
 }
 
-const ImageSelect = ({ onChange, isMultiple = false }: ImageSelectProps) => {
+const ImageSelect = ({ onFileSelect, isMultiple = false }: ImageSelectProps) => {
   const [previewURLs, setPreviewURLs] = useState<string[]>([]);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
   const readFile = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -37,8 +38,11 @@ const ImageSelect = ({ onChange, isMultiple = false }: ImageSelectProps) => {
     if (event.target.files) {
       const files = Array.from(event.target.files);
 
+      // 선택된 파일이 3개를 초과하지 않도록 제한
+      const allowedFiles = files.slice(0, 3 - previewURLs.length);
+
       // 파일을 읽고 프리뷰 URL을 생성하는 Promise 배열
-      const previewURLPromises = files.map(async (file) => {
+      const previewURLPromises = allowedFiles.map(async (file) => {
         try {
           const result = await readFile(file);
           return result;
@@ -53,12 +57,18 @@ const ImageSelect = ({ onChange, isMultiple = false }: ImageSelectProps) => {
         (url) => url !== null
       ) as string[];
 
-      setPreviewURLs(newPreviewURLs);
+      setPreviewURLs((prev) => [...prev, ...newPreviewURLs]);
+      setSelectedFiles((prev) => [...prev, ...allowedFiles]);
+      onFileSelect([...selectedFiles, ...allowedFiles]); // 선택된 파일 목록을 부모 컴포넌트에 전달
     }
+  };
 
-    if (onChange) {
-      onChange(event);
-    }
+  const handleDeleteImage = (index: number) => {
+    const updatedPreviewURLs = previewURLs.filter((_, i) => i !== index);
+    const updatedFiles = selectedFiles.filter((_, i) => i !== index);
+    setPreviewURLs(updatedPreviewURLs);
+    setSelectedFiles(updatedFiles);
+    onFileSelect(updatedFiles); // 업데이트된 파일 목록을 부모 컴포넌트에 전달
   };
 
   return (
@@ -73,7 +83,7 @@ const ImageSelect = ({ onChange, isMultiple = false }: ImageSelectProps) => {
       <input
         type="file"
         multiple={isMultiple}
-        accept="image/jpeg, image/png, image/gif, image/heic, image/webp"
+        accept="image/jpeg, image/png, image/jpg, image/webp"
         id="imgInput"
         css={inputStyle}
         onChange={handleImageChange}
@@ -82,9 +92,7 @@ const ImageSelect = ({ onChange, isMultiple = false }: ImageSelectProps) => {
         {previewURLs.map((url, index) => (
           <div key={`${url} - ${index}`} css={thumbnailStyle}>
             <img css={previewImageStyle} src={url} alt={`미리보기 이미지 ${index + 1}`} />
-            <span
-              css={deleteImageIconStyle}
-              onClick={() => setPreviewURLs(previewURLs.filter((_, i) => i !== index))}>
+            <span css={deleteImageIconStyle} onClick={() => handleDeleteImage(index)}>
               <IcDeletePhoto />
             </span>
           </div>
