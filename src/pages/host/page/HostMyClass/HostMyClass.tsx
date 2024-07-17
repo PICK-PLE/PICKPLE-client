@@ -15,6 +15,8 @@ import { Header } from '@components';
 import { useFetchHostMoimInfo } from '@apis/domains/moim/useFetchHostMoimInfo';
 import { useAtom } from 'jotai';
 import { userAtom } from '@stores';
+import Error from '@pages/error/Error';
+import { Spinner } from 'src/components/common/Spinner/Spinner';
 const HostMyClass = () => {
   const [activeTab, setActiveTab] = useState<'진행 중' | '완료'>('진행 중');
   const [moimState, setMoimState] = useState<'ongoing' | 'completed'>('ongoing');
@@ -31,10 +33,22 @@ const HostMyClass = () => {
     setMoimState('completed');
   };
 
-  const { data } = useFetchHostMoimInfo(hostId ?? 0, moimState);
+  const { data, isLoading } = useFetchHostMoimInfo(hostId ?? 0, moimState);
 
   if (!data) {
-    return <div>no data</div>;
+    return (
+      <div>
+        <Error />
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
   }
 
   return (

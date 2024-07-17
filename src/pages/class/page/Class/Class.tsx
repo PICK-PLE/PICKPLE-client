@@ -36,6 +36,8 @@ import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim'
 import { useWindowSize } from '@hooks';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
 import { MoimIdPathParameterType } from '@types';
+import { Spinner } from 'src/components/common/Spinner/Spinner';
+import Error from '@pages/error/Error';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
@@ -43,13 +45,23 @@ const Class = () => {
   const [selectTab, setSelectTab] = useState<'모임소개' | '공지사항' | '리뷰'>('모임소개');
   const { moimId } = useParams<MoimIdPathParameterType>();
 
-  const { data: moimDetail } = useFetchMoimDetail(moimId ?? '');
-  const { data: moimDescription } = useFetchMoimDescription(moimId ?? '');
-  const { data: moimNoticeList } = useFetchMoimNoticeList(moimId ?? '', selectTab);
+  const { data: moimDetail, isLoading: isMoimDetailLoading } = useFetchMoimDetail(moimId ?? '');
+  const { data: moimDescription, isLoading: isMoimDescriptionLoading } = useFetchMoimDescription(
+    moimId ?? ''
+  );
+  const { data: moimNoticeList, isLoading: isMoimNoticeListLoading } = useFetchMoimNoticeList(
+    moimId ?? '',
+    selectTab
+  );
 
-  if (!moimDetail) {
-    return <div>No details found</div>;
+  if (!moimDetail || !moimDescription) {
+    return (
+      <div>
+        <Error />
+      </div>
+    );
   }
+
   const { dayOfDay, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
 
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
@@ -61,6 +73,10 @@ const Class = () => {
   const handleApplyButtonClick = () => {
     navigate(`/class/${moimId}/apply/rule`);
   };
+
+  if (isMoimDetailLoading || isMoimDescriptionLoading || isMoimNoticeListLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div>

@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
 import { usePostNotice } from '@apis/domains/notice';
 import { handleUpload } from 'src/utils/image';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { MoimIdPathParameterType } from '@types';
 
 const ClassNotice = () => {
@@ -62,6 +62,7 @@ const ClassNotice = () => {
     };
 
     await postNoticeMutation.mutateAsync({ params, moimId: moimIdNumber });
+    handleNavigateToMoimInfo(Number(moimIdNumber));
   };
 
   return (

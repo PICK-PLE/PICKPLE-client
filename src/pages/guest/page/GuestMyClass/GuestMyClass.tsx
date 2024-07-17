@@ -16,6 +16,8 @@ import { useAtom } from 'jotai';
 import { userAtom } from '@stores';
 import { statusMapText } from 'src/constants/mappingText';
 import { useFetchGuestApply, useFetchGuestParticipate } from '@apis/domains/moim';
+import { Spinner } from 'src/components/common/Spinner/Spinner';
+import Error from '@pages/error/Error';
 
 const GuestMyClass = () => {
   const [activeTab, setActiveTab] = useState<'신청한' | '참가한'>('신청한');
@@ -47,8 +49,20 @@ const GuestMyClass = () => {
     setSelectedStatus(status);
   };
 
+  if (!applyData) {
+    return (
+      <div>
+        <Error />
+      </div>
+    );
+  }
+
   if (isApplyLoading || isParticipateLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
   }
 
   if (applyError || participateError) {

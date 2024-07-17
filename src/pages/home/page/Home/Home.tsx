@@ -17,16 +17,29 @@ import { categoriesAtom } from '@stores';
 import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import { mainBanner } from 'src/assets/lotties';
-
+import Error from '@pages/error/Error';
+import { Spinner } from 'src/components/common/Spinner/Spinner';
 const Home = () => {
   const navigate = useNavigate();
-  const { data: bannerId } = useFetchMoimBanner();
+  const { data: bannerId, isLoading } = useFetchMoimBanner();
 
   const [categories] = useAtom(categoriesAtom);
 
   const handleCategoryClick = (category: string) => {
     navigate(`/categories?category=${category}`);
   };
+
+  if (bannerId === null) {
+    return (
+      <div>
+        <Error />
+      </div>
+    );
+  }
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>

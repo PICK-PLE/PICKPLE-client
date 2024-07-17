@@ -15,6 +15,8 @@ import { ApplicantListModal, ClassManageEmptyView } from '@pages/host/components
 import { useToast } from '@hooks';
 import { useFetchSubmitterList } from '@apis/domains/moimSubmission/useFetchSubmitterList';
 import { useParams } from 'react-router-dom';
+import { Spinner } from 'src/components/common/Spinner/Spinner';
+import Error from '@pages/error/Error';
 
 const MyClassManage = () => {
   const { moimId } = useParams();
@@ -80,7 +82,19 @@ const MyClassManage = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
+  }
+
+  if (!applicantData) {
+    return (
+      <div>
+        <Error />
+      </div>
+    );
   }
 
   return (

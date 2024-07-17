@@ -17,8 +17,10 @@ import { IcCaution } from '@svg';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchQuestionList } from '@apis/domains/moim/useFetchQuestionList';
-import { usePostAnswerList } from '@apis/domains/moimSubmissionr/usePostAnswerList';
 import { MoimIdPathParameterType } from '@types';
+import { usePostAnswerList } from '@apis/domains/moimSubmission/usePostAnswerList';
+import Error from '@pages/error/Error';
+import { Spinner } from 'src/components/common/Spinner/Spinner';
 
 type AnswerListType = {
   [key: string]: string;
@@ -39,7 +41,7 @@ const ClassApplyQuestion = () => {
   const { moimId } = useParams<MoimIdPathParameterType>();
 
   const [questionList, setQuestionList] = useState<string[]>([]);
-  const { data: questionData, isSuccess } = useFetchQuestionList(moimId);
+  const { data: questionData, isSuccess, isLoading } = useFetchQuestionList(Number(moimId));
   const [answer, setAnswer] = useState<DataType>({
     answerList: {
       answer1: '',
@@ -91,6 +93,22 @@ const ClassApplyQuestion = () => {
     mutate(requestData);
     navigate(`/class/${moimId}/apply/deposit`);
   };
+
+  if (!questionData) {
+    return (
+      <>
+        <Error />
+      </>
+    );
+  }
+
+  if (isLoading) {
+    return (
+      <>
+        <Spinner />
+      </>
+    );
+  }
 
   return (
     <>
