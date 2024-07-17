@@ -18,7 +18,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchQuestionList } from '@apis/domains/moim/useFetchQuestionList';
 import { usePostAnswerList } from '@apis/domains/moimSubmissionr/usePostAnswerList';
-import { ClassIdPathParameterType } from '@types';
+import { MoimIdPathParameterType } from '@types';
 
 type AnswerListType = {
   [key: string]: string;
@@ -36,7 +36,7 @@ export interface DataType {
 const ClassApplyQuestion = () => {
   const navigate = useNavigate();
 
-  const { classId } = useParams<ClassIdPathParameterType>();
+  const { moimId } = useParams<MoimIdPathParameterType>();
 
   const [questionList, setQuestionList] = useState<string[]>([]);
   const { data: questionData, isSuccess } = useFetchQuestionList(1);
@@ -83,13 +83,13 @@ const ClassApplyQuestion = () => {
     }));
   };
   const requestData = {
-    classId: Number(classId),
+    moimId: Number(moimId),
     body: answer,
   };
 
   const handleButtonClick = () => {
     mutate(requestData);
-    navigate(`/class/${classId}/apply/deposit`);
+    navigate(`/class/${moimId}/apply/deposit`);
   };
 
   return (

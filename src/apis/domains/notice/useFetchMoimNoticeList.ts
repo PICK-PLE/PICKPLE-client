@@ -3,10 +3,10 @@ import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { get } from '@apis/api';
 import { ApiResponseType, MoimNotceType } from '@types';
 
-const getMoimNoticeList = async (classId: string): Promise<MoimNotceType[] | null> => {
+const getMoimNoticeList = async (moimId: string): Promise<MoimNotceType[] | null> => {
   try {
     const response = await get<ApiResponseType<MoimNotceType[]>>(
-      `/moim/${Number(classId)}/notice-list`
+      `/moim/${Number(moimId)}/notice-list`
     );
     return response.data.data;
   } catch (error) {
@@ -15,10 +15,10 @@ const getMoimNoticeList = async (classId: string): Promise<MoimNotceType[] | nul
   }
 };
 
-export const useFetchMoimNoticeList = (classId: string, selectTab: string) => {
+export const useFetchMoimNoticeList = (moimId: string, selectTab: string) => {
   return useQuery({
-    queryKey: [QUERY_KEY.MOIM_NOTICE_LIST, classId],
-    queryFn: () => getMoimNoticeList(classId),
+    queryKey: [QUERY_KEY.MOIM_NOTICE_LIST, moimId],
+    queryFn: () => getMoimNoticeList(moimId),
     staleTime: 1000 * 60,
     gcTime: 1000 * 60 * 5,
     enabled: selectTab === '공지사항',

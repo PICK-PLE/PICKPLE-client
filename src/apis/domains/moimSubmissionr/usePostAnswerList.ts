@@ -5,13 +5,13 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ErrorResponse } from '@types';
 
 interface PostAnswerRequest {
-  classId: number;
+  moimId: number;
   body: DataType;
 }
 
-const postAnswerList = async ({ classId, body }: PostAnswerRequest) => {
+const postAnswerList = async ({ moimId, body }: PostAnswerRequest) => {
   try {
-    const response = await post(`/moim/${classId}`, body);
+    const response = await post(`/moim/${moimId}`, body);
     return response;
   } catch (error) {
     const err = error as ErrorResponse;
@@ -37,7 +37,7 @@ const postAnswerList = async ({ classId, body }: PostAnswerRequest) => {
 export const usePostAnswerList = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ classId, body }: PostAnswerRequest) => postAnswerList({ classId, body }),
+    mutationFn: ({ moimId, body }: PostAnswerRequest) => postAnswerList({ moimId, body }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.ANSWER_LIST] });
     },

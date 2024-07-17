@@ -35,17 +35,17 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
 import { useWindowSize } from '@hooks';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
-import { ClassIdPathParameterType } from '@types';
+import { MoimIdPathParameterType } from '@types';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
   const navigate = useNavigate();
   const [selectTab, setSelectTab] = useState<'모임소개' | '공지사항' | '리뷰'>('모임소개');
-  const { classId } = useParams<ClassIdPathParameterType>();
+  const { moimId } = useParams<MoimIdPathParameterType>();
 
-  const { data: moimDetail } = useFetchMoimDetail(classId ?? '');
-  const { data: moimDescription } = useFetchMoimDescription(classId ?? '');
-  const { data: moimNoticeList } = useFetchMoimNoticeList(classId ?? '', selectTab);
+  const { data: moimDetail } = useFetchMoimDetail(moimId ?? '');
+  const { data: moimDescription } = useFetchMoimDescription(moimId ?? '');
+  const { data: moimNoticeList } = useFetchMoimNoticeList(moimId ?? '', selectTab);
 
   if (!moimDetail) {
     return <div>No details found</div>;
@@ -54,12 +54,12 @@ const Class = () => {
 
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
 
-  const handleNoticePostClick = (classId: string) => {
-    navigate(`/class/${classId}/notice/post`);
+  const handleNoticePostClick = (moimId: string) => {
+    navigate(`/class/${moimId}/notice/post`);
   };
 
   const handleApplyButtonClick = () => {
-    navigate(`/class/${classId}/apply/rule`);
+    navigate(`/class/${moimId}/apply/rule`);
   };
 
   return (
@@ -125,7 +125,7 @@ const Class = () => {
           <div
             css={floatingButtonWrapper(windowWidth)}
             onClick={() => {
-              classId && handleNoticePostClick(classId);
+              moimId && handleNoticePostClick(moimId);
             }}>
             <IconButton icon={<IcCopyPlus />}>작성하기</IconButton>
           </div>

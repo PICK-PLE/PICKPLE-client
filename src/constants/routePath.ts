@@ -12,13 +12,13 @@ const categoriesPages = {
 };
 
 const classPages = {
-  CLASS_DETAIL: '/class/:classId',
-  CLASS_NOTICE_POST: '/class/:classId/notice/post',
+  CLASS_DETAIL: '/class/:moimId',
+  CLASS_NOTICE_POST: '/class/:moimId/notice/post',
   CLASS_POST: '/class/post',
-  CLASS_APPLY_RULE: '/class/:classId/apply/rule',
-  CLASS_APPLY_QUESTION: '/class/:classId/apply/question',
-  CLASS_APPLY_DEPOSIT: '/class/:classId/apply/deposit',
-  CLASS_APPLY_COMPLETE: '/class/:classId/apply/complete',
+  CLASS_APPLY_RULE: '/class/:moimId/apply/rule',
+  CLASS_APPLY_QUESTION: '/class/:moimId/apply/question',
+  CLASS_APPLY_DEPOSIT: '/class/:moimId/apply/deposit',
+  CLASS_APPLY_COMPLETE: '/class/:moimId/apply/complete',
 };
 
 const myPagePages = {

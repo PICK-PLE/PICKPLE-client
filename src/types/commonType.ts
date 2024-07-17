@@ -23,6 +23,6 @@ export interface ErrorType {
   message: string;
 }
 
-export type ClassIdPathParameterType = {
-  classId: string;
+export type MoimIdPathParameterType = {
+  moimId: string;
 };

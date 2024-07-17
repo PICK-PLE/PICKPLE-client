@@ -10,11 +10,11 @@ import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
 import { usePostNotice } from '@apis/domains/notice';
 import { handleUpload } from 'src/utils/image';
 import { useParams } from 'react-router-dom';
-import { ClassIdPathParameterType } from '@types';
+import { MoimIdPathParameterType } from '@types';
 
 const ClassNotice = () => {
-  const { classId } = useParams<ClassIdPathParameterType>();
-  const classIdNumber = Number(classId);
+  const { moimId } = useParams<MoimIdPathParameterType>();
+  const moimIdNumber = Number(moimId);
 
   const [noticeTitle, setNoticeTitle] = useState('');
   const [noticeContent, setNoticeContent] = useState('');
@@ -52,7 +52,7 @@ const ClassNotice = () => {
       imageUrl: imageUrlList[0],
     };
 
-    await postNoticeMutation.mutateAsync({ params, classId: classIdNumber });
+    await postNoticeMutation.mutateAsync({ params, moimId: moimIdNumber });
   };
 
   return (
