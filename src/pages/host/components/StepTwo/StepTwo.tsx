@@ -13,14 +13,15 @@ import {
 } from './StepTwo.style';
 import CategorySelectBox from 'src/components/common/CategorySelectBox/CategorySelectBox';
 import { useHostApplyInputChange } from 'src/hooks/useHostApplyInputChange';
-import { useEffect, useState } from 'react';
+import { useRef, useState } from 'react';
 import { usePostHostApply } from '@apis/domains/host';
 import { useHostApplyInputValidation } from 'src/hooks/useHostApplyInputValidation';
 import { components } from '@schema';
-import { ErrorType } from '@types';
-import { smoothScroll } from '@utils';
 
 const StepTwo = ({ onNext }: StepProps) => {
+  const nicknameRef = useRef<HTMLInputElement>(null);
+  const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
+
   const { hostApplyState, handleInputChange, handleCategoryChange, resetHostApplyState } =
     useHostApplyInputChange();
   const { validateStepTwo } = useHostApplyInputValidation();
@@ -33,27 +34,18 @@ const StepTwo = ({ onNext }: StepProps) => {
     ...hostApplyState,
     categoryList: selectedCategories,
   });
-  const { mutate, isSuccess, error } = usePostHostApply();
+  const { mutate } = usePostHostApply(
+    resetHostApplyState,
+    onNext,
+    setIsNicknameDuplicate,
+    nicknameRef
+  );
 
   const handleNextClick = () => {
     if (isAllValid) {
       mutate(hostApplyState);
     }
   };
-
-  useEffect(() => {
-    if (error) {
-      const { status, message } = error as ErrorType;
-      console.log(status, message);
-      if (status === 40008) {
-        smoothScroll(110);
-      }
-    } else if (isSuccess) {
-      resetHostApplyState();
-      onNext();
-      smoothScroll(0);
-    }
-  }, [error, isSuccess, onNext, resetHostApplyState]);
 
   const handleUpdateCategories = (
     newCategories: components['schemas']['SubmitterCategoryInfo']
@@ -74,13 +66,15 @@ const StepTwo = ({ onNext }: StepProps) => {
           <section css={sectionStyle}>
             <QuestionText numberLabel="Q4">픽플에서 사용할 닉네임을 작성해주세요.</QuestionText>
             <Input
+              ref={nicknameRef}
               value={hostApplyState.nickname}
               onChange={(e) => {
+                setIsNicknameDuplicate((prevState) => (prevState === true ? false : prevState));
                 handleInputChange(e, 'nickname');
               }}
               placeholder="ex. 픽픽이 (최대 15자)"
-              isValid={isNicknameValid}
-              errorMessage="닉네임을 입력해 주세요."
+              isValid={!isNicknameDuplicate && isNicknameValid}
+              errorMessage={isNicknameDuplicate ? '* 이미 존재하는 닉네임이에요.' : '닉네임을 입력해 주세요.'}
               maxLength={10}
               isCountValue={true}
             />
