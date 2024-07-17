@@ -22,11 +22,11 @@ import {
   titleStyle,
 } from './StepOne.style';
 import { useState } from 'react';
+import dayjs, { Dayjs } from 'dayjs';
 import AddAmountBox from '../AddAmountBox/AddAmountBox';
-import { useClassPostInputChange } from 'src/hooks/useClassPostInputChange';
 import { ClassPostDataType } from 'src/stores/types/classPostDataType';
-import { useClassPostInputValidation } from 'src/hooks/useClassPostInputValidation';
 import { smoothScroll } from '@utils';
+import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
 
 const StepOne = ({ onNext }: StepProps) => {
   const {
@@ -42,8 +42,8 @@ const StepOne = ({ onNext }: StepProps) => {
   } = useClassPostInputChange();
   const { validateStepOne } = useClassPostInputValidation();
   const [selectedCategories, setSelectedCategories] = useState(classPostState.categoryList);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(
-    classPostState.date ? new Date(classPostState.date.replace(/\./g, '-')) : null
+  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(
+    classPostState.date ? dayjs(classPostState.date.replace(/\./g, '-')) : null
   );
   const [startTime, setStartTime] = useState<number | null>(
     classPostState.startTime ? parseInt(classPostState.startTime) : null
@@ -66,10 +66,11 @@ const StepOne = ({ onNext }: StepProps) => {
     }
   };
 
-  const handleDateChangeWrapper = (date: Date | null) => {
+  const handleDateChangeWrapper = (date: Dayjs | null) => {
     setSelectedDate(date);
     handleDateChange(date);
   };
+
   const handleStartTimeChange = (time: number) => {
     setStartTime(time);
     handleInputChange(
@@ -90,6 +91,7 @@ const StepOne = ({ onNext }: StepProps) => {
     );
   };
 
+  console.log(classPostState);
   return (
     <>
       <ProgressBar progress={25} />

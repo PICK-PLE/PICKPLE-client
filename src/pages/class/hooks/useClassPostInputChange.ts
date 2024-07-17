@@ -1,8 +1,12 @@
+import dayjs, { Dayjs } from 'dayjs';
+import 'dayjs/locale/ko';
 import { useAtom } from 'jotai';
 import { classPostAtom } from 'src/stores/classPostData';
 import { ClassPostDataType } from 'src/stores/types/classPostDataType';
 
-export const useClassPostInputChange = () => {
+dayjs.locale('ko');
+
+const useClassPostInputChange = () => {
   const [classPostState, setClassPostState] = useAtom(classPostAtom);
 
   const handleInputChange = (
@@ -64,12 +68,10 @@ export const useClassPostInputChange = () => {
     }));
   };
 
-  const handleDateChange = (date: Date | null) => {
+  const handleDateChange = (date: Dayjs | null) => {
     if (date) {
-      const formattedDate = `${date.getFullYear()}.${(date.getMonth() + 1)
-        .toString()
-        .padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
-      const dayOfWeek = ['일', '월', '화', '수', '목', '금', '토'][date.getDay()];
+      const formattedDate = date.format('YYYY.MM.DD');
+      const dayOfWeek = date.format('ddd'); // 예: '일', '월', '화', '수', '목', '금', '토'
       setClassPostState((prevState) => ({
         ...prevState,
         date: formattedDate,
@@ -95,9 +97,9 @@ export const useClassPostInputChange = () => {
   const handleImageList = (imageUrlList: string[]) => {
     setClassPostState((prevState) => ({
       ...prevState,
-      imageList: imageUrlList
-    }))
-  }
+      imageList: imageUrlList,
+    }));
+  };
 
   return {
     classPostState,
@@ -110,6 +112,8 @@ export const useClassPostInputChange = () => {
     handleAccountChange,
     handleDateChange,
     handleQuestionChange,
-    handleImageList
+    handleImageList,
   };
 };
+
+export default useClassPostInputChange;

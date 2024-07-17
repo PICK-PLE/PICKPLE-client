@@ -9,9 +9,8 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepOne.style';
-import { useHostApplyInputChange } from 'src/hooks/useHostApplyInputChange';
-import { useHostApplyInputValidation } from 'src/hooks/useHostApplyInputValidation';
 import { smoothScroll } from '@utils';
+import { useHostApplyInputChange, useHostApplyInputValidation } from '@pages/host/hooks';
 
 const StepOne = ({ onNext }: StepProps) => {
   const { hostApplyState, handleInputChange } = useHostApplyInputChange();

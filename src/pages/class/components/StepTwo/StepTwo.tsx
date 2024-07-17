@@ -14,9 +14,8 @@ import {
   titleStyle,
 } from './StepTwo.style';
 import { Button, ProgressBar, QuestionInput } from '@components';
-import { useClassPostInputChange } from 'src/hooks/useClassPostInputChange';
-import { useClassPostInputValidation } from 'src/hooks/useClassPostInputValidation';
 import { smoothScroll } from '@utils';
+import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
 
 const StepTwo = ({ onNext }: StepProps) => {
   const { classPostState, handleQuestionChange } = useClassPostInputChange();

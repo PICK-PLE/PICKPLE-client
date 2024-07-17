@@ -12,14 +12,13 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepThree.style';
-import { useClassPostInputChange } from 'src/hooks/useClassPostInputChange';
-import { useClassPostInputValidation } from 'src/hooks/useClassPostInputValidation';
 import { usePostMoim } from '@apis/domains/moim/usePostMoim';
 import { useState } from 'react';
 import { ErrorType } from '@types';
 import { handleUpload } from 'src/utils/image';
 import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
 import { smoothScroll } from '@utils';
+import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
 
 const StepThree = ({ onNext }: StepProps) => {
   const { classPostState, handleInputChange, handleImageList } = useClassPostInputChange();
@@ -56,7 +55,6 @@ const StepThree = ({ onNext }: StepProps) => {
     }
   };
 
-  console.log(classPostState);
   return (
     <>
       <ProgressBar progress={75} />

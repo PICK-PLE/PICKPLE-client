@@ -3,7 +3,7 @@ import { ClassPostDataType } from 'src/stores/types/classPostDataType';
 type Category = ClassPostDataType['categoryList'];
 type Account = ClassPostDataType['accountList'];
 
-export const useClassPostInputValidation = () => {
+const useClassPostInputValidation = () => {
   const validateLength = (answer: string | number) => {
     return typeof answer === 'string' ? answer.trim().length >= 1 : answer > 0;
   };
@@ -94,3 +94,5 @@ export const useClassPostInputValidation = () => {
     validateStepThree,
   };
 };
+
+export default useClassPostInputValidation

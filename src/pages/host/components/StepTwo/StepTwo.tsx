@@ -12,11 +12,10 @@ import {
   titleStyle,
 } from './StepTwo.style';
 import CategorySelectBox from 'src/components/common/CategorySelectBox/CategorySelectBox';
-import { useHostApplyInputChange } from 'src/hooks/useHostApplyInputChange';
 import { useRef, useState } from 'react';
 import { usePostHostApply } from '@apis/domains/host';
-import { useHostApplyInputValidation } from 'src/hooks/useHostApplyInputValidation';
 import { components } from '@schema';
+import { useHostApplyInputChange, useHostApplyInputValidation } from '@pages/host/hooks';
 
 const StepTwo = ({ onNext }: StepProps) => {
   const nicknameRef = useRef<HTMLInputElement>(null);
@@ -74,7 +73,9 @@ const StepTwo = ({ onNext }: StepProps) => {
               }}
               placeholder="ex. 픽픽이 (최대 15자)"
               isValid={!isNicknameDuplicate && isNicknameValid}
-              errorMessage={isNicknameDuplicate ? '* 이미 존재하는 닉네임이에요.' : '닉네임을 입력해 주세요.'}
+              errorMessage={
+                isNicknameDuplicate ? '* 이미 존재하는 닉네임이에요.' : '닉네임을 입력해 주세요.'
+              }
               maxLength={10}
               isCountValue={true}
             />
