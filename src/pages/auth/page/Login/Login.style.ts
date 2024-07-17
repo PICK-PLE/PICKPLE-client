@@ -2,7 +2,7 @@ import { css, Theme } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const loginWrapper = css`
-  ${flexGenerator('column', 'flex-start', 'center')};
+  ${flexGenerator('column')};
   width: 100%;
   height: 100dvh;
   padding: 6.5rem 2rem 5.5rem;
@@ -28,7 +28,7 @@ export const logoWrapper = css`
 export const loginImageWrapper = css`
   width: 100%;
   ${flexGenerator('row', 'flex-end')};
-  margin: 4rem 0;
+  margin: 15% 0;
 `;
 
 export const loginImageStyle = css`
@@ -40,6 +40,4 @@ export const logoStyle = css`
   width: 14rem;
 `;
 
-export const buttonWrapper = css`
-  margin-top: auto;
-`;
+export const buttonWrapper = css``;

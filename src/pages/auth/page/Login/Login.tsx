@@ -5,7 +5,6 @@ import {
   titleStyle,
   logoWrapper,
   loginImageStyle,
-  buttonWrapper,
   titleWrapper,
   loginImageWrapper,
 } from './Login.style';
@@ -32,11 +31,9 @@ const Login = () => {
       <div css={loginImageWrapper}>
         <img css={loginImageStyle} src={graphicImage.LoginImage} alt="로그인 그래픽" />
       </div>
-      <div css={buttonWrapper}>
-        <SocialLoginButton platform="kakao" icon={<IcKakaoLogo />} onClick={handleLoginClick}>
-          카카오로 시작하기
-        </SocialLoginButton>
-      </div>
+      <SocialLoginButton platform="kakao" icon={<IcKakaoLogo />} onClick={handleLoginClick}>
+        카카오로 시작하기
+      </SocialLoginButton>
     </div>
   );
 };
