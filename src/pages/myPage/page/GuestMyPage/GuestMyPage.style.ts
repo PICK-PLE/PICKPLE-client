@@ -1,49 +1,38 @@
 import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
-export const guestMyPageLayout = css`
-  ${flexGenerator('column', 'flex-start', 'flex-start')};
-  padding-top: 6rem;
-  gap: 2.8rem;
-`;
-
-export const userDistinguishWrapper = css`
+export const myPageNav = css`
+  padding: 7.4rem 2rem 3rem;
   ${flexGenerator('row', 'flex-start', 'flex-start')};
-  padding-left: 2rem;
   gap: 2rem;
 `;
 
-export const userSelectedTextStyle = (theme: Theme) => css`
-  color: ${theme.color.black};
+export const tabStyle = (theme: Theme) => css`
   ${theme.font['head03-b-18']}
-
-  cursor: pointer;
-`;
-
-export const userUnselectedTextStyle = (theme: Theme) => css`
   color: ${theme.color.lightgray2};
-  ${theme.font['head03-b-18']}
 
   cursor: pointer;
 `;
 
-export const simpleUserProfileWrapper = css`
-  padding-left: 2rem;
+export const selectedTabStyle = (theme: Theme) => css`
+  color: ${theme.color.black};
+`;
+
+export const profileWrapper = css`
+  padding: 0 2rem 2.8rem;
 `;
 
 export const navigateBoxWrapper = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   width: 100%;
-  padding: 0 2rem;
+  padding: 2.8rem 2rem;
   gap: 2.8rem;
 `;
 
-export const line = (theme: Theme) => css`
-  ${flexGenerator('row', 'center')};
+export const divdier = css`
   width: 100%;
   height: 0.8rem;
-
-  background-color: ${theme.color.background};
+  background-color: #f3f3f3;
 `;
 
 export const logoutBox = css`

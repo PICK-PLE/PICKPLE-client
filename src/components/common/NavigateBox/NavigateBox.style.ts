@@ -10,8 +10,8 @@ export const wrapperStyle = css`
 `;
 
 export const childrenStyle = (theme: Theme) => css`
-  ${theme.font['subhead03-m-16']}
-  ${theme.color.blackgray}
+  ${theme.font['subhead03-m-16']};
+  color: ${theme.color.blackgray};
 `;
 export const iconStyle = css`
   width: 2.4rem;

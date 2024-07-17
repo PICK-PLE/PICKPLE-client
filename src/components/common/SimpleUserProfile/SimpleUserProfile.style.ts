@@ -7,6 +7,9 @@ export const profileWrapperStyle = css`
   width: 100%;
 `;
 export const profileWrapperSizeStyle = {
+  xlarge: css`
+    gap: 2rem;
+  `,
   large: css`
     gap: 1rem;
   `,
@@ -27,6 +30,10 @@ export const imgStyle = css`
 `;
 
 export const imgSizeStyle = {
+  xlarge: css`
+    width: 6rem;
+    height: 6rem;
+  `,
   large: css`
     width: 4.2rem;
     height: 4.2rem;
@@ -46,6 +53,10 @@ export const usernameStyle = (theme: Theme) => css`
 `;
 
 export const usernameSizeStyle = {
+  xlarge: (theme: Theme) => css`
+    color: ${theme.color.black};
+    ${theme.font['head03-b-18']};
+  `,
   large: (theme: Theme) => css`
     ${theme.font['subhead04-sb-15']}
   `,
