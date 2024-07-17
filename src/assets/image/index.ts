@@ -52,6 +52,9 @@ import LoginImage from './graphics/image_login.png';
 import NoticeImage from './graphics/image_notice.png';
 import ReviewImage from './graphics/image_review.png';
 
+// icons
+import CheckModalImage from './icons/image_check_modal.png';
+
 export {
   NJobFillSelectedImage,
   NJobFillImage,
@@ -103,4 +106,5 @@ export {
   LoginImage,
   NoticeImage,
   ReviewImage,
+  CheckModalImage,
 };
