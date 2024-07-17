@@ -16,7 +16,7 @@ import { useToast } from '@hooks';
 import { useFetchApplicantList } from '@apis/domains/moimSubmissionr/useFetchApplicantList';
 
 const MyClassManage = () => {
-  const moimId = 5;
+  const moimId = 1;
   const { data: applicantData, isLoading } = useFetchApplicantList(moimId);
   const { showToast, isToastVisible } = useToast();
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -90,7 +90,7 @@ const MyClassManage = () => {
           <div>부산 10년 토박이 달아오르구마와 함께하는 사투리리</div>
         </header>
 
-        {submitterList ?? [].length > 0 ? (
+        {submitterList?.length || 0 > 0 ? (
           <main css={mainStyle}>
             <div css={labelStyle}>
               <div css={textStyle}>
