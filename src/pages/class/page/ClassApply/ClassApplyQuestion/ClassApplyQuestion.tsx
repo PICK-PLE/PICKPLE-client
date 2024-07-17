@@ -17,7 +17,7 @@ import { IcCaution } from '@svg';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFetchQuestionList } from '@apis/domains/moim/useFetchQuestionList';
-import { usePostAnswerList } from '@apis/domains/moimSubmissionr/usePostAnswerList';
+import { usePostAnswerList } from '@apis/domains/moimSubmission/usePostAnswerList';
 
 type AnswerListType = {
   [key: string]: string;
@@ -33,8 +33,11 @@ export interface DataType {
 }
 
 const ClassApplyQuestion = () => {
+  /* @채연 TODO: moimId 고정값 말고 url로 사용할 수 있도록 수정하기!*/
+  const moimId = 5;
+
   const [questionList, setQuestionList] = useState<string[]>([]);
-  const { data: questionData, isSuccess } = useFetchQuestionList(1);
+  const { data: questionData, isSuccess } = useFetchQuestionList(moimId);
   const [answer, setAnswer] = useState<DataType>({
     answerList: {
       answer1: '',
@@ -78,9 +81,6 @@ const ClassApplyQuestion = () => {
     }));
   };
 
-  //나중에 moimId 뽑아내면 사라질 아이
-  const moimId = 2;
-
   const requestData = {
     moimId: moimId,
     body: answer,
@@ -92,8 +92,6 @@ const ClassApplyQuestion = () => {
     mutate(requestData);
     navigate('/class/apply/deposit');
   };
-
-
 
   return (
     <>
@@ -122,6 +120,7 @@ const ClassApplyQuestion = () => {
                     maxLength={200}
                     size="medium"
                     placeholder="답변을 작성해주세요."
+                    isValid
                   />
                 </div>
               ))}

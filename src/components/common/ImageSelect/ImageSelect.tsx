@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, useState } from 'react';
+import { InputHTMLAttributes, useRef, useState } from 'react';
 import {
   imageSelectWrapper,
   inputStyle,
@@ -18,7 +18,8 @@ interface ImageSelectProps extends InputHTMLAttributes<HTMLInputElement> {
 
 const ImageSelect = ({ onFileSelect, isMultiple = false }: ImageSelectProps) => {
   const [previewURLs, setPreviewURLs] = useState<string[]>([]);
-  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const readFile = (file: File): Promise<string> => {
     return new Promise((resolve, reject) => {
@@ -58,17 +59,15 @@ const ImageSelect = ({ onFileSelect, isMultiple = false }: ImageSelectProps) => 
       ) as string[];
 
       setPreviewURLs((prev) => [...prev, ...newPreviewURLs]);
-      setSelectedFiles((prev) => [...prev, ...allowedFiles]);
-      onFileSelect([...selectedFiles, ...allowedFiles]); // 선택된 파일 목록을 부모 컴포넌트에 전달
+      onFileSelect([...allowedFiles]); // 선택된 파일 목록을 부모 컴포넌트에 전달
     }
   };
 
   const handleDeleteImage = (index: number) => {
-    const updatedPreviewURLs = previewURLs.filter((_, i) => i !== index);
-    const updatedFiles = selectedFiles.filter((_, i) => i !== index);
-    setPreviewURLs(updatedPreviewURLs);
-    setSelectedFiles(updatedFiles);
-    onFileSelect(updatedFiles); // 업데이트된 파일 목록을 부모 컴포넌트에 전달
+    setPreviewURLs(previewURLs.filter((_, i) => i !== index));
+    if (inputRef.current) {
+      inputRef.current.value = '';
+    }
   };
 
   return (
@@ -81,6 +80,7 @@ const ImageSelect = ({ onFileSelect, isMultiple = false }: ImageSelectProps) => 
         </div>
       </label>
       <input
+        ref={inputRef}
         type="file"
         multiple={isMultiple}
         accept="image/jpeg, image/png, image/jpg, image/webp"
