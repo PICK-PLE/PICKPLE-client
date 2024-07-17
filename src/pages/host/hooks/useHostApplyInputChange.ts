@@ -3,7 +3,7 @@ import { hostApplyAtom } from '@stores';
 import { useAtom } from 'jotai';
 import React from 'react';
 
-export const useHostApplyInputChange = () => {
+const useHostApplyInputChange = () => {
   const [hostApplyState, setHostApplyState] = useAtom(hostApplyAtom);
 
   const handleInputChange = (
@@ -46,3 +46,5 @@ export const useHostApplyInputChange = () => {
     resetHostApplyState,
   };
 };
+
+export default useHostApplyInputChange

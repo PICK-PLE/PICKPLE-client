@@ -1,5 +1,3 @@
-/**@정안TODO 서버에 더미데어터 없어서 404뜸 */
-
 import { FilterSelect, Header } from '@components';
 import {
   guestMyClassLayout,
@@ -17,7 +15,7 @@ import { GuestMyClassEmptyView, MoimCard } from '@pages/guest/components';
 import { useAtom } from 'jotai';
 import { userAtom } from '@stores';
 import { statusMapText } from 'src/constants/mappingText';
-import { useFetchGuestApply } from '@apis/domains/moim';
+import { useFetchGuestApply, useFetchGuestParticipate } from '@apis/domains/moim';
 
 const GuestMyClass = () => {
   const [activeTab, setActiveTab] = useState<'신청한' | '참가한'>('신청한');
@@ -35,27 +33,29 @@ const GuestMyClass = () => {
 
   const {
     data: applyData,
-    isLoading,
-    error,
+    isLoading: isApplyLoading,
+    error: applyError,
   } = useFetchGuestApply(guestId ?? 0, moimSubmissionState || 'all');
 
-  // 옵션 변경 핸들러
+  const {
+    data: participateData,
+    isLoading: isParticipateLoading,
+    error: participateError,
+  } = useFetchGuestParticipate(guestId ?? 0);
+
   const handleStatusChange = (status: string) => {
     setSelectedStatus(status);
   };
 
-  if (isLoading) {
+  if (isApplyLoading || isParticipateLoading) {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
+  if (applyError || participateError) {
+    return <div>Error: {applyError?.message || participateError?.message}</div>;
   }
 
-  /**@정안TODO 엠티 뷰가 이렇게 뜨는건 예시입니다. */
-  if (!applyData) {
-    return <GuestMyClassEmptyView text="아직 신청한 모임이 없어요" />;
-  }
+  const currentData = activeTab === '신청한' ? applyData : participateData;
 
   return (
     <div css={GuestMyClassBackground}>
@@ -73,8 +73,7 @@ const GuestMyClass = () => {
           </div>
         </article>
 
-        {/* filter select */}
-        {applyData && activeTab === '신청한' && (
+        {activeTab === '신청한' && (
           <article css={filterSelectWrapper}>
             <div css={filterSelectStyle}>
               <FilterSelect
@@ -85,14 +84,14 @@ const GuestMyClass = () => {
           </article>
         )}
 
-        {!applyData ? (
+        {!currentData ? (
           <GuestMyClassEmptyView
             text={
               activeTab === '신청한' ? '아직 신청한 모임이 없어요' : '아직 참가한 모임이 없어요'
             }
           />
         ) : (
-          applyData.map((data) => (
+          currentData.map((data) => (
             <div css={guestMyClassCardContainer} key={data.moimId}>
               <MoimCard guestMyClassData={data} />
             </div>

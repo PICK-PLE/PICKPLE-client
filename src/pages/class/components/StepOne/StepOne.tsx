@@ -1,5 +1,6 @@
 import {
   Button,
+  CategorySelectBox,
   CountPeople,
   DateSelect,
   Input,
@@ -21,25 +22,76 @@ import {
   titleStyle,
 } from './StepOne.style';
 import { useState } from 'react';
+import dayjs, { Dayjs } from 'dayjs';
 import AddAmountBox from '../AddAmountBox/AddAmountBox';
+import { ClassPostDataType } from 'src/stores/types/classPostDataType';
+import { smoothScroll } from '@utils';
+import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
 
 const StepOne = ({ onNext }: StepProps) => {
-  const [people, setPeople] = useState(7);
-  const [amountValue, setAmountValue] = useState(0);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [isOffline, setIsOffline] = useState(true);
-  const handleSelectButtonClick = () => {
-    setIsOffline(!isOffline);
+  const {
+    classPostState,
+    handleInputChange,
+    handleCategoryChange,
+    toggleIsOffline,
+    handleMaxGuestChange,
+    handleAmountChange,
+    handleSelectChange,
+    handleAccountChange,
+    handleDateChange,
+  } = useClassPostInputChange();
+  const { validateStepOne } = useClassPostInputValidation();
+  const [selectedCategories, setSelectedCategories] = useState(classPostState.categoryList);
+  const [selectedDate, setSelectedDate] = useState<Dayjs | null>(
+    classPostState.date ? dayjs(classPostState.date.replace(/\./g, '-')) : null
+  );
+  const [startTime, setStartTime] = useState<number | null>(
+    classPostState.startTime ? parseInt(classPostState.startTime) : null
+  );
+  const [endTime, setEndTime] = useState<number | null>(
+    classPostState.endTime ? parseInt(classPostState.endTime) : null
+  );
+
+  const validatationResult = validateStepOne(classPostState);
+
+  const handleUpdateCategories = (newCategories: ClassPostDataType['categoryList']) => {
+    setSelectedCategories(newCategories);
+    handleCategoryChange(newCategories);
   };
-  const handleAmountChange = (newAmountValue: number) => {
-    setAmountValue(newAmountValue);
-  };
-  const handlePeopleChange = (newCount: number) => {
-    setPeople(newCount);
-  };
+
   const handleNextClick = () => {
-    onNext();
+    if (validatationResult.isAllValid) {
+      onNext();
+      smoothScroll(0);
+    }
   };
+
+  const handleDateChangeWrapper = (date: Dayjs | null) => {
+    setSelectedDate(date);
+    handleDateChange(date);
+  };
+
+  const handleStartTimeChange = (time: number) => {
+    setStartTime(time);
+    handleInputChange(
+      {
+        target: { value: `${time.toString().padStart(2, '0')}:00` },
+      } as React.ChangeEvent<HTMLInputElement>,
+      'startTime'
+    );
+  };
+
+  const handleEndTimeChange = (time: number) => {
+    setEndTime(time);
+    handleInputChange(
+      {
+        target: { value: `${time.toString().padStart(2, '0')}:00` },
+      } as React.ChangeEvent<HTMLInputElement>,
+      'endTime'
+    );
+  };
+
+  console.log(classPostState);
   return (
     <>
       <ProgressBar progress={25} />
@@ -53,7 +105,10 @@ const StepOne = ({ onNext }: StepProps) => {
             <QuestionText numberLabel="Q1">
               어떤 주제의 클래스 모임을 진행할 예정이신가요?
             </QuestionText>
-            <div></div>
+            <CategorySelectBox
+              selectedCategories={selectedCategories}
+              onUpdateCategories={handleUpdateCategories}
+            />
             <h6 css={referTextStyle}>*최대 3개까지 선택 가능합니다.</h6>
           </section>
           <section css={sectionStyle(1)}>
@@ -61,69 +116,76 @@ const StepOne = ({ onNext }: StepProps) => {
             <SelectButton
               left="오프라인"
               right="온라인"
-              selected={isOffline ? '오프라인' : '온라인'}
-              onClick={handleSelectButtonClick}
+              selected={classPostState.isOffline ? '오프라인' : '온라인'}
+              onClick={toggleIsOffline}
             />
           </section>
           <section css={sectionStyle(1)}>
             <QuestionText numberLabel="Q3">어디에서 진행할 예정이신가요?</QuestionText>
-            {isOffline ? (
+            {classPostState.isOffline ? (
               <Input
-                value=""
-                onChange={() => {}}
+                value={classPostState.offlineSpot}
+                onChange={(e) => handleInputChange(e, 'offlineSpot')}
                 placeholder="ex. 00시 00구 00동"
                 isValid={true}
                 isCountValue={false}
               />
             ) : (
               <Select
-            placeholder="사용할 플랫폼을 선택해주세요."
-            options={[
-              'ZOOM',
-              'Google Meets',
-              'Webex',
-              'Microsoft Teams',
-              'Skype',
-              'Naver Works',
-              'Zep',
-            ]}></Select>
+                value={classPostState.onlineSpot}
+                onChange={handleSelectChange}
+                placeholder="사용할 플랫폼을 선택해주세요."
+                options={[
+                  'ZOOM',
+                  'Google Meets',
+                  'Webex',
+                  'Microsoft Teams',
+                  'Skype',
+                  'Naver Works',
+                  'Zep',
+                ]}></Select>
             )}
           </section>
           <section css={sectionStyle(1)}>
             <QuestionText numberLabel="Q4">언제 진행할 예정이신가요?</QuestionText>
-            <DateSelect selected={selectedDate} onChange={setSelectedDate} />
-            <TimeSelect />
+            <DateSelect selected={selectedDate} onChange={handleDateChangeWrapper} />
+            <TimeSelect
+              startTime={startTime}
+              endTime={endTime}
+              onStartTimeChange={handleStartTimeChange}
+              onEndTimeChange={handleEndTimeChange}
+            />
           </section>
           <section css={sectionStyle(2)}>
             <QuestionText numberLabel="Q5">몇 명의 게스트와 함께하고 싶으신가요?</QuestionText>
-            <CountPeople people={people} onPeopleChange={handlePeopleChange} />
+            <CountPeople people={classPostState.maxGuest} onPeopleChange={handleMaxGuestChange} />
             <h6 css={referTextStyle}>참가자는 최대 15명까지 모집 가능합니다.</h6>
           </section>
           <section css={sectionStyle(1)}>
             <QuestionText numberLabel="Q6">참가비를 알려주세요.</QuestionText>
-            <AddAmountBox value={amountValue} handleAmountChange={handleAmountChange} />
+            <AddAmountBox value={classPostState.fee} handleAmountChange={handleAmountChange} />
           </section>
           <section css={sectionStyle(1.5)}>
             <QuestionText numberLabel="Q7">정산 받을 계좌를 알려주세요.</QuestionText>
             <Input
-              value=""
-              onChange={() => {}}
+              value={classPostState.accountList.holder}
+              onChange={(e) => handleAccountChange(e, 'holder')}
               placeholder="ex. 홍길동"
               inputLabel="예금주"
               isValid={true}
               isCountValue={false}
             />
             <Input
-              value=""
-              onChange={() => {}}
+              value={classPostState.accountList.bank}
+              onChange={(e) => handleAccountChange(e, 'bank')}
               placeholder="은행명을 입력해주세요."
               inputLabel="입금 은행"
               isValid={true}
               isCountValue={false}
             />
             <Input
-              value=""
-              onChange={() => {}}
+              value={classPostState.accountList.accountNumber}
+              onChange={(e) => handleAccountChange(e, 'accountNumber')}
               placeholder="'-' 없이 입력"
               inputLabel="계좌 번호"
               isValid={true}
@@ -132,7 +194,10 @@ const StepOne = ({ onNext }: StepProps) => {
           </section>
         </main>
         <footer css={footerStyle}>
-          <Button variant="large" onClick={handleNextClick}>
+          <Button
+            variant="large"
+            onClick={handleNextClick}
+            disabled={!validatationResult.isAllValid}>
             다음
           </Button>
         </footer>

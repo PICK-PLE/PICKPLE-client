@@ -32,8 +32,8 @@ const guestPages = {
 
 const hostPages = {
   HOST_MY_CLASS: '/host/myclass',
-  HOST_MY_CLASS_MANAGE: '/host/myclass/manage',
-  HOST_APPLY: '/host/apply',
+  HOST_MY_CLASS_MANAGE: '/host/myclass/manage/:moimId',
+  HOST_APPLY: '/host/apply/:step',
 };
 
 const devPages = {

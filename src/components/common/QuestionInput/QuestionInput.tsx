@@ -9,7 +9,7 @@ import {
 
 export interface QuestionInputProps extends InputHTMLAttributes<HTMLInputElement> {
   numberLabel: string;
-  value: string;
+  value?: string;
   maxLength: number;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -38,7 +38,7 @@ const QuestionInput = ({
         onChange={handleQuestionInputChange}
         placeholder={placeholder}
       />
-      <span css={textLengthStyle}>{`${value.length}/${maxLength}`}</span>
+      <span css={textLengthStyle}>{value ? `${value.length}/${maxLength}` : `0/${maxLength}`}</span>
     </div>
   );
 };

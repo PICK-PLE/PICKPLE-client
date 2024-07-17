@@ -16,10 +16,40 @@ export const emptyViewImageStyle = css`
 
 export const emptyViewButtonStyle = css`
   width: 17.7rem;
+  
 `;
 
 export const emptyText = (theme: Theme) => css`
   ${flexGenerator('column')};
   ${theme.font['subhead05-sb-14']};
   color: ${theme.color.lightgray1};
+`;
+
+export const labelStyle = css`
+  ${flexGenerator('row', 'space-between')}
+`;
+
+export const accordionStyle = css`
+  overflow-y: scroll;
+  max-height: calc(100dvh - 34.6rem);
+`;
+
+export const textStyle = css`
+  ${flexGenerator('row')};
+  gap: 0.4rem;
+`;
+
+export const countTitleStyle = (theme: Theme) => css`
+  ${theme.font['subhead02-sb-16']};
+  color: ${theme.color.midgray1};
+`;
+
+export const countTextStyle = (theme: Theme) => css`
+  ${theme.font['subhead02-sb-16']};
+  color: ${theme.color.black};
+`;
+
+export const footerStyle = css`
+  width: 100%;
+  margin-top: auto;
 `;

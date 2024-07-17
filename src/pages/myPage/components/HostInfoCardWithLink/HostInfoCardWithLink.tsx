@@ -13,7 +13,6 @@ import { Button, Image, InterestCategoryButton } from '@components';
 import { CATEGORY_NAME, CATEGORY_SMALL_ICON } from 'src/constants/category';
 import { components } from '@schema';
 
-// type HostCategoryInfo = components['schemas']['HostCategoryInfo'];
 type HostGetResponse = components['schemas']['HostGetResponse'];
 
 interface hostInfoCardWithLinkListProps {

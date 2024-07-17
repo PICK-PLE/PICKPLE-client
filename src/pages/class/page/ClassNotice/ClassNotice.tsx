@@ -23,6 +23,12 @@ const ClassNotice = () => {
   const putS3UploadMutation = usePutS3Upload();
   const postNoticeMutation = usePostNotice();
 
+  const navigate = useNavigate();
+
+  const handleNavigateToMoimInfo = (moimId: number) => {
+    navigate(`/class/${moimId}`);
+  };
+
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNoticeTitle(e.target.value);
   };
@@ -40,16 +46,19 @@ const ClassNotice = () => {
   };
 
   const handleButtonClick = async (): Promise<void> => {
-    const imageUrlList = await handleUpload({
-      selectedFiles,
-      putS3Upload: putS3UploadMutation.mutateAsync,
-      type: 'notice',
-    });
-
+    let imageUrl: undefined | string = undefined;
+    if (selectedFiles.length === 1) {
+      const imageUrlList = await handleUpload({
+        selectedFiles,
+        putS3Upload: putS3UploadMutation.mutateAsync,
+        type: 'notice',
+      });
+      imageUrl = imageUrlList[0];
+    }
     const params = {
       noticeTitle,
       noticeContent,
-      imageUrl: imageUrlList[0],
+      imageUrl,
     };
 
     await postNoticeMutation.mutateAsync({ params, moimId: moimIdNumber });
@@ -81,10 +90,7 @@ const ClassNotice = () => {
           </div>
         </main>
 
-        <Button
-          variant="large"
-          disabled={isButtonDisabled || selectedFiles.length === 0}
-          onClick={() => handleButtonClick()}>
+        <Button variant="large" disabled={isButtonDisabled} onClick={handleButtonClick}>
           게시하기
         </Button>
       </div>
