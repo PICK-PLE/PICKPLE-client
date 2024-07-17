@@ -17,7 +17,7 @@ import { components } from '@schema';
 import {
   PatchSubmitterRequest,
   usePatchSubmitter,
-} from '@apis/domains/moimSubmissionr/usePatchSubmitter';
+} from '@apis/domains/moimSubmission/usePatchSubmitter';
 import { useNavigate } from 'react-router-dom';
 
 interface ApplicantListModalProps {

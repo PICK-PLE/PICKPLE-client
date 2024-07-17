@@ -17,7 +17,7 @@ import { IcCaution } from '@svg';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useFetchQuestionList } from '@apis/domains/moim/useFetchQuestionList';
-import { usePostAnswerList } from '@apis/domains/moimSubmissionr/usePostAnswerList';
+import { usePostAnswerList } from '@apis/domains/moimSubmission/usePostAnswerList';
 
 type AnswerListType = {
   [key: string]: string;
@@ -33,7 +33,7 @@ export interface DataType {
 }
 
 const ClassApplyQuestion = () => {
-/* @채연 TODO: moimId 고정값 말고 url로 사용할 수 있도록 수정하기!*/
+  /* @채연 TODO: moimId 고정값 말고 url로 사용할 수 있도록 수정하기!*/
   const moimId = 5;
 
   const [questionList, setQuestionList] = useState<string[]>([]);

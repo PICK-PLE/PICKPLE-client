@@ -10,7 +10,6 @@ export interface PatchSubmitterRequest {
 const patchSubmitter = async ({ moimId, submitterIdList }: PatchSubmitterRequest) => {
   try {
     const response = await patch(`/moim/${moimId}/submitter`, { submitterIdList });
-    console.log('response', response);
     return response.data;
   } catch (error) {
     console.error(error);

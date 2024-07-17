@@ -13,10 +13,10 @@ import {
 import { useState, useEffect, useMemo } from 'react';
 import { ApplicantListModal, ClassManageEmptyView } from '@pages/host/components';
 import { useToast } from '@hooks';
-import { useFetchSubmitterList } from '@apis/domains/moimSubmissionr/useFetchSubmitterList';
+import { useFetchSubmitterList } from '@apis/domains/moimSubmission/useFetchSubmitterList';
 
 const MyClassManage = () => {
-    /* @채연 TODO: moimId 고정값 말고 url로 사용할 수 있도록 수정하기!*/
+  /* @채연 TODO: moimId 고정값 말고 url로 사용할 수 있도록 수정하기!*/
   const moimId = 5;
   const { data: applicantData, isLoading } = useFetchSubmitterList(moimId);
   const { showToast, isToastVisible } = useToast();
@@ -88,11 +88,11 @@ const MyClassManage = () => {
       <Header title="신청자 관리" />
       <article css={myClassManageLayout}>
         <header css={headerStyle}>
-        {/* @채연 TODO: 제목도 받아와야 함!*/}
+          {/* @채연 TODO: 제목도 받아와야 함!*/}
           <div>부산 10년 토박이 달아오르구마와 함께하는 사투리리</div>
         </header>
 
-        {submitterList?.length || 0 > 0 ? (
+        {submitterList && submitterList?.length > 0 ? (
           <main css={mainStyle}>
             <div css={labelStyle}>
               <div css={textStyle}>

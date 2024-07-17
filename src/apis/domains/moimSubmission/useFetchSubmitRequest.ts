@@ -32,7 +32,7 @@ export const useFetchSubmitRequest = ({
   submitterId: number;
 }) => {
   return useQuery({
-    queryKey: [QUERY_KEY.MOIM_SUBMIT_REQUEST, `moimId:${moimId}`, `submitterId:${submitterId}`],
+    queryKey: [QUERY_KEY.MOIM_SUBMIT_REQUEST, moimId, submitterId],
     queryFn: () => getSubmitRequest({ moimId, submitterId }),
   });
 };

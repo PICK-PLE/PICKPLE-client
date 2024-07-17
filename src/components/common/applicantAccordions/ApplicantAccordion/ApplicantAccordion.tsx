@@ -18,7 +18,7 @@ import {
   answerStyle,
 } from './ApplicantAccordion.style';
 import { Image, QuestionText } from '@components';
-import { useFetchSubmitRequest } from '@apis/domains/moimSubmissionr/useFetchSubmitRequest';
+import { useFetchSubmitRequest } from '@apis/domains/moimSubmission/useFetchSubmitRequest';
 import { components } from '@schema';
 
 interface ApplicantAccordionProps {
@@ -84,8 +84,6 @@ const ApplicantAccordion = ({
     }
   }, [submitRequest]);
 
-  const defaultImgUrl = 'svg/ic_default-userimg.svg';
-
   return (
     <div css={applicantAccordionLayout}>
       <div css={applicantLayoutStyle}>
@@ -106,7 +104,7 @@ const ApplicantAccordion = ({
             <Image
               variant="round"
               width="4.8rem"
-              src={submitterImageUrl || defaultImgUrl}
+              src={submitterImageUrl}
               css={applicnatImgStyle}
             />
 
