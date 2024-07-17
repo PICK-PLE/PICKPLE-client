@@ -4,6 +4,7 @@ import {
   accountHolderStyle,
   accountInfoStyle,
   bankTextStyle,
+  completeButtonCustomStyle,
   headerFirstH1Style,
   headerH1SpanStyle,
   headerSecondH1Style,
@@ -14,7 +15,6 @@ import {
   modalContainerStyle,
   payButtonSectionStyle,
 } from './DepositModal.style';
-import { css } from '@emotion/react';
 
 interface DepositModalProps {
   onClose: () => void;
@@ -49,12 +49,9 @@ const DepositModal = ({ onClose }: DepositModalProps) => {
           <PayButton variant="toss" totalPrice={1} />
         </section>
         <Button
-          variant="xSmall"
+          variant="medium"
           onClick={onClose}
-          customStyle={css`
-            height: 5.5rem;
-            border-radius: 10px;
-          `}>
+          customStyle={completeButtonCustomStyle}>
           입금을 완료했어요
         </Button>
       </main>
