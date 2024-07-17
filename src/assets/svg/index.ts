@@ -50,6 +50,7 @@ export { default as IcMindActive } from './IcMindActive';
 export { default as IcMindBlack } from './IcMindBlack';
 export { default as IcMindSmall } from './IcMindSmall';
 export { default as IcMoney } from './IcMoney';
+export { default as IcMypage } from './IcMypage';
 export { default as IcNext } from './IcNext';
 export { default as IcNjob } from './IcNjob';
 export { default as IcNjobActive } from './IcNjobActive';

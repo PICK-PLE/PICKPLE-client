@@ -8,6 +8,7 @@ import {
   classCardCustomStyle,
 } from '@pages/categories/components/ClassListCard/ClassListCard.style';
 import { components } from '@schema';
+import { dDayText } from '@utils';
 
 type MoimByCategoryResponse = components['schemas']['MoimByCategoryResponse'];
 
@@ -16,7 +17,7 @@ interface ClassListCardProps {
 }
 
 const ClassListCard = ({ classListData }: ClassListCardProps) => {
-  const { dayOfDay, moimImageUrl, title, hostImageUrl, hostNickName, dateList } = classListData;
+  const { dayOfDay = 0, moimImageUrl, title, hostImageUrl, hostNickName, dateList } = classListData;
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
 
   return (
@@ -24,7 +25,9 @@ const ClassListCard = ({ classListData }: ClassListCardProps) => {
       <Image
         src={moimImageUrl || ''}
         width="9rem"
-        label={<Label variant="status">D-{dayOfDay}</Label>}
+        label={
+          <Label variant="status">{dDayText(dayOfDay) === '' ? '마감' : dDayText(dayOfDay)}</Label>
+        }
         customStyle={classCardCustomStyle}
       />
 

@@ -36,6 +36,7 @@ import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim'
 import { useWindowSize } from '@hooks';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
 import { MoimIdPathParameterType } from '@types';
+import { dDayText } from '@utils';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
@@ -50,7 +51,7 @@ const Class = () => {
   if (!moimDetail) {
     return <div>No details found</div>;
   }
-  const { dayOfDay, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
+  const { dayOfDay = 0, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
 
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
 
@@ -70,7 +71,7 @@ const Class = () => {
           <Carousel imageList={Object.values(imageList || []).filter((value) => value !== null)} />
         </div>
         <section css={classInfo}>
-          <Label variant="dDay">{`마감 D-${dayOfDay}`}</Label>
+          <Label variant="dDay">{`마감${dDayText(dayOfDay)}`}</Label>
           <h1 css={classNameStyle}>{title}</h1>
           <ul css={classInfoList}>
             <li>
