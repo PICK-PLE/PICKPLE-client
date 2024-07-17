@@ -9,14 +9,17 @@ import {
 } from './Error.style';
 import { graphicImage, routePath } from '@constants';
 import { useNavigate } from 'react-router-dom';
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 const Error = () => {
   const navigate = useNavigate();
+  const { reset } = useQueryErrorResetBoundary();
 
   const handleButtonClick = () => {
     navigate(routePath.HOME, {
       replace: true,
     });
+    reset();
   };
 
   return (
