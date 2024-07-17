@@ -7,8 +7,8 @@ import {
 } from './ClassManageEmptyView.style';
 import { Button } from '@components';
 import { graphicImage } from '@constants';
-import useClipboard from 'src/hooks/useCopyClip';
-import { handleShare } from 'src/utils/share';
+import { useClipboard } from '@hooks';
+import { handleShare } from '@utils';
 
 interface ClassManageEmptyViewProps {
   moimId: number;
