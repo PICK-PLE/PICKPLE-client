@@ -28,6 +28,7 @@ export const sortList = (theme: Theme) => css`
   right: 0;
   width: 11.5rem;
   padding: 0.4rem;
+  z-index: 2;
 
   border-radius: 5px;
   background: ${theme.color.white};

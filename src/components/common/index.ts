@@ -28,9 +28,11 @@ import ApplicantAccordion from 'src/components/common/applicantAccordions/Applic
 import ApplicantAccordionList from 'src/components/common/applicantAccordions/ApplicantAccoridonList/ApplicantAccordionList';
 import Image from 'src/components/common/Image/Image';
 import LogoHeader from 'src/components/common/headers/LogoHeader/LogoHeader';
-import TimeSelect from 'src/components/common/select/TimeSelect/TimeSelect';
+import TimeSelect from 'src/components/common/TimeSelect/TimeSelect';
 import ImageSelect from 'src/components/common/ImageSelect/ImageSelect';
 import SimpleUserProfile from 'src/components/common/SimpleUserProfile/SimpleUserProfile';
+import IconText from './IconText/IconText';
+import CategorySelectBox from './CategorySelectBox/CategorySelectBox';
 
 export {
   IconButton,
@@ -65,5 +67,7 @@ export {
   LogoHeader,
   TimeSelect,
   ImageSelect,
-  SimpleUserProfile
+  SimpleUserProfile,
+  IconText,
+  CategorySelectBox,
 };

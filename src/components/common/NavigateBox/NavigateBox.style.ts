@@ -5,14 +5,13 @@ import { flexGenerator } from '@styles/generator';
 export const wrapperStyle = css`
   ${flexGenerator('row', 'space-between', 'center')}
   width: 100%;
-  min-width: 33.5rem;
 
   cursor: pointer;
 `;
 
 export const childrenStyle = (theme: Theme) => css`
-  ${theme.font['subhead03-m-16']}
-  ${theme.color.blackgray}
+  ${theme.font['subhead03-m-16']};
+  color: ${theme.color.blackgray};
 `;
 export const iconStyle = css`
   width: 2.4rem;

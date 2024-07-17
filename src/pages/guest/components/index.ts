@@ -1,5 +1,5 @@
 import MoimCard from './MoimCard/MoimCard';
-import GuestMyClassCard from './GuestMyClassCard/GuestMyClassCard';
 import DepositModal from './DepositModal/DepositModal';
+import GuestMyClassEmptyView from './GuestMyClassEmptyView/GuestMyClassEmptyView';
 
-export { GuestMyClassCard, MoimCard, DepositModal };
+export { MoimCard, DepositModal, GuestMyClassEmptyView };

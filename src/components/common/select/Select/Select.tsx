@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import {
   iconStyle,
   placeholderStyle,
@@ -12,33 +12,28 @@ import { IcDropdownPlatformDown, IcDropdownPlatformUp } from '@svg';
 interface SelectProps {
   placeholder?: string;
   options: string[];
+  value: string;
+  onChange: (value: string) => void;
 }
 
-const Select = ({ placeholder, options }: SelectProps) => {
+const Select = ({ placeholder, options, value, onChange }: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState(placeholder || options[0]);
-
-  useEffect(() => {
-    if (placeholder) {
-      setSelectedOption(placeholder);
-    }
-  }, [placeholder]);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
 
   const handleOptionClick = (option: string) => {
-    setSelectedOption(option);
+    onChange(option)
     setIsOpen(false);
   };
 
-  const isPlaceholder = selectedOption === placeholder;
+  const isPlaceholder = value === '';
 
   return (
     <div css={selectContainer} onClick={toggleDropdown}>
-      <span css={isPlaceholder ? placeholderStyle : selectedOptionStyle}>{selectedOption}</span>
-      <span css={iconStyle}>{isOpen ? <IcDropdownPlatformDown /> : <IcDropdownPlatformUp />}</span>
+      <span css={isPlaceholder ? placeholderStyle : selectedOptionStyle}>{value ? value : placeholder}</span>
+      <span css={iconStyle}>{isOpen ? <IcDropdownPlatformUp /> : <IcDropdownPlatformDown />}</span>
       {isOpen && (
         <ul css={sortList}>
           {options?.map((opt, i) => (

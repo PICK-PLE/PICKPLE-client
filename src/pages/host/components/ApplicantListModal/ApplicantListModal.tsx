@@ -13,14 +13,31 @@ import {
 } from './ApplicantListModal.style';
 import { IcCheckModal } from '@svg';
 import { Button, SimpleUserProfile } from '@components';
-import { ApplicantListResponseType } from '@types';
+import { components } from '@schema';
+import {
+  PatchSubmitterRequest,
+  usePatchSubmitter,
+} from '@apis/domains/moimSubmission/usePatchSubmitter';
+import { useNavigate } from 'react-router-dom';
 
 interface ApplicantListModalProps {
-  applicantListData: ApplicantListResponseType;
+  applicantListData: components['schemas']['MoimSubmissionByMoimResponse'];
+  onClose: () => void;
 }
+const moimId = 5;
+const ApplicantListModal = ({ applicantListData, onClose }: ApplicantListModalProps) => {
+  const { submitterList } = applicantListData;
+  const { mutate } = usePatchSubmitter();
 
-const ApplicantListModal = ({ applicantListData }: ApplicantListModalProps) => {
-  const { maxGuest, submitterList } = applicantListData;
+  const submitterIdList = submitterList?.map((submitter) => submitter.submitterId);
+
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    mutate({ moimId, submitterIdList } as PatchSubmitterRequest);
+    onClose();
+    navigate('/host/myclass'); // 다시 모임 관리하는 host 페이지로 이동
+  };
+
   return (
     <article css={modalContainerStyle}>
       <section css={sectionStyle}>
@@ -31,21 +48,23 @@ const ApplicantListModal = ({ applicantListData }: ApplicantListModalProps) => {
           <div css={textDivStyle}>
             <h1 css={modalCommentTitleStyle}>승인할 신청자 목록을 확인해주세요!</h1>
             <h1 css={countTextStyle}>
-              총 <span css={applicantCountStyle}>{maxGuest}</span>명
+              총 <span css={applicantCountStyle}>{submitterList?.length}</span>명
             </h1>
           </div>
         </header>
         <main css={mainStyle}>
           <ul css={ulStyle}>
-            {submitterList.map((submitter) => (
+            {submitterList?.map((submitter) => (
               <li key={submitter.submitterId} css={liStyle}>
-                <SimpleUserProfile size="large" username={submitter.nickname} />
+                <SimpleUserProfile size="large" username={submitter.nickname || ''} />
               </li>
             ))}
           </ul>
         </main>
       </section>
-      <Button variant="medium">확인</Button>
+      <Button variant="medium" onClick={handleButtonClick}>
+        확인
+      </Button>
     </article>
   );
 };

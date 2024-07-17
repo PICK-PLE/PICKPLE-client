@@ -2,7 +2,7 @@ import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const cardContainerStyle = (theme: Theme) => css`
-  ${flexGenerator('column')}
+  ${flexGenerator('column', 'flex-start', 'flex-start')}
   gap: 1.9rem;
 
   min-width: 33.5rem;
@@ -14,7 +14,7 @@ export const cardContainerStyle = (theme: Theme) => css`
 `;
 
 export const headSectionStyle = css`
-  ${flexGenerator()}
+  ${flexGenerator('row', 'flex-start', 'flex-start')}
   gap: 1.7rem
 `;
 

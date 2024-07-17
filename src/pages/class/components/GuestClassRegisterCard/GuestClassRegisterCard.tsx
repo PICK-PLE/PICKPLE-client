@@ -15,20 +15,33 @@ import {
   titleStyle,
 } from './GuestClassRegisterCard.style';
 import { IcDate, IcOffline, IcOneline } from '@svg';
-import { APPLIED_MOIM_DATA } from './appliedMoimData';
+import { useFetchSubmittedMoimDetail } from '@apis/domains/moim';
 
-const appliedMoimData = APPLIED_MOIM_DATA.data;
 
 const GuestClassRegisterCard = () => {
-  const { title, hostNickName, isOffline, spot, dateList, fee, hostImageUrl, moimImageUrl } =
+  /* @채연 TODO: moimId 고정값 말고 url로 사용할 수 있도록 수정하기!*/
+  const moimId = 5;
+  const { data: appliedMoimData } = useFetchSubmittedMoimDetail(moimId);
+
+  if (!appliedMoimData) {
+    return <div>empty view</div>;
+  }
+
+  const { title, hostNickname, isOffline, spot, dateList, fee, hostImageUrl, moimImageUrl } =
     appliedMoimData;
+  const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
+
   return (
     <article css={cardContainerStyle}>
       <section css={headSectionStyle}>
-        <Image variant="square" width="8.4rem" height="8.4rem" />
+        <Image width="8.4rem" src={moimImageUrl ?? ''} />
         <div css={titleAndProfileWrapperStyle}>
           <h4 css={titleStyle}>{title}</h4>
-          <SimpleUserProfile username={hostNickName} size="medium" />
+          <SimpleUserProfile
+            username={hostNickname ?? ''}
+            size="medium"
+            userImgUrl={hostImageUrl}
+          />
         </div>
       </section>
       <section css={spotAndDateSectionStyle}>
@@ -40,15 +53,13 @@ const GuestClassRegisterCard = () => {
           <span css={iconStyle}>
             <IcDate />
           </span>
-          <span css={textSpanStyle}>
-            {dateList.date}. ({dateList.dayOfWeek}) {dateList.startTime} - {dateList.endTime}
-          </span>
+          <span css={textSpanStyle}>{`${date}. (${dayOfWeek}) ${startTime} - ${endTime}`}</span>
         </div>
       </section>
       <span css={dividerStyle} />
       <section css={feeWrapperStyle}>
         <span css={feeSpanStyle}>참가비</span>
-        <span css={feeStyle}>{fee.toLocaleString()}원</span>
+        <span css={feeStyle}>{fee?.toLocaleString()}원</span>
       </section>
     </article>
   );

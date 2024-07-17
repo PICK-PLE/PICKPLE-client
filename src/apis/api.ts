@@ -4,9 +4,9 @@ export const instance = axios.create({
   baseURL: import.meta.env.VITE_APP_BASE_URL,
   // withCredentials: true,
 
-  // headers: {
-  //   // Authorization: `Bearer 엑세스 토큰`,
-  // },
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem('accessToken') || ''}`,
+  },
 });
 
 //모임 Id를 계속 쏠 필요가 있는가? 명세서 보니깐 path로 받는 것 같은데...

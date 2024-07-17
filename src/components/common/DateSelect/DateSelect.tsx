@@ -1,5 +1,7 @@
+import React, { InputHTMLAttributes } from 'react';
 import DatePicker from 'react-datepicker';
-
+import dayjs from 'dayjs';
+import { ko } from 'date-fns/locale';
 import 'react-datepicker/dist/react-datepicker.css';
 import {
   dataPickerWrapper,
@@ -8,18 +10,17 @@ import {
   customInputStyle,
   iconStyle,
 } from './DateSelect.style';
-import React, { InputHTMLAttributes } from 'react';
 import { IcDropdownPlatformDown } from '@svg';
-import { ko } from 'date-fns/locale';
 
 interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
   value?: string;
 }
 
 interface DateSelectProps {
-  selected: Date | null;
-  onChange: (date: Date | null) => void;
+  selected: dayjs.Dayjs | null;
+  onChange: (date: dayjs.Dayjs | null) => void;
 }
+
 const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
   ({ value, onClick, placeholder }, ref) => (
     <div css={customInputContainer} onClick={onClick}>
@@ -31,20 +32,20 @@ const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
 );
 
 const DateSelect = ({ selected, onChange }: DateSelectProps) => {
-  const today = new Date();
-  const minSelectableDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 3);
+  const today = dayjs();
+  const minSelectableDate = today.add(3, 'day');
 
   return (
     <div css={dataPickerWrapper}>
       <DatePicker
-        selected={selected}
-        onChange={onChange}
+        selected={selected ? selected.toDate() : null}
+        onChange={(date) => onChange(date ? dayjs(date) : null)}
         placeholderText={`YYYY.MM.DD`}
         dateFormat="yyyy.MM.dd"
-        minDate={minSelectableDate}
+        minDate={minSelectableDate.toDate()}
         customInput={
           <CustomInput
-            value={selected ? selected.toLocaleDateString() : ''}
+            value={selected ? selected.format('YYYY.MM.DD') : ''}
             placeholder="YYYY.MM.DD"
           />
         }

@@ -25,7 +25,7 @@ import {
   TextArea,
   Image,
   LogoHeader,
-  ApplicantAccordionList,
+  // ApplicantAccordionList,
   TimeSelect,
   ImageSelect,
   CountPeople,
@@ -33,6 +33,7 @@ import {
   SimpleUserProfile,
   Toast,
   Modal,
+  CategorySelectBox,
 } from '@components';
 
 import {
@@ -80,6 +81,7 @@ import { ApplicantListModal } from '@pages/host/components/index';
 import { DepositModal } from '@pages/guest/components/index';
 
 import { APPLICANT_LIST_DATA } from 'src/constants/mocks/applicantListData';
+import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 
 const applicantListData = APPLICANT_LIST_DATA;
 
@@ -450,7 +452,7 @@ const Components = () => {
         <section css={secttionContainer}>
           <h2 css={titleStyle}>textArea</h2>
 
-          <TextArea
+          {/* <TextArea
             value={value}
             maxLength={70}
             size="small"
@@ -465,7 +467,7 @@ const Components = () => {
             size="medium"
             onChange={handleTextAreaChange}
             placeholder="답변을 입력하세요."
-          />
+          /> */}
           <span css={textStyle}>size="medium"</span>
         </section>
 
@@ -492,17 +494,9 @@ const Components = () => {
           <TimeSelect />
 
           <h3 css={subTitleStyle}>FilterSelect</h3>
-          <FilterSelect
-            options={[
-              'ZOOM',
-              'Google Meets',
-              'Webex',
-              'Microsoft Teams',
-              'Skype',
-              'Naver Works',
-              'Zep',
-            ]}
-          />
+          {/* <FilterSelect
+            options={['전체', '입금 대기', '승인 대기', '승인 완료', '승인 거절', '환불 완료']}
+          /> */}
         </section>
 
         <section css={secttionContainer}>
@@ -522,7 +516,7 @@ const Components = () => {
           <Image src="https://placehold.co/50" variant="round" width="50px" />
 
           <h3 css={subTitleStyle}>IamgeSelect</h3>
-          <ImageSelect />
+          {/* <ImageSelect /> */}
         </section>
       </div>
 
@@ -547,7 +541,7 @@ const Components = () => {
 
         <section css={secttionContainer}>
           <h2 css={titleStyle}>ApplicantAccordion</h2>
-          <ApplicantAccordionList moimId={1} />
+          {/* <ApplicantAccordionList moimId={1} /> */}
         </section>
 
         <section css={secttionContainer}>
@@ -570,12 +564,15 @@ const Components = () => {
           <h2 css={titleStyle}>Carousel</h2>
           <Carousel imageList={imageList} />
         </section>
-        <section css={secttionContainer}>
+        {/* <section css={secttionContainer}>
           <h2 css={titleStyle}>ApplicantListModal</h2>
           <button onClick={handleModalOpen}>모달 열기</button>
           {isOpen && (
             <Modal onClose={handleModalClose}>
-              <ApplicantListModal applicantListData={applicantListData} />
+              <ApplicantListModal
+                applicantListData={applicantListData}
+                onClose={handleModalClose}
+              />
             </Modal>
           )}
         </section>
@@ -587,7 +584,19 @@ const Components = () => {
               <DepositModal onClose={handleModalClose} />
             </Modal>
           )}
+        </section> */}
+        <section css={secttionContainer}>
+          <h2 css={titleStyle}>LogoutModal</h2>
+          <button onClick={handleModalOpen}>모달 열기</button>
+          {isOpen && (
+            <Modal onClose={handleModalClose}>
+              <LogoutModal onClose={handleModalClose} />
+            </Modal>
+          )}
         </section>
+        {/* <section style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <CategorySelectBox />
+        </section> */}
       </div>
     </div>
   );
