@@ -12,57 +12,64 @@ import {
 } from './MyClassManage.style';
 import { useState, useEffect, useMemo } from 'react';
 import { ApplicantListModal, ClassManageEmptyView } from '@pages/host/components';
-import { ApplicantListResponseType } from '@types';
 import { useToast } from '@hooks';
-
-import { APPLICANT_DATA } from 'src/constants/mocks/applicant';
+import { useFetchSubmitterList } from '@apis/domains/moimSubmission/useFetchSubmitterList';
 import { useParams } from 'react-router-dom';
 
 const MyClassManage = () => {
-  // TODO: 커스텀 훅으로 분리
-  const { status, data } = APPLICANT_DATA;
-  const { isApprovable, maxGuest, submitterList } = data;
-  const submitterListLength = submitterList.length;
   const { moimId } = useParams();
-
-  //checkBox 부분
-  const [checkedStates, setCheckedStates] = useState<boolean[]>(
-    new Array(submitterListLength).fill(false) // 초기 상태를 모든 항목이 unchecked 상태로 설정
-  );
-
+  const { data: applicantData, isLoading } = useFetchSubmitterList(Number(moimId));
   const { showToast, isToastVisible } = useToast();
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
-  const checkedApplicant: ApplicantListResponseType = useMemo(
-    () => ({
-      maxGuest: maxGuest,
-      submitterList: submitterList.filter((_, index) => checkedStates[index]),
-    }),
-    [maxGuest, submitterList, checkedStates]
+  // 모임 정보 추출
+  const { maxGuest, isApprovable, submitterList } = applicantData || {};
+
+  // 체크박스 상태 관리
+  const [checkedStates, setCheckedStates] = useState<boolean[]>(
+    Array(submitterList?.length).fill(false)
   );
+
+  useEffect(() => {
+    if (applicantData) {
+      setCheckedStates(new Array(submitterList?.length).fill(false));
+    }
+  }, [applicantData, submitterList?.length]);
+
+  const checkedApplicant = useMemo(() => {
+    return {
+      maxGuest,
+      isApprovable,
+      submitterList: submitterList?.filter((_, index: number) => checkedStates[index]),
+    };
+  }, [maxGuest, isApprovable, submitterList, checkedStates]);
 
   const toggleChecked = (index: number) => {
-    if (checkedApplicant.submitterList.length >= maxGuest && !checkedStates[index]) return;
+    const newCheckedState = !checkedStates[index];
+
+    const checkedCount = checkedStates.filter((state) => state).length;
+
+    if (newCheckedState && checkedCount >= (maxGuest ?? 0)) {
+      showToast('최대 인원을 초과할 수 없습니다.');
+      return;
+    }
+
     if (isApprovable) {
       setCheckedStates((prevStates) =>
-        prevStates.map((checked, i) => (i === index ? !checked : checked))
+        prevStates.map((checked, i) => (i === index ? newCheckedState : checked))
       );
     } else {
-      showToast(''); //Toast에 문제가 있어보이는데 ...
+      showToast('신청 마감일 이후에 신청자를 승인할 수 있어요.');
     }
   };
 
-  // 버튼 active 상태
   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
-    // 신청자 선택 아무것도 안했을 때
-    if (status === 201 && checkedApplicant.submitterList.length > 0 && isApprovable) {
-      setIsActive(true);
+    if (checkedApplicant.submitterList) {
+      setIsActive(checkedApplicant.submitterList.length > 0 && (isApprovable ?? true));
     }
-  }, [status, checkedApplicant, isApprovable]);
-
-  // 모달 부분
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  }, [checkedApplicant, isApprovable]);
 
   const handleModalOpen = () => {
     setIsOpenModal(true);
@@ -72,40 +79,44 @@ const MyClassManage = () => {
     setIsOpenModal(false);
   };
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
       <Header title="신청자 관리" />
       <article css={myClassManageLayout}>
         <header css={headerStyle}>
+          {/* @채연 TODO: 제목도 받아와야 함!*/}
           <div>부산 10년 토박이 달아오르구마와 함께하는 사투리리</div>
         </header>
 
         <main css={mainStyle}>
-          <div css={labelStyle}>
-            <div css={textStyle}>
-              <span css={countTitleStyle}>모임 신청자</span>
-              <span css={countTextStyle}>{status === 201 ? submitterListLength : '0'}</span>
-            </div>
-            <Label variant="count">
-              {status === 201
-                ? `${checkedApplicant.submitterList.length} / ${maxGuest}`
-                : `0  / ${maxGuest}`}
-            </Label>
-          </div>
+          {submitterList && submitterList?.length > 0 ? (
+            <>
+              <div css={labelStyle}>
+                <div css={textStyle}>
+                  <span css={countTitleStyle}>모임 신청자</span>
+                  <span css={countTextStyle}>{submitterList?.length}</span>
+                </div>
+                <Label variant="count">
+                  {`${checkedApplicant.submitterList?.length} / ${maxGuest}`}
+                </Label>
+              </div>
 
-          <div css={accordionStyle}>
-            {/* 나중에 에러코드 명확하게 나오면 수정예정!!!! */}
-            {status === 201 ? (
-              <ClassManageEmptyView moimId={Number(moimId)} />
-            ) : (
-              <ApplicantAccordionList
-                applicantData={submitterList}
-                moimId={1}
-                checkedStates={checkedStates}
-                toggleChecked={toggleChecked}
-              />
-            )}
-          </div>
+              <div css={accordionStyle}>
+                <ApplicantAccordionList
+                  applicantData={submitterList ?? []}
+                  moimId={Number(moimId)}
+                  checkedStates={checkedStates}
+                  toggleChecked={toggleChecked}
+                />
+              </div>
+            </>
+          ) : (
+            <ClassManageEmptyView moimId={Number(moimId)} maxGuest={maxGuest ?? 0} />
+          )}
         </main>
 
         <footer css={footerStyle}>

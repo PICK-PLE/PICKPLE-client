@@ -73,10 +73,10 @@ export interface ClassListData {
 }
 
 export interface ApplicantDataType {
-  applicantId: number;
+  submitterId: number;
   nickname: string;
-  profileImage: string;
-  applicationDate: string;
+  submitterImageUrl: string;
+  submittedDate: string;
 }
 export interface HostInfoResponseType {
   hostNickName: string;

@@ -10,24 +10,29 @@ import {
 } from './HostMyClassCard.style';
 import { HostMyClassDataResponseType } from '@types';
 import { useNavigate } from 'react-router-dom';
+import { routePath } from '@constants';
 
 interface HostMyClassCardProps {
   hostMyClassData: HostMyClassDataResponseType;
 }
-
 const HostMyClassCard = ({ hostMyClassData }: HostMyClassCardProps) => {
   const { moimImage, title, approvedGuest, maxGuest, moimId } = hostMyClassData;
+
   const navigate = useNavigate();
+
+  const handleCardClick = () => {
+    navigate(`/class/${moimId}`);
+  };
+
   const handleButtonClick = () => {
     navigate(`/host/myclass/manage/${moimId}`);
   };
-
   return (
     <article css={cardContainer}>
       <section css={cardContent}>
         <Image src={moimImage} width="8.2rem" />
         <div css={cardText}>
-          <div css={cardTitleWrapper} onClick={() => {}}>
+          <div css={cardTitleWrapper} onClick={handleCardClick}>
             <h3 css={cardTitle}>{title} </h3>
             <IcDropdownRight css={cardIcon} />
           </div>

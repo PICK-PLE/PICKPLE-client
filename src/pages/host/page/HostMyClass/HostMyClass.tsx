@@ -13,9 +13,13 @@ import { HostMyClassCard } from '@pages/host/components';
 
 import { Header } from '@components';
 import { useFetchHostMoimInfo } from '@apis/domains/moim/useFetchHostMoimInfo';
+import { useAtom } from 'jotai';
+import { userAtom } from '@stores';
 const HostMyClass = () => {
   const [activeTab, setActiveTab] = useState<'진행 중' | '완료'>('진행 중');
   const [moimState, setMoimState] = useState<'ongoing' | 'completed'>('ongoing');
+
+  const [{ hostId }] = useAtom(userAtom);
 
   const handleOngoingTabClick = () => {
     setActiveTab('진행 중');
@@ -27,9 +31,7 @@ const HostMyClass = () => {
     setMoimState('completed');
   };
 
-  /**@정안TODO 현재 서버에서 hostId는 1로만 구현하랍니다 */
-  const hostId = 6;
-  const { data } = useFetchHostMoimInfo(hostId, moimState);
+  const { data } = useFetchHostMoimInfo(hostId ?? 0, moimState);
 
   if (!data) {
     return <div>no data</div>;
@@ -53,7 +55,7 @@ const HostMyClass = () => {
           <HostMyClassEmptyView text="아직 진행 중인 모임이 없어요" />
         ) : (
           <div css={hostMyClassCardContainer}>
-            {data.data.map((data) => (
+            {data.map((data) => (
               <HostMyClassCard key={data.moimId} hostMyClassData={data} />
             ))}
           </div>

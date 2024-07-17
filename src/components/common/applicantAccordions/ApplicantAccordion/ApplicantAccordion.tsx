@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { IcApplicantArrcodionDown, IcCheckActive, IcCheckDefault } from '@svg';
 import {
   applicantAccordionLayout,
@@ -18,46 +18,71 @@ import {
   answerStyle,
 } from './ApplicantAccordion.style';
 import { Image, QuestionText } from '@components';
-
-import { APPLICANT_ANSWER_1 } from 'src/constants/mocks/applicant';
-import { ApplicantDataType } from '@types';
+import { useFetchSubmitRequest } from '@apis/domains/moimSubmission/useFetchSubmitRequest';
+import { components } from '@schema';
 
 interface ApplicantAccordionProps {
   moimId: number;
-  guestId: number;
-  applicantData: ApplicantDataType;
+  applicantData: components['schemas']['SubmitterInfo'];
   isChecked: boolean;
   toggleChecked: () => void;
 }
+
+type QuestionAnswerPair = {
+  question: string | undefined;
+  answer: string | undefined;
+};
 
 const ApplicantAccordion = ({
   applicantData,
   isChecked,
   moimId,
-  guestId,
   toggleChecked,
 }: ApplicantAccordionProps) => {
-  const { nickname, profileImage, applicationDate } = applicantData;
+  const {
+    submitterId = 1,
+    nickname = '',
+    submitterImageUrl = '',
+    submittedDate = '',
+  } = applicantData;
 
+  const { data: submitRequest, refetch } = useFetchSubmitRequest({ moimId, submitterId });
   const [isAccordionOpen, setIsAccordionOpen] = useState(false);
+  const [submitRequestList, setSubmitRequestList] = useState<QuestionAnswerPair[]>([]);
 
-  const questionObject = APPLICANT_ANSWER_1;
-
-  const questionList = Object.keys(questionObject.questionList).map((key) => {
-    const questionKey = key as keyof typeof questionObject.questionList;
-    const answerKey = `answer${key.slice(-1)}` as keyof typeof questionObject.answerList;
-
-    return {
-      question: questionObject.questionList[questionKey],
-      answer: questionObject.answerList[answerKey],
-    };
-  });
-
-  const handleAccodionClick = () => {
+  const handleAccordionClick = () => {
     setIsAccordionOpen(!isAccordionOpen);
+    if (!isAccordionOpen) {
+      refetch(); // 아코디언이 열릴 때 API 호출
+    }
   };
 
-  const defaultImgUrl = 'svg/ic_default-userimg.svg';
+  useEffect(() => {
+    if (submitRequest) {
+      const questions = {
+        question1: '',
+        question2: '',
+        question3: '',
+      };
+
+      const answers = {
+        answer1: '',
+        answer2: '',
+        answer3: '',
+      };
+      const { questionList = questions, answerList = answers } = submitRequest;
+      const questionAnswerPairs: QuestionAnswerPair[] = Object.keys(questionList).map((key) => {
+        const questionKey = key as keyof typeof questionList;
+        const answerKey = `answer${key.slice(-1)}` as keyof typeof answerList;
+
+        return {
+          question: questionList[questionKey],
+          answer: answerList[answerKey] || '',
+        };
+      });
+      setSubmitRequestList(questionAnswerPairs);
+    }
+  }, [submitRequest]);
 
   return (
     <div css={applicantAccordionLayout}>
@@ -69,7 +94,7 @@ const ApplicantAccordion = ({
             <input
               type="checkbox"
               css={checkboxStyle}
-              checked={isChecked}
+              checked={isChecked ?? false}
               onChange={toggleChecked}
             />
           </label>
@@ -79,19 +104,19 @@ const ApplicantAccordion = ({
             <Image
               variant="round"
               width="4.8rem"
-              src={profileImage || defaultImgUrl}
+              src={submitterImageUrl}
               css={applicnatImgStyle}
             />
 
             <div css={applicantInfoStyle}>
               <span css={applicantNameStyle}>{nickname}</span>
-              <span css={applyDateStyle}>{applicationDate}</span>
+              <span css={applyDateStyle}>{submittedDate}</span>
             </div>
           </div>
         </div>
 
         {/* 아코디언 버튼 */}
-        <button css={accodionButtonStyle} onClick={handleAccodionClick}>
+        <button css={accodionButtonStyle} onClick={handleAccordionClick}>
           <IcApplicantArrcodionDown css={accodionStyle(isAccordionOpen)} />
         </button>
       </div>
@@ -99,7 +124,7 @@ const ApplicantAccordion = ({
       {/* 아코디언 열렸을 때 보이는 부분 */}
       {isAccordionOpen && (
         <div css={accdionContentWrapperStyle}>
-          {questionList.map((item, index) => {
+          {submitRequestList.map((item, index) => {
             const { question, answer } = item;
             return (
               question &&

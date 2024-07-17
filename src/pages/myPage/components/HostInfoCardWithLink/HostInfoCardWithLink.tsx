@@ -13,14 +13,20 @@ import { Button, Image, InterestCategoryButton } from '@components';
 import { CATEGORY_NAME, CATEGORY_SMALL_ICON } from 'src/constants/category';
 import HostMyPageEmptyView from '../HostMyPageEmptyView/HostMyPageEmptyView';
 import { HostCategoryList, HostInfoCardWithLinkDataResponseType } from '@types';
+import { useNavigate } from 'react-router-dom';
+import { routePath } from '@constants';
 
 interface hostInfoCardWithLinkListProps {
   hostInfoCardWithLinkList: HostInfoCardWithLinkDataResponseType;
 }
 const HostInfoCardWithLink = ({ hostInfoCardWithLinkList }: hostInfoCardWithLinkListProps) => {
   const { hostNickName, hostLink, hostCategoryList, hostImageUrl } = hostInfoCardWithLinkList;
-
+  const navigate = useNavigate();
   const categoryKeys: (keyof HostCategoryList)[] = ['category1', 'category2', 'category3'];
+
+  const handleButtonClick = () => {
+    navigate(routePath.CLASS_POST);
+  };
 
   return (
     <section css={hostInfoCardWithLinkLayout}>
@@ -52,7 +58,9 @@ const HostInfoCardWithLink = ({ hostInfoCardWithLinkList }: hostInfoCardWithLink
                   );
                 })}
               </article>
-              <Button variant="small">클래스 모임 개설하기</Button>
+              <Button variant="small" onClick={handleButtonClick}>
+                클래스 모임 개설하기
+              </Button>
             </section>
           </div>
         </>
