@@ -7,10 +7,18 @@ import {
 } from './ClassManageEmptyView.style';
 import { Button } from '@components';
 import { graphicImage } from '@constants';
+import useClipboard from 'src/hooks/useCopyClip';
+import { handleShare } from 'src/utils/share';
 
-const ClassManageEmptyView = () => {
+interface ClassManageEmptyViewProps {
+  moimId: number;
+}
+
+const ClassManageEmptyView = ({ moimId }: ClassManageEmptyViewProps) => {
+  const { handleCopyToClipboard } = useClipboard();
+
   // 공유버튼 부분 예시
-  const url = 'https://pick-ple.com';
+  const url = `https://pick-ple.com/class/${moimId}`;
   const title = 'PICK!PLE';
   const text = "내가 PICK!한 바로 '그 사람'과 함께하는 클래스 모임.";
 
@@ -33,11 +41,7 @@ const ClassManageEmptyView = () => {
         <Button
           variant="round"
           onClick={() => {
-            navigator.share({
-              url,
-              title,
-              text,
-            });
+            handleShare(url, title, text, handleCopyToClipboard);
           }}>
           모임 공유하기
         </Button>

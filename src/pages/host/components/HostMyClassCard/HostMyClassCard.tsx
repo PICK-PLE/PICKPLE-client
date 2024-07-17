@@ -9,13 +9,19 @@ import {
   cardTitleWrapper,
 } from './HostMyClassCard.style';
 import { HostMyClassDataResponseType } from '@types';
+import { useNavigate } from 'react-router-dom';
 
 interface HostMyClassCardProps {
   hostMyClassData: HostMyClassDataResponseType;
 }
 
 const HostMyClassCard = ({ hostMyClassData }: HostMyClassCardProps) => {
-  const { moimImage, title, approvedGuest, maxGuest } = hostMyClassData;
+  const { moimImage, title, approvedGuest, maxGuest, moimId } = hostMyClassData;
+  const navigate = useNavigate();
+  const handleButtonClick = () => {
+    navigate(`/host/myclass/manage/${moimId}`);
+  };
+
   return (
     <article css={cardContainer}>
       <section css={cardContent}>
@@ -28,7 +34,9 @@ const HostMyClassCard = ({ hostMyClassData }: HostMyClassCardProps) => {
           <Label variant="textCount">{`승인 현황 ${approvedGuest} / ${maxGuest}`}</Label>
         </div>
       </section>
-      <Button variant="stroke">신청자 관리</Button>
+      <Button variant="stroke" onClick={handleButtonClick}>
+        신청자 관리
+      </Button>
     </article>
   );
 };
