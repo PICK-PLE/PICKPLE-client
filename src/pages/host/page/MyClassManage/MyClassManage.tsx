@@ -47,19 +47,19 @@ const MyClassManage = () => {
   const toggleChecked = (index: number) => {
     const newCheckedState = !checkedStates[index];
 
-    const checkedCount = checkedStates.filter((state) => state).length;
+    // const checkedCount = checkedStates.filter((state) => state).length;
 
-    if (newCheckedState && checkedCount >= (maxGuest ?? 0)) {
-      showToast('최대 인원을 초과할 수 없습니다.');
-      return;
-    }
+    // if (newCheckedState && checkedCount >= (maxGuest ?? 0)) {
+    //   showToast('최대 인원을 초과할 수 없습니다.');
+    //   return;
+    // }
 
     if (isApprovable) {
       setCheckedStates((prevStates) =>
         prevStates.map((checked, i) => (i === index ? newCheckedState : checked))
       );
     } else {
-      showToast('신청 마감일 이후에 신청자를 승인할 수 있어요.');
+      showToast();
     }
   };
 
@@ -136,6 +136,7 @@ const MyClassManage = () => {
             신청 마감일 이후에 신청자를 승인할 수 있어요.
           </Toast>
         )}
+
       </article>
     </div>
   );
