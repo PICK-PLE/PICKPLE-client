@@ -1,6 +1,11 @@
 import { css, Theme } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
+export const emptyViewLayout = css`
+  ${flexGenerator('column')};
+  height: calc(100dvh - 34.2rem);
+`;
+
 export const emptyViewContainer = css`
   ${flexGenerator('column', 'center', 'center')};
   gap: 2.1rem;
@@ -16,7 +21,6 @@ export const emptyViewImageStyle = css`
 
 export const emptyViewButtonStyle = css`
   width: 17.7rem;
-  
 `;
 
 export const emptyText = (theme: Theme) => css`

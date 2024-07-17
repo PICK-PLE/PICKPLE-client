@@ -23,7 +23,7 @@ const MyClassManage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   // 모임 정보 추출
-  const { maxGuest, isApprovable, submitterList } = applicantData || {};
+  const { moimTitle, maxGuest, isApprovable, submitterList } = applicantData || {};
 
   // 체크박스 상태 관리
   const [checkedStates, setCheckedStates] = useState<boolean[]>(
@@ -88,8 +88,7 @@ const MyClassManage = () => {
       <Header title="신청자 관리" />
       <article css={myClassManageLayout}>
         <header css={headerStyle}>
-          {/* @채연 TODO: 제목도 받아와야 함!*/}
-          <div>부산 10년 토박이 달아오르구마와 함께하는 사투리리</div>
+          <p>{moimTitle}</p>
         </header>
 
         <main css={mainStyle}>
@@ -136,7 +135,6 @@ const MyClassManage = () => {
             신청 마감일 이후에 신청자를 승인할 수 있어요.
           </Toast>
         )}
-
       </article>
     </div>
   );
