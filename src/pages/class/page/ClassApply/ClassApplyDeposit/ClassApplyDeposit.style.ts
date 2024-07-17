@@ -38,9 +38,6 @@ export const depositFooterStyle = css`
   gap: 1.5rem;
   width: 100%;
   margin-top: auto;
-
-  /* background-color: pink; */
-  /* position: relative; */
 `;
 
 export const depositCautionTextStyle = (theme: Theme) => css`
