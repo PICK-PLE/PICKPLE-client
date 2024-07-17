@@ -28,7 +28,7 @@ const HostMyClass = () => {
   };
 
   /**@정안TODO 현재 서버에서 hostId는 1로만 구현하랍니다 */
-  const hostId = 1;
+  const hostId = 6;
   const { data } = useFetchHostMoimInfo(hostId, moimState);
 
   if (!data) {
