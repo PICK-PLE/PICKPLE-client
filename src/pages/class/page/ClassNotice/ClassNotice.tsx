@@ -43,7 +43,6 @@ const ClassNotice = () => {
 
   const handleButtonClick = async (): Promise<void> => {
     let imageUrl: undefined | string = undefined;
-    console.log('selectedFiles.length', selectedFiles.length);
     if (selectedFiles.length === 1) {
       const imageUrlList = await handleUpload({
         selectedFiles,
@@ -58,7 +57,7 @@ const ClassNotice = () => {
       imageUrl,
     };
 
-    const moimId = 5; //정안TODO 실제 모임ID로 변경
+    const moimId = 5; //정안TODO 실제 모임ID로 변경 -> 태승이가 다른 브랜치에서 path에서 받게 설정해둠
     await postNoticeMutation.mutateAsync({ params, moimId });
     handleNavigateToMoimInfo(moimId);
   };
@@ -89,7 +88,7 @@ const ClassNotice = () => {
           </div>
         </main>
 
-        <Button variant="large" disabled={isButtonDisabled} onClick={() => handleButtonClick()}>
+        <Button variant="large" disabled={isButtonDisabled} onClick={handleButtonClick}>
           게시하기
         </Button>
       </div>
