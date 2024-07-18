@@ -19,9 +19,12 @@ import { handleUpload } from 'src/utils/image';
 import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
 import { smoothScroll } from '@utils';
 import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
+import { useAtom } from 'jotai';
+import { moimIdAtom } from 'src/stores/classPostData';
 
 const StepThree = ({ onNext }: StepProps) => {
   const { classPostState, handleInputChange } = useClassPostInputChange();
+  const [, setMoimId] = useAtom(moimIdAtom);
   const { validateStepThree } = useClassPostInputValidation();
   const { isTitleValid, isDescriptionValid, isAllValid } = validateStepThree(classPostState);
 
@@ -40,7 +43,11 @@ const StepThree = ({ onNext }: StepProps) => {
 
       postMoim
         .mutateAsync({ ...classPostState, imageList: imageUrlList })
-        .then(() => {
+        .then((data) => {
+          if (data) {
+            console.log(data);
+            setMoimId(data);
+          }
           onNext();
           smoothScroll(0);
         })
