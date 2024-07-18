@@ -50,19 +50,11 @@ const GuestMyClass = () => {
   };
 
   if (!applyData) {
-    return (
-      <div>
-        <Error />
-      </div>
-    );
+    return <Error />;
   }
 
   if (isApplyLoading || isParticipateLoading) {
-    return (
-      <div>
-        <Spinner />
-      </div>
-    );
+    return <Spinner />;
   }
 
   if (applyError || participateError) {

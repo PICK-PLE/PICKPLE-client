@@ -82,19 +82,11 @@ const MyClassManage = () => {
   };
 
   if (isLoading) {
-    return (
-      <div>
-        <Spinner />
-      </div>
-    );
+    return <Spinner />;
   }
 
   if (!applicantData) {
-    return (
-      <div>
-        <Error />
-      </div>
-    );
+    return <Error />;
   }
 
   return (

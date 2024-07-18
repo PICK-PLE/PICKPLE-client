@@ -27,19 +27,11 @@ const GuestClassRegisterCard = ({ moimId }: GuestClassRegisterCardProps) => {
   const { data: appliedMoimData, isLoading } = useFetchSubmittedMoimDetail(moimId);
 
   if (!appliedMoimData) {
-    return (
-      <div>
-        <Error />
-      </div>
-    );
+    return <Error />;
   }
 
   if (isLoading) {
-    return (
-      <>
-        <Spinner />
-      </>
-    );
+    return <Spinner />;
   }
 
   const { title, hostNickname, isOffline, spot, dateList, fee, hostImageUrl, moimImageUrl } =

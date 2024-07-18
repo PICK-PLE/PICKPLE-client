@@ -95,19 +95,11 @@ const ClassApplyQuestion = () => {
   };
 
   if (!questionData) {
-    return (
-      <>
-        <Error />
-      </>
-    );
+    return <Error />;
   }
 
   if (isLoading) {
-    return (
-      <>
-        <Spinner />
-      </>
-    );
+    return <Spinner />;
   }
 
   return (

@@ -59,11 +59,7 @@ const Categories = () => {
   };
 
   if (moimList === null) {
-    return (
-      <>
-        <Error />
-      </>
-    );
+    return <Error />;
   }
 
   if (isLoading) {

@@ -55,11 +55,7 @@ const Class = () => {
   );
 
   if (!moimDetail || !moimDescription) {
-    return (
-      <div>
-        <Error />
-      </div>
-    );
+    return <Error />;
   }
 
   const { dayOfDay, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;

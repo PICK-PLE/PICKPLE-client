@@ -30,11 +30,7 @@ const Home = () => {
   };
 
   if (bannerId === null) {
-    return (
-      <div>
-        <Error />
-      </div>
-    );
+    return <Error />;
   }
 
   if (isLoading) {

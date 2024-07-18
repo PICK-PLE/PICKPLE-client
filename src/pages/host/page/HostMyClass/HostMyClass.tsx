@@ -36,19 +36,11 @@ const HostMyClass = () => {
   const { data, isLoading } = useFetchHostMoimInfo(hostId ?? 0, moimState);
 
   if (!data) {
-    return (
-      <div>
-        <Error />
-      </div>
-    );
+    return <Error />;
   }
 
   if (isLoading) {
-    return (
-      <div>
-        <Spinner />
-      </div>
-    );
+    return <Spinner />;
   }
 
   return (
