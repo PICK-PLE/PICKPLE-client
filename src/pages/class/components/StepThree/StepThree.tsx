@@ -52,7 +52,6 @@ const StepThree = ({ onNext }: StepProps) => {
         .mutateAsync({ ...classPostState, imageList: imageUrlList })
         .then((data) => {
           if (data) {
-            console.log(data);
             setMoimId(data);
           }
           onNext();
@@ -64,7 +63,7 @@ const StepThree = ({ onNext }: StepProps) => {
         });
     }
   };
-  
+
   return (
     <>
       <ProgressBar progress={75} />
