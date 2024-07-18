@@ -66,7 +66,7 @@ const ClassApplyQuestion = () => {
 
   useEffect(() => {
     if (isSuccess && questionData) {
-      setQuestionList(Object.values(questionData));
+      setQuestionList(Object.values(questionData).filter(question => question !== null));
     }
   }, [isSuccess, questionData]);
 
@@ -91,6 +91,18 @@ const ClassApplyQuestion = () => {
       },
     }));
   };
+
+  const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+
+  useEffect(() => {
+    const { answerList, accountList } = answer;
+    const allAnswersFilled = questionList.every((_, index) => answerList[`answer${index + 1}`].trim() !== '');
+    const allAccountsFilled = Object.values(accountList).every(value => value.trim() !== '');
+    setIsButtonDisabled(!(allAnswersFilled && allAccountsFilled));
+  }, [answer, questionList]);
+
+
+
   const requestData = {
     moimId: Number(moimId),
     body: answer,
@@ -127,17 +139,21 @@ const ClassApplyQuestion = () => {
             <main css={questionMainStyle}>
               {questionList.map((question, index) => (
                 <div css={questionDataStyle} key={`question-${index}`}>
-                  <QuestionText numberLabel={`Q${index + 1}`}>{question}</QuestionText>
-                  <TextArea
-                    value={answer.answerList[`answer${index + 1}`]}
-                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                      updateAnswerList(`answer${index + 1}`, e.target.value)
-                    }
-                    maxLength={200}
-                    size="medium"
-                    placeholder="답변을 작성해주세요."
-                    isValid
-                  />
+                  {question && (
+                    <>
+                      <QuestionText numberLabel={`Q${index + 1}`}>{question}</QuestionText>
+                      <TextArea
+                        value={answer.answerList[`answer${index + 1}`]}
+                        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+                          updateAnswerList(`answer${index + 1}`, e.target.value)
+                        }
+                        maxLength={200}
+                        size="medium"
+                        placeholder="답변을 작성해주세요."
+                        isValid
+                      />
+                    </>
+                  )}
                 </div>
               ))}
 
@@ -190,7 +206,7 @@ const ClassApplyQuestion = () => {
           </div>
 
           <footer css={questionFooterStyle}>
-            <Button variant="large" onClick={handleButtonClick}>
+            <Button variant="large" onClick={handleButtonClick} disabled={isButtonDisabled}>
               신청하기
             </Button>
           </footer>

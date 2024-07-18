@@ -709,6 +709,7 @@ export interface components {
             data?: components["schemas"]["MoimSubmissionByMoimResponse"];
         };
         MoimSubmissionByMoimResponse: {
+            moimTitle?: string;
             /** Format: int32 */
             maxGuest?: number;
             isApprovable?: boolean;

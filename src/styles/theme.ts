@@ -43,7 +43,7 @@ const theme = {
       ${PretendardFont};
       font-size: 2rem;
       font-weight: 700;
-      line-height: normal;
+      line-height: 140%;
       letter-spacing: 0px;
     `,
     'head03-b-18': css`

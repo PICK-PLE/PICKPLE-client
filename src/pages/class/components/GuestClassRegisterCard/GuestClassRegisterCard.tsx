@@ -18,13 +18,10 @@ import { IcDate, IcOffline, IcOneline } from '@svg';
 import { useFetchSubmittedMoimDetail } from '@apis/domains/moim';
 import Error from '@pages/error/Error';
 import { Spinner } from '@components';
+import { MoimIdPathParameterType } from '@types';
 
-interface GuestClassRegisterCardProps {
-  moimId: number;
-}
-const GuestClassRegisterCard = ({ moimId }: GuestClassRegisterCardProps) => {
-  /* @채연 TODO: moimId 고정값 말고 url로 사용할 수 있도록 수정하기!*/
-  const { data: appliedMoimData, isLoading } = useFetchSubmittedMoimDetail(moimId);
+const GuestClassRegisterCard = ({ moimId }: MoimIdPathParameterType) => {
+  const { data: appliedMoimData, isLoading } = useFetchSubmittedMoimDetail(Number(moimId));
 
   if (!appliedMoimData) {
     return <Error />;
