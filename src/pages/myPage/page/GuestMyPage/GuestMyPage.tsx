@@ -10,7 +10,7 @@ import {
   divdier,
   profileWrapper,
 } from './GuestMyPage.style';
-import { routePath } from '@constants';
+import { images, routePath } from '@constants';
 import { useEasyNavigate } from '@hooks';
 import { IcNext } from '@svg';
 import { isLoggedIn } from '@utils';
@@ -18,7 +18,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAtom } from 'jotai';
 import { userAtom } from '@stores';
-import { GuestProfileImage } from '@image';
 import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 
 const GuestMyPage = () => {
@@ -64,7 +63,7 @@ const GuestMyPage = () => {
         <div css={profileWrapper}>
           <SimpleUserProfile
             size="xlarge"
-            userImgUrl={GuestProfileImage}
+            userImgUrl={images.GuestProfileImage}
             username={user.guestNickname || ''}
           />
         </div>

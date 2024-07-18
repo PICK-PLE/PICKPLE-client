@@ -9,7 +9,7 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepFour.style';
-import { HostClassOpenImage } from '@image';
+import { graphicImage } from '@constants';
 
 const StepFour = () => {
   return (
@@ -26,7 +26,7 @@ const StepFour = () => {
           </span>
         </header>
         <main css={mainStyle}>
-          <img src={HostClassOpenImage} css={imageStyle} />
+          <img src={graphicImage.HostClassOpenImage} css={imageStyle} />
         </main>
         <footer css={footerStyle}>
           <Button variant="large">개설한 모임 보러가기</Button>

@@ -13,7 +13,7 @@ import { Button, Image, InterestCategoryButton } from '@components';
 import { CATEGORY_NAME, CATEGORY_SMALL_ICON } from 'src/constants/category';
 import { components } from '@schema';
 import { useNavigate } from 'react-router-dom';
-import { HostProfileImage } from '@image';
+import { images } from '@constants';
 
 type HostGetResponse = components['schemas']['HostGetResponse'];
 
@@ -37,7 +37,7 @@ const HostInfoCardWithLink = ({ hostInfoCardWithLinkList }: hostInfoCardWithLink
       <div css={hostInfoCardWithLinkContainer}>
         <section css={hostInfoCardWithLinkWrapper}>
           <article css={hostInfoWrapper}>
-            <Image variant="round" width="6rem" src={hostImageUrl ?? HostProfileImage} />
+            <Image variant="round" width="6rem" src={hostImageUrl ?? images.HostProfileImage} />
             <div css={hostDetailWrapper}>
               <p css={hostNameStyle}>{hostNickName}</p>
               <div css={linkWrapper}>
