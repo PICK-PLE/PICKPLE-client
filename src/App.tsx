@@ -11,7 +11,7 @@ import {
   homeRoutes,
   hostRoutes,
   myPageRoutes,
-  devRoutes,
+  // devRoutes,
 } from '@routes';
 import errorPageRoutes from './routes/errorRoutes';
 import { useAtom } from 'jotai';
@@ -27,7 +27,7 @@ const router = createBrowserRouter([
   ...homeRoutes,
   ...hostRoutes,
   ...myPageRoutes,
-  ...devRoutes,
+  // ...devRoutes,
   ...errorPageRoutes,
 ]);
 
