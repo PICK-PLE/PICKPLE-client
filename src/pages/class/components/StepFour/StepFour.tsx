@@ -10,8 +10,16 @@ import {
   titleStyle,
 } from './StepFour.style';
 import { HostClassOpenImage } from '@image';
+import { useNavigate } from 'react-router-dom';
+import { routePath } from '@constants';
 
 const StepFour = () => {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate(routePath.CATEGORY);
+  };
+
   return (
     <>
       <ProgressBar progress={100} />
@@ -29,7 +37,9 @@ const StepFour = () => {
           <img src={HostClassOpenImage} css={imageStyle} />
         </main>
         <footer css={footerStyle}>
-          <Button variant="large">개설한 모임 보러가기</Button>
+          <Button variant="large" onClick={handleButtonClick}>
+            개설한 모임 보러가기
+          </Button>
         </footer>
       </div>
     </>
