@@ -10,6 +10,7 @@ import {
   detailTitleStyle,
   detailInfoStyle,
   moimCardLayout,
+  imageCustomStyle,
 } from './MoimCard.style';
 import { IcDropdownRight } from '@svg';
 import { statusMapText } from 'src/constants/mappingText';
@@ -48,6 +49,7 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
               <Label variant="status">{statusMapText[moimSubmissionState ?? '']}</Label>
             ) : null
           }
+          customStyle={imageCustomStyle}
         />
         <article css={detailInfoWrapper}>
           <div css={titleWrapper} onClick={handleCardClick}>

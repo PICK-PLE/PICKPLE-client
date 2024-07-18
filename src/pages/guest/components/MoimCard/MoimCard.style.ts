@@ -67,3 +67,7 @@ export const detailInfoStyle = (theme: Theme) => css`
   color: ${theme.color.darkgray};
   ${theme.font['body04-m-12']};
 `;
+
+export const imageCustomStyle = css`
+  object-position: right;
+`;
