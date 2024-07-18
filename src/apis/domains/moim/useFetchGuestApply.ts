@@ -1,14 +1,17 @@
 import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+import { components } from '@schema';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { ApiResponseType, MoimResponseType } from '@types';
+import { ApiResponseType } from '@types';
+
+type SubmittedMoimByGuestResponse = components['schemas']['SubmittedMoimByGuestResponse'];
 
 const getGuestApplyMoim = async (
   guestId: number,
   moimSubmissionState: string
-): Promise<MoimResponseType[] | null> => {
+): Promise<SubmittedMoimByGuestResponse[] | null> => {
   try {
-    const response = await get<ApiResponseType<MoimResponseType[]>>(
+    const response = await get<ApiResponseType<SubmittedMoimByGuestResponse[]>>(
       `/guest/${guestId}/submitted-moim-list?moimSubmissionState=${moimSubmissionState}`
     );
     return response.data.data;

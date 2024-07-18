@@ -47,21 +47,21 @@ const StepTwo = ({ onNext }: StepProps) => {
           <section css={sectionStyle}>
             <QuestionInput
               numberLabel="Q1"
-              maxLength={20}
+              maxLength={50}
               value={classPostState.questionList.question1}
               placeholder="질문을 입력하세요."
               onChange={(e) => handleQuestionChange(e, 'question1')}
             />
             <QuestionInput
               numberLabel="Q2"
-              maxLength={20}
+              maxLength={50}
               value={classPostState.questionList.question2}
               placeholder="(선택) 질문을 입력하세요."
               onChange={(e) => handleQuestionChange(e, 'question2')}
             />
             <QuestionInput
               numberLabel="Q3"
-              maxLength={20}
+              maxLength={50}
               value={classPostState.questionList.question3}
               placeholder="(선택) 질문을 입력하세요."
               onChange={(e) => handleQuestionChange(e, 'question3')}

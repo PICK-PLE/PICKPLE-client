@@ -12,14 +12,16 @@ import {
   moimCardLayout,
 } from './MoimCard.style';
 import { IcDropdownRight } from '@svg';
-import { MoimResponseType } from '@types';
 import { statusMapText } from 'src/constants/mappingText';
 import { useState } from 'react';
 import DepositModal from '../DepositModal/DepositModal';
 import { useNavigate } from 'react-router-dom';
+import { components } from '@schema';
+
+type SubmittedMoimByGuestResponse = components['schemas']['SubmittedMoimByGuestResponse'];
 
 interface MoimCardProps {
-  guestMyClassData: MoimResponseType;
+  guestMyClassData: SubmittedMoimByGuestResponse;
 }
 
 const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
@@ -39,11 +41,11 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
     <div css={moimCardLayout}>
       <article css={moimCardContainer}>
         <Image
-          src={imageUrl}
+          src={imageUrl ?? ''}
           width="11.2rem"
           label={
             moimSubmissionState !== 'completed' ? (
-              <Label variant="status">{statusMapText[moimSubmissionState]}</Label>
+              <Label variant="status">{statusMapText[moimSubmissionState ?? '']}</Label>
             ) : null
           }
         />
@@ -59,13 +61,11 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
             </div>
             <div css={detailTitleWrapper}>
               <p css={detailTitleStyle}>모임날짜</p>
-              <p css={detailInfoStyle}>
-                {dateList.date} ({dateList.dayOfWeek})
-              </p>
+              <p css={detailInfoStyle}>{dateList && `${dateList.date} (${dateList.dayOfWeek})`}</p>
             </div>
             <div css={detailTitleWrapper}>
               <p css={detailTitleStyle}>참가비</p>
-              <p css={detailInfoStyle}>{fee.toLocaleString()}원</p>
+              <p css={detailInfoStyle}>{fee?.toLocaleString()}원</p>
             </div>
           </div>
         </article>

@@ -1,11 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { get } from '@apis/api';
-import { ApiResponseType, MoimNotceType } from '@types';
+import { ApiResponseType } from '@types';
+import { components } from '@schema';
 
-const getMoimNoticeList = async (moimId: string): Promise<MoimNotceType[] | null> => {
+type NoticeListGetByMoimResponse = components['schemas']['NoticeListGetByMoimResponse'];
+
+const getMoimNoticeList = async (moimId: string): Promise<NoticeListGetByMoimResponse[] | null> => {
   try {
-    const response = await get<ApiResponseType<MoimNotceType[]>>(
+    const response = await get<ApiResponseType<NoticeListGetByMoimResponse[]>>(
       `/moim/${Number(moimId)}/notice-list`
     );
     return response.data.data;
