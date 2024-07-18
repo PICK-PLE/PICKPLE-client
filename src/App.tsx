@@ -11,7 +11,7 @@ import {
   homeRoutes,
   hostRoutes,
   myPageRoutes,
-  devRoutes,
+  //devRoutes,
   adminRoutes
 
 } from '@routes';
@@ -20,19 +20,26 @@ import { useAtom } from 'jotai';
 import { categoriesAtom } from '@stores';
 import { useFetchMoimCategories } from '@apis/domains/moim';
 import { useEffect } from 'react';
+import PrivateRoute from './routes/PrivateRoute/PrivateRoute';
 
-const router = createBrowserRouter([
-  ...authRoutes,
+const allRoutes = [
   ...categoriesRoutes,
   ...classRoutes,
   ...guestRoutes,
   ...homeRoutes,
   ...hostRoutes,
   ...myPageRoutes,
-  ...devRoutes,
   ...errorPageRoutes,
   ...adminRoutes
-]);
+  // ...devRoutes,
+];
+
+const protectedRoutes = allRoutes.map((route) => ({
+  ...route,
+  element: <PrivateRoute element={route.element} />,
+}));
+
+const router = createBrowserRouter([...authRoutes, ...protectedRoutes]);
 
 const App = () => {
   const [, setCategories] = useAtom(categoriesAtom);

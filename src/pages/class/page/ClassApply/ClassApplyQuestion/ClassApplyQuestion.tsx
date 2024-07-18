@@ -96,14 +96,14 @@ const ClassApplyQuestion = () => {
 
   useEffect(() => {
     const { answerList, accountList } = answer;
-    const allAnswersFilled = questionList.every((_, index) => answerList[`answer${index + 1}`].trim() !== '');
-    const allAccountsFilled = Object.values(accountList).every(value => value.trim() !== '');
+    const allAnswersFilled = questionList.every(
+      (_, index) => answerList[`answer${index + 1}`].trim() !== ''
+    );
+    const allAccountsFilled = Object.values(accountList).every((value) => value.trim() !== '');
     setIsButtonDisabled(!(allAnswersFilled && allAccountsFilled));
 
     console.log(questionList);
   }, [answer, questionList]);
-
-
 
   const requestData = {
     moimId: Number(moimId),

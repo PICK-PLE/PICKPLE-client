@@ -8,7 +8,6 @@ import {
 } from './HostMyClass.style';
 import { useState } from 'react';
 import { HostMyClassEmptyView } from '@pages/host/components';
-import { hostMyClassCardData } from 'src/constants/mocks/HostMyClassCardData';
 import { HostMyClassCard } from '@pages/host/components';
 
 import { Header, Spinner } from '@components';
@@ -56,7 +55,7 @@ const HostMyClass = () => {
           </div>
         </div>
 
-        {hostMyClassCardData.length === 0 ? (
+        {data.length === 0 ? (
           <HostMyClassEmptyView text="아직 진행 중인 모임이 없어요" />
         ) : (
           <div css={hostMyClassCardContainer}>

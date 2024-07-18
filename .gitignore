@@ -24,3 +24,8 @@ dist-ssr
 *.sw?
 
 .env
+
+# Ignore build artifacts
+tsconfig.node.tsbuildinfo
+vite.config.d.ts
+vite.config.js
