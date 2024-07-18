@@ -15,6 +15,7 @@ import {
   LogoHeader,
   ShareButton,
   Spinner,
+  Toast,
 } from '@components';
 import {
   buttonContainer,
@@ -34,17 +35,19 @@ import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
-import { useWindowSize } from '@hooks';
+import { useClipboard, useToast, useWindowSize } from '@hooks';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
 import { MoimIdPathParameterType } from '@types';
 import Error from '@pages/error/Error';
-import { dDayText } from '@utils';
+import { dDayText, handleShare } from '@utils';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
   const navigate = useNavigate();
   const [selectTab, setSelectTab] = useState<'모임소개' | '공지사항' | '리뷰'>('모임소개');
   const { moimId } = useParams<MoimIdPathParameterType>();
+  const { handleCopyToClipboard } = useClipboard();
+  const { showToast, isToastVisible } = useToast();
 
   const { data: moimDetail, isLoading: isMoimDetailLoading } = useFetchMoimDetail(moimId ?? '');
   const { data: moimDescription, isLoading: isMoimDescriptionLoading } = useFetchMoimDescription(
@@ -66,12 +69,21 @@ const Class = () => {
 
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
 
+  const url = `https://pick-ple.com/class/${moimId}`;
+  const shareTitle = 'PICK!PLE';
+  const text = title ?? '';
+
   const handleNoticePostClick = (moimId: string) => {
     navigate(`/class/${moimId}/notice/post`);
   };
 
   const handleApplyButtonClick = () => {
     navigate(`/class/${moimId}/apply/rule`);
+  };
+
+  const handleShareButtonClick = () => {
+    handleShare(url, shareTitle, text, handleCopyToClipboard);
+    showToast();
   };
 
   return (
@@ -145,12 +157,17 @@ const Class = () => {
           </div>
         )}
         <section css={buttonContainer(windowWidth)}>
-          <ShareButton />
-          <Button variant="large" onClick={handleApplyButtonClick}>
+          <ShareButton onClick={handleShareButtonClick} />
+          <Button variant="large" onClick={handleApplyButtonClick} disabled={dayOfDay < 0}>
             참여하기
           </Button>
         </section>
       </div>
+      {isToastVisible && (
+        <Toast isVisible={isToastVisible} toastBottom={10}>
+          클립보드에 모임 링크를 복사했어요!
+        </Toast>
+      )}
     </div>
   );
 };
