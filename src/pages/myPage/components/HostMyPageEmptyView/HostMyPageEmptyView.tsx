@@ -1,5 +1,6 @@
 import { graphicImage } from '@constants';
 import {
+  buttonWrapper,
   hostMyPageEmptyViewContainer,
   hostMyPageEmptyViewWrapper,
   imageStyle,
@@ -21,9 +22,11 @@ const HostMyPageEmptyView = () => {
         <p css={textStyle}>아직 호스트로 등록되어 있지 않아요</p>
         <p css={textStyle}>호스트가 되어 다양한 게스트들을 만나 보세요!</p>
       </div>
-      <Button variant="round" onClick={handleButtonClick}>
-        호스트 신청하러 가기
-      </Button>
+      <div css={buttonWrapper}>
+        <Button variant="round" onClick={handleButtonClick}>
+          호스트 신청하러 가기
+        </Button>
+      </div>
     </div>
   );
 };
