@@ -1,4 +1,4 @@
-import { LogoHeader, Modal, NavigateBox } from '@components';
+import { LogoHeader, Modal, NavigateBox, Spinner } from '@components';
 import {
   divdier,
   iconStyle,
@@ -23,7 +23,7 @@ import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 
 const HostMyPage = () => {
   const [user, setUser] = useAtom(userAtom);
-  const { data: hostInfoData, isSuccess } = useFetchMyHost();
+  const { data: hostInfoData, isSuccess, isLoading } = useFetchMyHost();
   const { goGuestMyPage } = useEasyNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -61,6 +61,11 @@ const HostMyPage = () => {
     }
   }, [isSuccess, hostInfoData, setUser]);
 
+  /**@정안TODO Spinner보다 Error가 먼저 잡혀서 주석처리 해놓음 */
+  // if (!hostInfoData) {
+  //   return <Error />;
+  // }
+
   return (
     <>
       <LogoHeader isIcon={false} />
@@ -71,30 +76,36 @@ const HostMyPage = () => {
         <p css={[tabStyle, selectedTabStyle]}>호스트</p>
       </nav>
 
-      {hasHostInfoInJotai || hasHostInfoInResponse ? (
-        <main>
-          <div css={profileWrapper}>
-            <HostInfoCardWithLink hostInfoCardWithLinkList={hostInfoData ?? {}} />
-          </div>
-          <div css={divdier} />
-          <section css={navigateBoxContainer}>
-            <NavigateBox path={routePath.HOST_MY_CLASS}>my 클래스 모임</NavigateBox>
-            <div css={logoutBox} onClick={handleOpenKakaoClick}>
-              <span css={logoutTextStyle}>픽플에 문의하기</span>
-              <span css={iconStyle}>
-                <IcNext />
-              </span>
-            </div>
-            <div css={logoutBox} onClick={handleLogoutClick}>
-              <span css={logoutTextStyle}>로그아웃</span>
-              <span css={iconStyle}>
-                <IcNext />
-              </span>
-            </div>
-          </section>
-        </main>
+      {isLoading ? (
+        <Spinner variant="component" />
       ) : (
-        <HostMyPageEmptyView />
+        <>
+          {hasHostInfoInJotai || hasHostInfoInResponse ? (
+            <main>
+              <div css={profileWrapper}>
+                <HostInfoCardWithLink hostInfoCardWithLinkList={hostInfoData ?? {}} />
+              </div>
+              <div css={divdier} />
+              <section css={navigateBoxContainer}>
+                <NavigateBox path={routePath.HOST_MY_CLASS}>my 클래스 모임</NavigateBox>
+                <div css={logoutBox} onClick={handleOpenKakaoClick}>
+                  <span css={logoutTextStyle}>픽플에 문의하기</span>
+                  <span css={iconStyle}>
+                    <IcNext />
+                  </span>
+                </div>
+                <div css={logoutBox} onClick={handleLogoutClick}>
+                  <span css={logoutTextStyle}>로그아웃</span>
+                  <span css={iconStyle}>
+                    <IcNext />
+                  </span>
+                </div>
+              </section>
+            </main>
+          ) : (
+            <HostMyPageEmptyView />
+          )}
+        </>
       )}
 
       {isModalOpen && (
