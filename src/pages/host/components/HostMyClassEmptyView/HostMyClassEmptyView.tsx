@@ -7,12 +7,18 @@ import {
   textWrapper,
 } from './HostMyClassEmptyView.style';
 import { IcHostMypage } from '@svg';
+import { useNavigate } from 'react-router-dom';
 
 interface HostMyClassEmptyViewProps {
   text: string;
 }
 
 const HostMyClassEmptyView = ({ text }: HostMyClassEmptyViewProps) => {
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate('/class/post/step1');
+  };
   return (
     <article css={completedTabContainer}>
       <IcHostMypage css={IcHostMyClassStyle} />
@@ -21,7 +27,9 @@ const HostMyClassEmptyView = ({ text }: HostMyClassEmptyViewProps) => {
           <p css={textStyle}>{text}</p>
           <p css={textStyle}>다양한 클래스 모임을 둘러보세요:{')'}</p>
         </div>
-        <Button variant="round">클래스 모임 개설하기</Button>
+        <Button variant="round" onClick={handleButtonClick}>
+          클래스 모임 개설하기
+        </Button>
       </div>
     </article>
   );

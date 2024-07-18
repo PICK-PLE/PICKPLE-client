@@ -1,7 +1,6 @@
 import { FilterSelect, Header } from '@components';
 import {
   guestMyClassLayout,
-  tapLine,
   tabWrapper,
   getTabStyle,
   filterSelectWrapper,
@@ -63,7 +62,6 @@ const GuestMyClass = () => {
       <Header title="my 클래스 모임" />
       <div css={guestMyClassLayout}>
         <article css={guestMyClassContainer}>
-          <div css={tapLine} />
           <div css={tabWrapper}>
             <div css={getTabStyle(activeTab === '신청한')} onClick={() => setActiveTab('신청한')}>
               신청한
