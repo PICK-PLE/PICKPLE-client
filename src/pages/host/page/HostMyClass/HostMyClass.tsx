@@ -4,7 +4,6 @@ import {
   hostMyClassBackground,
   hostMyClassLayout,
   tabWrapper,
-  tapLine,
 } from './HostMyClass.style';
 import { useState } from 'react';
 import { HostMyClassEmptyView } from '@pages/host/components';
@@ -40,7 +39,6 @@ const HostMyClass = () => {
     <div css={hostMyClassBackground}>
       <Header title="my 클래스 모임" />
       <article css={hostMyClassLayout}>
-        <div css={tapLine} />
         <div css={tabWrapper}>
           <div css={getTabStyle(activeTab === '진행 중')} onClick={handleOngoingTabClick}>
             진행 중
@@ -50,7 +48,7 @@ const HostMyClass = () => {
           </div>
         </div>
 
-        {!data ? (
+        {data?.length === 0 ? (
           <HostMyClassEmptyView text="아직 진행 중인 모임이 없어요" />
         ) : (
           <div css={hostMyClassCardContainer}>
