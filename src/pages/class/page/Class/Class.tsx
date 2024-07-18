@@ -55,6 +55,10 @@ const Class = () => {
     selectTab
   );
 
+  if (isMoimDetailLoading || isMoimDescriptionLoading) {
+    return <Spinner />;
+  }
+
   if (!moimDetail || !moimDescription) {
     return <Error />;
   }
@@ -69,10 +73,6 @@ const Class = () => {
   const handleApplyButtonClick = () => {
     navigate(`/class/${moimId}/apply/rule`);
   };
-
-  if (isMoimDetailLoading || isMoimDescriptionLoading) {
-    return <Spinner />;
-  }
 
   return (
     <div>

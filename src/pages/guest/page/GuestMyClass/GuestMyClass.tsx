@@ -48,12 +48,12 @@ const GuestMyClass = () => {
     setSelectedStatus(status);
   };
 
-  if (!applyData) {
-    return <Error />;
-  }
-
   if (isApplyLoading || isParticipateLoading) {
     return <Spinner />;
+  }
+
+  if (!applyData) {
+    return <Error />;
   }
 
   if (applyError || participateError) {

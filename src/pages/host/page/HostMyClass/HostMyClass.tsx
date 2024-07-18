@@ -33,12 +33,12 @@ const HostMyClass = () => {
 
   const { data, isLoading } = useFetchHostMoimInfo(hostId ?? 0, moimState);
 
-  if (!data) {
-    return <Error />;
-  }
-
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (!data) {
+    return <Error />;
   }
 
   return (

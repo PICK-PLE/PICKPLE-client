@@ -23,12 +23,12 @@ import { MoimIdPathParameterType } from '@types';
 const GuestClassRegisterCard = ({ moimId }: MoimIdPathParameterType) => {
   const { data: appliedMoimData, isLoading } = useFetchSubmittedMoimDetail(Number(moimId));
 
-  if (!appliedMoimData) {
-    return <Error />;
-  }
-
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (!appliedMoimData) {
+    return <Error />;
   }
 
   const { title, hostNickname, isOffline, spot, dateList, fee, hostImageUrl, moimImageUrl } =

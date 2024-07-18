@@ -113,12 +113,12 @@ const ClassApplyQuestion = () => {
     navigate(`/class/${moimId}/apply/deposit`);
   };
 
-  if (!questionData) {
-    return <Error />;
-  }
-
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (!questionData) {
+    return <Error />;
   }
 
   return (
