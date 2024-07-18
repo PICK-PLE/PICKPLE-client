@@ -1,6 +1,10 @@
 import { PulseLoader } from 'react-spinners';
 
-const override = {
+interface SpinnerProps {
+  variant?: 'page' | 'component';
+}
+
+const defaultOverride = {
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
@@ -8,7 +12,14 @@ const override = {
   height: 'calc(100dvh - 6rem)',
 };
 
-export const Spinner = () => {
+const componentOverride = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  margin: '0 auto',
+};
+
+export const Spinner = ({ variant = 'page' }: SpinnerProps) => {
   return (
     <>
       <PulseLoader
@@ -17,7 +28,7 @@ export const Spinner = () => {
         color="#5451FF"
         loading={true}
         speedMultiplier={0.7}
-        cssOverride={override}
+        cssOverride={variant === 'page' ? defaultOverride : componentOverride}
       />
     </>
   );
