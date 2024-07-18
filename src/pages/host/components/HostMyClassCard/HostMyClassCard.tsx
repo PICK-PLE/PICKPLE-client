@@ -10,7 +10,6 @@ import {
 } from './HostMyClassCard.style';
 import { HostMyClassDataResponseType } from '@types';
 import { useNavigate } from 'react-router-dom';
-import { routePath } from '@constants';
 
 interface HostMyClassCardProps {
   hostMyClassData: HostMyClassDataResponseType;
