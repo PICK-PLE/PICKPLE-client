@@ -18,9 +18,10 @@ import {
 
 interface DepositModalProps {
   onClose: () => void;
+  fee: number;
 }
 
-const DepositModal = ({ onClose }: DepositModalProps) => {
+const DepositModal = ({ onClose, fee }: DepositModalProps) => {
   return (
     <article css={modalContainerStyle}>
       <header css={headerstyle}>
@@ -30,28 +31,25 @@ const DepositModal = ({ onClose }: DepositModalProps) => {
         <h1 css={headerSecondH1Style}>
           <span>반드시 입금자명을</span>
           <span>
-            <span css={headerSpanStyle}>모임명_닉네임</span>으로 변경해 주세요.
+            <span css={headerSpanStyle}>본인 이름</span>으로 설정해 주세요.
           </span>
         </h1>
       </header>
       <main css={mainStyle}>
         <section css={mainFirstSectionStyle}>
           <div css={accountInfoStyle}>
-            <h4 css={bankTextStyle}>픽플은행</h4>
+            <h4 css={bankTextStyle}>농협은행</h4>
             <ClipboardCopyButton />
           </div>
           <div css={accountHolderStyle}>
-            예금주 <span css={accountHolderNameStyle}>홍길동</span>
+            예금주 <span css={accountHolderNameStyle}>조소빈</span>
           </div>
         </section>
         <section css={payButtonSectionStyle}>
-          <PayButton variant="kakao" totalPrice={1} />
-          <PayButton variant="toss" totalPrice={1} />
+          <PayButton variant="kakao" totalPrice={fee} />
+          <PayButton variant="toss" totalPrice={fee} />
         </section>
-        <Button
-          variant="medium"
-          onClick={onClose}
-          customStyle={completeButtonCustomStyle}>
+        <Button variant="medium" onClick={onClose} customStyle={completeButtonCustomStyle}>
           입금을 완료했어요
         </Button>
       </main>

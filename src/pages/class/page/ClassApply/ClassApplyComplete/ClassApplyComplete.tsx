@@ -37,7 +37,7 @@ const ClassApplyComplete = () => {
           </header>
 
           <main css={completeMainStyle}>
-            <GuestClassRegisterCard moimId={moimId ?? ''}/>
+            <GuestClassRegisterCard moimId={moimId ?? ''} />
 
             <div css={completeCautionStyle}>
               <p css={completeCautionTitleStyle}>유의 사항</p>

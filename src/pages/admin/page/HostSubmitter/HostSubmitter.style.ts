@@ -1,19 +1,32 @@
 import { css, Theme } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
-export const tableLayoutStyle = (theme: Theme) => css`
-  ${flexGenerator('column', 'flex-start', 'flex-start')}
-  gap: 1rem;
-  flex-wrap: wrap;
+export const adminLayoutStyle = (theme: Theme) =>css`
   position: absolute;
   right: 0;
   top: 0;
   width: 100vw;
-  height: 100vw;
-  padding: 3rem 2rem;
-
+  height: 100vh;
   background-color: ${theme.color.white};
+`
+
+export const tableLayoutStyle = css`
+  ${flexGenerator('column', 'flex-start', 'flex-start')}
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 3rem 2rem;
 `;
+
+export const inputLayoutStyle = (theme: Theme) => css`
+${flexGenerator('column', 'center', 'center')}
+gap: 1rem;
+height: 50%;
+${theme.font['subhead05-sb-14']}
+`
+
+export const commonContainerStyle = css`
+${flexGenerator('column', 'center', 'center')}
+`
 
 export const tableContainerStyle = css`
   border-collapse: collapse;
@@ -37,7 +50,7 @@ export const thSmallStyle = (theme: Theme) => css`
   border: 1px solid #ddd;
   ${theme.font['subhead02-sb-16']}
 
-  width: 8rem;
+  min-width: 7rem;
 `;
 
 export const thLargeStyle = (theme: Theme) => css`
@@ -48,7 +61,7 @@ export const thLargeStyle = (theme: Theme) => css`
   border: 1px solid #ddd;
   ${theme.font['subhead02-sb-16']}
 
-  width: 27rem;
+  min-width: 25rem;
 `;
 
 export const tdStyle = (theme: Theme) => css`
@@ -57,3 +70,8 @@ export const tdStyle = (theme: Theme) => css`
   border: 1px solid #ddd;
   ${theme.font['subhead03-m-16']}
 `;
+
+export const inputStyle = (theme: Theme) => css`
+width: 30rem;
+height: 4rem;
+`

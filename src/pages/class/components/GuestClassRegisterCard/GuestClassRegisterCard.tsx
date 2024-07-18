@@ -17,10 +17,22 @@ import {
 import { IcDate, IcOffline, IcOneline } from '@svg';
 import { useFetchSubmittedMoimDetail } from '@apis/domains/moim';
 import Error from '@pages/error/Error';
-import { Spinner } from '@components';
-import { MoimIdPathParameterType } from '@types';
+import { Modal, Spinner } from '@components';
+import { DepositModal } from '@pages/guest/components';
+import { useNavigate } from 'react-router-dom';
 
-const GuestClassRegisterCard = ({ moimId }: MoimIdPathParameterType) => {
+export interface GuestClassRegisterCardProps {
+  moimId: string;
+  isModalOpen?: boolean;
+  handleModalClose?: () => void;
+}
+
+const GuestClassRegisterCard = ({
+  moimId,
+  isModalOpen,
+  handleModalClose,
+}: GuestClassRegisterCardProps) => {
+  const navigate = useNavigate();
   const { data: appliedMoimData, isLoading } = useFetchSubmittedMoimDetail(Number(moimId));
 
   if (!appliedMoimData) {
@@ -34,6 +46,15 @@ const GuestClassRegisterCard = ({ moimId }: MoimIdPathParameterType) => {
   const { title, hostNickname, isOffline, spot, dateList, fee, hostImageUrl, moimImageUrl } =
     appliedMoimData;
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
+
+  const handleBackdropClick = () => {
+    handleModalClose();
+  };
+
+  const handleButtonClick = () => {
+    handleModalClose();
+    navigate(`/class/${moimId}/apply/complete`);
+  };
 
   return (
     <article css={cardContainerStyle}>
@@ -65,6 +86,12 @@ const GuestClassRegisterCard = ({ moimId }: MoimIdPathParameterType) => {
         <span css={feeSpanStyle}>참가비</span>
         <span css={feeStyle}>{fee?.toLocaleString()}원</span>
       </section>
+
+      {isModalOpen && (
+        <Modal onClose={handleBackdropClick}>
+          <DepositModal onClose={handleButtonClick} fee={fee ?? 0} />
+        </Modal>
+      )}
     </article>
   );
 };
