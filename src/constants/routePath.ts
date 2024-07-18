@@ -45,6 +45,10 @@ const errorPages = {
   ERROR: '/error',
 };
 
+const adminPages = {
+  ADMIN: '/pickple-admin',
+}
+
 export default {
   ...authPages,
   ...homePages,
@@ -55,4 +59,5 @@ export default {
   ...hostPages,
   ...devPages,
   ...errorPages,
+  ...adminPages,
 };
