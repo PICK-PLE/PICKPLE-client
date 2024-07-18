@@ -6,7 +6,7 @@ import {
   textWrapper,
   svgStyle,
 } from './GuestMyClassEmptyView.style';
-import { graphicImage } from '@constants';
+import { graphicImage, routePath } from '@constants';
 import { useNavigate } from 'react-router-dom';
 
 interface GuestMyClassEmptyViewProps {
@@ -16,7 +16,7 @@ interface GuestMyClassEmptyViewProps {
 const GuestMyClassEmptyView = ({ text }: GuestMyClassEmptyViewProps) => {
   const navigate = useNavigate();
   const handleButtonClick = () => {
-    navigate('/categories');
+    navigate(routePath.CATEGORY);
   };
   return (
     <article css={completedTabContainer}>
