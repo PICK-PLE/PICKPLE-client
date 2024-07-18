@@ -48,14 +48,14 @@ export const completeCautionTitleStyle = (theme: Theme) => css`
 `;
 
 export const completeTextStyle = (theme: Theme) => css`
-  padding-left: 1.5rem;  /* 목록의 왼쪽 여백 */
-  margin-bottom: 1rem;   /* 목록과 다른 요소들 간의 간격 */
+  padding-left: 1.5rem; 
+  margin-bottom: 1rem;  
 
   li {
     ${theme.font['body02-r-14']}
     color: ${theme.color.midgray1};
-    margin-bottom: 0.5rem; /* 각 목록 아이템 간의 간격 */
-    list-style-type: disc; /* 동그라미 목록 스타일 */
+    margin-bottom: 0.5rem; 
+    list-style-type: disc; 
   }
 `;
 

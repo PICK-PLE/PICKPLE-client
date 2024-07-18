@@ -1,7 +1,5 @@
 import { useFetchHostSubmitterList } from '@apis/domains/submitter/useFetchHostSubmitterList';
-import {
-  usePatchHostSubmitter,
-} from '@apis/domains/submitter/usePatchHostSubmitter';
+import { usePatchHostSubmitter } from '@apis/domains/submitter/usePatchHostSubmitter';
 import { CATEGORY_NAME } from '@constants';
 import {
   adminLayoutStyle,
@@ -39,17 +37,20 @@ const HostSubmitter = () => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
 
-    if (event.target.value === 'tkfkdtmfjdnscodusdl') {
+    if (event.target.value === import.meta.env.VITE_ADMIN_PASSWORD) {
       setIsVerified(true);
     }
   };
 
   const handleButtonClick = (submitterId: number) => {
-    mutate({submitterId}, {
-      onSuccess: () => {
-        refetch();
-      },
-    });
+    mutate(
+      { submitterId },
+      {
+        onSuccess: () => {
+          refetch();
+        },
+      }
+    );
   };
 
   return (
@@ -103,7 +104,9 @@ const HostSubmitter = () => {
                       {item.submitterState === 'approve' ? (
                         <div>승인</div>
                       ) : (
-                        <button onClick={() => handleButtonClick(item.submitterId || 0)}>승인</button>
+                        <button onClick={() => handleButtonClick(item.submitterId || 0)}>
+                          승인
+                        </button>
                       )}
                     </td>
                   </tr>

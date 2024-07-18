@@ -101,8 +101,6 @@ const ClassApplyQuestion = () => {
     );
     const allAccountsFilled = Object.values(accountList).every((value) => value.trim() !== '');
     setIsButtonDisabled(!(allAnswersFilled && allAccountsFilled));
-
-    console.log(questionList);
   }, [answer, questionList]);
 
   const requestData = {

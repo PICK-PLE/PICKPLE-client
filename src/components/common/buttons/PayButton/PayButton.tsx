@@ -24,7 +24,6 @@ const PayButton = ({ variant, totalPrice }: PayButtonProps) => {
     if (deviceType === 'Android' || deviceType === 'iOS') {
       window.open(`https://qr.kakaopay.com/${userId}${amount}`, '_blank');
     } else {
-      console.log('데스크탑에서 버튼 클릭');
       showToast();
     }
   };
@@ -39,7 +38,6 @@ const PayButton = ({ variant, totalPrice }: PayButtonProps) => {
         '_blank'
       );
     } else {
-      console.log('데스크탑에서 버튼 클릭');
       showToast();
     }
   };
@@ -58,7 +56,7 @@ const PayButton = ({ variant, totalPrice }: PayButtonProps) => {
       )}
 
       <Toast isVisible={isToastVisible} toastBottom={3}>
-        모바일 기기로 결제를 진행해주세요.
+        모바일 기기로 결제를 진행해 주세요.
       </Toast>
     </>
   );

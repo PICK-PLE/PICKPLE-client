@@ -47,7 +47,7 @@ export const thSmallStyle = (theme: Theme) => css`
   padding: 0.5rem;
   text-align: center;
   vertical-align: middle;
-  border: 1px solid #ddd;
+  border: 1px solid ${theme.color.lightgray1};
   ${theme.font['subhead02-sb-16']}
 
   min-width: 7rem;
