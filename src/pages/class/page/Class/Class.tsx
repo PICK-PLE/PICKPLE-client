@@ -74,7 +74,7 @@ const Class = () => {
     navigate(`/class/${moimId}/apply/rule`);
   };
 
-  if (isMoimDetailLoading || isMoimDescriptionLoading || isMoimNoticeListLoading) {
+  if (isMoimDetailLoading || isMoimDescriptionLoading) {
     return <Spinner />;
   }
 
@@ -130,7 +130,9 @@ const Class = () => {
         <section css={[tabSectionStyle, selectTab === '모임소개' && infoSectionStyle]}>
           {selectTab === '모임소개' && <ClassInfo content={moimDescription ?? ''} />}
           {selectTab === '공지사항' &&
-            ((moimNoticeList || []).length === 0 ? (
+            (isMoimNoticeListLoading ? (
+              <Spinner variant="component" />
+            ) : (moimNoticeList || []).length === 0 ? (
               <ClassNoticeEmptyView />
             ) : (
               <ClassNotice noticeData={moimNoticeList || []} />
