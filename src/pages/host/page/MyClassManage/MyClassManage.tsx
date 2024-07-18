@@ -23,6 +23,12 @@ const MyClassManage = () => {
   const { showToast, isToastVisible } = useToast();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
+  // 이전에 승인을 한 적이 있는지 확인. 서버에서 API 수정 후 삭제 예정
+  const isApproved = true;
+
+  // 진행중인 모임인지, 완료된 모임인지 확인. 서버에서 API 수정 후 삭제 예정
+  const isCompleted = true;
+
   // 모임 정보 추출
   const { moimTitle, maxGuest, isApprovable, submitterList } = applicantData || {};
 
@@ -46,6 +52,8 @@ const MyClassManage = () => {
   }, [maxGuest, isApprovable, submitterList, checkedStates]);
 
   const toggleChecked = (index: number) => {
+    if (isApproved || isCompleted) return;
+
     const newCheckedState = !checkedStates[index];
 
     if (isApprovable) {
@@ -117,9 +125,11 @@ const MyClassManage = () => {
         </main>
 
         <footer css={footerStyle}>
-          <Button variant="large" disabled={!isActive} onClick={handleModalOpen}>
-            승인하기
-          </Button>
+          {!isCompleted && (
+            <Button variant="large" disabled={isApproved || !isActive} onClick={handleModalOpen}>
+              {isApproved ? '승인 완료' : '승인하기'}
+            </Button>
+          )}
         </footer>
 
         {isOpenModal && (

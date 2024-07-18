@@ -1,4 +1,4 @@
-import { Button, LogoHeader, Modal, ProgressBar } from '@components';
+import { Button, LogoHeader, ProgressBar } from '@components';
 import { GuestClassRegisterCard } from '@pages/class/components';
 import {
   classApplyDepositLayout,
@@ -10,31 +10,27 @@ import {
   depositMainStyle,
   dipositWrapperStyle,
 } from '@pages/class/page/ClassApply/ClassApplyDeposit/ClassApplyDeposit.style';
-import { DepositModal } from '@pages/guest/components';
 import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
 import { MoimIdPathParameterType } from '@types';
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
 
 const ClassApplyDeposit = () => {
-  const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { moimId } = useParams<MoimIdPathParameterType>();
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
   };
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
 
   const handleErrorModalOpen = () => {
     setIsErrorModalOpen(true);
-  };
-
-  const handleModalClose = () => {
-    setIsModalOpen(false);
-    navigate(`/class/${moimId}/apply/complete`);
   };
 
   const handleErrorModalClose = () => {
@@ -57,7 +53,11 @@ const ClassApplyDeposit = () => {
             </header>
 
             <main css={depositMainStyle}>
-              <GuestClassRegisterCard moimId={moimId ?? ''} />
+              <GuestClassRegisterCard
+                moimId={moimId ?? ''}
+                isModalOpen={isModalOpen}
+                handleModalClose={handleModalClose}
+              />
             </main>
           </div>
 
@@ -68,18 +68,13 @@ const ClassApplyDeposit = () => {
             <button css={depositCautionTextStyle} onClick={handleErrorModalOpen}>
               입금에 문제가 생기셨나요?
             </button>
-            {isErrorModalOpen && (
-              <AbsoluteModal onClose={handleErrorModalClose}>
-                <DepositErrorModal onClose={handleErrorModalClose} />
-              </AbsoluteModal>
-            )}
           </footer>
         </article>
 
-        {isModalOpen && (
-          <Modal onClose={handleModalClose}>
-            <DepositModal onClose={handleModalClose} />
-          </Modal>
+        {isErrorModalOpen && (
+          <AbsoluteModal onClose={handleErrorModalClose}>
+            <DepositErrorModal onClose={handleErrorModalClose} />
+          </AbsoluteModal>
         )}
       </div>
     </>

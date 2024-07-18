@@ -65,7 +65,7 @@ const ClassApplyQuestion = () => {
 
   useEffect(() => {
     if (isSuccess && questionData) {
-      setQuestionList(Object.values(questionData).filter((question) => question !== null));
+      setQuestionList(Object.values(questionData).filter(question => question !== '' && question !== null));
     }
   }, [isSuccess, questionData]);
 

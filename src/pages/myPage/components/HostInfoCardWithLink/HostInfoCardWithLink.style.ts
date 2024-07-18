@@ -27,7 +27,6 @@ export const hostInfoWrapper = css`
 export const hostDetailWrapper = css`
   ${flexGenerator('column', 'center', 'flex-start')};
 
-  width: 10.8rem;
   gap: 0.5rem;
 `;
 

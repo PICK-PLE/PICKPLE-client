@@ -16,8 +16,8 @@ import { MoimIdPathParameterType } from '@types';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const ClassApplyComplete = () => {
-  const navigate = useNavigate();
   const { moimId } = useParams<MoimIdPathParameterType>();
+  const navigate = useNavigate();
   const handleButtonClick = () => {
     navigate(`/categories`);
   };
@@ -41,20 +41,20 @@ const ClassApplyComplete = () => {
 
             <div css={completeCautionStyle}>
               <p css={completeCautionTitleStyle}>유의 사항</p>
-              <div>
-                <span css={completeTextStyle}>
-                  * 입금 확인이 되면 '승인 대기' 상태로 전환됩니다.
-                </span>
-                <span css={completeTextStyle}>
-                  * 이후, 호스트 승인 여부에 따라 '승인 완료' 또는 '승인 거절' 이 결정됩니다.
-                </span>
-                <span css={completeTextStyle}>
-                  * 승인이 거절될 시, 모임 참가비는 개인 계좌로 환불됩니다.
-                </span>
-                <span css={completeTextStyle}>
-                  * 승인 완료 후에는 모임 신청을 취소할 수 없습니다.
-                </span>
-              </div>
+              <ul css={completeTextStyle}>
+                <li>
+                  입금 확인이 되면 '승인 대기' 상태로 전환됩니다.
+                </li>
+                <li >
+                  이후, 호스트 승인 여부에 따라 '승인 완료' 또는 '승인 거절' 이 결정됩니다.
+                </li>
+                <li >
+                  승인이 거절될 시, 모임 참가비는 개인 계좌로 환불됩니다.
+                </li>
+                <li >
+                  승인 완료 후에는 모임 신청을 취소할 수 없습니다.
+                </li>
+              </ul>
             </div>
           </main>
         </div>

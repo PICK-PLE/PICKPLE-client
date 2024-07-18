@@ -42,9 +42,7 @@ const ApplicantListModal = ({ applicantListData, onClose }: ApplicantListModalPr
     <article css={modalContainerStyle}>
       <section css={sectionStyle}>
         <header css={headerStyle}>
-          <span css={iconStyle}>
-            <img src={images.CheckModalImage} alt="신청 완료 모달" />
-          </span>
+          <img src={images.CheckModalImage} css={iconStyle} alt="신청 완료 모달" />
           <div css={textDivStyle}>
             <h1 css={modalCommentTitleStyle}>승인할 신청자 목록을 확인해주세요!</h1>
             <h1 css={countTextStyle}>

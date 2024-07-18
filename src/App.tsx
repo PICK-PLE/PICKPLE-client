@@ -12,7 +12,9 @@ import {
   homeRoutes,
   hostRoutes,
   myPageRoutes,
-  // devRoutes,
+  //devRoutes,
+  adminRoutes
+
 } from '@routes';
 import errorPageRoutes from './routes/errorRoutes';
 import PrivateRoute from './routes/PrivateRoute/PrivateRoute';
@@ -25,6 +27,7 @@ const allRoutes = [
   ...hostRoutes,
   ...myPageRoutes,
   ...errorPageRoutes,
+  ...adminRoutes
   // ...devRoutes,
 ];
 
