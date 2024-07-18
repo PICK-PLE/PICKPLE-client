@@ -81,6 +81,8 @@ import { DepositModal } from '@pages/guest/components/index';
 
 import { APPLICANT_LIST_DATA } from 'src/constants/mocks/applicantListData';
 import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
+import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
+import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
 
 const applicantListData = APPLICANT_LIST_DATA;
 
@@ -588,9 +590,10 @@ const Components = () => {
           <h2 css={titleStyle}>LogoutModal</h2>
           <button onClick={handleModalOpen}>모달 열기</button>
           {isOpen && (
-            <Modal onClose={handleModalClose}>
-              <LogoutModal onClose={handleModalClose} />
-            </Modal>
+            <AbsoluteModal onClose={handleModalClose}>
+              {/* <LogoutModal onClose={handleModalClose} /> */}
+              <DepositErrorModal onClose={handleModalClose} />
+            </AbsoluteModal>
           )}
         </section>
         {/* <section style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
