@@ -90,10 +90,6 @@ const ClassApplyQuestion = () => {
     const allAnswersFilled = questionList.every((_, index) => answerList[`answer${index + 1}`].trim() !== '');
     const allAccountsFilled = Object.values(accountList).every(value => value.trim() !== '');
     setIsButtonDisabled(!(allAnswersFilled && allAccountsFilled));
-    console.log(questionList)
-
-    console.log('allAnswersFilled', allAnswersFilled)
-    console.log('allAccountsFilled',allAccountsFilled)
   }, [answer, questionList]);
 
 
