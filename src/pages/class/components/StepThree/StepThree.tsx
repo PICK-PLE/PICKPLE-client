@@ -21,29 +21,25 @@ import { smoothScroll } from '@utils';
 import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
 
 const StepThree = ({ onNext }: StepProps) => {
-  const { classPostState, handleInputChange, handleImageList } = useClassPostInputChange();
+  const { classPostState, handleInputChange } = useClassPostInputChange();
   const { validateStepThree } = useClassPostInputValidation();
   const { isTitleValid, isDescriptionValid, isAllValid } = validateStepThree(classPostState);
+
   const putS3UploadMutation = usePutS3Upload();
   const postMoim = usePostMoim();
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
 
-  const handleFileSelect = (files: File[]) => {
-    setSelectedFiles(files);
-  };
-
   const handleNextClick = async (): Promise<void> => {
-    if (isAllValid) {
+    if (isAllValid && selectedFiles.length >= 1) {
       const imageUrlList = await handleUpload({
         selectedFiles,
         putS3Upload: putS3UploadMutation.mutateAsync,
         type: 'moim',
       });
-      handleImageList(imageUrlList);
 
       postMoim
-        .mutateAsync(classPostState)
+        .mutateAsync({ ...classPostState, imageList: imageUrlList })
         .then(() => {
           onNext();
           smoothScroll(0);
@@ -54,7 +50,7 @@ const StepThree = ({ onNext }: StepProps) => {
         });
     }
   };
-
+  console.log(classPostState);
   return (
     <>
       <ProgressBar progress={75} />
@@ -90,7 +86,7 @@ const StepThree = ({ onNext }: StepProps) => {
             />
           </section>
           <section css={imageSelectSection}>
-            <ImageSelect isMultiple={true} onFileSelect={handleFileSelect} />
+            <ImageSelect isMultiple={true} onFileSelect={setSelectedFiles} />
             <h6 css={referTextStyle}>
               * 첫번째 사진이 썸네일 이미지로 등록되며
               <br />

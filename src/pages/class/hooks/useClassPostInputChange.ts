@@ -94,12 +94,6 @@ const useClassPostInputChange = () => {
     }));
   };
 
-  const handleImageList = (imageUrlList: string[]) => {
-    setClassPostState((prevState) => ({
-      ...prevState,
-      imageList: imageUrlList,
-    }));
-  };
 
   return {
     classPostState,
@@ -112,7 +106,6 @@ const useClassPostInputChange = () => {
     handleAccountChange,
     handleDateChange,
     handleQuestionChange,
-    handleImageList,
   };
 };
 

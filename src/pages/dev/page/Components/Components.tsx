@@ -378,10 +378,10 @@ const Components = () => {
 
           <h3 css={subTitleStyle}>SelectButton</h3>
           <span css={textStyle}>selected = "left"</span>
-          <SelectButton left="left" right="right" selected="left" />
+          <SelectButton left="left" right="right" selected="left" onChange={() => {}}/>
 
           <span css={textStyle}>selected = "right"</span>
-          <SelectButton left="left" right="right" selected="right" />
+          <SelectButton left="left" right="right" selected="right" onChange={() => {}}/>
 
           <h3 css={subTitleStyle}>CategoryButton</h3>
           <span css={textStyle}>isSelected = true</span>

@@ -8,13 +8,14 @@ import {
   selectedButton,
 } from './SelectButton.style';
 
-interface SelectButtonProps extends React.HTMLAttributes<HTMLDivElement> {
+interface SelectButtonProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
   left: string;
   right: string;
   selected: string;
+  onChange: (value: string) => void;
 }
 
-const SelectButton = ({ left, right, selected, onClick }: SelectButtonProps) => {
+const SelectButton = ({ left, right, selected, onChange }: SelectButtonProps) => {
   return (
     <div css={selectButtonContainer}>
       <section css={[buttonStyle, leftButton, left === selected && selectedButton]}>
@@ -25,7 +26,7 @@ const SelectButton = ({ left, right, selected, onClick }: SelectButtonProps) => 
           name="left-option"
           value={left}
           checked={selected === left}
-          onClick={onClick}
+          onChange={() => onChange(left)}
         />
         <label css={labelStyle} htmlFor="left">
           {left}
@@ -39,7 +40,7 @@ const SelectButton = ({ left, right, selected, onClick }: SelectButtonProps) => 
           name="right-option"
           value={right}
           checked={selected === right}
-          onClick={onClick}
+          onChange={() => onChange(right)}
         />
         <label css={labelStyle} htmlFor="right">
           {right}

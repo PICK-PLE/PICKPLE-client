@@ -8,8 +8,8 @@ const useClassPostInputValidation = () => {
     return typeof answer === 'string' ? answer.trim().length >= 1 : answer > 0;
   };
   const validateDescription = (description: string) => {
-    return description.trim().length >= 5
-  }
+    return description.trim().length >= 5;
+  };
   const validateCategory = (category: Category) => {
     return !!category.category1 || !!category.category2 || !!category.category3;
   };
@@ -74,7 +74,11 @@ const useClassPostInputValidation = () => {
     };
   };
 
-  const validateStepThree = (state: { title: string; description: string }) => {
+  const validateStepThree = (state: {
+    title: string;
+    description: string;
+    imageList: ClassPostDataType['imageList'];
+  }) => {
     const isTitleValid = validateLength(state.title);
     const isDescriptionValid = validateDescription(state.description);
     const isAllValid = isTitleValid && isDescriptionValid;
@@ -95,4 +99,4 @@ const useClassPostInputValidation = () => {
   };
 };
 
-export default useClassPostInputValidation
+export default useClassPostInputValidation;

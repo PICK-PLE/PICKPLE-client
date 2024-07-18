@@ -117,7 +117,7 @@ const StepOne = ({ onNext }: StepProps) => {
               left="오프라인"
               right="온라인"
               selected={classPostState.isOffline ? '오프라인' : '온라인'}
-              onClick={toggleIsOffline}
+              onChange={toggleIsOffline}
             />
           </section>
           <section css={sectionStyle(1)}>
