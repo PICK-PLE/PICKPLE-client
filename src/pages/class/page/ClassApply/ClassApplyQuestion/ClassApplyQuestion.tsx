@@ -23,7 +23,7 @@ import {
 } from '@pages/class/page/ClassApply/ClassApplyQuestion/ClassApplyQuestion.style';
 import { IcCaution } from '@svg';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useFetchQuestionList } from '@apis/domains/moim/useFetchQuestionList';
 import { usePostAnswerList } from '@apis/domains/moimSubmission/usePostAnswerList';
 import { MoimIdPathParameterType } from '@types';
@@ -43,8 +43,6 @@ export interface DataType {
 }
 
 const ClassApplyQuestion = () => {
-  const navigate = useNavigate();
-
   const { moimId } = useParams<MoimIdPathParameterType>();
 
   const [questionList, setQuestionList] = useState<string[]>([]);
@@ -62,7 +60,7 @@ const ClassApplyQuestion = () => {
     },
   });
 
-  const { mutate } = usePostAnswerList();
+  const { mutate } = usePostAnswerList(moimId ?? '');
 
   useEffect(() => {
     if (isSuccess && questionData) {
@@ -110,7 +108,6 @@ const ClassApplyQuestion = () => {
 
   const handleButtonClick = () => {
     mutate(requestData);
-    navigate(`/class/${moimId}/apply/deposit`);
   };
 
   if (isLoading) {
