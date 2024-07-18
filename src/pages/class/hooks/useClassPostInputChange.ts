@@ -71,7 +71,7 @@ const useClassPostInputChange = () => {
   const handleDateChange = (date: Dayjs | null) => {
     if (date) {
       const formattedDate = date.format('YYYY.MM.DD');
-      const dayOfWeek = date.format('ddd'); // 예: '일', '월', '화', '수', '목', '금', '토'
+      const dayOfWeek = date.format('ddd');
       setClassPostState((prevState) => ({
         ...prevState,
         date: formattedDate,
@@ -93,7 +93,6 @@ const useClassPostInputChange = () => {
       },
     }));
   };
-
 
   return {
     classPostState,

@@ -13,7 +13,7 @@ import {
   titleStyle,
 } from './StepThree.style';
 import { usePostMoim } from '@apis/domains/moim/usePostMoim';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ErrorType } from '@types';
 import { handleUpload } from 'src/utils/image';
 import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
@@ -26,12 +26,19 @@ const StepThree = ({ onNext }: StepProps) => {
   const { classPostState, handleInputChange } = useClassPostInputChange();
   const [, setMoimId] = useAtom(moimIdAtom);
   const { validateStepThree } = useClassPostInputValidation();
-  const { isTitleValid, isDescriptionValid, isAllValid } = validateStepThree(classPostState);
+  const { isTitleValid, isDescriptionValid } = validateStepThree(classPostState);
 
   const putS3UploadMutation = usePutS3Upload();
   const postMoim = usePostMoim();
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [isAllValid, setIsAllValid] = useState(false);
+
+  useEffect(() => {
+    if (isTitleValid && isDescriptionValid && selectedFiles.length > 0) {
+      setIsAllValid(true);
+    }
+  }, [isTitleValid, isDescriptionValid, selectedFiles]);
 
   const handleNextClick = async (): Promise<void> => {
     if (isAllValid && selectedFiles.length >= 1) {
@@ -57,7 +64,7 @@ const StepThree = ({ onNext }: StepProps) => {
         });
     }
   };
-  console.log(classPostState);
+  
   return (
     <>
       <ProgressBar progress={75} />

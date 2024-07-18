@@ -79,7 +79,11 @@ const Class = () => {
       <LogoHeader />
       <div css={classLayout}>
         <div css={carouselWrapper}>
-          <Carousel imageList={Object.values(imageList || []).filter((value) => value !== null)} />
+          <Carousel
+            imageList={Object.values(imageList || []).filter(
+              (value) => value !== null && value !== ''
+            )}
+          />
         </div>
         <section css={classInfo}>
           <Label variant="dDay">{`마감${dDayText(dayOfDay)}`}</Label>

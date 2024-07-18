@@ -81,12 +81,10 @@ const useClassPostInputValidation = () => {
   }) => {
     const isTitleValid = validateLength(state.title);
     const isDescriptionValid = validateDescription(state.description);
-    const isAllValid = isTitleValid && isDescriptionValid;
 
     return {
       isTitleValid,
       isDescriptionValid,
-      isAllValid,
     };
   };
   return {
