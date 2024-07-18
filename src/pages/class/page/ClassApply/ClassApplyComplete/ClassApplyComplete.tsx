@@ -18,7 +18,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 const ClassApplyComplete = () => {
   const { moimId } = useParams<MoimIdPathParameterType>();
   const navigate = useNavigate();
-  const { moimId } = useParams<MoimIdPathParameterType>();
   const handleButtonClick = () => {
     navigate(`/categories`);
   };
@@ -38,7 +37,7 @@ const ClassApplyComplete = () => {
           </header>
 
           <main css={completeMainStyle}>
-            <GuestClassRegisterCard moimId={Number(moimId)}/>
+            <GuestClassRegisterCard moimId={moimId ?? ''}/>
 
             <div css={completeCautionStyle}>
               <p css={completeCautionTitleStyle}>유의 사항</p>

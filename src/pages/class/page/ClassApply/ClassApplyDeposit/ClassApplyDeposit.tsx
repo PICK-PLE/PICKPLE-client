@@ -57,7 +57,7 @@ const ClassApplyDeposit = () => {
             </header>
 
             <main css={depositMainStyle}>
-              <GuestClassRegisterCard moimId={Number(moimId)} />
+              <GuestClassRegisterCard moimId={moimId ?? ''} />
             </main>
           </div>
 
