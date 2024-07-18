@@ -5,7 +5,7 @@ import {
   Carousel,
   CategoryButton,
   ClipboardCopyButton,
-//   DateSelect,
+  //   DateSelect,
   Header,
   IconButton,
   Input,
@@ -21,18 +21,18 @@ import {
   SelectButton,
   ShareButton,
   SocialLoginButton,
-//   TextArea,
+  //   TextArea,
   Image,
   LogoHeader,
   // ApplicantAccordionList,
-//   TimeSelect,
-//   ImageSelect,
+  //   TimeSelect,
+  //   ImageSelect,
   CountPeople,
   NavigateBox,
   SimpleUserProfile,
   Toast,
-//   Modal,
-//   CategorySelectBox,
+  //   Modal,
+  //   CategorySelectBox,
 } from '@components';
 
 import {
@@ -102,7 +102,6 @@ const Components = () => {
     setPeople(newCount);
   };
   const { showToast, isToastVisible } = useToast();
-
 
   const imageList = [
     'https://placehold.co/600x400',
@@ -378,10 +377,10 @@ const Components = () => {
 
           <h3 css={subTitleStyle}>SelectButton</h3>
           <span css={textStyle}>selected = "left"</span>
-          <SelectButton left="left" right="right" selected="left" onChange={() => {}}/>
+          <SelectButton left="left" right="right" selected="left" handleChange={() => {}} />
 
           <span css={textStyle}>selected = "right"</span>
-          <SelectButton left="left" right="right" selected="right" onChange={() => {}}/>
+          <SelectButton left="left" right="right" selected="right" handleChange={() => {}} />
 
           <h3 css={subTitleStyle}>CategoryButton</h3>
           <span css={textStyle}>isSelected = true</span>
