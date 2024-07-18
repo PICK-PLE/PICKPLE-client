@@ -153,7 +153,7 @@ const Class = () => {
         )}
         <section css={buttonContainer(windowWidth)}>
           <ShareButton />
-          <Button variant="large" onClick={handleApplyButtonClick}>
+          <Button variant="large" onClick={handleApplyButtonClick} disabled={moimDetail.hostId === hostId}>
             참여하기
           </Button>
         </section>
