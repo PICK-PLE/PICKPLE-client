@@ -9,6 +9,7 @@ import {
   filterSelectStyle,
   GuestMyClassBackground,
   guestMyClassContainer,
+  mainWrapper,
 } from './GuestMyClass.style';
 import { useEffect, useState } from 'react';
 import { GuestMyClassEmptyView, MoimCard } from '@pages/guest/components';
@@ -73,30 +74,39 @@ const GuestMyClass = () => {
           </div>
         </article>
 
-        {activeTab === '신청한' && (
-          <article css={filterSelectWrapper}>
-            <div css={filterSelectStyle}>
-              <FilterSelect
-                options={['전체', '입금 대기', '승인 대기', '승인 완료', '승인 거절', '환불 완료']}
-                onOptionSelect={handleStatusChange}
-              />
-            </div>
-          </article>
-        )}
+        <main css={mainWrapper}>
+          {activeTab === '신청한' && (
+            <article css={filterSelectWrapper}>
+              <div css={filterSelectStyle}>
+                <FilterSelect
+                  options={[
+                    '전체',
+                    '입금 대기',
+                    '승인 대기',
+                    '승인 완료',
+                    '승인 거절',
+                    '환불 완료',
+                  ]}
+                  onOptionSelect={handleStatusChange}
+                />
+              </div>
+            </article>
+          )}
 
-        {!currentData ? (
-          <GuestMyClassEmptyView
-            text={
-              activeTab === '신청한' ? '아직 신청한 모임이 없어요' : '아직 참가한 모임이 없어요'
-            }
-          />
-        ) : (
-          currentData.map((data) => (
-            <div css={guestMyClassCardContainer} key={data.moimId}>
-              <MoimCard guestMyClassData={data} />
-            </div>
-          ))
-        )}
+          {!currentData ? (
+            <GuestMyClassEmptyView
+              text={
+                activeTab === '신청한' ? '아직 신청한 모임이 없어요' : '아직 참가한 모임이 없어요'
+              }
+            />
+          ) : (
+            currentData.map((data) => (
+              <div css={guestMyClassCardContainer} key={data.moimId}>
+                <MoimCard guestMyClassData={data} />
+              </div>
+            ))
+          )}
+        </main>
       </div>
     </div>
   );

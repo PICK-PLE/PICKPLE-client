@@ -44,6 +44,10 @@ export const tabWrapper = css`
   ${flexGenerator()}
 `;
 
+export const mainWrapper = css`
+  height: calc(100dvh - 10.4rem);
+`;
+
 export const getTabStyle = (isActive: boolean) => (theme: Theme) =>
   css`
     ${tapContainer(theme)}
