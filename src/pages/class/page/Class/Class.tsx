@@ -15,6 +15,7 @@ import {
   LogoHeader,
   ShareButton,
   Spinner,
+  Toast,
 } from '@components';
 import {
   buttonContainer,
@@ -34,17 +35,22 @@ import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
-import { useWindowSize } from '@hooks';
+import { useClipboard, useToast, useWindowSize } from '@hooks';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
 import { MoimIdPathParameterType } from '@types';
 import Error from '@pages/error/Error';
-import { dDayText } from '@utils';
+import { dDayText, handleShare } from '@utils';
+import { useAtom } from 'jotai';
+import { userAtom } from '@stores';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
   const navigate = useNavigate();
   const [selectTab, setSelectTab] = useState<'모임소개' | '공지사항' | '리뷰'>('모임소개');
   const { moimId } = useParams<MoimIdPathParameterType>();
+  const { handleCopyToClipboard } = useClipboard();
+  const { showToast, isToastVisible } = useToast();
+  const [{ hostId }] = useAtom(userAtom);
 
   const { data: moimDetail, isLoading: isMoimDetailLoading } = useFetchMoimDetail(moimId ?? '');
   const { data: moimDescription, isLoading: isMoimDescriptionLoading } = useFetchMoimDescription(
@@ -55,12 +61,20 @@ const Class = () => {
     selectTab
   );
 
+  if (isMoimDetailLoading || isMoimDescriptionLoading) {
+    return <Spinner />;
+  }
+
   if (!moimDetail || !moimDescription) {
     return <Error />;
   }
   const { dayOfDay = 0, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
 
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
+
+  const url = `https://pick-ple.com/class/${moimId}`;
+  const shareTitle = 'PICK!PLE';
+  const text = title ?? '';
 
   const handleNoticePostClick = (moimId: string) => {
     navigate(`/class/${moimId}/notice/post`);
@@ -70,16 +84,21 @@ const Class = () => {
     navigate(`/class/${moimId}/apply/rule`);
   };
 
-  if (isMoimDetailLoading || isMoimDescriptionLoading) {
-    return <Spinner />;
-  }
+  const handleShareButtonClick = () => {
+    handleShare(url, shareTitle, text, handleCopyToClipboard);
+    showToast();
+  };
 
   return (
     <div>
       <LogoHeader />
       <div css={classLayout}>
         <div css={carouselWrapper}>
-          <Carousel imageList={Object.values(imageList || []).filter((value) => value !== null)} />
+          <Carousel
+            imageList={Object.values(imageList || []).filter(
+              (value) => value !== null && value !== ''
+            )}
+          />
         </div>
         <section css={classInfo}>
           <Label variant="dDay">{`마감${dDayText(dayOfDay)}`}</Label>
@@ -135,7 +154,7 @@ const Class = () => {
             ))}
           {selectTab === '리뷰' && <ClassReviewEmptyView />}
         </section>
-        {selectTab === '공지사항' && (
+        {selectTab === '공지사항' && moimDetail?.hostId === hostId && (
           <div
             css={floatingButtonWrapper(windowWidth)}
             onClick={() => {
@@ -145,12 +164,20 @@ const Class = () => {
           </div>
         )}
         <section css={buttonContainer(windowWidth)}>
-          <ShareButton />
-          <Button variant="large" onClick={handleApplyButtonClick}>
+          <ShareButton onClick={handleShareButtonClick} />
+          <Button
+            variant="large"
+            onClick={handleApplyButtonClick}
+            disabled={dayOfDay < 0 || moimDetail.hostId === hostId}>
             참여하기
           </Button>
         </section>
       </div>
+      {isToastVisible && (
+        <Toast isVisible={isToastVisible} toastBottom={10}>
+          클립보드에 모임 링크를 복사했어요!
+        </Toast>
+      )}
     </div>
   );
 };

@@ -24,7 +24,6 @@ const ClassManageEmptyView = ({ moimId, maxGuest }: ClassManageEmptyViewProps) =
   const { handleCopyToClipboard } = useClipboard();
   const { showToast, isToastVisible } = useToast();
 
-  // 공유버튼 부분 예시
   const url = `https://pick-ple.com/class/${moimId}`;
   const title = 'PICK!PLE';
   const text = "내가 PICK!한 바로 '그 사람'과 함께하는 클래스 모임.";

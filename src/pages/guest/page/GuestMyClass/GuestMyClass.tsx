@@ -16,7 +16,6 @@ import { useAtom } from 'jotai';
 import { userAtom } from '@stores';
 import { statusMapText } from 'src/constants/mappingText';
 import { useFetchGuestApply, useFetchGuestParticipate } from '@apis/domains/moim';
-import Error from '@pages/error/Error';
 
 const GuestMyClass = () => {
   const [activeTab, setActiveTab] = useState<'신청한' | '참가한'>('신청한');
@@ -47,10 +46,6 @@ const GuestMyClass = () => {
   const handleStatusChange = (status: string) => {
     setSelectedStatus(status);
   };
-
-  if (!applyData) {
-    return <Error />;
-  }
 
   if (isApplyLoading || isParticipateLoading) {
     return <Spinner />;
@@ -96,14 +91,14 @@ const GuestMyClass = () => {
             </article>
           )}
 
-          {!currentData ? (
+          {currentData?.length === 0 ? (
             <GuestMyClassEmptyView
               text={
                 activeTab === '신청한' ? '아직 신청한 모임이 없어요' : '아직 참가한 모임이 없어요'
               }
             />
           ) : (
-            currentData.map((data) => (
+            currentData?.map((data) => (
               <div css={guestMyClassCardContainer} key={data.moimId}>
                 <MoimCard guestMyClassData={data} />
               </div>
