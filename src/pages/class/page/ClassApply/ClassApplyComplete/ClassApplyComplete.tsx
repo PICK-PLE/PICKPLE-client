@@ -16,6 +16,7 @@ import { MoimIdPathParameterType } from '@types';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const ClassApplyComplete = () => {
+  const { moimId } = useParams<MoimIdPathParameterType>();
   const navigate = useNavigate();
   const handleButtonClick = () => {
     navigate(`/categories`);

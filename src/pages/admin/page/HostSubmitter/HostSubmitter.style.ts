@@ -71,7 +71,7 @@ export const tdStyle = (theme: Theme) => css`
   ${theme.font['subhead03-m-16']}
 `;
 
-export const inputStyle = (theme: Theme) => css`
+export const inputStyle = css`
 width: 30rem;
 height: 4rem;
 `

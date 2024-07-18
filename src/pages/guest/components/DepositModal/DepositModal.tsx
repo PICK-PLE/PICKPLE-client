@@ -18,7 +18,7 @@ import {
 
 interface DepositModalProps {
   onClose: () => void;
-  fee: number;
+  fee?: number;
 }
 
 const DepositModal = ({ onClose, fee }: DepositModalProps) => {
@@ -46,8 +46,8 @@ const DepositModal = ({ onClose, fee }: DepositModalProps) => {
           </div>
         </section>
         <section css={payButtonSectionStyle}>
-          <PayButton variant="kakao" totalPrice={fee} />
-          <PayButton variant="toss" totalPrice={fee} />
+          <PayButton variant="kakao" totalPrice={fee || 0} />
+          <PayButton variant="toss" totalPrice={fee || 0} />
         </section>
         <Button variant="medium" onClick={onClose} customStyle={completeButtonCustomStyle}>
           입금을 완료했어요
