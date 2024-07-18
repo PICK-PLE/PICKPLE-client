@@ -44,7 +44,7 @@ const HostSubmitter = () => {
     }
   };
 
-  const handleButtonClick = (submitterId) => {
+  const handleButtonClick = (submitterId: number) => {
     mutate({submitterId}, {
       onSuccess: () => {
         refetch();
@@ -97,13 +97,13 @@ const HostSubmitter = () => {
                     <td css={tdStyle}>{item.plan}</td>
                     <td css={tdStyle}>{item.email}</td>
                     <td css={tdStyle}>
-                      {SUBMITTER_STATUS[item.submitterState]}
+                      {SUBMITTER_STATUS[item.submitterState as keyof typeof SUBMITTER_STATUS]}
                     </td>
                     <td css={tdStyle}>
                       {item.submitterState === 'approve' ? (
                         <div>승인</div>
                       ) : (
-                        <button onClick={() => handleButtonClick(item.submitterId)}>승인</button>
+                        <button onClick={() => handleButtonClick(item.submitterId || 0)}>승인</button>
                       )}
                     </td>
                   </tr>

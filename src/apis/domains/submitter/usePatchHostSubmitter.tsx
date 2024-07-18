@@ -3,7 +3,7 @@ import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { QueryClient, useMutation } from '@tanstack/react-query';
 
 export interface PatchHostSubmitterRequest {
-  submitterId: number[];
+  submitterId: number;
 }
 
 const patchHostSubmitter = async ({ submitterId }: PatchHostSubmitterRequest) => {

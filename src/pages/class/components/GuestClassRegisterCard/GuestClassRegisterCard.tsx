@@ -30,7 +30,7 @@ export interface GuestClassRegisterCardProps {
 const GuestClassRegisterCard = ({
   moimId,
   isModalOpen,
-  handleModalClose,
+  handleModalClose = () => {},
 }: GuestClassRegisterCardProps) => {
   const navigate = useNavigate();
   const { data: appliedMoimData, isLoading } = useFetchSubmittedMoimDetail(Number(moimId));
