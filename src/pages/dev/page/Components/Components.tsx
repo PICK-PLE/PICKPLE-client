@@ -5,7 +5,7 @@ import {
   Carousel,
   CategoryButton,
   ClipboardCopyButton,
-  DateSelect,
+//   DateSelect,
   Header,
   IconButton,
   Input,
@@ -21,18 +21,18 @@ import {
   SelectButton,
   ShareButton,
   SocialLoginButton,
-  TextArea,
+//   TextArea,
   Image,
   LogoHeader,
   // ApplicantAccordionList,
-  TimeSelect,
-  ImageSelect,
+//   TimeSelect,
+//   ImageSelect,
   CountPeople,
   NavigateBox,
   SimpleUserProfile,
   Toast,
-  Modal,
-  CategorySelectBox,
+//   Modal,
+//   CategorySelectBox,
 } from '@components';
 
 import {
@@ -76,15 +76,12 @@ import {
   iconContainerStyle,
   textStyle,
 } from './Components.style';
-import { ApplicantListModal } from '@pages/host/components/index';
-import { DepositModal } from '@pages/guest/components/index';
+// import { ApplicantListModal } from '@pages/host/components/index';
+// import { DepositModal } from '@pages/guest/components/index';
 
-import { APPLICANT_LIST_DATA } from 'src/constants/mocks/applicantListData';
-import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
+// import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
 import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
-
-const applicantListData = APPLICANT_LIST_DATA;
 
 const Components = () => {
   const [value, setValue] = useState('');
@@ -100,17 +97,12 @@ const Components = () => {
     setValue(e.target.value);
   };
 
-  const handleTextAreaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(e.target.value);
-  };
-
   const [people, setPeople] = useState(7);
   const handlePeopleChange = (newCount: number) => {
     setPeople(newCount);
   };
-  const { showToast, isToastVisible, toastMessage } = useToast();
+  const { showToast, isToastVisible } = useToast();
 
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const imageList = [
     'https://placehold.co/600x400',
@@ -327,11 +319,9 @@ const Components = () => {
 
         <section css={secttionContainer}>
           <h2 css={titleStyle}>Toast</h2>
-          <button onClick={() => showToast('신청 마감일 이후에 신청자를 승인할 수 있어요.')}>
-            토스트 나타나라!
-          </button>
+          <button onClick={() => showToast()}>토스트 나타나라!</button>
           <Toast toastIcon={true} isVisible={isToastVisible} toastBottom={3}>
-            {toastMessage}
+            토스트
           </Toast>
         </section>
       </div>
@@ -477,6 +467,8 @@ const Components = () => {
 
           <h3 css={subTitleStyle}>Select</h3>
           <Select
+            value=""
+            onChange={() => {}}
             placeholder="사용할 플랫폼을 선택해주세요."
             options={[
               'ZOOM',
@@ -489,10 +481,15 @@ const Components = () => {
             ]}></Select>
 
           <h3 css={subTitleStyle}>DateSelect</h3>
-          <DateSelect selected={selectedDate} onChange={setSelectedDate} />
+          {/* <DateSelect selected={selectedDate} onChange={setSelectedDate} /> */}
 
           <h3 css={subTitleStyle}>TimeSelect</h3>
-          <TimeSelect />
+          {/* <TimeSelect
+            startTime={startTime}
+            endTime={endTime}
+            onStartTimeChange={handleStartTimeChange}
+            onEndTimeChange={handleEndTimeChange}
+          /> */}
 
           <h3 css={subTitleStyle}>FilterSelect</h3>
           {/* <FilterSelect

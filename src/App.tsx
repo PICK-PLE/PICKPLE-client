@@ -11,6 +11,7 @@ import {
   homeRoutes,
   hostRoutes,
   myPageRoutes,
+  // devRoutes,
 } from '@routes';
 import errorPageRoutes from './routes/errorRoutes';
 import { useAtom } from 'jotai';
@@ -27,6 +28,7 @@ const allRoutes = [
   ...hostRoutes,
   ...myPageRoutes,
   ...errorPageRoutes,
+  // ...devRoutes,
 ];
 
 const protectedRoutes = allRoutes.map((route) => ({

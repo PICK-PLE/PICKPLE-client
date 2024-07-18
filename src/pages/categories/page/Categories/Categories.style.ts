@@ -48,3 +48,8 @@ export const moimCardStyle = css`
 
   cursor: pointer;
 `;
+
+export const spinnerStyle = css`
+  ${flexGenerator()};
+  height: 30rem;
+`;

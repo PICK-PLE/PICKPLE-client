@@ -6,6 +6,7 @@ import {
   mainLayout,
   moimCardStyle,
   moimListContainer,
+  spinnerStyle,
   titleStyle,
 } from './Categories.style';
 import { categoriesAtom } from '@stores';
@@ -61,10 +62,6 @@ const Categories = () => {
     return <Error />;
   }
 
-  if (isLoading) {
-    return <Spinner />;
-  }
-
   return (
     <>
       <LogoHeader />
@@ -87,7 +84,11 @@ const Categories = () => {
       </ul>
       <main css={mainLayout}>
         <h1 css={titleStyle}>{`${CATEGORY_NAME[selectedCategory]} 클래스 모임`}</h1>
-        {moimList?.length === 0 ? (
+        {isLoading ? (
+          <div css={spinnerStyle}>
+            <Spinner variant="page" />
+          </div>
+        ) : moimList?.length === 0 ? (
           <CategoryEmptyView />
         ) : (
           <ul css={moimListContainer}>
