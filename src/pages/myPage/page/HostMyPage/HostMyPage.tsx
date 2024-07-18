@@ -20,7 +20,6 @@ import { useAtom } from 'jotai';
 import { userAtom } from '@stores';
 import { useEffect, useState } from 'react';
 import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
-import Error from '@pages/error/Error';
 
 const HostMyPage = () => {
   const [user, setUser] = useAtom(userAtom);
@@ -61,11 +60,6 @@ const HostMyPage = () => {
       }
     }
   }, [isSuccess, hostInfoData, setUser]);
-
-  /**@정안TODO Spinner보다 Error가 먼저 잡혀서 주석처리 해놓음 */
-  if (!hostInfoData) {
-    return <Error />;
-  }
 
   return (
     <>
