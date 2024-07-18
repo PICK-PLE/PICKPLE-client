@@ -10,13 +10,6 @@ export const guestMyClassContainer = css`
   align-self: stretch;
 `;
 
-export const tapLine = (theme: Theme) => css`
-  width: 100%;
-  height: 0.1rem;
-
-  ${theme.color.lightgray1}
-`;
-
 export const tapContainer = (theme: Theme) => css`
   ${flexGenerator('row', 'center', 'center')}
   width: 50%;
@@ -42,6 +35,10 @@ export const inactiveTabStyle = (theme: Theme) => css`
 
 export const tabWrapper = css`
   ${flexGenerator()}
+`;
+
+export const mainWrapper = css`
+  height: calc(100dvh - 10.4rem);
 `;
 
 export const getTabStyle = (isActive: boolean) => (theme: Theme) =>

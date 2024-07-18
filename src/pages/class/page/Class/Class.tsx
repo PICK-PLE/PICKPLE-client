@@ -14,6 +14,8 @@ import {
   Label,
   LogoHeader,
   ShareButton,
+  Spinner,
+  Toast,
 } from '@components';
 import {
   buttonContainer,
@@ -33,26 +35,46 @@ import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from
 
 import { useNavigate, useParams } from 'react-router-dom';
 import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
-import { useWindowSize } from '@hooks';
+import { useClipboard, useToast, useWindowSize } from '@hooks';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
 import { MoimIdPathParameterType } from '@types';
+import Error from '@pages/error/Error';
+import { dDayText, handleShare } from '@utils';
+import { useAtom } from 'jotai';
+import { userAtom } from '@stores';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
   const navigate = useNavigate();
   const [selectTab, setSelectTab] = useState<'모임소개' | '공지사항' | '리뷰'>('모임소개');
   const { moimId } = useParams<MoimIdPathParameterType>();
+  const { handleCopyToClipboard } = useClipboard();
+  const { showToast, isToastVisible } = useToast();
+  const [{ hostId }] = useAtom(userAtom);
 
-  const { data: moimDetail } = useFetchMoimDetail(moimId ?? '');
-  const { data: moimDescription } = useFetchMoimDescription(moimId ?? '');
-  const { data: moimNoticeList } = useFetchMoimNoticeList(moimId ?? '', selectTab);
+  const { data: moimDetail, isLoading: isMoimDetailLoading } = useFetchMoimDetail(moimId ?? '');
+  const { data: moimDescription, isLoading: isMoimDescriptionLoading } = useFetchMoimDescription(
+    moimId ?? ''
+  );
+  const { data: moimNoticeList, isLoading: isMoimNoticeListLoading } = useFetchMoimNoticeList(
+    moimId ?? '',
+    selectTab
+  );
 
-  if (!moimDetail) {
-    return <div>No details found</div>;
+  if (isMoimDetailLoading || isMoimDescriptionLoading) {
+    return <Spinner />;
   }
-  const { dayOfDay, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
+
+  if (!moimDetail || !moimDescription) {
+    return <Error />;
+  }
+  const { dayOfDay = 0, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
 
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
+
+  const url = `https://pick-ple.com/class/${moimId}`;
+  const shareTitle = 'PICK!PLE';
+  const text = title ?? '';
 
   const handleNoticePostClick = (moimId: string) => {
     navigate(`/class/${moimId}/notice/post`);
@@ -62,15 +84,24 @@ const Class = () => {
     navigate(`/class/${moimId}/apply/rule`);
   };
 
+  const handleShareButtonClick = () => {
+    handleShare(url, shareTitle, text, handleCopyToClipboard);
+    showToast();
+  };
+
   return (
     <div>
       <LogoHeader />
       <div css={classLayout}>
         <div css={carouselWrapper}>
-          <Carousel imageList={Object.values(imageList || [])} />
+          <Carousel
+            imageList={Object.values(imageList || []).filter(
+              (value) => value !== null && value !== ''
+            )}
+          />
         </div>
         <section css={classInfo}>
-          <Label variant="dDay">{`마감 D-${dayOfDay}`}</Label>
+          <Label variant="dDay">{`마감${dDayText(dayOfDay)}`}</Label>
           <h1 css={classNameStyle}>{title}</h1>
           <ul css={classInfoList}>
             <li>
@@ -114,14 +145,16 @@ const Class = () => {
         <section css={[tabSectionStyle, selectTab === '모임소개' && infoSectionStyle]}>
           {selectTab === '모임소개' && <ClassInfo content={moimDescription ?? ''} />}
           {selectTab === '공지사항' &&
-            ((moimNoticeList || []).length === 0 ? (
+            (isMoimNoticeListLoading ? (
+              <Spinner variant="component" />
+            ) : (moimNoticeList || []).length === 0 ? (
               <ClassNoticeEmptyView />
             ) : (
               <ClassNotice noticeData={moimNoticeList || []} />
             ))}
           {selectTab === '리뷰' && <ClassReviewEmptyView />}
         </section>
-        {selectTab === '공지사항' && (
+        {selectTab === '공지사항' && moimDetail?.hostId === hostId && (
           <div
             css={floatingButtonWrapper(windowWidth)}
             onClick={() => {
@@ -131,12 +164,20 @@ const Class = () => {
           </div>
         )}
         <section css={buttonContainer(windowWidth)}>
-          <ShareButton />
-          <Button variant="large" onClick={handleApplyButtonClick}>
+          <ShareButton onClick={handleShareButtonClick} />
+          <Button
+            variant="large"
+            onClick={handleApplyButtonClick}
+            disabled={dayOfDay < 0 || moimDetail.hostId === hostId}>
             참여하기
           </Button>
         </section>
       </div>
+      {isToastVisible && (
+        <Toast isVisible={isToastVisible} toastBottom={10}>
+          클립보드에 모임 링크를 복사했어요!
+        </Toast>
+      )}
     </div>
   );
 };

@@ -5,7 +5,7 @@ export const instance = axios.create({
   // withCredentials: true,
 
   headers: {
-    Authorization: `Bearer ${localStorage.getItem('accessToken') || ''}`,
+    Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
   },
 });
 

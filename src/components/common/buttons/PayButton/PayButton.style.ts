@@ -17,4 +17,5 @@ export const payButtonStyle = (theme: Theme) => css`
 
 export const paySpanStyle = (theme: Theme) => css`
   ${theme.font['body02-r-14']};
+  color: ${theme.color.blackgray};
 `;

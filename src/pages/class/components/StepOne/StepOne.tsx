@@ -27,6 +27,7 @@ import AddAmountBox from '../AddAmountBox/AddAmountBox';
 import { ClassPostDataType } from 'src/stores/types/classPostDataType';
 import { smoothScroll } from '@utils';
 import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
+import AccountNumberInput from 'src/components/common/inputs/AccountNumberInput/AccountNumberInput';
 
 const StepOne = ({ onNext }: StepProps) => {
   const {
@@ -117,7 +118,7 @@ const StepOne = ({ onNext }: StepProps) => {
               left="오프라인"
               right="온라인"
               selected={classPostState.isOffline ? '오프라인' : '온라인'}
-              onClick={toggleIsOffline}
+              handleChange={toggleIsOffline}
             />
           </section>
           <section css={sectionStyle(1)}>
@@ -183,13 +184,9 @@ const StepOne = ({ onNext }: StepProps) => {
               isValid={true}
               isCountValue={false}
             />
-            <Input
+            <AccountNumberInput
               value={classPostState.accountList.accountNumber}
               onChange={(e) => handleAccountChange(e, 'accountNumber')}
-              placeholder="'-' 없이 입력"
-              inputLabel="계좌 번호"
-              isValid={true}
-              isCountValue={false}
             />
           </section>
         </main>

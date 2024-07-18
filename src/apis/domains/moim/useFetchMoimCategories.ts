@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { get } from '@apis/api';
 import { ApiResponseType } from '@types';
+import { isLoggedIn } from '@utils';
 
 const getMoimCategories = async (): Promise<string[] | null> => {
   try {
@@ -21,5 +22,6 @@ export const useFetchMoimCategories = () => {
     gcTime: 1000 * 60 * 60 * 24 * 7, // 1주일
     refetchOnMount: false,
     refetchOnWindowFocus: false,
+    enabled: isLoggedIn(),
   });
 };

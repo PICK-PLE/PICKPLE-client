@@ -30,11 +30,11 @@ export const addButtonStyle = (theme: Theme) => css`
   width: 5.6rem;
   height: 3.7rem;
 
-  border: none;
+  border: 1px solid ${theme.color.purple3};
   border-radius: 10px;
 
   ${theme.font['body01-r-15']};
 
-  background-color: ${theme.color.purple5};
-  color: ${theme.color.purple1};
+  background-color: ${theme.color.white};
+  color: ${theme.color.purple3};
 `;

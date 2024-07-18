@@ -26,6 +26,10 @@ const GlobalStyle = css`
     scroll-behavior: smooth;
   }
 
+  a {
+    text-decoration: none;
+  }
+
   #root {
     width: 100%;
     min-width: var(--min-width);

@@ -27,7 +27,6 @@ export const hostInfoWrapper = css`
 export const hostDetailWrapper = css`
   ${flexGenerator('column', 'center', 'flex-start')};
 
-  width: 10.8rem;
   gap: 0.5rem;
 `;
 
@@ -43,6 +42,14 @@ export const linkWrapper = (theme: Theme) => css`
 
   border-radius: 5px;
   background-color: ${theme.color.background};
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${theme.color.purple6};
+    p {
+      color: ${theme.color.purple1};
+    }
+  }
 `;
 
 export const linkStyle = (theme: Theme) => css`

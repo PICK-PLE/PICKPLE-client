@@ -5,13 +5,16 @@ import {
   titleStyle,
   logoWrapper,
   loginImageStyle,
-  buttonWrapper,
   titleWrapper,
   loginImageWrapper,
 } from './Login.style';
-import { graphicImage } from '@constants';
+import { graphicImage, routePath } from '@constants';
+import { isLoggedIn } from '@utils';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const Login = () => {
+  const navigate = useNavigate();
   const kakaoLoginUrl = `https://kauth.kakao.com/oauth/authorize?client_id=${
     import.meta.env.VITE_REST_API_KEY
   }&redirect_uri=${import.meta.env.VITE_REDIRECT_URI}&response_type=code`;
@@ -19,6 +22,12 @@ const Login = () => {
   const handleLoginClick = () => {
     window.location.replace(kakaoLoginUrl);
   };
+
+  useEffect(() => {
+    if (isLoggedIn()) {
+      navigate(routePath.HOME);
+    }
+  }, [navigate]);
 
   return (
     <div css={loginWrapper}>
@@ -32,11 +41,9 @@ const Login = () => {
       <div css={loginImageWrapper}>
         <img css={loginImageStyle} src={graphicImage.LoginImage} alt="로그인 그래픽" />
       </div>
-      <div css={buttonWrapper}>
-        <SocialLoginButton platform="kakao" icon={<IcKakaoLogo />} onClick={handleLoginClick}>
-          카카오로 시작하기
-        </SocialLoginButton>
-      </div>
+      <SocialLoginButton platform="kakao" icon={<IcKakaoLogo />} onClick={handleLoginClick}>
+        카카오로 시작하기
+      </SocialLoginButton>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { flexGenerator } from '@styles/generator';
 
 export const modalContainerStyle = css`
   ${flexGenerator('column')}
+  gap: 3.5rem;
   padding: 4.2rem 1.7rem 1.7rem 1.7rem;
 `;
 

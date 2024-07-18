@@ -1,4 +1,4 @@
-import { Button, LogoHeader, Modal, ProgressBar } from '@components';
+import { Button, LogoHeader, ProgressBar } from '@components';
 import { GuestClassRegisterCard } from '@pages/class/components';
 import {
   classApplyDepositLayout,
@@ -10,13 +10,14 @@ import {
   depositMainStyle,
   dipositWrapperStyle,
 } from '@pages/class/page/ClassApply/ClassApplyDeposit/ClassApplyDeposit.style';
-import { DepositModal } from '@pages/guest/components';
+import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
 import { MoimIdPathParameterType } from '@types';
 import { useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
 
 const ClassApplyDeposit = () => {
-  const navigate = useNavigate();
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { moimId } = useParams<MoimIdPathParameterType>();
@@ -24,10 +25,16 @@ const ClassApplyDeposit = () => {
   const handleModalOpen = () => {
     setIsModalOpen(true);
   };
-
   const handleModalClose = () => {
     setIsModalOpen(false);
-    navigate(`/class/${moimId}/apply/complete`);
+  };
+
+  const handleErrorModalOpen = () => {
+    setIsErrorModalOpen(true);
+  };
+
+  const handleErrorModalClose = () => {
+    setIsErrorModalOpen(false);
   };
 
   return (
@@ -46,22 +53,28 @@ const ClassApplyDeposit = () => {
             </header>
 
             <main css={depositMainStyle}>
-              <GuestClassRegisterCard />
+              <GuestClassRegisterCard
+                moimId={moimId ?? ''}
+                isModalOpen={isModalOpen}
+                handleModalClose={handleModalClose}
+              />
             </main>
           </div>
 
           <footer css={depositFooterStyle}>
             <Button variant="large" onClick={handleModalOpen}>
-              송금하기
+              입금하기
             </Button>
-            <button css={depositCautionTextStyle}>입금에 문제가 생기셨나요?</button>
+            <button css={depositCautionTextStyle} onClick={handleErrorModalOpen}>
+              입금에 문제가 생기셨나요?
+            </button>
           </footer>
         </article>
 
-        {isModalOpen && (
-          <Modal onClose={handleModalClose}>
-            <DepositModal onClose={handleModalClose} />
-          </Modal>
+        {isErrorModalOpen && (
+          <AbsoluteModal onClose={handleErrorModalClose}>
+            <DepositErrorModal onClose={handleErrorModalClose} />
+          </AbsoluteModal>
         )}
       </div>
     </>

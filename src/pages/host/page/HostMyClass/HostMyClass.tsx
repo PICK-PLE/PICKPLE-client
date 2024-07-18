@@ -4,14 +4,12 @@ import {
   hostMyClassBackground,
   hostMyClassLayout,
   tabWrapper,
-  tapLine,
 } from './HostMyClass.style';
 import { useState } from 'react';
 import { HostMyClassEmptyView } from '@pages/host/components';
-import { hostMyClassCardData } from 'src/constants/mocks/HostMyClassCardData';
 import { HostMyClassCard } from '@pages/host/components';
 
-import { Header } from '@components';
+import { Header, Spinner } from '@components';
 import { useFetchHostMoimInfo } from '@apis/domains/moim/useFetchHostMoimInfo';
 import { useAtom } from 'jotai';
 import { userAtom } from '@stores';
@@ -31,17 +29,16 @@ const HostMyClass = () => {
     setMoimState('completed');
   };
 
-  const { data } = useFetchHostMoimInfo(hostId ?? 0, moimState);
+  const { data, isLoading } = useFetchHostMoimInfo(hostId ?? 0, moimState);
 
-  if (!data) {
-    return <div>no data</div>;
+  if (isLoading) {
+    return <Spinner />;
   }
 
   return (
     <div css={hostMyClassBackground}>
       <Header title="my 클래스 모임" />
       <article css={hostMyClassLayout}>
-        <div css={tapLine} />
         <div css={tabWrapper}>
           <div css={getTabStyle(activeTab === '진행 중')} onClick={handleOngoingTabClick}>
             진행 중
@@ -51,11 +48,11 @@ const HostMyClass = () => {
           </div>
         </div>
 
-        {hostMyClassCardData.length === 0 ? (
+        {data?.length === 0 ? (
           <HostMyClassEmptyView text="아직 진행 중인 모임이 없어요" />
         ) : (
           <div css={hostMyClassCardContainer}>
-            {data.map((data) => (
+            {data?.map((data) => (
               <HostMyClassCard key={data.moimId} hostMyClassData={data} />
             ))}
           </div>

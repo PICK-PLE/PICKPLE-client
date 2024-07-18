@@ -2,10 +2,10 @@ import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const completedTabContainer = (theme: Theme) => css`
-  ${flexGenerator('column')}
-  height: 100dvh;
-  padding: 9.5rem 9.9rem 20.9rem;
-
+  ${flexGenerator('column', 'flex-start', 'center')}
+  height: calc(100dvh - 10.4rem);
+  padding: 20% 9.3rem 0;
+  width: 100%;
   background-color: ${theme.color.background};
 `;
 
@@ -28,4 +28,9 @@ export const detailWrapper = css`
 export const IcHostMyClassStyle = css`
   width: 15rem;
   height: 15rem;
+`;
+
+export const buttonWrapper = css`
+  margin-top: 2rem;
+  width: 100%;
 `;

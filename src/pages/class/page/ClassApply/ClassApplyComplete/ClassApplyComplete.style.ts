@@ -48,9 +48,15 @@ export const completeCautionTitleStyle = (theme: Theme) => css`
 `;
 
 export const completeTextStyle = (theme: Theme) => css`
-  ${flexGenerator('column', 'flex-start', 'flex-start')}
-  ${theme.font['body02-r-14']}
-color: ${theme.color.midgray1};
+  padding-left: 1.5rem; 
+  margin-bottom: 1rem;  
+
+  li {
+    ${theme.font['body02-r-14']}
+    color: ${theme.color.midgray1};
+    margin-bottom: 0.5rem; 
+    list-style-type: disc; 
+  }
 `;
 
 export const completeFooterStyle = css`

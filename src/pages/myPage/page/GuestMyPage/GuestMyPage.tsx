@@ -1,4 +1,4 @@
-import { LogoHeader, NavigateBox, SimpleUserProfile } from '@components';
+import { LogoHeader, Modal, NavigateBox, SimpleUserProfile } from '@components';
 import {
   navigateBoxWrapper,
   logoutBox,
@@ -10,21 +10,38 @@ import {
   divdier,
   profileWrapper,
 } from './GuestMyPage.style';
-import { routePath } from '@constants';
+import { images, routePath } from '@constants';
 import { useEasyNavigate } from '@hooks';
 import { IcNext } from '@svg';
-import { usePostLogout } from '@apis/domains/user';
 import { isLoggedIn } from '@utils';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAtom } from 'jotai';
+import { userAtom } from '@stores';
+import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 
 const GuestMyPage = () => {
+  const [user] = useAtom(userAtom);
+
   const navigate = useNavigate();
   const { goHostMyPage } = useEasyNavigate();
-  const { mutate } = usePostLogout();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleOpenKakaoClick = () => {
+    window.open(`${import.meta.env.VITE_OPEN_KAKAO_URL}`, '_blank');
+  };
 
   const handleLogoutClick = () => {
-    mutate();
+    handleModalOpen();
   };
 
   useEffect(() => {
@@ -44,12 +61,21 @@ const GuestMyPage = () => {
           </p>
         </nav>
         <div css={profileWrapper}>
-          <SimpleUserProfile size="xlarge" username="신청자" />
+          <SimpleUserProfile
+            size="xlarge"
+            userImgUrl={images.GuestProfileImage}
+            username={user.guestNickname || ''}
+          />
         </div>
         <div css={divdier} />
         <article css={navigateBoxWrapper}>
           <NavigateBox path={routePath.GUEST_MY_CLASS}>my 클래스 모임</NavigateBox>
-          <NavigateBox path="오픈 카톡 링크">픽플에 문의하기</NavigateBox>
+          <div css={logoutBox} onClick={handleOpenKakaoClick}>
+            <span css={logoutTextStyle}>픽플에 문의하기</span>
+            <span css={iconStyle}>
+              <IcNext />
+            </span>
+          </div>
           <div css={logoutBox} onClick={handleLogoutClick}>
             <span css={logoutTextStyle}>로그아웃</span>
             <span css={iconStyle}>
@@ -57,6 +83,12 @@ const GuestMyPage = () => {
             </span>
           </div>
         </article>
+
+        {isModalOpen && (
+          <Modal onClose={handleModalClose}>
+            <LogoutModal onClose={handleModalClose} />
+          </Modal>
+        )}
       </>
     )
   );

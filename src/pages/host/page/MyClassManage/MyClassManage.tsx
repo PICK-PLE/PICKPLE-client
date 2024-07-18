@@ -1,4 +1,4 @@
-import { ApplicantAccordionList, Button, Header, Label, Modal, Toast } from '@components';
+import { ApplicantAccordionList, Button, Header, Label, Modal, Spinner, Toast } from '@components';
 import {
   myClassManageLayout,
   headerStyle,
@@ -15,6 +15,7 @@ import { ApplicantListModal, ClassManageEmptyView } from '@pages/host/components
 import { useToast } from '@hooks';
 import { useFetchSubmitterList } from '@apis/domains/moimSubmission/useFetchSubmitterList';
 import { useParams } from 'react-router-dom';
+import Error from '@pages/error/Error';
 
 const MyClassManage = () => {
   const { moimId } = useParams();
@@ -22,8 +23,14 @@ const MyClassManage = () => {
   const { showToast, isToastVisible } = useToast();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
+  // 이전에 승인을 한 적이 있는지 확인. 서버에서 API 수정 후 삭제 예정
+  const isApproved = true;
+
+  // 진행중인 모임인지, 완료된 모임인지 확인. 서버에서 API 수정 후 삭제 예정
+  const isCompleted = true;
+
   // 모임 정보 추출
-  const { maxGuest, isApprovable, submitterList } = applicantData || {};
+  const { moimTitle, maxGuest, isApprovable, submitterList } = applicantData || {};
 
   // 체크박스 상태 관리
   const [checkedStates, setCheckedStates] = useState<boolean[]>(
@@ -45,21 +52,16 @@ const MyClassManage = () => {
   }, [maxGuest, isApprovable, submitterList, checkedStates]);
 
   const toggleChecked = (index: number) => {
+    if (isApproved || isCompleted) return;
+
     const newCheckedState = !checkedStates[index];
-
-    const checkedCount = checkedStates.filter((state) => state).length;
-
-    if (newCheckedState && checkedCount >= (maxGuest ?? 0)) {
-      showToast('최대 인원을 초과할 수 없습니다.');
-      return;
-    }
 
     if (isApprovable) {
       setCheckedStates((prevStates) =>
         prevStates.map((checked, i) => (i === index ? newCheckedState : checked))
       );
     } else {
-      showToast('신청 마감일 이후에 신청자를 승인할 수 있어요.');
+      showToast();
     }
   };
 
@@ -80,7 +82,11 @@ const MyClassManage = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
+  }
+
+  if (!applicantData) {
+    return <Error />;
   }
 
   return (
@@ -88,8 +94,7 @@ const MyClassManage = () => {
       <Header title="신청자 관리" />
       <article css={myClassManageLayout}>
         <header css={headerStyle}>
-          {/* @채연 TODO: 제목도 받아와야 함!*/}
-          <div>부산 10년 토박이 달아오르구마와 함께하는 사투리리</div>
+          <p>{moimTitle}</p>
         </header>
 
         <main css={mainStyle}>
@@ -120,9 +125,11 @@ const MyClassManage = () => {
         </main>
 
         <footer css={footerStyle}>
-          <Button variant="large" disabled={!isActive} onClick={handleModalOpen}>
-            승인하기
-          </Button>
+          {!isCompleted && (
+            <Button variant="large" disabled={isApproved || !isActive} onClick={handleModalOpen}>
+              {isApproved ? '승인 완료' : '승인하기'}
+            </Button>
+          )}
         </footer>
 
         {isOpenModal && (

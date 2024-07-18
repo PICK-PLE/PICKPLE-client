@@ -1,4 +1,4 @@
-import { post } from '@apis/api';
+import { instance, post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { useEasyNavigate } from '@hooks';
 import { userAtom } from '@stores';
@@ -26,7 +26,7 @@ const postKakaoLogin = async (
 
 export const usePostKakaoLogin = () => {
   const [user, setUser] = useAtom(userAtom);
-  const { goBack } = useEasyNavigate();
+  const { goHome } = useEasyNavigate();
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -40,10 +40,11 @@ export const usePostKakaoLogin = () => {
 
         if (token && token.accessToken) {
           localStorage.setItem('accessToken', token.accessToken);
+          instance.defaults.headers.Authorization = `Bearer ${token.accessToken}`;
         }
 
         queryClient.invalidateQueries({ queryKey: [QUERY_KEY.KAKAO_LOGIN] });
-        goBack();
+        goHome();
       }
     },
   });

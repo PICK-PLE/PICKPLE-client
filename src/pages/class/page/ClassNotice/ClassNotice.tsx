@@ -9,7 +9,7 @@ import { useState, useEffect } from 'react';
 import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
 import { usePostNotice } from '@apis/domains/notice';
 import { handleUpload } from 'src/utils/image';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { MoimIdPathParameterType } from '@types';
 
 const ClassNotice = () => {
@@ -23,6 +23,12 @@ const ClassNotice = () => {
   const putS3UploadMutation = usePutS3Upload();
   const postNoticeMutation = usePostNotice();
 
+  const navigate = useNavigate();
+
+  const handleNavigateToMoimInfo = (moimId: number) => {
+    navigate(`/class/${moimId}`);
+  };
+
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNoticeTitle(e.target.value);
   };
@@ -34,10 +40,6 @@ const ClassNotice = () => {
   useEffect(() => {
     setIsButtonDisabled(!(noticeTitle.trim() && noticeContent.trim()));
   }, [noticeTitle, noticeContent]);
-
-  const handleFileSelect = (files: File[]) => {
-    setSelectedFiles(files);
-  };
 
   const handleButtonClick = async (): Promise<void> => {
     let imageUrl: undefined | string = undefined;
@@ -56,6 +58,7 @@ const ClassNotice = () => {
     };
 
     await postNoticeMutation.mutateAsync({ params, moimId: moimIdNumber });
+    handleNavigateToMoimInfo(Number(moimIdNumber));
   };
 
   return (
@@ -80,7 +83,7 @@ const ClassNotice = () => {
             isValid={true}
           />
           <div css={imageSelectWrapper}>
-            <ImageSelect onFileSelect={handleFileSelect} />
+            <ImageSelect onFileSelect={setSelectedFiles} />
           </div>
         </main>
 

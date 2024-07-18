@@ -14,7 +14,7 @@ const categoriesPages = {
 const classPages = {
   CLASS_DETAIL: '/class/:moimId',
   CLASS_NOTICE_POST: '/class/:moimId/notice/post',
-  CLASS_POST: '/class/post',
+  CLASS_POST: '/class/post/:step',
   CLASS_APPLY_RULE: '/class/:moimId/apply/rule',
   CLASS_APPLY_QUESTION: '/class/:moimId/apply/question',
   CLASS_APPLY_DEPOSIT: '/class/:moimId/apply/deposit',
@@ -41,6 +41,14 @@ const devPages = {
   DEV_CARD: '/dev/card',
 };
 
+const errorPages = {
+  ERROR: '/error',
+};
+
+const adminPages = {
+  ADMIN: '/pickple-admin',
+}
+
 export default {
   ...authPages,
   ...homePages,
@@ -50,4 +58,6 @@ export default {
   ...guestPages,
   ...hostPages,
   ...devPages,
+  ...errorPages,
+  ...adminPages,
 };

@@ -63,3 +63,7 @@ export const payButtonSectionStyle = css`
   ${flexGenerator()}
   gap: 1.1rem;
 `;
+
+export const completeButtonCustomStyle = (theme: Theme) => css`
+  ${theme.font['subhead05-sb-14']}
+`;

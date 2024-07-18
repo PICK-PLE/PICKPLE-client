@@ -76,7 +76,7 @@ export const buttonSize = {
 
     ${theme.font['subhead03-m-16']}
     color: ${theme.color.purple3};
-    background-color: ${theme.color.white};
+    background-color: transparent;
   `,
 };
 

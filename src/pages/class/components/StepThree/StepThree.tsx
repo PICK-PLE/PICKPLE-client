@@ -13,38 +13,47 @@ import {
   titleStyle,
 } from './StepThree.style';
 import { usePostMoim } from '@apis/domains/moim/usePostMoim';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ErrorType } from '@types';
 import { handleUpload } from 'src/utils/image';
 import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
 import { smoothScroll } from '@utils';
 import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
+import { useAtom } from 'jotai';
+import { moimIdAtom } from 'src/stores/classPostData';
 
 const StepThree = ({ onNext }: StepProps) => {
-  const { classPostState, handleInputChange, handleImageList } = useClassPostInputChange();
+  const { classPostState, handleInputChange } = useClassPostInputChange();
+  const [, setMoimId] = useAtom(moimIdAtom);
   const { validateStepThree } = useClassPostInputValidation();
-  const { isTitleValid, isDescriptionValid, isAllValid } = validateStepThree(classPostState);
+  const { isTitleValid, isDescriptionValid } = validateStepThree(classPostState);
+
   const putS3UploadMutation = usePutS3Upload();
   const postMoim = usePostMoim();
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [isAllValid, setIsAllValid] = useState(false);
 
-  const handleFileSelect = (files: File[]) => {
-    setSelectedFiles(files);
-  };
+  useEffect(() => {
+    if (isTitleValid && isDescriptionValid && selectedFiles.length > 0) {
+      setIsAllValid(true);
+    }
+  }, [isTitleValid, isDescriptionValid, selectedFiles]);
 
   const handleNextClick = async (): Promise<void> => {
-    if (isAllValid) {
+    if (isAllValid && selectedFiles.length >= 1) {
       const imageUrlList = await handleUpload({
         selectedFiles,
         putS3Upload: putS3UploadMutation.mutateAsync,
         type: 'moim',
       });
-      handleImageList(imageUrlList);
 
       postMoim
-        .mutateAsync(classPostState)
-        .then(() => {
+        .mutateAsync({ ...classPostState, imageList: imageUrlList })
+        .then((data) => {
+          if (data) {
+            setMoimId(data);
+          }
           onNext();
           smoothScroll(0);
         })
@@ -90,7 +99,7 @@ const StepThree = ({ onNext }: StepProps) => {
             />
           </section>
           <section css={imageSelectSection}>
-            <ImageSelect isMultiple={true} onFileSelect={handleFileSelect} />
+            <ImageSelect isMultiple={true} onFileSelect={setSelectedFiles} />
             <h6 css={referTextStyle}>
               * 첫번째 사진이 썸네일 이미지로 등록되며
               <br />
