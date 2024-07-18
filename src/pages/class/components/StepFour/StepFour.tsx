@@ -10,16 +10,23 @@ import {
   titleStyle,
 } from './StepFour.style';
 import { HostClassOpenImage } from '@image';
+import { useAtom } from 'jotai';
+import { moimIdAtom } from 'src/stores/classPostData';
 import { useNavigate } from 'react-router-dom';
-import { routePath } from '@constants';
+import { useEasyNavigate } from '@hooks';
 
 const StepFour = () => {
+  const [moimId] = useAtom(moimIdAtom);
   const navigate = useNavigate();
+  const { goHostMyPage } = useEasyNavigate();
 
   const handleButtonClick = () => {
-    navigate(routePath.CATEGORY);
+    if (moimId > 0) {
+      navigate(`/class/${moimId}`);
+    } else {
+      goHostMyPage();
+    }
   };
-
   return (
     <>
       <ProgressBar progress={100} />

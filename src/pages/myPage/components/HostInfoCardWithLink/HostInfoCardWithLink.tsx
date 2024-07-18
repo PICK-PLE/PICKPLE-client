@@ -32,6 +32,10 @@ const HostInfoCardWithLink = ({ hostInfoCardWithLinkList }: hostInfoCardWithLink
     navigate('/class/post/step1');
   };
 
+  const handleLinkClick = () => {
+    window.open(hostLink, '_blank');
+  };
+
   return (
     <section css={hostInfoCardWithLinkLayout}>
       <div css={hostInfoCardWithLinkContainer}>
@@ -40,7 +44,7 @@ const HostInfoCardWithLink = ({ hostInfoCardWithLinkList }: hostInfoCardWithLink
             <Image variant="round" width="6rem" src={hostImageUrl ?? HostProfileImage} />
             <div css={hostDetailWrapper}>
               <p css={hostNameStyle}>{hostNickName}</p>
-              <div css={linkWrapper}>
+              <div css={linkWrapper} onClick={handleLinkClick}>
                 <p css={linkStyle}>{hostLink}</p>
               </div>
             </div>

@@ -40,6 +40,8 @@ import { useFetchMoimNoticeList } from '@apis/domains/notice';
 import { MoimIdPathParameterType } from '@types';
 import Error from '@pages/error/Error';
 import { dDayText, handleShare } from '@utils';
+import { useAtom } from 'jotai';
+import { userAtom } from '@stores';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
@@ -48,6 +50,7 @@ const Class = () => {
   const { moimId } = useParams<MoimIdPathParameterType>();
   const { handleCopyToClipboard } = useClipboard();
   const { showToast, isToastVisible } = useToast();
+  const [{ hostId }] = useAtom(userAtom);
 
   const { data: moimDetail, isLoading: isMoimDetailLoading } = useFetchMoimDetail(moimId ?? '');
   const { data: moimDescription, isLoading: isMoimDescriptionLoading } = useFetchMoimDescription(
@@ -91,7 +94,11 @@ const Class = () => {
       <LogoHeader />
       <div css={classLayout}>
         <div css={carouselWrapper}>
-          <Carousel imageList={Object.values(imageList || []).filter((value) => value !== null)} />
+          <Carousel
+            imageList={Object.values(imageList || []).filter(
+              (value) => value !== null && value !== ''
+            )}
+          />
         </div>
         <section css={classInfo}>
           <Label variant="dDay">{`마감${dDayText(dayOfDay)}`}</Label>
@@ -147,7 +154,7 @@ const Class = () => {
             ))}
           {selectTab === '리뷰' && <ClassReviewEmptyView />}
         </section>
-        {selectTab === '공지사항' && (
+        {selectTab === '공지사항' && moimDetail?.hostId === hostId && (
           <div
             css={floatingButtonWrapper(windowWidth)}
             onClick={() => {
@@ -158,7 +165,10 @@ const Class = () => {
         )}
         <section css={buttonContainer(windowWidth)}>
           <ShareButton onClick={handleShareButtonClick} />
-          <Button variant="large" onClick={handleApplyButtonClick} disabled={dayOfDay < 0}>
+          <Button
+            variant="large"
+            onClick={handleApplyButtonClick}
+            disabled={dayOfDay < 0 || moimDetail.hostId === hostId}>
             참여하기
           </Button>
         </section>
