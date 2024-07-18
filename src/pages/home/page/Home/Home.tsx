@@ -1,4 +1,4 @@
-import { LogoHeader } from '@components';
+import { LogoHeader, Spinner } from '@components';
 import {
   categoryContainer,
   categoryStyle,
@@ -18,7 +18,6 @@ import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import { mainBanner } from 'src/assets/lotties';
 import Error from '@pages/error/Error';
-import { Spinner } from 'src/components/common/Spinner/Spinner';
 const Home = () => {
   const navigate = useNavigate();
   const { data: bannerId, isLoading } = useFetchMoimBanner();

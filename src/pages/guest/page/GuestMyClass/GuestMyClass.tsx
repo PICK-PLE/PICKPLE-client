@@ -1,4 +1,4 @@
-import { FilterSelect, Header } from '@components';
+import { FilterSelect, Header, Spinner } from '@components';
 import {
   guestMyClassLayout,
   tapLine,
@@ -16,7 +16,6 @@ import { useAtom } from 'jotai';
 import { userAtom } from '@stores';
 import { statusMapText } from 'src/constants/mappingText';
 import { useFetchGuestApply, useFetchGuestParticipate } from '@apis/domains/moim';
-import { Spinner } from 'src/components/common/Spinner/Spinner';
 import Error from '@pages/error/Error';
 
 const GuestMyClass = () => {

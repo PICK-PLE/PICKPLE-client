@@ -14,6 +14,7 @@ import {
   Label,
   LogoHeader,
   ShareButton,
+  Spinner,
 } from '@components';
 import {
   buttonContainer,
@@ -36,7 +37,6 @@ import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim'
 import { useWindowSize } from '@hooks';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
 import { MoimIdPathParameterType } from '@types';
-import { Spinner } from 'src/components/common/Spinner/Spinner';
 import Error from '@pages/error/Error';
 
 const Class = () => {

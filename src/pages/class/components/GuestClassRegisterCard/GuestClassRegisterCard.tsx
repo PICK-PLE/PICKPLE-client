@@ -17,7 +17,7 @@ import {
 import { IcDate, IcOffline, IcOneline } from '@svg';
 import { useFetchSubmittedMoimDetail } from '@apis/domains/moim';
 import Error from '@pages/error/Error';
-import { Spinner } from 'src/components/common/Spinner/Spinner';
+import { Spinner } from '@components';
 
 interface GuestClassRegisterCardProps {
   moimId: number;
