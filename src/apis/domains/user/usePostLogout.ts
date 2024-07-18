@@ -7,7 +7,7 @@ import { RESET } from 'jotai/utils';
 
 const postLogout = async () => {
   try {
-    const response = await post(`/moim/logout`);
+    const response = await post(`/user/logout`);
     return response;
   } catch (error) {
     console.error(error);

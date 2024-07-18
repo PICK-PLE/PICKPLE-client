@@ -43,6 +43,14 @@ export const linkWrapper = (theme: Theme) => css`
 
   border-radius: 5px;
   background-color: ${theme.color.background};
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${theme.color.purple6};
+    p {
+      color: ${theme.color.purple1};
+    }
+  }
 `;
 
 export const linkStyle = (theme: Theme) => css`

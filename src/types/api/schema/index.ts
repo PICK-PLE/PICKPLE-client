@@ -1393,7 +1393,7 @@ export interface operations {
                 };
             };
             /** @description 해당 모임에 신청한 내역이 없습니다. */
-            40407: {
+            40406: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -1425,15 +1425,6 @@ export interface operations {
             };
             /** @description 존재하지 않는 모임입니다. */
             40404: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ApiResponseDtoMoimSubmissionByMoimResponse"];
-                };
-            };
-            /** @description 해당 모임에 신청자가 없습니다. */
-            40409: {
                 headers: {
                     [name: string]: unknown;
                 };
@@ -1762,15 +1753,6 @@ export interface operations {
                     "*/*": components["schemas"]["ApiResponseDtoListSubmittedMoimByGuestResponse"];
                 };
             };
-            /** @description 상태에 맞는 모임이 없습니다. */
-            40406: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ApiResponseDtoListSubmittedMoimByGuestResponse"];
-                };
-            };
         };
     };
     getCompletedMoimListByGuest: {
@@ -1795,15 +1777,6 @@ export interface operations {
             };
             /** @description 존재하지 않는 게스트입니다. */
             40403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ApiResponseDtoListSubmittedMoimByGuestResponse"];
-                };
-            };
-            /** @description 상태에 맞는 모임이 없습니다. */
-            40406: {
                 headers: {
                     [name: string]: unknown;
                 };

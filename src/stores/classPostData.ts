@@ -33,3 +33,4 @@ export const classPostAtom = atom<ClassPostDataType>({
   imageList: [],
 });
 
+export const moimIdAtom = atom(0);

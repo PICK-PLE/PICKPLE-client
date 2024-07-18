@@ -9,9 +9,24 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepFour.style';
-import { HostClassOpenImage } from '@image';
+import { graphicImage } from '@constants';
+import { useAtom } from 'jotai';
+import { moimIdAtom } from 'src/stores/classPostData';
+import { useNavigate } from 'react-router-dom';
+import { useEasyNavigate } from '@hooks';
 
 const StepFour = () => {
+  const [moimId] = useAtom(moimIdAtom);
+  const navigate = useNavigate();
+  const { goHostMyPage } = useEasyNavigate();
+
+  const handleButtonClick = () => {
+    if (moimId > 0) {
+      navigate(`/class/${moimId}`);
+    } else {
+      goHostMyPage();
+    }
+  };
   return (
     <>
       <ProgressBar progress={100} />
@@ -26,10 +41,12 @@ const StepFour = () => {
           </span>
         </header>
         <main css={mainStyle}>
-          <img src={HostClassOpenImage} css={imageStyle} />
+          <img src={graphicImage.HostClassOpenImage} css={imageStyle} />
         </main>
         <footer css={footerStyle}>
-          <Button variant="large">개설한 모임 보러가기</Button>
+          <Button variant="large" onClick={handleButtonClick}>
+            개설한 모임 보러가기
+          </Button>
         </footer>
       </div>
     </>
