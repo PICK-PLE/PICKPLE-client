@@ -14,7 +14,6 @@ import { Header, Spinner } from '@components';
 import { useFetchHostMoimInfo } from '@apis/domains/moim/useFetchHostMoimInfo';
 import { useAtom } from 'jotai';
 import { userAtom } from '@stores';
-import Error from '@pages/error/Error';
 const HostMyClass = () => {
   const [activeTab, setActiveTab] = useState<'진행 중' | '완료'>('진행 중');
   const [moimState, setMoimState] = useState<'ongoing' | 'completed'>('ongoing');
@@ -37,10 +36,6 @@ const HostMyClass = () => {
     return <Spinner />;
   }
 
-  if (!data) {
-    return <Error />;
-  }
-
   return (
     <div css={hostMyClassBackground}>
       <Header title="my 클래스 모임" />
@@ -55,11 +50,11 @@ const HostMyClass = () => {
           </div>
         </div>
 
-        {data.length === 0 ? (
+        {!data ? (
           <HostMyClassEmptyView text="아직 진행 중인 모임이 없어요" />
         ) : (
           <div css={hostMyClassCardContainer}>
-            {data.map((data) => (
+            {data?.map((data) => (
               <HostMyClassCard key={data.moimId} hostMyClassData={data} />
             ))}
           </div>
