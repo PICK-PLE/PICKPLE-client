@@ -1,5 +1,6 @@
 import { graphicImage } from '@constants';
 import {
+  buttonWrapper,
   hostMyPageEmptyViewContainer,
   hostMyPageEmptyViewWrapper,
   imageStyle,
@@ -7,7 +8,6 @@ import {
 } from './HostMyPageEmptyView.style';
 import { Button } from '@components';
 import { useNavigate } from 'react-router-dom';
-import { buttonWrapper } from '../LogoutModal/LogoutModal.style';
 
 const HostMyPageEmptyView = () => {
   const navigate = useNavigate();
