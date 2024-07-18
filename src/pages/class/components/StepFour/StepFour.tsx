@@ -18,7 +18,7 @@ const StepFour = () => {
       <div css={layoutStyle}>
         <header css={headerStyle}>
           <h4 css={titleStyle}>클래스 모임 개설</h4>
-          <h1 css={subTitleStyle}>질문을 만들어 주세요</h1>
+          <h1 css={subTitleStyle}>클래스 모임 개설이 완료되었어요!</h1>
           <span css={headerSpanStyle}>
             [마이페이지] &gt; [my 클래스 모임]에서
             <br />

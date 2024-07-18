@@ -1,14 +1,17 @@
 import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+import { components } from '@schema';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { ApiResponseType, HostMyClassDataResponseType } from '@types';
+import { ApiResponseType } from '@types';
+
+type MoimListByHostGetResponse = components['schemas']['MoimListByHostGetResponse']
 
 const getHostMoimInfo = async (
   hostId: number,
   moimState: string
-): Promise<HostMyClassDataResponseType[] | null> => {
+): Promise<MoimListByHostGetResponse[] | null> => {
   try {
-    const response = await get<ApiResponseType<HostMyClassDataResponseType[]>>(
+    const response = await get<ApiResponseType<MoimListByHostGetResponse[]>>(
       `/host/${hostId}/moim-list?moimState=${moimState}`
     );
 

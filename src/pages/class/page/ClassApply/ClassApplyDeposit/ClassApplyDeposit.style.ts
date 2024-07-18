@@ -46,4 +46,6 @@ export const depositCautionTextStyle = (theme: Theme) => css`
   border: none;
   border-bottom: 1px solid ${theme.color.midgray1};
   ${theme.font['subhead03-m-16']}
+
+  cursor: pointer;
 `;
