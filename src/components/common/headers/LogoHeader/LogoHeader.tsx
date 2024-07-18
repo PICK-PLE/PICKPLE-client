@@ -1,4 +1,4 @@
-import { IcLogo, IcPerson } from '@svg';
+import { IcLogo, IcMypage } from '@svg';
 import { logoHeaderWrapper, iconStyle, logoWrapper } from './LogoHeader.style';
 import { useEasyNavigate } from '@hooks';
 
@@ -14,7 +14,7 @@ const LogoHeader = ({ isIcon = true }: LogoHeaderProps) => {
       <div css={logoWrapper}>
         <IcLogo onClick={goHome} />
       </div>
-      {isIcon && <IcPerson onClick={goGuestMyPage} css={iconStyle} />}
+      {isIcon && <IcMypage onClick={goGuestMyPage} css={iconStyle} />}
     </header>
   );
 };

@@ -14,6 +14,7 @@ import {
   Label,
   LogoHeader,
   ShareButton,
+  Spinner,
 } from '@components';
 import {
   buttonContainer,
@@ -36,6 +37,8 @@ import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim'
 import { useWindowSize } from '@hooks';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
 import { MoimIdPathParameterType } from '@types';
+import Error from '@pages/error/Error';
+import { dDayText } from '@utils';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
@@ -43,14 +46,19 @@ const Class = () => {
   const [selectTab, setSelectTab] = useState<'모임소개' | '공지사항' | '리뷰'>('모임소개');
   const { moimId } = useParams<MoimIdPathParameterType>();
 
-  const { data: moimDetail } = useFetchMoimDetail(moimId ?? '');
-  const { data: moimDescription } = useFetchMoimDescription(moimId ?? '');
-  const { data: moimNoticeList } = useFetchMoimNoticeList(moimId ?? '', selectTab);
+  const { data: moimDetail, isLoading: isMoimDetailLoading } = useFetchMoimDetail(moimId ?? '');
+  const { data: moimDescription, isLoading: isMoimDescriptionLoading } = useFetchMoimDescription(
+    moimId ?? ''
+  );
+  const { data: moimNoticeList, isLoading: isMoimNoticeListLoading } = useFetchMoimNoticeList(
+    moimId ?? '',
+    selectTab
+  );
 
-  if (!moimDetail) {
-    return <div>No details found</div>;
+  if (!moimDetail || !moimDescription) {
+    return <Error />;
   }
-  const { dayOfDay, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
+  const { dayOfDay = 0, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
 
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
 
@@ -62,15 +70,19 @@ const Class = () => {
     navigate(`/class/${moimId}/apply/rule`);
   };
 
+  if (isMoimDetailLoading || isMoimDescriptionLoading) {
+    return <Spinner />;
+  }
+
   return (
     <div>
       <LogoHeader />
       <div css={classLayout}>
         <div css={carouselWrapper}>
-          <Carousel imageList={Object.values(imageList || [])} />
+          <Carousel imageList={Object.values(imageList || []).filter((value) => value !== null)} />
         </div>
         <section css={classInfo}>
-          <Label variant="dDay">{`마감 D-${dayOfDay}`}</Label>
+          <Label variant="dDay">{`마감${dDayText(dayOfDay)}`}</Label>
           <h1 css={classNameStyle}>{title}</h1>
           <ul css={classInfoList}>
             <li>
@@ -114,7 +126,9 @@ const Class = () => {
         <section css={[tabSectionStyle, selectTab === '모임소개' && infoSectionStyle]}>
           {selectTab === '모임소개' && <ClassInfo content={moimDescription ?? ''} />}
           {selectTab === '공지사항' &&
-            ((moimNoticeList || []).length === 0 ? (
+            (isMoimNoticeListLoading ? (
+              <Spinner variant="component" />
+            ) : (moimNoticeList || []).length === 0 ? (
               <ClassNoticeEmptyView />
             ) : (
               <ClassNotice noticeData={moimNoticeList || []} />

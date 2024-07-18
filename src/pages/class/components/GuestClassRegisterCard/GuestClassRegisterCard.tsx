@@ -16,16 +16,19 @@ import {
 } from './GuestClassRegisterCard.style';
 import { IcDate, IcOffline, IcOneline } from '@svg';
 import { useFetchSubmittedMoimDetail } from '@apis/domains/moim';
+import Error from '@pages/error/Error';
+import { Spinner } from '@components';
+import { MoimIdPathParameterType } from '@types';
 
-interface GuestClassRegisterCardProps {
-  moimId: number;
-}
-
-const GuestClassRegisterCard = ({moimId}: GuestClassRegisterCardProps) => {
-  const { data: appliedMoimData } = useFetchSubmittedMoimDetail(moimId);
+const GuestClassRegisterCard = ({ moimId }: MoimIdPathParameterType) => {
+  const { data: appliedMoimData, isLoading } = useFetchSubmittedMoimDetail(Number(moimId));
 
   if (!appliedMoimData) {
-    return <div>empty view</div>;
+    return <Error />;
+  }
+
+  if (isLoading) {
+    return <Spinner />;
   }
 
   const { title, hostNickname, isOffline, spot, dateList, fee, hostImageUrl, moimImageUrl } =

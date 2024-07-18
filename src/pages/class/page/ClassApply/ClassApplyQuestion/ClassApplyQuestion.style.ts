@@ -51,12 +51,15 @@ export const questionCautionStyle = (theme: Theme) => css`
   ${theme.font['body02-r-14']};
 `;
 
-export const questionCautionIconStyle = () => css`
+export const questionCautionIconStyle = css`
   width: 2.4rem;
   min-width: 2.4rem;
 `;
 
-export const questionCautionTextStyle = () => css``;
+export const questionCautionTextStyle = (theme: Theme) => css`
+color: ${theme.color.midgray2};
+  ${theme.font['body02-r-14']}
+`;
 
 export const questionRefundStyle = () => css`
   ${flexGenerator('row', 'flex-start', 'flex-start')};

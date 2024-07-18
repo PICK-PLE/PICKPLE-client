@@ -4,6 +4,7 @@ import {
   accountHolderStyle,
   accountInfoStyle,
   bankTextStyle,
+  completeButtonCustomStyle,
   headerFirstH1Style,
   headerH1SpanStyle,
   headerSecondH1Style,
@@ -47,7 +48,10 @@ const DepositModal = ({ onClose }: DepositModalProps) => {
           <PayButton variant="kakao" totalPrice={1} />
           <PayButton variant="toss" totalPrice={1} />
         </section>
-        <Button variant="stroke" onClick={onClose}>
+        <Button
+          variant="medium"
+          onClick={onClose}
+          customStyle={completeButtonCustomStyle}>
           입금을 완료했어요
         </Button>
       </main>

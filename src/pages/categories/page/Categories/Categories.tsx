@@ -1,4 +1,4 @@
-import { LogoHeader } from '@components';
+import { LogoHeader, Spinner } from '@components';
 import {
   categoriesContainer,
   categoryWrapper,
@@ -12,9 +12,10 @@ import { categoriesAtom } from '@stores';
 import { useAtom } from 'jotai';
 import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { ClassListCard } from '@pages/categories/components';
+import { CategoryEmptyView, ClassListCard } from '@pages/categories/components';
 import { useFetchMoimListByCategory } from '@apis/domains/moim/useFetchMoimListByCategory';
 import { useEffect, useRef } from 'react';
+import Error from '@pages/error/Error';
 
 const Categories = () => {
   const navigate = useNavigate();
@@ -23,15 +24,7 @@ const Categories = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedCategory = searchParams.get('category') || categories[0];
-  const { data: moimList, refetch } = useFetchMoimListByCategory(selectedCategory);
-
-  const handleCategoryClick = (category: string) => {
-    setSearchParams({ category });
-  };
-
-  const handleMoimClick = (moimId: number) => {
-    navigate(`/class/${moimId}`);
-  };
+  const { data: moimList, refetch, isLoading } = useFetchMoimListByCategory(selectedCategory);
 
   useEffect(() => {
     if (categoriesRef.current) {
@@ -56,6 +49,22 @@ const Categories = () => {
     refetch();
   }, [selectedCategory, refetch]);
 
+  const handleCategoryClick = (category: string) => {
+    setSearchParams({ category });
+  };
+
+  const handleMoimClick = (moimId: number) => {
+    navigate(`/class/${moimId}`);
+  };
+
+  if (moimList === null) {
+    return <Error />;
+  }
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
   return (
     <>
       <LogoHeader />
@@ -78,20 +87,24 @@ const Categories = () => {
       </ul>
       <main css={mainLayout}>
         <h1 css={titleStyle}>{`${CATEGORY_NAME[selectedCategory]} 클래스 모임`}</h1>
-        <ul css={moimListContainer}>
-          {(moimList || []).map((moim) => {
-            return (
-              <li
-                css={moimCardStyle}
-                key={moim.moimId}
-                onClick={() => {
-                  moim.moimId && handleMoimClick(moim.moimId);
-                }}>
-                <ClassListCard classListData={moim} />
-              </li>
-            );
-          })}
-        </ul>
+        {moimList?.length === 0 ? (
+          <CategoryEmptyView />
+        ) : (
+          <ul css={moimListContainer}>
+            {moimList?.map((moim) => {
+              return (
+                <li
+                  css={moimCardStyle}
+                  key={moim.moimId}
+                  onClick={() => {
+                    moim.moimId && handleMoimClick(moim.moimId);
+                  }}>
+                  <ClassListCard classListData={moim} />
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </main>
     </>
   );

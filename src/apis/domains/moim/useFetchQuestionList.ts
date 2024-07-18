@@ -1,11 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { get } from '@apis/api';
-import { ApiResponseType, QuestionListType } from '@types';
+import { ApiResponseType } from '@types';
+import { components } from '@schema';
 
-const getQuestionList = async (moimId: number): Promise<QuestionListType | null> => {
+type QuestionInfo = components['schemas']['QuestionInfo'];
+
+const getQuestionList = async (moimId: number): Promise<QuestionInfo | null> => {
   try {
-    const response = await get<ApiResponseType<QuestionListType>>(`/moim/${moimId}/question-list`);
+    const response = await get<ApiResponseType<QuestionInfo>>(`/moim/${moimId}/question-list`);
     return response.data.data;
   } catch (error) {
     console.error('error:', error);

@@ -45,6 +45,7 @@ export const noticeContent = (theme: Theme) => css`
   ${theme.font['body02-r-14']};
   color: ${theme.color.midgray2};
   margin-bottom: 2rem;
+  white-space: pre-line;
 `;
 
 export const noticeImage = css`

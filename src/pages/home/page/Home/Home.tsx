@@ -1,4 +1,4 @@
-import { LogoHeader } from '@components';
+import { LogoHeader, Spinner } from '@components';
 import {
   categoryContainer,
   categoryStyle,
@@ -17,16 +17,24 @@ import { categoriesAtom } from '@stores';
 import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import { mainBanner } from 'src/assets/lotties';
-
+import Error from '@pages/error/Error';
 const Home = () => {
   const navigate = useNavigate();
-  const { data: bannerId } = useFetchMoimBanner();
+  const { data: bannerId, isLoading } = useFetchMoimBanner();
 
   const [categories] = useAtom(categoriesAtom);
 
   const handleCategoryClick = (category: string) => {
     navigate(`/categories?category=${category}`);
   };
+
+  if (bannerId === null) {
+    return <Error />;
+  }
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <>

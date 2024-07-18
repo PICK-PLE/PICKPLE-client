@@ -23,6 +23,7 @@ export type MoimSubmissionState =
   | 'refunded' // 환불 완료
   | 'completed'; // 참가 완료
 
+
 export interface HostMyClassDataResponseType {
   moimId: number;
   title: string;

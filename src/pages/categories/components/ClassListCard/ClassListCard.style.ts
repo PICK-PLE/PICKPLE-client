@@ -15,6 +15,10 @@ export const classListTextContainer = css`
   gap: 0.7rem;
 `;
 
+export const classCardCustomStyle = css`
+  object-position: right;
+`;
+
 export const classListTextWrapper = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   gap: 0.8rem

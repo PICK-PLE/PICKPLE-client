@@ -42,6 +42,7 @@ import LanguageStrokeImage from './stroke/image_language_stroke.png';
 
 // graphic icon
 import ErrorImage from './graphics/image_error.png';
+import GuestMyPageWhite from './graphics/image_guest_mypage_white.png';
 import GuestMyPageImage from './graphics/image_guest_mypage.png';
 import GuestImage from './graphics/image_guest.png';
 import HostApplyImage from './graphics/image_host_apply.png';
@@ -51,6 +52,13 @@ import HostApplyFinishImage from './graphics/image_hostapply_finish.png';
 import LoginImage from './graphics/image_login.png';
 import NoticeImage from './graphics/image_notice.png';
 import ReviewImage from './graphics/image_review.png';
+
+// icons
+import CheckModalImage from './icons/image_check_modal.png';
+
+// profile
+import GuestProfileImage from './profile/image_guest_profile.png';
+import HostProfileImage from './profile/image_host_profile.png';
 
 export {
   NJobFillSelectedImage,
@@ -94,6 +102,7 @@ export {
   LanguageStrokeSelectedImage,
   LanguageStrokeImage,
   ErrorImage,
+  GuestMyPageWhite,
   GuestMyPageImage,
   GuestImage,
   HostApplyImage,
@@ -103,4 +112,7 @@ export {
   LoginImage,
   NoticeImage,
   ReviewImage,
+  CheckModalImage,
+  GuestProfileImage,
+  HostProfileImage,
 };
