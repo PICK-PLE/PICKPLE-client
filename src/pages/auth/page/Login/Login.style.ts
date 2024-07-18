@@ -39,5 +39,3 @@ export const loginImageStyle = css`
 export const logoStyle = css`
   width: 14rem;
 `;
-
-export const buttonWrapper = css``;
