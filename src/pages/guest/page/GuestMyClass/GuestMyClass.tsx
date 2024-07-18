@@ -1,4 +1,4 @@
-import { FilterSelect, Header } from '@components';
+import { FilterSelect, Header, Spinner } from '@components';
 import {
   guestMyClassLayout,
   tabWrapper,
@@ -16,6 +16,7 @@ import { useAtom } from 'jotai';
 import { userAtom } from '@stores';
 import { statusMapText } from 'src/constants/mappingText';
 import { useFetchGuestApply, useFetchGuestParticipate } from '@apis/domains/moim';
+import Error from '@pages/error/Error';
 
 const GuestMyClass = () => {
   const [activeTab, setActiveTab] = useState<'신청한' | '참가한'>('신청한');
@@ -47,8 +48,12 @@ const GuestMyClass = () => {
     setSelectedStatus(status);
   };
 
+  if (!applyData) {
+    return <Error />;
+  }
+
   if (isApplyLoading || isParticipateLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (applyError || participateError) {

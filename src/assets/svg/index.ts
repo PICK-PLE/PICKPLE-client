@@ -10,6 +10,7 @@ export { default as IcCheckActive } from './IcCheckActive';
 export { default as IcCheckDefault } from './IcCheckDefault';
 export { default as IcClassPerson } from './IcClassPerson';
 export { default as IcClipboardCopy } from './IcClipboardCopy';
+export { default as IcClose } from './IcClose';
 export { default as IcCopyPlus } from './IcCopyPlus';
 export { default as IcDate } from './IcDate';
 export { default as IcDefaultUserimg } from './IcDefaultUserimg';

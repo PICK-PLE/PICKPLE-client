@@ -13,9 +13,10 @@ import {
   myPageRoutes,
   devRoutes,
 } from '@routes';
-import { useFetchMoimCategories } from '@apis/domains/moim';
+import errorPageRoutes from './routes/errorRoutes';
 import { useAtom } from 'jotai';
 import { categoriesAtom } from '@stores';
+import { useFetchMoimCategories } from '@apis/domains/moim';
 import { useEffect } from 'react';
 
 const router = createBrowserRouter([
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
   ...hostRoutes,
   ...myPageRoutes,
   ...devRoutes,
+  ...errorPageRoutes,
 ]);
 
 const App = () => {

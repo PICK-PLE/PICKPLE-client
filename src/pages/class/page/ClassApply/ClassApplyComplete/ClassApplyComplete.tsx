@@ -12,9 +12,11 @@ import {
   completeTextStyle,
   completeWrapperStyle,
 } from '@pages/class/page/ClassApply/ClassApplyComplete/ClassApplyComplete.style';
-import { useNavigate } from 'react-router-dom';
+import { MoimIdPathParameterType } from '@types';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const ClassApplyComplete = () => {
+  const { moimId } = useParams<MoimIdPathParameterType>();
   const navigate = useNavigate();
   const handleButtonClick = () => {
     navigate(`/categories`);
@@ -35,7 +37,7 @@ const ClassApplyComplete = () => {
           </header>
 
           <main css={completeMainStyle}>
-            <GuestClassRegisterCard />
+            <GuestClassRegisterCard moimId={Number(moimId)} />
 
             <div css={completeCautionStyle}>
               <p css={completeCautionTitleStyle}>유의 사항</p>

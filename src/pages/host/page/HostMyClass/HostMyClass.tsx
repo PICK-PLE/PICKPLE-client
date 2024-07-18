@@ -11,10 +11,11 @@ import { HostMyClassEmptyView } from '@pages/host/components';
 import { hostMyClassCardData } from 'src/constants/mocks/HostMyClassCardData';
 import { HostMyClassCard } from '@pages/host/components';
 
-import { Header } from '@components';
+import { Header, Spinner } from '@components';
 import { useFetchHostMoimInfo } from '@apis/domains/moim/useFetchHostMoimInfo';
 import { useAtom } from 'jotai';
 import { userAtom } from '@stores';
+import Error from '@pages/error/Error';
 const HostMyClass = () => {
   const [activeTab, setActiveTab] = useState<'진행 중' | '완료'>('진행 중');
   const [moimState, setMoimState] = useState<'ongoing' | 'completed'>('ongoing');
@@ -31,10 +32,14 @@ const HostMyClass = () => {
     setMoimState('completed');
   };
 
-  const { data } = useFetchHostMoimInfo(hostId ?? 0, moimState);
+  const { data, isLoading } = useFetchHostMoimInfo(hostId ?? 0, moimState);
 
   if (!data) {
-    return <div>no data</div>;
+    return <Error />;
+  }
+
+  if (isLoading) {
+    return <Spinner />;
   }
 
   return (
