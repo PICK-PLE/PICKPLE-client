@@ -17,3 +17,16 @@ export const formatCreatedDate = (dateString: string) => {
     return date.format('YYYY.MM.DD');
   }
 };
+
+export const dDayText = (dayOfDay: number) => {
+  let dDayText;
+  if (dayOfDay < 0) {
+    dDayText = '';
+  } else if (dayOfDay === 0) {
+    dDayText = ' D-DAY';
+  } else {
+    dDayText = ` D-${dayOfDay}`;
+  }
+
+  return dDayText;
+};

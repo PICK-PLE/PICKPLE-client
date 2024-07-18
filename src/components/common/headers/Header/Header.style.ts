@@ -8,7 +8,8 @@ export const headerContainer = (theme: Theme) => css`
   ${flexGenerator('row', 'space-between', 'center')};
   width: 100%;
   max-width: 43rem;
-  padding: 1.95rem 1rem;
+  height: 6rem;
+  padding: 0 2rem;
   gap: 1rem;
 
   background-color: ${theme.color.white};

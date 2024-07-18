@@ -1,5 +1,6 @@
 export {
   ErrorImage,
+  GuestMyPageWhite,
   GuestMyPageImage,
   GuestImage,
   HostApplyImage,

@@ -12,7 +12,7 @@ import { categoriesAtom } from '@stores';
 import { useAtom } from 'jotai';
 import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { ClassListCard } from '@pages/categories/components';
+import { CategoryEmptyView, ClassListCard } from '@pages/categories/components';
 import { useFetchMoimListByCategory } from '@apis/domains/moim/useFetchMoimListByCategory';
 import { useEffect, useRef } from 'react';
 import Error from '@pages/error/Error';
@@ -87,20 +87,24 @@ const Categories = () => {
       </ul>
       <main css={mainLayout}>
         <h1 css={titleStyle}>{`${CATEGORY_NAME[selectedCategory]} 클래스 모임`}</h1>
-        <ul css={moimListContainer}>
-          {(moimList || []).map((moim) => {
-            return (
-              <li
-                css={moimCardStyle}
-                key={moim.moimId}
-                onClick={() => {
-                  moim.moimId && handleMoimClick(moim.moimId);
-                }}>
-                <ClassListCard classListData={moim} />
-              </li>
-            );
-          })}
-        </ul>
+        {moimList?.length === 0 ? (
+          <CategoryEmptyView />
+        ) : (
+          <ul css={moimListContainer}>
+            {moimList?.map((moim) => {
+              return (
+                <li
+                  css={moimCardStyle}
+                  key={moim.moimId}
+                  onClick={() => {
+                    moim.moimId && handleMoimClick(moim.moimId);
+                  }}>
+                  <ClassListCard classListData={moim} />
+                </li>
+              );
+            })}
+          </ul>
+        )}
       </main>
     </>
   );

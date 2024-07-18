@@ -38,6 +38,7 @@ import { useWindowSize } from '@hooks';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
 import { MoimIdPathParameterType } from '@types';
 import Error from '@pages/error/Error';
+import { dDayText } from '@utils';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
@@ -57,8 +58,7 @@ const Class = () => {
   if (!moimDetail || !moimDescription) {
     return <Error />;
   }
-
-  const { dayOfDay, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
+  const { dayOfDay = 0, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
 
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
 
@@ -79,10 +79,10 @@ const Class = () => {
       <LogoHeader />
       <div css={classLayout}>
         <div css={carouselWrapper}>
-          <Carousel imageList={Object.values(imageList || [])} />
+          <Carousel imageList={Object.values(imageList || []).filter((value) => value !== null)} />
         </div>
         <section css={classInfo}>
-          <Label variant="dDay">{`마감 D-${dayOfDay}`}</Label>
+          <Label variant="dDay">{`마감${dDayText(dayOfDay)}`}</Label>
           <h1 css={classNameStyle}>{title}</h1>
           <ul css={classInfoList}>
             <li>
