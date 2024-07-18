@@ -1,4 +1,4 @@
-import { post } from '@apis/api';
+import { instance, post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { useEasyNavigate } from '@hooks';
 import { userAtom } from '@stores';
@@ -40,6 +40,7 @@ export const usePostKakaoLogin = () => {
 
         if (token && token.accessToken) {
           localStorage.setItem('accessToken', token.accessToken);
+          instance.defaults.headers.Authorization = `Bearer ${token.accessToken}`;
         }
 
         queryClient.invalidateQueries({ queryKey: [QUERY_KEY.KAKAO_LOGIN] });

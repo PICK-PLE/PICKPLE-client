@@ -9,7 +9,7 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepFour.style';
-import { HostClassOpenImage } from '@image';
+import { graphicImage } from '@constants';
 import { useAtom } from 'jotai';
 import { moimIdAtom } from 'src/stores/classPostData';
 import { useNavigate } from 'react-router-dom';
@@ -41,7 +41,7 @@ const StepFour = () => {
           </span>
         </header>
         <main css={mainStyle}>
-          <img src={HostClassOpenImage} css={imageStyle} />
+          <img src={graphicImage.HostClassOpenImage} css={imageStyle} />
         </main>
         <footer css={footerStyle}>
           <Button variant="large" onClick={handleButtonClick}>

@@ -9,27 +9,26 @@ import {
   spinnerStyle,
   titleStyle,
 } from './Categories.style';
-import { categoriesAtom } from '@stores';
-import { useAtom } from 'jotai';
 import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { CategoryEmptyView, ClassListCard } from '@pages/categories/components';
 import { useFetchMoimListByCategory } from '@apis/domains/moim/useFetchMoimListByCategory';
 import { useEffect, useRef } from 'react';
 import Error from '@pages/error/Error';
+import { useFetchMoimCategories } from '@apis/domains/moim';
 
 const Categories = () => {
   const navigate = useNavigate();
-  const [categories] = useAtom(categoriesAtom);
   const categoriesRef = useRef<HTMLUListElement>(null);
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const selectedCategory = searchParams.get('category') || categories[0];
+  const { data: categories } = useFetchMoimCategories();
+  const selectedCategory = searchParams.get('category') || (categories ?? [])[0];
   const { data: moimList, refetch, isLoading } = useFetchMoimListByCategory(selectedCategory);
 
   useEffect(() => {
     if (categoriesRef.current) {
-      const selectedIndex = categories.indexOf(selectedCategory);
+      const selectedIndex = (categories ?? []).indexOf(selectedCategory);
       setTimeout(() => {
         if (selectedIndex < 5) {
           categoriesRef.current?.scrollTo({
@@ -66,7 +65,7 @@ const Categories = () => {
     <>
       <LogoHeader />
       <ul css={categoriesContainer} ref={categoriesRef}>
-        {categories.map((category) => {
+        {(categories ?? []).map((category) => {
           return (
             <li css={categoryWrapper} key={category} onClick={() => handleCategoryClick(category)}>
               <img

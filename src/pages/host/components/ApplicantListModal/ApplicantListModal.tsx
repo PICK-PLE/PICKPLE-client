@@ -18,7 +18,7 @@ import {
   usePatchSubmitter,
 } from '@apis/domains/moimSubmission/usePatchSubmitter';
 import { useNavigate } from 'react-router-dom';
-import { CheckModalImage } from '@image';
+import { images } from '@constants';
 
 interface ApplicantListModalProps {
   applicantListData: components['schemas']['MoimSubmissionByMoimResponse'];
@@ -43,7 +43,7 @@ const ApplicantListModal = ({ applicantListData, onClose }: ApplicantListModalPr
       <section css={sectionStyle}>
         <header css={headerStyle}>
           <span css={iconStyle}>
-            <img src={CheckModalImage} alt="신청 완료 모달" />
+            <img src={images.CheckModalImage} alt="신청 완료 모달" />
           </span>
           <div css={textDivStyle}>
             <h1 css={modalCommentTitleStyle}>승인할 신청자 목록을 확인해주세요!</h1>
