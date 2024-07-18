@@ -57,7 +57,7 @@ const ClassApplyQuestion = () => {
 
   useEffect(() => {
     if (isSuccess && questionData) {
-      setQuestionList(Object.values(questionData));
+      setQuestionList(Object.values(questionData).filter(question => question !== null));
     }
   }, [isSuccess, questionData]);
 
@@ -90,7 +90,13 @@ const ClassApplyQuestion = () => {
     const allAnswersFilled = questionList.every((_, index) => answerList[`answer${index + 1}`].trim() !== '');
     const allAccountsFilled = Object.values(accountList).every(value => value.trim() !== '');
     setIsButtonDisabled(!(allAnswersFilled && allAccountsFilled));
+    console.log(questionList)
+
+    console.log('allAnswersFilled', allAnswersFilled)
+    console.log('allAccountsFilled',allAccountsFilled)
   }, [answer, questionList]);
+
+
 
   const requestData = {
     moimId: Number(moimId),
