@@ -41,10 +41,6 @@ const ClassNotice = () => {
     setIsButtonDisabled(!(noticeTitle.trim() && noticeContent.trim()));
   }, [noticeTitle, noticeContent]);
 
-  const handleFileSelect = (files: File[]) => {
-    setSelectedFiles(files);
-  };
-
   const handleButtonClick = async (): Promise<void> => {
     let imageUrl: undefined | string = undefined;
     if (selectedFiles.length === 1) {
@@ -87,7 +83,7 @@ const ClassNotice = () => {
             isValid={true}
           />
           <div css={imageSelectWrapper}>
-            <ImageSelect onFileSelect={handleFileSelect} />
+            <ImageSelect onFileSelect={setSelectedFiles} />
           </div>
         </main>
 
