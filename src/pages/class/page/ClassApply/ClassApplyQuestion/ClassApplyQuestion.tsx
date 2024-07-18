@@ -1,4 +1,12 @@
-import { Button, LogoHeader, ProgressBar, QuestionText, TextArea, Input } from '@components';
+import {
+  Button,
+  LogoHeader,
+  ProgressBar,
+  QuestionText,
+  TextArea,
+  Input,
+  Spinner,
+} from '@components';
 import {
   classApplyQuestionLayout,
   questionArticleLayout,
@@ -20,7 +28,6 @@ import { useFetchQuestionList } from '@apis/domains/moim/useFetchQuestionList';
 import { usePostAnswerList } from '@apis/domains/moimSubmission/usePostAnswerList';
 import { MoimIdPathParameterType } from '@types';
 import Error from '@pages/error/Error';
-import { Spinner } from 'src/components/common/Spinner/Spinner';
 
 type AnswerListType = {
   [key: string]: string;

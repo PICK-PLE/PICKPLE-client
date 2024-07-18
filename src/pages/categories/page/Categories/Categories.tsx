@@ -1,4 +1,4 @@
-import { LogoHeader } from '@components';
+import { LogoHeader, Spinner } from '@components';
 import {
   categoriesContainer,
   categoryWrapper,
@@ -16,7 +16,6 @@ import { ClassListCard } from '@pages/categories/components';
 import { useFetchMoimListByCategory } from '@apis/domains/moim/useFetchMoimListByCategory';
 import { useEffect, useRef } from 'react';
 import Error from '@pages/error/Error';
-import { Spinner } from 'src/components/common/Spinner/Spinner';
 
 const Categories = () => {
   const navigate = useNavigate();
