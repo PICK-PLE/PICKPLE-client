@@ -26,7 +26,7 @@ const postKakaoLogin = async (
 
 export const usePostKakaoLogin = () => {
   const [user, setUser] = useAtom(userAtom);
-  const { goBack } = useEasyNavigate();
+  const { goHome } = useEasyNavigate();
   const queryClient = useQueryClient();
 
   return useMutation({
@@ -43,7 +43,7 @@ export const usePostKakaoLogin = () => {
         }
 
         queryClient.invalidateQueries({ queryKey: [QUERY_KEY.KAKAO_LOGIN] });
-        goBack();
+        goHome();
       }
     },
   });

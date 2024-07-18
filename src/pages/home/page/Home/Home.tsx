@@ -17,7 +17,6 @@ import { categoriesAtom } from '@stores';
 import { useNavigate } from 'react-router-dom';
 import Lottie from 'lottie-react';
 import { mainBanner } from 'src/assets/lotties';
-import Error from '@pages/error/Error';
 const Home = () => {
   const navigate = useNavigate();
   const { data: bannerId, isLoading } = useFetchMoimBanner();
@@ -27,10 +26,6 @@ const Home = () => {
   const handleCategoryClick = (category: string) => {
     navigate(`/categories?category=${category}`);
   };
-
-  if (bannerId === null) {
-    return <Error />;
-  }
 
   if (isLoading) {
     return <Spinner />;
