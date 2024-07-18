@@ -1,6 +1,8 @@
-import { HostMyClassDataResponseType } from '@types';
+import { components } from '@schema';
 
-export const hostMyClassCardData: HostMyClassDataResponseType[] = [
+type MoimListByHostGetResponse = components['schemas']['MoimListByHostGetResponse'];
+
+export const hostMyClassCardData: MoimListByHostGetResponse[] = [
   {
     moimId: 1,
     title: '부산10년 토박이 달아오르구마',

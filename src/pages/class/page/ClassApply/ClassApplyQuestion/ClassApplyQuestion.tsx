@@ -39,7 +39,7 @@ const ClassApplyQuestion = () => {
   const { moimId } = useParams<MoimIdPathParameterType>();
 
   const [questionList, setQuestionList] = useState<string[]>([]);
-  const { data: questionData, isSuccess } = useFetchQuestionList(moimId);
+  const { data: questionData, isSuccess } = useFetchQuestionList(Number(moimId));
   const [answer, setAnswer] = useState<DataType>({
     answerList: {
       answer1: '',
