@@ -57,7 +57,7 @@ const ClassApplyDeposit = () => {
             </header>
 
             <main css={depositMainStyle}>
-              <GuestClassRegisterCard moimId={Number(moimId)} />
+              <GuestClassRegisterCard moimId={moimId ?? ''} />
             </main>
           </div>
 
@@ -69,9 +69,9 @@ const ClassApplyDeposit = () => {
               입금에 문제가 생기셨나요?
             </button>
             {isErrorModalOpen && (
-                <AbsoluteModal onClose={handleErrorModalClose}>
-                  <DepositErrorModal onClose={handleErrorModalClose} />
-                </AbsoluteModal>
+              <AbsoluteModal onClose={handleErrorModalClose}>
+                <DepositErrorModal onClose={handleErrorModalClose} />
+              </AbsoluteModal>
             )}
           </footer>
         </article>

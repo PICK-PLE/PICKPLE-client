@@ -1158,9 +1158,7 @@ export interface operations {
     };
     approveSubmitter: {
         parameters: {
-            query: {
-                userId: number;
-            };
+            query?: never;
             header?: never;
             path: {
                 submitterId: number;

@@ -48,7 +48,7 @@ const ClassApplyQuestion = () => {
   const { moimId } = useParams<MoimIdPathParameterType>();
 
   const [questionList, setQuestionList] = useState<string[]>([]);
-  const { data: questionData, isSuccess } = useFetchQuestionList(Number(moimId));
+  const { data: questionData, isSuccess, isLoading } = useFetchQuestionList(Number(moimId));
   const [answer, setAnswer] = useState<DataType>({
     answerList: {
       answer1: '',
@@ -66,7 +66,7 @@ const ClassApplyQuestion = () => {
 
   useEffect(() => {
     if (isSuccess && questionData) {
-      setQuestionList(Object.values(questionData).filter(question => question !== null));
+      setQuestionList(Object.values(questionData).filter((question) => question !== null));
     }
   }, [isSuccess, questionData]);
 
@@ -96,12 +96,12 @@ const ClassApplyQuestion = () => {
 
   useEffect(() => {
     const { answerList, accountList } = answer;
-    const allAnswersFilled = questionList.every((_, index) => answerList[`answer${index + 1}`].trim() !== '');
-    const allAccountsFilled = Object.values(accountList).every(value => value.trim() !== '');
+    const allAnswersFilled = questionList.every(
+      (_, index) => answerList[`answer${index + 1}`].trim() !== ''
+    );
+    const allAccountsFilled = Object.values(accountList).every((value) => value.trim() !== '');
     setIsButtonDisabled(!(allAnswersFilled && allAccountsFilled));
   }, [answer, questionList]);
-
-
 
   const requestData = {
     moimId: Number(moimId),

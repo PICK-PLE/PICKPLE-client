@@ -1,6 +1,7 @@
-import { NoticeResponseType } from '@types';
+import { components } from '@schema';
+type NoticeListGetByMoimResponse = components['schemas']['NoticeListGetByMoimResponse'];
 
-export const NoticeCardData: NoticeResponseType[] = [
+export const NoticeCardData: NoticeListGetByMoimResponse[] = [
   {
     noticeId: 1,
     hostNickName: '달아오르구마',
@@ -10,6 +11,7 @@ export const NoticeCardData: NoticeResponseType[] = [
       '공지사항 내용 공지사항 내용 공지사항 내용 공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용 공지사항 내용 공지사항 내용 공지사항 내용',
     date: '2024.07.11 17:20:01',
     noticeImageUrl: 'https://placehold.co/290x210',
+    hostId: 1,
   },
   {
     noticeId: 2,
@@ -19,6 +21,7 @@ export const NoticeCardData: NoticeResponseType[] = [
     content:
       '공지사항 내용 공지사항 내용 공지사항 내용 공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용공지사항 내용 공지사항 내용 공지사항 내용 공지사항 내용 공지사항 내용 공지사항 내용',
     date: '2024.07.11 17:20:01',
-    noticeImageUrl: null,
+    noticeImageUrl: 'https://placehold.co/290x210',
+    hostId: 2,
   },
 ];

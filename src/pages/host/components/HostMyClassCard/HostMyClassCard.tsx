@@ -8,11 +8,13 @@ import {
   cardTitle,
   cardTitleWrapper,
 } from './HostMyClassCard.style';
-import { HostMyClassDataResponseType } from '@types';
 import { useNavigate } from 'react-router-dom';
+import { components } from '@schema';
+
+type MoimListByHostGetResponse = components['schemas']['MoimListByHostGetResponse'];
 
 interface HostMyClassCardProps {
-  hostMyClassData: HostMyClassDataResponseType;
+  hostMyClassData: MoimListByHostGetResponse;
 }
 const HostMyClassCard = ({ hostMyClassData }: HostMyClassCardProps) => {
   const { moimImage, title, approvedGuest, maxGuest, moimId } = hostMyClassData;
@@ -29,7 +31,7 @@ const HostMyClassCard = ({ hostMyClassData }: HostMyClassCardProps) => {
   return (
     <article css={cardContainer}>
       <section css={cardContent}>
-        <Image src={moimImage} width="8.2rem" />
+        <Image src={moimImage ?? ''} width="8.2rem" />
         <div css={cardText}>
           <div css={cardTitleWrapper} onClick={handleCardClick}>
             <h3 css={cardTitle}>{title} </h3>
