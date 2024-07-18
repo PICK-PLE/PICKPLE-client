@@ -2,6 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { get } from '@apis/api';
 import { ApiResponseType } from '@types';
+import { isLoggedIn } from '@utils';
 
 const getMoimBanner = async (): Promise<number | null> => {
   try {
@@ -19,6 +20,7 @@ export const useFetchMoimBanner = () => {
     queryFn: () => getMoimBanner(),
     staleTime: 1000 * 10,
     gcTime: 1000 * 30,
+    enabled: isLoggedIn(),
     refetchOnWindowFocus: false,
   });
 };
