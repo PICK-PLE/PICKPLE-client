@@ -6,7 +6,6 @@ import {
   CategoryButton,
   ClipboardCopyButton,
   DateSelect,
-  FilterSelect,
   Header,
   IconButton,
   Input,

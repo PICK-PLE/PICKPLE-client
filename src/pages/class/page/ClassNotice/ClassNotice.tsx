@@ -23,12 +23,6 @@ const ClassNotice = () => {
   const putS3UploadMutation = usePutS3Upload();
   const postNoticeMutation = usePostNotice();
 
-  const navigate = useNavigate();
-
-  const handleNavigateToMoimInfo = (moimId: number) => {
-    navigate(`/class/${moimId}`);
-  };
-
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNoticeTitle(e.target.value);
   };
