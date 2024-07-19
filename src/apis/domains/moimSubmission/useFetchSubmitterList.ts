@@ -20,7 +20,7 @@ const getSubmitterList = async (moimId: number): Promise<MoimSubmissionByMoimRes
 
 export const useFetchSubmitterList = (moimId: number) => {
   return useQuery({
-    queryKey: [QUERY_KEY.APPLICANT_LIST],
+    queryKey: [QUERY_KEY.APPLICANT_LIST, moimId],
     queryFn: () => getSubmitterList(moimId),
   });
 };

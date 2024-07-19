@@ -6,7 +6,7 @@ export const myClassManageLayout = (theme: Theme) => css`
   ${flexGenerator('column', 'flex-start', 'flex-start')};
   padding-top: 6rem;
   gap: 2.4rem;
-  width: 100%;
+  //width: 100%;
   border-top: 1px solid ${theme.color.lightgray1};
   min-height: 100dvh;
 `;

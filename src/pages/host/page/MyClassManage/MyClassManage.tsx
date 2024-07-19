@@ -12,12 +12,14 @@ import {
   selectedTextStyle,
   maxGuestStyle,
 } from './MyClassManage.style';
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect } from 'react';
 import { ApplicantListModal, ClassManageEmptyView } from '@pages/host/components';
 import { useToast } from '@hooks';
 import { useFetchSubmitterList } from '@apis/domains/moimSubmission/useFetchSubmitterList';
 import { useParams } from 'react-router-dom';
 import Error from '@pages/error/Error';
+import { components } from '@schema';
+type SubmitterInfo = components['schemas']['SubmitterInfo'];
 
 const MyClassManage = () => {
   const { moimId } = useParams();
@@ -25,57 +27,77 @@ const MyClassManage = () => {
   const { showToast, isToastVisible } = useToast();
   const [isOpenModal, setIsOpenModal] = useState(false);
 
-  // 이전에 승인을 한 적이 있는지 확인. 서버에서 API 수정 후 삭제 예정
-  const isApproved = false;
-
-  // 진행중인 모임인지, 완료된 모임인지 확인. 서버에서 API 수정 후 삭제 예정
-  const isCompleted = false;
-
-  // 모임 정보 추출
-  const { moimTitle, maxGuest, isApprovable, submitterList } = applicantData || {};
-
-  // 체크박스 상태 관리
-  const [checkedStates, setCheckedStates] = useState<boolean[]>(
-    Array(submitterList?.length).fill(false)
-  );
-
-  useEffect(() => {
-    if (applicantData) {
-      setCheckedStates(new Array(submitterList?.length).fill(false));
-    }
-  }, [applicantData, submitterList?.length]);
-
-  const checkedApplicant = useMemo(() => {
-    return {
-      maxGuest,
-      isApprovable,
-      submitterList: submitterList?.filter((_, index: number) => checkedStates[index]),
-    };
-  }, [maxGuest, isApprovable, submitterList, checkedStates]);
-
-  const toggleChecked = (index: number) => {
-    if (isApproved || isCompleted) return;
-
-    const newCheckedState = !checkedStates[index];
-
-    if (isApprovable) {
-      setCheckedStates((prevStates) =>
-        prevStates.map((checked, i) => (i === index ? newCheckedState : checked))
-      );
-    } else {
-      showToast();
-    }
-  };
-
   const [isActive, setIsActive] = useState(false);
 
-  useEffect(() => {
-    if (checkedApplicant.submitterList) {
-      setIsActive(checkedApplicant.submitterList.length > 0 && (isApprovable ?? true));
-    }
-  }, [checkedApplicant, isApprovable]);
+  // 모임 정보 추출
+  const { moimTitle, maxGuest, isApprovable, submitterList, isOngoing, isMoimSubmissionApproved } =
+    applicantData || {};
 
-  const handleModalOpen = () => {
+  // 체크박스 상태 관리
+  const [checkedStates, setCheckedStates] = useState<boolean[]>([]);
+  const [checkedSubmitter, setCheckedSubmitter] = useState<SubmitterInfo[]>([]);
+
+  //check하는 과정
+  const toggleChecked = (index: number) => {
+    // isOngoing = false / isMoimSubmissionApproved = true 일 때 체크 불가능
+    if (!isOngoing || isMoimSubmissionApproved) return;
+
+    // isApprovable = false 일 때 체크 불가능 + 토스트 띄우기
+    if (!isApprovable) {
+      showToast();
+      return;
+    }
+
+    setCheckedStates((prev) =>
+      prev.map((checkedState, checkedStateIndex) => {
+        if (index === checkedStateIndex) {
+          checkedState = !checkedState;
+        }
+        return checkedState;
+      })
+    );
+  };
+
+  useEffect(() => {
+    if (submitterList && checkedStates.length === 0) {
+      setCheckedStates(Array(submitterList?.length).fill(false));
+    }
+  }, [submitterList, checkedStates.length]);
+
+  console.log(applicantData);
+
+  // 체크상태 바로 반영이 되게
+  useEffect(() => {
+    if (submitterList) {
+      const newArray: SubmitterInfo[] = [];
+      checkedStates.map((checkedState, checkedStateIndex) => {
+        if (checkedState) {
+          newArray.push(submitterList[checkedStateIndex]);
+        }
+      });
+      setCheckedSubmitter(newArray);
+    }
+  }, [checkedStates, submitterList]);
+
+  // 하나라도 체크가 되면, 버튼 활성화 + 안눌리면 비활성화
+  useEffect(() => {
+    if (checkedSubmitter && checkedSubmitter.length > 0) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [checkedSubmitter]);
+
+  // 완료된 모임이거나 신청을 이미 받은 모임이라면 => checkedSubmitter에 해당하는 사람들 체크 active 해두기
+  if (isMoimSubmissionApproved || !isOngoing) {
+    submitterList?.map((submitter, index) => {
+      if (submitter.state == 'approved') {
+        checkedStates[index] = true;
+      }
+    });
+  }
+
+  const handleButtonClick = () => {
     setIsOpenModal(true);
   };
 
@@ -96,7 +118,7 @@ const MyClassManage = () => {
       <Header title="신청자 관리" isLine={true} />
       <article css={myClassManageLayout}>
         <header css={headerStyle}>
-          <p>{moimTitle}</p>
+          <h1>{moimTitle}</h1>
         </header>
 
         <main css={mainStyle}>
@@ -108,7 +130,7 @@ const MyClassManage = () => {
                   <span css={countTextStyle}>{submitterList?.length}</span>
                 </div>
                 <Label variant="count">
-                  <p css={selectedTextStyle}>{`${checkedApplicant.submitterList?.length}`}</p>
+                  <p css={selectedTextStyle}>{`${checkedSubmitter?.length}`}</p>
                   <p css={maxGuestStyle}> {` / ${maxGuest}`}</p>
                 </Label>
               </div>
@@ -128,16 +150,23 @@ const MyClassManage = () => {
         </main>
 
         <footer css={footerStyle}>
-          {!isCompleted && (
-            <Button variant="large" disabled={isApproved || !isActive} onClick={handleModalOpen}>
-              {isApproved ? '승인 완료' : '승인하기'}
+          {isOngoing && (
+            <Button
+              variant="large"
+              disabled={!isApprovable || isMoimSubmissionApproved || !isActive}
+              onClick={handleButtonClick}>
+              {isMoimSubmissionApproved ? '승인 완료' : '승인하기'}
             </Button>
           )}
         </footer>
 
         {isOpenModal && (
           <Modal onClose={handleModalClose}>
-            <ApplicantListModal applicantListData={checkedApplicant} onClose={handleModalClose} />
+            <ApplicantListModal
+              submitterList={checkedSubmitter}
+              onClose={handleModalClose}
+              moimId={Number(moimId)}
+            />
           </Modal>
         )}
 
