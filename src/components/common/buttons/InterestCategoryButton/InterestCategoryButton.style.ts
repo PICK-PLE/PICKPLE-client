@@ -18,8 +18,8 @@ export const InterestCategoryButtonVariant = {
     gap: 0.4rem;
     border-radius: 5px;
     background-color: ${theme.color.purple6};
-    color: ${theme.color.purple2};
-    ${theme.font['body03-r-12']}
+    color: ${theme.color.purple1};
+    ${theme.font['body02-r-14']}
 
     cursor: pointer;
   `,
