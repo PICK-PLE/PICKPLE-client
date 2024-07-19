@@ -710,9 +710,13 @@ export interface components {
         };
         MoimSubmissionByMoimResponse: {
             moimTitle?: string;
+            /** Format: date */
+            moimDate?: string;
             /** Format: int32 */
             maxGuest?: number;
             isApprovable?: boolean;
+            isMoimSubmissionApproved?: boolean;
+            isOngoing?: boolean;
             submitterList?: components["schemas"]["SubmitterInfo"][];
         };
         SubmitterInfo: {
@@ -721,6 +725,7 @@ export interface components {
             nickname?: string;
             submitterImageUrl?: string;
             submittedDate?: string;
+            state?: string;
         };
         ApiResponseDtoQuestionInfo: {
             /** @enum {string} */

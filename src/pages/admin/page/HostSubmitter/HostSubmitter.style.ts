@@ -36,13 +36,14 @@ export const tableContainerStyle = css`
 export const tableStyle = css`
   border-collapse: collapse;
   table-layout: fixed;
+  width: 100%;
 `;
 
 export const titleStyle = (theme: Theme) => css`
   ${theme.font['body01-r-15']}
 `;
 
-export const thSmallStyle = (theme: Theme) => css`
+export const thStyle = (theme: Theme) => css`
   background-color: #f2f2f2;
   padding: 0.5rem;
   text-align: center;
@@ -50,7 +51,7 @@ export const thSmallStyle = (theme: Theme) => css`
   border: 1px solid ${theme.color.lightgray1};
   ${theme.font['subhead02-sb-16']}
 
-  min-width: 7rem;
+  max-width: 10rem;
 `;
 
 export const thLargeStyle = (theme: Theme) => css`
@@ -61,7 +62,7 @@ export const thLargeStyle = (theme: Theme) => css`
   border: 1px solid #ddd;
   ${theme.font['subhead02-sb-16']}
 
-  min-width: 25rem;
+  width: 20rem;
 `;
 
 export const tdStyle = (theme: Theme) => css`
@@ -69,6 +70,7 @@ export const tdStyle = (theme: Theme) => css`
   text-align: center;
   border: 1px solid #ddd;
   ${theme.font['subhead03-m-16']}
+
 `;
 
 export const inputStyle = css`
