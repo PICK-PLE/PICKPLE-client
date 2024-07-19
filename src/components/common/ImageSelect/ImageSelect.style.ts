@@ -71,3 +71,8 @@ export const deleteImageIconStyle = css`
   right: 0.6rem;
   cursor: pointer;
 `;
+
+export const svgStyle = css`
+  width: 100%;
+  height: 100%;
+`;

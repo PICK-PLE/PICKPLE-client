@@ -38,5 +38,7 @@ export const addButtonStyle = (theme: Theme) => css`
   background-color: ${theme.color.white};
   color: ${theme.color.purple3};
 
+  white-space: nowrap;
+
   cursor: pointer;
 `;

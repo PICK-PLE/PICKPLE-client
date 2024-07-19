@@ -8,6 +8,7 @@ import {
   labelStyle,
   previewUrlsWrapper,
   deleteImageIconStyle,
+  svgStyle,
 } from './ImageSelect.style';
 import { IcCameraAdd, IcDeletePhoto } from '@svg';
 
@@ -16,7 +17,7 @@ interface ImageSelectProps extends InputHTMLAttributes<HTMLInputElement> {
   isMultiple?: boolean;
 }
 
-  const ImageSelect = ({ onFileSelect, isMultiple = false }: ImageSelectProps) => {
+const ImageSelect = ({ onFileSelect, isMultiple = false }: ImageSelectProps) => {
   const [previewURLs, setPreviewURLs] = useState<string[]>([]);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -65,7 +66,7 @@ interface ImageSelectProps extends InputHTMLAttributes<HTMLInputElement> {
     }
   };
 
-  const handleDeleteImage = (index:  number) => {
+  const handleDeleteImage = (index: number) => {
     setPreviewURLs(previewURLs.filter((_, i) => i !== index));
     onFileSelect((prev: File[]) => {
       const newFile = [...prev];
@@ -82,7 +83,7 @@ interface ImageSelectProps extends InputHTMLAttributes<HTMLInputElement> {
       <label htmlFor="imgInput" css={labelStyle}>
         <div css={thumbnailStyle}>
           <span css={iconStyle}>
-            <IcCameraAdd />
+            <IcCameraAdd css={svgStyle} />
           </span>
         </div>
       </label>
