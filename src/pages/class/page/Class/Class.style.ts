@@ -16,6 +16,7 @@ export const classInfo = css`
 `;
 
 export const classNameStyle = (theme: Theme) => css`
+  word-break: break-word;
   margin-top: 1.4rem;
   padding-right: 4.5rem;
   ${theme.font['head01-b-22']};
@@ -35,28 +36,26 @@ export const tabWrapper = (theme: Theme) => css`
 
   background-color: ${theme.color.white};
 
+  border-bottom: 2px solid ${theme.color.lightgray1};
   padding-left: 2.8rem;
   gap: 2.3rem;
 `;
 
-export const tabButtonStyle = (theme: Theme) => css`
-  display: inline-flex;
-  flex-shrink: 0;
-  ${theme.font['subhead01-sb-18']};
+export const tabButtonStyle = (isSelected: boolean) => (theme: Theme) =>
+  css`
+    display: inline-flex;
+    flex-shrink: 0;
+    ${theme.font['subhead01-sb-18']};
 
-  background-color: ${theme.color.white};
-  color: ${theme.color.midgray1};
-  padding: 0;
-  padding-bottom: 1.6rem;
+    background-color: ${theme.color.white};
+    color: ${isSelected ? theme.color.blackgray : theme.color.midgray1};
 
-  border: none;
-`;
-
-export const selectedTabStyle = (theme: Theme) => css`
-  color: ${theme.color.blackgray};
-
-  border-bottom: 2px solid ${theme.color.blackgray};
-`;
+    padding: 0;
+    padding-bottom: 1.6rem;
+    margin-bottom: -2px;
+    border: none;
+    border-bottom: 2px solid ${isSelected ? theme.color.blackgray : theme.color.lightgray1};
+  `;
 
 export const tabSectionStyle = (theme: Theme) => css`
   background-color: ${theme.color.background};

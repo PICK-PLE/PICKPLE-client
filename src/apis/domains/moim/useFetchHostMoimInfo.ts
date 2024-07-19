@@ -4,7 +4,7 @@ import { components } from '@schema';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { ApiResponseType } from '@types';
 
-type MoimListByHostGetResponse = components['schemas']['MoimListByHostGetResponse']
+type MoimListByHostGetResponse = components['schemas']['MoimListByHostGetResponse'];
 
 const getHostMoimInfo = async (
   hostId: number,

@@ -17,24 +17,26 @@ import {
   PatchSubmitterRequest,
   usePatchSubmitter,
 } from '@apis/domains/moimSubmission/usePatchSubmitter';
-import { useNavigate } from 'react-router-dom';
 import { images } from '@constants';
 
 interface ApplicantListModalProps {
   submitterList: components['schemas']['SubmitterInfo'][];
   onClose: () => void;
   moimId: number;
+  isOngoing: boolean;
 }
 
-const ApplicantListModal = ({ submitterList, onClose, moimId }: ApplicantListModalProps) => {
-  const { mutate } = usePatchSubmitter();
+const ApplicantListModal = ({
+  submitterList,
+  onClose,
+  moimId,
+  isOngoing,
+}: ApplicantListModalProps) => {
+  const { mutate } = usePatchSubmitter(isOngoing, onClose);
 
-  const navigate = useNavigate();
   const handleButtonClick = () => {
     const submitterIdList = submitterList?.map((submitter) => submitter.submitterId);
     mutate({ moimId, submitterIdList } as PatchSubmitterRequest);
-    onClose();
-    navigate('/host/myclass'); // 다시 모임 관리하는 host 페이지로 이동
   };
 
   return (
@@ -53,6 +55,11 @@ const ApplicantListModal = ({ submitterList, onClose, moimId }: ApplicantListMod
           <ul css={ulStyle}>
             {submitterList?.map((submitter) => (
               <li key={submitter.submitterId} css={liStyle}>
+                <SimpleUserProfile
+                  size="large"
+                  userImgUrl={images.GuestProfileImage}
+                  username={submitter.nickname || ''}
+                />
                 <SimpleUserProfile
                   size="large"
                   userImgUrl={images.GuestProfileImage}

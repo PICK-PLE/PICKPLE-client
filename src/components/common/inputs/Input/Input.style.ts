@@ -23,6 +23,7 @@ export const inputStyle = (isError: boolean, isFocused: boolean) => (theme: Them
     width: 100%;
     height: 5.2rem;
     padding: 1.5rem;
+    padding-right: 6rem;
     border: 1px solid ${isError && isFocused ? theme.color.error : theme.color.lightgray1};
     border-radius: 10px;
 

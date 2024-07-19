@@ -28,8 +28,8 @@ const StepThree = ({ onNext }: StepProps) => {
   const { validateStepThree } = useClassPostInputValidation();
   const { isTitleValid, isDescriptionValid } = validateStepThree(classPostState);
 
-  const putS3UploadMutation = usePutS3Upload();
-  const { mutateAsync, isPending } = usePostMoim();
+  const { mutateAsync: putS3UploadMutateAsync, isPending: putS3IsPending } = usePutS3Upload();
+  const { mutateAsync: postMutateAsync, isPending: postIsPending } = usePostMoim();
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [isAllValid, setIsAllValid] = useState(false);
@@ -44,11 +44,11 @@ const StepThree = ({ onNext }: StepProps) => {
     if (isAllValid && selectedFiles.length >= 1) {
       const imageUrlList = await handleUpload({
         selectedFiles,
-        putS3Upload: putS3UploadMutation.mutateAsync,
+        putS3Upload: putS3UploadMutateAsync,
         type: 'moim',
       });
 
-      mutateAsync({ ...classPostState, imageList: imageUrlList })
+      postMutateAsync({ ...classPostState, imageList: imageUrlList })
         .then((data) => {
           if (data) {
             setMoimId(data);
@@ -63,7 +63,7 @@ const StepThree = ({ onNext }: StepProps) => {
     }
   };
 
-  if (isPending) {
+  if (putS3IsPending || postIsPending) {
     return <Spinner />;
   }
 

@@ -49,7 +49,9 @@ const HostMyClass = () => {
         </div>
 
         {data?.length === 0 ? (
-          <HostMyClassEmptyView text="아직 진행 중인 모임이 없어요" />
+          <HostMyClassEmptyView
+            text={activeTab === '진행 중' ? `아직 진행 중인 모임이 없어요` : `완료한 모임이 없어요`}
+          />
         ) : (
           <div css={hostMyClassCardContainer}>
             {data?.map((data) => (

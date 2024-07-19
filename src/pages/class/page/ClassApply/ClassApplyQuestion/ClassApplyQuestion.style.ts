@@ -2,6 +2,7 @@ import { css, Theme } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const classApplyQuestionLayout = css`
+width: 100%;
   padding-top: 6rem;
 `;
 
@@ -15,7 +16,13 @@ export const questionArticleLayout = css`
 
 export const questionWrapperStyle = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
+  width: 100%;
   gap: 3.8rem;
+`;
+
+export const headerStyle = css`
+  ${flexGenerator('column', 'center', 'flex-start')}
+  gap: 0.3rem;
 `;
 
 export const questionSpanStyle = (theme: Theme) => css`
@@ -29,7 +36,7 @@ export const questionHStyle = (theme: Theme) => css`
 `;
 
 export const questionMainStyle = css`
-  ${flexGenerator('column', 'flex-start', 'flex-start')}
+  ${flexGenerator('column', 'center', 'flex-start')}
   gap: 3rem;
   width: 100%;
 `;
@@ -37,7 +44,7 @@ export const questionMainStyle = css`
 export const questionDataStyle = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   /* padding: 1.2rem 1.6rem 1rem 1rem; */
-  gap: 1.5rem;
+  gap: 1rem;
   width: 100%;
 `;
 
