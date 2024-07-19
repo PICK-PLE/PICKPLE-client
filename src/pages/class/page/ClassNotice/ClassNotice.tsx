@@ -83,7 +83,7 @@ const ClassNotice = () => {
             isValid={true}
           />
           <div css={imageSelectWrapper}>
-            <ImageSelect onFileSelect={setSelectedFiles} />
+            <ImageSelect onFileSelect={setSelectedFiles} maxImageLength={1} />
           </div>
         </main>
 

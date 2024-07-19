@@ -15,9 +15,10 @@ import { IcCameraAdd, IcDeletePhoto } from '@svg';
 interface ImageSelectProps extends InputHTMLAttributes<HTMLInputElement> {
   onFileSelect: Dispatch<SetStateAction<File[]>>;
   isMultiple?: boolean;
+  maxImageLength: number;
 }
 
-const ImageSelect = ({ onFileSelect, isMultiple = false }: ImageSelectProps) => {
+const ImageSelect = ({ onFileSelect, isMultiple = false, maxImageLength = 1 }: ImageSelectProps) => {
   const [previewURLs, setPreviewURLs] = useState<string[]>([]);
 
   const inputRef = useRef<HTMLInputElement>(null);
@@ -41,7 +42,7 @@ const ImageSelect = ({ onFileSelect, isMultiple = false }: ImageSelectProps) => 
       const files: File[] = Array.from(event.target.files);
 
       // 선택된 파일이 3개를 초과하지 않도록 제한
-      const allowedFiles = files.slice(0, 3 - previewURLs.length);
+      const allowedFiles = files.slice(0, maxImageLength - previewURLs.length);
 
       // 파일을 읽고 프리뷰 URL을 생성하는 Promise 배열
       const previewURLPromises = allowedFiles.map(async (file) => {
