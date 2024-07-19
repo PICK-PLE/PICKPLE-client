@@ -5,6 +5,7 @@ import {
   disabledStyle,
   iconStyle,
   minusStyle,
+  peopleStyle,
   plusStyle,
 } from './CountPeople.style';
 
@@ -29,7 +30,7 @@ const CountPeople = ({ people, onPeopleChange }: CountPeopleProps) => {
       <div css={[buttonWrapperStyle, people <= 1 && disabledStyle]} onClick={handleDecrease}>
         <IcBtnMinus css={[iconStyle, minusStyle(people)]} />
       </div>
-      <div>{people}명</div>
+      <div css={peopleStyle}>{people}명</div>
       <div css={[buttonWrapperStyle, people >= 15 && disabledStyle]} onClick={handleIncrease}>
         <IcBtnPlus css={[iconStyle, plusStyle(people)]} />
       </div>

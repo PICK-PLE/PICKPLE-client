@@ -99,7 +99,7 @@ const StepThree = ({ onNext }: StepProps) => {
             />
           </section>
           <section css={imageSelectSection}>
-            <ImageSelect isMultiple={true} onFileSelect={setSelectedFiles} />
+            <ImageSelect isMultiple={true} onFileSelect={setSelectedFiles} maxImageLength={3} />
             <h6 css={referTextStyle}>
               * 첫번째 사진이 썸네일 이미지로 등록되며
               <br />

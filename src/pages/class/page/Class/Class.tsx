@@ -39,7 +39,7 @@ import { useClipboard, useToast, useWindowSize } from '@hooks';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
 import { MoimIdPathParameterType } from '@types';
 import Error from '@pages/error/Error';
-import { dDayText, handleShare } from '@utils';
+import { dDayText, handleShare, smoothScroll } from '@utils';
 import { useAtom } from 'jotai';
 import { userAtom } from '@stores';
 
@@ -81,6 +81,7 @@ const Class = () => {
   };
 
   const handleApplyButtonClick = () => {
+    smoothScroll(0);
     navigate(`/class/${moimId}/apply/rule`);
   };
 

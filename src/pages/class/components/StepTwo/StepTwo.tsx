@@ -29,7 +29,6 @@ const StepTwo = ({ onNext }: StepProps) => {
     }
   };
 
-  console.log(classPostState);
   return (
     <>
       <ProgressBar progress={50} />

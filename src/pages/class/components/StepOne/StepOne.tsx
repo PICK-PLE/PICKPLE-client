@@ -16,6 +16,7 @@ import {
   headerStyle,
   layoutStyle,
   mainStyle,
+  preventDragStyle,
   referTextStyle,
   sectionStyle,
   subTitleStyle,
@@ -92,7 +93,6 @@ const StepOne = ({ onNext }: StepProps) => {
     );
   };
 
-  console.log(classPostState);
   return (
     <>
       <ProgressBar progress={25} />
@@ -160,7 +160,9 @@ const StepOne = ({ onNext }: StepProps) => {
           <section css={sectionStyle(2)}>
             <QuestionText numberLabel="Q5">몇 명의 게스트와 함께하고 싶으신가요?</QuestionText>
             <CountPeople people={classPostState.maxGuest} onPeopleChange={handleMaxGuestChange} />
-            <h6 css={referTextStyle}>참가자는 최대 15명까지 모집 가능합니다.</h6>
+            <h6 css={[referTextStyle, preventDragStyle]}>
+              참가자는 최대 15명까지 모집 가능합니다.
+            </h6>
           </section>
           <section css={sectionStyle(1)}>
             <QuestionText numberLabel="Q6">참가비를 알려주세요.</QuestionText>

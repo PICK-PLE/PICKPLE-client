@@ -43,3 +43,7 @@ export const referTextStyle = (theme: Theme) => css`
 export const footerStyle = css`
   width: 100%;
 `;
+
+export const preventDragStyle = css`
+  user-select: none;
+`;

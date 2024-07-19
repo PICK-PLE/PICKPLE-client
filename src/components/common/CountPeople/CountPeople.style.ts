@@ -54,3 +54,7 @@ export const plusStyle = (people: number) => (theme: Theme) =>
 export const disabledStyle = css`
   pointer-events: none;
 `;
+
+export const peopleStyle = css`
+  user-select: none;
+`;
