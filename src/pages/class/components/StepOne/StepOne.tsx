@@ -29,6 +29,7 @@ import { ClassPostDataType } from 'src/stores/types/classPostDataType';
 import { smoothScroll } from '@utils';
 import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
 import AccountNumberInput from 'src/components/common/inputs/AccountNumberInput/AccountNumberInput';
+import { options } from 'src/constants/options';
 
 const StepOne = ({ onNext }: StepProps) => {
   const {
@@ -136,15 +137,7 @@ const StepOne = ({ onNext }: StepProps) => {
                 value={classPostState.onlineSpot}
                 onChange={handleSelectChange}
                 placeholder="사용할 플랫폼을 선택해주세요."
-                options={[
-                  'ZOOM',
-                  'Google Meets',
-                  'Webex',
-                  'Microsoft Teams',
-                  'Skype',
-                  'Naver Works',
-                  'Zep',
-                ]}></Select>
+                options={options}></Select>
             )}
           </section>
           <section css={sectionStyle(1)}>

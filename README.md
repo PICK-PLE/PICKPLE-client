@@ -1,11 +1,71 @@
 <h1 align="center"> 🌸🌼 PICK!PLE 🌼🌸 </h1>
 <h3 align="center"> 🍀 NOW SOPT AppJam 🍀 </h3>
 
-## 💁 서비스 이름 및 소개
+## 🏷️ 서비스 이름
 
 ### 내가 PICK!한 바로 '그 사람'과 함께하는 클래스 모임
 
 <img src="https://github.com/PICK-PLE/PICKPLE-client/assets/59465914/8af39363-bbe7-4638-a01a-f6d58d9a0db5" width="500px"/>
+
+<br />
+<br />
+
+## 💁 서비스 소개
+
+<strong> 인증 받은 호스트들이 클래스 모임을 개최할 수 있는 곳 </strong>
+
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/a8610d0d-ca66-48c3-b5f9-04f78b457f97">
+
+<br />
+<br />
+
+## 🔨 서비스 주요 기능
+
+### 호스트 승인
+
+<div>
+	<img width="300" alt="image" src="https://github.com/user-attachments/assets/4cae36cc-d1a7-4937-a950-436f73e3fccc">
+	<img width="300" alt="image" src="https://github.com/user-attachments/assets/9e3b36b1-1109-4951-a5db-1ae0d5823db8">
+</div>
+
+<br />
+
+### 모임 개설 공지사항 게시
+
+<div>
+	<img width="300" alt="image" src="https://github.com/user-attachments/assets/0aa57af2-68d8-44a0-8f10-3ccf0f9e854d">
+	<img width="300" alt="image" src="https://github.com/user-attachments/assets/10eb9001-f548-4bba-9867-983a3d36e152">
+</div>
+
+<br />
+
+### 게스트 승인 리뷰 수집
+
+<div>
+	<img width="250" alt="image" src="https://github.com/user-attachments/assets/eb5be8d9-f116-4bc0-a11b-df12918d966d">
+	<img width="250" alt="image" src="https://github.com/user-attachments/assets/982f5755-5101-4d13-90e9-9afbd341e002">
+	<img width="250" alt="image" src="https://github.com/user-attachments/assets/bb76a570-dc72-4f7a-b489-bddcf9bf1afa">
+</div>
+
+<br />
+
+### 모임 탐색
+
+<div>
+	<img width="300" alt="image" src="https://github.com/user-attachments/assets/9d645a02-06b1-4ab4-80b5-2162e6b94721">
+	<img width="300" alt="image" src="https://github.com/user-attachments/assets/2277217f-e0cb-4d29-97fe-ee5f702f755a">
+</div>
+
+<br />
+
+### 모임 참여
+
+<div>
+	<img width="200" alt="image" src="https://github.com/user-attachments/assets/18d1ccc2-05c9-4697-b25a-7673102ffffb">
+	<img width="200" alt="image" src="https://github.com/user-attachments/assets/62bc7a88-ca18-403a-9856-6ef3fed1b8bc">
+	<img width="200" alt="image" src="https://github.com/user-attachments/assets/76aaf5ad-64ce-4c8e-bafb-c158f93a1ae5">
+	<img width="200" alt="image" src="https://github.com/user-attachments/assets/f9227823-b156-4391-a603-016017fb7c8f">
+</div>
 
 <br />
 <br />
@@ -18,22 +78,22 @@
 <table>
 <th>팀원</th>
     <th> 박채연 <a href="https://github.com/chaeneey"><br/><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white"/><a></th>
-	<th> 유태승 <a href="https://github.com/gudusol"><br/><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white"/></a></th>
+	  <th> 유태승 <a href="https://github.com/gudusol"><br/><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white"/></a></th>
     <th> 임화랑 <a href="https://github.com/thisishwarang"><br/><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white"/></a></th>
     <th> 장정안 <a href="https://github.com/ExceptAnyone"><br/><img src="https://img.shields.io/badge/Github-181717?style=flat-square&logo=Github&logoColor=white"/></a></th>
     <tr>
     <td> 팀원 소개 </td>
     	<td>
-        <img src="https://github.com/PICK-PLE/PICKPLE-client/assets/59465914/bc9ff225-2500-48a6-ac1e-be5b5647efce" width="200px"/>
+        <img width="200" alt="IMG_1293" src="https://github.com/user-attachments/assets/d589bec4-45f5-4a90-8053-fc32f3c96923" />
       </td>
     	<td>
-        <img src="https://github.com/PICK-PLE/PICKPLE-client/assets/59465914/139c42c5-972f-4943-a2ae-9a8cb036b822" width="200px"/>
+        <img width="200" alt="IMG_1341" src="https://github.com/user-attachments/assets/b30f7c4f-f90b-44b5-8edf-4ae5bc14c764" />
      </td>
       <td>
-        <img src="https://github.com/PICK-PLE/PICKPLE-client/assets/59465914/9a77e7df-5e69-452b-a23a-44fc6e1c4754" width="200px"/>
+        <img width="200" alt="IMG_1342" src="https://github.com/user-attachments/assets/d6c0521f-05ac-4654-abe0-02d80d5e2ae1" />
       </td>
     	<td>
-        <img src="https://github.com/PICK-PLE/PICKPLE-client/assets/59465914/de5db323-473f-4dae-925a-60216b11d63b" width="200px"/>
+        <img width="200" alt="IMG_1340" src="https://github.com/user-attachments/assets/7aad466e-b273-45a2-81dd-c554f258b384" />
      </td>
     </tr>
     <tr>
@@ -82,6 +142,8 @@
 - `"react-router-dom": "^6.24.0",` <br />
 - `"@emotion/react": "^11.11.4",` <br />
 - `"eslint": "^8.57.0",` <br />
+- `"jotai": "^2.9.0",`
+
   <br />
   <br />
 
@@ -92,38 +154,50 @@
 ```typescript
 |-- 📁 node_modules
 |-- 📁 public
+    |-- 📁 image
     |-- 📁 svg
 |-- 📁 src
-    |-- 📁 asset
-        |-- 📁 svgs
-        |-- 📁 images
+    |-- 📁 apis
+        |-- 📁 domains
+        |-- 📁 queryKeys
+        |-- api.ts
+|-- 📁 asset
+        |-- 📁 lotties
+        |-- 📁 svg
     |-- 📁 components
         |-- 📁 common
             |-- 📁 Button
                 |-- Button.tsx
                 |-- Button.style.ts
             |-- index.ts
-    |-- 📁 pages
-        |-- 📁onboarding
-            |-- 📁components
-            |-- 📁types
-            |-- 📁hooks
-            |-- Onboarding.tsx
-            |-- Onboarding.style.ts
+    |-- 📁 constants
+        |-- 📁 images
+        |-- 📁 mocks
+        |-- index.ts
     |-- 📁 hooks
+    |-- 📁 pages
+        |-- 📁 class
+            |-- 📁 components
+            |-- 📁 types
+            |-- 📁 hooks
+            |-- 📁 page
+    |-- 📁 routes
+        |-- homeRoutes.tsx
+        |-- adminRoutes.tsx
+        |-- index.ts
+    |-- 📁 stores
+        |-- 📁 types
+        |-- index.ts
     |-- 📁 styles
         |-- global.ts
         |-- reset.ts
         |-- theme.ts
-    |-- 📁 utils
-        |-- 📁 constants
-        |-- 📁 mocks
-    |-- 📁 apis
     |-- 📁 types
-    |-- 📁 routes
-        |-- routePath.ts
-        |-- homeRoutes.tsx
-        |-- adminRoutes.tsx
+        |-- 📁 api
+            |-- 📁 schema
+                |-- index.ts
+        |-- index.ts
+    |-- 📁 utils
         |-- index.ts
 |-- App.tsx
 |-- main.tsx

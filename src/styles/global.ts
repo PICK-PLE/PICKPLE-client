@@ -30,6 +30,10 @@ const GlobalStyle = css`
     text-decoration: none;
   }
 
+  select {
+    background: #fff;
+  }
+
   #root {
     width: 100%;
     min-width: var(--min-width);

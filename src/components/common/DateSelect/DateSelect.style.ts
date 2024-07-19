@@ -18,7 +18,7 @@ export const customInputLabel = (theme: Theme) => css`
   cursor: pointer;
 `;
 
-export const customInputStyle = (theme: Theme) => css`
+export const customInputStyle = (hasValue: boolean) => (theme: Theme) => css`
   padding: 3.2rem 1.6rem 1rem;
 
   width: 100%;
@@ -28,7 +28,7 @@ export const customInputStyle = (theme: Theme) => css`
   border-radius: 10px;
 
   ${theme.font['body01-r-15']};
-  color: ${theme.color.midgray1};
+  color: ${hasValue ? theme.color.blackgray : theme.color.midgray1};
 
   cursor: pointer;
 

@@ -82,6 +82,7 @@ import {
 // import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
 import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
+import { options } from 'src/constants/options';
 
 const Components = () => {
   const [value, setValue] = useState('');
@@ -466,15 +467,7 @@ const Components = () => {
             value=""
             onChange={() => {}}
             placeholder="사용할 플랫폼을 선택해주세요."
-            options={[
-              'ZOOM',
-              'Google Meets',
-              'Webex',
-              'Microsoft Teams',
-              'Skype',
-              'Naver Works',
-              'Zep',
-            ]}></Select>
+            options={options}></Select>
 
           <h3 css={subTitleStyle}>DateSelect</h3>
           {/* <DateSelect selected={selectedDate} onChange={setSelectedDate} /> */}

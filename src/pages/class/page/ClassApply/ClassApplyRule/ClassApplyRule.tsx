@@ -7,7 +7,8 @@ import {
   ruleHStyle,
   ruleFooterStyle,
   classApplyRuleContainer,
-} from '@pages/class/page/ClassApply/ClassApplyRule/ClassApplyRule.style';
+  headerStyle,
+} from './ClassApplyRule.style';
 import { MoimIdPathParameterType } from '@types';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -27,7 +28,7 @@ const ClassApplyRule = () => {
 
         <article css={ruleArticleLayout}>
           <div css={ruleWrapperStyle}>
-            <header>
+            <header css={headerStyle}>
               <span css={ruleSpanStyle}>클래스 모임 신청</span>
               <h1 css={ruleHStyle}>
                 모두가 즐거운 모임이 될 수 있도록 <br /> 꼭 확인해 주세요!

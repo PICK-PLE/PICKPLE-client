@@ -22,7 +22,17 @@ export const categoryWrapper = css`
   cursor: pointer;
 `;
 
-export const iconNameStyle = (theme: Theme) => css`
+export const imageStyle = css`
+  width: 5.7rem;
+  height: 5.7rem;
+`;
+
+export const unSeletedIconNameStyle = (theme: Theme) => css`
+  color: ${theme.color.lightgray2};
+  ${theme.font['body04-m-12']}
+`;
+
+export const seletedIconNameStyle = (theme: Theme) => css`
   color: ${theme.color.midgray2};
   ${theme.font['body04-m-12']}
 `;

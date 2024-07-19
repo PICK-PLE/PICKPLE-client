@@ -9,6 +9,8 @@ import {
   textStyle,
   countTitleStyle,
   accordionStyle,
+  selectedTextStyle,
+  maxGuestStyle,
 } from './MyClassManage.style';
 import { useState, useEffect } from 'react';
 import { ApplicantListModal, ClassManageEmptyView } from '@pages/host/components';
@@ -113,7 +115,7 @@ const MyClassManage = () => {
 
   return (
     <div>
-      <Header title="신청자 관리" />
+      <Header title="신청자 관리" isLine={true} />
       <article css={myClassManageLayout}>
         <header css={headerStyle}>
           <h1>{moimTitle}</h1>
@@ -127,7 +129,10 @@ const MyClassManage = () => {
                   <span css={countTitleStyle}>모임 신청자</span>
                   <span css={countTextStyle}>{submitterList?.length}</span>
                 </div>
-                <Label variant="count">{`${checkedSubmitter?.length} / ${maxGuest}`}</Label>
+                <Label variant="count">
+                  <p css={selectedTextStyle}>{`${checkedSubmitter?.length}`}</p>
+                  <p css={maxGuestStyle}> {` / ${maxGuest}`}</p>
+                </Label>
               </div>
 
               <div css={accordionStyle}>

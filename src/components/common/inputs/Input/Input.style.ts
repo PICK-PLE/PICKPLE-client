@@ -18,15 +18,15 @@ export const inputWrapperStyle = css`
   width: 100%;
 `;
 
-export const inputStyle = (maxLengthError: boolean) => (theme: Theme) =>
+export const inputStyle = (isError: boolean, isFocused: boolean) => (theme: Theme) =>
   css`
     width: 100%;
     height: 5.2rem;
     padding: 1.5rem;
-    border: 1px solid ${maxLengthError ? theme.color.error : theme.color.lightgray1};
+    border: 1px solid ${isError && isFocused ? theme.color.error : theme.color.lightgray1};
     border-radius: 10px;
 
-    color: ${maxLengthError ? theme.color.error : theme.color.darkgray};
+    color: ${theme.color.darkgray};
     background-color: ${theme.color.white};
     ${theme.font['body01-r-15']}
 
@@ -39,15 +39,15 @@ export const inputStyle = (maxLengthError: boolean) => (theme: Theme) =>
     }
   `;
 
-export const textLengthStyle = (maxLengthError: boolean) => (theme: Theme) =>
+export const textLengthStyle = (isError: boolean, isFocused: boolean) => (theme: Theme) =>
   css`
     position: absolute;
     right: 1.5rem;
-    color: ${maxLengthError ? theme.color.error : theme.color.midgray1};
+    color: ${isError && isFocused ? theme.color.error : theme.color.midgray1};
     ${theme.font['body02-r-14']}
   `;
 
 export const errorMessageStyle = (theme: Theme) => css`
   color: ${theme.color.error};
-  ${theme.font['body05-r-10']};
+  ${theme.font['body03-r-12']};
 `;

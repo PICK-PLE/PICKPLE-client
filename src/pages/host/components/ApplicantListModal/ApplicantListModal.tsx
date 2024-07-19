@@ -21,6 +21,7 @@ import { images } from '@constants';
 
 interface ApplicantListModalProps {
   submitterList: components['schemas']['SubmitterInfo'][];
+  submitterList: components['schemas']['SubmitterInfo'][];
   onClose: () => void;
   moimId: number;
   isOngoing: boolean;
@@ -35,6 +36,7 @@ const ApplicantListModal = ({
   const { mutate } = usePatchSubmitter(isOngoing, onClose);
 
   const handleButtonClick = () => {
+    const submitterIdList = submitterList?.map((submitter) => submitter.submitterId);
     const submitterIdList = submitterList?.map((submitter) => submitter.submitterId);
     mutate({ moimId, submitterIdList } as PatchSubmitterRequest);
   };
@@ -55,6 +57,11 @@ const ApplicantListModal = ({
           <ul css={ulStyle}>
             {submitterList?.map((submitter) => (
               <li key={submitter.submitterId} css={liStyle}>
+                <SimpleUserProfile
+                  size="large"
+                  userImgUrl={images.GuestProfileImage}
+                  username={submitter.nickname || ''}
+                />
                 <SimpleUserProfile
                   size="large"
                   userImgUrl={images.GuestProfileImage}

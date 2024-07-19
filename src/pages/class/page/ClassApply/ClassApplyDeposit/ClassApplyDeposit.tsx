@@ -9,7 +9,7 @@ import {
   depositSpanStyle,
   depositMainStyle,
   dipositWrapperStyle,
-} from '@pages/class/page/ClassApply/ClassApplyDeposit/ClassApplyDeposit.style';
+} from './ClassApplyDeposit.style';
 import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
 import { MoimIdPathParameterType } from '@types';
 import { useState } from 'react';

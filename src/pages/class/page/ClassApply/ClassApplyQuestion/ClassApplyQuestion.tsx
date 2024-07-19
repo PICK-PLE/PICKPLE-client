@@ -20,7 +20,7 @@ import {
   questionRefundTextStyle,
   questionSpanStyle,
   questionWrapperStyle,
-} from '@pages/class/page/ClassApply/ClassApplyQuestion/ClassApplyQuestion.style';
+} from './ClassApplyQuestion.style';
 import { IcCaution } from '@svg';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -65,7 +65,9 @@ const ClassApplyQuestion = () => {
 
   useEffect(() => {
     if (isSuccess && questionData) {
-      setQuestionList(Object.values(questionData).filter(question => question !== '' && question !== null));
+      setQuestionList(
+        Object.values(questionData).filter((question) => question !== '' && question !== null)
+      );
     }
   }, [isSuccess, questionData]);
 
@@ -89,6 +91,10 @@ const ClassApplyQuestion = () => {
         [key]: value,
       },
     }));
+  };
+
+  const validateLength = (value: string) => {
+    return value.trim().length >= 1;
   };
 
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -148,7 +154,8 @@ const ClassApplyQuestion = () => {
                         maxLength={200}
                         size="medium"
                         placeholder="답변을 작성해주세요."
-                        isValid
+                        isValid={validateLength(answer.answerList[`answer${index + 1}`])}
+                        errorMessage='빈칸을 입력해 주세요.'
                       />
                     </>
                   )}
@@ -171,6 +178,7 @@ const ClassApplyQuestion = () => {
                 <Input
                   inputLabel="예금주"
                   placeholder="ex. 홍길동"
+                  isValid={true}
                   isCountValue={false}
                   value={answer.accountList.holder}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -180,6 +188,7 @@ const ClassApplyQuestion = () => {
                 <Input
                   inputLabel="입금 은행"
                   placeholder="은행명을 입력해주세요."
+                  isValid={true}
                   isCountValue={false}
                   value={answer.accountList.bank}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

@@ -11,12 +11,13 @@ import { useEasyNavigate } from '@hooks';
 
 interface HeaderProps {
   title: string;
+  isLine?: boolean;
 }
 
-const Header = ({ title }: HeaderProps) => {
+const Header = ({ title, isLine = false }: HeaderProps) => {
   const { goHome } = useEasyNavigate();
   return (
-    <header css={headerContainer}>
+    <header css={headerContainer(isLine)}>
       <section css={leftWrapper}></section>
       <section css={centerWrapper}>
         <h4 css={headerTitle}>{title}</h4>

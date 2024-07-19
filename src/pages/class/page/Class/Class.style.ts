@@ -17,7 +17,7 @@ export const classInfo = css`
 
 export const classNameStyle = (theme: Theme) => css`
   margin-top: 1.4rem;
-
+  padding-right: 4.5rem;
   ${theme.font['head01-b-22']};
 `;
 
@@ -40,11 +40,13 @@ export const tabWrapper = (theme: Theme) => css`
 `;
 
 export const tabButtonStyle = (theme: Theme) => css`
+  display: inline-flex;
+  flex-shrink: 0;
   ${theme.font['subhead01-sb-18']};
 
   background-color: ${theme.color.white};
   color: ${theme.color.midgray1};
-
+  padding: 0;
   padding-bottom: 1.6rem;
 
   border: none;

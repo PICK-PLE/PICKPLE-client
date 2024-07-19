@@ -1,4 +1,4 @@
-import { Button, Header, ImageSelect, Input, TextArea } from '@components';
+import { Button, Header, ImageSelect, Input, Spinner, TextArea } from '@components';
 import {
   imageSelectWrapper,
   noticePostBackground,
@@ -21,7 +21,7 @@ const ClassNotice = () => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const putS3UploadMutation = usePutS3Upload();
-  const postNoticeMutation = usePostNotice();
+  const { mutateAsync, isPending } = usePostNotice();
 
   const navigate = useNavigate();
 
@@ -57,9 +57,13 @@ const ClassNotice = () => {
       imageUrl,
     };
 
-    await postNoticeMutation.mutateAsync({ params, moimId: moimIdNumber });
+    await mutateAsync({ params, moimId: moimIdNumber });
     handleNavigateToMoimInfo(Number(moimIdNumber));
   };
+
+  if (isPending) {
+    return <Spinner />;
+  }
 
   return (
     <div css={noticePostBackground}>

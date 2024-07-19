@@ -22,13 +22,16 @@ interface DateSelectProps {
 }
 
 const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
-  ({ value, onClick, placeholder }, ref) => (
-    <div css={customInputContainer} onClick={onClick}>
-      <label css={customInputLabel}>모임 날짜</label>
-      <IcDropdownPlatformDown css={iconStyle} />
-      <input css={customInputStyle} ref={ref} value={value} readOnly placeholder={placeholder} />
-    </div>
-  )
+  ({ value, onClick, placeholder }, ref) => {
+    const hasValue = !!value;
+    return (
+      <div css={customInputContainer} onClick={onClick}>
+        <label css={customInputLabel}>모임 날짜</label>
+        <IcDropdownPlatformDown css={iconStyle} />
+        <input css={customInputStyle(hasValue)} ref={ref} value={value} readOnly placeholder={placeholder} />
+      </div>
+    );
+  }
 );
 
 const DateSelect = ({ selected, onChange }: DateSelectProps) => {
