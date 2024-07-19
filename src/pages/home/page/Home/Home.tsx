@@ -8,6 +8,7 @@ import {
   homeLayout,
   pageLayout,
   homeBannerStyle,
+  imageStyle,
 } from './Home.style';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
 import Footer from 'src/components/common/Footer/Footer';
@@ -48,7 +49,11 @@ const Home = () => {
               {(categories || []).map((category, index) => {
                 return (
                   <li key={index} css={iconStyle} onClick={() => handleCategoryClick(category)}>
-                    <img src={CATEGORY_ICON[category].fill_selected} alt={`icon-${index}`} />
+                    <img
+                      css={imageStyle}
+                      src={CATEGORY_ICON[category].fill_selected}
+                      alt={`icon-${index}`}
+                    />
                     <p css={iconNameStyle}>{CATEGORY_NAME[category]}</p>
                   </li>
                 );

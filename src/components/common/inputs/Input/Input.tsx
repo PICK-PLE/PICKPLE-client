@@ -60,13 +60,15 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       displayErrorMessage = errorMessage;
     }
 
+    const isError = maxLengthError || !isValid;
+
     return (
       <div css={inputContainerStyle}>
         {inputLabel && <span css={inputLabelStyle}>{inputLabel}</span>}
         <div css={inputWrapperStyle}>
           <input
             ref={ref}
-            css={[inputStyle(maxLengthError)]}
+            css={[inputStyle(isError, isFocused)]}
             placeholder={placeholder}
             value={value}
             onChange={handleInputChange}
@@ -74,7 +76,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             onBlur={() => setIsFocused(false)}
           />
           {isCountValue ? (
-            <span css={textLengthStyle(maxLengthError)}>
+            <span css={textLengthStyle(isError, isFocused)}>
               {value.length}/{maxLength}
             </span>
           ) : (

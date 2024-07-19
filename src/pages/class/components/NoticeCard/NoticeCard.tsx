@@ -21,6 +21,7 @@ interface NoticeCardProps {
 
 const NoticeCard = ({ noticeData }: NoticeCardProps) => {
   const { hostNickName, hostImageUrl, title, content, date, noticeImageUrl } = noticeData;
+  console.log(date);
 
   return (
     <article css={noticeCardContainer}>
@@ -35,7 +36,7 @@ const NoticeCard = ({ noticeData }: NoticeCardProps) => {
         <h3 css={noticeTitle}>{title}</h3>
         <p css={noticeContent}>{content}</p>
         {noticeImageUrl && <img css={noticeImage} src={noticeImageUrl} alt="공지사항 이미지" />}
-        <div css={noticeDate}>{formatCreatedDate(date ?? new Date().toString())}</div>
+        <div css={noticeDate}>{formatCreatedDate(date ?? '')}</div>
       </section>
     </article>
   );

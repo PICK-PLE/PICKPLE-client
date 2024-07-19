@@ -54,7 +54,7 @@ export const filterSelectWrapper = css`
 `;
 
 export const guestMyClassCardContainer = css`
-  padding: 1.4rem 1rem;
+  padding: 1.8rem 2rem;
 `;
 
 export const filterSelectStyle = css`

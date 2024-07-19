@@ -1,5 +1,6 @@
 import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+import { useEasyNavigate } from '@hooks';
 import { components } from '@schema';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { ErrorResponse, ErrorType, MutateResponseType } from '@types';
@@ -26,6 +27,7 @@ export const usePostHostApply = (
   nicknameRef: RefObject<HTMLInputElement>
 ) => {
   const queryClient = useQueryClient();
+  const { goGuestMyPage } = useEasyNavigate();
 
   return useMutation({
     mutationFn: (hostApplyState: HostApplyRequest) => postHostApply(hostApplyState),
@@ -38,6 +40,9 @@ export const usePostHostApply = (
       if (error.status === 40008) {
         setIsNicknameDuplicate(true);
         nicknameRef.current?.focus();
+      } else {
+        alert(error.message);
+        goGuestMyPage();
       }
     },
   });

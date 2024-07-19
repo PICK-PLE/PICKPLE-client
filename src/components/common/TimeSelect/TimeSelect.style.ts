@@ -15,11 +15,11 @@ export const timeSelectWrapper = (theme: Theme) => css`
   border-radius: 10px;
 `;
 
-export const selectStyle = (theme: Theme) => css`
+export const selectStyle = (hasValue: boolean) => (theme: Theme) => css`
   width: 13rem;
   border: none;
   border-radius: 4px;
-  color: ${theme.color.midgray1};
+  color: ${hasValue ? theme.color.blackgray : theme.color.midgray1};
   ${theme.font['body01-r-15']};
 
   cursor: pointer;
