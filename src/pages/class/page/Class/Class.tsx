@@ -85,9 +85,11 @@ const Class = () => {
     navigate(`/class/${moimId}/apply/rule`);
   };
 
-  const handleShareButtonClick = () => {
-    handleShare(url, shareTitle, text, handleCopyToClipboard);
-    showToast();
+  const handleShareButtonClick = async () => {
+    const shareSuccess = await handleShare(url, shareTitle, text, handleCopyToClipboard);
+    if (!shareSuccess) {
+      showToast();
+    }
   };
 
   return (

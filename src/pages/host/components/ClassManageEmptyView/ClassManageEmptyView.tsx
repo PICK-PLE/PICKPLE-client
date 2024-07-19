@@ -28,9 +28,11 @@ const ClassManageEmptyView = ({ moimId, maxGuest }: ClassManageEmptyViewProps) =
   const title = 'PICK!PLE';
   const text = "내가 PICK!한 바로 '그 사람'과 함께하는 클래스 모임.";
 
-  const handleButtonClick = () => {
-    handleShare(url, title, text, handleCopyToClipboard);
-    showToast();
+  const handleButtonClick = async () => {
+    const shareSuccess = await handleShare(url, title, text, handleCopyToClipboard);
+    if (!shareSuccess) {
+      showToast();
+    }
   };
 
   return (
