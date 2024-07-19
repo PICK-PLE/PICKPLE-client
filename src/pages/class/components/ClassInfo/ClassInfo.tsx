@@ -1,4 +1,4 @@
-import { classInfoContainer } from './ClassInfo.style';
+import { classInfoContainer, contentStyle } from './ClassInfo.style';
 
 interface ClassInfoProps {
   content: string;
@@ -7,7 +7,7 @@ interface ClassInfoProps {
 const ClassInfo = ({ content }: ClassInfoProps) => {
   return (
     <article css={classInfoContainer}>
-      <p>{content}</p>
+      <p css={contentStyle}>{content}</p>
     </article>
   );
 };

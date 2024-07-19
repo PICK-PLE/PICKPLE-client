@@ -6,3 +6,10 @@ export const classInfoContainer = (theme: Theme) => css`
   ${theme.font['body02-r-14']};
   color: ${theme.color.midgray2};
 `;
+
+export const contentStyle = (theme: Theme) => css`
+  ${theme.font['body02-r-14']};
+  color: ${theme.color.midgray2};
+
+  white-space: pre-line;
+`;
