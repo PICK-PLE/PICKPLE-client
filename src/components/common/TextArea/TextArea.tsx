@@ -42,18 +42,20 @@ const TextArea = ({
   // 글자 수 에러 메시지
   const textLengthErrorMessage = `* 글자 수 ${maxLength}자 이하로 입력해주세요.`;
 
+  const isError = maxLengthError || !isValid;
+
   return (
     <div css={textAreaContainerStyle}>
-      <div css={[textAreaWrapperStyle(maxLengthError), textAreaWrapperSize[size]]}>
+      <div css={[textAreaWrapperStyle(isError, isFocused), textAreaWrapperSize[size]]}>
         <textarea
-          css={textAreaStyle(maxLengthError)}
+          css={textAreaStyle}
           value={value}
           onChange={handleTextAreaChange}
           placeholder={placeholder}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         />
-        <span css={textLengthStyle(maxLengthError)}>
+        <span css={textLengthStyle(isError, isFocused)}>
           {value.length}/{maxLength}
         </span>
       </div>

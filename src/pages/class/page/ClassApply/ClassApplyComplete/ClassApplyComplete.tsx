@@ -11,7 +11,7 @@ import {
   completeSpanStyle,
   completeTextStyle,
   completeWrapperStyle,
-} from '@pages/class/page/ClassApply/ClassApplyComplete/ClassApplyComplete.style';
+} from './ClassApplyComplete.style';
 import { MoimIdPathParameterType } from '@types';
 import { useNavigate, useParams } from 'react-router-dom';
 
