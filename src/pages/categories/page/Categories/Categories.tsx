@@ -2,6 +2,7 @@ import { LogoHeader, Spinner } from '@components';
 import {
   categoriesContainer,
   categoryWrapper,
+  imageStyle,
   mainLayout,
   moimCardStyle,
   moimListContainer,
@@ -70,6 +71,7 @@ const Categories = () => {
           return (
             <li css={categoryWrapper} key={category} onClick={() => handleCategoryClick(category)}>
               <img
+                css={imageStyle}
                 src={
                   selectedCategory === category
                     ? CATEGORY_ICON[category]?.fill_selected
