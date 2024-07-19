@@ -53,7 +53,11 @@ const ApplicantListModal = ({ submitterList, onClose, moimId }: ApplicantListMod
           <ul css={ulStyle}>
             {submitterList?.map((submitter) => (
               <li key={submitter.submitterId} css={liStyle}>
-                <SimpleUserProfile size="large" username={submitter.nickname || ''} />
+                <SimpleUserProfile
+                  size="large"
+                  userImgUrl={images.GuestProfileImage}
+                  username={submitter.nickname || ''}
+                />
               </li>
             ))}
           </ul>
