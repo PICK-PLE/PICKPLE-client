@@ -15,3 +15,7 @@ export const textStyle = (theme: Theme) => css`
   ${theme.font['head04-b-16']}
 `;
 
+export const preventDragStyle = css`
+  user-select: none;
+`;
+

@@ -44,9 +44,11 @@ const HostInfoCardWithLink = ({ hostInfoCardWithLinkList }: hostInfoCardWithLink
             <Image variant="round" width="6rem" src={hostImageUrl ?? images.HostProfileImage} />
             <div css={hostDetailWrapper}>
               <p css={hostNameStyle}>{hostNickName}</p>
-              <div css={linkWrapper} onClick={handleLinkClick}>
-                <p css={linkStyle}>{hostLink}</p>
-              </div>
+              {hostLink && (
+                <div css={linkWrapper} onClick={handleLinkClick}>
+                  <p css={linkStyle}>{hostLink}</p>
+                </div>
+              )}
             </div>
           </article>
           <article css={categoryListWrapper}>

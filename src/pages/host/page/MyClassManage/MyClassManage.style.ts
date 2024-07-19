@@ -9,6 +9,7 @@ export const myClassManageLayout = (theme: Theme) => css`
   width: 100%;
   border-top: 1px solid ${theme.color.lightgray1};
   min-height: 100dvh;
+  
 `;
 
 export const headerStyle = (theme: Theme) => css`

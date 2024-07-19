@@ -9,6 +9,7 @@ export const InterestCategoryButtonStyle = css`
 export const InterestCategoryButtonVariant = {
   default: (theme: Theme) => css`
     display: flex;
+    max-width: 12.5rem;
     width: 100%;
     height: 3.4rem;
     padding: 0.5rem 1rem;

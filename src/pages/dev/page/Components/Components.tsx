@@ -368,10 +368,7 @@ const Components = () => {
 
           <h3 css={subTitleStyle}>SocialLoginButton</h3>
           <span css={textStyle}>platform = "kakao"</span>
-          <SocialLoginButton
-            platform="kakao"
-            icon={<IcKakaoLogo />}
-            onClick={() => console.log('카카오로 시작하기 클릭')}>
+          <SocialLoginButton platform="kakao" icon={<IcKakaoLogo />} onClick={() => {}}>
             카카오로 시작하기
           </SocialLoginButton>
 

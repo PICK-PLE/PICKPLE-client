@@ -10,11 +10,13 @@ export const handleShare = async (
       url: url,
       text: text,
     });
+    return true;
   } catch (error) {
     console.error('Web Share API를 사용할 수 없습니다.', error);
   }
-
   if (typeof navigator.share === 'undefined') {
     handleCopyToClipboard(url);
   }
+
+  return false;
 };
