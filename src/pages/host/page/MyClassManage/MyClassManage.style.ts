@@ -13,7 +13,8 @@ export const myClassManageLayout = (theme: Theme) => css`
 
 export const headerStyle = (theme: Theme) => css`
   ${theme.font['head02-b-20']}
-  padding-right: 7.3rem;
+  //padding-right: 7.3rem;
+  width: 78%;
   padding-top: 3.2rem;
 
 `;
