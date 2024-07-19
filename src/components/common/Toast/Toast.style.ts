@@ -6,8 +6,8 @@ export const toastWrapperStyle = (isVisible: boolean, toastBottom: number) => (t
     ${flexGenerator()};
     gap: 0.4rem;
     min-width: 33.5rem;
+    width: calc(100dvw - 4rem);
     height: 4.5rem;
-
     padding: 0.8rem;
 
     position: fixed;
@@ -19,6 +19,10 @@ export const toastWrapperStyle = (isVisible: boolean, toastBottom: number) => (t
     display: ${isVisible ? 'flex' : 'none'};
     animation: ${isVisible && toastShow} 2s forwards;
     z-index: 10;
+
+    @media screen and (min-width: 430px) {
+      width: 39rem;
+    }
   `;
 
 const toastShow = keyframes`
