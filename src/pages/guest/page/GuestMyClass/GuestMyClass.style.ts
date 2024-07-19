@@ -39,6 +39,9 @@ export const tabWrapper = css`
 
 export const mainWrapper = css`
   height: calc(100dvh - 10.4rem);
+  padding: 0 2rem 2rem;
+
+  overflow-y: auto;
 `;
 
 export const getTabStyle = (isActive: boolean) => (theme: Theme) =>
@@ -49,12 +52,17 @@ export const getTabStyle = (isActive: boolean) => (theme: Theme) =>
   `;
 
 export const filterSelectWrapper = css`
-  ${flexGenerator('row', 'flex-end', 'flex-end')}
-  margin-right: 2rem;
+  ${flexGenerator('row', 'flex-end', 'flex-end')}/* margin-right: 2rem; */
+`;
+
+export const classCardList = css`
+  ${flexGenerator('column')};
+  margin-top: 1.8rem;
+  gap: 1rem;
 `;
 
 export const guestMyClassCardContainer = css`
-  padding: 1.8rem 2rem;
+  width: 100%;
 `;
 
 export const filterSelectStyle = css`

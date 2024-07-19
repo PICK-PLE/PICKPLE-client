@@ -1,5 +1,5 @@
 import { StepProps } from 'src/types/nextStep';
-import { Button, Input, ProgressBar, QuestionText, TextArea } from '@components';
+import { Button, Input, ProgressBar, QuestionText, Spinner, TextArea } from '@components';
 import {
   categorySectionStyle,
   footerStyle,
@@ -33,7 +33,7 @@ const StepTwo = ({ onNext }: StepProps) => {
     ...hostApplyState,
     categoryList: selectedCategories,
   });
-  const { mutate } = usePostHostApply(
+  const { mutate, isPending } = usePostHostApply(
     resetHostApplyState,
     onNext,
     setIsNicknameDuplicate,
@@ -52,6 +52,10 @@ const StepTwo = ({ onNext }: StepProps) => {
     setSelectedCategories(newCategories);
     handleCategoryChange(newCategories);
   };
+
+  if (isPending) {
+    return <Spinner />;
+  }
 
   return (
     <>

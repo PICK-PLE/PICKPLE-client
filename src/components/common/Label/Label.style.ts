@@ -6,7 +6,7 @@ export const labelStyle = css`
   ${flexGenerator()};
   gap: 0.4rem;
 
-  padding: 0 1rem;
+  padding: 0.8rem 0.6rem;
 
   border-radius: 5px;
 `;

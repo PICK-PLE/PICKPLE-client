@@ -9,6 +9,7 @@ import {
   GuestMyClassBackground,
   guestMyClassContainer,
   mainWrapper,
+  classCardList,
 } from './GuestMyClass.style';
 import { useEffect, useState } from 'react';
 import { GuestMyClassEmptyView, MoimCard } from '@pages/guest/components';
@@ -98,11 +99,13 @@ const GuestMyClass = () => {
               }
             />
           ) : (
-            currentData?.map((data) => (
-              <div css={guestMyClassCardContainer} key={data.moimId}>
-                <MoimCard guestMyClassData={data} />
-              </div>
-            ))
+            <ul css={classCardList}>
+              {currentData?.map((data) => (
+                <li css={guestMyClassCardContainer} key={data.moimId}>
+                  <MoimCard guestMyClassData={data} />
+                </li>
+              ))}
+            </ul>
           )}
         </main>
       </div>

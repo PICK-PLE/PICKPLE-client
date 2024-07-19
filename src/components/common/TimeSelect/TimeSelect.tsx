@@ -6,6 +6,7 @@ import {
   timeSelectContainer,
   iconStyle,
   labelWrapper,
+  svgStyle,
 } from './TimeSelect.style';
 import { IcDropdownPlatformDown } from '@svg';
 
@@ -60,7 +61,7 @@ const TimeSelect = ({
           </label>
           <label htmlFor="start-time" onClick={() => focusSelect(startTimeRef)}>
             <span css={iconStyle} onClick={() => focusSelect(startTimeRef)}>
-              <IcDropdownPlatformDown />
+              <IcDropdownPlatformDown css={svgStyle(Boolean(startTime))} />
             </span>
           </label>
           <select
@@ -83,7 +84,7 @@ const TimeSelect = ({
             종료 시간
           </label>
           <span css={iconStyle} onClick={() => focusSelect(endTimeRef)}>
-            <IcDropdownPlatformDown />
+            <IcDropdownPlatformDown css={svgStyle(Boolean(endTime))} />
           </span>
           <select
             ref={endTimeRef}
