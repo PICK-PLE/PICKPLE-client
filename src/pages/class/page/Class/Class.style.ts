@@ -17,7 +17,7 @@ export const classInfo = css`
 
 export const classNameStyle = (theme: Theme) => css`
   margin-top: 1.4rem;
-
+  padding-right: 4.5rem;
   ${theme.font['head01-b-22']};
 `;
 

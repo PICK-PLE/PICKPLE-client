@@ -8,6 +8,8 @@ import {
   emptyViewLayout,
   emptyViewWrapper,
   labelStyle,
+  maxGuestStyle,
+  selectedTextStyle,
   textStyle,
 } from './ClassManageEmptyView.style';
 import { Button, Label, Toast } from '@components';
@@ -42,7 +44,10 @@ const ClassManageEmptyView = ({ moimId, maxGuest }: ClassManageEmptyViewProps) =
           <span css={countTitleStyle}>모임 신청자</span>
           <span css={countTextStyle}>0</span>
         </div>
-        <Label variant="count">{`0 / ${maxGuest}`}</Label>
+        <Label variant="count">
+          <p css={selectedTextStyle}>0</p>
+          <p css={maxGuestStyle}>{` / ${maxGuest}`}</p>
+        </Label>
       </div>
 
       <div css={emptyViewLayout}>

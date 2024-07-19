@@ -12,7 +12,7 @@ export const textAreaWrapperStyle = (maxLengthError: boolean) => (theme: Theme) 
     ${flexGenerator('column', 'space-between', 'flex-end')}
     width: 100%;
     min-width: 33.5rem;
-    padding: 1.2rem 1.6rem;
+    padding: 1.2rem 1.6rem 1rem 1rem;
 
     border: 1px solid ${maxLengthError ? theme.color.error : theme.color.lightgray1};
     border-radius: 10px;

@@ -1,4 +1,4 @@
-import { Button, ImageSelect, Input, ProgressBar, TextArea } from '@components';
+import { Button, ImageSelect, Input, ProgressBar, Spinner, TextArea } from '@components';
 import { StepProps } from 'src/types/nextStep';
 import {
   footerStyle,
@@ -29,7 +29,7 @@ const StepThree = ({ onNext }: StepProps) => {
   const { isTitleValid, isDescriptionValid } = validateStepThree(classPostState);
 
   const putS3UploadMutation = usePutS3Upload();
-  const postMoim = usePostMoim();
+  const { mutateAsync, isPending } = usePostMoim();
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [isAllValid, setIsAllValid] = useState(false);
@@ -48,8 +48,7 @@ const StepThree = ({ onNext }: StepProps) => {
         type: 'moim',
       });
 
-      postMoim
-        .mutateAsync({ ...classPostState, imageList: imageUrlList })
+      mutateAsync({ ...classPostState, imageList: imageUrlList })
         .then((data) => {
           if (data) {
             setMoimId(data);
@@ -63,6 +62,10 @@ const StepThree = ({ onNext }: StepProps) => {
         });
     }
   };
+
+  if (isPending) {
+    return <Spinner />;
+  }
 
   return (
     <>
