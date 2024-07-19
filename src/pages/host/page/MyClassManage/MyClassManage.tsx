@@ -56,41 +56,15 @@ const MyClassManage = () => {
     );
   };
 
-  // 체크상태 바로 반영이 되게
   useEffect(() => {
     if (submitterList && checkedStates.length === 0) {
       setCheckedStates(Array(submitterList?.length).fill(false));
     }
-  }, [checkedStates, submitterList]);
+  }, [submitterList, checkedStates.length]);
 
-  // 체크 상태 [false, false, true] 이런 식으로 되어있음
-  console.log('checkedStates', checkedStates);
+  console.log(applicantData);
 
-  // 체크된 사람들의 상태
-  console.log('checkedSubmitter', checkedSubmitter);
-
-  // 하나라도 체크가 되면, 버튼 활성화 + 안눌리면 비활성화
-  // checkedSubmitter가 변경될 때마다 반영되어야 하니까 useEffect 사용
-  useEffect(() => {
-    if (checkedSubmitter && checkedSubmitter.length > 0) {
-      setIsActive(true);
-    } else {
-      setIsActive(false);
-    }
-  }, [checkedSubmitter]);
-
-  // 완료된 모임이거나 신청을 이미 받은 모임이라면 => checkedSubmitter에 해당하는 사람들 체크 active 해두기
-  // 맵 돌아아ㅑ 할 듯
-
-  if (isMoimSubmissionApproved || !isOngoing) {
-    submitterList?.map((submitter, index) => {
-      if (submitter.state == 'approved') {
-        checkedStates[index] = true;
-      }
-    });
-  }
-
-
+  // 체크상태 바로 반영이 되게
   useEffect(() => {
     if (submitterList) {
       const newArray: SubmitterInfo[] = [];
@@ -103,9 +77,25 @@ const MyClassManage = () => {
     }
   }, [checkedStates, submitterList]);
 
-  const handleButtonClick = () => {
-    // 체크가 되면 -> 체크된 아이의 정보를 담아놔야 함!! >> 배열로
+  // 하나라도 체크가 되면, 버튼 활성화 + 안눌리면 비활성화
+  useEffect(() => {
+    if (checkedSubmitter && checkedSubmitter.length > 0) {
+      setIsActive(true);
+    } else {
+      setIsActive(false);
+    }
+  }, [checkedSubmitter]);
 
+  // 완료된 모임이거나 신청을 이미 받은 모임이라면 => checkedSubmitter에 해당하는 사람들 체크 active 해두기
+  if (isMoimSubmissionApproved || !isOngoing) {
+    submitterList?.map((submitter, index) => {
+      if (submitter.state == 'approved') {
+        checkedStates[index] = true;
+      }
+    });
+  }
+
+  const handleButtonClick = () => {
     setIsOpenModal(true);
   };
 
@@ -126,7 +116,7 @@ const MyClassManage = () => {
       <Header title="신청자 관리" />
       <article css={myClassManageLayout}>
         <header css={headerStyle}>
-          <p>{moimTitle}</p>
+          <h1>{moimTitle}</h1>
         </header>
 
         <main css={mainStyle}>
