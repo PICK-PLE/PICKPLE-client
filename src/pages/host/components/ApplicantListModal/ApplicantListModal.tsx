@@ -21,7 +21,6 @@ import { images } from '@constants';
 
 interface ApplicantListModalProps {
   submitterList: components['schemas']['SubmitterInfo'][];
-  submitterList: components['schemas']['SubmitterInfo'][];
   onClose: () => void;
   moimId: number;
   isOngoing: boolean;
@@ -36,7 +35,6 @@ const ApplicantListModal = ({
   const { mutate } = usePatchSubmitter(isOngoing, onClose);
 
   const handleButtonClick = () => {
-    const submitterIdList = submitterList?.map((submitter) => submitter.submitterId);
     const submitterIdList = submitterList?.map((submitter) => submitter.submitterId);
     mutate({ moimId, submitterIdList } as PatchSubmitterRequest);
   };
