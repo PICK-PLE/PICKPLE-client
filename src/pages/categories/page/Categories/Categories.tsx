@@ -3,6 +3,7 @@ import {
   categoriesContainer,
   categoryWrapper,
   iconNameStyle,
+  imageStyle,
   mainLayout,
   moimCardStyle,
   moimListContainer,
@@ -69,6 +70,7 @@ const Categories = () => {
           return (
             <li css={categoryWrapper} key={category} onClick={() => handleCategoryClick(category)}>
               <img
+                css={imageStyle}
                 src={
                   selectedCategory === category
                     ? CATEGORY_ICON[category]?.fill_selected
