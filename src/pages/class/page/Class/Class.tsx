@@ -87,7 +87,7 @@ const Class = () => {
 
   const handleShareButtonClick = async () => {
     const shareSuccess = await handleShare(url, shareTitle, text, handleCopyToClipboard);
-    if (!shareSuccess) {
+    if (shareSuccess === false) {
       showToast();
     }
   };
