@@ -3,7 +3,7 @@ import { flexGenerator } from '@styles/generator';
 
 export const layoutStyle = css`
   ${flexGenerator('column')};
-  padding: 3.1rem 2rem 2.7rem 2rem;
+  padding: 3.1rem 2rem 2.7rem ;
   //header + progressbar 높이 = 6.6rem
   min-height: calc(100dvh - 6.6rem);
 `;
@@ -30,14 +30,16 @@ export const headerSpanStyle = (theme: Theme) => css`
 
 export const mainStyle = css`
   ${flexGenerator()};
+  width: 100%;
   gap: 5rem;
+  padding: 0 0.75rem;
 
-  margin-top: 3.1rem;
+  margin-top: 2.8rem;
 `;
 
 export const imageStyle = css`
-  width: 29rem;
-  height: 29rem;
+  min-width: 32rem;
+  min-height: 32rem;
 `;
 
 export const footerStyle = css`
