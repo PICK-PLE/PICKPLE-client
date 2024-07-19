@@ -2,6 +2,7 @@ import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const hostMyClassLayout = css`
+  width: 100%;
   padding-top: 6rem;
 `;
 
@@ -53,7 +54,8 @@ export const getTabStyle = (isActive: boolean) => (theme: Theme) =>
 
 export const hostMyClassCardContainer = css`
   ${flexGenerator('column')};
-  padding: 3rem 1.8rem;
+  width: 100%;
+  padding: 3rem 2rem;
   gap: 1rem;
 `;
 
@@ -63,6 +65,7 @@ export const hostMyClassCardContainer = css`
 // `;
 
 export const hostMyClassBackground = (theme: Theme) => css`
+  width: 100%;
   background-color: ${theme.color.background};
   min-height: 100dvh;
 `;

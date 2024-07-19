@@ -40,11 +40,13 @@ export const tabWrapper = (theme: Theme) => css`
 `;
 
 export const tabButtonStyle = (theme: Theme) => css`
+  display: inline-flex;
+  flex-shrink: 0;
   ${theme.font['subhead01-sb-18']};
 
   background-color: ${theme.color.white};
   color: ${theme.color.midgray1};
-
+  padding: 0;
   padding-bottom: 1.6rem;
 
   border: none;
