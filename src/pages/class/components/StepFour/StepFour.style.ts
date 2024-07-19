@@ -3,7 +3,7 @@ import { flexGenerator } from '@styles/generator';
 
 export const layoutStyle = css`
   ${flexGenerator('column')};
-  padding: 3.1rem 2rem 2.7rem ;
+  padding: 3.1rem 2rem 2.7rem;
   //header + progressbar 높이 = 6.6rem
   min-height: calc(100dvh - 6.6rem);
 `;
@@ -21,6 +21,7 @@ export const titleStyle = (theme: Theme) => css`
 export const subTitleStyle = (theme: Theme) => css`
   color: ${theme.color.black};
   ${theme.font['head01-b-22']};
+  margin-bottom: 0.7rem;
 `;
 
 export const headerSpanStyle = (theme: Theme) => css`
