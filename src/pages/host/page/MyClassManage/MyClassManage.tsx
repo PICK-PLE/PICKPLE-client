@@ -130,7 +130,7 @@ const MyClassManage = () => {
                   <span css={countTextStyle}>{submitterList?.length}</span>
                 </div>
                 <Label variant="count">
-                  <p css={selectedTextStyle}>{`${checkedApplicant.submitterList?.length}`}</p>
+                  <p css={selectedTextStyle}>{`${checkedSubmitter?.length}`}</p>
                   <p css={maxGuestStyle}> {` / ${maxGuest}`}</p>
                 </Label>
               </div>
