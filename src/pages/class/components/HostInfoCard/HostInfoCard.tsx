@@ -9,6 +9,7 @@ import {
   hostTitleStyle,
   hostNameStyle,
   countStyle,
+  imageStyle,
 } from './HostInfoCard.style';
 import { useFetchMoimHost } from '@apis/domains/host';
 
@@ -23,7 +24,7 @@ const HostInfoCard = ({ hostId }: HostInfoCardProps) => {
 
   return (
     <div css={hostInfoCardContainer}>
-      <Image variant="round" width="6.1rem" src={hostImageUrl ?? ''} />
+      <Image variant="round" width="6.1rem" src={hostImageUrl ?? ''} customStyle={imageStyle} />
 
       <div css={hostInfoCardWrapper}>
         <div>

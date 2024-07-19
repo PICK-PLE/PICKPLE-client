@@ -46,3 +46,7 @@ export const cardIcon = css`
   width: 2.4rem;
   height: 2.4rem;
 `;
+
+export const imageStyle = css`
+  object-position: right;
+`;
