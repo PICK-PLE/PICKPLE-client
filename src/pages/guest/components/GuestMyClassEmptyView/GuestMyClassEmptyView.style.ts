@@ -2,9 +2,9 @@ import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const completedTabContainer = (theme: Theme) => css`
-  ${flexGenerator('column')}
+  ${flexGenerator('column')};
   height: calc(100dvh - 15rem);
-  padding: 0 9.3rem;
+  padding: 0 auto;
   width: 100%;
 
   background-color: ${theme.color.background};

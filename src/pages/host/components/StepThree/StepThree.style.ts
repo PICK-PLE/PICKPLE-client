@@ -22,6 +22,7 @@ export const titleStyle = (theme: Theme) => css`
 export const subTitleStyle = (theme: Theme) => css`
   color: ${theme.color.black};
   ${theme.font['head01-b-22']};
+  margin-bottom: 0.7rem;
 `;
 
 export const headerSpanStyle = (theme: Theme) => css`
