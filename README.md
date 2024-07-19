@@ -13,7 +13,8 @@
 ## 💁 서비스 소개
 
 <strong> 인증 받은 호스트들이 클래스 모임을 개최할 수 있는 곳 </strong>
-<img width="435" alt="image" src="https://github.com/user-attachments/assets/a8610d0d-ca66-48c3-b5f9-04f78b457f97">
+
+<img width="800" alt="image" src="https://github.com/user-attachments/assets/a8610d0d-ca66-48c3-b5f9-04f78b457f97">
 
 <br />
 <br />
@@ -23,8 +24,8 @@
 ### 호스트 승인
 
 <div>
-	<img width="200" alt="image" src="https://github.com/user-attachments/assets/4cae36cc-d1a7-4937-a950-436f73e3fccc">
-	<img width="200" alt="image" src="https://github.com/user-attachments/assets/9e3b36b1-1109-4951-a5db-1ae0d5823db8">
+	<img width="300" alt="image" src="https://github.com/user-attachments/assets/4cae36cc-d1a7-4937-a950-436f73e3fccc">
+	<img width="300" alt="image" src="https://github.com/user-attachments/assets/9e3b36b1-1109-4951-a5db-1ae0d5823db8">
 </div>
 
 <br />
@@ -32,8 +33,8 @@
 ### 모임 개설 공지사항 게시
 
 <div>
-	<img width="200" alt="image" src="https://github.com/user-attachments/assets/0aa57af2-68d8-44a0-8f10-3ccf0f9e854d">
-	<img width="200" alt="image" src="https://github.com/user-attachments/assets/10eb9001-f548-4bba-9867-983a3d36e152">
+	<img width="300" alt="image" src="https://github.com/user-attachments/assets/0aa57af2-68d8-44a0-8f10-3ccf0f9e854d">
+	<img width="300" alt="image" src="https://github.com/user-attachments/assets/10eb9001-f548-4bba-9867-983a3d36e152">
 </div>
 
 <br />
@@ -41,9 +42,9 @@
 ### 게스트 승인 리뷰 수집
 
 <div>
-	<img width="200" alt="image" src="https://github.com/user-attachments/assets/eb5be8d9-f116-4bc0-a11b-df12918d966d">
-	<img width="200" alt="image" src="https://github.com/user-attachments/assets/982f5755-5101-4d13-90e9-9afbd341e002">
-	<img width="200" alt="image" src="https://github.com/user-attachments/assets/bb76a570-dc72-4f7a-b489-bddcf9bf1afa">
+	<img width="250" alt="image" src="https://github.com/user-attachments/assets/eb5be8d9-f116-4bc0-a11b-df12918d966d">
+	<img width="250" alt="image" src="https://github.com/user-attachments/assets/982f5755-5101-4d13-90e9-9afbd341e002">
+	<img width="250" alt="image" src="https://github.com/user-attachments/assets/bb76a570-dc72-4f7a-b489-bddcf9bf1afa">
 </div>
 
 <br />
@@ -51,8 +52,8 @@
 ### 모임 탐색
 
 <div>
-	<img width="200" alt="image" src="https://github.com/user-attachments/assets/9d645a02-06b1-4ab4-80b5-2162e6b94721">
-	<img width="200" alt="image" src="https://github.com/user-attachments/assets/2277217f-e0cb-4d29-97fe-ee5f702f755a">
+	<img width="300" alt="image" src="https://github.com/user-attachments/assets/9d645a02-06b1-4ab4-80b5-2162e6b94721">
+	<img width="300" alt="image" src="https://github.com/user-attachments/assets/2277217f-e0cb-4d29-97fe-ee5f702f755a">
 </div>
 
 <br />
@@ -60,10 +61,10 @@
 ### 모임 참여
 
 <div>
-	<img width="150" alt="image" src="https://github.com/user-attachments/assets/18d1ccc2-05c9-4697-b25a-7673102ffffb">
-	<img width="150" alt="image" src="https://github.com/user-attachments/assets/62bc7a88-ca18-403a-9856-6ef3fed1b8bc">
-	<img width="150" alt="image" src="https://github.com/user-attachments/assets/76aaf5ad-64ce-4c8e-bafb-c158f93a1ae5">
-	<img width="150" alt="image" src="https://github.com/user-attachments/assets/f9227823-b156-4391-a603-016017fb7c8f">
+	<img width="200" alt="image" src="https://github.com/user-attachments/assets/18d1ccc2-05c9-4697-b25a-7673102ffffb">
+	<img width="200" alt="image" src="https://github.com/user-attachments/assets/62bc7a88-ca18-403a-9856-6ef3fed1b8bc">
+	<img width="200" alt="image" src="https://github.com/user-attachments/assets/76aaf5ad-64ce-4c8e-bafb-c158f93a1ae5">
+	<img width="200" alt="image" src="https://github.com/user-attachments/assets/f9227823-b156-4391-a603-016017fb7c8f">
 </div>
 
 <br />
