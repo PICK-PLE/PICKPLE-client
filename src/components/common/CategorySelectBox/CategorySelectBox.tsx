@@ -1,7 +1,6 @@
 import { CATEGORY_ICON } from '@constants';
 import { imgStyle, labelStyle, liStyle, ulStyle } from './CategorySelectBox.style';
 
-
 const categoryIcons = [
   {
     name: 'njob',
@@ -35,13 +34,13 @@ const categoryIcons = [
   },
   {
     name: 'lifestyle',
-    title: '건강',
+    title: '라이프',
     stroke: CATEGORY_ICON.lifestyle.stroke,
     stroke_selected: CATEGORY_ICON.lifestyle.stroke_selected,
   },
   {
     name: 'health',
-    title: '라이프',
+    title: '건강',
     stroke: CATEGORY_ICON.health.stroke,
     stroke_selected: CATEGORY_ICON.health.stroke_selected,
   },
@@ -72,7 +71,7 @@ interface Category {
 }
 
 interface CategorySelectBoxProps {
-  selectedCategories: Category
+  selectedCategories: Category;
   onUpdateCategories: (newCategories: Category) => void;
 }
 
