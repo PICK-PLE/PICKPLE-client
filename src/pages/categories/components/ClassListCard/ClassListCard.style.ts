@@ -26,6 +26,7 @@ export const classListTextWrapper = css`
 `;
 
 export const titleTextWrapper = (theme: Theme) => css`
+  word-break: break-word;
   ${theme.font['subhead05-sb-14']}
   color: ${theme.color.black};
 `;
