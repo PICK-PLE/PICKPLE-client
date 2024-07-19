@@ -9,6 +9,7 @@ import {
   headSectionStyle,
   iconAndSpanStyle,
   iconStyle,
+  imageStyle,
   spotAndDateSectionStyle,
   textSpanStyle,
   titleAndProfileWrapperStyle,
@@ -59,7 +60,7 @@ const GuestClassRegisterCard = ({
   return (
     <article css={cardContainerStyle}>
       <section css={headSectionStyle}>
-        <Image width="8.4rem" src={moimImageUrl ?? ''} />
+        <Image width="8.4rem" src={moimImageUrl ?? ''} customStyle={imageStyle} />
         <div css={titleAndProfileWrapperStyle}>
           <h4 css={titleStyle}>{title}</h4>
           <SimpleUserProfile

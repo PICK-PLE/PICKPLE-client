@@ -27,7 +27,12 @@ export const imageStyle = css`
   height: 5.7rem;
 `;
 
-export const iconNameStyle = (theme: Theme) => css`
+export const unSeletedIconNameStyle = (theme: Theme) => css`
+  color: ${theme.color.lightgray2};
+  ${theme.font['body04-m-12']}
+`;
+
+export const seletedIconNameStyle = (theme: Theme) => css`
   color: ${theme.color.midgray2};
   ${theme.font['body04-m-12']}
 `;

@@ -2,13 +2,14 @@ import { LogoHeader, Spinner } from '@components';
 import {
   categoriesContainer,
   categoryWrapper,
-  iconNameStyle,
   imageStyle,
   mainLayout,
   moimCardStyle,
   moimListContainer,
+  seletedIconNameStyle,
   spinnerStyle,
   titleStyle,
+  unSeletedIconNameStyle,
 } from './Categories.style';
 import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
 import { useNavigate, useSearchParams } from 'react-router-dom';
@@ -78,7 +79,10 @@ const Categories = () => {
                 }
                 alt={`icon-${category}`}
               />
-              <p css={iconNameStyle}>{CATEGORY_NAME[category]}</p>
+              <p
+                css={selectedCategory === category ? seletedIconNameStyle : unSeletedIconNameStyle}>
+                {CATEGORY_NAME[category]}
+              </p>
             </li>
           );
         })}

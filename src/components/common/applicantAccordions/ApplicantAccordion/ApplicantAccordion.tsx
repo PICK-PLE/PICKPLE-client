@@ -101,12 +101,7 @@ const ApplicantAccordion = ({
 
           {/* 신청자 프로필: 이미지 + 이름 + 날짜 */}
           <div css={applicantWrapperStyle}>
-            <Image
-              variant="round"
-              width="4.8rem"
-              src={submitterImageUrl}
-              css={applicnatImgStyle}
-            />
+            <Image variant="round" width="4.8rem" src={submitterImageUrl} css={applicnatImgStyle} />
 
             <div css={applicantInfoStyle}>
               <span css={applicantNameStyle}>{nickname}</span>
