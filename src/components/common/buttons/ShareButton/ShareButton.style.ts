@@ -3,6 +3,7 @@ import { flexGenerator } from '@styles/generator';
 
 export const buttonStyle = (theme: Theme) => css`
   ${flexGenerator()};
+  min-width: 6rem;
   width: 6rem;
   height: 6rem;
 

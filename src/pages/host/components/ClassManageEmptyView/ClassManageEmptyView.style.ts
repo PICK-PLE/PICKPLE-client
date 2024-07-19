@@ -57,3 +57,13 @@ export const footerStyle = css`
   width: 100%;
   margin-top: auto;
 `;
+
+export const selectedTextStyle = (theme: Theme) => css`
+  color: ${theme.color.purple1};
+  ${theme.font['subhead02-sb-16']}
+`;
+
+export const maxGuestStyle = (theme: Theme) => css`
+  color: ${theme.color.purple1};
+  ${theme.font['subhead03-m-16']};
+`;

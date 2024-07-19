@@ -6,6 +6,7 @@ export const classListContainer = (theme: Theme) => css`
   width: 100%;
   gap: 2.1rem;
   padding: 1.3rem;
+  padding-right: 2.8rem;
   background-color: ${theme.color.background};
   border-radius: 10px;
 `;

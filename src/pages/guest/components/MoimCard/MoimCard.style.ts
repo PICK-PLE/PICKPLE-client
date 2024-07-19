@@ -31,7 +31,8 @@ export const iconStyle = css`
 `;
 
 export const titleWrapper = css`
-  ${flexGenerator()}
+  ${flexGenerator('row', 'space-between', 'center')}
+  width: 100%;
   gap: 0.4rem;
 
   cursor: pointer;
