@@ -1,5 +1,5 @@
 import { Image, Label } from '@components';
-import { CATEGORY_NAME, CATEGORY_SMALL_ICON } from '@constants';
+import { CATEGORY_NAME, CATEGORY_SMALL_ICON, images } from '@constants';
 
 import {
   hostInfoCardContainer,
@@ -24,7 +24,12 @@ const HostInfoCard = ({ hostId }: HostInfoCardProps) => {
 
   return (
     <div css={hostInfoCardContainer}>
-      <Image variant="round" width="6.1rem" src={hostImageUrl ?? ''} customStyle={imageStyle} />
+      <Image
+        variant="round"
+        width="6.1rem"
+        src={images.HostProfileImage || hostImageUrl}
+        customStyle={imageStyle}
+      />
 
       <div css={hostInfoCardWrapper}>
         <div>

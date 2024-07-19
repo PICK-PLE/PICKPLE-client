@@ -18,6 +18,7 @@ export const categoriesContainer = (theme: Theme) => css`
 
 export const categoryWrapper = css`
   ${flexGenerator('column', 'flex-start')};
+  gap: 0.5rem;
 
   cursor: pointer;
 `;
