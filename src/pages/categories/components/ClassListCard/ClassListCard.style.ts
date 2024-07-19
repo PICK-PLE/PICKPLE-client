@@ -13,7 +13,7 @@ export const classListContainer = (theme: Theme) => css`
 
 export const classListTextContainer = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
-  gap: 0.7rem;
+  gap: 0.8rem;
 `;
 
 export const classCardCustomStyle = css`
@@ -22,7 +22,7 @@ export const classCardCustomStyle = css`
 
 export const classListTextWrapper = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
-  gap: 0.8rem
+  gap: 0.7rem
 `;
 
 export const titleTextWrapper = (theme: Theme) => css`

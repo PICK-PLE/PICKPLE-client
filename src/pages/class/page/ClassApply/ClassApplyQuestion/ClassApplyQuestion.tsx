@@ -9,6 +9,7 @@ import {
 } from '@components';
 import {
   classApplyQuestionLayout,
+  headerStyle,
   questionArticleLayout,
   questionCautionIconStyle,
   questionCautionStyle,
@@ -133,7 +134,7 @@ const ClassApplyQuestion = () => {
 
         <article css={questionArticleLayout}>
           <div css={questionWrapperStyle}>
-            <header>
+            <header css={headerStyle}>
               <span css={questionSpanStyle}>클래스 모임 신청</span>
               <h1 css={questionHStyle}>
                 호스트의 질문에 <br /> 답변을 작성해 주세요!

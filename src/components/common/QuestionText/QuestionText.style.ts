@@ -13,6 +13,8 @@ export const questionStyle = (theme: Theme) => css`
 export const textStyle = (theme: Theme) => css`
   color: ${theme.color.blackgray};
   ${theme.font['head04-b-16']}
+
+  word-break: break-word;
 `;
 
 export const preventDragStyle = css`

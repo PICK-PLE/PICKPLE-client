@@ -26,7 +26,6 @@ import {
   classNameStyle,
   floatingButtonWrapper,
   infoSectionStyle,
-  selectedTabStyle,
   tabButtonStyle,
   tabSectionStyle,
   tabWrapper,
@@ -126,24 +125,24 @@ const Class = () => {
           <HostInfoCard hostId={moimDetail.hostId ?? 0} />
         </section>
         <div css={tabWrapper}>
-          <button
-            css={[tabButtonStyle, selectTab === '모임소개' && selectedTabStyle]}
-            type="button"
-            onClick={() => setSelectTab('모임소개')}>
-            모임 소개
-          </button>
-          <button
-            css={[tabButtonStyle, selectTab === '공지사항' && selectedTabStyle]}
-            type="button"
-            onClick={() => setSelectTab('공지사항')}>
-            공지 사항
-          </button>
-          <button
-            css={[tabButtonStyle, selectTab === '리뷰' && selectedTabStyle]}
-            type="button"
-            onClick={() => setSelectTab('리뷰')}>
-            리뷰
-          </button>
+            <button
+              css={tabButtonStyle(selectTab === '모임소개')}
+              type="button"
+              onClick={() => setSelectTab('모임소개')}>
+              모임 소개
+            </button>
+            <button
+              css={tabButtonStyle(selectTab === '공지사항')}
+              type="button"
+              onClick={() => setSelectTab('공지사항')}>
+              공지 사항
+            </button>
+            <button
+              css={tabButtonStyle(selectTab === '리뷰')}
+              type="button"
+              onClick={() => setSelectTab('리뷰')}>
+              리뷰
+            </button>
         </div>
         <section css={[tabSectionStyle, selectTab === '모임소개' && infoSectionStyle]}>
           {selectTab === '모임소개' && <ClassInfo content={moimDescription ?? ''} />}
