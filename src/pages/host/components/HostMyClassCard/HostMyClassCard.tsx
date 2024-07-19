@@ -7,6 +7,7 @@ import {
   cardText,
   cardTitle,
   cardTitleWrapper,
+  imageStyle,
 } from './HostMyClassCard.style';
 import { useNavigate } from 'react-router-dom';
 import { components } from '@schema';
@@ -31,7 +32,7 @@ const HostMyClassCard = ({ hostMyClassData }: HostMyClassCardProps) => {
   return (
     <article css={cardContainer}>
       <section css={cardContent}>
-        <Image src={moimImage ?? ''} width="8.2rem" />
+        <Image src={moimImage ?? ''} width="8.2rem" customStyle={imageStyle} />
         <div css={cardText}>
           <div css={cardTitleWrapper} onClick={handleCardClick}>
             <h3 css={cardTitle}>{title} </h3>

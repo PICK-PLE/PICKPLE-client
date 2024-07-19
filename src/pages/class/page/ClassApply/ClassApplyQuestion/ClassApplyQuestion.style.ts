@@ -36,6 +36,7 @@ export const questionMainStyle = css`
 
 export const questionDataStyle = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
+  /* padding: 1.2rem 1.6rem 1rem 1rem; */
   gap: 1.5rem;
   width: 100%;
 `;
@@ -57,7 +58,7 @@ export const questionCautionIconStyle = css`
 `;
 
 export const questionCautionTextStyle = (theme: Theme) => css`
-color: ${theme.color.midgray2};
+  color: ${theme.color.midgray2};
   ${theme.font['body02-r-14']}
 `;
 

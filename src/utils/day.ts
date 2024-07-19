@@ -1,7 +1,10 @@
 import dayjs from 'dayjs';
 
 export const formatCreatedDate = (dateString: string) => {
-  const date = dayjs(dateString, 'YYYY.MM.DD HH:mm:ss');
+  const [datePart, timePart] = dateString.split(' ');
+  const formattedDateString = `${datePart.replace(/\./g, '-')}T${timePart}`;
+  
+  const date = dayjs(formattedDateString);
   const now = dayjs();
 
   const minutesDifference = now.diff(date, 'minute');
@@ -14,7 +17,7 @@ export const formatCreatedDate = (dateString: string) => {
   } else if (hoursDifference < 24) {
     return `${hoursDifference}시간 전`;
   } else {
-    return date.format('YYYY.MM.DD');
+    return datePart;
   }
 };
 

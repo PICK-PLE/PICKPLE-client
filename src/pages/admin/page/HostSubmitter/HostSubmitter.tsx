@@ -9,8 +9,7 @@ import {
   tableLayoutStyle,
   tableStyle,
   tdStyle,
-  thLargeStyle,
-  thSmallStyle,
+thStyle
 } from '@pages/admin/page/HostSubmitter/HostSubmitter.style';
 import { titleStyle } from '@pages/auth/page/Login/Login.style';
 import { useEffect, useState } from 'react';
@@ -62,18 +61,18 @@ const HostSubmitter = () => {
             <table css={tableStyle}>
               <thead>
                 <tr>
-                  <th css={thSmallStyle}>신청 순서</th>
-                  <th css={thSmallStyle}>게스트 ID</th>
-                  <th css={thSmallStyle}>닉네임</th>
-                  <th css={thLargeStyle}>[1] 호스트 소개</th>
-                  <th css={thLargeStyle}>[2] 모임 목표</th>
-                  <th css={thLargeStyle}>[3] 호스트 설명 링크</th>
-                  <th css={thSmallStyle}>[4] 호스트 닉네임</th>
-                  <th css={thSmallStyle}>[5] 카테고리 </th>
-                  <th css={thLargeStyle}>[6] 모임 계획</th>
-                  <th css={thLargeStyle}>[7] 이메일 </th>
-                  <th css={thSmallStyle}> 상태 </th>
-                  <th css={thSmallStyle}> 승인여부 </th>
+                  <th css={thStyle}>신청 순서</th>
+                  <th css={thStyle}>게스트 ID</th>
+                  <th css={thStyle}>닉네임</th>
+                  <th css={thStyle}>[1] 호스트 소개</th>
+                  <th css={thStyle}>[2] 모임 목표</th>
+                  <th css={thStyle}>[3] 호스트 설명 링크</th>
+                  <th css={thStyle}>[4] 호스트 닉네임</th>
+                  <th css={thStyle}>[5] 카테고리 </th>
+                  <th css={thStyle}>[6] 모임 계획</th>
+                  <th css={thStyle}>[7] 이메일 </th>
+                  <th css={thStyle}> 상태 </th>
+                  <th css={thStyle}> 승인여부 </th>
                 </tr>
               </thead>
               <tbody>

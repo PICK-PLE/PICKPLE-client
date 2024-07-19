@@ -68,3 +68,7 @@ export const feeStyle = (theme: Theme) => css`
   color: ${theme.color.black};
   ${theme.font['subhead02-sb-16']}
 `;
+
+export const imageStyle = css`
+  object-position: right;
+`;

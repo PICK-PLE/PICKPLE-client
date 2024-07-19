@@ -13,6 +13,11 @@ export const ruleWrapperStyle = css`
   gap: 3.6rem;
 `;
 
+export const headerStyle = css`
+  ${flexGenerator('column', 'center', 'flex-start')}
+  gap: 0.3rem;
+`;
+
 export const ruleMainStyle = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   gap: 2.4rem;

@@ -21,6 +21,7 @@ export const cardContent = css`
 
 export const cardText = css`
   ${flexGenerator('column', 'center', 'flex-start')};
+  width: 100%;
 
   flex: 1;
   gap: 0.8rem;
@@ -31,18 +32,26 @@ export const cardText = css`
 
 export const cardTitleWrapper = css`
   ${flexGenerator('row', 'space-between')};
-  gap: 0.6rem;
+  gap: 0.2rem;
   width: 100%;
 
   cursor: pointer;
 `;
 
 export const cardTitle = (theme: Theme) => css`
-  ${theme.font['subhead04-sb-15']};
+  ${theme.font['subhead04-sb-15']}
   color: ${theme.color.black};
+  word-break: break-word;
+  overflow-wrap: break-word;
 `;
 
 export const cardIcon = css`
+  min-width: 2.4rem;
+  min-height: 2.4rem;
   width: 2.4rem;
   height: 2.4rem;
+`;
+
+export const imageStyle = css`
+  object-position: right;
 `;

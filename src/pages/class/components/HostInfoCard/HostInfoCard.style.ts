@@ -2,7 +2,7 @@ import { css, Theme } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const hostInfoCardContainer = (theme: Theme) => css`
-  ${flexGenerator("row", "flex-start", "center")}
+  ${flexGenerator('row', 'flex-start', 'center')}
   gap: 1.5rem;
   width: 100%;
   height: 9.7rem;
@@ -38,4 +38,8 @@ export const countStyle = (theme: Theme) => css`
 export const hostInfoLabelStyle = css`
   ${flexGenerator()}
   gap: 0.5rem;
+`;
+
+export const imageStyle = css`
+  object-position: right;
 `;

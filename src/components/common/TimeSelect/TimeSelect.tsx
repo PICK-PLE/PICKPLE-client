@@ -22,7 +22,6 @@ const TimeSelect = ({
   onStartTimeChange,
   onEndTimeChange,
 }: TimeselectProps) => {
-
   const startTimeRef = useRef<HTMLSelectElement>(null);
   const endTimeRef = useRef<HTMLSelectElement>(null);
 
@@ -67,7 +66,7 @@ const TimeSelect = ({
           <select
             id="start-time"
             ref={startTimeRef}
-            css={selectStyle}
+            css={selectStyle(Boolean(startTime))}
             value={startTime ?? ''}
             onChange={handleStartTimeChange}>
             <option value="" disabled>
@@ -88,7 +87,7 @@ const TimeSelect = ({
           </span>
           <select
             ref={endTimeRef}
-            css={selectStyle}
+            css={selectStyle(Boolean(startTime))}
             value={endTime ?? ''}
             id="end-time"
             onChange={handleEndTimeChange}

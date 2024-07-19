@@ -6,19 +6,15 @@ export const myClassManageLayout = (theme: Theme) => css`
   ${flexGenerator('column', 'flex-start', 'flex-start')};
   padding-top: 6rem;
   gap: 2.4rem;
-  width: 100%;
+  //width: 100%;
   border-top: 1px solid ${theme.color.lightgray1};
   min-height: 100dvh;
-  
 `;
 
 export const headerStyle = (theme: Theme) => css`
   ${theme.font['head02-b-20']}
-  padding-right: 7.3rem;
+  width: 78%;
   padding-top: 3.2rem;
-
-  white-space: normal;
-  word-break: keep-all;
 `;
 
 export const mainStyle = css`
@@ -54,4 +50,14 @@ export const countTextStyle = (theme: Theme) => css`
 export const footerStyle = css`
   width: 100%;
   margin-top: auto;
+`;
+
+export const selectedTextStyle = (theme: Theme) => css`
+  color: ${theme.color.purple1};
+  ${theme.font['subhead02-sb-16']}
+`;
+
+export const maxGuestStyle = (theme: Theme) => css`
+  color: ${theme.color.purple1};
+  ${theme.font['subhead03-m-16']};
 `;
