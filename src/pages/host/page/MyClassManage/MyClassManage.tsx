@@ -161,6 +161,7 @@ const MyClassManage = () => {
               submitterList={checkedSubmitter}
               onClose={handleModalClose}
               moimId={Number(moimId)}
+              isOngoing={isOngoing ?? true}
             />
           </Modal>
         )}

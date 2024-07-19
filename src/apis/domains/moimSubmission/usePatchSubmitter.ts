@@ -1,6 +1,10 @@
 import { patch } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
-import { QueryClient, useMutation } from '@tanstack/react-query';
+import { userAtom } from '@stores';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { smoothScroll } from '@utils';
+import { useAtom } from 'jotai';
+import { useNavigate } from 'react-router-dom';
 
 export interface PatchSubmitterRequest {
   moimId: number;
@@ -17,13 +21,23 @@ const patchSubmitter = async ({ moimId, submitterIdList }: PatchSubmitterRequest
   }
 };
 
-export const usePatchSubmitter = () => {
-  const queryClient = new QueryClient();
+export const usePatchSubmitter = (isOngoing: boolean, onClose: () => void) => {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const [user] = useAtom(userAtom);
+
+  console.log(QUERY_KEY.HOST_MOIM_INFO, user.hostId, isOngoing ? 'ongoing' : 'completed');
+
   return useMutation({
     mutationFn: ({ moimId, submitterIdList }: PatchSubmitterRequest) =>
       patchSubmitter({ moimId, submitterIdList }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.MOIM_SUBMITTER] });
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEY.HOST_MOIM_INFO, user.hostId, isOngoing ? 'ongoing' : 'completed'],
+      });
+      onClose();
+      smoothScroll(0);
+      navigate('/host/myclass'); // 다시 모임 관리하는 host 페이지로 이동
     },
   });
 };
