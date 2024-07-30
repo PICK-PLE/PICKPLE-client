@@ -7,10 +7,12 @@ type ErrorBoundaryState = {
 
 type FallbackProps = {
   error: Error | null;
+  resetErrorBoundary: () => void;
 };
 
 type ErrorBoundaryProps = {
   fallback: ComponentType<FallbackProps>;
+  onReset?: () => void;
   children: ReactNode;
 };
 
@@ -32,6 +34,16 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
     };
   }
 
+  resetErrorBoundary(): void {
+    this.props.onReset?.();
+
+    // 에러 상태를 기본으로 초기화합니다.
+    this.setState({
+      hasError: false,
+      error: null,
+    });
+  }
+
   /* componentDidCatch 메소드는 오류 정보와 상세 정보를 파라미터로 얻을 수 있습니다.
     주로 오류를 로깅해야 할때 해당 메소드에 접근해서 로깅할 수 있습니다. 
   */
@@ -49,6 +61,7 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
 
     const fallbackProps: FallbackProps = {
       error,
+      resetErrorBoundary: this.resetErrorBoundary.bind(this),
     };
 
     // fallback 컴포넌트 측에서 오류 정보를 props로 받을 수 있도록 설정
