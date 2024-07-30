@@ -48,7 +48,6 @@ export default class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBo
     주로 오류를 로깅해야 할때 해당 메소드에 접근해서 로깅할 수 있습니다. 
   */
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
-    console.log({ error, errorInfo });
     console.error('ErrorBoundary caught an error', error, errorInfo);
   }
 
