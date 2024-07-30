@@ -1,7 +1,7 @@
-import { ErrorBoundary } from '@components';
+import { ErrorBoundary, Spinner } from '@components';
 import Error from '@pages/error/Error';
 import { QueryErrorResetBoundary } from '@tanstack/react-query';
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 
 interface wrapRoutesWithErrorBoundaryProps {
   element: ReactNode;
@@ -20,7 +20,7 @@ const wrapRoutes = (routes: wrapRoutesWithErrorBoundaryProps[]) => {
                 console.error('Caught by ErrorBoundary:', error);
                 return <Error />;
               }}>
-              {route.element}
+              <Suspense fallback={<Spinner />}>{route.element}</Suspense>
             </ErrorBoundary>
           )}
         </QueryErrorResetBoundary>
