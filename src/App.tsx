@@ -17,8 +17,7 @@ import {
 } from '@routes';
 import errorPageRoutes from './routes/errorRoutes';
 import PrivateRoute from './routes/PrivateRoute/PrivateRoute';
-import ErrorBoundary from './components/common/ErrorBoundary/ErrorBoundary';
-import wrapRoutesWithErrorBoundary from './utils/wrapRoutesWithErrorBoundary';
+import { wrapRoutes } from '@utils';
 
 const allRoutes = [
   ...categoriesRoutes,
@@ -37,7 +36,7 @@ const protectedRoutes = allRoutes.map((route) => ({
   element: <PrivateRoute element={route.element} />,
 }));
 
-const wrapRouter = wrapRoutesWithErrorBoundary([...authRoutes, ...protectedRoutes]);
+const wrapRouter = wrapRoutes([...authRoutes, ...protectedRoutes]);
 
 const router = createBrowserRouter(wrapRouter);
 
@@ -54,14 +53,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <Global styles={GlobalStyle} />
-        <ErrorBoundary
-          fallback={({ error }) => {
-            const status = error?.name;
-            console.log('Caught by ErrorBoundary:', error);
-            return <div>An error occurred: {status}</div>;
-          }}>
-          <RouterProvider router={router} />
-        </ErrorBoundary>
+        <RouterProvider router={router} />
       </ThemeProvider>
       <div style={{ fontSize: '16px' }}>
         <ReactQueryDevtools />
