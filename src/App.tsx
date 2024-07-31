@@ -1,9 +1,10 @@
-import { Global, ThemeProvider } from '@emotion/react';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import theme from './styles/theme';
-import GlobalStyle from './styles/global';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
+import { Global, ThemeProvider } from '@emotion/react';
+
 import {
   authRoutes,
   categoriesRoutes,
@@ -16,8 +17,11 @@ import {
   adminRoutes
 
 } from '@routes';
+
 import errorPageRoutes from './routes/errorRoutes';
 import PrivateRoute from './routes/PrivateRoute/PrivateRoute';
+import GlobalStyle from './styles/global';
+import theme from './styles/theme';
 
 const allRoutes = [
   ...categoriesRoutes,

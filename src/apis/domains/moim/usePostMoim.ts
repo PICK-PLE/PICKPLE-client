@@ -1,9 +1,11 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { ApiResponseType, ErrorResponse } from '@types';
 import { ClassPostDataType } from 'src/stores/types/classPostDataType';
 import { transformClassPostState } from 'src/utils/postMoimTypeChange';
+
+import { ApiResponseType, ErrorResponse } from '@types';
 
 interface postMoimResponseType {
   moimId: number;

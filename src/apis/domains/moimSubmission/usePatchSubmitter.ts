@@ -1,10 +1,14 @@
+import { useNavigate } from 'react-router-dom';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { patch } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
-import { userAtom } from '@stores';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { smoothScroll } from '@utils';
 import { useAtom } from 'jotai';
-import { useNavigate } from 'react-router-dom';
+
+import { userAtom } from '@stores';
+import { smoothScroll } from '@utils';
+
 
 export interface PatchSubmitterRequest {
   moimId: number;

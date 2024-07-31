@@ -1,4 +1,7 @@
 import { useState } from 'react';
+
+import { IcDropdownPlatformDown, IcDropdownPlatformUp } from '@svg';
+
 import {
   iconStyle,
   placeholderStyle,
@@ -7,7 +10,6 @@ import {
   sortItem,
   sortList,
 } from './Select.style';
-import { IcDropdownPlatformDown, IcDropdownPlatformUp } from '@svg';
 
 interface SelectProps {
   placeholder?: string;

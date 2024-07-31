@@ -1,11 +1,14 @@
-import { IcExclamation } from '@svg';
 import { HTMLAttributes } from 'react';
+
 import { createPortal } from 'react-dom';
+
 import {
   toastIconStyle,
   toastMessageStyle,
   toastWrapperStyle,
 } from 'src/components/common/Toast/Toast.style';
+
+import { IcExclamation } from '@svg';
 
 export interface ToastProps extends HTMLAttributes<HTMLDivElement> {
   toastIcon?: boolean;

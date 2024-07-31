@@ -1,11 +1,13 @@
 import { InputHTMLAttributes } from 'react';
-import { NumberLabel } from '@components';
+
 import {
   questionInputStyle,
   inputStyle,
   iconStyle,
   textLengthStyle,
 } from 'src/components/common/QuestionInput/QuestionInput.style';
+
+import { NumberLabel } from '@components';
 
 export interface QuestionInputProps extends InputHTMLAttributes<HTMLInputElement> {
   numberLabel: string;

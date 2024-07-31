@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react';
+
+import { useFetchSubmitRequest } from '@apis/domains/moimSubmission/useFetchSubmitRequest';
+
+import { Image, QuestionText } from '@components';
+import { components } from '@schema';
 import { IcApplicantArrcodionDown, IcCheckActive, IcCheckDefault } from '@svg';
+
 import {
   applicantAccordionLayout,
   applicantLayoutStyle,
@@ -17,9 +23,7 @@ import {
   accdionContentStyle,
   answerStyle,
 } from './ApplicantAccordion.style';
-import { Image, QuestionText } from '@components';
-import { useFetchSubmitRequest } from '@apis/domains/moimSubmission/useFetchSubmitRequest';
-import { components } from '@schema';
+
 
 interface ApplicantAccordionProps {
   moimId: number;

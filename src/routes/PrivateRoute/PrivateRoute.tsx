@@ -1,6 +1,8 @@
-import { isLoggedIn } from '@utils';
 import { ReactNode } from 'react';
+
 import { Navigate } from 'react-router-dom';
+
+import { isLoggedIn } from '@utils';
 
 interface PrivateRouteProps {
   element: ReactNode;

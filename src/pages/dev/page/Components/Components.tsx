@@ -1,5 +1,15 @@
+
+// import { ApplicantListModal } from '@pages/host/components/index';
+// import { DepositModal } from '@pages/guest/components/index';
+
+// import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 import { useState } from 'react';
+
+import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
+import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
+import { options } from 'src/constants/options';
 import useToast from 'src/hooks/useToast';
+
 import {
   Button,
   Carousel,
@@ -34,7 +44,6 @@ import {
   //   Modal,
   //   CategorySelectBox,
 } from '@components';
-
 import {
   IcApplicantArrcodionDown,
   IcApplicantArrcodionUp,
@@ -76,13 +85,6 @@ import {
   iconContainerStyle,
   textStyle,
 } from './Components.style';
-// import { ApplicantListModal } from '@pages/host/components/index';
-// import { DepositModal } from '@pages/guest/components/index';
-
-// import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
-import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
-import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
-import { options } from 'src/constants/options';
 
 const Components = () => {
   const [value, setValue] = useState('');

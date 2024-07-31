@@ -1,4 +1,5 @@
 import { CATEGORY_ICON } from '@constants';
+
 import { imgStyle, labelStyle, liStyle, ulStyle } from './CategorySelectBox.style';
 
 const categoryIcons = [

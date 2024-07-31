@@ -1,4 +1,13 @@
+import { useNavigate } from 'react-router-dom';
+
+import { useFetchMoimBanner, useFetchMoimCategories } from '@apis/domains/moim';
+import Lottie from 'lottie-react';
+import { mainBanner } from 'src/assets/lotties';
+import Footer from 'src/components/common/Footer/Footer';
+import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
+
 import { LogoHeader, Spinner } from '@components';
+
 import {
   categoryContainer,
   categoryStyle,
@@ -10,12 +19,6 @@ import {
   homeBannerStyle,
   imageStyle,
 } from './Home.style';
-import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
-import Footer from 'src/components/common/Footer/Footer';
-import { useFetchMoimBanner, useFetchMoimCategories } from '@apis/domains/moim';
-import { useNavigate } from 'react-router-dom';
-import Lottie from 'lottie-react';
-import { mainBanner } from 'src/assets/lotties';
 
 const Home = () => {
   const navigate = useNavigate();

@@ -1,9 +1,12 @@
-import { LogoHeader } from '@components';
+import { useParams } from 'react-router-dom';
+
 import HostApply from '@pages/host/components/HostApply/HostApply';
 import { Provider } from 'jotai';
 import { useFunnel } from 'src/hooks/useFunnel';
+
+import { LogoHeader } from '@components';
+
 import { hostApplyPageLayout } from './HostApplyPage.style';
-import { useParams } from 'react-router-dom';
 
 const steps = ['step1', 'step2', 'finish'];
 

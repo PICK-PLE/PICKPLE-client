@@ -1,3 +1,13 @@
+import { useState } from 'react';
+
+import { useFetchHostMoimInfo } from '@apis/domains/moim/useFetchHostMoimInfo';
+import { HostMyClassEmptyView , HostMyClassCard } from '@pages/host/components';
+import { useAtom } from 'jotai';
+
+import { Header, Spinner } from '@components';
+import { userAtom } from '@stores';
+
+
 import {
   getTabStyle,
   hostMyClassCardContainer,
@@ -5,14 +15,6 @@ import {
   hostMyClassLayout,
   tabWrapper,
 } from './HostMyClass.style';
-import { useState } from 'react';
-import { HostMyClassEmptyView } from '@pages/host/components';
-import { HostMyClassCard } from '@pages/host/components';
-
-import { Header, Spinner } from '@components';
-import { useFetchHostMoimInfo } from '@apis/domains/moim/useFetchHostMoimInfo';
-import { useAtom } from 'jotai';
-import { userAtom } from '@stores';
 const HostMyClass = () => {
   const [activeTab, setActiveTab] = useState<'진행 중' | '완료'>('진행 중');
   const [moimState, setMoimState] = useState<'ongoing' | 'completed'>('ongoing');

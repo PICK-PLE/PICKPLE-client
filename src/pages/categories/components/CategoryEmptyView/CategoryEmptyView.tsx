@@ -1,4 +1,5 @@
 import { graphicImage } from '@constants';
+
 import { categoryEmptyViewContainer, imageStyle, textStyle } from './CategoryEmptyView.style';
 
 const CategoryEmptyView = () => {

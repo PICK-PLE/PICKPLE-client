@@ -1,4 +1,10 @@
+
 import { useState } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
+import { useFetchMoimNoticeList } from '@apis/domains/notice';
 import {
   ClassInfo,
   ClassNotice,
@@ -6,6 +12,9 @@ import {
   ClassReviewEmptyView,
   HostInfoCard,
 } from '@pages/class/components';
+import Error from '@pages/error/Error';
+import { useAtom } from 'jotai';
+
 import {
   Button,
   Carousel,
@@ -17,6 +26,13 @@ import {
   Spinner,
   Toast,
 } from '@components';
+import { useClipboard, useToast, useWindowSize } from '@hooks';
+import { userAtom } from '@stores';
+import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
+import { MoimIdPathParameterType } from '@types';
+import { dDayText, handleShare, smoothScroll } from '@utils';
+
+
 import {
   buttonContainer,
   carouselWrapper,
@@ -30,17 +46,6 @@ import {
   tabSectionStyle,
   tabWrapper,
 } from './Class.style';
-import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
-
-import { useNavigate, useParams } from 'react-router-dom';
-import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
-import { useClipboard, useToast, useWindowSize } from '@hooks';
-import { useFetchMoimNoticeList } from '@apis/domains/notice';
-import { MoimIdPathParameterType } from '@types';
-import Error from '@pages/error/Error';
-import { dDayText, handleShare, smoothScroll } from '@utils';
-import { useAtom } from 'jotai';
-import { userAtom } from '@stores';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();

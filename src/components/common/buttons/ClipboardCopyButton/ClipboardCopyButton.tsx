@@ -1,8 +1,13 @@
-import { IcClipboardCopy } from '@svg';
-import { accountNumberStyle, buttonWrapperStyle, iconStyle } from './ClipboardCopyButton.style';
-import useToast from 'src/hooks/useToast';
-import Toast from '../../Toast/Toast';
 import { useState } from 'react';
+
+import useToast from 'src/hooks/useToast';
+
+import { IcClipboardCopy } from '@svg';
+
+import Toast from '../../Toast/Toast';
+
+import { accountNumberStyle, buttonWrapperStyle, iconStyle } from './ClipboardCopyButton.style';
+
 
 const ClipboardCopyButton = () => {
   const { showToast, isToastVisible } = useToast();

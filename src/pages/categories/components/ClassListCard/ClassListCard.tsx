@@ -1,4 +1,3 @@
-import { Image, Label, SimpleUserProfile } from '@components';
 import {
   classListContainer,
   classListTextContainer,
@@ -7,6 +6,8 @@ import {
   timeTextWraaper,
   classCardCustomStyle,
 } from '@pages/categories/components/ClassListCard/ClassListCard.style';
+
+import { Image, Label, SimpleUserProfile } from '@components';
 import { components } from '@schema';
 import { dDayText } from '@utils';
 

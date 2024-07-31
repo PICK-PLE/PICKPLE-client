@@ -1,8 +1,13 @@
 import React, { InputHTMLAttributes } from 'react';
+
 import DatePicker from 'react-datepicker';
-import dayjs from 'dayjs';
+
 import { ko } from 'date-fns/locale';
+import dayjs from 'dayjs';
+
 import 'react-datepicker/dist/react-datepicker.css';
+import { IcDropdownPlatformDown } from '@svg';
+
 import {
   dataPickerWrapper,
   customInputContainer,
@@ -10,7 +15,7 @@ import {
   customInputStyle,
   iconStyle,
 } from './DateSelect.style';
-import { IcDropdownPlatformDown } from '@svg';
+
 
 interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
   value?: string;

@@ -1,5 +1,3 @@
-import { RouteType } from '@types';
-import { routePath } from '@constants';
 import {
   Class,
   ClassNotice,
@@ -9,6 +7,9 @@ import {
   ClassApplyRule,
   ClassPostPage,
 } from '@pages/class/page';
+
+import { routePath } from '@constants';
+import { RouteType } from '@types';
 
 const classRoutes: RouteType[] = [
   {

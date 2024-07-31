@@ -1,6 +1,8 @@
 import { HTMLAttributes, ReactNode } from 'react';
-import { imageStyle, imageVariant, imageWrapper, labelStyle } from './Image.style';
+
 import { SerializedStyles, Theme } from '@emotion/react';
+
+import { imageStyle, imageVariant, imageWrapper, labelStyle } from './Image.style';
 
 interface ImageProps extends HTMLAttributes<HTMLDivElement> {
   src: string;

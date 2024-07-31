@@ -1,5 +1,10 @@
+import { useHostApplyInputChange, useHostApplyInputValidation } from '@pages/host/hooks';
 import { StepProps } from 'src/types/nextStep';
+
 import { Button, Input, ProgressBar, QuestionText, TextArea } from '@components';
+import { smoothScroll } from '@utils';
+
+
 import {
   footerStyle,
   headerStyle,
@@ -9,8 +14,7 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepOne.style';
-import { smoothScroll } from '@utils';
-import { useHostApplyInputChange, useHostApplyInputValidation } from '@pages/host/hooks';
+
 
 const StepOne = ({ onNext }: StepProps) => {
   const { hostApplyState, handleInputChange } = useHostApplyInputChange();

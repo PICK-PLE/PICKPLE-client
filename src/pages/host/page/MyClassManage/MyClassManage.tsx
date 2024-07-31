@@ -1,4 +1,15 @@
+import { useState, useEffect } from 'react';
+
+import { useParams } from 'react-router-dom';
+
+import { useFetchSubmitterList } from '@apis/domains/moimSubmission/useFetchSubmitterList';
+import Error from '@pages/error/Error';
+import { ApplicantListModal, ClassManageEmptyView } from '@pages/host/components';
+
 import { ApplicantAccordionList, Button, Header, Label, Modal, Spinner, Toast } from '@components';
+import { useToast } from '@hooks';
+import { components } from '@schema';
+
 import {
   myClassManageLayout,
   headerStyle,
@@ -12,13 +23,6 @@ import {
   selectedTextStyle,
   maxGuestStyle,
 } from './MyClassManage.style';
-import { useState, useEffect } from 'react';
-import { ApplicantListModal, ClassManageEmptyView } from '@pages/host/components';
-import { useToast } from '@hooks';
-import { useFetchSubmitterList } from '@apis/domains/moimSubmission/useFetchSubmitterList';
-import { useParams } from 'react-router-dom';
-import Error from '@pages/error/Error';
-import { components } from '@schema';
 type SubmitterInfo = components['schemas']['SubmitterInfo'];
 
 const MyClassManage = () => {

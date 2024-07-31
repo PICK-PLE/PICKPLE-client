@@ -1,4 +1,5 @@
 import { components } from '@schema';
+
 import { NoticeCard } from '..';
 
 import { noticeCardContainer } from './ClassNotice.style';

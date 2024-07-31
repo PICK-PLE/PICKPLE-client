@@ -1,4 +1,15 @@
+import { useEffect, useRef } from 'react';
+
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { useFetchMoimCategories } from '@apis/domains/moim';
+import { useFetchMoimListByCategory } from '@apis/domains/moim/useFetchMoimListByCategory';
+import { CategoryEmptyView, ClassListCard } from '@pages/categories/components';
+import Error from '@pages/error/Error';
+
 import { LogoHeader, Spinner } from '@components';
+import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
+
 import {
   categoriesContainer,
   categoryWrapper,
@@ -11,13 +22,6 @@ import {
   titleStyle,
   unSeletedIconNameStyle,
 } from './Categories.style';
-import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { CategoryEmptyView, ClassListCard } from '@pages/categories/components';
-import { useFetchMoimListByCategory } from '@apis/domains/moim/useFetchMoimListByCategory';
-import { useEffect, useRef } from 'react';
-import Error from '@pages/error/Error';
-import { useFetchMoimCategories } from '@apis/domains/moim';
 
 const Categories = () => {
   const navigate = useNavigate();

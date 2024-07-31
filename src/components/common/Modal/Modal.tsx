@@ -1,5 +1,7 @@
 import { PropsWithChildren } from 'react';
+
 import { createPortal } from 'react-dom';
+
 import { backdropStyle, modalContentStyle } from './Modal.style';
 
 interface ModalProps {

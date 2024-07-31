@@ -1,6 +1,8 @@
 import { HTMLAttributes } from 'react';
-import { NumberLabel } from '@components';
+
 import { noticeStyle, textStyle } from 'src/components/common/Notice/Notice.style';
+
+import { NumberLabel } from '@components';
 
 export interface NoticeProps extends HTMLAttributes<HTMLDivElement> {
   numberLabel: string;

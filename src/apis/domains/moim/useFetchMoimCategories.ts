@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query';
-import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+
 import { get } from '@apis/api';
+import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+
 import { ApiResponseType } from '@types';
 import { isLoggedIn } from '@utils';
 

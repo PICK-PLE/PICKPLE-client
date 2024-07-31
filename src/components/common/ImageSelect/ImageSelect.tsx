@@ -1,4 +1,7 @@
 import { InputHTMLAttributes, useRef, useState, SetStateAction, Dispatch } from 'react';
+
+import { IcCameraAdd, IcDeletePhoto } from '@svg';
+
 import {
   imageSelectWrapper,
   inputStyle,
@@ -10,7 +13,6 @@ import {
   deleteImageIconStyle,
   svgStyle,
 } from './ImageSelect.style';
-import { IcCameraAdd, IcDeletePhoto } from '@svg';
 
 interface ImageSelectProps extends InputHTMLAttributes<HTMLInputElement> {
   onFileSelect: Dispatch<SetStateAction<File[]>>;

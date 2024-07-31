@@ -1,5 +1,17 @@
-import { Button, ImageSelect, Input, ProgressBar, Spinner, TextArea } from '@components';
+import { useEffect, useState } from 'react';
+
+import { usePostMoim } from '@apis/domains/moim/usePostMoim';
+import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
+import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
+import { useAtom } from 'jotai';
+import { moimIdAtom } from 'src/stores/classPostData';
 import { StepProps } from 'src/types/nextStep';
+import { handleUpload } from 'src/utils/image';
+
+import { Button, ImageSelect, Input, ProgressBar, Spinner, TextArea } from '@components';
+import { ErrorType } from '@types';
+import { smoothScroll } from '@utils';
+
 import {
   footerStyle,
   headerSpanStyle,
@@ -12,15 +24,6 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepThree.style';
-import { usePostMoim } from '@apis/domains/moim/usePostMoim';
-import { useEffect, useState } from 'react';
-import { ErrorType } from '@types';
-import { handleUpload } from 'src/utils/image';
-import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
-import { smoothScroll } from '@utils';
-import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
-import { useAtom } from 'jotai';
-import { moimIdAtom } from 'src/stores/classPostData';
 
 const StepThree = ({ onNext }: StepProps) => {
   const { classPostState, handleInputChange } = useClassPostInputChange();

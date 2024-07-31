@@ -1,9 +1,11 @@
-import { post } from '@apis/api';
-import { useEasyNavigate } from '@hooks';
-import { userAtom } from '@stores';
 import { useMutation } from '@tanstack/react-query';
+
+import { post } from '@apis/api';
 import { useAtom } from 'jotai';
 import { RESET } from 'jotai/utils';
+
+import { useEasyNavigate } from '@hooks';
+import { userAtom } from '@stores';
 
 const postLogout = async () => {
   try {

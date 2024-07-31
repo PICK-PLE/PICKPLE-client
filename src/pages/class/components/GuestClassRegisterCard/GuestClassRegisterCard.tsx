@@ -1,5 +1,14 @@
+import { useNavigate } from 'react-router-dom';
+
+import { useFetchSubmittedMoimDetail } from '@apis/domains/moim';
+import Error from '@pages/error/Error';
+import { DepositModal } from '@pages/guest/components';
 import Image from 'src/components/common/Image/Image';
 import SimpleUserProfile from 'src/components/common/SimpleUserProfile/SimpleUserProfile';
+
+import { Modal, Spinner } from '@components';
+import { IcDate, IcOffline, IcOneline } from '@svg';
+
 import {
   cardContainerStyle,
   dividerStyle,
@@ -15,12 +24,6 @@ import {
   titleAndProfileWrapperStyle,
   titleStyle,
 } from './GuestClassRegisterCard.style';
-import { IcDate, IcOffline, IcOneline } from '@svg';
-import { useFetchSubmittedMoimDetail } from '@apis/domains/moim';
-import Error from '@pages/error/Error';
-import { Modal, Spinner } from '@components';
-import { DepositModal } from '@pages/guest/components';
-import { useNavigate } from 'react-router-dom';
 
 export interface GuestClassRegisterCardProps {
   moimId: string;

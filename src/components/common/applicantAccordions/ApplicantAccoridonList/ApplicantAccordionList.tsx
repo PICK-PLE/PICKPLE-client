@@ -1,6 +1,7 @@
 import { ApplicantAccordion } from '@components';
-import { applicantAccordionListLayout } from './ApplicantAccordionList.style';
 import { components } from '@schema';
+
+import { applicantAccordionListLayout } from './ApplicantAccordionList.style';
 
 
 interface ApplicantAccordionListProps {

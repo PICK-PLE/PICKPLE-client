@@ -1,7 +1,9 @@
+import React from 'react';
+
+import { useAtom } from 'jotai';
+
 import { components } from '@schema';
 import { hostApplyAtom } from '@stores';
-import { useAtom } from 'jotai';
-import React from 'react';
 
 const useHostApplyInputChange = () => {
   const [hostApplyState, setHostApplyState] = useAtom(hostApplyAtom);

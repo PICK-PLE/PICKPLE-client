@@ -1,5 +1,13 @@
+import { useRef, useState } from 'react';
+
+import { usePostHostApply } from '@apis/domains/host';
+import { useHostApplyInputChange, useHostApplyInputValidation } from '@pages/host/hooks';
+import CategorySelectBox from 'src/components/common/CategorySelectBox/CategorySelectBox';
 import { StepProps } from 'src/types/nextStep';
+
 import { Button, Input, ProgressBar, QuestionText, Spinner, TextArea } from '@components';
+import { components } from '@schema';
+
 import {
   categorySectionStyle,
   footerStyle,
@@ -11,11 +19,7 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepTwo.style';
-import CategorySelectBox from 'src/components/common/CategorySelectBox/CategorySelectBox';
-import { useRef, useState } from 'react';
-import { usePostHostApply } from '@apis/domains/host';
-import { components } from '@schema';
-import { useHostApplyInputChange, useHostApplyInputValidation } from '@pages/host/hooks';
+
 
 const StepTwo = ({ onNext }: StepProps) => {
   const nicknameRef = useRef<HTMLInputElement>(null);
