@@ -34,7 +34,7 @@ import SimpleUserProfile from 'src/components/common/SimpleUserProfile/SimpleUse
 import IconText from './IconText/IconText';
 import CategorySelectBox from './CategorySelectBox/CategorySelectBox';
 import { Spinner } from './Spinner/Spinner';
-
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 export {
   IconButton,
   SocialLoginButton,
@@ -72,4 +72,5 @@ export {
   IconText,
   CategorySelectBox,
   Spinner,
+  ErrorBoundary,
 };

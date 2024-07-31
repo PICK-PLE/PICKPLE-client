@@ -13,11 +13,11 @@ import {
   hostRoutes,
   myPageRoutes,
   //devRoutes,
-  adminRoutes
-
+  adminRoutes,
 } from '@routes';
 import errorPageRoutes from './routes/errorRoutes';
 import PrivateRoute from './routes/PrivateRoute/PrivateRoute';
+import { wrapRoutes } from '@utils';
 
 const allRoutes = [
   ...categoriesRoutes,
@@ -27,7 +27,7 @@ const allRoutes = [
   ...hostRoutes,
   ...myPageRoutes,
   ...errorPageRoutes,
-  ...adminRoutes
+  ...adminRoutes,
   // ...devRoutes,
 ];
 
@@ -36,10 +36,18 @@ const protectedRoutes = allRoutes.map((route) => ({
   element: <PrivateRoute element={route.element} />,
 }));
 
-const router = createBrowserRouter([...authRoutes, ...protectedRoutes]);
+const wrapRouter = wrapRoutes([...authRoutes, ...protectedRoutes]);
+
+const router = createBrowserRouter(wrapRouter);
 
 const App = () => {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        throwOnError: true,
+      },
+    },
+  });
 
   return (
     <QueryClientProvider client={queryClient}>

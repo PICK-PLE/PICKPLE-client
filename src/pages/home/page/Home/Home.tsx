@@ -1,4 +1,4 @@
-import { LogoHeader, Spinner } from '@components';
+import { LogoHeader } from '@components';
 import {
   categoryContainer,
   categoryStyle,
@@ -19,16 +19,12 @@ import { mainBanner } from 'src/assets/lotties';
 
 const Home = () => {
   const navigate = useNavigate();
-  const { data: bannerId, isLoading } = useFetchMoimBanner();
+  const { data: bannerId } = useFetchMoimBanner();
   const { data: categories } = useFetchMoimCategories();
 
   const handleCategoryClick = (category: string) => {
     navigate(`/categories?category=${category}`);
   };
-
-  if (isLoading) {
-    return <Spinner />;
-  }
 
   return (
     <>
