@@ -26,17 +26,17 @@ module.exports = {
         ],
         pathGroups: [
           {
-            pattern: 'react', //react 관련된 것들 제일 위로
+            pattern: 'react', 
             group: 'external',
             position: 'before',
           },
           {
-            pattern: 'react*', //react 관련된 것들 제일 위로
+            pattern: 'react*', 
             group: 'external',
             position: 'before',
           },
           {
-            pattern: '@tanstack/*', // reactQuery 관련된 것 위로
+            pattern: '@tanstack/*', 
             group: 'external',
             position: 'before',
           },
@@ -56,7 +56,6 @@ module.exports = {
             position: 'before',
           },
         ],
-        // pathGroupsExcludedImportTypes: ['react', 'react-router-dom'],
         alphabetize: { order: 'asc', caseInsensitive: true },
         'newlines-between': 'always',
       },
