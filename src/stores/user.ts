@@ -1,6 +1,7 @@
 import { atomWithStorage } from 'jotai/utils';
 
 import { components } from '@schema';
+
 // import { UserType } from '@types';
 
 type LoginSuccessResponse = components['schemas']['LoginSuccessResponse'];

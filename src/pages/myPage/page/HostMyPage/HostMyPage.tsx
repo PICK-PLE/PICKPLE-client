@@ -1,14 +1,15 @@
+import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
+
 import { useFetchMyHost } from '@apis/domains/moim/useFetchMyHost';
-import { HostMyPageEmptyView } from '@pages/myPage/components';
-import HostInfoCardWithLink from '@pages/myPage/components/HostInfoCardWithLink/HostInfoCardWithLink';
-import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
-import { useAtom } from 'jotai';
 
 import { LogoHeader, Modal, NavigateBox, Spinner } from '@components';
 import { routePath } from '@constants';
 import { useEasyNavigate } from '@hooks';
+import { HostMyPageEmptyView } from '@pages/myPage/components';
+import HostInfoCardWithLink from '@pages/myPage/components/HostInfoCardWithLink/HostInfoCardWithLink';
+import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 import { userAtom } from '@stores';
 import { IcNext } from '@svg';
 

@@ -1,12 +1,12 @@
+import { useAtom } from 'jotai';
 import { useState } from 'react';
 
+
 import { useFetchHostMoimInfo } from '@apis/domains/moim/useFetchHostMoimInfo';
-import { HostMyClassEmptyView , HostMyClassCard } from '@pages/host/components';
-import { useAtom } from 'jotai';
 
 import { Header, Spinner } from '@components';
+import { HostMyClassEmptyView, HostMyClassCard } from '@pages/host/components';
 import { userAtom } from '@stores';
-
 
 import {
   getTabStyle,

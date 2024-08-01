@@ -1,7 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { Button, LogoHeader, Notice, ProgressBar } from '@components';
-import { MoimIdPathParameterType } from '@types';
 
 import {
   ruleArticleLayout,
@@ -13,6 +12,9 @@ import {
   classApplyRuleContainer,
   headerStyle,
 } from './ClassApplyRule.style';
+
+import { MoimIdPathParameterType } from '@types';
+
 
 const ClassApplyRule = () => {
   const navigate = useNavigate();

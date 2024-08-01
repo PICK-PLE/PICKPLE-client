@@ -1,6 +1,6 @@
+import { SerializedStyles, Theme } from '@emotion/react';
 import { HTMLAttributes, ReactNode } from 'react';
 
-import { SerializedStyles, Theme } from '@emotion/react';
 
 import { imageStyle, imageVariant, imageWrapper, labelStyle } from './Image.style';
 

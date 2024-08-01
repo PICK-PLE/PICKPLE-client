@@ -1,13 +1,11 @@
 import { useState } from 'react';
-
 import { useParams } from 'react-router-dom';
 
+import { Button, LogoHeader, ProgressBar } from '@components';
 import { GuestClassRegisterCard } from '@pages/class/components';
 import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
 import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
 
-import { Button, LogoHeader, ProgressBar } from '@components';
-import { MoimIdPathParameterType } from '@types';
 
 import {
   classApplyDepositLayout,
@@ -19,6 +17,8 @@ import {
   depositMainStyle,
   dipositWrapperStyle,
 } from './ClassApplyDeposit.style';
+
+import { MoimIdPathParameterType } from '@types';
 
 const ClassApplyDeposit = () => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);

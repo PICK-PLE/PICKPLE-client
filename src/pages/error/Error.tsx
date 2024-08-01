@@ -1,6 +1,6 @@
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 import { Button, LogoHeader } from '@components';
 import { graphicImage, routePath } from '@constants';

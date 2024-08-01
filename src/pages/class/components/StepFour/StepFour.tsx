@@ -1,12 +1,11 @@
+import { useAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
-import { useAtom } from 'jotai';
-import { moimIdAtom } from 'src/stores/classPostData';
 
 import { Button, ProgressBar } from '@components';
 import { graphicImage } from '@constants';
 import { useEasyNavigate } from '@hooks';
-
+import { moimIdAtom } from 'src/stores/classPostData';
 
 import {
   footerStyle,

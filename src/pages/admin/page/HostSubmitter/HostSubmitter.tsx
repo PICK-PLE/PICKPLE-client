@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 
+
 import { useFetchHostSubmitterList } from '@apis/domains/submitter/useFetchHostSubmitterList';
 import { usePatchHostSubmitter } from '@apis/domains/submitter/usePatchHostSubmitter';
+
+import { CATEGORY_NAME } from '@constants';
 import {
   adminLayoutStyle,
   inputLayoutStyle,
@@ -10,11 +13,9 @@ import {
   tableLayoutStyle,
   tableStyle,
   tdStyle,
-thStyle
+  thStyle,
 } from '@pages/admin/page/HostSubmitter/HostSubmitter.style';
 import { titleStyle } from '@pages/auth/page/Login/Login.style';
-
-import { CATEGORY_NAME } from '@constants';
 
 const SUBMITTER_STATUS = {
   approve: '승인 완료',

@@ -1,3 +1,5 @@
+
+import { routePath } from '@constants';
 import {
   Class,
   ClassNotice,
@@ -8,8 +10,8 @@ import {
   ClassPostPage,
 } from '@pages/class/page';
 
-import { routePath } from '@constants';
 import { RouteType } from '@types';
+
 
 const classRoutes: RouteType[] = [
   {

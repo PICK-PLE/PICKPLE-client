@@ -1,6 +1,6 @@
+import { routePath } from '@constants';
 import { HostApplyPage, HostMyClass, MyClassManage } from '@pages/host/page/index';
 
-import { routePath } from '@constants';
 import { RouteType } from '@types';
 
 const hostRoutes: RouteType[] = [

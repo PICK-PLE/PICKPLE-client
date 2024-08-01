@@ -1,4 +1,5 @@
 import { css, keyframes, Theme } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const toastWrapperStyle = (isVisible: boolean, toastBottom: number) => (theme: Theme) =>

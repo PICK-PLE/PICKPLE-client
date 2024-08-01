@@ -3,6 +3,7 @@ import { QueryClient, useMutation } from '@tanstack/react-query';
 import { patch } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 
+
 export interface PatchHostSubmitterRequest {
   submitterId: number;
 }

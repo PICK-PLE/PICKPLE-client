@@ -3,8 +3,9 @@ import { useQuery } from '@tanstack/react-query';
 import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 
-import { ApiResponseType } from '@types';
 import { isLoggedIn } from '@utils';
+
+import { ApiResponseType } from '@types';
 
 const getMoimCategories = async (): Promise<string[] | null> => {
   try {

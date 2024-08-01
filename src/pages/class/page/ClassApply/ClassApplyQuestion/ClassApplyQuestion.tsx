@@ -1,11 +1,8 @@
 import { useEffect, useState } from 'react';
-
 import { useParams } from 'react-router-dom';
 
 import { useFetchQuestionList } from '@apis/domains/moim/useFetchQuestionList';
 import { usePostAnswerList } from '@apis/domains/moimSubmission/usePostAnswerList';
-import Error from '@pages/error/Error';
-import AccountNumberInput from 'src/components/common/inputs/AccountNumberInput/AccountNumberInput';
 
 import {
   Button,
@@ -16,9 +13,9 @@ import {
   Input,
   Spinner,
 } from '@components';
+import Error from '@pages/error/Error';
 import { IcCaution } from '@svg';
-import { MoimIdPathParameterType } from '@types';
-
+import AccountNumberInput from 'src/components/common/inputs/AccountNumberInput/AccountNumberInput';
 
 import {
   classApplyQuestionLayout,
@@ -35,6 +32,8 @@ import {
   questionSpanStyle,
   questionWrapperStyle,
 } from './ClassApplyQuestion.style';
+
+import { MoimIdPathParameterType } from '@types';
 
 type AnswerListType = {
   [key: string]: string;
@@ -161,7 +160,7 @@ const ClassApplyQuestion = () => {
                         size="medium"
                         placeholder="답변을 작성해주세요."
                         isValid={validateLength(answer.answerList[`answer${index + 1}`])}
-                        errorMessage='빈칸을 입력해 주세요.'
+                        errorMessage="빈칸을 입력해 주세요."
                       />
                     </>
                   )}

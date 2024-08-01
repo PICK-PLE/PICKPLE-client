@@ -1,6 +1,6 @@
+import { routePath } from '@constants';
 import { Categories } from '@pages/categories/page/index';
 
-import { routePath } from '@constants';
 import { RouteType } from '@types';
 
 const categoriesRoutes: RouteType[] = [

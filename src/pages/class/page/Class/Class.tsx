@@ -1,19 +1,10 @@
-
+import { useAtom } from 'jotai';
 import { useState } from 'react';
-
 import { useNavigate, useParams } from 'react-router-dom';
+
 
 import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
-import {
-  ClassInfo,
-  ClassNotice,
-  ClassNoticeEmptyView,
-  ClassReviewEmptyView,
-  HostInfoCard,
-} from '@pages/class/components';
-import Error from '@pages/error/Error';
-import { useAtom } from 'jotai';
 
 import {
   Button,
@@ -27,11 +18,17 @@ import {
   Toast,
 } from '@components';
 import { useClipboard, useToast, useWindowSize } from '@hooks';
+import {
+  ClassInfo,
+  ClassNotice,
+  ClassNoticeEmptyView,
+  ClassReviewEmptyView,
+  HostInfoCard,
+} from '@pages/class/components';
+import Error from '@pages/error/Error';
 import { userAtom } from '@stores';
 import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
-import { MoimIdPathParameterType } from '@types';
 import { dDayText, handleShare, smoothScroll } from '@utils';
-
 
 import {
   buttonContainer,
@@ -46,6 +43,8 @@ import {
   tabSectionStyle,
   tabWrapper,
 } from './Class.style';
+
+import { MoimIdPathParameterType } from '@types';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
@@ -130,24 +129,24 @@ const Class = () => {
           <HostInfoCard hostId={moimDetail.hostId ?? 0} />
         </section>
         <div css={tabWrapper}>
-            <button
-              css={tabButtonStyle(selectTab === '모임소개')}
-              type="button"
-              onClick={() => setSelectTab('모임소개')}>
-              모임 소개
-            </button>
-            <button
-              css={tabButtonStyle(selectTab === '공지사항')}
-              type="button"
-              onClick={() => setSelectTab('공지사항')}>
-              공지 사항
-            </button>
-            <button
-              css={tabButtonStyle(selectTab === '리뷰')}
-              type="button"
-              onClick={() => setSelectTab('리뷰')}>
-              리뷰
-            </button>
+          <button
+            css={tabButtonStyle(selectTab === '모임소개')}
+            type="button"
+            onClick={() => setSelectTab('모임소개')}>
+            모임 소개
+          </button>
+          <button
+            css={tabButtonStyle(selectTab === '공지사항')}
+            type="button"
+            onClick={() => setSelectTab('공지사항')}>
+            공지 사항
+          </button>
+          <button
+            css={tabButtonStyle(selectTab === '리뷰')}
+            type="button"
+            onClick={() => setSelectTab('리뷰')}>
+            리뷰
+          </button>
         </div>
         <section css={[tabSectionStyle, selectTab === '모임소개' && infoSectionStyle]}>
           {selectTab === '모임소개' && <ClassInfo content={moimDescription ?? ''} />}

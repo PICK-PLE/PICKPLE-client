@@ -1,16 +1,16 @@
+import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
+
 
 import { usePostMoim } from '@apis/domains/moim/usePostMoim';
 import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
+
+import { Button, ImageSelect, Input, ProgressBar, Spinner, TextArea } from '@components';
 import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
-import { useAtom } from 'jotai';
+import { smoothScroll } from '@utils';
 import { moimIdAtom } from 'src/stores/classPostData';
 import { StepProps } from 'src/types/nextStep';
 import { handleUpload } from 'src/utils/image';
-
-import { Button, ImageSelect, Input, ProgressBar, Spinner, TextArea } from '@components';
-import { ErrorType } from '@types';
-import { smoothScroll } from '@utils';
 
 import {
   footerStyle,
@@ -24,6 +24,8 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepThree.style';
+
+import { ErrorType } from '@types';
 
 const StepThree = ({ onNext }: StepProps) => {
   const { classPostState, handleInputChange } = useClassPostInputChange();

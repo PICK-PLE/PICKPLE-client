@@ -1,13 +1,15 @@
 import { useNavigate } from 'react-router-dom';
 
+
 import { useFetchSubmittedMoimDetail } from '@apis/domains/moim';
+
+import { Modal, Spinner } from '@components';
 import Error from '@pages/error/Error';
 import { DepositModal } from '@pages/guest/components';
+import { IcDate, IcOffline, IcOneline } from '@svg';
 import Image from 'src/components/common/Image/Image';
 import SimpleUserProfile from 'src/components/common/SimpleUserProfile/SimpleUserProfile';
 
-import { Modal, Spinner } from '@components';
-import { IcDate, IcOffline, IcOneline } from '@svg';
 
 import {
   cardContainerStyle,

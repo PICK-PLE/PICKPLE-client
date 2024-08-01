@@ -5,11 +5,6 @@
 // import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 import { useState } from 'react';
 
-import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
-import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
-import { options } from 'src/constants/options';
-import useToast from 'src/hooks/useToast';
-
 import {
   Button,
   Carousel,
@@ -44,6 +39,7 @@ import {
   //   Modal,
   //   CategorySelectBox,
 } from '@components';
+import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
 import {
   IcApplicantArrcodionDown,
   IcApplicantArrcodionUp,
@@ -74,6 +70,10 @@ import {
   IcShare,
   IcTossPay,
 } from '@svg';
+import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
+import { options } from 'src/constants/options';
+import useToast from 'src/hooks/useToast';
+
 
 import {
   iconSvgStyle,

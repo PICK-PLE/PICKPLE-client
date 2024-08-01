@@ -1,10 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 
-import { CATEGORY_NAME, CATEGORY_SMALL_ICON } from 'src/constants/category';
 
 import { Button, Image, InterestCategoryButton } from '@components';
 import { images } from '@constants';
-import { components } from '@schema';
+import { CATEGORY_NAME, CATEGORY_SMALL_ICON } from 'src/constants/category';
 
 import {
   categoryListWrapper,
@@ -17,6 +16,8 @@ import {
   linkStyle,
   linkWrapper,
 } from './HostInfoCardWithLink.style';
+
+import { components } from '@schema';
 
 type HostGetResponse = components['schemas']['HostGetResponse'];
 

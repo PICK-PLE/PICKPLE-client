@@ -1,4 +1,3 @@
-import { components } from '@schema';
 import { formatCreatedDate } from '@utils';
 
 import {
@@ -13,6 +12,8 @@ import {
   profileTextBox,
   profileWrapper,
 } from './NoticeCard.style';
+
+import { components } from '@schema';
 
 type NoticeListGetByMoimResponse = components['schemas']['NoticeListGetByMoimResponse'];
 

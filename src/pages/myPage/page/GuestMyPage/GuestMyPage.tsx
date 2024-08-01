@@ -1,19 +1,15 @@
+import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 
-import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
-import { useAtom } from 'jotai';
 
 import { LogoHeader, Modal, NavigateBox, SimpleUserProfile } from '@components';
 import { images, routePath } from '@constants';
 import { useEasyNavigate } from '@hooks';
+import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 import { userAtom } from '@stores';
 import { IcNext } from '@svg';
 import { isLoggedIn } from '@utils';
-
-
-
 
 import {
   navigateBoxWrapper,

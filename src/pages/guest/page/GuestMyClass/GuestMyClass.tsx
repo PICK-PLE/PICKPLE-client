@@ -1,12 +1,13 @@
+import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
+
 import { useFetchGuestApply, useFetchGuestParticipate } from '@apis/domains/moim';
-import { GuestMyClassEmptyView, MoimCard } from '@pages/guest/components';
-import { useAtom } from 'jotai';
-import { statusMapText } from 'src/constants/mappingText';
 
 import { FilterSelect, Header, Spinner } from '@components';
+import { GuestMyClassEmptyView, MoimCard } from '@pages/guest/components';
 import { userAtom } from '@stores';
+import { statusMapText } from 'src/constants/mappingText';
 
 import {
   guestMyClassLayout,

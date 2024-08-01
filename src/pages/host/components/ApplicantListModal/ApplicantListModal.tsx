@@ -5,7 +5,6 @@ import {
 
 import { Button, SimpleUserProfile } from '@components';
 import { images } from '@constants';
-import { components } from '@schema';
 
 import {
   applicantCountStyle,
@@ -20,6 +19,10 @@ import {
   textDivStyle,
   ulStyle,
 } from './ApplicantListModal.style';
+
+import { components } from '@schema';
+
+
 
 interface ApplicantListModalProps {
   submitterList: components['schemas']['SubmitterInfo'][];

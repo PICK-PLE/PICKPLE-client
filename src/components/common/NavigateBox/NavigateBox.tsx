@@ -1,5 +1,4 @@
 import { HTMLAttributes } from 'react';
-
 import { useNavigate } from 'react-router-dom';
 
 import { IcNext } from '@svg';

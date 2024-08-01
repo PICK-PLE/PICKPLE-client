@@ -1,9 +1,7 @@
-import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
-import { StepProps } from 'src/types/nextStep';
-
 import { Button, ProgressBar, QuestionInput } from '@components';
+import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
 import { smoothScroll } from '@utils';
-
+import { StepProps } from 'src/types/nextStep';
 
 import {
   exampleQuestion,

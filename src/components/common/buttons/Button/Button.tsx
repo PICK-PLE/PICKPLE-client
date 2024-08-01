@@ -1,6 +1,6 @@
+import { SerializedStyles, Theme } from '@emotion/react';
 import { ButtonHTMLAttributes } from 'react';
 
-import { SerializedStyles, Theme } from '@emotion/react';
 
 import { buttonSize, buttonStyle, disabledStyle } from './Button.style';
 

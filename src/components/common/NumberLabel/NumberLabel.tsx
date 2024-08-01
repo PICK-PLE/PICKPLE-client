@@ -1,12 +1,12 @@
 import { PropsWithChildren } from 'react';
 
+import { IcNumberLabel } from '@svg';
 import {
   wrapperStyle,
   iconStyle,
   textStyle,
 } from 'src/components/common/NumberLabel/NumberLabel.style';
 
-import { IcNumberLabel } from '@svg';
 
 const NumberLabel = ({ children, ...props }: PropsWithChildren) => {
   return (

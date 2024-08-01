@@ -1,8 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
-
-import { post } from '@apis/api';
 import { useAtom } from 'jotai';
 import { RESET } from 'jotai/utils';
+
+import { post } from '@apis/api';
 
 import { useEasyNavigate } from '@hooks';
 import { userAtom } from '@stores';

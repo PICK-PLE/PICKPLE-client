@@ -1,10 +1,10 @@
 import { ButtonHTMLAttributes } from 'react';
 
+import { useToast } from '@hooks';
+import { IcKakaoPay, IcTossPay } from '@svg';
 import Toast from 'src/components/common/Toast/Toast';
 import { getDeviceType } from 'src/utils/getDeviceType';
 
-import { useToast } from '@hooks';
-import { IcKakaoPay, IcTossPay } from '@svg';
 
 import { payButtonStyle, paySpanStyle } from './PayButton.style';
 

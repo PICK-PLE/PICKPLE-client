@@ -1,9 +1,8 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import { Global, ThemeProvider } from '@emotion/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { Global, ThemeProvider } from '@emotion/react';
 
 import {
   authRoutes,
@@ -14,8 +13,7 @@ import {
   hostRoutes,
   myPageRoutes,
   //devRoutes,
-  adminRoutes
-
+  adminRoutes,
 } from '@routes';
 
 import errorPageRoutes from './routes/errorRoutes';
@@ -31,7 +29,7 @@ const allRoutes = [
   ...hostRoutes,
   ...myPageRoutes,
   ...errorPageRoutes,
-  ...adminRoutes
+  ...adminRoutes,
   // ...devRoutes,
 ];
 

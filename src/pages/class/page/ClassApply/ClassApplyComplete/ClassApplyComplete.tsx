@@ -1,9 +1,8 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { GuestClassRegisterCard } from '@pages/class/components';
 
 import { Button, LogoHeader, ProgressBar } from '@components';
-import { MoimIdPathParameterType } from '@types';
+import { GuestClassRegisterCard } from '@pages/class/components';
 
 
 import {
@@ -18,6 +17,8 @@ import {
   completeTextStyle,
   completeWrapperStyle,
 } from './ClassApplyComplete.style';
+
+import { MoimIdPathParameterType } from '@types';
 
 const ClassApplyComplete = () => {
   const { moimId } = useParams<MoimIdPathParameterType>();
