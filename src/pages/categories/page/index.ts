@@ -1,3 +1,3 @@
-import Categories from './Categories/Categories';
+import ClassList from './ClassList/ClassList';
 
-export { Categories };
+export { ClassList };

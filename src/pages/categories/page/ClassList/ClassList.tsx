@@ -6,7 +6,7 @@ import { useFetchMoimListByCategory } from '@apis/domains/moim/useFetchMoimListB
 
 import { LogoHeader, Spinner } from '@components';
 import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
-import { CategoryEmptyView, ClassListCard } from '@pages/categories/components';
+import { ClassListEmptyView, ClassListCard } from '@pages/categories/components';
 import Error from '@pages/error/Error';
 
 import {
@@ -20,9 +20,9 @@ import {
   spinnerStyle,
   titleStyle,
   unSeletedIconNameStyle,
-} from './Categories.style';
+} from './ClassList.style';
 
-const Categories = () => {
+const ClassList = () => {
   const navigate = useNavigate();
   const categoriesRef = useRef<HTMLUListElement>(null);
 
@@ -97,7 +97,7 @@ const Categories = () => {
             <Spinner variant="page" />
           </div>
         ) : moimList?.length === 0 ? (
-          <CategoryEmptyView />
+          <ClassListEmptyView />
         ) : (
           <ul css={moimListContainer}>
             {moimList?.map((moim) => {
@@ -119,4 +119,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default ClassList;
