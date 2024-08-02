@@ -6,7 +6,7 @@ import { useFetchMoimListByCategory } from '@apis/domains/moim/useFetchMoimListB
 
 import { LogoHeader, Spinner } from '@components';
 import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
-import { ClassListEmptyView, ClassListCard } from '@pages/categories/components';
+import { ClassListEmptyView, ClassListCard } from '@pages/classList/components';
 import Error from '@pages/error/Error';
 
 import {

@@ -2,7 +2,6 @@ import { useAtom } from 'jotai';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-
 import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
 
@@ -85,7 +84,7 @@ const Class = () => {
 
   const handleApplyButtonClick = () => {
     smoothScroll(0);
-    navigate(`/class/${moimId}/apply/rule`);
+    navigate(`/class/${moimId}/apply`);
   };
 
   const handleShareButtonClick = async () => {

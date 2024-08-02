@@ -1,4 +1,3 @@
-
 import { Image, Label, SimpleUserProfile } from '@components';
 import {
   classListContainer,
@@ -7,11 +6,10 @@ import {
   titleTextWrapper,
   timeTextWraaper,
   classCardCustomStyle,
-} from '@pages/categories/components/ClassListCard/ClassListCard.style';
+} from '@pages/classList/components/ClassListCard/ClassListCard.style';
 import { dDayText } from '@utils';
 
 import { components } from '@schema';
-
 
 type MoimByCategoryResponse = components['schemas']['MoimByCategoryResponse'];
 

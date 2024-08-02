@@ -3,12 +3,13 @@ import { routePath } from '@constants';
 import {
   Class,
   ClassNotice,
-  ClassApplyComplete,
-  ClassApplyDeposit,
-  ClassApplyQuestion,
-  ClassApplyRule,
+  // ClassApplyComplete,
+  // ClassApplyDeposit,
+  // ClassApplyQuestion,
+  // ClassApplyRule,
   ClassPostPage,
 } from '@pages/class/page';
+import ClassApply from '@pages/class/page/ClassApply/ClassApply';
 
 import { RouteType } from '@types';
 
@@ -27,21 +28,25 @@ const classRoutes: RouteType[] = [
     element: <ClassPostPage />,
   },
   {
-    path: routePath.CLASS_APPLY_RULE,
-    element: <ClassApplyRule />,
-  },
-  {
-    path: routePath.CLASS_APPLY_QUESTION,
-    element: <ClassApplyQuestion />,
-  },
-  {
-    path: routePath.CLASS_APPLY_DEPOSIT,
-    element: <ClassApplyDeposit />,
-  },
-  {
-    path: routePath.CLASS_APPLY_COMPLETE,
-    element: <ClassApplyComplete />,
-  },
+    path: routePath.CLASS_APPLY,
+    element: <ClassApply />
+  }
+  // {
+  //   path: routePath.CLASS_APPLY_RULE,
+  //   element: <ClassApplyRule />,
+  // },
+  // {
+  //   path: routePath.CLASS_APPLY_QUESTION,
+  //   element: <ClassApplyQuestion />,
+  // },
+  // {
+  //   path: routePath.CLASS_APPLY_DEPOSIT,
+  //   element: <ClassApplyDeposit />,
+  // },
+  // {
+  //   path: routePath.CLASS_APPLY_COMPLETE,
+  //   element: <ClassApplyComplete />,
+  // },
 ];
 
 export default classRoutes;

@@ -1,7 +1,7 @@
 import adminRoutes from 'src/routes/adminRoutes';
 
 import authRoutes from './authRoutes';
-import categoriesRoutes from './categoriesRoutes';
+import classListRoutes from './classListRoutes';
 import classRoutes from './classRoutes';
 import guestRoutes from './guestRoutes';
 import homeRoutes from './homeRoutes';
@@ -12,7 +12,7 @@ import myPageRoutes from './myPageRoutes';
 
 export {
   authRoutes,
-  categoriesRoutes,
+  classListRoutes,
   classRoutes,
   guestRoutes,
   homeRoutes,

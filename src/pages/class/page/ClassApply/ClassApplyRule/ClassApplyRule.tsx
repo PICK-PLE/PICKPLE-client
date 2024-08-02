@@ -1,5 +1,3 @@
-import { useNavigate, useParams } from 'react-router-dom';
-
 import { Button, LogoHeader, Notice, ProgressBar } from '@components';
 
 import {
@@ -13,15 +11,13 @@ import {
   headerStyle,
 } from './ClassApplyRule.style';
 
-import { MoimIdPathParameterType } from '@types';
+interface ClassApplyProps {
+  handleChangePage: (step: string) => void;
+}
 
-
-const ClassApplyRule = () => {
-  const navigate = useNavigate();
-  const { moimId } = useParams<MoimIdPathParameterType>();
-
+const ClassApplyRule = ({ handleChangePage }: ClassApplyProps) => {
   const handleButtonClick = () => {
-    navigate(`/class/${moimId}/apply/question`);
+    handleChangePage('question');
   };
 
   return (

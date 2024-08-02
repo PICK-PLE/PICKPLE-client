@@ -27,7 +27,7 @@ const Home = () => {
   const { data: categories } = useFetchMoimCategories();
 
   const handleCategoryClick = (category: string) => {
-    navigate(`/categories?category=${category}`);
+    navigate(`/class-list?category=${category}`);
   };
 
   if (isLoading) {
