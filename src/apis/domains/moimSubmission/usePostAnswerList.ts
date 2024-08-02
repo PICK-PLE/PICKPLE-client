@@ -55,7 +55,7 @@ export const usePostAnswerList = (onSuccess: (data: object) => void) => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.ANSWER_LIST] });
       if (data.status === 20008) {
         //navigate(`/class/${moimId}/apply/deposit`);
-        onSuccess(data);
+        onSuccess(data); //qpt가 알려준 방법 -> onSuccess 자체를 컴포넌트에서 쓸 수 있도록
       } else {
         alert(data.message);
         navigate(-1);

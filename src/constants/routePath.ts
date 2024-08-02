@@ -7,7 +7,7 @@ const homePages = {
   HOME: '/',
 };
 
-const categoriesPages = {
+const classListPages = {
   CLASS_LIST: '/class-list'
 };
 
@@ -15,10 +15,6 @@ const classPages = {
   CLASS_DETAIL: '/class/:moimId',
   CLASS_NOTICE_POST: '/class/:moimId/notice/post',
   CLASS_POST: '/class/post/:step',
-  // CLASS_APPLY_RULE: '/class/:moimId/apply/rule',
-  // CLASS_APPLY_QUESTION: '/class/:moimId/apply/question',
-  // CLASS_APPLY_DEPOSIT: '/class/:moimId/apply/deposit',
-  // CLASS_APPLY_COMPLETE: '/class/:moimId/apply/complete',
   CLASS_APPLY: '/class/:moimId/apply'
 };
 
@@ -53,7 +49,7 @@ const adminPages = {
 export default {
   ...authPages,
   ...homePages,
-  ...categoriesPages,
+  ...classListPages,
   ...classPages,
   ...myPagePages,
   ...guestPages,
