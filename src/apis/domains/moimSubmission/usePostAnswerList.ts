@@ -1,16 +1,12 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 
-
 import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 
 import { DataType } from '@pages/class/page/ClassApply/ClassApplyQuestion/ClassApplyQuestion';
 
 import { ErrorResponse, ErrorType, MutateResponseType } from '@types';
-
-
-
 
 interface PostAnswerRequest {
   moimId: number;
@@ -50,7 +46,7 @@ const postAnswerList = async ({
   }
 };
 
-export const usePostAnswerList = (moimId: string) => {
+export const usePostAnswerList = (onSuccess: (data: object) => void) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   return useMutation({
@@ -58,10 +54,11 @@ export const usePostAnswerList = (moimId: string) => {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.ANSWER_LIST] });
       if (data.status === 20008) {
-        navigate(`/class/${moimId}/apply/deposit`);
+        //navigate(`/class/${moimId}/apply/deposit`);
+        onSuccess(data);
       } else {
         alert(data.message);
-        navigate(-2);
+        navigate(-1);
       }
     },
   });

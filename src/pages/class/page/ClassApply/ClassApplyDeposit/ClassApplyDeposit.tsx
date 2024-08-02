@@ -3,9 +3,9 @@ import { useParams } from 'react-router-dom';
 
 import { Button, LogoHeader, ProgressBar } from '@components';
 import { GuestClassRegisterCard } from '@pages/class/components';
+import { ClassApplyProps } from '@pages/class/page/ClassApply/ClassApplyRule/ClassApplyRule';
 import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
 import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
-
 
 import {
   classApplyDepositLayout,
@@ -20,7 +20,7 @@ import {
 
 import { MoimIdPathParameterType } from '@types';
 
-const ClassApplyDeposit = () => {
+const ClassApplyDeposit = ({ handleChangePage }: ClassApplyProps) => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -61,6 +61,7 @@ const ClassApplyDeposit = () => {
                 moimId={moimId ?? ''}
                 isModalOpen={isModalOpen}
                 handleModalClose={handleModalClose}
+                handleChangePage={handleChangePage}
               />
             </main>
           </div>

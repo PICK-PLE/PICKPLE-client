@@ -19,5 +19,5 @@ export {
   hostRoutes,
   myPageRoutes,
   //devRoutes,
-  adminRoutes
+  adminRoutes,
 };

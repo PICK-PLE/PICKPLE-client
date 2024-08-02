@@ -24,7 +24,7 @@ const ClassApplyComplete = () => {
   const { moimId } = useParams<MoimIdPathParameterType>();
   const navigate = useNavigate();
   const handleButtonClick = () => {
-    navigate(`/categories`);
+    navigate(`/class-list`);
   };
   return (
     <div css={classApplyCompleteLayout}>

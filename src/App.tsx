@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import {
   authRoutes,
-  categoriesRoutes,
+  classListRoutes,
   classRoutes,
   guestRoutes,
   homeRoutes,
@@ -22,7 +22,7 @@ import GlobalStyle from './styles/global';
 import theme from './styles/theme';
 
 const allRoutes = [
-  ...categoriesRoutes,
+  ...classListRoutes,
   ...classRoutes,
   ...guestRoutes,
   ...homeRoutes,

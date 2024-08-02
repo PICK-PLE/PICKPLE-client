@@ -13,6 +13,7 @@ import {
   Input,
   Spinner,
 } from '@components';
+import { ClassApplyProps } from '@pages/class/page/ClassApply/ClassApplyRule/ClassApplyRule';
 import Error from '@pages/error/Error';
 import { IcCaution } from '@svg';
 import AccountNumberInput from 'src/components/common/inputs/AccountNumberInput/AccountNumberInput';
@@ -48,7 +49,7 @@ export interface DataType {
   };
 }
 
-const ClassApplyQuestion = () => {
+const ClassApplyQuestion = ({ handleChangePage }: ClassApplyProps) => {
   const { moimId } = useParams<MoimIdPathParameterType>();
 
   const [questionList, setQuestionList] = useState<string[]>([]);
@@ -66,7 +67,11 @@ const ClassApplyQuestion = () => {
     },
   });
 
-  const { mutate } = usePostAnswerList(moimId ?? '');
+  // const { mutate } = usePostAnswerList();
+
+  const { mutate } = usePostAnswerList(() => {
+    handleChangePage('deposit');
+  });
 
   useEffect(() => {
     if (isSuccess && questionData) {

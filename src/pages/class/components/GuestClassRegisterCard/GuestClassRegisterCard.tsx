@@ -1,6 +1,3 @@
-import { useNavigate } from 'react-router-dom';
-
-
 import { useFetchSubmittedMoimDetail } from '@apis/domains/moim';
 
 import { Modal, Spinner } from '@components';
@@ -9,7 +6,6 @@ import { DepositModal } from '@pages/guest/components';
 import { IcDate, IcOffline, IcOneline } from '@svg';
 import Image from 'src/components/common/Image/Image';
 import SimpleUserProfile from 'src/components/common/SimpleUserProfile/SimpleUserProfile';
-
 
 import {
   cardContainerStyle,
@@ -31,14 +27,15 @@ export interface GuestClassRegisterCardProps {
   moimId: string;
   isModalOpen?: boolean;
   handleModalClose?: () => void;
+  handleChangePage?: (step: string) => void;
 }
 
 const GuestClassRegisterCard = ({
   moimId,
   isModalOpen,
   handleModalClose = () => {},
+  handleChangePage = () => {},
 }: GuestClassRegisterCardProps) => {
-  const navigate = useNavigate();
   const { data: appliedMoimData, isLoading } = useFetchSubmittedMoimDetail(Number(moimId));
 
   if (isLoading) {
@@ -59,7 +56,7 @@ const GuestClassRegisterCard = ({
 
   const handleButtonClick = () => {
     handleModalClose();
-    navigate(`/class/${moimId}/apply/complete`);
+    handleChangePage('complete');
   };
 
   return (

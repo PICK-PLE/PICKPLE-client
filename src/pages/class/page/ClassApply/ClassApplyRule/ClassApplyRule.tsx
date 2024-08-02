@@ -11,7 +11,7 @@ import {
   headerStyle,
 } from './ClassApplyRule.style';
 
-interface ClassApplyProps {
+export interface ClassApplyProps {
   handleChangePage: (step: string) => void;
 }
 
