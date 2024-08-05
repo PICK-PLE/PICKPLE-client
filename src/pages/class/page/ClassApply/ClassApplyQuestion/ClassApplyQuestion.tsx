@@ -67,11 +67,7 @@ const ClassApplyQuestion = ({ handleChangePage }: ClassApplyProps) => {
     },
   });
 
-  // const { mutate } = usePostAnswerList();
-
-  const { mutate } = usePostAnswerList(() => {
-    handleChangePage('deposit');
-  });
+  const { mutateAsync } = usePostAnswerList();
 
   useEffect(() => {
     if (isSuccess && questionData) {
@@ -123,8 +119,9 @@ const ClassApplyQuestion = ({ handleChangePage }: ClassApplyProps) => {
     body: answer,
   };
 
-  const handleButtonClick = () => {
-    mutate(requestData);
+  const handleButtonClick = async () => {
+   await mutateAsync(requestData);
+    handleChangePage('deposit');
   };
 
   if (isLoading) {

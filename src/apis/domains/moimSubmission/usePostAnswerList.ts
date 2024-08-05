@@ -38,25 +38,20 @@ const postAnswerList = async ({
         status: statusCode,
         message: errorMessage,
       };
-
-      throw new Error(errorMessage);
     } else {
       throw new Error('unknown error');
     }
   }
 };
 
-export const usePostAnswerList = (onSuccess: (data: object) => void) => {
+export const usePostAnswerList = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({ moimId, body }: PostAnswerRequest) => postAnswerList({ moimId, body }),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.ANSWER_LIST] });
-      if (data.status === 20008) {
-        //navigate(`/class/${moimId}/apply/deposit`);
-        onSuccess(data); //qpt가 알려준 방법 -> onSuccess 자체를 컴포넌트에서 쓸 수 있도록
-      } else {
+      if (data.status !== 20008) {
         alert(data.message);
         navigate(-1);
       }
