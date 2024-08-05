@@ -29,7 +29,6 @@ const StepOne = ({ onNext }: StepProps) => {
 
   const onSubmit = (data: components['schemas']['SubmitterCreateRequest']) => {
     setHostApplyState((prev) => ({ ...prev, ...data }));
-    console.log(data);
     onNext();
     smoothScroll(0);
   };
