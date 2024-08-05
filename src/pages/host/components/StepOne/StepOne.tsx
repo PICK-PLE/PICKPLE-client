@@ -42,8 +42,9 @@ const StepOne = ({ onNext }: StepProps) => {
           <h4 css={titleStyle}>호스트 신청</h4>
           <h1 css={subTitleStyle}>호스트님에 대해 알려주세요!</h1>
         </header>
-        <main css={mainStyle}>
-          <form onSubmit={handleSubmit(onSubmit)}>
+
+        <form onSubmit={handleSubmit(onSubmit)} >
+          <main css={mainStyle}>
             <section css={sectionStyle}>
               <QuestionText numberLabel="Q1">호스트님은 어떤 분이신가요?</QuestionText>
               <Controller
@@ -107,13 +108,13 @@ const StepOne = ({ onNext }: StepProps) => {
                 )}
               />
             </section>
-            <footer css={footerStyle}>
-              <Button variant="large" type="submit" disabled={isSubmitting}>
-                다음
-              </Button>
-            </footer>
-          </form>
-        </main>
+          </main>
+          <footer css={footerStyle}>
+            <Button variant="large" type="submit" disabled={isSubmitting}>
+              다음
+            </Button>
+          </footer>
+        </form>
       </div>
     </>
   );
