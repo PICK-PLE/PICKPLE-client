@@ -37,4 +37,5 @@ export const sectionStyle = css`
 
 export const footerStyle = css`
   width: 100%;
+  margin-top: 2rem;
 `;
