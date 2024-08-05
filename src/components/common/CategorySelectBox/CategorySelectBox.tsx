@@ -71,7 +71,7 @@ interface Category {
 }
 
 interface CategorySelectBoxProps {
-  selectedCategories: Category;
+  selectedCategories: Category | undefined;
   onUpdateCategories: (newCategories: Category) => void;
 }
 

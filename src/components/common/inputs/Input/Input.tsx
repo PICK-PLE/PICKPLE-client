@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, forwardRef, useState } from 'react';
+import { forwardRef, InputHTMLAttributes, useState } from 'react';
 import {
   inputContainerStyle,
   inputLabelStyle,
@@ -83,9 +83,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             ''
           )}
         </div>
-        {isFocused && displayErrorMessage && (
-          <span css={errorMessageStyle}>{displayErrorMessage}</span>
-        )}
+        {!isValid && <span css={errorMessageStyle}>{displayErrorMessage}</span>}
       </div>
     );
   }
