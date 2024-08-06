@@ -5,6 +5,6 @@ export const HOST_INFO_DATA = {
   hostCategories: {
     category1: 'investment',
     category2: 'investment',
-    category3: null
+    category3: null,
   },
 };

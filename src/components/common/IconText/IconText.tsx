@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+
 import { IconTextContainer, iconWrapper, textStyle } from './IconText.style';
 
 interface IconTextProps {

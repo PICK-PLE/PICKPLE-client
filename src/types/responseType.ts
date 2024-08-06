@@ -23,7 +23,6 @@ export type MoimSubmissionState =
   | 'refunded' // 환불 완료
   | 'completed'; // 참가 완료
 
-
 export interface HostMyClassDataResponseType {
   moimId: number;
   title: string;
@@ -53,13 +52,6 @@ export interface MoimNotceType {
   date: string;
   noticeImageUrl: string;
   hostId: number;
-}
-
-export interface DateList {
-  date: string;
-  dayOfWeek: string;
-  startTime: string;
-  endTime: string;
 }
 
 export interface ClassListData {

@@ -1,4 +1,5 @@
 import { css, Theme } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const noticePostBackground = (theme: Theme) => css`

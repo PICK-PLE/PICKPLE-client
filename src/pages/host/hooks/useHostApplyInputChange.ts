@@ -1,7 +1,9 @@
-import { components } from '@schema';
-import { hostApplyAtom } from '@stores';
 import { useAtom } from 'jotai';
 import React from 'react';
+
+import { hostApplyAtom } from '@stores';
+
+import { components } from '@schema';
 
 const useHostApplyInputChange = () => {
   const [hostApplyState, setHostApplyState] = useAtom(hostApplyAtom);
@@ -47,4 +49,4 @@ const useHostApplyInputChange = () => {
   };
 };
 
-export default useHostApplyInputChange
+export default useHostApplyInputChange;

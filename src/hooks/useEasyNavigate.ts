@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+
 import { routePath } from '@constants';
 
 const useEasyNavigate = () => {

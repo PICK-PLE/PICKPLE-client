@@ -1,5 +1,6 @@
-import { IcNumberLabel } from '@svg';
 import { PropsWithChildren } from 'react';
+
+import { IcNumberLabel } from '@svg';
 import {
   wrapperStyle,
   iconStyle,

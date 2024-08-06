@@ -1,5 +1,11 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { SocialLoginButton } from '@components';
+import { graphicImage, routePath } from '@constants';
 import { IcKakaoLogo, Logo } from '@svg';
+import { isLoggedIn } from '@utils';
+
 import {
   loginWrapper,
   titleStyle,
@@ -8,10 +14,6 @@ import {
   titleWrapper,
   loginImageWrapper,
 } from './Login.style';
-import { graphicImage, routePath } from '@constants';
-import { isLoggedIn } from '@utils';
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
 
 const Login = () => {
   const navigate = useNavigate();

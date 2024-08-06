@@ -1,3 +1,9 @@
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import { useFetchQuestionList } from '@apis/domains/moim/useFetchQuestionList';
+import { usePostAnswerList } from '@apis/domains/moimSubmission/usePostAnswerList';
+
 import {
   Button,
   LogoHeader,
@@ -7,6 +13,11 @@ import {
   Input,
   Spinner,
 } from '@components';
+import { ClassApplyProps } from '@pages/class/page/ClassApply/ClassApplyRule/ClassApplyRule';
+import Error from '@pages/error/Error';
+import { IcCaution } from '@svg';
+import AccountNumberInput from 'src/components/common/inputs/AccountNumberInput/AccountNumberInput';
+
 import {
   classApplyQuestionLayout,
   headerStyle,
@@ -22,14 +33,8 @@ import {
   questionSpanStyle,
   questionWrapperStyle,
 } from './ClassApplyQuestion.style';
-import { IcCaution } from '@svg';
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { useFetchQuestionList } from '@apis/domains/moim/useFetchQuestionList';
-import { usePostAnswerList } from '@apis/domains/moimSubmission/usePostAnswerList';
+
 import { MoimIdPathParameterType } from '@types';
-import Error from '@pages/error/Error';
-import AccountNumberInput from 'src/components/common/inputs/AccountNumberInput/AccountNumberInput';
 
 type AnswerListType = {
   [key: string]: string;
@@ -44,7 +49,7 @@ export interface DataType {
   };
 }
 
-const ClassApplyQuestion = () => {
+const ClassApplyQuestion = ({ handleChangePage }: ClassApplyProps) => {
   const { moimId } = useParams<MoimIdPathParameterType>();
 
   const [questionList, setQuestionList] = useState<string[]>([]);
@@ -62,7 +67,7 @@ const ClassApplyQuestion = () => {
     },
   });
 
-  const { mutate } = usePostAnswerList(moimId ?? '');
+  const { mutateAsync } = usePostAnswerList();
 
   useEffect(() => {
     if (isSuccess && questionData) {
@@ -114,8 +119,9 @@ const ClassApplyQuestion = () => {
     body: answer,
   };
 
-  const handleButtonClick = () => {
-    mutate(requestData);
+  const handleButtonClick = async () => {
+    await mutateAsync(requestData);
+    handleChangePage('deposit');
   };
 
   if (isLoading) {
@@ -156,7 +162,7 @@ const ClassApplyQuestion = () => {
                         size="medium"
                         placeholder="답변을 작성해주세요."
                         isValid={validateLength(answer.answerList[`answer${index + 1}`])}
-                        errorMessage='빈칸을 입력해 주세요.'
+                        errorMessage="빈칸을 입력해 주세요."
                       />
                     </>
                   )}

@@ -1,4 +1,5 @@
 import { css, Theme } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const questionStyle = (theme: Theme) => css`
@@ -20,4 +21,3 @@ export const textStyle = (theme: Theme) => css`
 export const preventDragStyle = css`
   user-select: none;
 `;
-

@@ -1,11 +1,10 @@
+import { useAtom } from 'jotai';
 import { useState } from 'react';
-import {
-  ClassInfo,
-  ClassNotice,
-  ClassNoticeEmptyView,
-  ClassReviewEmptyView,
-  HostInfoCard,
-} from '@pages/class/components';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
+import { useFetchMoimNoticeList } from '@apis/domains/notice';
+
 import {
   Button,
   Carousel,
@@ -17,6 +16,19 @@ import {
   Spinner,
   Toast,
 } from '@components';
+import { useClipboard, useToast, useWindowSize } from '@hooks';
+import {
+  ClassInfo,
+  ClassNotice,
+  ClassNoticeEmptyView,
+  ClassReviewEmptyView,
+  HostInfoCard,
+} from '@pages/class/components';
+import Error from '@pages/error/Error';
+import { userAtom } from '@stores';
+import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
+import { dDayText, handleShare, smoothScroll } from '@utils';
+
 import {
   buttonContainer,
   carouselWrapper,
@@ -30,17 +42,8 @@ import {
   tabSectionStyle,
   tabWrapper,
 } from './Class.style';
-import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
 
-import { useNavigate, useParams } from 'react-router-dom';
-import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
-import { useClipboard, useToast, useWindowSize } from '@hooks';
-import { useFetchMoimNoticeList } from '@apis/domains/notice';
 import { MoimIdPathParameterType } from '@types';
-import Error from '@pages/error/Error';
-import { dDayText, handleShare, smoothScroll } from '@utils';
-import { useAtom } from 'jotai';
-import { userAtom } from '@stores';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
@@ -81,7 +84,7 @@ const Class = () => {
 
   const handleApplyButtonClick = () => {
     smoothScroll(0);
-    navigate(`/class/${moimId}/apply/rule`);
+    navigate(`/class/${moimId}/apply`);
   };
 
   const handleShareButtonClick = async () => {
@@ -125,24 +128,24 @@ const Class = () => {
           <HostInfoCard hostId={moimDetail.hostId ?? 0} />
         </section>
         <div css={tabWrapper}>
-            <button
-              css={tabButtonStyle(selectTab === '모임소개')}
-              type="button"
-              onClick={() => setSelectTab('모임소개')}>
-              모임 소개
-            </button>
-            <button
-              css={tabButtonStyle(selectTab === '공지사항')}
-              type="button"
-              onClick={() => setSelectTab('공지사항')}>
-              공지 사항
-            </button>
-            <button
-              css={tabButtonStyle(selectTab === '리뷰')}
-              type="button"
-              onClick={() => setSelectTab('리뷰')}>
-              리뷰
-            </button>
+          <button
+            css={tabButtonStyle(selectTab === '모임소개')}
+            type="button"
+            onClick={() => setSelectTab('모임소개')}>
+            모임 소개
+          </button>
+          <button
+            css={tabButtonStyle(selectTab === '공지사항')}
+            type="button"
+            onClick={() => setSelectTab('공지사항')}>
+            공지 사항
+          </button>
+          <button
+            css={tabButtonStyle(selectTab === '리뷰')}
+            type="button"
+            onClick={() => setSelectTab('리뷰')}>
+            리뷰
+          </button>
         </div>
         <section css={[tabSectionStyle, selectTab === '모임소개' && infoSectionStyle]}>
           {selectTab === '모임소개' && <ClassInfo content={moimDescription ?? ''} />}

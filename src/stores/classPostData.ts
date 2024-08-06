@@ -1,4 +1,5 @@
 import { atom } from 'jotai';
+
 import { ClassPostDataType } from './types/classPostDataType';
 
 export const classPostAtom = atom<ClassPostDataType>({

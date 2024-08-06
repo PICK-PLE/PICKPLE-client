@@ -1,6 +1,7 @@
-import { IcExclamation } from '@svg';
 import { HTMLAttributes } from 'react';
 import { createPortal } from 'react-dom';
+
+import { IcExclamation } from '@svg';
 import {
   toastIconStyle,
   toastMessageStyle,

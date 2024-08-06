@@ -1,12 +1,14 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Button } from '@components';
+import { IcHostMypage } from '@svg';
+
 import {
   buttonWrapper,
   completedTabContainer,
   IcHostMyClassStyle,
   textStyle,
 } from './HostMyClassEmptyView.style';
-import { IcHostMypage } from '@svg';
-import { useNavigate } from 'react-router-dom';
 
 interface HostMyClassEmptyViewProps {
   text: string;

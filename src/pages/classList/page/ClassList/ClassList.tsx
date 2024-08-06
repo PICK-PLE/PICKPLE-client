@@ -1,4 +1,14 @@
+import { useEffect, useRef } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+
+import { useFetchMoimCategories } from '@apis/domains/moim';
+import { useFetchMoimListByCategory } from '@apis/domains/moim/useFetchMoimListByCategory';
+
 import { LogoHeader, Spinner } from '@components';
+import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
+import { ClassListEmptyView, ClassListCard } from '@pages/classList/components';
+import Error from '@pages/error/Error';
+
 import {
   categoriesContainer,
   categoryWrapper,
@@ -10,16 +20,9 @@ import {
   spinnerStyle,
   titleStyle,
   unSeletedIconNameStyle,
-} from './Categories.style';
-import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
-import { useNavigate, useSearchParams } from 'react-router-dom';
-import { CategoryEmptyView, ClassListCard } from '@pages/categories/components';
-import { useFetchMoimListByCategory } from '@apis/domains/moim/useFetchMoimListByCategory';
-import { useEffect, useRef } from 'react';
-import Error from '@pages/error/Error';
-import { useFetchMoimCategories } from '@apis/domains/moim';
+} from './ClassList.style';
 
-const Categories = () => {
+const ClassList = () => {
   const navigate = useNavigate();
   const categoriesRef = useRef<HTMLUListElement>(null);
 
@@ -94,7 +97,7 @@ const Categories = () => {
             <Spinner variant="page" />
           </div>
         ) : moimList?.length === 0 ? (
-          <CategoryEmptyView />
+          <ClassListEmptyView />
         ) : (
           <ul css={moimListContainer}>
             {moimList?.map((moim) => {
@@ -116,4 +119,4 @@ const Categories = () => {
   );
 };
 
-export default Categories;
+export default ClassList;

@@ -1,4 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
+import { Button } from '@components';
 import { graphicImage } from '@constants';
+
 import {
   buttonWrapper,
   hostMyPageEmptyViewContainer,
@@ -6,8 +10,6 @@ import {
   imageStyle,
   textStyle,
 } from './HostMyPageEmptyView.style';
-import { Button } from '@components';
-import { useNavigate } from 'react-router-dom';
 
 const HostMyPageEmptyView = () => {
   const navigate = useNavigate();

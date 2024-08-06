@@ -1,9 +1,11 @@
+import { Provider } from 'jotai';
+import { useParams } from 'react-router-dom';
+
 import { LogoHeader } from '@components';
 import ClassPost from '@pages/class/components/ClassPost/ClassPost';
 import { useFunnel } from 'src/hooks/useFunnel';
+
 import { classPostPageLayout } from './ClassPostPage.style';
-import { Provider } from 'jotai';
-import { useParams } from 'react-router-dom';
 
 const steps = ['step1', 'step2', 'step3', 'finish'];
 

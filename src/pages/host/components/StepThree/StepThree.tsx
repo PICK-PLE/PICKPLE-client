@@ -1,4 +1,7 @@
 import { Button, ProgressBar } from '@components';
+import { graphicImage } from '@constants';
+import { useEasyNavigate } from '@hooks';
+
 import {
   footerStyle,
   headerSpanStyle,
@@ -9,8 +12,6 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepThree.style';
-import { graphicImage } from '@constants';
-import { useEasyNavigate } from '@hooks';
 
 const StepThree = () => {
   const { goCategories } = useEasyNavigate();

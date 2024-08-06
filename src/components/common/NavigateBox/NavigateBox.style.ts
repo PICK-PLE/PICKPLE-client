@@ -1,5 +1,5 @@
-import { Theme } from '@emotion/react';
-import { css } from '@emotion/react';
+import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const wrapperStyle = css`

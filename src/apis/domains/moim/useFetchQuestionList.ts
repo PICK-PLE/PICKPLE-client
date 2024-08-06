@@ -1,8 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+
 import { get } from '@apis/api';
-import { ApiResponseType } from '@types';
+import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+
 import { components } from '@schema';
+import { ApiResponseType } from '@types';
 
 type QuestionInfo = components['schemas']['QuestionInfo'];
 

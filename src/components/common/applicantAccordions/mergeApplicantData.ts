@@ -1,4 +1,3 @@
-
 // import { APPLICANT_DATA } from '../../../constants/mocks/applicant';
 // // 통합된 데이터 타입 정의 (TypeScript)
 // interface ApplicantData {

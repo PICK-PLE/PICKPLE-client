@@ -1,6 +1,8 @@
-import { IcNext } from '@svg';
 import { HTMLAttributes } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import { IcNext } from '@svg';
+
 import { childrenStyle, iconStyle, wrapperStyle } from './NavigateBox.style';
 
 export interface NavigateBoxProps extends HTMLAttributes<HTMLDivElement> {

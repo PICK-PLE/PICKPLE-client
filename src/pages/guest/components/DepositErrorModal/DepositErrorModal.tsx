@@ -1,3 +1,5 @@
+import { IcClose } from '@svg';
+
 import {
   articleStyle,
   bodyTextStyle,
@@ -9,7 +11,6 @@ import {
   purpleStyle,
   titleStyle,
 } from './DepositErrorModal.style';
-import { IcClose } from '@svg';
 
 interface DepositErrorModalProps {
   onClose: () => void;

@@ -1,4 +1,7 @@
 import { useState } from 'react';
+
+import { IcDropdownPlatformDown, IcDropdownPlatformUp } from '@svg';
+
 import {
   iconStyle,
   placeholderStyle,
@@ -7,7 +10,6 @@ import {
   sortItem,
   sortList,
 } from './Select.style';
-import { IcDropdownPlatformDown, IcDropdownPlatformUp } from '@svg';
 
 interface SelectProps {
   placeholder?: string;
@@ -24,7 +26,7 @@ const Select = ({ placeholder, options, value, onChange }: SelectProps) => {
   };
 
   const handleOptionClick = (option: string) => {
-    onChange(option)
+    onChange(option);
     setIsOpen(false);
   };
 
@@ -32,7 +34,9 @@ const Select = ({ placeholder, options, value, onChange }: SelectProps) => {
 
   return (
     <div css={selectContainer} onClick={toggleDropdown}>
-      <span css={isPlaceholder ? placeholderStyle : selectedOptionStyle}>{value ? value : placeholder}</span>
+      <span css={isPlaceholder ? placeholderStyle : selectedOptionStyle}>
+        {value ? value : placeholder}
+      </span>
       <span css={iconStyle}>{isOpen ? <IcDropdownPlatformUp /> : <IcDropdownPlatformDown />}</span>
       {isOpen && (
         <ul css={sortList}>

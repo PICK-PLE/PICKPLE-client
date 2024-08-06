@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const hostMyClassLayout = css`
@@ -45,12 +46,11 @@ export const tabWrapper = css`
   ${flexGenerator()}
 `;
 
-export const getTabStyle = (isActive: boolean) => (theme: Theme) =>
-  css`
-    ${tapContainer(theme)}
-    ${isActive ? activeTabStyle(theme) : inactiveTabStyle(theme)}
+export const getTabStyle = (isActive: boolean) => (theme: Theme) => css`
+  ${tapContainer(theme)}
+  ${isActive ? activeTabStyle(theme) : inactiveTabStyle(theme)}
     ${theme.font['subhead02-sb-16']}
-  `;
+`;
 
 export const hostMyClassCardContainer = css`
   ${flexGenerator('column')};
