@@ -8,7 +8,6 @@ import {
   textLengthStyle,
 } from 'src/components/common/QuestionInput/QuestionInput.style';
 
-
 export interface QuestionInputProps extends InputHTMLAttributes<HTMLInputElement> {
   numberLabel: string;
   value?: string;

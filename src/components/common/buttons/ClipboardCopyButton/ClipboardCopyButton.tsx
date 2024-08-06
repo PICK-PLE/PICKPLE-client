@@ -3,11 +3,8 @@ import { useState } from 'react';
 import { IcClipboardCopy } from '@svg';
 import useToast from 'src/hooks/useToast';
 
-
 import { accountNumberStyle, buttonWrapperStyle, iconStyle } from './ClipboardCopyButton.style';
 import Toast from '../../Toast/Toast';
-
-
 
 const ClipboardCopyButton = () => {
   const { showToast, isToastVisible } = useToast();

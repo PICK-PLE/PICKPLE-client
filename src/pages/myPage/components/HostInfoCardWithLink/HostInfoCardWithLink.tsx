@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 
-
 import { Button, Image, InterestCategoryButton } from '@components';
 import { images } from '@constants';
 import { CATEGORY_NAME, CATEGORY_SMALL_ICON } from 'src/constants/category';

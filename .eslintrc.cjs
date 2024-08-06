@@ -6,11 +6,13 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'plugin:import/recommended',
+    'plugin:prettier/recommended',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
   plugins: ['react-refresh', 'import'],
   rules: {
+    'prettier/prettier': 'error',
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'import/order': [
       'error',
@@ -25,17 +27,17 @@ module.exports = {
         ],
         pathGroups: [
           {
-            pattern: 'react', 
+            pattern: 'react',
             group: 'external',
             position: 'before',
           },
           {
-            pattern: 'react*', 
+            pattern: 'react*',
             group: 'external',
             position: 'before',
           },
           {
-            pattern: '@tanstack/*', 
+            pattern: '@tanstack/*',
             group: 'external',
             position: 'before',
           },
@@ -45,12 +47,7 @@ module.exports = {
             position: 'before',
           },
           {
-            pattern: '@types',
-            group: 'type',
-            position: 'before',
-          },
-          {
-            pattern: '@schema',
+            pattern: '{@types,@schema}',
             group: 'type',
             position: 'before',
           },

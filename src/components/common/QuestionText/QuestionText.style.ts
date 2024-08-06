@@ -21,4 +21,3 @@ export const textStyle = (theme: Theme) => css`
 export const preventDragStyle = css`
   user-select: none;
 `;
-

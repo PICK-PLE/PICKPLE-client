@@ -8,7 +8,6 @@ import {
   toastWrapperStyle,
 } from 'src/components/common/Toast/Toast.style';
 
-
 export interface ToastProps extends HTMLAttributes<HTMLDivElement> {
   toastIcon?: boolean;
   isVisible: boolean;

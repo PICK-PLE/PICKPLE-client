@@ -1,4 +1,3 @@
-
 import { routePath } from '@constants';
 import {
   Class,
@@ -12,7 +11,6 @@ import {
 import ClassApply from '@pages/class/page/ClassApply/ClassApply';
 
 import { RouteType } from '@types';
-
 
 const classRoutes: RouteType[] = [
   {
@@ -29,8 +27,8 @@ const classRoutes: RouteType[] = [
   },
   {
     path: routePath.CLASS_APPLY,
-    element: <ClassApply />
-  }
+    element: <ClassApply />,
+  },
   // {
   //   path: routePath.CLASS_APPLY_RULE,
   //   element: <ClassApplyRule />,

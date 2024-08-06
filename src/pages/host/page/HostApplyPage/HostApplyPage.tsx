@@ -1,7 +1,6 @@
 import { Provider } from 'jotai';
 import { useParams } from 'react-router-dom';
 
-
 import { LogoHeader } from '@components';
 import HostApply from '@pages/host/components/HostApply/HostApply';
 import { useFunnel } from 'src/hooks/useFunnel';

@@ -25,5 +25,5 @@ export const modalContentStyle = (theme: Theme) => css`
 
   border-radius: 10px;
   background-color: ${theme.color.white};
-  box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.20);
+  box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.2);
 `;

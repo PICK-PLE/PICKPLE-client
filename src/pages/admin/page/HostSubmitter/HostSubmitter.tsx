@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-
 import { useFetchHostSubmitterList } from '@apis/domains/submitter/useFetchHostSubmitterList';
 import { usePatchHostSubmitter } from '@apis/domains/submitter/usePatchHostSubmitter';
 

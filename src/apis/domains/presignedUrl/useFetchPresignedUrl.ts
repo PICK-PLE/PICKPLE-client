@@ -1,10 +1,7 @@
-
 import { get } from '@apis/api';
 
-import { ApiResponseType } from '@types';
-
 import { components } from '@schema';
-
+import { ApiResponseType } from '@types';
 
 type PreSignedUrlResponse = components['schemas']['PreSignedUrlResponse'];
 

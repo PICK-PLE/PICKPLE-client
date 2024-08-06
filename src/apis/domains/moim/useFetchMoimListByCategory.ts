@@ -1,13 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 
-
 import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 
-import { ApiResponseType } from '@types';
-
 import { components } from '@schema';
-
+import { ApiResponseType } from '@types';
 
 type MoimByCategoryResponse = components['schemas']['MoimByCategoryResponse'];
 

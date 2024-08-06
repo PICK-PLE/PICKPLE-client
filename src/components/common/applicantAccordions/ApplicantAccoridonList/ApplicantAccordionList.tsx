@@ -4,8 +4,6 @@ import { applicantAccordionListLayout } from './ApplicantAccordionList.style';
 
 import { components } from '@schema';
 
-
-
 interface ApplicantAccordionListProps {
   moimId: number;
   applicantData: components['schemas']['SubmitterInfo'][];

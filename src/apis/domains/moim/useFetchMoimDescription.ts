@@ -5,9 +5,6 @@ import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 
 import { ApiResponseType } from '@types';
 
-
-
-
 const getMoimDescription = async (moimId: string): Promise<string | null> => {
   try {
     const response = await get<ApiResponseType<{ description: string }>>(

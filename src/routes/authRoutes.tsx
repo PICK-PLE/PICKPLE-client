@@ -3,7 +3,6 @@ import { Login, Redirection } from '@pages/auth/page/index';
 
 import { RouteType } from '@types';
 
-
 const authRoutes: RouteType[] = [
   {
     path: routePath.LOGIN,

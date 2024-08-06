@@ -33,24 +33,22 @@ export const plusAndMinusIconStyle = css`
   pointer-events: none; /* 클릭 이벤트가 아래 요소에 전달되도록 설정 */
 `;
 
-export const minusStyle = (people: number) => (theme: Theme) =>
-  css`
-    circle {
-      stroke: ${people <= 1 ? theme.color.lightgray1 : theme.color.purple1};
-    }
-    path {
-      fill: ${people <= 1 ? theme.color.lightgray1 : theme.color.purple1};
-    }
-  `;
-export const plusStyle = (people: number) => (theme: Theme) =>
-  css`
-    circle {
-      stroke: ${people >= 15 ? theme.color.lightgray1 : theme.color.purple1};
-    }
-    path {
-      fill: ${people >= 15 ? theme.color.lightgray1 : theme.color.purple1};
-    }
-  `;
+export const minusStyle = (people: number) => (theme: Theme) => css`
+  circle {
+    stroke: ${people <= 1 ? theme.color.lightgray1 : theme.color.purple1};
+  }
+  path {
+    fill: ${people <= 1 ? theme.color.lightgray1 : theme.color.purple1};
+  }
+`;
+export const plusStyle = (people: number) => (theme: Theme) => css`
+  circle {
+    stroke: ${people >= 15 ? theme.color.lightgray1 : theme.color.purple1};
+  }
+  path {
+    fill: ${people >= 15 ? theme.color.lightgray1 : theme.color.purple1};
+  }
+`;
 
 export const disabledStyle = css`
   pointer-events: none;

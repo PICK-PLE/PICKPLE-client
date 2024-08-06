@@ -1,7 +1,6 @@
 import { useAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
 
-
 import { Button, ProgressBar } from '@components';
 import { graphicImage } from '@constants';
 import { useEasyNavigate } from '@hooks';

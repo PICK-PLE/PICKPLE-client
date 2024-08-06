@@ -3,7 +3,7 @@ import { css, Theme } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const classApplyQuestionLayout = css`
-width: 100%;
+  width: 100%;
   padding-top: 6rem;
 `;
 

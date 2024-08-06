@@ -8,14 +8,14 @@ const homePages = {
 };
 
 const classListPages = {
-  CLASS_LIST: '/class-list'
+  CLASS_LIST: '/class-list',
 };
 
 const classPages = {
   CLASS_DETAIL: '/class/:moimId',
   CLASS_NOTICE_POST: '/class/:moimId/notice/post',
   CLASS_POST: '/class/post/:step',
-  CLASS_APPLY: '/class/:moimId/apply'
+  CLASS_APPLY: '/class/:moimId/apply',
 };
 
 const myPagePages = {

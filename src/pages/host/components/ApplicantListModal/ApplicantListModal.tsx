@@ -22,8 +22,6 @@ import {
 
 import { components } from '@schema';
 
-
-
 interface ApplicantListModalProps {
   submitterList: components['schemas']['SubmitterInfo'][];
   onClose: () => void;

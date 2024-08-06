@@ -1,7 +1,6 @@
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
-
 import { useFetchMyHost } from '@apis/domains/moim/useFetchMyHost';
 
 import { LogoHeader, Modal, NavigateBox, Spinner } from '@components';

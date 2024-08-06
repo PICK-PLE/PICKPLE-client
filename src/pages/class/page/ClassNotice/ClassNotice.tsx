@@ -1,14 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-
 import { usePostNotice } from '@apis/domains/notice';
 import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
 
 import { Button, Header, ImageSelect, Input, Spinner, TextArea } from '@components';
 import { handleUpload } from 'src/utils/image';
-
-
 
 import {
   imageSelectWrapper,
@@ -18,7 +15,6 @@ import {
 } from './ClassNotice.style';
 
 import { MoimIdPathParameterType } from '@types';
-
 
 const ClassNotice = () => {
   const { moimId } = useParams<MoimIdPathParameterType>();

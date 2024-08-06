@@ -120,7 +120,7 @@ const ClassApplyQuestion = ({ handleChangePage }: ClassApplyProps) => {
   };
 
   const handleButtonClick = async () => {
-   await mutateAsync(requestData);
+    await mutateAsync(requestData);
     handleChangePage('deposit');
   };
 

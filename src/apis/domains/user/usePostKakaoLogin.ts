@@ -8,9 +8,8 @@ import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { useEasyNavigate } from '@hooks';
 import { userAtom } from '@stores';
 
-import { ApiResponseType } from '@types';
-
 import { components } from '@schema';
+import { ApiResponseType } from '@types';
 
 type LoginSuccessResponse = components['schemas']['LoginSuccessResponse'];
 

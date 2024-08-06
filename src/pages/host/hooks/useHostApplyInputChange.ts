@@ -1,7 +1,6 @@
 import { useAtom } from 'jotai';
 import React from 'react';
 
-
 import { hostApplyAtom } from '@stores';
 
 import { components } from '@schema';

@@ -1,7 +1,6 @@
 import { useAtom } from 'jotai';
 import { useState } from 'react';
 
-
 import { useFetchHostMoimInfo } from '@apis/domains/moim/useFetchHostMoimInfo';
 
 import { Header, Spinner } from '@components';
@@ -56,9 +55,7 @@ const HostMyClass = () => {
           />
         ) : (
           <div css={hostMyClassCardContainer}>
-            {data?.map((data) => (
-              <HostMyClassCard key={data.moimId} hostMyClassData={data} />
-            ))}
+            {data?.map((data) => <HostMyClassCard key={data.moimId} hostMyClassData={data} />)}
           </div>
         )}
       </article>

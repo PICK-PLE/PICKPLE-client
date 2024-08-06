@@ -2,22 +2,21 @@ import { Theme, css } from '@emotion/react';
 
 import { flexGenerator } from '@styles/generator';
 
-export const headerContainer = (isLine: boolean) => (theme: Theme) =>
-  css`
-    position: fixed;
-    top: 0;
-    z-index: 2;
-    ${flexGenerator('row', 'space-between', 'center')};
-    width: 100%;
-    max-width: 43rem;
-    height: 6rem;
-    padding: 0 2rem;
-    gap: 1rem;
+export const headerContainer = (isLine: boolean) => (theme: Theme) => css`
+  position: fixed;
+  top: 0;
+  z-index: 2;
+  ${flexGenerator('row', 'space-between', 'center')};
+  width: 100%;
+  max-width: 43rem;
+  height: 6rem;
+  padding: 0 2rem;
+  gap: 1rem;
 
-    border-bottom: ${isLine ? `0.1rem solid ${theme.color.lightgray1}` : 'none'};
+  border-bottom: ${isLine ? `0.1rem solid ${theme.color.lightgray1}` : 'none'};
 
-    background-color: ${theme.color.white};
-  `;
+  background-color: ${theme.color.white};
+`;
 
 export const headerTitle = (theme: Theme) => css`
   ${flexGenerator('row', 'flex-start', 'center')}

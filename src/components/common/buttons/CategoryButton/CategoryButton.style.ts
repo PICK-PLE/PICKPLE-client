@@ -8,45 +8,42 @@ export const categoryButtonContainer = css`
   gap: 0.5rem;
 `;
 
-export const categoryButtonWrapper = (isSelected: boolean) => (theme: Theme) =>
-  css`
-    ${flexGenerator('column')};
+export const categoryButtonWrapper = (isSelected: boolean) => (theme: Theme) => css`
+  ${flexGenerator('column')};
 
-    height: 5.7rem;
-    align-self: stretch;
+  height: 5.7rem;
+  align-self: stretch;
 
-    border-radius: 10px;
-    background: ${isSelected ? theme.color.purple5 : theme.color.background};
-    border: ${isSelected ? `1px solid ${theme.color.purple2}` : 'none'};
+  border-radius: 10px;
+  background: ${isSelected ? theme.color.purple5 : theme.color.background};
+  border: ${isSelected ? `1px solid ${theme.color.purple2}` : 'none'};
 
-    color: ${theme.color.lightgray2};
+  color: ${theme.color.lightgray2};
 
-    cursor: pointer;
-  `;
+  cursor: pointer;
+`;
 
-export const categoryButtonStyle = (isSelected: boolean) => (theme: Theme) =>
-  css`
-    border: none;
-    background: none;
-    cursor: pointer;
+export const categoryButtonStyle = (isSelected: boolean) => (theme: Theme) => css`
+  border: none;
+  background: none;
+  cursor: pointer;
 
-    & span {
-      fill: ${isSelected ? theme.color.purple2 : theme.color.darkgray}; /* SVG 색상 변경 */
+  & span {
+    fill: ${isSelected ? theme.color.purple2 : theme.color.darkgray}; /* SVG 색상 변경 */
+  }
+`;
+
+export const iconWrapper = (isSelected: boolean) => (theme: Theme) => css`
+  ${flexGenerator()}
+  width: 3.6rem;
+  height: 3.6rem;
+
+  & svg {
+    path {
+      stroke: ${isSelected ? theme.color.purple2 : ''};
     }
-  `;
-
-export const iconWrapper = (isSelected: boolean) => (theme: Theme) =>
-  css`
-    ${flexGenerator()}
-    width: 3.6rem;
-    height: 3.6rem;
-
-    & svg {
-      path {
-        stroke: ${isSelected ? theme.color.purple2 : ''};
-      }
-    }
-  `;
+  }
+`;
 
 export const textStyle = (theme: Theme) => css`
   color: ${theme.color.lightgray2};

@@ -20,7 +20,11 @@ interface ImageSelectProps extends InputHTMLAttributes<HTMLInputElement> {
   maxImageLength: number;
 }
 
-const ImageSelect = ({ onFileSelect, isMultiple = false, maxImageLength = 1 }: ImageSelectProps) => {
+const ImageSelect = ({
+  onFileSelect,
+  isMultiple = false,
+  maxImageLength = 1,
+}: ImageSelectProps) => {
   const [previewURLs, setPreviewURLs] = useState<string[]>([]);
 
   const inputRef = useRef<HTMLInputElement>(null);

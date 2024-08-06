@@ -42,7 +42,7 @@ export const depositFooterStyle = css`
 `;
 
 export const depositCautionTextStyle = (theme: Theme) => css`
-padding: 0;
+  padding: 0;
   background-color: transparent;
   color: ${theme.color.midgray1};
   border: none;
@@ -50,7 +50,4 @@ padding: 0;
   ${theme.font['subhead03-m-16']}
 
   cursor: pointer;
-
-
- 
 `;

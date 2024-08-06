@@ -49,14 +49,14 @@ export const completeCautionTitleStyle = (theme: Theme) => css`
 `;
 
 export const completeTextStyle = (theme: Theme) => css`
-  padding-left: 1.5rem; 
-  margin-bottom: 1rem;  
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
 
   li {
     ${theme.font['body02-r-14']}
     color: ${theme.color.midgray1};
-    margin-bottom: 0.5rem; 
-    list-style-type: disc; 
+    margin-bottom: 0.5rem;
+    list-style-type: disc;
   }
 `;
 

@@ -1,7 +1,6 @@
 import Lottie from 'lottie-react';
 import { useNavigate } from 'react-router-dom';
 
-
 import { useFetchMoimBanner, useFetchMoimCategories } from '@apis/domains/moim';
 
 import { LogoHeader, Spinner } from '@components';

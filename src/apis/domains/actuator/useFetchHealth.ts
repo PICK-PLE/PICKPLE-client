@@ -3,7 +3,6 @@ import { useQuery } from '@tanstack/react-query';
 import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 
-
 const getHealth = async () => {
   const response = await get('/actuator/health');
 

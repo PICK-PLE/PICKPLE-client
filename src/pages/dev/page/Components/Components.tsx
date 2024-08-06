@@ -1,4 +1,3 @@
-
 // import { ApplicantListModal } from '@pages/host/components/index';
 // import { DepositModal } from '@pages/guest/components/index';
 
@@ -73,7 +72,6 @@ import {
 import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
 import { options } from 'src/constants/options';
 import useToast from 'src/hooks/useToast';
-
 
 import {
   iconSvgStyle,

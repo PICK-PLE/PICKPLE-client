@@ -2,7 +2,6 @@ import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-
 import { LogoHeader, Modal, NavigateBox, SimpleUserProfile } from '@components';
 import { images, routePath } from '@constants';
 import { useEasyNavigate } from '@hooks';

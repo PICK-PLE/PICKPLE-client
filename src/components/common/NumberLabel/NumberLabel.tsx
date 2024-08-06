@@ -7,7 +7,6 @@ import {
   textStyle,
 } from 'src/components/common/NumberLabel/NumberLabel.style';
 
-
 const NumberLabel = ({ children, ...props }: PropsWithChildren) => {
   return (
     <div css={wrapperStyle} {...props}>

@@ -1,7 +1,6 @@
 import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
-
 import { useFetchGuestApply, useFetchGuestParticipate } from '@apis/domains/moim';
 
 import { FilterSelect, Header, Spinner } from '@components';
