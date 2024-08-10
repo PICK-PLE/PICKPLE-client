@@ -12,7 +12,7 @@ import {
   homeRoutes,
   hostRoutes,
   myPageRoutes,
-  //devRoutes,
+  devRoutes,
   adminRoutes
 
 } from '@routes';
@@ -27,8 +27,8 @@ const allRoutes = [
   ...hostRoutes,
   ...myPageRoutes,
   ...errorPageRoutes,
-  ...adminRoutes
-  // ...devRoutes,
+  ...adminRoutes,
+  ...devRoutes,
 ];
 
 const protectedRoutes = allRoutes.map((route) => ({

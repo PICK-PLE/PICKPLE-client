@@ -7,7 +7,7 @@ import hostRoutes from './hostRoutes';
 import myPageRoutes from './myPageRoutes';
 import adminRoutes from 'src/routes/adminRoutes';
 
-// import devRoutes from './devRoutes';
+import devRoutes from './devRoutes';
 
 export {
   authRoutes,
@@ -17,6 +17,6 @@ export {
   homeRoutes,
   hostRoutes,
   myPageRoutes,
-  //devRoutes,
+  devRoutes,
   adminRoutes
 };
