@@ -45,7 +45,7 @@ const postAnswerList = async ({
   }
 };
 
-export const usePostAnswerList = ({ handleChangePage }: ClassApplyProps) => {
+export const usePostAnswerList = ({ handlePageChange }: ClassApplyProps) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   return useMutation({
@@ -53,7 +53,7 @@ export const usePostAnswerList = ({ handleChangePage }: ClassApplyProps) => {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.ANSWER_LIST] });
       if (data.status === 20008) {
-        handleChangePage();
+        handlePageChange();
       } else {
         alert(data.message);
         navigate(-1);

@@ -14,24 +14,24 @@ const ClassApply = () => {
   const [nextStep, setNextStep] = useState('');
 
   useEffect(() => {
-    const handleChangePage = () => {
+    const handlePageChange = () => {
       setApplyStep(nextStep);
     };
 
     switch (applyStep) {
       case 'rule':
         setProgress(25);
-        setApplyContent(<ClassApplyRule handleChangePage={handleChangePage} />);
+        setApplyContent(<ClassApplyRule handlePageChange={handlePageChange} />);
         setNextStep('question');
         break;
       case 'question':
         setProgress(50);
-        setApplyContent(<ClassApplyQuestion handleChangePage={handleChangePage} />);
+        setApplyContent(<ClassApplyQuestion handlePageChange={handlePageChange} />);
         setNextStep('deposit');
         break;
       case 'deposit':
         setProgress(75);
-        setApplyContent(<ClassApplyDeposit handleChangePage={handleChangePage} />);
+        setApplyContent(<ClassApplyDeposit handlePageChange={handlePageChange} />);
         setNextStep('complete');
         break;
       case 'complete':

@@ -11,12 +11,12 @@ import {
 } from './ClassApplyRule.style';
 
 export interface ClassApplyProps {
-  handleChangePage: () => void;
+  handlePageChange: () => void;
 }
 
-const ClassApplyRule = ({ handleChangePage }: ClassApplyProps) => {
+const ClassApplyRule = ({ handlePageChange }: ClassApplyProps) => {
   const handleButtonClick = () => {
-    handleChangePage();
+    handlePageChange();
   };
 
   return (

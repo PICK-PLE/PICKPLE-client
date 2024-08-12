@@ -19,7 +19,7 @@ import {
 
 import { MoimIdPathParameterType } from '@types';
 
-const ClassApplyDeposit = ({ handleChangePage }: ClassApplyProps) => {
+const ClassApplyDeposit = ({ handlePageChange }: ClassApplyProps) => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -56,7 +56,7 @@ const ClassApplyDeposit = ({ handleChangePage }: ClassApplyProps) => {
               moimId={moimId ?? ''}
               isModalOpen={isModalOpen}
               handleModalClose={handleModalClose}
-              handleChangePage={handleChangePage}
+              handlePageChange={handlePageChange}
             />
           </main>
         </div>

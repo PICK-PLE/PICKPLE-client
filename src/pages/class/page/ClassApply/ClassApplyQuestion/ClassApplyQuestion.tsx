@@ -40,7 +40,7 @@ export interface DataType {
   };
 }
 
-const ClassApplyQuestion = ({ handleChangePage }: ClassApplyProps) => {
+const ClassApplyQuestion = ({ handlePageChange }: ClassApplyProps) => {
   const { moimId } = useParams<MoimIdPathParameterType>();
 
   const [questionList, setQuestionList] = useState<string[]>([]);
@@ -58,7 +58,7 @@ const ClassApplyQuestion = ({ handleChangePage }: ClassApplyProps) => {
     },
   });
 
-  const { mutate } = usePostAnswerList({ handleChangePage });
+  const { mutate } = usePostAnswerList({ handlePageChange });
 
   useEffect(() => {
     if (isSuccess && questionData) {

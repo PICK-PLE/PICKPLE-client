@@ -27,14 +27,14 @@ export interface GuestClassRegisterCardProps {
   moimId: string;
   isModalOpen?: boolean;
   handleModalClose?: () => void;
-  handleChangePage?: () => void;
+  handlePageChange?: () => void;
 }
 
 const GuestClassRegisterCard = ({
   moimId,
   isModalOpen,
   handleModalClose = () => {},
-  handleChangePage = () => {},
+  handlePageChange = () => {},
 }: GuestClassRegisterCardProps) => {
   const { data: appliedMoimData, isLoading } = useFetchSubmittedMoimDetail(Number(moimId));
 
@@ -56,7 +56,7 @@ const GuestClassRegisterCard = ({
 
   const handleButtonClick = () => {
     handleModalClose();
-    handleChangePage();
+    handlePageChange();
   };
 
   return (
