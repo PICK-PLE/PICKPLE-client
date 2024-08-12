@@ -11,12 +11,12 @@ import {
 } from './ClassApplyRule.style';
 
 export interface ClassApplyProps {
-  handleChangePage: (step: string) => void;
+  handleChangePage: () => void;
 }
 
 const ClassApplyRule = ({ handleChangePage }: ClassApplyProps) => {
   const handleButtonClick = () => {
-    handleChangePage('question');
+    handleChangePage();
   };
 
   return (

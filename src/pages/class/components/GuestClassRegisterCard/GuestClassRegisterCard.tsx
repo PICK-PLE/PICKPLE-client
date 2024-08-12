@@ -27,7 +27,7 @@ export interface GuestClassRegisterCardProps {
   moimId: string;
   isModalOpen?: boolean;
   handleModalClose?: () => void;
-  handleChangePage?: (step: string) => void;
+  handleChangePage?: () => void;
 }
 
 const GuestClassRegisterCard = ({
@@ -56,7 +56,7 @@ const GuestClassRegisterCard = ({
 
   const handleButtonClick = () => {
     handleModalClose();
-    handleChangePage('complete');
+    handleChangePage();
   };
 
   return (

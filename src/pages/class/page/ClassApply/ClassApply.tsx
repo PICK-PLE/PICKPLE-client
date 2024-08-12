@@ -10,38 +10,42 @@ import ClassApplyRule from '@pages/class/page/ClassApply/ClassApplyRule/ClassApp
 const ClassApply = () => {
   const [applyStep, setApplyStep] = useState('rule');
   const [progress, setProgress] = useState(0);
-  const [renderPage, setRenderPage] = useState<ReactElement | null>(null);
-
-  const handleChangePage = (step: string) => {
-    setApplyStep(step);
-  };
+  const [applyContent, setApplyContent] = useState<ReactElement | null>(null);
+  const [nextStep, setNextStep] = useState('');
 
   useEffect(() => {
+    const handleChangePage = () => {
+      setApplyStep(nextStep);
+    };
+
     switch (applyStep) {
       case 'rule':
         setProgress(25);
-        setRenderPage(<ClassApplyRule handleChangePage={handleChangePage} />);
+        setApplyContent(<ClassApplyRule handleChangePage={handleChangePage} />);
+        setNextStep('question');
         break;
       case 'question':
         setProgress(50);
-        setRenderPage(<ClassApplyQuestion handleChangePage={handleChangePage} />);
+        setApplyContent(<ClassApplyQuestion handleChangePage={handleChangePage} />);
+        setNextStep('deposit');
         break;
       case 'deposit':
         setProgress(75);
-        setRenderPage(<ClassApplyDeposit handleChangePage={handleChangePage} />);
+        setApplyContent(<ClassApplyDeposit handleChangePage={handleChangePage} />);
+        setNextStep('complete');
         break;
       case 'complete':
         setProgress(100);
-        setRenderPage(<ClassApplyComplete />);
+        setApplyContent(<ClassApplyComplete />);
     }
-  }, [applyStep]);
+  }, [applyStep, nextStep]);
 
   return (
     <>
       <LogoHeader />
       <div css={classApplyContainer}>
         <ProgressBar progress={progress} />
-        {renderPage}
+        {applyContent}
       </div>
     </>
   );

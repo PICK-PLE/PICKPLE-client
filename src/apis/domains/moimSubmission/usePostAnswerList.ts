@@ -53,7 +53,7 @@ export const usePostAnswerList = ({ handleChangePage }: ClassApplyProps) => {
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.ANSWER_LIST] });
       if (data.status === 20008) {
-        handleChangePage('deposit');
+        handleChangePage();
       } else {
         alert(data.message);
         navigate(-1);
