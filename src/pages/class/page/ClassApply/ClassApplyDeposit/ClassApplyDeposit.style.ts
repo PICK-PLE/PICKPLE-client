@@ -2,10 +2,6 @@ import { css, Theme } from '@emotion/react';
 
 import { flexGenerator } from '@styles/generator';
 
-export const classApplyDepositLayout = css`
-  padding-top: 6rem;
-`;
-
 export const depositArticleLayout = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   gap: 5.4rem;

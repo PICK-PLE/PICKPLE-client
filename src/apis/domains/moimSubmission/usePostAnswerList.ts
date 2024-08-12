@@ -5,6 +5,7 @@ import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 
 import { DataType } from '@pages/class/page/ClassApply/ClassApplyQuestion/ClassApplyQuestion';
+import { ClassApplyProps } from '@pages/class/page/ClassApply/ClassApplyRule/ClassApplyRule';
 
 import { ErrorResponse, ErrorType, MutateResponseType } from '@types';
 
@@ -44,14 +45,16 @@ const postAnswerList = async ({
   }
 };
 
-export const usePostAnswerList = () => {
+export const usePostAnswerList = ({ handleChangePage }: ClassApplyProps) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({ moimId, body }: PostAnswerRequest) => postAnswerList({ moimId, body }),
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.ANSWER_LIST] });
-      if (data.status !== 20008) {
+      if (data.status === 20008) {
+        handleChangePage('deposit');
+      } else {
         alert(data.message);
         navigate(-1);
       }

@@ -2,10 +2,6 @@ import { css, Theme } from '@emotion/react';
 
 import { flexGenerator } from '@styles/generator';
 
-export const classApplyCompleteLayout = css`
-  padding-top: 6rem;
-`;
-
 export const completeArticleLayout = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   gap: 8rem;

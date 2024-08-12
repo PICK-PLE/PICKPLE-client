@@ -38,7 +38,3 @@ export const ruleFooterStyle = css`
   width: 100%;
   margin-top: auto;
 `;
-
-export const classApplyRuleContainer = css`
-  padding-top: 6rem;
-`;
