@@ -68,23 +68,11 @@ const ClassApplyQuestion = ({ handlePageChange }: ClassApplyProps) => {
     }
   }, [isSuccess, questionData]);
 
-  // answerList의 값을 업데이트하는 함수
-  const updateAnswerList = (key: string, value: string) => {
+  const updateAnswer = (list: 'answerList' | 'accountList', key: string, value: string) => {
     setAnswer((prevState) => ({
       ...prevState,
-      answerList: {
-        ...prevState.answerList,
-        [key]: value,
-      },
-    }));
-  };
-
-  // accountList의 값을 업데이트하는 함수
-  const updateAccountList = (key: string, value: string) => {
-    setAnswer((prevState) => ({
-      ...prevState,
-      accountList: {
-        ...prevState.accountList,
+      [list]: {
+        ...prevState[list],
         [key]: value,
       },
     }));
@@ -142,7 +130,7 @@ const ClassApplyQuestion = ({ handlePageChange }: ClassApplyProps) => {
                     <TextArea
                       value={answer.answerList[`answer${index + 1}`]}
                       onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
-                        updateAnswerList(`answer${index + 1}`, e.target.value)
+                        updateAnswer('answerList', `answer${index + 1}`, e.target.value)
                       }
                       maxLength={200}
                       size="medium"
@@ -175,7 +163,7 @@ const ClassApplyQuestion = ({ handlePageChange }: ClassApplyProps) => {
                 isCountValue={false}
                 value={answer.accountList.holder}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  updateAccountList('holder', e.target.value)
+                  updateAnswer('accountList', 'holder', e.target.value)
                 }
               />
               <Input
@@ -185,13 +173,13 @@ const ClassApplyQuestion = ({ handlePageChange }: ClassApplyProps) => {
                 isCountValue={false}
                 value={answer.accountList.bank}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  updateAccountList('bank', e.target.value)
+                  updateAnswer('accountList', 'bank', e.target.value)
                 }
               />
               <AccountNumberInput
                 value={answer.accountList.accountNumber}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                  updateAccountList('accountNumber', e.target.value)
+                  updateAnswer('accountList', 'accountNumber', e.target.value)
                 }
               />
               <span css={questionRefundTextStyle}>
