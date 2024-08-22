@@ -17,7 +17,7 @@ import {
 } from '@routes';
 import errorPageRoutes from './routes/errorRoutes';
 import PrivateRoute from './routes/PrivateRoute/PrivateRoute';
-import { wrapRoutes } from '@utils';
+import { wrapRoutes } from '@hooks';
 
 const allRoutes = [
   ...categoriesRoutes,
