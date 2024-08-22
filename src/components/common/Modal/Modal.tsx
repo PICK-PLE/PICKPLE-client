@@ -6,7 +6,7 @@ interface ModalProps {
   onClose: () => void;
 }
 
-const potalElement = document.getElementById('modal') as HTMLElement;
+const portalElement = document.getElementById('modal') as HTMLElement;
 
 const Modal = ({ onClose, children }: PropsWithChildren<ModalProps>) => {
   return createPortal(
@@ -16,7 +16,7 @@ const Modal = ({ onClose, children }: PropsWithChildren<ModalProps>) => {
         {children}
       </div>
     </>,
-    potalElement
+    portalElement
   );
 };
 
