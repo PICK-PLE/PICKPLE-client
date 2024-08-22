@@ -16,8 +16,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { CategoryEmptyView, ClassListCard } from '@pages/categories/components';
 import { useFetchMoimListByCategory } from '@apis/domains/moim/useFetchMoimListByCategory';
 import { useEffect, useRef } from 'react';
-import Error from '@pages/error/Error';
 import { useFetchMoimCategories } from '@apis/domains/moim';
+import { Error } from '@pages/error';
 
 const Categories = () => {
   const navigate = useNavigate();

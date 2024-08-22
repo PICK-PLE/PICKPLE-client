@@ -1,5 +1,5 @@
 import { ErrorBoundary, Spinner } from '@components';
-import Error from '@pages/error/Error';
+import { Error } from '@pages/error';
 import { QueryErrorResetBoundary } from '@tanstack/react-query';
 import { ReactNode, Suspense } from 'react';
 

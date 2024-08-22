@@ -17,10 +17,10 @@ import {
 } from './GuestClassRegisterCard.style';
 import { IcDate, IcOffline, IcOneline } from '@svg';
 import { useFetchSubmittedMoimDetail } from '@apis/domains/moim';
-import Error from '@pages/error/Error';
 import { Modal, Spinner } from '@components';
 import { DepositModal } from '@pages/guest/components';
 import { useNavigate } from 'react-router-dom';
+import { Error } from '@pages/error';
 
 export interface GuestClassRegisterCardProps {
   moimId: string;

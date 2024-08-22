@@ -17,8 +17,8 @@ import { ApplicantListModal, ClassManageEmptyView } from '@pages/host/components
 import { useToast } from '@hooks';
 import { useFetchSubmitterList } from '@apis/domains/moimSubmission/useFetchSubmitterList';
 import { useParams } from 'react-router-dom';
-import Error from '@pages/error/Error';
 import { components } from '@schema';
+import { Error } from '@pages/error';
 type SubmitterInfo = components['schemas']['SubmitterInfo'];
 
 const MyClassManage = () => {
