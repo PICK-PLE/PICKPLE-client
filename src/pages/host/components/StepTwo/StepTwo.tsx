@@ -78,8 +78,6 @@ const StepTwo = ({ onNext }: StepProps) => {
     return <Spinner />;
   }
 
-  console.log(hostApplyState);
-
   return (
     <>
       <ProgressBar progress={66.6} />
