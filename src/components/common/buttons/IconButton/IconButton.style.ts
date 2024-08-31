@@ -8,12 +8,11 @@ export const buttonStyle = (theme: Theme) => css`
   padding: 0.8rem 1rem;
 
   ${theme.font['subhead05-sb-14']};
-  background-color: ${theme.color.white};
-  color: ${theme.color.purple1};
+  background-color: ${theme.color.purple1};
+  color: ${theme.color.white};
 
-  border: 1px solid ${theme.color.purple1};
+  border: none;
   border-radius: 10px;
-  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.1);
 
   cursor: pointer;
 `;
