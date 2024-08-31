@@ -31,6 +31,7 @@ const hostPages = {
   HOST_MY_CLASS: '/mypage/host/myclass',
   HOST_MY_CLASS_MANAGE: '/mypage/host/myclass/manage/:moimId',
   HOST_APPLY: '/host/apply/:step',
+  HOST_INFO: '/mypage/host/info',
 };
 
 const devPages = {
