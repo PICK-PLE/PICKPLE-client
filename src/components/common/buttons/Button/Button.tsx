@@ -3,7 +3,7 @@ import { buttonSize, buttonStyle, disabledStyle } from './Button.style';
 import { SerializedStyles, Theme } from '@emotion/react';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: 'large' | 'medium' | 'small' | 'xSmall' | 'stroke' | 'round';
+  variant: 'large' | 'medium' | 'small' | 'xSmall' | 'stroke' | 'round' | 'smallStroke' | 'xSmallStroke';
   disabled?: boolean;
   customStyle?: ((theme: Theme) => SerializedStyles) | SerializedStyles;
 }
