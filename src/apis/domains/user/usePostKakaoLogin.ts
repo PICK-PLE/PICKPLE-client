@@ -18,6 +18,7 @@ const postKakaoLogin = async (
     `/user/login?authorizationCode=${authCode}`,
     {
       socialType: 'KAKAO',
+      redirectUri: 'http://localhost:5173/kakao/redirection',
     }
   );
 
