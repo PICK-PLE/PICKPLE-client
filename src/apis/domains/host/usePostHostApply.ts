@@ -4,7 +4,7 @@ import { useEasyNavigate } from '@hooks';
 import { components } from '@schema';
 import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { ErrorResponse, ErrorType, MutateResponseType } from '@types';
-import { Dispatch, RefObject, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 
 type HostApplyRequest = components['schemas']['SubmitterCreateRequest'];
 
@@ -21,10 +21,10 @@ const postHostApply = async (hostApplyState: HostApplyRequest): Promise<MutateRe
 };
 
 export const usePostHostApply = (
-  resetHostApplyState: () => void,
+  // resetHostApplyState: () => void,
   onNext: () => void,
   setIsNicknameDuplicate: Dispatch<SetStateAction<boolean>>,
-  nicknameRef: RefObject<HTMLInputElement>
+  // nicknameRef: RefObject<HTMLInputElement>
 ) => {
   const queryClient = useQueryClient();
   const { goGuestMyPage } = useEasyNavigate();
@@ -33,13 +33,13 @@ export const usePostHostApply = (
     mutationFn: (hostApplyState: HostApplyRequest) => postHostApply(hostApplyState),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.HOST_APPLY] });
-      resetHostApplyState();
+      // resetHostApplyState();
       onNext();
     },
     onError: (error: ErrorType) => {
       if (error.status === 40008) {
         setIsNicknameDuplicate(true);
-        nicknameRef.current?.focus();
+        // nicknameRef.current?.focus();
       } else {
         alert(error.message);
         goGuestMyPage();
