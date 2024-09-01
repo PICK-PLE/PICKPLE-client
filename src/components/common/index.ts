@@ -35,7 +35,7 @@ import ProgressBar from './ProgressBar/ProgressBar';
 import FilterSelect from './select/FilterSelect/FilterSelect';
 import Select from './select/Select/Select';
 import { Spinner } from './Spinner/Spinner';
-
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 export {
   IconButton,
   SocialLoginButton,
@@ -73,4 +73,5 @@ export {
   IconText,
   CategorySelectBox,
   Spinner,
+  ErrorBoundary,
 };
