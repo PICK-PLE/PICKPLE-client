@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 export const formatCreatedDate = (dateString: string) => {
   const [datePart, timePart] = dateString.split(' ');
   const formattedDateString = `${datePart.replace(/\./g, '-')}T${timePart}`;
-  
+
   const date = dayjs(formattedDateString);
   const now = dayjs();
 

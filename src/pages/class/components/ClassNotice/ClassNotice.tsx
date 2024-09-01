@@ -1,7 +1,7 @@
-import { components } from '@schema';
+import { noticeCardContainer } from './ClassNotice.style';
 import { NoticeCard } from '..';
 
-import { noticeCardContainer } from './ClassNotice.style';
+import { components } from '@schema';
 
 type NoticeListGetByMoimResponse = components['schemas']['NoticeListGetByMoimResponse'];
 

@@ -1,12 +1,14 @@
-import { instance, post } from '@apis/api';
-import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
-import { useEasyNavigate } from '@hooks';
-import { userAtom } from '@stores';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { AxiosResponse } from 'axios';
 import { useAtom } from 'jotai';
 
+import { instance, post } from '@apis/api';
+import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+
+import { useEasyNavigate } from '@hooks';
+import { userAtom } from '@stores';
+
 import { components } from '@schema';
-import { AxiosResponse } from 'axios';
 import { ApiResponseType } from '@types';
 
 type LoginSuccessResponse = components['schemas']['LoginSuccessResponse'];
@@ -18,6 +20,7 @@ const postKakaoLogin = async (
     `/user/login?authorizationCode=${authCode}`,
     {
       socialType: 'KAKAO',
+      redirectUri: 'http://localhost:5173/kakao/redirection',
     }
   );
 

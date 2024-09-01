@@ -1,4 +1,5 @@
 import { HTMLAttributes } from 'react';
+
 import { NumberLabel } from '@components';
 import { noticeStyle, textStyle } from 'src/components/common/Notice/Notice.style';
 

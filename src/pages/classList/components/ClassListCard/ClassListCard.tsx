@@ -6,9 +6,10 @@ import {
   titleTextWrapper,
   timeTextWraaper,
   classCardCustomStyle,
-} from '@pages/categories/components/ClassListCard/ClassListCard.style';
-import { components } from '@schema';
+} from '@pages/classList/components/ClassListCard/ClassListCard.style';
 import { dDayText } from '@utils';
+
+import { components } from '@schema';
 
 type MoimByCategoryResponse = components['schemas']['MoimByCategoryResponse'];
 

@@ -1,5 +1,7 @@
-import { IcShare } from '@svg';
 import { ButtonHTMLAttributes } from 'react';
+
+import { IcShare } from '@svg';
+
 import { buttonStyle, iconStyle } from './ShareButton.style';
 
 export interface ShareButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

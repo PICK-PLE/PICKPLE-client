@@ -1,4 +1,7 @@
 import { useState } from 'react';
+
+import { IcDropdownDown, IcDropdownUp } from '@svg';
+
 import {
   iconStyle,
   selectContainer,
@@ -6,7 +9,6 @@ import {
   sortList,
   selectedOptionStyle,
 } from './FilterSelect.style';
-import { IcDropdownDown, IcDropdownUp } from '@svg';
 
 interface SelectProps {
   options: string[];

@@ -1,4 +1,7 @@
 import React, { useRef } from 'react';
+
+import { IcDropdownPlatformDown } from '@svg';
+
 import {
   timeSelectWrapper,
   selectStyle,
@@ -8,7 +11,6 @@ import {
   labelWrapper,
   svgStyle,
 } from './TimeSelect.style';
-import { IcDropdownPlatformDown } from '@svg';
 
 interface TimeselectProps {
   startTime: number | null;

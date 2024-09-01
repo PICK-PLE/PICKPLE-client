@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const containerStyle = (theme: Theme) => css`
@@ -36,7 +37,6 @@ export const minusStyle = (people: number) => (theme: Theme) => css`
       fill: ${theme.color.purple6};
     }
   }
-
 `;
 export const plusStyle = (people: number) => (theme: Theme) => css`
   circle {
