@@ -1,4 +1,5 @@
 import { css, Theme } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const ruleArticleLayout = css`
@@ -36,8 +37,4 @@ export const ruleHStyle = (theme: Theme) => css`
 export const ruleFooterStyle = css`
   width: 100%;
   margin-top: auto;
-`;
-
-export const classApplyRuleContainer = css`
-  padding-top: 6rem;
 `;

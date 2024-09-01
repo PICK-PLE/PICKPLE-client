@@ -1,4 +1,12 @@
 import {
+  PatchSubmitterRequest,
+  usePatchSubmitter,
+} from '@apis/domains/moimSubmission/usePatchSubmitter';
+
+import { Button, SimpleUserProfile } from '@components';
+import { images } from '@constants';
+
+import {
   applicantCountStyle,
   countTextStyle,
   headerStyle,
@@ -11,13 +19,8 @@ import {
   textDivStyle,
   ulStyle,
 } from './ApplicantListModal.style';
-import { Button, SimpleUserProfile } from '@components';
+
 import { components } from '@schema';
-import {
-  PatchSubmitterRequest,
-  usePatchSubmitter,
-} from '@apis/domains/moimSubmission/usePatchSubmitter';
-import { images } from '@constants';
 
 interface ApplicantListModalProps {
   submitterList: components['schemas']['SubmitterInfo'][];

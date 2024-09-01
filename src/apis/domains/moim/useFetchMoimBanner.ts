@@ -1,6 +1,10 @@
+import { useQuery } from '@tanstack/react-query';
+
+import { get } from '@apis/api';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
-import { get } from '@apis/api';
+
+
 import { ApiResponseType } from '@types';
 
 const getMoimBanner = async (): Promise<number | null> => {

@@ -1,14 +1,15 @@
 import { css, Theme } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
-export const adminLayoutStyle = (theme: Theme) =>css`
+export const adminLayoutStyle = (theme: Theme) => css`
   position: absolute;
   right: 0;
   top: 0;
   width: 100vw;
   height: 100vh;
   background-color: ${theme.color.white};
-`
+`;
 
 export const tableLayoutStyle = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
@@ -18,15 +19,15 @@ export const tableLayoutStyle = css`
 `;
 
 export const inputLayoutStyle = (theme: Theme) => css`
-${flexGenerator('column', 'center', 'center')}
-gap: 1rem;
-height: 50%;
-${theme.font['subhead05-sb-14']}
-`
+  ${flexGenerator('column', 'center', 'center')}
+  gap: 1rem;
+  height: 50%;
+  ${theme.font['subhead05-sb-14']}
+`;
 
 export const commonContainerStyle = css`
-${flexGenerator('column', 'center', 'center')}
-`
+  ${flexGenerator('column', 'center', 'center')}
+`;
 
 export const tableContainerStyle = css`
   border-collapse: collapse;
@@ -70,10 +71,9 @@ export const tdStyle = (theme: Theme) => css`
   text-align: center;
   border: 1px solid #ddd;
   ${theme.font['subhead03-m-16']}
-
 `;
 
 export const inputStyle = css`
-width: 30rem;
-height: 4rem;
-`
+  width: 30rem;
+  height: 4rem;
+`;

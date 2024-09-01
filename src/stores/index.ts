@@ -1,4 +1,4 @@
-import { userAtom } from './user';
 import { hostApplyAtom } from './hostApplyData';
+import { userAtom } from './user';
 
 export { userAtom, hostApplyAtom };

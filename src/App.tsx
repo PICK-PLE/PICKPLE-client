@@ -1,12 +1,11 @@
 import { Global, ThemeProvider } from '@emotion/react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import theme from './styles/theme';
-import GlobalStyle from './styles/global';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import {
   authRoutes,
-  categoriesRoutes,
+  classListRoutes,
   classRoutes,
   guestRoutes,
   homeRoutes,
@@ -15,12 +14,15 @@ import {
   //devRoutes,
   adminRoutes,
 } from '@routes';
+
 import errorPageRoutes from './routes/errorRoutes';
 import PrivateRoute from './routes/PrivateRoute/PrivateRoute';
 import { wrapRoutes } from '@hooks';
+import GlobalStyle from './styles/global';
+import theme from './styles/theme';
 
 const allRoutes = [
-  ...categoriesRoutes,
+  ...classListRoutes,
   ...classRoutes,
   ...guestRoutes,
   ...homeRoutes,

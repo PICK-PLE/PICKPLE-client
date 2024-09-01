@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 import {
   IcEmploymentSmall,
   IcHealthSmall,
@@ -10,7 +12,6 @@ import {
   IcProductivitySmall,
   IcStartupSmall,
 } from '@svg';
-import { ReactNode } from 'react';
 
 interface CategoryIcon {
   [key: string]: {

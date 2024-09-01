@@ -1,5 +1,6 @@
 import { routePath } from '@constants';
-import { Error } from '@pages/error';
+import Error from '@pages/error/Error';
+
 import { RouteType } from '@types';
 
 const errorPageRoutes: RouteType[] = [
