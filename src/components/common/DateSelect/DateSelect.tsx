@@ -1,8 +1,11 @@
+import { ko } from 'date-fns/locale';
+import dayjs from 'dayjs';
 import React, { InputHTMLAttributes } from 'react';
 import DatePicker from 'react-datepicker';
-import dayjs from 'dayjs';
-import { ko } from 'date-fns/locale';
+
 import 'react-datepicker/dist/react-datepicker.css';
+import { IcDropdownPlatformDown } from '@svg';
+
 import {
   dataPickerWrapper,
   customInputContainer,
@@ -10,7 +13,6 @@ import {
   customInputStyle,
   iconStyle,
 } from './DateSelect.style';
-import { IcDropdownPlatformDown } from '@svg';
 
 interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
   value?: string;
@@ -28,7 +30,13 @@ const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
       <div css={customInputContainer} onClick={onClick}>
         <label css={customInputLabel}>모임 날짜</label>
         <IcDropdownPlatformDown css={iconStyle} />
-        <input css={customInputStyle(hasValue)} ref={ref} value={value} readOnly placeholder={placeholder} />
+        <input
+          css={customInputStyle(hasValue)}
+          ref={ref}
+          value={value}
+          readOnly
+          placeholder={placeholder}
+        />
       </div>
     );
   }

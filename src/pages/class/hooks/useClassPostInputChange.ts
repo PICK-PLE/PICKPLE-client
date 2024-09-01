@@ -1,6 +1,7 @@
 import dayjs, { Dayjs } from 'dayjs';
 import 'dayjs/locale/ko';
 import { useAtom } from 'jotai';
+
 import { classPostAtom } from 'src/stores/classPostData';
 import { ClassPostDataType } from 'src/stores/types/classPostDataType';
 

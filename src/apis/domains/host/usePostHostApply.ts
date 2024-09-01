@@ -1,10 +1,13 @@
+import { useQueryClient, useMutation } from '@tanstack/react-query';
+import { Dispatch, RefObject, SetStateAction } from 'react';
+
 import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+
 import { useEasyNavigate } from '@hooks';
+
 import { components } from '@schema';
-import { useQueryClient, useMutation } from '@tanstack/react-query';
 import { ErrorResponse, ErrorType, MutateResponseType } from '@types';
-import { Dispatch, RefObject, SetStateAction } from 'react';
 
 type HostApplyRequest = components['schemas']['SubmitterCreateRequest'];
 

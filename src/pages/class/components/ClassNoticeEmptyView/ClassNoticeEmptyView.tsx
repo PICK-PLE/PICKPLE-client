@@ -1,4 +1,5 @@
 import { graphicImage } from '@constants';
+
 import { emptyReviewContainer, imageStyle, textStyle } from './ClassNoticeEmptyView.style';
 
 const ClassNoticeEmptyView = () => {

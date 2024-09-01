@@ -1,4 +1,6 @@
+import { useEasyNavigate } from '@hooks';
 import { IcHome } from '@svg';
+
 import {
   centerWrapper,
   headerContainer,
@@ -7,7 +9,6 @@ import {
   leftWrapper,
   rightWrapper,
 } from './Header.style';
-import { useEasyNavigate } from '@hooks';
 
 interface HeaderProps {
   title: string;
