@@ -1,4 +1,9 @@
+import { useQueryErrorResetBoundary } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+
 import { Button, LogoHeader } from '@components';
+import { graphicImage, routePath } from '@constants';
+
 import {
   buttonStyle,
   errorBox,
@@ -7,9 +12,6 @@ import {
   textStyle,
   errorContainer,
 } from './Error.style';
-import { graphicImage, routePath } from '@constants';
-import { useNavigate } from 'react-router-dom';
-import { useQueryErrorResetBoundary } from '@tanstack/react-query';
 
 const Error = () => {
   const navigate = useNavigate();

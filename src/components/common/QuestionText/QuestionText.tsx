@@ -1,5 +1,7 @@
 import { HTMLAttributes } from 'react';
+
 import { NumberLabel } from '@components';
+
 import { preventDragStyle, questionStyle, textStyle } from './QuestionText.style';
 
 export interface QuestionTextProps extends HTMLAttributes<HTMLDivElement> {

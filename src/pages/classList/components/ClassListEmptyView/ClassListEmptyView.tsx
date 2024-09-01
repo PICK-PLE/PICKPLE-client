@@ -1,7 +1,8 @@
 import { graphicImage } from '@constants';
-import { categoryEmptyViewContainer, imageStyle, textStyle } from './CategoryEmptyView.style';
 
-const CategoryEmptyView = () => {
+import { categoryEmptyViewContainer, imageStyle, textStyle } from './ClassListEmptyView.style';
+
+const ClassListEmptyView = () => {
   return (
     <section css={categoryEmptyViewContainer}>
       <img css={imageStyle} src={graphicImage.GuestMyPageWhite} alt="HostMyPageImage" />
@@ -11,4 +12,4 @@ const CategoryEmptyView = () => {
   );
 };
 
-export default CategoryEmptyView;
+export default ClassListEmptyView;
