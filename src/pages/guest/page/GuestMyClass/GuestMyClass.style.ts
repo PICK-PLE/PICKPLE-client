@@ -26,7 +26,7 @@ export const tapContainer = (theme: Theme) => css`
 
 export const activeTabStyle = (theme: Theme) => css`
   color: ${theme.color.purple1};
-  border-bottom: 0.1rem solid ${theme.color.purple1};
+  border-bottom: 0.2rem solid ${theme.color.purple1};
 `;
 
 export const inactiveTabStyle = (theme: Theme) => css`
