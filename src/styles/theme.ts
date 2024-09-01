@@ -22,6 +22,8 @@ const PretendardFont = css`
 const theme = {
   color: {
     white: '#FFFFFF',
+    bg_white0: '#F8F9FC',
+    bg_white1: '#F3F5FB',
     background: '#F8F9FC',
     lightgray0: '#EDEEF2',
     lightgray1: '#DFE2E7',

@@ -59,6 +59,6 @@ export const selectedTextStyle = (theme: Theme) => css`
 `;
 
 export const maxGuestStyle = (theme: Theme) => css`
-  color: ${theme.color.purple1};
+  color: ${theme.color.black};
   ${theme.font['subhead03-m-16']};
 `;
