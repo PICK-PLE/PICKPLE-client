@@ -9,7 +9,7 @@ export interface PatchHostSubmitterRequest {
 
 const patchHostSubmitter = async ({ submitterId }: PatchHostSubmitterRequest) => {
   try {
-    const response = await patch(`/submitter/${submitterId}`, { submitterId });
+    const response = await patch(`/v2/submitter/${submitterId}`, { submitterId });
     return response.data;
   } catch (error) {
     console.error(error);

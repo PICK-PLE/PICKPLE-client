@@ -14,7 +14,7 @@ const getHostMoimInfo = async (
 ): Promise<MoimListByHostGetResponse[] | null> => {
   try {
     const response = await get<ApiResponseType<MoimListByHostGetResponse[]>>(
-      `/host/${hostId}/moim-list?moimState=${moimState}`
+      `/v1/host/${hostId}/moim-list?moimState=${moimState}`
     );
 
     if (!response) {

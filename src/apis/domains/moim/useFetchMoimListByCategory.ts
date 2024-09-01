@@ -13,7 +13,7 @@ const getMoimListByCategory = async (
 ): Promise<MoimByCategoryResponse[] | null> => {
   try {
     const response = await get<ApiResponseType<MoimByCategoryResponse[]>>(
-      `/moim-list?category=${category}`
+      `/v1/moim-list?category=${category}`
     );
 
     return response.data.data;

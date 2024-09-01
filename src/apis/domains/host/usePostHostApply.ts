@@ -14,7 +14,7 @@ type HostApplyRequest = components['schemas']['SubmitterCreateRequest'];
 const postHostApply = async (hostApplyState: HostApplyRequest): Promise<MutateResponseType> => {
   // 여긴 사용자와 query/axios 사이의 데이터 타입
   try {
-    const response = await post<MutateResponseType>('submitter', hostApplyState); //여긴 query/axios와 server 사이의 데이터 타입
+    const response = await post<MutateResponseType>('/v2/submitter', hostApplyState); //여긴 query/axios와 server 사이의 데이터 타입
     return response.data;
   } catch (error) {
     const errorResponse = error as ErrorResponse;

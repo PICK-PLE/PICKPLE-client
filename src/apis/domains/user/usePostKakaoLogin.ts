@@ -17,10 +17,10 @@ const postKakaoLogin = async (
   authCode: string
 ): Promise<AxiosResponse<ApiResponseType<LoginSuccessResponse>>> => {
   const response = await post<ApiResponseType<LoginSuccessResponse>>(
-    `/user/login?authorizationCode=${authCode}`,
+    `/v1/user/login?authorizationCode=${authCode}`,
     {
       socialType: 'KAKAO',
-      redirectUri: 'http://localhost:5173/kakao/redirection',
+      redirectUri: import.meta.env.VITE_REDIRECT_URI,
     }
   );
 

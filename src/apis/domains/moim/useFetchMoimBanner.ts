@@ -9,7 +9,7 @@ import { ApiResponseType } from '@types';
 
 const getMoimBanner = async (): Promise<number | null> => {
   try {
-    const response = await get<ApiResponseType<number>>('/moim/banner');
+    const response = await get<ApiResponseType<number>>('/v1/moim/banner');
     return response.data.data;
   } catch (error) {
     console.error('An error occurred while fetching the banner:', error);
