@@ -10,7 +10,7 @@ type QuestionInfo = components['schemas']['QuestionInfo'];
 
 const getQuestionList = async (moimId: number): Promise<QuestionInfo | null> => {
   try {
-    const response = await get<ApiResponseType<QuestionInfo>>(`/moim/${moimId}/question-list`);
+    const response = await get<ApiResponseType<QuestionInfo>>(`/v1/moim/${moimId}/question-list`);
     return response.data.data;
   } catch (error) {
     console.error('error:', error);
