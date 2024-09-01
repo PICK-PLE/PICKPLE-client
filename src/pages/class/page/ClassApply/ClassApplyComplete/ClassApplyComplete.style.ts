@@ -35,7 +35,7 @@ export const completeCautionStyle = (theme: Theme) => css`
   gap: 1rem;
   padding: 1.5rem;
   height: 19.5rem;
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
   border-radius: 10px;
 `;
 

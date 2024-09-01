@@ -42,7 +42,7 @@ export const linkWrapper = (theme: Theme) => css`
   gap: 0.8rem;
 
   border-radius: 5px;
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
   cursor: pointer;
 
   &:hover {

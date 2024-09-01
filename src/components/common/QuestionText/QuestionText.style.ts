@@ -7,7 +7,7 @@ export const questionStyle = (theme: Theme) => css`
   gap: 1rem;
   padding: 1.5rem 1rem;
   width: 100%;
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
   border-radius: 10px;
 `;
 

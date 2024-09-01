@@ -70,5 +70,5 @@ export const filterSelectStyle = css`
 `;
 
 export const GuestMyClassBackground = (theme: Theme) => css`
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
 `;

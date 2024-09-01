@@ -58,7 +58,7 @@ export const tabButtonStyle = (isSelected: boolean) => (theme: Theme) => css`
 `;
 
 export const tabSectionStyle = (theme: Theme) => css`
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
   padding: 2.8rem 2rem;
 `;
 

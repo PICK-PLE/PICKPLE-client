@@ -8,7 +8,7 @@ export const classListContainer = (theme: Theme) => css`
   gap: 2.1rem;
   padding: 1.3rem;
   padding-right: 2.8rem;
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
   border-radius: 10px;
 `;
 

@@ -9,7 +9,7 @@ export const hostInfoCardContainer = (theme: Theme) => css`
   height: 9.7rem;
   padding: 1rem;
   border-radius: 10px;
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
 `;
 export const hostInfoCardWrapper = css`
   ${flexGenerator('column', 'center', 'flex-start')}
