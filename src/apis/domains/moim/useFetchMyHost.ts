@@ -10,7 +10,7 @@ type HostGetResponse = components['schemas']['HostGetResponse'];
 
 const getMyHostInfo = async (): Promise<HostGetResponse | null> => {
   try {
-    const response = await get<ApiResponseType<HostGetResponse>>(`/host`);
+    const response = await get<ApiResponseType<HostGetResponse>>(`/v2/host`);
     return response.data.data;
   } catch (err) {
     console.error(err);

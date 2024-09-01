@@ -10,7 +10,7 @@ type HostByMoimResponse = components['schemas']['HostByMoimResponse'];
 
 const getMoimHost = async (hostId: number): Promise<HostByMoimResponse | null> => {
   try {
-    const response = await get<ApiResponseType<HostByMoimResponse>>(`/host/${hostId}`);
+    const response = await get<ApiResponseType<HostByMoimResponse>>(`/v2/host/${hostId}`);
     return response.data.data;
   } catch (error) {
     console.error('An error occurred while fetching the host info:', error);

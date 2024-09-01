@@ -10,7 +10,7 @@ type MoimByGuestResponse = components['schemas']['MoimByGuestResponse'];
 
 const SubmittedMoimDetail = async (moimId: number): Promise<MoimByGuestResponse | null> => {
   try {
-    const response = await get<ApiResponseType<MoimByGuestResponse>>(`/submitted-moim/${moimId}`);
+    const response = await get<ApiResponseType<MoimByGuestResponse>>(`/v1/submitted-moim/${moimId}`);
     return response.data.data;
   } catch (error) {
     console.error('error:', error);

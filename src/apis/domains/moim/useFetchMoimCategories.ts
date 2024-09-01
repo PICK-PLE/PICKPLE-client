@@ -9,7 +9,7 @@ import { ApiResponseType } from '@types';
 
 const getMoimCategories = async (): Promise<string[] | null> => {
   try {
-    const response = await get<ApiResponseType<string[]>>('/moim/categories');
+    const response = await get<ApiResponseType<string[]>>('/v1/moim/categories');
     return response.data.data;
   } catch (error) {
     console.error('An error occurred while fetching the category:', error);

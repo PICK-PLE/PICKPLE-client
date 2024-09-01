@@ -18,7 +18,7 @@ type NoticeCreateRequest = components['schemas']['NoticeCreateRequest'];
 
 const postNotice = async (params: NoticeCreateRequest, moimId: number) => {
   try {
-    const response = await post(`/moim/${moimId}/notice`, params);
+    const response = await post(`/v2/moim/${moimId}/notice`, params);
 
     return response.data;
   } catch (err) {
