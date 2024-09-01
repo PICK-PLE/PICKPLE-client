@@ -9,7 +9,7 @@ import { userAtom } from '@stores';
 
 const postLogout = async () => {
   try {
-    const response = await post(`/user/logout`);
+    const response = await post(`/v1/user/logout`);
     return response;
   } catch (error) {
     console.error(error);

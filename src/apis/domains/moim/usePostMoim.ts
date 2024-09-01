@@ -15,7 +15,7 @@ interface postMoimResponseType {
 const postMoim = async (classPostState: ClassPostDataType) => {
   const transformedState = transformClassPostState(classPostState);
   try {
-    const response = await post<ApiResponseType<postMoimResponseType>>('moim', transformedState);
+    const response = await post<ApiResponseType<postMoimResponseType>>('/v1/moim', transformedState);
     return response.data.data.moimId;
   } catch (error) {
     const errorResponse = error as ErrorResponse;

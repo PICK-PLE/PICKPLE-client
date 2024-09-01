@@ -19,7 +19,7 @@ const postAnswerList = async ({
   body,
 }: PostAnswerRequest): Promise<MutateResponseType | ErrorType> => {
   try {
-    const response = await post<MutateResponseType>(`/moim/${moimId}`, body);
+    const response = await post<MutateResponseType>(`/v1/moim/${moimId}`, body);
     return response.data;
   } catch (error) {
     const err = error as ErrorResponse;
