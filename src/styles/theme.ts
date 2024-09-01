@@ -143,6 +143,13 @@ const theme = {
       line-height: 140%;
       letter-spacing: 0px;
     `,
+    'body06-m-15': css`
+      ${PretendardFont};
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 140%;
+      letter-spacing: 0px;
+    `,
   },
 };
 
