@@ -6,7 +6,8 @@ import {
   inputStyle,
   textLengthStyle,
   errorMessageStyle,
-} from 'src/components/common/inputs/Input/Input.style';
+  errorAndLengthWrapper,
+} from './Input.style';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
@@ -75,6 +76,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
           />
+        </div>
+        <div css={errorAndLengthWrapper(!!displayErrorMessage)}>
+          {isFocused && displayErrorMessage && (
+            <span css={errorMessageStyle}>{displayErrorMessage}</span>
+          )}
           {isCountValue ? (
             <span css={textLengthStyle(isError, isFocused)}>
               {value.length}/{maxLength}
@@ -83,9 +89,6 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             ''
           )}
         </div>
-        {isFocused && displayErrorMessage && (
-          <span css={errorMessageStyle}>{displayErrorMessage}</span>
-        )}
       </div>
     );
   }

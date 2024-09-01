@@ -40,6 +40,13 @@ export const inputStyle = (isError: boolean, isFocused: boolean) => (theme: Them
     }
   `;
 
+export const errorAndLengthWrapper = (hasError: boolean) => css`
+  display: flex;
+  justify-content: ${hasError ? 'space-between' : 'flex-end'};
+  align-items: center;
+  width: 100%;
+`;
+
 export const textLengthStyle = (isError: boolean, isFocused: boolean) => (theme: Theme) =>
   css`
     position: absolute;
