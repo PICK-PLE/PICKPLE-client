@@ -61,11 +61,11 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
           </div>
           <div css={detailWrapper}>
             <div css={detailTitleWrapper}>
-              <p css={detailTitleStyle}>호스트</p>
+              <p css={detailTitleStyle}>스픽커</p>
               <p css={detailInfoStyle}>{hostNickname}</p>
             </div>
             <div css={detailTitleWrapper}>
-              <p css={detailTitleStyle}>모임날짜</p>
+              <p css={detailTitleStyle}>날짜</p>
               <p css={detailInfoStyle}>{dateList && `${dateList.date} (${dateList.dayOfWeek})`}</p>
             </div>
             <div css={detailTitleWrapper}>
@@ -78,6 +78,11 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
       {moimSubmissionState === 'pendingPayment' ? (
         <Button variant="xSmall" onClick={handleButtonClick}>
           입금하기
+        </Button>
+      ) : null}
+      {moimSubmissionState === 'completed' ? (
+        <Button variant="xSmall" onClick={handleButtonClick}>
+          리뷰 쓰기
         </Button>
       ) : null}
       {isOpen && (
