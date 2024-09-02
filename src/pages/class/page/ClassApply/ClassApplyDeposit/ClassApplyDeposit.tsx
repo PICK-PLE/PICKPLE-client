@@ -47,7 +47,7 @@ const ClassApplyDeposit = ({ handlePageChange }: ClassApplyProps) => {
           <header>
             <span css={depositSpanStyle}>클래스 모임 신청</span>
             <h1 css={depositHStyle}>
-              모임 신청이 완료되었습니다! <br /> 이제 참가비를 입금해주세요.
+              클래스 신청이 완료되었습니다! <br /> 이제 참가비를 입금해주세요.
             </h1>
           </header>
 
