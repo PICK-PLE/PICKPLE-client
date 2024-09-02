@@ -4,7 +4,7 @@ import { flexGenerator } from '@styles/generator';
 
 export const completeArticleLayout = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
-  gap: 8rem;
+  gap: 5.4rem;
   padding: 3.2rem 2rem 3rem 2rem;
   width: 100%;
   min-height: calc(100dvh - 6.3rem);
@@ -12,7 +12,7 @@ export const completeArticleLayout = css`
 
 export const completeWrapperStyle = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
-  gap: 4rem;
+  gap: 3.8rem;
 `;
 
 export const completeSpanStyle = (theme: Theme) => css`
