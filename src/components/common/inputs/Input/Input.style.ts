@@ -7,15 +7,22 @@ export const inputContainerStyle = css`
   width: 100%;
 `;
 
+export const labelAndInputWrapper = css`
+  ${flexGenerator('column', 'center', 'flex-start')}
+  gap: 0.8rem;
+  width: 100%;
+  min-width: 33.5rem;
+`;
+
 export const inputLabelStyle = (theme: Theme) => css`
-  ${theme.font['subhead03-m-16']}
+  color: ${theme.color.midgray2};
+  ${theme.font['subhead05-sb-14']}
   padding: 0 0.5rem;
 `;
 
 export const inputWrapperStyle = css`
   ${flexGenerator('row', 'flex-start', 'center')}
   width: 100%;
-  min-width: 33.5rem;
   position: relative;
 `;
 

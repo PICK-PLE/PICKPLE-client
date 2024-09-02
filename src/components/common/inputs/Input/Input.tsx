@@ -8,6 +8,7 @@ import {
   errorMessageStyle,
   errorAndLengthWrapper,
   deleteButtonStyle,
+  labelAndInputWrapper,
 } from './Input.style';
 import { IcDelete20 } from '@svg';
 
@@ -51,7 +52,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       }
     };
 
-    const handleInputDelete = () => {
+    const handleInputDelete = (e: React.MouseEvent<HTMLDivElement>) => {
+      e.preventDefault();
       onChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>);
       setMaxLengthError(false);
     };
@@ -69,33 +71,35 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     }
 
     const isError = maxLengthError || !isValid;
+    const hasError = maxLengthError || (isFocused && !isValid);
+
     return (
       <div css={inputContainerStyle}>
-        {inputLabel && <span css={inputLabelStyle}>{inputLabel}</span>}
-        <div css={inputWrapperStyle}>
-          <input
-            ref={ref}
-            css={[inputStyle(isError, isFocused)]}
-            placeholder={placeholder}
-            value={value}
-            onChange={handleInputChange}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-          />
-          <div css={deleteButtonStyle} onClick={handleInputDelete}>
-            <IcDelete20 />
+        <div css={labelAndInputWrapper}>
+          {inputLabel && <span css={inputLabelStyle}>{inputLabel}</span>}
+          <div css={inputWrapperStyle}>
+            <input
+              ref={ref}
+              css={[inputStyle(isError, isFocused)]}
+              placeholder={placeholder}
+              value={value}
+              onChange={handleInputChange}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+            />
+            <div css={deleteButtonStyle} onMouseDown={handleInputDelete}>
+              <IcDelete20 />
+            </div>
           </div>
         </div>
-        <div css={errorAndLengthWrapper(!!displayErrorMessage)}>
+        <div css={errorAndLengthWrapper(hasError)}>
           {isFocused && displayErrorMessage && (
             <span css={errorMessageStyle}>{displayErrorMessage}</span>
           )}
-          {isCountValue ? (
+          {isCountValue && (
             <span css={textLengthStyle(isError, isFocused)}>
               {value.length}/{maxLength}
             </span>
-          ) : (
-            ''
           )}
         </div>
       </div>

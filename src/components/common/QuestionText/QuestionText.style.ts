@@ -6,13 +6,13 @@ export const questionStyle = (theme: Theme) => css`
   gap: 1rem;
   padding: 1.5rem 1rem;
   width: 100%;
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white1};
   border-radius: 10px;
 `;
 
 export const textStyle = (theme: Theme) => css`
-  color: ${theme.color.blackgray};
-  ${theme.font['head04-b-16']}
+  color: ${theme.color.black};
+  ${theme.font['subhead02-sb-16']}
 
   word-break: break-word;
 `;
