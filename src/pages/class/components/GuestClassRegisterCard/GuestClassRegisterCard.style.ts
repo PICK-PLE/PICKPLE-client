@@ -62,7 +62,7 @@ export const feeWrapperStyle = css`
   width: 100%;
 `;
 export const feeSpanStyle = (theme: Theme) => css`
-  color: ${theme.color.midgray1};
+  color: ${theme.color.black};
   ${theme.font['subhead02-sb-16']}
 `;
 export const feeStyle = (theme: Theme) => css`
