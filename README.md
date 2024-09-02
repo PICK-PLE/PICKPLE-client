@@ -1,76 +1,42 @@
-<h1 align="center"> 🌸🌼 PICK!PLE 🌼🌸 </h1>
-<h3 align="center"> 🍀 NOW SOPT AppJam 🍀 </h3>
+# PICK!PLE <img src="https://github.com/user-attachments/assets/96cc83c5-a856-4be5-a248-c81d23f9c121" width="100px" align="left" />
 
-## 🏷️ 서비스 이름
+내가 PICK!한 바로 '그 사람'과 함께하는 클래스 모임
 
-### 내가 PICK!한 바로 '그 사람'과 함께하는 클래스 모임
-
-<img src="https://github.com/PICK-PLE/PICKPLE-client/assets/59465914/8af39363-bbe7-4638-a01a-f6d58d9a0db5" width="500px"/>
+<img src="https://github.com/user-attachments/assets/0a84a783-73cc-469f-8f6b-cac93e77a0ce" width="100%" />
+<img src="https://github.com/user-attachments/assets/51a7a2c8-6048-4fbd-bdc5-ea9b1a01f10d" width="100%" />
 
 <br />
 <br />
 
 ## 💁 서비스 소개
 
-<strong> 인증 받은 호스트들이 클래스 모임을 개최할 수 있는 곳 </strong>
-
-<img width="800" alt="image" src="https://github.com/user-attachments/assets/a8610d0d-ca66-48c3-b5f9-04f78b457f97">
+<img src="https://github.com/user-attachments/assets/b365e713-5dbd-4fe8-9624-01c4b616edf1" width="100%" />
+<img src="https://github.com/user-attachments/assets/dd12524e-57ce-40f2-b721-ed89ff0edce7" width="100%" />
 
 <br />
 <br />
 
 ## 🔨 서비스 주요 기능
 
-### 호스트 승인
+### 호스트
 
-<div>
-	<img width="300" alt="image" src="https://github.com/user-attachments/assets/4cae36cc-d1a7-4937-a950-436f73e3fccc">
-	<img width="300" alt="image" src="https://github.com/user-attachments/assets/9e3b36b1-1109-4951-a5db-1ae0d5823db8">
-</div>
+<img src="https://github.com/user-attachments/assets/ca257858-0f04-471e-a0fd-7c4b46e14ec9" width="100%" />
+<img src="https://github.com/user-attachments/assets/5199d0b6-c0b8-45eb-a089-e7d939a5dc24" width="100%" />
+<img src="https://github.com/user-attachments/assets/5a458d8d-8b24-4a24-9b2a-ef23257c591f" width="100%" />
 
-<br />
-
-### 모임 개설 공지사항 게시
-
-<div>
-	<img width="300" alt="image" src="https://github.com/user-attachments/assets/0aa57af2-68d8-44a0-8f10-3ccf0f9e854d">
-	<img width="300" alt="image" src="https://github.com/user-attachments/assets/10eb9001-f548-4bba-9867-983a3d36e152">
-</div>
 
 <br />
 
-### 게스트 승인 리뷰 수집
+### 게스트
 
-<div>
-	<img width="250" alt="image" src="https://github.com/user-attachments/assets/eb5be8d9-f116-4bc0-a11b-df12918d966d">
-	<img width="250" alt="image" src="https://github.com/user-attachments/assets/982f5755-5101-4d13-90e9-9afbd341e002">
-	<img width="250" alt="image" src="https://github.com/user-attachments/assets/bb76a570-dc72-4f7a-b489-bddcf9bf1afa">
-</div>
-
-<br />
-
-### 모임 탐색
-
-<div>
-	<img width="300" alt="image" src="https://github.com/user-attachments/assets/9d645a02-06b1-4ab4-80b5-2162e6b94721">
-	<img width="300" alt="image" src="https://github.com/user-attachments/assets/2277217f-e0cb-4d29-97fe-ee5f702f755a">
-</div>
-
-<br />
-
-### 모임 참여
-
-<div>
-	<img width="200" alt="image" src="https://github.com/user-attachments/assets/18d1ccc2-05c9-4697-b25a-7673102ffffb">
-	<img width="200" alt="image" src="https://github.com/user-attachments/assets/62bc7a88-ca18-403a-9856-6ef3fed1b8bc">
-	<img width="200" alt="image" src="https://github.com/user-attachments/assets/76aaf5ad-64ce-4c8e-bafb-c158f93a1ae5">
-	<img width="200" alt="image" src="https://github.com/user-attachments/assets/f9227823-b156-4391-a603-016017fb7c8f">
-</div>
+<img src="https://github.com/user-attachments/assets/bf3f633e-fa31-45a3-a96f-193b1e81f172" width="100%" />
+<img src="https://github.com/user-attachments/assets/ea2466c5-f0b0-49f4-95e1-9eb7705b2c39" width="100%" />
 
 <br />
 <br />
 
-## 👩🏻‍💻🧑🏻‍💻 PICK!PLE Web Developers
+
+## 👩🏻‍💻🧑🏻‍💻 PICKPLE Developers
 
 <br/>
 
@@ -422,5 +388,14 @@
 </details>
 
 <br/>
+<br/>
+
+
+## 📝 픽픽이들의 아티클
+
+- [[TS] type 아직도 일일이 만드시나요? - 태승](https://super-wildcat-183.notion.site/TS-type-096037760bb448bea10decbd010b049e?pvs=4)
+- [뚝딱뚝딱 공통 컴포넌트 만들기 - 채연](https://super-wildcat-183.notion.site/45144539ad7c40ea950e984f2ff65825?pvs=4)
+- [리액트 쿼리 간지나게 사용하는 법 - 정안](https://super-wildcat-183.notion.site/5402dc0f2f0444e69080bdce0541100c?pvs=4)
+- [[Funnel] 퍼널구조를 통해 여러 단계의 입력폼 다루기 - 화랑](https://super-wildcat-183.notion.site/Funnel-728fd096626f47e1a534847729b2a90a?pvs=4)
 
 ---
