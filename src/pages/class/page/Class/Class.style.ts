@@ -26,7 +26,7 @@ export const classNameStyle = (theme: Theme) => css`
 export const classInfoList = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')};
   gap: 1rem;
-  margin: 2rem 0 4rem;
+  margin: 2rem 0 3rem;
 `;
 
 export const tabWrapper = (theme: Theme) => css`

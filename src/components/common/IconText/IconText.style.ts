@@ -15,5 +15,6 @@ export const iconWrapper = css`
 export const textStyle = (theme: Theme) => css`
   ${flexGenerator('row', 'flex-start', 'center')};
 
-  ${theme.font['body02-r-14']};
+  ${theme.font['subhead06-m-14']};
+  color: ${theme.color.darkgray};
 `;
