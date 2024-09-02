@@ -35,6 +35,7 @@ import ProgressBar from './ProgressBar/ProgressBar';
 import FilterSelect from './select/FilterSelect/FilterSelect';
 import Select from './select/Select/Select';
 import { Spinner } from './Spinner/Spinner';
+import CheckLabel from './CheckLabel/CheckLabel';
 
 export {
   IconButton,
@@ -73,4 +74,5 @@ export {
   IconText,
   CategorySelectBox,
   Spinner,
+  CheckLabel,
 };
