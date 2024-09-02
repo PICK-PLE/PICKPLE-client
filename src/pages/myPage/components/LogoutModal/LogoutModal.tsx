@@ -1,4 +1,7 @@
+import { usePostLogout } from '@apis/domains/user';
+
 import { Button } from '@components';
+
 import {
   buttonWrapper,
   cancelButtonStyle,
@@ -7,7 +10,6 @@ import {
   textWrapperStyle,
   titleStyle,
 } from './LogoutModal.style';
-import { usePostLogout } from '@apis/domains/user';
 
 interface LogoutModalProps {
   onClose: () => void;

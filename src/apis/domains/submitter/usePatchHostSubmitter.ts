@@ -1,6 +1,7 @@
+import { QueryClient, useMutation } from '@tanstack/react-query';
+
 import { patch } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
-import { QueryClient, useMutation } from '@tanstack/react-query';
 
 export interface PatchHostSubmitterRequest {
   submitterId: number;
@@ -8,7 +9,7 @@ export interface PatchHostSubmitterRequest {
 
 const patchHostSubmitter = async ({ submitterId }: PatchHostSubmitterRequest) => {
   try {
-    const response = await patch(`/submitter/${submitterId}`, { submitterId });
+    const response = await patch(`/v2/submitter/${submitterId}`, { submitterId });
     return response.data;
   } catch (error) {
     console.error(error);
@@ -19,8 +20,7 @@ const patchHostSubmitter = async ({ submitterId }: PatchHostSubmitterRequest) =>
 export const usePatchHostSubmitter = () => {
   const queryClient = new QueryClient();
   return useMutation({
-    mutationFn: ({ submitterId }: PatchHostSubmitterRequest) =>
-      patchHostSubmitter({ submitterId }),
+    mutationFn: ({ submitterId }: PatchHostSubmitterRequest) => patchHostSubmitter({ submitterId }),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.HOST_SUBMIT_REQUEST] });
     },

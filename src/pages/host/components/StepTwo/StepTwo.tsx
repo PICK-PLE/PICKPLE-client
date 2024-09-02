@@ -1,5 +1,12 @@
-import { StepProps } from 'src/types/nextStep';
+import { useRef, useState } from 'react';
+
+import { usePostHostApply } from '@apis/domains/host';
+
 import { Button, Input, ProgressBar, QuestionText, Spinner, TextArea } from '@components';
+import { useHostApplyInputChange, useHostApplyInputValidation } from '@pages/host/hooks';
+import CategorySelectBox from 'src/components/common/CategorySelectBox/CategorySelectBox';
+import { StepProps } from 'src/types/nextStep';
+
 import {
   categorySectionStyle,
   footerStyle,
@@ -11,11 +18,8 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepTwo.style';
-import CategorySelectBox from 'src/components/common/CategorySelectBox/CategorySelectBox';
-import { useRef, useState } from 'react';
-import { usePostHostApply } from '@apis/domains/host';
+
 import { components } from '@schema';
-import { useHostApplyInputChange, useHostApplyInputValidation } from '@pages/host/hooks';
 
 const StepTwo = ({ onNext }: StepProps) => {
   const nicknameRef = useRef<HTMLInputElement>(null);
@@ -109,14 +113,15 @@ const StepTwo = ({ onNext }: StepProps) => {
           </section>
           <section css={sectionStyle}>
             <QuestionText numberLabel="Q7">
-              승인 결과를 전달 받을 메일 주소를 입력해 주세요.
+              승인 결과를 전달 받을 메일 주소를 <br />
+              입력해 주세요.
             </QuestionText>
             <Input
               value={hostApplyState.email}
               onChange={(e) => handleInputChange(e, 'email')}
               placeholder="ex. pickple@gmail.com"
               isValid={isEmailValid}
-              errorMessage="유효한 이메일 주소를 입력해 주세요."
+              errorMessage="유효한 이메일 주소를 \n입력해 주세요."
               isCountValue={false}
             />
           </section>

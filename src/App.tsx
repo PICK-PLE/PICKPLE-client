@@ -1,33 +1,35 @@
 import { Global, ThemeProvider } from '@emotion/react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import theme from './styles/theme';
-import GlobalStyle from './styles/global';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 import {
   authRoutes,
-  categoriesRoutes,
+  classListRoutes,
   classRoutes,
   guestRoutes,
   homeRoutes,
   hostRoutes,
   myPageRoutes,
   //devRoutes,
-  adminRoutes
-
+  adminRoutes,
 } from '@routes';
+
 import errorPageRoutes from './routes/errorRoutes';
 import PrivateRoute from './routes/PrivateRoute/PrivateRoute';
+import { wrapRoutes } from '@hooks';
+import GlobalStyle from './styles/global';
+import theme from './styles/theme';
 
 const allRoutes = [
-  ...categoriesRoutes,
+  ...classListRoutes,
   ...classRoutes,
   ...guestRoutes,
   ...homeRoutes,
   ...hostRoutes,
   ...myPageRoutes,
   ...errorPageRoutes,
-  ...adminRoutes
+  ...adminRoutes,
   // ...devRoutes,
 ];
 
@@ -36,10 +38,18 @@ const protectedRoutes = allRoutes.map((route) => ({
   element: <PrivateRoute element={route.element} />,
 }));
 
-const router = createBrowserRouter([...authRoutes, ...protectedRoutes]);
+const wrapRouter = wrapRoutes([...authRoutes, ...protectedRoutes]);
+
+const router = createBrowserRouter(wrapRouter);
 
 const App = () => {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        throwOnError: true,
+      },
+    },
+  });
 
   return (
     <QueryClientProvider client={queryClient}>

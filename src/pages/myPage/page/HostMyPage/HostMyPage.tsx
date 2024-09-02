@@ -1,4 +1,17 @@
+import { useAtom } from 'jotai';
+import { useEffect, useState } from 'react';
+
+import { useFetchMyHost } from '@apis/domains/moim/useFetchMyHost';
+
 import { LogoHeader, Modal, NavigateBox, Spinner } from '@components';
+import { routePath } from '@constants';
+import { useEasyNavigate } from '@hooks';
+import { HostMyPageEmptyView } from '@pages/myPage/components';
+import HostInfoCardWithLink from '@pages/myPage/components/HostInfoCardWithLink/HostInfoCardWithLink';
+import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
+import { userAtom } from '@stores';
+import { IcNext } from '@svg';
+
 import {
   divdier,
   iconStyle,
@@ -10,16 +23,6 @@ import {
   selectedTabStyle,
   tabStyle,
 } from './HostMyPage.style';
-import { useEasyNavigate } from '@hooks';
-import HostInfoCardWithLink from '@pages/myPage/components/HostInfoCardWithLink/HostInfoCardWithLink';
-import { useFetchMyHost } from '@apis/domains/moim/useFetchMyHost';
-import { routePath } from '@constants';
-import { IcNext } from '@svg';
-import { HostMyPageEmptyView } from '@pages/myPage/components';
-import { useAtom } from 'jotai';
-import { userAtom } from '@stores';
-import { useEffect, useState } from 'react';
-import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 
 const HostMyPage = () => {
   const [user, setUser] = useAtom(userAtom);

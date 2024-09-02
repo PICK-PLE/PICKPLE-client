@@ -44,7 +44,7 @@ const TextArea = ({
   const textLengthErrorMessage = `* 글자 수 ${maxLength}자 이하로 입력해주세요.`;
 
   const isError = maxLengthError || !isValid;
-  const hasError = maxLengthError || (isFocused && !isValid)
+  const hasError = maxLengthError || (isFocused && !isValid);
   return (
     <div css={textAreaContainerStyle}>
       <div css={[textAreaWrapperStyle(isError, isFocused), textAreaWrapperSize[size]]}>

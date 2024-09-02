@@ -1,10 +1,13 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useParams } from 'react-router-dom';
+
 import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+
 import { useEasyNavigate } from '@hooks';
+
 import { components } from '@schema';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { MoimIdPathParameterType } from '@types';
-import { useParams } from 'react-router-dom';
 
 type MutateFunctionProps = {
   params: NoticeCreateRequest;
@@ -15,7 +18,7 @@ type NoticeCreateRequest = components['schemas']['NoticeCreateRequest'];
 
 const postNotice = async (params: NoticeCreateRequest, moimId: number) => {
   try {
-    const response = await post(`/moim/${moimId}/notice`, params);
+    const response = await post(`/v2/moim/${moimId}/notice`, params);
 
     return response.data;
   } catch (err) {

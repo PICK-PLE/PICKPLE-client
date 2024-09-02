@@ -1,4 +1,5 @@
 import { css, Theme } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const myClassManageLayout = (theme: Theme) => css`
@@ -15,7 +16,6 @@ export const headerStyle = (theme: Theme) => css`
   ${theme.font['head02-b-20']}
   width: 78%;
   padding-top: 3.2rem;
-
 `;
 
 export const mainStyle = css`

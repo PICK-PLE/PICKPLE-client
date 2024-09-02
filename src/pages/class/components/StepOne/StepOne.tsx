@@ -1,3 +1,6 @@
+import dayjs, { Dayjs } from 'dayjs';
+import { useState } from 'react';
+
 import {
   Button,
   CategorySelectBox,
@@ -10,7 +13,13 @@ import {
   SelectButton,
   TimeSelect,
 } from '@components';
+import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
+import { smoothScroll } from '@utils';
+import AccountNumberInput from 'src/components/common/inputs/AccountNumberInput/AccountNumberInput';
+import { options } from 'src/constants/options';
+import { ClassPostDataType } from 'src/stores/types/classPostDataType';
 import { StepProps } from 'src/types/nextStep';
+
 import {
   footerStyle,
   headerStyle,
@@ -22,14 +31,7 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepOne.style';
-import { useState } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
 import AddAmountBox from '../AddAmountBox/AddAmountBox';
-import { ClassPostDataType } from 'src/stores/types/classPostDataType';
-import { smoothScroll } from '@utils';
-import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
-import AccountNumberInput from 'src/components/common/inputs/AccountNumberInput/AccountNumberInput';
-import { options } from 'src/constants/options';
 
 const StepOne = ({ onNext }: StepProps) => {
   const {

@@ -1,7 +1,9 @@
+import { useQuery } from '@tanstack/react-query';
+
 import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+
 import { components } from '@schema';
-import { useQuery } from '@tanstack/react-query';
 import { ApiResponseType } from '@types';
 
 type MoimSubmissionByMoimResponse = components['schemas']['MoimSubmissionByMoimResponse'];
@@ -9,7 +11,7 @@ type MoimSubmissionByMoimResponse = components['schemas']['MoimSubmissionByMoimR
 const getSubmitterList = async (moimId: number): Promise<MoimSubmissionByMoimResponse | null> => {
   try {
     const response = await get<ApiResponseType<MoimSubmissionByMoimResponse>>(
-      `/moim/${moimId}/submitter-list`
+      `/v1/moim/${moimId}/submitter-list`
     );
     return response.data.data;
   } catch (error) {

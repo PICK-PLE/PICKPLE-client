@@ -1,4 +1,10 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { Button, Image, Label, Modal } from '@components';
+import { IcDropdownRight } from '@svg';
+import { statusMapText } from 'src/constants/mappingText';
+
 import {
   detailWrapper,
   detailInfoWrapper,
@@ -12,11 +18,8 @@ import {
   moimCardLayout,
   imageCustomStyle,
 } from './MoimCard.style';
-import { IcDropdownRight } from '@svg';
-import { statusMapText } from 'src/constants/mappingText';
-import { useState } from 'react';
 import DepositModal from '../DepositModal/DepositModal';
-import { useNavigate } from 'react-router-dom';
+
 import { components } from '@schema';
 
 type SubmittedMoimByGuestResponse = components['schemas']['SubmittedMoimByGuestResponse'];

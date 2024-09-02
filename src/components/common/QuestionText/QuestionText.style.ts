@@ -1,9 +1,10 @@
 import { css, Theme } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const questionStyle = (theme: Theme) => css`
   ${flexGenerator('row', 'flex-start', 'center')}
-  gap: 1rem;
+  gap: 0.5rem;
   padding: 1.5rem 1rem;
   width: 100%;
   background-color: ${theme.color.bg_white1};
@@ -20,4 +21,3 @@ export const textStyle = (theme: Theme) => css`
 export const preventDragStyle = css`
   user-select: none;
 `;
-

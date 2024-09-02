@@ -1,10 +1,6 @@
 import { css, Theme } from '@emotion/react';
-import { flexGenerator } from '@styles/generator';
 
-export const classApplyQuestionLayout = css`
-width: 100%;
-  padding-top: 6rem;
-`;
+import { flexGenerator } from '@styles/generator';
 
 export const questionArticleLayout = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}

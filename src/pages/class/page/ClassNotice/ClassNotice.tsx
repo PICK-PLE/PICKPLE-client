@@ -1,15 +1,19 @@
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { usePostNotice } from '@apis/domains/notice';
+import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
+
 import { Button, Header, ImageSelect, Input, Spinner, TextArea } from '@components';
+import { handleUpload } from 'src/utils/image';
+
 import {
   imageSelectWrapper,
   noticePostBackground,
   noticePostLayout,
   noticePostMain,
 } from './ClassNotice.style';
-import { useState, useEffect } from 'react';
-import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
-import { usePostNotice } from '@apis/domains/notice';
-import { handleUpload } from 'src/utils/image';
-import { useNavigate, useParams } from 'react-router-dom';
+
 import { MoimIdPathParameterType } from '@types';
 
 const ClassNotice = () => {
@@ -20,6 +24,7 @@ const ClassNotice = () => {
   const [noticeContent, setNoticeContent] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [isPrivate] = useState(true);
   const putS3UploadMutation = usePutS3Upload();
   const { mutateAsync, isPending } = usePostNotice();
 
@@ -55,6 +60,7 @@ const ClassNotice = () => {
       noticeTitle,
       noticeContent,
       imageUrl,
+      isPrivate,
     };
 
     await mutateAsync({ params, moimId: moimIdNumber });

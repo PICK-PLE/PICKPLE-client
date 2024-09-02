@@ -1,5 +1,6 @@
-import { usePostKakaoLogin } from '@apis/domains/user';
 import { useEffect } from 'react';
+
+import { usePostKakaoLogin } from '@apis/domains/user';
 
 const Redirection = () => {
   const code: string = new URL(window.location.href).searchParams.get('code') || '';

@@ -1,19 +1,27 @@
 import { get } from '@apis/api';
+
 import { components } from '@schema';
 import { ApiResponseType } from '@types';
 
-type PreSignedUrlResponse = components['schemas']['PreSignedUrlResponse'];
+type PreSignedUrlClientRequest = components['schemas']['PreSignedUrlClientRequest'];
 
-export type PresignedUrlType = 'notice' | 'moim';
+export type PresignedPrefixType =
+  | 'MOIM_PREFIX'
+  | 'NOTICE_PREFIX'
+  | 'REVIEW_PREFIX'
+  | 'HOST_PROFILE_PREFIX';
 
 export const getPresignedUrl = async (
-  count: number,
-  type: PresignedUrlType
-): Promise<PreSignedUrlResponse[] | null> => {
+  prefix: PresignedPrefixType,
+  count: number
+): Promise<PreSignedUrlClientRequest[] | null> => {
   try {
-    const response = await get<ApiResponseType<PreSignedUrlResponse[]>>(
-      `/${type}-image-list/upload/${count}`
-    );
+    const response = await get<ApiResponseType<PreSignedUrlClientRequest[]>>(`/v2/image/upload`, {
+      params: {
+        prefix,
+        count,
+      },
+    });
 
     if (!response) {
       return null;

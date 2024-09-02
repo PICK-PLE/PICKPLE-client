@@ -1,12 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
-import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+
 import { get } from '@apis/api';
+import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+
 import { ApiResponseType } from '@types';
 
 const getMoimDescription = async (moimId: string): Promise<string | null> => {
   try {
     const response = await get<ApiResponseType<{ description: string }>>(
-      `/moim/${Number(moimId)}/description`
+      `/v1/moim/${Number(moimId)}/description`
     );
     return response.data.data.description;
   } catch (error) {

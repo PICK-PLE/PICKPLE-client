@@ -1,8 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
-import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+
 import { get } from '@apis/api';
-import { ApiResponseType } from '@types';
+import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+
 import { components } from '@schema';
+import { ApiResponseType } from '@types';
 
 type MoimByCategoryResponse = components['schemas']['MoimByCategoryResponse'];
 
@@ -11,7 +13,7 @@ const getMoimListByCategory = async (
 ): Promise<MoimByCategoryResponse[] | null> => {
   try {
     const response = await get<ApiResponseType<MoimByCategoryResponse[]>>(
-      `/moim-list?category=${category}`
+      `/v1/moim-list?category=${category}`
     );
 
     return response.data.data;
