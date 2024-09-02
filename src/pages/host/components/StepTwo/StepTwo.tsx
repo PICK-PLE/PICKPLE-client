@@ -62,8 +62,8 @@ const StepTwo = ({ onNext }: StepProps) => {
       <ProgressBar progress={66.6} />
       <div css={layoutStyle}>
         <header css={headerStyle}>
-          <h4 css={titleStyle}>호스트 신청</h4>
-          <h1 css={subTitleStyle}>호스트님에 대해 알려주세요!</h1>
+          <h4 css={titleStyle}>스픽커 신청</h4>
+          <h1 css={subTitleStyle}>스픽커님에 대해 알려주세요!</h1>
         </header>
         <main css={mainStyle}>
           <section css={sectionStyle}>
@@ -75,7 +75,7 @@ const StepTwo = ({ onNext }: StepProps) => {
                 setIsNicknameDuplicate((prevState) => (prevState === true ? false : prevState));
                 handleInputChange(e, 'nickname');
               }}
-              placeholder="ex. 픽픽이 (최대 15자)"
+              placeholder="ex. 픽픽이 (최대 10자)"
               isValid={!isNicknameDuplicate && isNicknameValid}
               errorMessage={
                 isNicknameDuplicate ? '* 이미 존재하는 닉네임이에요.' : '닉네임을 입력해 주세요.'
@@ -86,7 +86,8 @@ const StepTwo = ({ onNext }: StepProps) => {
           </section>
           <section css={categorySectionStyle}>
             <QuestionText numberLabel="Q5">
-              픽플에서 어떤 주제의 클래스 모임을 진행하고 싶으신가요?
+              스픽커님을 잘 나타낼 수 있는 키워드를 <br />
+              작성해주세요.
             </QuestionText>
             <CategorySelectBox
               selectedCategories={selectedCategories}
@@ -95,11 +96,11 @@ const StepTwo = ({ onNext }: StepProps) => {
             <h6 css={referTextStyle}>*최소 1개부터 최대 3개까지 선택 가능합니다.</h6>
           </section>
           <section css={sectionStyle}>
-            <QuestionText numberLabel="Q6">클래스 모임의 운영 계획에 대해 말해주세요.</QuestionText>
+            <QuestionText numberLabel="Q6">클래스 운영 계획에 대해 말해주세요.</QuestionText>
             <TextArea
               size="medium"
               maxLength={300}
-              placeholder={`픽플에서 개최할 모임의 주제, 운영 방식 등을 작성해 주세요!`}
+              placeholder={`픽플에서 개최할 클래스의 주제, 운영 방식 등을 작성해 주세요!`}
               value={hostApplyState.plan}
               onChange={(e) => handleInputChange(e, 'plan')}
               isValid={isPlanValid}

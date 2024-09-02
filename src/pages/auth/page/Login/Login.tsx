@@ -34,7 +34,7 @@ const Login = () => {
       <div css={titleWrapper}>
         <h1 css={titleStyle}>
           로그인 후 내가 PICK한
-          <br /> 그 사람과 함께해 보세요!
+          <br /> 지식과 경험을 공유해 보세요!
         </h1>
         <Logo css={logoWrapper} />
       </div>

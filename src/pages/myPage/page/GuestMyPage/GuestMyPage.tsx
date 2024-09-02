@@ -55,9 +55,9 @@ const GuestMyPage = () => {
       <>
         <LogoHeader isIcon={false} />
         <nav css={myPageNav}>
-          <p css={[tabStyle, selectedTabStyle]}>게스트</p>
+          <p css={[tabStyle, selectedTabStyle]}>참가자</p>
           <p css={[tabStyle]} onClick={goHostMyPage}>
-            호스트
+            스픽커
           </p>
         </nav>
         <div css={profileWrapper}>
