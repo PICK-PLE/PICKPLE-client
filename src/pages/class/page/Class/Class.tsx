@@ -44,6 +44,7 @@ import {
 } from './Class.style';
 
 import { MoimIdPathParameterType } from '@types';
+import Review from 'src/components/common/Review/Review';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
@@ -157,7 +158,8 @@ const Class = () => {
             ) : (
               <ClassNotice noticeData={moimNoticeList || []} />
             ))}
-          {selectTab === '리뷰' && <ClassReviewEmptyView />}
+          {/* {selectTab === '리뷰' && <ClassReviewEmptyView />} */}
+          {selectTab === '리뷰' && <Review />}
         </section>
         {selectTab === '공지사항' && moimDetail?.hostId === hostId && (
           <div
