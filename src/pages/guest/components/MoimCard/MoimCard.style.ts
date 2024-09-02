@@ -7,7 +7,7 @@ export const moimCardLayout = (theme: Theme) => css`
   gap: 1.2rem;
   padding: 1.8rem;
 
-  border: 1px solid ${theme.color.lightgray1};
+  border: 1px solid ${theme.color.lightgray0};
   border-radius: 10px;
 
   background: ${theme.color.white};
