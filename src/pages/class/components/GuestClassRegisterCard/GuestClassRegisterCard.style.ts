@@ -10,7 +10,7 @@ export const cardContainerStyle = (theme: Theme) => css`
   width: 100%;
   padding: 1.5rem;
 
-  border: 0.5px solid ${theme.color.lightgray1};
+  border: 0.5px solid ${theme.color.lightgray0};
   border-radius: 10px;
 `;
 
