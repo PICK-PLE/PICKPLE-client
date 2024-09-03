@@ -14,7 +14,7 @@ import {
   hostMarkMessageWrapper,
   hostMarkMessageStyle,
   hostKeywordStyle,
-  hostCountWrapper,
+  hostDescriptionWrapper,
 } from './HostInfoCard.style';
 
 interface HostInfoCardProps {
@@ -43,7 +43,7 @@ const HostInfoCard = ({ hostId }: HostInfoCardProps) => {
           ) : null}
         </div>
         <span css={hostKeywordStyle}>{keyword}</span>
-        <span css={hostCountWrapper}>{description}</span>
+        <span css={hostDescriptionWrapper}>{description}</span>
       </div>
     </div>
   );

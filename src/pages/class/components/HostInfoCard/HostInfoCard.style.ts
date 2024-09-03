@@ -56,6 +56,7 @@ export const hostKeywordStyle = (theme: Theme) => css`
   ${theme.font['body03-r-12']}
 `;
 
-export const hostCountWrapper = (theme: Theme) => css`
-  color: ${theme.color.midgray2} ${theme.font['body03-r-12']};
+export const hostDescriptionWrapper = (theme: Theme) => css`
+  color: ${theme.color.midgray2};
+  ${theme.font['body03-r-12']};
 `;
