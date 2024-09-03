@@ -38,7 +38,7 @@ const NoticeCard = ({ noticeData }: NoticeCardProps) => {
       <section css={profileWrapper}>
         <img css={profileImage} src={hostImageUrl} alt={`${hostNickName}의 프로필`} />
         <div css={profileTextBox}>
-          <span css={profilePosition}>호스트</span>
+          <span css={profilePosition}>스픽커</span>
           <div css={profileHostInfo}>
             <span css={profileName}>{hostNickName}</span>
             <IcSpickerMark css={porfileHostMark} />
