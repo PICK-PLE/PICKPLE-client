@@ -50,9 +50,7 @@ export const textAreaStyle = (theme: Theme) => css`
 `;
 
 export const errorAndLengthWrapper = (hasError: boolean) => css`
-  display: flex;
-  justify-content: ${hasError ? 'space-between' : 'flex-end'};
-  align-items: center;
+  ${flexGenerator('row', `${hasError ? 'space-between' : 'flex-end'}`, 'center')}
   width: 100%;
 `;
 

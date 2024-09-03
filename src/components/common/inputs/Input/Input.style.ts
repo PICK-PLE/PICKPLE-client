@@ -54,12 +54,11 @@ export const deleteButtonStyle = css`
   right: 1.5rem;
   width: 2rem;
   height: 2rem;
+  cursor: pointer;
 `;
 
 export const errorAndLengthWrapper = (hasError: boolean) => css`
-  display: flex;
-  justify-content: ${hasError ? 'space-between' : 'flex-end'};
-  align-items: center;
+  ${flexGenerator('row', `${hasError ? 'space-between' : 'flex-end'}`, 'center')}
   width: 100%;
 `;
 
