@@ -1,4 +1,11 @@
+import { useNavigate } from 'react-router-dom';
+
+import { IcNext } from '@svg';
+
 import {
+  iconStyle,
+  imgAndTitleContainer,
+  moimTitleWrapper,
   reviewContent,
   reviewContentContainer,
   reviewImgSection,
@@ -15,8 +22,15 @@ const tags = [
   '시간 관리를 잘해요',
   '게스트의 반응을 잘 반영해요',
 ];
+const moimId = 1;
+const moimTitle = '티엘고마가 알려주는 클래스 성공 비법';
 
 const Review = () => {
+  const navigate = useNavigate();
+
+  const handleTitleClick = () => {
+    navigate(`/class/${moimId}`);
+  };
   return (
     <div css={reviewLayoutStyle}>
       <SimpleUserProfile size="large" username="갓민서입니다롱" />
@@ -31,7 +45,20 @@ const Review = () => {
           ))}
         </div>
       </div>
-      <div css={reviewImgSection}></div>
+      <div css={imgAndTitleContainer}>
+        <div css={reviewImgSection}></div>
+        {/* 클래스 뷰, 스픽커 소개뷰에서 모두 사용하기 위해 api에서 moimId 유무에 따라 보여주기 위함 */}
+        {moimId ? (
+          <div css={moimTitleWrapper} onClick={handleTitleClick}>
+            {moimTitle}
+            <span css={iconStyle}>
+              <IcNext />
+            </span>
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
       <span>14시간 전</span>
     </div>
   );

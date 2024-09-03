@@ -23,6 +23,7 @@ const theme = {
   color: {
     white: '#FFFFFF',
     background: '#F8F9FC',
+    bg_white1: '#F3F5FB',
     lightgray0: '#EDEEF2',
     lightgray1: '#DFE2E7',
     lightgray2: '#C6CAD4',
