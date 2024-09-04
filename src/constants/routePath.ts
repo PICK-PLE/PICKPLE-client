@@ -25,6 +25,7 @@ const myPagePages = {
 
 const guestPages = {
   GUEST_MY_CLASS: '/mypage/guest/myclass',
+  GUEST_MY_CLASS_REVIEW_WRITE: '/mypage/guest/myclass/:moimId/review/write',
 };
 
 const hostPages = {
