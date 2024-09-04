@@ -65,6 +65,7 @@ export { default as IcProductivityActive } from './IcProductivityActive';
 export { default as IcProductivityBlack } from './IcProductivityBlack';
 export { default as IcProductivitySmall } from './IcProductivitySmall';
 export { default as IcShare } from './IcShare';
+export { default as IcSpickerMark } from './IcSpickerMark';
 export { default as IcStartupActive } from './IcStartupActive';
 export { default as IcStartupBlack } from './IcStartupBlack';
 export { default as IcStartupSmall } from './IcStartupSmall';
