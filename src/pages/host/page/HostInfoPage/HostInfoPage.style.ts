@@ -4,6 +4,8 @@ import { flexGenerator } from '@styles/generator';
 
 export const hostInfoLayout = css`
   padding-top: 6rem;
+  ${flexGenerator('column', 'flex-start', 'flex-start')}
+  gap: 4.8rem;
 `;
 
 export const hostImageWrapper = css`
@@ -86,4 +88,40 @@ export const hostDescriptionWrapper = (theme: Theme) => css`
 export const hostDescriptionStyle = (theme: Theme) => css`
   ${theme.font['body02-r-14']};
   color: ${theme.color.darkgray};
+`;
+
+export const hostTabContainer = css`
+  width: 100%;
+`;
+
+export const hostTabWrapper = css`
+  ${flexGenerator()}
+`;
+
+export const hostTabTextStyle = (theme: Theme) => css`
+  ${flexGenerator()}
+  width: 50%;
+  color: ${theme.color.midgray1};
+  ${theme.font['subhead01-sb-18']}
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid ${theme.color.midgray1};
+`;
+
+export const hostActiveTabTextStyle = (theme: Theme) => css`
+  ${flexGenerator()}
+  width: 50%;
+  color: ${theme.color.blackgray};
+  ${theme.font['head03-b-18']}
+  padding-bottom: 1.4rem;
+  border-bottom: 2px solid ${theme.color.blackgray};
+`;
+
+export const hostTabContentWrapper = (theme: Theme) => css`
+  background-color: ${theme.color.background};
+  padding: 3rem 2rem;
+`;
+
+export const hostClassCardWrapper = css`
+  ${flexGenerator('column')};
+  gap: 1.2rem;
 `;
