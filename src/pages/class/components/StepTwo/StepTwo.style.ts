@@ -51,7 +51,7 @@ export const questionExampleDivStyle = (theme: Theme) => css`
   padding: 1.5rem;
 
   border-radius: 10px;
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
 `;
 
 export const exampleTitle = (theme: Theme) => css`

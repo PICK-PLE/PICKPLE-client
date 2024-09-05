@@ -10,7 +10,10 @@ export const hostInfoWrapper = (theme: Theme) => css`
   border: 1px solid ${theme.color.lightgray0};
   border-radius: 10px;
   width: 100%;
-  height: 10.4rem;
+  height: 9.7rem;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: ${theme.color.bg_white0};
 `;
 
 export const hostProfileWrapper = css`

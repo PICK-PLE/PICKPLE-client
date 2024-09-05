@@ -17,7 +17,7 @@ export const questionInputStyle = (theme: Theme) => css`
   padding: 1rem;
   border: 1px solid ${theme.color.lightgray1};
   border-radius: 10px;
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
   color: ${theme.color.blackgray};
   ${theme.font['head04-b-16']};
 
@@ -29,9 +29,9 @@ export const questionInputStyle = (theme: Theme) => css`
 export const inputStyle = (theme: Theme) => css`
   width: 100%;
   border: none;
-  background-color: ${theme.color.background};
-  color: ${theme.color.black};
-  ${theme.font['subhead02-sb-16']};
+  background-color: ${theme.color.bg_white0};
+  color: ${theme.color.blackgray};
+  ${theme.font['head04-b-16']};
 
   &:focus {
     border: none;

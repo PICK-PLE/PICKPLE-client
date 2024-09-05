@@ -28,7 +28,7 @@ const DepositErrorModal = ({ onClose }: DepositErrorModalProps) => {
         </header>
         <main css={mainStyle}>
           <div css={bodyTextStyle}>
-            모임 신청을 완료했다면, 우선
+            클래스 신청을 완료했다면, 우선
             <br />
             <span css={purpleStyle}>[입금을 완료했어요]</span> 버튼을 클릭해 주세요.
           </div>
@@ -38,9 +38,9 @@ const DepositErrorModal = ({ onClose }: DepositErrorModalProps) => {
             <span css={purpleStyle}>스 모임]</span>에서 입금을 진행할 수 있어요.
           </div>
           <div css={bodyTextStyle}>
-            모임 신청 마감일 이전에 입금을 하지 않으
+            신청 마감일 이전에 입금을 하지 않으
             <br />
-            면, 모임에 참가할 수 없으니 유의해 주세요!
+            면, 클래스에 참가할 수 없으니 유의해 주세요!
           </div>
         </main>
       </article>
