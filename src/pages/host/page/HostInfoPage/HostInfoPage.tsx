@@ -42,6 +42,23 @@ const HostInfoPage = () => {
     setActiveTab('리뷰');
   };
 
+  const handleHostLinkButtonClick = () => {
+    window.open(socialLink, '_blank');
+  };
+
+  // 호스트 목데이터
+  const hostData = {
+    nickName: '채연',
+    profileUrl: null,
+    count: 2,
+    keyword: '10년차 요리 전문가',
+    description:
+      '안녕하세요, 스픽커 그것은입니다. 아니 이것은입니다.안녕하세요, 스픽커 그것은입니다. 아니 이것은입니다. 잘 부탁드립니다 홧팅',
+    socialLink: 'example.com',
+  };
+
+  const { nickName, profileUrl, count, keyword, description, socialLink } = hostData;
+
   // 클래스 목데이터
   const hostClassData = [
     {
@@ -85,7 +102,11 @@ const HostInfoPage = () => {
           <section css={hostImageWrapper}>
             <Image src={images.HostBackGroundImage} customStyle={hostBackgroundImage} />
             <div css={hostProfileImage}>
-              <Image src={images.HostProfileImage} variant="round" width="8.2rem" />
+              <Image
+                src={profileUrl ? profileUrl : images.HostProfileImage}
+                variant="round"
+                width="8.2rem"
+              />
             </div>
           </section>
 
@@ -94,26 +115,27 @@ const HostInfoPage = () => {
               <div css={hostProfileStyle}>
                 <div css={hostNameMarkWrapper}>
                   <div css={hostNameWrapper}>
-                    <p css={hostNameStyle}>민서 님</p>
+                    <p css={hostNameStyle}>{nickName} 님</p>
                     <IcSpickerMark css={hostMarkIconStyle} />
                   </div>
 
-                  <div css={hostMarkMessageWrapper}>
-                    <span css={hostMarkMessageStyle}>베테랑</span>
-                  </div>
+                  {count >= 2 ? (
+                    <div css={hostMarkMessageWrapper}>
+                      <span css={hostMarkMessageStyle}>베테랑</span>
+                    </div>
+                  ) : null}
                 </div>
 
-                <span css={hostKeywordStyle}>방구석 요리 전문가</span>
+                <span css={hostKeywordStyle}>{keyword}</span>
               </div>
               <div css={hostDescriptionWrapper}>
-                <span css={hostDescriptionStyle}>
-                  안녕하세요, 스픽커 그것은입니다. 아니 이것은입니다.안녕하세요, 스픽커
-                  그것은입니다. 아니 이것은입니다. 잘 부탁드립니다 홧팅
-                </span>
+                <span css={hostDescriptionStyle}>{description}</span>
               </div>
             </div>
 
-            <Button variant="small">스픽커 더 알아보기</Button>
+            <Button variant="small" onClick={handleHostLinkButtonClick}>
+              스픽커 더 알아보기
+            </Button>
           </section>
         </article>
 
