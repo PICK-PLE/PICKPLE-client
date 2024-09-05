@@ -14,6 +14,8 @@ export { default as IcClose } from './IcClose';
 export { default as IcCopyPlus } from './IcCopyPlus';
 export { default as IcDate } from './IcDate';
 export { default as IcDefaultUserimg } from './IcDefaultUserimg';
+export { default as IcDelete16 } from './IcDelete16';
+export { default as IcDelete20 } from './IcDelete20';
 export { default as IcDeletePhoto } from './IcDeletePhoto';
 export { default as IcDropdownDown } from './IcDropdownDown';
 export { default as IcDropdownPlatformDown } from './IcDropdownPlatformDown';

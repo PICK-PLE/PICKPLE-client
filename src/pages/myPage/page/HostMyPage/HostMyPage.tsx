@@ -69,9 +69,9 @@ const HostMyPage = () => {
       <LogoHeader isIcon={false} />
       <nav css={myPageNav}>
         <p css={[tabStyle]} onClick={goGuestMyPage}>
-          게스트
+          참가자
         </p>
-        <p css={[tabStyle, selectedTabStyle]}>호스트</p>
+        <p css={[tabStyle, selectedTabStyle]}>스픽커</p>
       </nav>
 
       {isLoading ? (

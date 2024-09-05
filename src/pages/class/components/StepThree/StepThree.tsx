@@ -77,9 +77,9 @@ const StepThree = ({ onNext }: StepProps) => {
       <div css={layoutStyle}>
         <header css={headerStyle}>
           <h4 css={titleStyle}>클래스 모임 개설</h4>
-          <h1 css={subTitleStyle}>개최할 모임을 소개해주세요</h1>
+          <h1 css={subTitleStyle}>개최할 클래스를 소개해주세요</h1>
           <span css={headerSpanStyle}>
-            호스트와 클래스 모임을 잘 나타내는
+            스픽커와 클래스를 잘 나타내는
             <br />
             대표 이미지를 업로드해 주세요!
           </span>
@@ -116,7 +116,7 @@ const StepThree = ({ onNext }: StepProps) => {
         </main>
         <footer css={footerStyle}>
           <Button variant="large" onClick={handleNextClick} disabled={!isAllValid}>
-            모임 개설하기
+            클래스 개설하기
           </Button>
         </footer>
       </div>

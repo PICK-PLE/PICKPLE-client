@@ -40,7 +40,7 @@ export const questionMainStyle = css`
 export const questionDataStyle = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   /* padding: 1.2rem 1.6rem 1rem 1rem; */
-  gap: 1rem;
+  gap: 1.5rem;
   width: 100%;
 `;
 

@@ -23,10 +23,10 @@ export const subTitleStyle = (theme: Theme) => css`
 `;
 export const mainStyle = css`
   ${flexGenerator('column')};
-  gap: 5rem;
+  gap: 6rem;
 
   margin-top: 3.8rem;
-  margin-bottom: 5.5rem;
+  margin-bottom: 5.4rem;
 `;
 
 export const sectionStyle = (gapSize: number) => css`

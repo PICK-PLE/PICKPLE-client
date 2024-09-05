@@ -18,7 +18,7 @@ interface GuestMyClassEmptyViewProps {
 const GuestMyClassEmptyView = ({ text }: GuestMyClassEmptyViewProps) => {
   const navigate = useNavigate();
   const handleButtonClick = () => {
-    navigate(routePath.CATEGORY);
+    navigate(routePath.CLASS_LIST);
   };
   return (
     <article css={completedTabContainer}>
@@ -26,10 +26,10 @@ const GuestMyClassEmptyView = ({ text }: GuestMyClassEmptyViewProps) => {
       <div css={detailWrapper}>
         <div css={textWrapper}>
           <p css={textStyle}>{text}</p>
-          <p css={textStyle}>다양한 클래스 모임을 둘러보세요:{')'}</p>
+          <p css={textStyle}>다양한 클래스를 둘러보세요:{')'}</p>
         </div>
         <Button variant="round" onClick={handleButtonClick}>
-          클래스 모임 둘러보기
+          클래스 둘러보기
         </Button>
       </div>
     </article>
