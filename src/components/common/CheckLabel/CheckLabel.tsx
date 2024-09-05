@@ -1,6 +1,7 @@
 import { IcCheckActive, IcCheckDefault } from '@svg';
 import { checkLabelWrapper, iconWrapperStyle, inputStyle, textStyle } from './CheckLabel.style';
-interface CheckLabelProps extends React.HTMLAttributes<HTMLLabelElement> {
+import { LabelHTMLAttributes } from 'react';
+interface CheckLabelProps extends LabelHTMLAttributes<HTMLLabelElement> {
   isChecked: boolean;
   text: string;
 }

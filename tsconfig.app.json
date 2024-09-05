@@ -41,11 +41,5 @@
       "@utils": ["src/utils"]
     }
   },
-  "include": [
-    "src",
-    "custom.d.ts",
-    "src/constants/mocks/HostMyClassCardData.ts",
-    "public/image",
-    "src/pages/class/page/ClassApply/ClassApplyQuestion/ClassApplyQuestion.tsx"
-  ]
+  "include": ["src", "custom.d.ts", "public/image"]
 }

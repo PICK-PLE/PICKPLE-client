@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import ClassApplyComplete from '@pages/class/page/ClassApply/ClassApplyComplete/ClassApplyComplete';
 import ClassApplyDeposit from '@pages/class/page/ClassApply/ClassApplyDeposit/ClassApplyDeposit';
-import ClassApplyQuestion from '../page/ClassApply/ClassApplyQuestion/ClassApplyQuestion';
+import ClassApplyQuestion from '@pages/class/page/ClassApply/ClassApplyQuestion/ClassApplyQuestion';
 import ClassApplyRule from '@pages/class/page/ClassApply/ClassApplyRule/ClassApplyRule';
 
 type StepType = 'rule' | 'question' | 'deposit' | 'complete';

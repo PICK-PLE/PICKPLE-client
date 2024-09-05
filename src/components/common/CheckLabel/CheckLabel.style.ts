@@ -2,14 +2,14 @@ import { Theme, css } from '@emotion/react';
 
 import { flexGenerator } from '@styles/generator';
 
-export const inputStyle =css`
+export const inputStyle = css`
   display: none;
 `;
 
 export const checkLabelWrapper = css`
+  ${flexGenerator()};
   width: fit-content;
   margin-top: 1rem;
-  ${flexGenerator()};
   gap: 0.4rem;
 
   cursor: pointer;
