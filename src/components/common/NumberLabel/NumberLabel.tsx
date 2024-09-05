@@ -1,5 +1,6 @@
 import { PropsWithChildren } from 'react';
-import { wrapperStyle, textStyle } from 'src/components/common/NumberLabel/NumberLabel.style';
+
+import { wrapperStyle, textStyle } from './NumberLabel.style';
 
 const NumberLabel = ({ children, ...props }: PropsWithChildren) => {
   return (

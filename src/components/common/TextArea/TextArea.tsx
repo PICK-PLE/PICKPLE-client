@@ -8,7 +8,7 @@ import {
   textAreaWrapperSize,
   textAreaContainerStyle,
   errorAndLengthWrapper,
-} from 'src/components/common/TextArea/TextArea.style';
+} from './TextArea.style';
 
 export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   value: string;
