@@ -131,7 +131,7 @@ const MyClassManage = () => {
             <>
               <div css={labelStyle}>
                 <div css={textStyle}>
-                  <span css={countTitleStyle}>모임 신청자</span>
+                  <span css={countTitleStyle}>클래스 신청자</span>
                   <span css={countTextStyle}>{submitterList?.length}</span>
                 </div>
                 <Label variant="count">

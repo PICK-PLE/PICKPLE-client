@@ -4,7 +4,7 @@ import { flexGenerator } from '@styles/generator';
 
 export const textAreaContainerStyle = css`
   ${flexGenerator('column', 'center', 'flex-start')}
-  gap: 0.5rem;
+  gap: 0.3rem;
   width: 100%;
 `;
 
@@ -35,12 +35,13 @@ export const textAreaStyle = (theme: Theme) => css`
   height: 100%;
   resize: none;
 
-  color: ${theme.color.darkgray};
+  color: ${theme.color.blackgray};
   background-color: ${theme.color.white};
   ${theme.font['body01-r-15']};
 
   &::placeholder {
     color: ${theme.color.midgray1};
+    ${theme.font['body06-m-14']}
   }
 
   &:focus {
@@ -48,9 +49,12 @@ export const textAreaStyle = (theme: Theme) => css`
   }
 `;
 
+export const errorAndLengthWrapper = (hasError: boolean) => css`
+  ${flexGenerator('row', `${hasError ? 'space-between' : 'flex-end'}`, 'center')}
+  width: 100%;
+`;
+
 export const textLengthStyle = (isError: boolean, isFocused: boolean) => (theme: Theme) => css`
-  right: 1.5rem;
-  bottom: 1.2rem;
   color: ${isError && isFocused ? theme.color.error : theme.color.midgray1};
   ${theme.font['body02-r-14']}
 `;

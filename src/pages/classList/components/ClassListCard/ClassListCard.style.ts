@@ -8,9 +8,19 @@ export const classListContainer = (theme: Theme) => css`
   gap: 2.1rem;
   padding: 1.3rem;
   padding-right: 2.8rem;
-  background-color: ${theme.color.bg_white0};
+  border: 1px solid ${theme.color.lightgray0};
   border-radius: 10px;
 `;
+
+export const classListCardBackground = {
+  classList: (theme: Theme) => css`
+    background-color: ${theme.color.background};
+  `,
+
+  hostInfo: (theme: Theme) => css`
+    background-color: ${theme.color.white};
+  `,
+};
 
 export const classListTextContainer = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}

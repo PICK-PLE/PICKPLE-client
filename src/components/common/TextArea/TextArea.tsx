@@ -7,7 +7,8 @@ import {
   textAreaWrapperStyle,
   textAreaWrapperSize,
   textAreaContainerStyle,
-} from 'src/components/common/TextArea/TextArea.style';
+  errorAndLengthWrapper,
+} from './TextArea.style';
 
 export interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   value: string;
@@ -43,7 +44,7 @@ const TextArea = ({
   const textLengthErrorMessage = `* 글자 수 ${maxLength}자 이하로 입력해주세요.`;
 
   const isError = maxLengthError || !isValid;
-
+  const hasError = maxLengthError || (isFocused && !isValid);
   return (
     <div css={textAreaContainerStyle}>
       <div css={[textAreaWrapperStyle(isError, isFocused), textAreaWrapperSize[size]]}>
@@ -55,14 +56,16 @@ const TextArea = ({
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
         />
+      </div>
+      <div css={errorAndLengthWrapper(hasError)}>
+        {maxLengthError && <span css={errorMessageStyle}>{textLengthErrorMessage}</span>}
+
+        {isFocused && !isValid && <span css={errorMessageStyle}>{errorMessage}</span>}
+
         <span css={textLengthStyle(isError, isFocused)}>
           {value.length}/{maxLength}
         </span>
       </div>
-
-      {maxLengthError && <span css={errorMessageStyle}>{textLengthErrorMessage}</span>}
-
-      {isFocused && !isValid && <span css={errorMessageStyle}>{errorMessage}</span>}
     </div>
   );
 };

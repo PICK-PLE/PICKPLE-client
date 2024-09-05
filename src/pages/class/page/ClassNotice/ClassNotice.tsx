@@ -24,6 +24,7 @@ const ClassNotice = () => {
   const [noticeContent, setNoticeContent] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [isPrivate] = useState(true);
   const [isOnlyGuest, setIsOnlyGuest] = useState(false);
 
   const putS3UploadMutation = usePutS3Upload();
@@ -65,6 +66,7 @@ const ClassNotice = () => {
       noticeTitle,
       noticeContent,
       imageUrl,
+      isPrivate,
     };
 
     await mutateAsync({ params, moimId: moimIdNumber });
