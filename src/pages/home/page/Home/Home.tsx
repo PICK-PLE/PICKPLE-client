@@ -31,6 +31,10 @@ const Home = () => {
     navigate(`/class-list?category=${category}`);
   };
 
+  const handleClickBanner = () => {
+    navigate(`/article/picksight`);
+  };
+
   return (
     <>
       <LogoHeader isIcon />
@@ -60,8 +64,7 @@ const Home = () => {
                 );
               })}
             </ul>
-
-            <section css={bannerWrapper}>
+            <section css={bannerWrapper} onClick={handleClickBanner}>
               <Image src={PicksightBanner} width="100%" />
             </section>
           </div>
