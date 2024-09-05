@@ -1,9 +1,8 @@
-import { LogoHeader } from '@components';
+import { Image, LogoHeader } from '@components';
 import Lottie from 'lottie-react';
 import { useNavigate } from 'react-router-dom';
 
 import { useFetchMoimBanner, useFetchMoimCategories } from '@apis/domains/moim';
-
 
 import { mainBanner } from 'src/assets/lotties';
 import Footer from 'src/components/common/Footer/Footer';
@@ -19,7 +18,9 @@ import {
   pageLayout,
   homeBannerStyle,
   imageStyle,
+  bannerWrapper,
 } from './Home.style';
+import { PicksightBanner } from 'src/constants/images';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -59,6 +60,10 @@ const Home = () => {
                 );
               })}
             </ul>
+
+            <section css={bannerWrapper}>
+              <Image src={PicksightBanner} width="100%" />
+            </section>
           </div>
         </main>
         <Footer />

@@ -4,7 +4,6 @@ import { flexGenerator } from '@styles/generator';
 
 export const pageLayout = css`
   ${flexGenerator('column')};
-  gap: 6rem;
   min-height: 100dvh;
   padding-top: 6rem;
 `;
@@ -55,4 +54,10 @@ export const imageStyle = css`
 export const iconNameStyle = (theme: Theme) => css`
   color: ${theme.color.midgray2};
   ${theme.font['body04-m-12']}
+`;
+
+export const bannerWrapper = css`
+  padding: 4rem 2rem;
+
+  cursor: pointer;
 `;
