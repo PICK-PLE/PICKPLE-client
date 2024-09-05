@@ -27,25 +27,25 @@ const HostInfoCard = ({ hostId }: HostInfoCardProps) => {
   const { hostNickName, hostImageUrl, count, keyword, description } = moimHostData ?? {};
 
   return (
-    <div css={hostInfoWrapper}>
+    <article css={hostInfoWrapper}>
       <Image variant="round" width="6rem" src={images.HostProfileImage || hostImageUrl} />
 
-      <div css={hostProfileWrapper}>
+      <section css={hostProfileWrapper}>
         <div css={hostNameMarkWrapper}>
           <div css={hostNameWrapper}>
             <p css={hostNameStyle}>{hostNickName}</p>
             <IcSpickerMark css={hostMarkIconStyle} />
           </div>
-          {count >= 2 ? (
+          {count && count >= 2 && (
             <div css={hostMarkMessageWrapper}>
               <span css={hostMarkMessageStyle}>베테랑</span>
             </div>
-          ) : null}
+          )}
         </div>
         <span css={hostKeywordStyle}>{keyword}</span>
         <span css={hostDescriptionWrapper}>{description}</span>
-      </div>
-    </div>
+      </section>
+    </article>
   );
 };
 

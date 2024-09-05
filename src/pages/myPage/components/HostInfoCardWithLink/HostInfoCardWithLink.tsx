@@ -55,7 +55,7 @@ const HostInfoCardWithLink = ({ hostInfoCardWithLinkList }: hostInfoCardWithLink
                       <p css={hostNameStyle}>{hostNickName}</p>
                       <IcSpickerMark css={hostMarkIconStyle} />
                     </div>
-                    {moimCount >= 2 ? (
+                    {moimCount && moimCount >= 2 ? (
                       <div css={hostMarkMessageWrapper}>
                         <span css={hostMarkMessageStyle}>베테랑</span>
                       </div>

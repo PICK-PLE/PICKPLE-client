@@ -26,10 +26,7 @@ export const hostInfoCardWrapper = (theme: Theme) => css`
   border: 1px solid ${theme.color.lightgray0};
   border-radius: 10px;
 
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  padding-left: 1.4rem;
-  padding-right: 1rem;
+  padding: 2rem 1rem 2rem 1.4rem;
 `;
 
 export const hostInfoWrapper = css`

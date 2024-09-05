@@ -80,11 +80,11 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
           입금하기
         </Button>
       ) : null}
-      {moimSubmissionState === 'completed' ? (
+      {moimSubmissionState === 'completed' && (
         <Button variant="xSmall" onClick={handleButtonClick}>
           리뷰 쓰기
         </Button>
-      ) : null}
+      )}
       {isOpen && (
         <Modal onClose={handleButtonClick}>
           <DepositModal onClose={handleButtonClick} />
