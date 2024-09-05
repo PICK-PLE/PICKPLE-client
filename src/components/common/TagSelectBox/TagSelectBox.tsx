@@ -17,7 +17,7 @@ const TagSelectBox = ({ tagList, maxSelection }: TagSelectBoxProps) => {
       if (selectedTagList.length < maxSelection) {
         setSelectedTagList([...selectedTagList, tag]);
       } else {
-        alert('최대 3개 가능');
+        alert('최대 3개 가능'); //추후 api 붙이고나서 지울 예정
       }
     }
   };

@@ -14,6 +14,8 @@ export const buttonStyle = (theme: Theme) => css`
   border-radius: 5px;
   border: 1px solid ${theme.color.purple1};
   ${theme.font['body03-r-12']}
+
+  cursor: pointer;
 `;
 
 export const selectedStyle = (theme: Theme) => css`
