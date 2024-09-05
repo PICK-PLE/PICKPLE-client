@@ -13,6 +13,7 @@ import {
   hostDescriptionStyle,
   hostDescriptionWrapper,
   hostImageWrapper,
+  hostInfoContainer,
   hostInfoLayout,
   hostKeywordStyle,
   hostMarkIconStyle,
@@ -52,8 +53,7 @@ const HostInfoPage = () => {
     profileUrl: null,
     count: 2,
     keyword: '10년차 요리 전문가',
-    description:
-      '안녕하세요, 스픽커 그것은입니다. 아니 이것은입니다.안녕하세요, 스픽커 그것은입니다. 아니 이것은입니다. 잘 부탁드립니다 홧팅',
+    description: '안녕하세요, 스픽커 그것은입니다.',
     socialLink: 'example.com',
   };
 
@@ -98,7 +98,7 @@ const HostInfoPage = () => {
     <div>
       <LogoHeader />
       <div css={hostInfoLayout}>
-        <article>
+        <article css={hostInfoContainer}>
           <section css={hostImageWrapper}>
             <Image src={images.HostBackGroundImage} customStyle={hostBackgroundImage} />
             <div css={hostProfileImage}>

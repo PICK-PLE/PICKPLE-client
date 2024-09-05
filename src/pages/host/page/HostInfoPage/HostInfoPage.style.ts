@@ -6,6 +6,11 @@ export const hostInfoLayout = css`
   padding-top: 6rem;
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   gap: 4.8rem;
+  width: 100%;
+`;
+
+export const hostInfoContainer = css`
+  width: 100%;
 `;
 
 export const hostImageWrapper = css`
@@ -33,6 +38,7 @@ export const hostProfileContainer = css`
 export const hostProfileWrapper = css`
   ${flexGenerator('column', 'center', 'flex-start')};
   gap: 2rem;
+  width: 100%;
 `;
 
 export const hostProfileStyle = css`
@@ -82,7 +88,7 @@ export const hostDescriptionWrapper = (theme: Theme) => css`
   background-color: ${theme.color.background};
   border-radius: 10px;
   padding: 1.4rem 2rem;
-  height: 9.7rem;
+  width: 100%;
 `;
 
 export const hostDescriptionStyle = (theme: Theme) => css`
