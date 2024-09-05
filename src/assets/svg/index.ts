@@ -60,6 +60,7 @@ export { default as IcNjobSmall } from './IcNjobSmall';
 export { default as IcNumberLabel } from './IcNumberLabel';
 export { default as IcOffline } from './IcOffline';
 export { default as IcOneline } from './IcOneline';
+export { default as IcParkMore } from './IcParkMore';
 export { default as IcPerson } from './IcPerson';
 export { default as IcProductivityActive } from './IcProductivityActive';
 export { default as IcProductivityBlack } from './IcProductivityBlack';
