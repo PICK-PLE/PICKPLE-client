@@ -9,7 +9,6 @@ export const containerStyle = (theme: Theme) => css`
 
   ${theme.font['head02-b-20']}
   ${theme.color.blackgray}
-  background-color: pink;
 `;
 
 export const buttonWrapperStyle = css`
@@ -25,20 +24,18 @@ export const iconStyle = css`
   height: 4.8rem;
 `;
 
-export const plusAndMinusIconStyle = css`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none; /* 클릭 이벤트가 아래 요소에 전달되도록 설정 */
-`;
-
 export const minusStyle = (people: number) => (theme: Theme) => css`
   circle {
     stroke: ${people <= 1 ? theme.color.lightgray1 : theme.color.purple1};
   }
   path {
     fill: ${people <= 1 ? theme.color.lightgray1 : theme.color.purple1};
+  }
+
+  :active {
+    circle {
+      fill: ${theme.color.purple6};
+    }
   }
 `;
 export const plusStyle = (people: number) => (theme: Theme) => css`
@@ -47,6 +44,12 @@ export const plusStyle = (people: number) => (theme: Theme) => css`
   }
   path {
     fill: ${people >= 15 ? theme.color.lightgray1 : theme.color.purple1};
+  }
+
+  :active {
+    circle {
+      fill: ${theme.color.purple6};
+    }
   }
 `;
 
