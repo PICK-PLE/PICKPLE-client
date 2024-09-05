@@ -3,7 +3,7 @@ import { get } from '@apis/api';
 import { components } from '@schema';
 import { ApiResponseType } from '@types';
 
-type PreSignedUrlClientRequest = components['schemas']['PreSignedUrlClientRequest'];
+type PreSignedUrlClientRequest = components['schemas']['PreSignedUrlResponse'];
 
 export type PresignedPrefixType =
   | 'MOIM_PREFIX'
