@@ -12,7 +12,7 @@ export const labelAndInputWrapper = css`
   ${flexGenerator('column', 'center', 'flex-start')}
   gap: 0.8rem;
   width: 100%;
-  min-width: 33.5rem;
+  /* min-width: 33.5rem; 삭제 모달 내 input 크기를 위해 주석처리 */
 `;
 
 export const inputLabelStyle = (theme: Theme) => css`
