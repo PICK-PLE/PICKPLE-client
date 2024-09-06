@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Button, Header, Image, Input, TextArea } from '@components';
 import { images } from '@constants';
@@ -45,6 +45,8 @@ const HostInfoEditPage = () => {
     socialLink: `${socialLink}`,
   });
 
+  const [isAllValid, setIsAllValid] = useState(false);
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     key: keyof HostInfoDataType
@@ -55,6 +57,15 @@ const HostInfoEditPage = () => {
       [key]: value,
     }));
   };
+
+  const isValid = (value: string) => {
+    return value.trim().length >= 1;
+  };
+
+  useEffect(() => {
+    const allInputFilled = Object.values(hostInfoValue).every((value) => value.trim() !== '');
+    setIsAllValid(allInputFilled);
+  }, [hostInfoValue]);
 
   return (
     <div>
@@ -83,7 +94,7 @@ const HostInfoEditPage = () => {
               maxLength={50}
               placeholder="닉네임을 입력해주세요"
               isCountValue={true}
-              isValid
+              isValid={isValid(hostInfoValue.nickName)}
             />
 
             <Input
@@ -94,7 +105,7 @@ const HostInfoEditPage = () => {
               maxLength={50}
               placeholder="키워드를 입력해주세요"
               isCountValue={true}
-              isValid
+              isValid={isValid(hostInfoValue.keyword)}
             />
 
             <div css={hostTextAreaWrapper}>
@@ -105,7 +116,7 @@ const HostInfoEditPage = () => {
                 errorMessage="* 필수 입력 항목이에요."
                 maxLength={70}
                 placeholder="소개글을 입력해주세요"
-                isValid
+                isValid={isValid(hostInfoValue.description)}
               />
             </div>
 
@@ -117,11 +128,13 @@ const HostInfoEditPage = () => {
               maxLength={50}
               placeholder="닉네임을 입력해주세요"
               isCountValue={true}
-              isValid
+              isValid={isValid(hostInfoValue.socialLink)}
             />
           </div>
 
-          <Button variant="medium">저장하기</Button>
+          <Button variant="medium" disabled={!isAllValid}>
+            저장하기
+          </Button>
         </section>
       </div>
     </div>
