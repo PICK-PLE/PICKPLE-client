@@ -6,28 +6,60 @@ import {
   commentTime,
   commentWrapper,
   iconStyle,
+  iconWrapper,
   profileImageWrapper,
   userNickname,
 } from './CommentBox.style';
 import { IcParkMore } from '@svg';
+import { components } from '@schema';
+import { formatCreatedDate } from '@utils';
+import DeleteCard from '../DeleteCard/DeleteCard';
+import { useState } from 'react';
 
-interface CommentBoxProps {}
+type comment = components['schemas']['CommentGetResponse'];
+interface CommentBoxProps {
+  comment: comment;
+}
 
-const CommentBox = ({}: CommentBoxProps) => {
+const CommentBox = ({ comment }: CommentBoxProps) => {
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleIconClick = () => {
+    setIsDeleteOpen((prev) => !prev);
+    // setIsModalOpen(false);
+  };
+
   return (
     <article css={commentSectionContainer}>
       <div css={commentContainer}>
         <div css={profileImageWrapper}>
-          <Image variant="round" src="https://picsum.photos/200" width="4.2rem" />
+          <Image variant="round" src={comment.commenterImageUrl ?? ''} width="4.2rem" />
         </div>
         <section css={commentWrapper}>
-          <p css={userNickname}>Jay</p>
-          <div css={commentContent}>클래스 참여에 별도의 준비물이 필요할까요?</div>
-          <div css={commentTime}>3시간 전</div>
+          <p css={userNickname}>{comment.commenterNickname}</p>
+          <div css={commentContent}>{comment.commentContent}</div>
+          <div css={commentTime}>{formatCreatedDate(comment.commentDate ?? '')}시간 전</div>
         </section>
-
-        <div css={iconStyle}>
-          <IcParkMore />
+        <div css={iconWrapper}>
+          <span css={iconStyle}>
+            <IcParkMore onClick={handleIconClick} />
+            {isDeleteOpen && (
+              <DeleteCard
+                isModalOpen={isModalOpen}
+                handleModalClose={handleModalClose}
+                handleModalOpen={handleModalOpen}
+              />
+            )}
+          </span>
         </div>
       </div>
     </article>

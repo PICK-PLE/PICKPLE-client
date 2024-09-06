@@ -4,8 +4,8 @@ import { flexGenerator } from '@styles/generator';
 
 export const commentSectionContainer = css`
   display: grid;
-  grid-template-rows: 1fr auto 1fr;
   width: 100%;
+  height: calc(100% -6rem);
   min-width: 37.5rem;
 `;
 
@@ -47,8 +47,13 @@ export const commentTime = (theme: Theme) => css`
   ${theme.font['body04-m-12']}
 `;
 
+export const iconWrapper = css`
+  position: relative;
+`;
+
 export const iconStyle = css`
-  display: flex;
   width: 2.4rem;
   height: 2.4rem;
+  position: absolute;
+  right: 1.3rem;
 `;
