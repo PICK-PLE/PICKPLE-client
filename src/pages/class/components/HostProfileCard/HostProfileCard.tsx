@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { IcParkMore } from '@svg';
 import DeleteCard from '../DeleteCard/DeleteCard';
 import { components } from '@schema';
+import { useClickOutside } from '@hooks';
 
 type NoticeListGetByMoimResponse = components['schemas']['NoticeDetailGetResponse'];
 interface HostProfileCardProps {
@@ -21,6 +22,10 @@ interface HostProfileCardProps {
 const HostProfileCard = ({ data: noticeDetail }: HostProfileCardProps) => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const deleteCardRef = useClickOutside(() => {
+    setIsDeleteOpen(false);
+    handleModalClose();
+  });
 
   const handleModalClose = () => {
     setIsModalOpen(false);
@@ -52,11 +57,13 @@ const HostProfileCard = ({ data: noticeDetail }: HostProfileCardProps) => {
         <span css={iconStyle}>
           <IcParkMore onClick={handleIconClick} />
           {isDeleteOpen && (
-            <DeleteCard
-              isModalOpen={isModalOpen}
-              handleModalClose={handleModalClose}
-              handleModalOpen={handleModalOpen}
-            />
+            <div ref={deleteCardRef}>
+              <DeleteCard
+                isModalOpen={isModalOpen}
+                handleModalClose={handleModalClose}
+                handleModalOpen={handleModalOpen}
+              />
+            </div>
           )}
         </span>
       </div>

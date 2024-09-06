@@ -15,6 +15,7 @@ import { components } from '@schema';
 import { formatCreatedDate } from '@utils';
 import DeleteCard from '../DeleteCard/DeleteCard';
 import { useState } from 'react';
+import { useClickOutside } from '@hooks';
 
 type comment = components['schemas']['CommentGetResponse'];
 interface CommentBoxProps {
@@ -24,6 +25,10 @@ interface CommentBoxProps {
 const CommentBox = ({ comment }: CommentBoxProps) => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const deleteCardRef = useClickOutside(() => {
+    setIsDeleteOpen(false);
+    handleModalClose();
+  });
 
   const handleModalClose = () => {
     setIsModalOpen(false);
@@ -53,11 +58,13 @@ const CommentBox = ({ comment }: CommentBoxProps) => {
           <span css={iconStyle}>
             <IcParkMore onClick={handleIconClick} />
             {isDeleteOpen && (
-              <DeleteCard
-                isModalOpen={isModalOpen}
-                handleModalClose={handleModalClose}
-                handleModalOpen={handleModalOpen}
-              />
+              <div ref={deleteCardRef}>
+                <DeleteCard
+                  isModalOpen={isModalOpen}
+                  handleModalClose={handleModalClose}
+                  handleModalOpen={handleModalOpen}
+                />
+              </div>
             )}
           </span>
         </div>
