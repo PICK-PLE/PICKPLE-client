@@ -52,4 +52,6 @@ export const inputStyle = (theme: Theme) => css`
 export const iconStyle = css`
   width: 2.4rem;
   height: 2.4rem;
+
+  cursor: pointer;
 `;
