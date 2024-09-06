@@ -1,3 +1,4 @@
+import { Button } from '@components';
 import {
   buttonWrapper,
   cancelButtonStyle,
@@ -21,12 +22,12 @@ const DeleteModal = ({ onClose }: DeleteModalProps) => {
         <div css={detailWrapper}>
           <p css={title}>삭제하시겠습니까?</p>
           <div css={buttonWrapper}>
-            <button css={cancelButtonStyle} onClick={onClose}>
+            <Button variant="xSmall" onClick={onClose} customStyle={cancelButtonStyle}>
               <p css={cancelButtonText}>취소</p>
-            </button>
-            <button css={deleteButtonStyle}>
+            </Button>
+            <Button variant="xSmall" onClick={() => {}} customStyle={deleteButtonStyle}>
               <p css={deleteButtonText}>삭제</p>
-            </button>
+            </Button>
           </div>
         </div>
       </div>
