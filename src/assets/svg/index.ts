@@ -23,6 +23,7 @@ export { default as IcDropdownPlatformDown } from './IcDropdownPlatformDown';
 export { default as IcDropdownPlatformUp } from './IcDropdownPlatformUp';
 export { default as IcDropdownRight } from './IcDropdownRight';
 export { default as IcDropdownUp } from './IcDropdownUp';
+export { default as IcEdit20 } from './IcEdit20';
 export { default as IcEmploymentActive } from './IcEmploymentActive';
 export { default as IcEmploymentBlack } from './IcEmploymentBlack';
 export { default as IcEmploymentSmall } from './IcEmploymentSmall';
