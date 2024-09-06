@@ -87,14 +87,14 @@ const GuestMyClassReviewWrite = () => {
               <span css={bigSpan}>클래스는 어떠셨나요?</span>
               <span css={smallSpan}>최소 1개, 최대 3개</span>
             </div>
-            <TagSelectBox tagList={moimTags} maxSelection={3} />
+            <TagSelectBox tagList={moimTags} maxSelection={3} tagType="moim" />
           </section>
           <section css={tagSectionStyle}>
             <div css={sectionTitleStyle}>
               <span css={bigSpan}>스피커는 어떠셨나요?</span>
               <span css={smallSpan}>최소 1개, 최대 3개</span>
             </div>
-            <TagSelectBox tagList={hostTags} maxSelection={3} />
+            <TagSelectBox tagList={hostTags} maxSelection={3} tagType="host" />
           </section>
           <section css={writeReviewSection}>
             <span css={bigSpan}>클래스에 함께한 경험을 공유해 주세요!</span>
