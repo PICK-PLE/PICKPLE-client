@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { Theme, css } from '@emotion/react';
 
 import { flexGenerator } from '@styles/generator';
 
@@ -39,4 +39,16 @@ export const hostInputContainer = css`
 export const hostInputWrapper = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')};
   gap: 2.2rem;
+  width: 100%;
+`;
+
+export const hostTextAreaWrapper = css`
+  ${flexGenerator('column', 'flex-start', 'flex-start')};
+  gap: 0.8rem;
+  width: 100%;
+`;
+
+export const hostTextAreaLabelStyle = (theme: Theme) => css`
+  ${theme.font['subhead05-sb-14']};
+  color: ${theme.color.midgray2};
 `;

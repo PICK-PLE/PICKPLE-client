@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import { Button, Header, Image, Input, TextArea } from '@components';
 import { images } from '@constants';
 import {
@@ -5,12 +7,23 @@ import {
   hostInfoLayout,
   hostInputContainer,
   hostInputWrapper,
+  hostTextAreaLabelStyle,
+  hostTextAreaWrapper,
 } from '@pages/host/page/HostInfoEditPage/HostInfoEditPage.style';
 import {
   hostBackgroundImage,
   hostImageWrapper,
   hostProfileImage,
 } from '@pages/host/page/HostInfoPage/HostInfoPage.style';
+
+export interface HostInfoDataType {
+  nickName: string;
+  profileUrl: string;
+  count: number;
+  keyword: string;
+  description: string;
+  socialLink: string;
+}
 
 const HostInfoEditPage = () => {
   // 호스트 목데이터
@@ -25,7 +38,24 @@ const HostInfoEditPage = () => {
 
   const { nickName, profileUrl, keyword, description, socialLink } = hostData;
 
-  const handleNickNameInputChange = () => {};
+  const [hostInfoValue, setHostInfoValue] = useState({
+    nickName: `${nickName}`,
+    keyword: `${keyword}`,
+    description: `${description}`,
+    socialLink: `${socialLink}`,
+  });
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    key: keyof HostInfoDataType
+  ) => {
+    const value = e.target.value;
+    setHostInfoValue((prevState) => ({
+      ...prevState,
+      [key]: value,
+    }));
+  };
+
   return (
     <div>
       <Header title="프로필 관리" isLine={true} />
@@ -46,49 +76,52 @@ const HostInfoEditPage = () => {
         <section css={hostInputContainer}>
           <div css={hostInputWrapper}>
             <Input
-              value={nickName}
-              onChange={handleNickNameInputChange}
+              value={hostInfoValue.nickName}
+              onChange={(e) => handleInputChange(e, 'nickName')}
               inputLabel="닉네임"
               errorMessage="* 필수 입력 항목이에요."
               maxLength={50}
               placeholder="닉네임을 입력해주세요"
-              isCountValue
+              isCountValue={true}
+              isValid
             />
 
             <Input
-              value={keyword}
-              onChange={handleNickNameInputChange}
+              value={hostInfoValue.keyword}
+              onChange={(e) => handleInputChange(e, 'keyword')}
               inputLabel="키워드"
               errorMessage="* 필수 입력 항목이에요."
               maxLength={50}
-              placeholder="닉네임을 입력해주세요"
-              isCountValue
+              placeholder="키워드를 입력해주세요"
+              isCountValue={true}
+              isValid
             />
 
-            <div>
-              <span>소개글</span>
+            <div css={hostTextAreaWrapper}>
+              <span css={hostTextAreaLabelStyle}>소개글</span>
               <TextArea
-                value={description}
-                onChange={handleNickNameInputChange}
+                value={hostInfoValue.description}
+                onChange={(e) => handleInputChange(e, 'description')}
                 errorMessage="* 필수 입력 항목이에요."
                 maxLength={70}
-                placeholder="닉네임을 입력해주세요"
+                placeholder="소개글을 입력해주세요"
                 isValid
               />
             </div>
 
             <Input
-              value={socialLink}
-              onChange={handleNickNameInputChange}
+              value={hostInfoValue.socialLink}
+              onChange={(e) => handleInputChange(e, 'socialLink')}
               inputLabel="소셜 링크"
               errorMessage="* 필수 입력 항목이에요."
               maxLength={50}
               placeholder="닉네임을 입력해주세요"
-              isCountValue
+              isCountValue={true}
+              isValid
             />
           </div>
 
-          <Button variant="small">저장하기</Button>
+          <Button variant="medium">저장하기</Button>
         </section>
       </div>
     </div>
