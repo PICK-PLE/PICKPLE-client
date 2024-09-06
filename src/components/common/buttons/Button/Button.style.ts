@@ -79,6 +79,30 @@ export const buttonSize = {
     color: ${theme.color.purple3};
     background-color: transparent;
   `,
+  smallStroke: (theme: Theme) => css`
+    width: 100%;
+    height: 5rem;
+    padding: 1.4rem 1rem;
+
+    border: 1px solid ${theme.color.purple1};
+    border-radius: 10px;
+
+    ${theme.font['head04-b-16']}
+    color: ${theme.color.purple1};
+    background-color: ${theme.color.white};
+  `,
+  xSmallStroke: (theme: Theme) => css`
+    width: 100%;
+    height: 4.6rem;
+    padding: 0.8rem;
+
+    border: 1px solid ${theme.color.purple1};
+    border-radius: 5px;
+
+    ${theme.font['subhead05-sb-14']}
+    color: ${theme.color.purple1};
+    background-color: ${theme.color.white};
+  `,
 };
 
 export const disabledStyle = (theme: Theme) => css`

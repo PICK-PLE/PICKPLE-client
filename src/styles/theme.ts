@@ -22,7 +22,8 @@ const PretendardFont = css`
 const theme = {
   color: {
     white: '#FFFFFF',
-    background: '#F8F9FC',
+    bg_white0: '#F8F9FC',
+    bg_white1: '#F3F5FB',
     lightgray0: '#EDEEF2',
     lightgray1: '#DFE2E7',
     lightgray2: '#C6CAD4',
@@ -109,6 +110,13 @@ const theme = {
       line-height: 140%;
       letter-spacing: 0px;
     `,
+    'subhead06-m-14': css`
+      ${PretendardFont};
+      font-size: 1.4rem;
+      font-weight: 500;
+      line-height: 140%;
+      letter-spacing: 0px;
+    `,
     'body01-r-15': css`
       ${PretendardFont};
       font-size: 1.5rem;
@@ -141,6 +149,13 @@ const theme = {
       ${PretendardFont};
       font-size: 1rem;
       font-weight: 400;
+      line-height: 140%;
+      letter-spacing: 0px;
+    `,
+    'body06-m-15': css`
+      ${PretendardFont};
+      font-size: 1.5rem;
+      font-weight: 500;
       line-height: 140%;
       letter-spacing: 0px;
     `,

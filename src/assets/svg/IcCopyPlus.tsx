@@ -2,14 +2,14 @@ import type { SVGProps } from 'react';
 const SvgIcCopyPlus = (props: SVGProps<SVGSVGElement>) => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" {...props}>
     <path
-      stroke="#5451FF"
+      stroke="#ffffff"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
       d="M7 9.667A2.667 2.667 0 0 1 9.667 7h8.666A2.667 2.667 0 0 1 21 9.667v8.666A2.67 2.67 0 0 1 18.333 21H9.667A2.67 2.67 0 0 1 7 18.333z"
     />
     <path
-      stroke="#5451FF"
+      stroke="#ffffff"
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}

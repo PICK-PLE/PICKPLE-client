@@ -98,7 +98,7 @@ const GuestMyClass = () => {
           {currentData?.length === 0 ? (
             <GuestMyClassEmptyView
               text={
-                activeTab === '신청한' ? '아직 신청한 모임이 없어요' : '아직 참가한 모임이 없어요'
+                activeTab === '신청한' ? '아직 신청한 클래스가 없어요' : '아직 참가한 클래스가 없어요'
               }
             />
           ) : (

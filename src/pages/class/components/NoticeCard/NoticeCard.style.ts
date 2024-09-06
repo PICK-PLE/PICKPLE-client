@@ -7,6 +7,7 @@ export const noticeCardContainer = (theme: Theme) => css`
   width: 100%;
   padding: 2rem;
   background-color: ${theme.color.white};
+  border: 1px solid ${theme.color.lightgray0};
   border-radius: 10px;
 
   gap: 2rem;
@@ -14,10 +15,12 @@ export const noticeCardContainer = (theme: Theme) => css`
 
 export const profileWrapper = css`
   ${flexGenerator('row', 'flex-start')};
-  gap: 0.7rem;
+  gap: 1.2rem;
 `;
 
 export const profileImage = css`
+  width: 4.2rem;
+  height: 4.2rem;
   border-radius: 50%;
 `;
 
@@ -30,9 +33,22 @@ export const profilePosition = (theme: Theme) => css`
   color: ${theme.color.midgray2};
 `;
 
+export const profileHostInfo = css`
+  ${flexGenerator('row', 'flex-start', 'center')};
+  gap: 0.4rem;
+`;
+
 export const profileName = (theme: Theme) => css`
   ${theme.font['subhead05-sb-14']};
   color: ${theme.color.blackgray};
+`;
+
+export const porfileHostMark = css`
+  width: 1.6rem;
+`;
+
+export const noticeWrapper = css`
+  width: 100%;
 `;
 
 export const noticeTitle = (theme: Theme) => css`
@@ -58,7 +74,25 @@ export const noticeImage = css`
   margin-bottom: 2rem;
 `;
 
+export const noticeInfo = css`
+  ${flexGenerator('row', 'space-between', 'center')}
+`;
+
 export const noticeDate = (theme: Theme) => css`
   ${theme.font['body03-r-12']};
   color: ${theme.color.midgray1};
+`;
+
+export const noticeComment = css`
+  ${flexGenerator()};
+  gap: 0.3rem;
+`;
+
+export const noticeCommentIcon = css`
+  width: 1.7rem;
+`;
+
+export const noticeCommentNumber = (theme: Theme) => css`
+  color: ${theme.color.midgray2};
+  ${theme.font['body04-m-12']};
 `;
