@@ -108,7 +108,7 @@ const ClassList = () => {
                   onClick={() => {
                     moim.moimId && handleMoimClick(moim.moimId);
                   }}>
-                  <ClassListCard classListData={moim} />
+                  <ClassListCard classListData={moim} variant={'classList'} />
                 </li>
               );
             })}

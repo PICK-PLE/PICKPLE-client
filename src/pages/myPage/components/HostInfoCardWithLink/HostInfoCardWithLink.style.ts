@@ -20,61 +20,77 @@ export const hostInfoCardWithLinkWrapper = css`
   gap: 1.6rem;
 `;
 
+export const hostInfoCardWrapper = (theme: Theme) => css`
+  ${flexGenerator('row', 'space-between', 'center')};
+  background-color: ${theme.color.background};
+  border: 1px solid ${theme.color.lightgray0};
+  border-radius: 10px;
+
+  padding: 2rem 1rem 2rem 1.4rem;
+`;
+
 export const hostInfoWrapper = css`
-  ${flexGenerator('row', 'flex-start', 'center')};
-  gap: 2rem;
+  ${flexGenerator('row', 'center', 'center')};
+  gap: 1.5rem;
 `;
 
 export const hostDetailWrapper = css`
   ${flexGenerator('column', 'center', 'flex-start')};
+  gap: 1rem;
+`;
 
-  gap: 0.5rem;
+export const hostProfileWrapper = css`
+  ${flexGenerator('column', 'center', 'flex-start')};
+  gap: 0.2rem;
+`;
+
+export const hostNameMarkWrapper = css`
+  ${flexGenerator()}
+  gap: 0.8rem;
+`;
+
+export const hostNameWrapper = css`
+  ${flexGenerator()}
+  gap: 0.4rem
+`;
+
+export const hostMarkIconStyle = css`
+  width: 1.9rem;
+  height: 1.9rem;
+`;
+
+export const hostMarkMessageWrapper = (theme: Theme) => css`
+  ${flexGenerator()}
+  width: 4.8rem;
+  height: 2.1rem;
+  background-color: ${theme.color.purple5};
+  border-radius: 5px;
+`;
+
+export const hostMarkMessageStyle = (theme: Theme) => css`
+  color: ${theme.color.purple1};
+  ${theme.font['body03-r-12']}
 `;
 
 export const hostNameStyle = (theme: Theme) => css`
   color: ${theme.color.black};
-  ${theme.font['head03-b-18']};
+  ${theme.font['head04-b-16']};
 `;
 
-export const linkWrapper = (theme: Theme) => css`
-  ${flexGenerator()};
-  padding: 0.4rem 0.8rem;
-  gap: 0.8rem;
-
-  border-radius: 5px;
-  background-color: ${theme.color.background};
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${theme.color.purple6};
-    p {
-      color: ${theme.color.purple1};
-    }
-  }
-`;
-
-export const linkStyle = (theme: Theme) => css`
-  color: ${theme.color.midgray1};
+export const hostKeywordStyle = (theme: Theme) => css`
+  color: ${theme.color.midgray2};
   ${theme.font['body03-r-12']}
 `;
 
-export const categoryListWrapper = css`
-  ${flexGenerator('row', 'flex-start', 'center')};
-  gap: 0.7rem;
+export const hostCountWrapper = (theme: Theme) => css`
+  color: ${theme.color.darkgray} ${theme.font['body04-m-12']};
 `;
 
-export const categoryStyle = (theme: Theme) => css`
-  ${flexGenerator()}
-  width: 10.7rem;
-  height: 3.4rem;
-  padding: 0.5rem 1rem;
-  gap: 0.4rem;
-
-  border-radius: 5px;
-  background: ${theme.color.purple6};
-`;
-
-export const categoryTextStyle = (theme: Theme) => css`
+export const hostCountColorStyle = (theme: Theme) => css`
   color: ${theme.color.purple1};
-  ${theme.font['body03-r-12']}
+`;
+
+export const nextIconStyle = css`
+  width: 2.4rem;
+  height: 2.4rem;
 `;

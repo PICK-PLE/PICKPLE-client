@@ -43,7 +43,7 @@ export const mainFirstSectionStyle = (theme: Theme) => css`
   padding: 1.5rem 1rem;
 
   border-radius: 10px;
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
 `;
 export const accountInfoStyle = css`
   ${flexGenerator('column')}

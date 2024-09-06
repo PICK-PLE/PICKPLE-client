@@ -44,7 +44,7 @@ const HostMyClassCard = ({ hostMyClassData }: HostMyClassCardProps) => {
           <Label variant="textCount">{`승인 현황 ${approvedGuest} / ${maxGuest}`}</Label>
         </div>
       </section>
-      <Button variant="stroke" onClick={handleButtonClick}>
+      <Button variant="xSmallStroke" onClick={handleButtonClick}>
         신청자 관리
       </Button>
     </article>

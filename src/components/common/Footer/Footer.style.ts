@@ -10,7 +10,7 @@ export const footerContainer = (theme: Theme) => css`
   margin-top: auto;
   bottom: 0;
 
-  background: ${theme.color.background};
+  background: ${theme.color.bg_white0};
 `;
 
 export const footerWrapper = css`

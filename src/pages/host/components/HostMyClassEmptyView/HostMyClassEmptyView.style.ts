@@ -7,7 +7,7 @@ export const completedTabContainer = (theme: Theme) => css`
   height: calc(100dvh - 10.4rem);
   padding: 20% 9.3rem 0;
   width: 100%;
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
 `;
 
 export const textWrapper = css`

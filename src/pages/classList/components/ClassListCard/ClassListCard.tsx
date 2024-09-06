@@ -6,6 +6,7 @@ import {
   titleTextWrapper,
   timeTextWraaper,
   classCardCustomStyle,
+  classListCardBackground,
 } from '@pages/classList/components/ClassListCard/ClassListCard.style';
 import { dDayText } from '@utils';
 
@@ -15,14 +16,15 @@ type MoimByCategoryResponse = components['schemas']['MoimByCategoryResponse'];
 
 interface ClassListCardProps {
   classListData: MoimByCategoryResponse;
+  variant: 'classList' | 'hostInfo';
 }
 
-const ClassListCard = ({ classListData }: ClassListCardProps) => {
+const ClassListCard = ({ classListData, variant }: ClassListCardProps) => {
   const { dayOfDay = 0, moimImageUrl, title, hostImageUrl, hostNickName, dateList } = classListData;
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
 
   return (
-    <div css={classListContainer}>
+    <div css={[classListContainer, classListCardBackground[variant]]}>
       <Image
         src={moimImageUrl || ''}
         width="9rem"

@@ -49,20 +49,15 @@ const ApplicantListModal = ({
           <img src={images.CheckModalImage} css={iconStyle} alt="신청 완료 모달" />
           <div css={textDivStyle}>
             <h1 css={modalCommentTitleStyle}>승인할 신청자 목록을 확인해주세요!</h1>
-            <h1 css={countTextStyle}>
+            <h2 css={countTextStyle}>
               총 <span css={applicantCountStyle}>{submitterList?.length}</span>명
-            </h1>
+            </h2>
           </div>
         </header>
         <main css={mainStyle}>
           <ul css={ulStyle}>
             {submitterList?.map((submitter) => (
               <li key={submitter.submitterId} css={liStyle}>
-                <SimpleUserProfile
-                  size="large"
-                  userImgUrl={images.GuestProfileImage}
-                  username={submitter.nickname || ''}
-                />
                 <SimpleUserProfile
                   size="large"
                   userImgUrl={images.GuestProfileImage}

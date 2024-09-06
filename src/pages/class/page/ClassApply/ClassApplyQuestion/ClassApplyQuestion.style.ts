@@ -4,7 +4,7 @@ import { flexGenerator } from '@styles/generator';
 
 export const questionArticleLayout = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
-  gap: 7.9rem;
+  gap: 5.4rem;
   padding: 3.2rem 2rem 3rem 2rem;
   width: 100%;
   min-height: calc(100dvh - 6.3rem);
@@ -33,14 +33,14 @@ export const questionHStyle = (theme: Theme) => css`
 
 export const questionMainStyle = css`
   ${flexGenerator('column', 'center', 'flex-start')}
-  gap: 3rem;
+  gap: 1rem;
   width: 100%;
 `;
 
 export const questionDataStyle = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   /* padding: 1.2rem 1.6rem 1rem 1rem; */
-  gap: 1rem;
+  gap: 1.5rem;
   width: 100%;
 `;
 
