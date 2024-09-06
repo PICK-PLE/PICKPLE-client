@@ -35,5 +35,5 @@ export const iconStyle = css`
   width: 2.4rem;
   height: 2.4rem;
   position: absolute;
-  right: 1.3rem;
+  right: 0.3rem;
 `;
