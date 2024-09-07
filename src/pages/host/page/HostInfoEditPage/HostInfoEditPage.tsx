@@ -73,7 +73,7 @@ const HostInfoEditPage = () => {
       <div css={hostInfoLayout}>
         <section css={hostInfoContainer}>
           <div css={hostImageWrapper}>
-            <Image src={images.HostBackGroundImage} customStyle={hostBackgroundImage} width=''/>
+            <img src={images.HostBackGroundImage} css={hostBackgroundImage} />
             <div css={hostProfileImage}>
               <Image
                 src={profileUrl ? profileUrl : images.HostProfileImage}
