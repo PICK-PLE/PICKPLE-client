@@ -35,6 +35,7 @@ import {
 } from '@pages/host/page/HostInfoPage/HostInfoPage.style';
 import { userAtom } from '@stores';
 import { IcEdit, IcSpickerMark } from '@svg';
+import { hostData, hostClassData, hostReviewData } from 'src/constants/mocks/hostInfo';
 
 const HostInfoPage = () => {
   const [activeTab, setActiveTab] = useState<'클래스' | '리뷰'>('클래스');
@@ -59,52 +60,7 @@ const HostInfoPage = () => {
     navigate(`/host/info/edit/${hostId}`);
   };
 
-  // 호스트 목데이터
-  const hostData = {
-    nickName: '채연',
-    profileUrl: null,
-    count: 2,
-    keyword: '10년차 요리 전문가',
-    description: '안녕하세요, 스픽커 그것은입니다.',
-    socialLink: 'example.com',
-  };
-
   const { nickName, profileUrl, count, keyword, description, socialLink } = hostData;
-
-  // 클래스 목데이터
-  const hostClassData = [
-    {
-      moimId: 1,
-      dayOfDay: 1,
-      title: '부산 10년 토박이 달아오르구마',
-      hostNickName: '달아오르구마',
-      dateList: {
-        date: '2024.07.06',
-        dayOfWeek: '토',
-        startTime: '15:00',
-        endTime: '18:00',
-      },
-      moimImageUrl: 'example.com',
-      hostImageUrl: 'example.com',
-    },
-    {
-      moimId: 2,
-      dayOfDay: 1,
-      title: '서산 10년 토박이 부농고마',
-      hostNickName: '부농고마',
-      dateList: {
-        date: '2024.07.06',
-        dayOfWeek: '토',
-        startTime: '15:00',
-        endTime: '18:00',
-      },
-      moimImageUrl: 'example.com',
-      hostImageUrl: 'example.com',
-    },
-  ];
-
-  // 리뷰 예시
-  const hostReviewData = ['좋아요', '재밌어욧', '최고'];
 
   return (
     <div>

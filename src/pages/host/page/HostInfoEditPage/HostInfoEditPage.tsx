@@ -15,27 +15,9 @@ import {
   hostTextAreaWrapper,
 } from '@pages/host/page/HostInfoEditPage/HostInfoEditPage.style';
 import { IcCamera } from '@svg';
-
-export interface HostInfoDataType {
-  nickName: string;
-  profileUrl: string;
-  count: number;
-  keyword: string;
-  description: string;
-  socialLink: string;
-}
+import { hostData, HostInfoData } from 'src/constants/mocks/hostInfo';
 
 const HostInfoEditPage = () => {
-  // 호스트 목데이터
-  const hostData = {
-    nickName: '채연',
-    profileUrl: null,
-    count: 2,
-    keyword: '10년차 요리 전문가',
-    description: '안녕하세요, 스픽커 그것은입니다.',
-    socialLink: 'example.com',
-  };
-
   const { nickName, profileUrl, keyword, description, socialLink } = hostData;
 
   const [hostInfoValue, setHostInfoValue] = useState({
@@ -49,7 +31,7 @@ const HostInfoEditPage = () => {
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    key: keyof HostInfoDataType
+    key: keyof HostInfoData
   ) => {
     const value = e.target.value;
     setHostInfoValue((prevState) => ({
