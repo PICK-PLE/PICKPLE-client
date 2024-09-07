@@ -4,6 +4,7 @@ export { default as IcApplicantArrcodionDown } from './IcApplicantArrcodionDown'
 export { default as IcApplicantArrcodionUp } from './IcApplicantArrcodionUp';
 export { default as IcBtnMinus } from './IcBtnMinus';
 export { default as IcBtnPlus } from './IcBtnPlus';
+export { default as IcCamera } from './IcCamera';
 export { default as IcCameraAdd } from './IcCameraAdd';
 export { default as IcCaution } from './IcCaution';
 export { default as IcCheckActive } from './IcCheckActive';
@@ -23,6 +24,7 @@ export { default as IcDropdownPlatformDown } from './IcDropdownPlatformDown';
 export { default as IcDropdownPlatformUp } from './IcDropdownPlatformUp';
 export { default as IcDropdownRight } from './IcDropdownRight';
 export { default as IcDropdownUp } from './IcDropdownUp';
+export { default as IcEdit } from './IcEdit';
 export { default as IcEmploymentActive } from './IcEmploymentActive';
 export { default as IcEmploymentBlack } from './IcEmploymentBlack';
 export { default as IcEmploymentSmall } from './IcEmploymentSmall';

@@ -1,4 +1,6 @@
+import { useAtom } from 'jotai';
 import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { Button, Image, LogoHeader } from '@components';
 import { images } from '@constants';
@@ -14,6 +16,7 @@ import {
   hostDescriptionWrapper,
   hostImageWrapper,
   hostInfoContainer,
+  hostInfoEditIcon,
   hostInfoLayout,
   hostKeywordStyle,
   hostMarkIconStyle,
@@ -30,10 +33,15 @@ import {
   hostTabTextStyle,
   hostTabWrapper,
 } from '@pages/host/page/HostInfoPage/HostInfoPage.style';
-import { IcSpickerMark } from '@svg';
+import { userAtom } from '@stores';
+import { IcEdit, IcSpickerMark } from '@svg';
 
 const HostInfoPage = () => {
   const [activeTab, setActiveTab] = useState<'클래스' | '리뷰'>('클래스');
+
+  const [user] = useAtom(userAtom);
+  const { hostId } = useParams();
+  const navigate = useNavigate();
 
   const handleClassTabClick = () => {
     setActiveTab('클래스');
@@ -45,6 +53,10 @@ const HostInfoPage = () => {
 
   const handleHostLinkButtonClick = () => {
     window.open(socialLink, '_blank');
+  };
+
+  const handleEditIconClick = () => {
+    navigate(`/host/info/edit/${hostId}`);
   };
 
   // 호스트 목데이터
@@ -100,7 +112,7 @@ const HostInfoPage = () => {
       <div css={hostInfoLayout}>
         <article css={hostInfoContainer}>
           <section css={hostImageWrapper}>
-            <Image src={images.HostBackGroundImage} customStyle={hostBackgroundImage} />
+            <img src={images.HostBackGroundImage} css={hostBackgroundImage} />
             <div css={hostProfileImage}>
               <Image
                 src={profileUrl ? profileUrl : images.HostProfileImage}
@@ -108,6 +120,11 @@ const HostInfoPage = () => {
                 width="8.2rem"
               />
             </div>
+            {Number(user.hostId) === Number(hostId) && (
+              <div css={hostInfoEditIcon}>
+                <IcEdit onClick={handleEditIconClick} />
+              </div>
+            )}
           </section>
 
           <section css={hostProfileContainer}>
@@ -133,7 +150,7 @@ const HostInfoPage = () => {
               </div>
             </div>
 
-            <Button variant="small" onClick={handleHostLinkButtonClick}>
+            <Button variant="smallStroke" onClick={handleHostLinkButtonClick}>
               스픽커 더 알아보기
             </Button>
           </section>

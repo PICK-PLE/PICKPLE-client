@@ -29,6 +29,14 @@ export const hostProfileImage = css`
   left: 2rem;
 `;
 
+export const hostInfoEditIcon = css`
+  width: 2.4rem;
+  height: 2.4rem;
+  position: absolute;
+  top: 12.6rem;
+  left: 8.7rem;
+`;
+
 export const hostInputContainer = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')};
   gap: 5.4rem;

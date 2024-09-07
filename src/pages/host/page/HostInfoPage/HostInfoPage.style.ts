@@ -7,20 +7,26 @@ export const hostInfoLayout = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   gap: 4.8rem;
   width: 100%;
+  min-width: 37.5rem;
 `;
 
 export const hostInfoContainer = css`
+  ${flexGenerator('column', 'center', 'start')}
   width: 100%;
 `;
 
 export const hostImageWrapper = css`
   position: relative;
+  width: 100%;
+  height: 11.6rem;
 `;
 
 export const hostBackgroundImage = css`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 11.6rem;
-  border-radius: 0;
 `;
 
 export const hostProfileImage = css`
@@ -29,10 +35,19 @@ export const hostProfileImage = css`
   left: 2rem;
 `;
 
+export const hostInfoEditIcon = css`
+  width: 2.4rem;
+  height: 2.4rem;
+  position: absolute;
+  top: 12.6rem;
+  left: 8.7rem;
+`;
+
 export const hostProfileContainer = css`
   ${flexGenerator('column', 'center', 'flex-start')};
   gap: 1rem;
   padding: 5rem 2rem 0rem 2rem;
+  width: 100%;
 `;
 
 export const hostProfileWrapper = css`
@@ -76,16 +91,16 @@ export const hostMarkMessageWrapper = (theme: Theme) => css`
 
 export const hostMarkMessageStyle = (theme: Theme) => css`
   color: ${theme.color.purple1};
-  ${theme.font['body03-r-12']}
+  ${theme.font['body03-r-12']};
 `;
 
 export const hostKeywordStyle = (theme: Theme) => css`
   color: ${theme.color.midgray2};
-  ${theme.font['subhead05-sb-14']}/* subhead06 으로 변경 */
+  ${theme.font['subhead06-m-14']};
 `;
 
 export const hostDescriptionWrapper = (theme: Theme) => css`
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
   border-radius: 10px;
   padding: 1.4rem 2rem;
   width: 100%;
@@ -123,7 +138,7 @@ export const hostActiveTabTextStyle = (theme: Theme) => css`
 `;
 
 export const hostTabContentWrapper = (theme: Theme) => css`
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
   padding: 3rem 2rem;
 `;
 

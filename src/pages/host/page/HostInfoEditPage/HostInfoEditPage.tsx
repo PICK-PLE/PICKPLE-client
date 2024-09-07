@@ -3,18 +3,18 @@ import { useEffect, useState } from 'react';
 import { Button, Header, Image, Input, TextArea } from '@components';
 import { images } from '@constants';
 import {
+  hostBackgroundImage,
+  hostImageWrapper,
   hostInfoContainer,
+  hostInfoEditIcon,
   hostInfoLayout,
   hostInputContainer,
   hostInputWrapper,
+  hostProfileImage,
   hostTextAreaLabelStyle,
   hostTextAreaWrapper,
 } from '@pages/host/page/HostInfoEditPage/HostInfoEditPage.style';
-import {
-  hostBackgroundImage,
-  hostImageWrapper,
-  hostProfileImage,
-} from '@pages/host/page/HostInfoPage/HostInfoPage.style';
+import { IcCamera } from '@svg';
 
 export interface HostInfoDataType {
   nickName: string;
@@ -73,13 +73,16 @@ const HostInfoEditPage = () => {
       <div css={hostInfoLayout}>
         <section css={hostInfoContainer}>
           <div css={hostImageWrapper}>
-            <Image src={images.HostBackGroundImage} customStyle={hostBackgroundImage} />
+            <Image src={images.HostBackGroundImage} customStyle={hostBackgroundImage} width=''/>
             <div css={hostProfileImage}>
               <Image
                 src={profileUrl ? profileUrl : images.HostProfileImage}
                 variant="round"
                 width="8.2rem"
               />
+            </div>
+            <div css={hostInfoEditIcon}>
+              <IcCamera />
             </div>
           </div>
         </section>
