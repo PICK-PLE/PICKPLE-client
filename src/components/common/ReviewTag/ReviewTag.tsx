@@ -1,12 +1,8 @@
-import React from 'react';
+import { PropsWithChildren } from 'react';
 
 import { reviewTagContainer } from './ReviewTag.style';
 
-interface ReviewTagProps {
-  children: React.ReactNode;
-}
-
-const ReviewTag = ({ children }: ReviewTagProps) => {
+const ReviewTag = ({ children }: PropsWithChildren) => {
   return <div css={reviewTagContainer}>{children}</div>;
 };
 

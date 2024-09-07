@@ -28,6 +28,7 @@ import Error from '@pages/error/Error';
 import { userAtom } from '@stores';
 import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
 import { dDayText, handleShare, smoothScroll } from '@utils';
+import Review from 'src/components/common/Review/Review';
 
 import {
   buttonContainer,
@@ -44,7 +45,6 @@ import {
 } from './Class.style';
 
 import { MoimIdPathParameterType } from '@types';
-import Review from 'src/components/common/Review/Review';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
