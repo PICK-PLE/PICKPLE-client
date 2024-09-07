@@ -178,7 +178,7 @@ const HostInfoPage = () => {
                 ) : (
                   <div css={hostClassCardWrapper}>
                     {hostClassData.map((data) => (
-                      <ClassListCard key={data.moimId} classListData={data} />
+                      <ClassListCard key={data.moimId} classListData={data} variant={'hostInfo'} />
                     ))}
                   </div>
                 )}
