@@ -31,7 +31,7 @@ export const headerSpanStyle = (theme: Theme) => css`
 
 export const mainStyle = css`
   ${flexGenerator('column')};
-  gap: 3rem;
+  gap: 2rem;
   width: 100%;
 
   margin-top: 3.8rem;

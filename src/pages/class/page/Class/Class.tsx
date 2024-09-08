@@ -49,7 +49,7 @@ import { MoimIdPathParameterType } from '@types';
 const Class = () => {
   const { windowWidth } = useWindowSize();
   const navigate = useNavigate();
-  const [selectTab, setSelectTab] = useState<'모임소개' | '공지사항' | '리뷰'>('모임소개');
+  const [selectTab, setSelectTab] = useState<'클래스소개' | '공지사항' | '리뷰'>('클래스소개');
   const { moimId } = useParams<MoimIdPathParameterType>();
   const { handleCopyToClipboard } = useClipboard();
   const { showToast, isToastVisible } = useToast();
@@ -130,10 +130,10 @@ const Class = () => {
         </section>
         <div css={tabWrapper}>
           <button
-            css={tabButtonStyle(selectTab === '모임소개')}
+            css={tabButtonStyle(selectTab === '클래스소개')}
             type="button"
-            onClick={() => setSelectTab('모임소개')}>
-            모임 소개
+            onClick={() => setSelectTab('클래스소개')}>
+            클래스 소개
           </button>
           <button
             css={tabButtonStyle(selectTab === '공지사항')}
@@ -148,8 +148,8 @@ const Class = () => {
             리뷰
           </button>
         </div>
-        <section css={[tabSectionStyle, selectTab === '모임소개' && infoSectionStyle]}>
-          {selectTab === '모임소개' && <ClassInfo content={moimDescription ?? ''} />}
+        <section css={[tabSectionStyle, selectTab === '클래스소개' && infoSectionStyle]}>
+          {selectTab === '클래스소개' && <ClassInfo content={moimDescription ?? ''} />}
           {selectTab === '공지사항' &&
             (isMoimNoticeListLoading ? (
               <Spinner variant="component" />

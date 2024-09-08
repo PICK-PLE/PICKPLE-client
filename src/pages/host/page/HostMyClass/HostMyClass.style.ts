@@ -66,6 +66,6 @@ export const hostMyClassCardContainer = css`
 
 export const hostMyClassBackground = (theme: Theme) => css`
   width: 100%;
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
   min-height: 100dvh;
 `;
