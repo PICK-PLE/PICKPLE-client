@@ -8,7 +8,7 @@ import Toast from '../Toast/Toast';
 interface TagSelectBoxProps {
   tagList: string[];
   maxSelection: number;
-  tagType: string;
+  tagType: 'moim' | 'host';
 }
 
 const TagSelectBox = ({ tagList, maxSelection, tagType }: TagSelectBoxProps) => {
