@@ -20,7 +20,7 @@ const getHostInfo = async (hostId: number): Promise<HostIntroGetResponse | null>
 
 export const useFetchHostInfo = (hostId: number) => {
   return useQuery({
-    queryKey: [QUERY_KEY.MOIM_HOST, hostId],
+    queryKey: [QUERY_KEY.HOST_INFO, hostId],
     queryFn: () => getHostInfo(hostId),
     staleTime: 1000 * 10,
     gcTime: 1000 * 10,

@@ -23,4 +23,7 @@ export const QUERY_KEY = {
   MOIM_LIST_BY_CATEGORY: 'moimListByCategory',
   HOST_SUBMITTER: 'hostSubmitter',
   HOST_SUBMIT_REQUEST: 'hostSubmitRequest',
+  HOST_INFO: 'hostInfo',
+  HOST_INFO_CLASS: 'hostInfoClass',
+  HOST_INFO_REVIEW: 'hostInfoReview',
 } as const;

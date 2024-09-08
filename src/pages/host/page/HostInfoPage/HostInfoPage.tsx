@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useFetchHostInfo } from '@apis/domains/host/useFetchHostInfo';
+import { useFetchMoimListByHost } from '@apis/domains/moim/useFetchMoimListByHost';
 
 import { Button, Image, LogoHeader } from '@components';
 import { images } from '@constants';
@@ -37,7 +38,7 @@ import {
 } from '@pages/host/page/HostInfoPage/HostInfoPage.style';
 import { userAtom } from '@stores';
 import { IcEdit, IcSpickerMark } from '@svg';
-import { hostClassData, hostReviewData } from 'src/constants/mocks/hostInfo';
+import { hostReviewData } from 'src/constants/mocks/hostInfo';
 
 const HostInfoPage = () => {
   const [activeTab, setActiveTab] = useState<'클래스' | '리뷰'>('클래스');
@@ -64,6 +65,8 @@ const HostInfoPage = () => {
 
   const { data: hostInfoData } = useFetchHostInfo(Number(hostId));
   const { nickName, profileUrl, count, keyword, description, socialLink } = hostInfoData ?? {};
+
+  const { data: hostInfoClassData } = useFetchMoimListByHost(Number(hostId));
 
   return (
     <div>
@@ -132,13 +135,18 @@ const HostInfoPage = () => {
           <section css={hostTabContentWrapper}>
             {activeTab === '클래스' ? (
               <div>
-                {hostClassData?.length === 0 ? (
+                {hostInfoClassData?.length === 0 ? (
                   <HostClassEmptyView />
                 ) : (
                   <div css={hostClassCardWrapper}>
-                    {hostClassData.map((data) => (
-                      <ClassListCard key={data.moimId} classListData={data} variant={'hostInfo'} />
-                    ))}
+                    {hostInfoClassData &&
+                      hostInfoClassData.map((data) => (
+                        <ClassListCard
+                          key={data.moimId}
+                          classListData={data}
+                          variant={'hostInfo'}
+                        />
+                      ))}
                   </div>
                 )}
               </div>
