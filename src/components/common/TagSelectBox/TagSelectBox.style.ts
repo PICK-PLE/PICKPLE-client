@@ -8,7 +8,6 @@ export const tagWrapper = css`
 `;
 
 export const buttonStyle = (theme: Theme) => css`
-  display: inline-flex;
   padding: 0.5rem;
 
   border-radius: 5px;
