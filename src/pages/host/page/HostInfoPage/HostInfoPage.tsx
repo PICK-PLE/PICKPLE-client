@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useFetchHostInfo } from '@apis/domains/host/useFetchHostInfo';
 import { useFetchMoimListByHost } from '@apis/domains/moim/useFetchMoimListByHost';
+import { useFetchReviewByHost } from '@apis/domains/review/useFetchReviewByHost';
 
 import { Button, Image, LogoHeader } from '@components';
 import { images } from '@constants';
@@ -38,7 +39,6 @@ import {
 } from '@pages/host/page/HostInfoPage/HostInfoPage.style';
 import { userAtom } from '@stores';
 import { IcEdit, IcSpickerMark } from '@svg';
-import { hostReviewData } from 'src/constants/mocks/hostInfo';
 
 const HostInfoPage = () => {
   const [activeTab, setActiveTab] = useState<'클래스' | '리뷰'>('클래스');
@@ -67,6 +67,7 @@ const HostInfoPage = () => {
   const { nickName, profileUrl, count, keyword, description, socialLink } = hostInfoData ?? {};
 
   const { data: hostInfoClassData } = useFetchMoimListByHost(Number(hostId));
+  const { data: hostInfoReviewData } = useFetchReviewByHost(Number(hostId));
 
   return (
     <div>
@@ -152,13 +153,16 @@ const HostInfoPage = () => {
               </div>
             ) : (
               <div>
-                {hostReviewData?.length === 0 ? (
+                {hostInfoReviewData?.length === 0 ? (
                   <ClassReviewEmptyView />
                 ) : (
                   <div>
-                    {hostReviewData.map((data) => (
-                      <span>{data}</span>
-                    ))}
+                    {hostInfoReviewData &&
+                      hostInfoReviewData.map((data) => (
+                        <div>
+                          <span>{data.content}</span> <span>{data.moimTitle}</span>
+                        </div>
+                      ))}
                   </div>
                 )}
               </div>
