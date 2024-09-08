@@ -1,7 +1,6 @@
 import { Theme, css } from '@emotion/react';
 
 export const reviewTagContainer = (theme: Theme) => css`
-  display: inline-flex;
   padding: 0.5rem;
   border-radius: 5px;
   background-color: ${theme.color.background};

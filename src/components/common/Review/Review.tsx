@@ -48,15 +48,13 @@ const Review = () => {
       <div css={imgAndTitleContainer}>
         <div css={reviewImgSection}></div>
         {/* 클래스 뷰, 스픽커 소개뷰에서 모두 사용하기 위해 api에서 moimId 유무에 따라 보여주기 위함 */}
-        {moimId ? (
+        {moimId && (
           <div css={moimTitleWrapper} onClick={handleTitleClick}>
             {moimTitle}
             <span css={iconStyle}>
               <IcNext />
             </span>
           </div>
-        ) : (
-          <></>
         )}
       </div>
       <span>14시간 전</span>
