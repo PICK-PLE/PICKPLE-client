@@ -2,6 +2,8 @@ import { useAtom } from 'jotai';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import { useFetchHostInfo } from '@apis/domains/host/useFetchHostInfo';
+
 import { Button, Image, LogoHeader } from '@components';
 import { images } from '@constants';
 import { ClassReviewEmptyView } from '@pages/class/components';
@@ -35,7 +37,7 @@ import {
 } from '@pages/host/page/HostInfoPage/HostInfoPage.style';
 import { userAtom } from '@stores';
 import { IcEdit, IcSpickerMark } from '@svg';
-import { hostData, hostClassData, hostReviewData } from 'src/constants/mocks/hostInfo';
+import { hostClassData, hostReviewData } from 'src/constants/mocks/hostInfo';
 
 const HostInfoPage = () => {
   const [activeTab, setActiveTab] = useState<'클래스' | '리뷰'>('클래스');
@@ -60,7 +62,8 @@ const HostInfoPage = () => {
     navigate(`/host/info/edit/${hostId}`);
   };
 
-  const { nickName, profileUrl, count, keyword, description, socialLink } = hostData;
+  const { data: hostInfoData } = useFetchHostInfo(Number(hostId));
+  const { nickName, profileUrl, count, keyword, description, socialLink } = hostInfoData ?? {};
 
   return (
     <div>
@@ -92,7 +95,7 @@ const HostInfoPage = () => {
                     <IcSpickerMark css={hostMarkIconStyle} />
                   </div>
 
-                  {count >= 2 ? (
+                  {count && count >= 2 ? (
                     <div css={hostMarkMessageWrapper}>
                       <span css={hostMarkMessageStyle}>베테랑</span>
                     </div>
