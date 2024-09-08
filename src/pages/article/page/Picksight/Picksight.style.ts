@@ -16,9 +16,12 @@ export const articleHeader = (theme: Theme) => css`
 
 export const articleH2 = (theme: Theme) => css`
   ${theme.font['subhead02-sb-16']}
+  color: ${theme.color.blackgray};
 `;
 export const articleH1 = (theme: Theme) => css`
   ${theme.font['head01-b-22']}
+  font-size: 2.6rem;
+  color: ${theme.color.blackgray};
 `;
 
 export const articleSubtitle = (theme: Theme) => css`

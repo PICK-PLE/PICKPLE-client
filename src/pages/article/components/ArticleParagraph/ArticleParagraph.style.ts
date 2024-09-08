@@ -15,6 +15,6 @@ export const articleTitle = (theme: Theme) => css`
 
 export const articleCotent = (theme: Theme) => css`
   color: ${theme.color.midgray2};
-  ${theme.font['body01-r-15']}
+  ${theme.font['body07-r-15']}
   white-space: pre-wrap;
 `;
