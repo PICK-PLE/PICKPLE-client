@@ -33,7 +33,7 @@ export const labelVariant = {
   `,
   count: (theme: Theme) => css`
     height: 3.4rem;
-    background-color: ${theme.color.purple6};
+    background-color: ${theme.color.bg_white1};
     color: ${theme.color.purple1};
     ${theme.font['body03-r-12']};
   `,

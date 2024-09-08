@@ -15,7 +15,7 @@ export const categoryButtonWrapper = (isSelected: boolean) => (theme: Theme) => 
   align-self: stretch;
 
   border-radius: 10px;
-  background: ${isSelected ? theme.color.purple5 : theme.color.background};
+  background: ${isSelected ? theme.color.purple5 : theme.color.bg_white0};
   border: ${isSelected ? `1px solid ${theme.color.purple2}` : 'none'};
 
   color: ${theme.color.lightgray2};

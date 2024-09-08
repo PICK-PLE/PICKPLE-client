@@ -30,7 +30,7 @@ const MyClassManage = () => {
   const { moimId } = useParams();
   const { data: applicantData, isLoading } = useFetchSubmitterList(Number(moimId));
   const { showToast, isToastVisible } = useToast();
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModal, setIsOpenModal] = useState(true);
 
   const [isActive, setIsActive] = useState(false);
 
@@ -131,7 +131,7 @@ const MyClassManage = () => {
             <>
               <div css={labelStyle}>
                 <div css={textStyle}>
-                  <span css={countTitleStyle}>모임 신청자</span>
+                  <span css={countTitleStyle}>클래스 신청자</span>
                   <span css={countTextStyle}>{submitterList?.length}</span>
                 </div>
                 <Label variant="count">
@@ -154,16 +154,16 @@ const MyClassManage = () => {
           )}
         </main>
 
-        <footer css={footerStyle}>
-          {isOngoing && (
+        {isOngoing && (
+          <footer css={footerStyle}>
             <Button
               variant="large"
               disabled={!isApprovable || isMoimSubmissionApproved || !isActive}
               onClick={handleButtonClick}>
               {isMoimSubmissionApproved ? '승인 완료' : '승인하기'}
             </Button>
-          )}
-        </footer>
+          </footer>
+        )}
 
         {isOpenModal && (
           <Modal onClose={handleModalClose}>
