@@ -33,9 +33,12 @@ export const articleStrong = (theme: Theme) => css`
   color: ${theme.color.purple1};
 `;
 
-export const buttonIcon = css`
+export const buttonIcon = (theme: Theme) => css`
   width: 2.4rem;
   height: 2.4rem;
+  path {
+    stroke: ${theme.color.purple1};
+  }
 `;
 
 export const paragraphStyle = css`
