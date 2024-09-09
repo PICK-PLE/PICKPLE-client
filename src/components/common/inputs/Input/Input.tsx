@@ -11,6 +11,7 @@ import {
   labelAndInputWrapper,
 } from './Input.style';
 import { IcDelete20 } from '@svg';
+import { SerializedStyles } from '@emotion/react';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
@@ -19,6 +20,7 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   inputLabel?: string;
   errorMessage?: string;
   isCountValue: boolean;
+  customStyle?: SerializedStyles;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -32,6 +34,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       errorMessage,
       maxLength = 10,
       isCountValue = false,
+      customStyle,
     },
     ref
   ) => {
@@ -80,7 +83,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           <div css={inputWrapperStyle}>
             <input
               ref={ref}
-              css={[inputStyle(isError, isFocused)]}
+              css={[inputStyle(isError, isFocused), customStyle]}
               placeholder={placeholder}
               value={value}
               onChange={handleInputChange}
@@ -98,7 +101,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           )}
           {isCountValue && (
             <span css={textLengthStyle(isError, isFocused)}>
-              {value.length}/{maxLength}
+              {value?.length}/{maxLength}
             </span>
           )}
         </div>
