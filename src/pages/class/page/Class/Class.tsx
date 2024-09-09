@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
+import { useFetchMoimReviewList } from '@apis/domains/review/useFetchMoimReviewList';
 
 import {
   Button,
@@ -39,6 +40,7 @@ import {
   classNameStyle,
   floatingButtonWrapper,
   infoSectionStyle,
+  reviewSectionStyle,
   tabButtonStyle,
   tabSectionStyle,
   tabWrapper,
@@ -63,8 +65,12 @@ const Class = () => {
     moimId ?? '',
     selectTab
   );
-
-  if (isMoimDetailLoading || isMoimDescriptionLoading) {
+  const { data: moimReviewList, isLoading: isMoimReviewListLoading } = useFetchMoimReviewList(
+    moimId ?? '',
+    selectTab
+  );
+  console.log(moimReviewList);
+  if (isMoimDetailLoading || isMoimDescriptionLoading || isMoimReviewListLoading) {
     return <Spinner />;
   }
 
@@ -158,8 +164,16 @@ const Class = () => {
             ) : (
               <ClassNotice noticeData={moimNoticeList || []} />
             ))}
-          {/* {selectTab === '리뷰' && <ClassReviewEmptyView />} */}
-          {selectTab === '리뷰' && <Review />}
+          {selectTab === '리뷰' &&
+            (isMoimReviewListLoading ? (
+              <Spinner variant="component" />
+            ) : (moimReviewList || []).length === 0 ? (
+              <ClassReviewEmptyView />
+            ) : (
+              <section css={reviewSectionStyle}>
+                {moimReviewList?.map((review, i) => <Review key={i} reviewData={review} />)}
+              </section>
+            ))}
         </section>
         {selectTab === '공지사항' && moimDetail?.hostId === hostId && (
           <div

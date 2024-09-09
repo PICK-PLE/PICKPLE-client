@@ -64,3 +64,8 @@ export const iconStyle = css`
   width: 2.4rem;
   height: 2.4rem;
 `;
+
+export const timeTextStyle = (theme: Theme) => css`
+  color: ${theme.color.midgray1};
+  ${theme.font['body03-r-12']}
+`;

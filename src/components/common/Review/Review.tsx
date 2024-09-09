@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 
 import { IcNext } from '@svg';
+import { formatCreatedDate } from '@utils';
 
 import {
   iconStyle,
@@ -11,44 +12,64 @@ import {
   reviewImgSection,
   reviewLayoutStyle,
   tagsContainer,
+  timeTextStyle,
 } from './Review.style';
 import ReviewTag from '../ReviewTag/ReviewTag';
 import SimpleUserProfile from '../SimpleUserProfile/SimpleUserProfile';
 
-const tags = [
-  '전문성이 있어요',
-  '진행이 매끄러워요',
-  '준비가 철저해요',
-  '시간 관리를 잘해요',
-  '게스트의 반응을 잘 반영해요',
-];
-const moimId = 1;
-const moimTitle = '티엘고마가 알려주는 클래스 성공 비법';
+import { components } from '@schema';
 
-const Review = () => {
+type ReviewListGetByMoimResponse = components['schemas']['ReviewListGetByMoimResponse'];
+type ReviewListGetByHostResponse = components['schemas']['ReviewListGetByHostResponse'];
+
+interface ReviewProps {
+  reviewData: ReviewListGetByMoimResponse | ReviewListGetByHostResponse;
+}
+
+const Review = ({ reviewData }: ReviewProps) => {
+  const {
+    tagList,
+    content,
+    guestNickname,
+    reviewImageUrl,
+    guestImageUrl,
+    date,
+    moimId,
+    moimTitle,
+  } = reviewData as {
+    moimId?: string;
+    moimTitle?: string;
+    tagList: string[] | undefined;
+    content: string;
+    guestNickname: string;
+    reviewImageUrl: string;
+    guestImageUrl: string;
+    date: string;
+  };
   const navigate = useNavigate();
 
   const handleTitleClick = () => {
     navigate(`/class/${moimId}`);
   };
+
   return (
     <div css={reviewLayoutStyle}>
-      <SimpleUserProfile size="large" username="갓민서입니다롱" />
+      <SimpleUserProfile size="large" username={guestNickname ?? ''} userImgUrl={guestImageUrl} />
       <div css={reviewContentContainer}>
-        <p css={reviewContent}>
-          리뷰 내용입니다. 리뷰 내용입니다. 리뷰 내용입니다. 리뷰 내용입니다. 리뷰 내용입니다. 리뷰
-          내용입니다. 리뷰 내용입니다. 리뷰 내용입니다. 리뷰 내용입니다.
-        </p>
+        <p css={reviewContent}>{content}</p>
         <div css={tagsContainer}>
-          {tags.map((tag, i) => (
-            <ReviewTag key={i}>{tag}</ReviewTag>
-          ))}
+          {tagList &&
+            tagList
+              .filter((tag: string) => tag !== 'null')
+              .map((tag: string, i: number) => <ReviewTag key={i}>{tag}</ReviewTag>)}
         </div>
       </div>
       <div css={imgAndTitleContainer}>
-        <div css={reviewImgSection}></div>
+        <div css={reviewImgSection}>
+          {reviewImageUrl && <img src={reviewImageUrl} alt="리뷰 이미지" />}
+        </div>
         {/* 클래스 뷰, 스픽커 소개뷰에서 모두 사용하기 위해 api에서 moimId 유무에 따라 보여주기 위함 */}
-        {moimId && (
+        {moimTitle !== undefined && (
           <div css={moimTitleWrapper} onClick={handleTitleClick}>
             {moimTitle}
             <span css={iconStyle}>
@@ -57,7 +78,7 @@ const Review = () => {
           </div>
         )}
       </div>
-      <span>14시간 전</span>
+      <span css={timeTextStyle}>{formatCreatedDate(date ?? '')}</span>
     </div>
   );
 };
