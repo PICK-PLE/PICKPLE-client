@@ -90,3 +90,10 @@ export const disabledStyle = (theme: Theme) => css`
   color: ${theme.color.white};
   ${theme.font['subhead03-m-16']}
 `;
+
+export const abledStyle = (theme: Theme) => css`
+  border-radius: 5px;
+  background: ${theme.color.purple1};
+  color: ${theme.color.white};
+  ${theme.font['subhead03-m-16']}
+`;
