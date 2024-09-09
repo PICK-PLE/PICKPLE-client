@@ -77,13 +77,6 @@ export const cancelButtonStyle = (theme: Theme) => css`
   ${theme.font['subhead03-m-16']}
 `;
 
-export const customInputStyle = (hasError: boolean) => (theme: Theme) => css`
-  border: 1px solid ${hasError ? theme.color.error : theme.color.lightgray1};
-  &:focus-within {
-    border: 1px solid ${hasError ? theme.color.error : theme.color.purple1};
-  }
-`;
-
 export const disabledStyle = (theme: Theme) => css`
   border-radius: 5px;
   background: ${theme.color.midgray1};

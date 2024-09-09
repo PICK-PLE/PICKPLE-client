@@ -6,7 +6,6 @@ import {
   cancelButtonStyle,
   changeNicknameModalLayout,
   changeNicknameModalWrapper,
-  customInputStyle,
   descriptionStyle,
   descriptionWrapper,
   disabledStyle,
@@ -31,27 +30,24 @@ const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
   const [value, setValue] = useState<string>(guestNickname as string);
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const { mutate: changeNickname, isError } = usePatchGuestNickname(guestId ?? 0);
+  const { mutate: changeNickname } = usePatchGuestNickname(guestId ?? 0);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setValue(newValue);
 
-    // if (newValue.length >= 15) {
-    //   setErrorMessage('* 글자 수 15 이하로 입력해주세요.');
-    //   setHasError(true);
-    // }
-    if (newValue.length > 0 || newValue.length < 15) {
+    // 길이가 0 이상이고 15자 이하일 때는 에러 없음
+    if (newValue.length > 0 && newValue.length <= 15) {
+      setErrorMessage('');
       setHasError(false);
-      setErrorMessage(' ');
-    } else if (isError) {
-      setErrorMessage('* 이미 존재하는 닉네임이에요.');
+    }
+    // 비어있을 때
+    else if (newValue.length === 0) {
+      setErrorMessage('* 필수 입력 항목이에요.');
+      setHasError(true);
+    } else {
       setHasError(true);
     }
   };
-
-  //   글자수가 0이면, 필수 입력 항목이에요.
-  //   글자수가 15자 이상이면 글 자수 15자 이하 작성 에러메세지.
-  //   저장 버튼 클릭 했을 때 이미 존재하는 닉네임이라면 이미 존재하는 닉네임이에요 출력
 
   return (
     <article css={changeNicknameModalLayout}>
@@ -74,8 +70,8 @@ const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
               isCountValue={true}
               errorMessage={errorMessage}
               maxLength={15}
-              customStyle={customInputStyle(hasError)(theme)}
-              isValid={hasError}
+              isValid={!hasError}
+              customBorderColor={theme.color.purple1}
             />
           </section>
         </section>
