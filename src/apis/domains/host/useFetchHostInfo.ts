@@ -24,8 +24,8 @@ export const useFetchHostInfo = (hostId: number) => {
     queryFn: () => getHostInfo(hostId),
     staleTime: 1000 * 10,
     gcTime: 1000 * 10,
-    refetchOnMount: false,
-    refetchOnWindowFocus: false,
-    enabled: !!hostId && hostId > 0,
+    // refetchOnMount: false,
+    // refetchOnWindowFocus: false,
+    // enabled: !!hostId && hostId > 0,
   });
 };

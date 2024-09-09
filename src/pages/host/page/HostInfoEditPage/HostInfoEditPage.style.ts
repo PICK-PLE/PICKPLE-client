@@ -35,6 +35,12 @@ export const hostInfoEditIcon = css`
   position: absolute;
   top: 12.6rem;
   left: 8.7rem;
+
+  cursor: pointer;
+`;
+
+export const hostInfoEditInput = css`
+  display: none;
 `;
 
 export const hostInputContainer = css`

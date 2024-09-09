@@ -1,4 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import { useFetchHostInfo } from '@apis/domains/host/useFetchHostInfo';
 
 import { Button, Header, Image, Input, TextArea } from '@components';
 import { images } from '@constants';
@@ -7,6 +10,7 @@ import {
   hostImageWrapper,
   hostInfoContainer,
   hostInfoEditIcon,
+  hostInfoEditInput,
   hostInfoLayout,
   hostInputContainer,
   hostInputWrapper,
@@ -15,12 +19,18 @@ import {
   hostTextAreaWrapper,
 } from '@pages/host/page/HostInfoEditPage/HostInfoEditPage.style';
 import { IcCamera } from '@svg';
-import { hostData, HostInfoData } from 'src/constants/mocks/hostInfo';
+
+import { components } from '@schema';
+type HostIntroGetResponse = components['schemas']['HostIntroGetResponse'];
 
 const HostInfoEditPage = () => {
-  const { nickName, profileUrl, keyword, description, socialLink } = hostData;
+  const { hostId } = useParams();
+  const { data: hostInfoData } = useFetchHostInfo(Number(hostId));
+  const { nickName, profileUrl, keyword, description, socialLink } = hostInfoData ?? {};
 
+  const [profileImage, setProfileImage] = useState(profileUrl);
   const [hostInfoValue, setHostInfoValue] = useState({
+    profileUrl: profileImage,
     nickName: `${nickName}`,
     keyword: `${keyword}`,
     description: `${description}`,
@@ -29,9 +39,31 @@ const HostInfoEditPage = () => {
 
   const [isAllValid, setIsAllValid] = useState(false);
 
+  const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    const reader = new FileReader();
+    if (file !== null) {
+      reader.readAsDataURL(file);
+      setProfileImage(`${file}`);
+    }
+
+    return new Promise<void>((resolve) => {
+      reader.onload = () => {
+        setProfileImage(`${reader.result}`);
+        resolve();
+      };
+    });
+  };
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleProfileImageIconClick = () => {
+    fileInputRef.current?.click();
+  };
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    key: keyof HostInfoData
+    key: keyof HostIntroGetResponse
   ) => {
     const value = e.target.value;
     setHostInfoValue((prevState) => ({
@@ -45,7 +77,7 @@ const HostInfoEditPage = () => {
   };
 
   useEffect(() => {
-    const allInputFilled = Object.values(hostInfoValue).every((value) => value.trim() !== '');
+    const allInputFilled = Object.values(hostInfoValue).every((value) => value?.trim() !== '');
     setIsAllValid(allInputFilled);
   }, [hostInfoValue]);
 
@@ -58,13 +90,19 @@ const HostInfoEditPage = () => {
             <img src={images.HostBackGroundImage} css={hostBackgroundImage} />
             <div css={hostProfileImage}>
               <Image
-                src={profileUrl ? profileUrl : images.HostProfileImage}
+                src={profileImage ? profileImage : images.HostProfileImage}
                 variant="round"
                 width="8.2rem"
               />
             </div>
             <div css={hostInfoEditIcon}>
-              <IcCamera />
+              <IcCamera onClick={handleProfileImageIconClick} />
+              <input
+                ref={fileInputRef}
+                type="file"
+                onChange={(e) => handleProfileImageChange(e)}
+                css={hostInfoEditInput}
+              />
             </div>
           </div>
         </section>
