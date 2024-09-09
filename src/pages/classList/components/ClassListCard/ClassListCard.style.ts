@@ -14,7 +14,7 @@ export const classListContainer = (theme: Theme) => css`
 
 export const classListCardBackground = {
   classList: (theme: Theme) => css`
-    background-color: ${theme.color.background};
+    background-color: ${theme.color.bg_white0};
   `,
 
   hostInfo: (theme: Theme) => css`

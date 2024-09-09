@@ -1,19 +1,23 @@
-import { useState } from 'react';
+import { useAtom } from 'jotai';
 
 import { useToast } from '@hooks';
+import { hostTagsAtom, moimTagsAtom } from 'src/stores/tagList';
 
 import { buttonStyle, selectedStyle, tagWrapper, unSelectedStyle } from './TagSelectBox.style';
 import Toast from '../Toast/Toast';
 
 interface TagSelectBoxProps {
-  tagList: string[];
+  tagList: string[] | undefined;
   maxSelection: number;
   tagType: 'moim' | 'host';
 }
 
 const TagSelectBox = ({ tagList, maxSelection, tagType }: TagSelectBoxProps) => {
   const { showToast, isToastVisible } = useToast();
-  const [selectedTagList, setSelectedTagList] = useState<string[]>([]);
+  // const [selectedTagList, setSelectedTagList] = useState<string[]>([]);
+  const [selectedTagList, setSelectedTagList] = useAtom(
+    tagType === 'moim' ? moimTagsAtom : hostTagsAtom
+  );
 
   const handleTagClick = (tag: string) => {
     if (selectedTagList.includes(tag)) {
@@ -29,14 +33,15 @@ const TagSelectBox = ({ tagList, maxSelection, tagType }: TagSelectBoxProps) => 
   return (
     <>
       <div css={tagWrapper}>
-        {tagList.map((tag) => (
-          <button
-            key={tag}
-            onClick={() => handleTagClick(tag)}
-            css={[buttonStyle, selectedTagList.includes(tag) ? selectedStyle : unSelectedStyle]}>
-            {tag}
-          </button>
-        ))}
+        {tagList &&
+          tagList.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => handleTagClick(tag)}
+              css={[buttonStyle, selectedTagList.includes(tag) ? selectedStyle : unSelectedStyle]}>
+              {tag}
+            </button>
+          ))}
       </div>
       <Toast isVisible={isToastVisible} toastBottom={3} toastIcon={true}>
         {tagType === 'moim'
