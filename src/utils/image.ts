@@ -1,12 +1,15 @@
 import { QueryClient } from '@tanstack/react-query';
 
-import { getPresignedUrl, PresignedUrlType } from '@apis/domains/presignedUrl/useFetchPresignedUrl';
 import { PutImageUploadParams } from '@apis/domains/presignedUrl/usePutS3Upload';
+import {
+  postPresignedUrl,
+  PresignedPrefixType,
+} from '@apis/domains/presignedUrl/usePostPresignedUrl';
 
 interface UploadParams {
   selectedFiles: File[];
   putS3Upload: (params: PutImageUploadParams) => Promise<void>;
-  type: PresignedUrlType;
+  type: PresignedPrefixType;
 }
 
 export const handleUpload = async ({
@@ -24,7 +27,7 @@ export const handleUpload = async ({
   if (selectedFiles.length > 0) {
     const presignedUrls = await queryClient.fetchQuery({
       queryKey: ['presignedUrl', selectedFiles.length],
-      queryFn: () => getPresignedUrl(selectedFiles.length, type),
+      queryFn: () => postPresignedUrl(type, selectedFiles.length),
     });
 
     if (presignedUrls && presignedUrls.length > 0) {
