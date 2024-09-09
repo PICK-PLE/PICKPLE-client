@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useFetchHostInfo } from '@apis/domains/host/useFetchHostInfo';
+import { usePatchHostInfo } from '@apis/domains/host/usePatchHostInfo';
 
 import { Button, Header, Image, Input, TextArea } from '@components';
 import { images } from '@constants';
@@ -21,49 +22,58 @@ import {
 import { IcCamera } from '@svg';
 
 import { components } from '@schema';
-type HostIntroGetResponse = components['schemas']['HostIntroGetResponse'];
+type HostUpdateRequest = components['schemas']['HostUpdateRequest'];
 
 const HostInfoEditPage = () => {
   const { hostId } = useParams();
   const { data: hostInfoData } = useFetchHostInfo(Number(hostId));
   const { nickName, profileUrl, keyword, description, socialLink } = hostInfoData ?? {};
+  const { mutate } = usePatchHostInfo(Number(hostId));
 
   const [profileImage, setProfileImage] = useState(profileUrl);
   const [hostInfoValue, setHostInfoValue] = useState({
-    profileUrl: profileImage,
-    nickName: `${nickName}`,
+    profileUrl: profileImage || images.HostProfileImage,
+    nickname: `${nickName}`,
     keyword: `${keyword}`,
     description: `${description}`,
     socialLink: `${socialLink}`,
   });
-
   const [isAllValid, setIsAllValid] = useState(false);
 
-  const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files && e.target.files[0];
-    const reader = new FileReader();
-    if (file !== null) {
-      reader.readAsDataURL(file);
-      setProfileImage(`${file}`);
-    }
-
-    return new Promise<void>((resolve) => {
-      reader.onload = () => {
-        setProfileImage(`${reader.result}`);
-        resolve();
-      };
-    });
-  };
-
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const allInputFilled = Object.values(hostInfoValue).every((value) => value?.trim() !== '');
+    setIsAllValid(allInputFilled);
+  }, [hostInfoValue]);
 
   const handleProfileImageIconClick = () => {
     fileInputRef.current?.click();
   };
 
+  const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files && e.target.files[0];
+    const reader = new FileReader();
+
+    if (file !== null) {
+      reader.readAsDataURL(file);
+    } else return;
+
+    return new Promise<void>((resolve) => {
+      reader.onload = () => {
+        setProfileImage(`${reader.result}`);
+        // setHostInfoValue((prevState) => ({
+        //   ...prevState,
+        //   profileUrl: `${profileImage}`,
+        // })); 이거말고 presignedUrl 이용해서 하기
+        resolve();
+      };
+    });
+  };
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    key: keyof HostIntroGetResponse
+    key: keyof HostUpdateRequest
   ) => {
     const value = e.target.value;
     setHostInfoValue((prevState) => ({
@@ -76,10 +86,9 @@ const HostInfoEditPage = () => {
     return value.trim().length >= 1;
   };
 
-  useEffect(() => {
-    const allInputFilled = Object.values(hostInfoValue).every((value) => value?.trim() !== '');
-    setIsAllValid(allInputFilled);
-  }, [hostInfoValue]);
+  const handleButtonClick = () => {
+    mutate({ hostId: Number(hostId), hostInfoValue });
+  };
 
   return (
     <div>
@@ -110,14 +119,14 @@ const HostInfoEditPage = () => {
         <section css={hostInputContainer}>
           <div css={hostInputWrapper}>
             <Input
-              value={hostInfoValue.nickName}
-              onChange={(e) => handleInputChange(e, 'nickName')}
+              value={hostInfoValue.nickname}
+              onChange={(e) => handleInputChange(e, 'nickname')}
               inputLabel="닉네임"
               errorMessage="* 필수 입력 항목이에요."
               maxLength={50}
               placeholder="닉네임을 입력해주세요"
               isCountValue={true}
-              isValid={isValid(hostInfoValue.nickName)}
+              isValid={isValid(hostInfoValue.nickname)}
             />
 
             <Input
@@ -155,7 +164,7 @@ const HostInfoEditPage = () => {
             />
           </div>
 
-          <Button variant="medium" disabled={!isAllValid}>
+          <Button variant="medium" disabled={!isAllValid} onClick={handleButtonClick}>
             저장하기
           </Button>
         </section>
