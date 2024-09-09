@@ -20,7 +20,9 @@ export const selectedTabStyle = (theme: Theme) => css`
 `;
 
 export const profileWrapper = css`
+  ${flexGenerator('row', 'flex-start', 'center')}
   padding: 0 2rem 2.8rem;
+  gap: 0.8rem;
 `;
 
 export const navigateBoxWrapper = css`
@@ -47,7 +49,14 @@ export const logoutTextStyle = (theme: Theme) => css`
   ${theme.font['subhead03-m-16']}
   color: ${theme.color.blackgray}
 `;
+
 export const iconStyle = css`
+  width: 2.4rem;
+  height: 2.4rem;
+`;
+
+export const editIconStyle = css`
+  ${flexGenerator('row', 'center', 'flex-end')}
   width: 2.4rem;
   height: 2.4rem;
 `;
