@@ -1,5 +1,6 @@
 import { Button, Input } from '@components';
 import {
+  abledStyle,
   blueColor,
   buttonWrapper,
   cancelButtonStyle,
@@ -35,21 +36,17 @@ const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
     const newValue = e.target.value;
     setValue(newValue);
 
-    if (newValue.length === 0) {
-      setErrorMessage('* 필수 입력 항목이에요');
-      setHasError(true);
-    } else if (newValue.length >= 15) {
-      setErrorMessage('* 글자 수 15 이하로 작성해주세요');
-      setHasError(true);
-    } else if (newValue.length > 0 || newValue.length < 15) {
-      setHasError(false);
-      setErrorMessage(' ');
-    }
-
-    // else if (isError) {
-    //   setErrorMessage('* 이미 존재하는 닉네임이에요.');
+    // if (newValue.length >= 15) {
+    //   setErrorMessage('* 글자 수 15 이하로 입력해주세요.');
     //   setHasError(true);
     // }
+    if (newValue.length > 0 || newValue.length < 15) {
+      setHasError(false);
+      setErrorMessage(' ');
+    } else if (isError) {
+      setErrorMessage('* 이미 존재하는 닉네임이에요.');
+      setHasError(true);
+    }
   };
 
   //   글자수가 0이면, 필수 입력 항목이에요.
@@ -78,7 +75,7 @@ const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
               errorMessage={errorMessage}
               maxLength={15}
               customStyle={customInputStyle(hasError)(theme)}
-              //   isValid={hasError}
+              isValid={hasError}
             />
           </section>
         </section>
@@ -91,7 +88,10 @@ const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
               저장
             </Button>
           ) : (
-            <Button variant="xSmall" onClick={() => changeNickname(value ?? '')}>
+            <Button
+              variant="xSmall"
+              onClick={() => changeNickname(value ?? '')}
+              customStyle={abledStyle}>
               저장
             </Button>
           )}
