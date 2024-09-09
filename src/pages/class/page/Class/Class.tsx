@@ -69,7 +69,6 @@ const Class = () => {
     moimId ?? '',
     selectTab
   );
-  console.log(moimReviewList);
   if (isMoimDetailLoading || isMoimDescriptionLoading || isMoimReviewListLoading) {
     return <Spinner />;
   }
