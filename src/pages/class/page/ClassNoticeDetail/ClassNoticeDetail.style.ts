@@ -68,3 +68,19 @@ export const noticeDate = (theme: Theme) => css`
   ${theme.font['body03-r-12']};
   color: ${theme.color.midgray1};
 `;
+
+export const iconStyle = css`
+  width: 15rem;
+  height: 15rem;
+`;
+
+export const emptyViewContainer = css`
+  ${flexGenerator('column', 'center', 'center')}
+  margin-top: 12.5rem;
+`;
+
+export const textStyle = (theme: Theme) => css`
+  color: ${theme.color.lightgray2};
+  text-align: center;
+  ${theme.font['subhead05-sb-14']}
+`;

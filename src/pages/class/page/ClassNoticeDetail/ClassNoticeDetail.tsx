@@ -13,6 +13,9 @@ import {
   noticeImage,
   noticeDate,
   noticeLayout,
+  iconStyle,
+  textStyle,
+  emptyViewContainer,
 } from './ClassNoticeDetail.style';
 
 import CommentBox from '@pages/class/components/\bCommentBox/CommentBox';
@@ -20,10 +23,12 @@ import CommentInput from '@pages/class/components/CommentInput/CommentInput';
 import { useFetchCommentList } from '@apis/domains/notice/useFetchCommentList';
 import { Header } from '@components';
 import HostProfileCard from '@pages/class/components/HostProfileCard/HostProfileCard';
+import { IcCommentListEmpty } from '@svg';
 
 const ClassNoticeDetail = () => {
   const { moimId } = useParams<MoimIdPathParameterType>();
   const { noticeId } = useParams<NoticeIdPathParameterType>();
+
   const { data: noticeDetail } = useFetchMoimNoticeDetail(moimId ?? '', noticeId ?? '');
   const { data: commentList } = useFetchCommentList(noticeId ?? '');
 
@@ -48,7 +53,18 @@ const ClassNoticeDetail = () => {
           <div css={line} />
           <div css={commentNumber}>댓글 {noticeDetail?.commentNumber}</div>
           {/* @정안TODO map에 key 설정 */}
-          {commentList?.map((comment) => <CommentBox comment={comment} />)}
+          {commentList?.length === 0 ? (
+            <div css={emptyViewContainer}>
+              <span css={iconStyle}>
+                <IcCommentListEmpty />
+              </span>
+              <div>
+                <p css={textStyle}>아직 작성된 댓글이 없어요.</p>
+              </div>
+            </div>
+          ) : (
+            commentList?.map((comment) => <CommentBox comment={comment} />)
+          )}
           <footer>
             <CommentInput />
           </footer>
