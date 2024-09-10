@@ -49,6 +49,7 @@ export { default as IcLanguageSmall } from './IcLanguageSmall';
 export { default as IcLifestyleActive } from './IcLifestyleActive';
 export { default as IcLifestyleBlack } from './IcLifestyleBlack';
 export { default as IcLifestyleSmall } from './IcLifestyleSmall';
+export { default as IcLock } from './IcLock';
 export { default as IcLogo } from './IcLogo';
 export { default as IcMindActive } from './IcMindActive';
 export { default as IcMindBlack } from './IcMindBlack';
