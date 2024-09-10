@@ -12,6 +12,21 @@ export const carouselWrapper = css`
   aspect-ratio: 375 / 211;
 `;
 
+export const swiperStyle = (theme: Theme) => css`
+  width: 100%;
+  height: 100%;
+  .swiper-pagination-bullet-active {
+    background: ${theme.color.purple1};
+  }
+`;
+
+export const imageStyle = css`
+  width: 100%;
+  aspect-ratio: 375 / 211;
+
+  object-fit: cover;
+`;
+
 export const classInfo = css`
   padding: 2.4rem 2rem 4rem;
 `;
