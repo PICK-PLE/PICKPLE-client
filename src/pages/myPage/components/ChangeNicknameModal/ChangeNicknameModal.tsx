@@ -17,7 +17,7 @@ import {
 } from './ChangeNicknameModal.style';
 import { useState } from 'react';
 import theme from '@styles/theme';
-import { useAtom } from 'jotai';
+import { useAtom, useSetAtom } from 'jotai';
 import { userAtom } from '@stores';
 import { usePatchGuestNickname } from '@apis/domains/guest/usePatchGuestNickname';
 
@@ -30,7 +30,12 @@ const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
   const [value, setValue] = useState<string>(guestNickname as string);
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const { mutate: changeNickname } = usePatchGuestNickname(guestId ?? 0);
+  const setUser = useSetAtom(userAtom);
+  const { mutate: changeNickname, isError } = usePatchGuestNickname(
+    guestId ?? 0,
+    setErrorMessage,
+    setUser
+  );
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setValue(newValue);
@@ -39,13 +44,17 @@ const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
     if (newValue.length > 0 && newValue.length <= 15) {
       setErrorMessage('');
       setHasError(false);
-    }
-    // 비어있을 때
-    else if (newValue.length === 0) {
-      setErrorMessage('* 필수 입력 항목이에요.');
-      setHasError(true);
     } else {
       setHasError(true);
+    }
+  };
+
+  const handleButtonClick = () => {
+    if (!isError) {
+      changeNickname(value);
+      onClose();
+    } else {
+      setErrorMessage('닉네임 변경 중 오류가 발생했습니다. 다시 시도해 주세요.');
     }
   };
 
@@ -84,10 +93,7 @@ const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
               저장
             </Button>
           ) : (
-            <Button
-              variant="xSmall"
-              onClick={() => changeNickname(value ?? '')}
-              customStyle={abledStyle}>
+            <Button variant="xSmall" onClick={handleButtonClick} customStyle={abledStyle}>
               저장
             </Button>
           )}
