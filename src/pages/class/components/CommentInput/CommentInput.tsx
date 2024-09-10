@@ -5,17 +5,46 @@ import {
   commentInputWrapper,
   iconStyle,
 } from './CommentInput.style';
+import { usePostNoticeComment } from '@apis/domains/notice/usePostNoticeComment';
+import { useRef } from 'react';
+import { useFetchCommentList } from '@apis/domains/notice/useFetchCommentList';
 
-const CommentInput = () => {
+interface CommentInputProps {
+  noticeId: string;
+}
+const CommentInput = ({ noticeId }: CommentInputProps) => {
+  const { mutate: leaveComment } = usePostNoticeComment();
+  const commentRef = useRef<HTMLInputElement>(null);
+  const formRef = useRef<HTMLFormElement>(null);
+  const { refetch: refetchComments } = useFetchCommentList(noticeId);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    submitComment();
+  };
+
+  const submitComment = () => {
+    const commentContent = commentRef.current?.value.trim();
+    if (!commentContent) return;
+    leaveComment({ noticeId, commentContent: commentContent });
+    if (commentRef.current) commentRef.current.value = '';
+    refetchComments();
+  };
+
+  const handleIconClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    formRef.current?.requestSubmit();
+  };
+
   return (
-    <div css={commentInputContainer}>
+    <form css={commentInputContainer} onSubmit={handleSubmit} ref={formRef}>
       <div css={commentInputWrapper}>
-        <input css={inputStyle} placeholder="댓글을 남겨보세요" />
+        <input ref={commentRef} css={inputStyle} placeholder="댓글을 남겨보세요" />
       </div>
-      <div css={iconStyle}>
+      <div css={iconStyle} onClick={handleIconClick}>
         <IcSend />
       </div>
-    </div>
+    </form>
   );
 };
 

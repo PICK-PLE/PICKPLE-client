@@ -25,4 +25,5 @@ export const QUERY_KEY = {
   HOST_SUBMIT_REQUEST: 'hostSubmitRequest',
   MOIM_NOTICE_DETAIL: 'moimNoticeDetail',
   COMMENT_LIST: 'commentList',
+  NOTICE_COMMENT: 'noticeComment',
 } as const;
