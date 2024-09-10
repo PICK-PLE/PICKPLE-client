@@ -24,11 +24,14 @@ const CommentInput = ({ noticeId }: CommentInputProps) => {
   };
 
   const submitComment = () => {
+    // refetchComments();
     const commentContent = commentRef.current?.value.trim();
     if (!commentContent) return;
-    leaveComment({ noticeId, commentContent: commentContent });
+    leaveComment(
+      { noticeId, commentContent: commentContent },
+      { onSuccess: () => refetchComments() }
+    );
     if (commentRef.current) commentRef.current.value = '';
-    refetchComments();
   };
 
   const handleIconClick = (e: React.MouseEvent) => {
