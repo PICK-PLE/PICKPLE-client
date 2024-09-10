@@ -28,6 +28,7 @@ import Error from '@pages/error/Error';
 import { userAtom } from '@stores';
 import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
 import { dDayText, handleShare, smoothScroll } from '@utils';
+import Review from 'src/components/common/Review/Review';
 
 import {
   buttonContainer,
@@ -157,7 +158,8 @@ const Class = () => {
             ) : (
               <ClassNotice noticeData={moimNoticeList || []} />
             ))}
-          {selectTab === '리뷰' && <ClassReviewEmptyView />}
+          {/* {selectTab === '리뷰' && <ClassReviewEmptyView />} */}
+          {selectTab === '리뷰' && <Review />}
         </section>
         {selectTab === '공지사항' && moimDetail?.hostId === hostId && (
           <div
