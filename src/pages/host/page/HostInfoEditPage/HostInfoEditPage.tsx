@@ -27,20 +27,30 @@ type HostUpdateRequest = components['schemas']['HostUpdateRequest'];
 const HostInfoEditPage = () => {
   const { hostId } = useParams();
   const { data: hostInfoData } = useFetchHostInfo(Number(hostId));
-  const { nickName, profileUrl, keyword, description, socialLink } = hostInfoData ?? {};
   const { mutate } = usePatchHostInfo(Number(hostId));
 
-  const [profileImage, setProfileImage] = useState(profileUrl);
-  const [hostInfoValue, setHostInfoValue] = useState({
-    profileUrl: profileImage || images.HostProfileImage,
-    nickname: `${nickName}`,
-    keyword: `${keyword}`,
-    description: `${description}`,
-    socialLink: `${socialLink}`,
-  });
-  const [isAllValid, setIsAllValid] = useState(false);
-
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isAllValid, setIsAllValid] = useState(false);
+  const [hostInfoValue, setHostInfoValue] = useState({
+    profileUrl: images.HostProfileImage,
+    nickname: '',
+    keyword: '',
+    description: '',
+    socialLink: '',
+  });
+
+  useEffect(() => {
+    if (hostInfoData) {
+      const { profileUrl, nickName, keyword, description, socialLink } = hostInfoData;
+      setHostInfoValue({
+        profileUrl: profileUrl || images.HostProfileImage,
+        nickname: `${nickName}`,
+        keyword: `${keyword}`,
+        description: `${description}`,
+        socialLink: `${socialLink}`,
+      });
+    }
+  }, [hostInfoData]);
 
   useEffect(() => {
     const allInputFilled = Object.values(hostInfoValue).every((value) => value?.trim() !== '');
@@ -61,11 +71,10 @@ const HostInfoEditPage = () => {
 
     return new Promise<void>((resolve) => {
       reader.onload = () => {
-        setProfileImage(`${reader.result}`);
-        // setHostInfoValue((prevState) => ({
-        //   ...prevState,
-        //   profileUrl: `${profileImage}`,
-        // })); 이거말고 presignedUrl 이용해서 하기
+        setHostInfoValue((prevState) => ({
+          ...prevState,
+          profileUrl: `${reader.result}`,
+        }));
         resolve();
       };
     });
@@ -99,7 +108,7 @@ const HostInfoEditPage = () => {
             <img src={images.HostBackGroundImage} css={hostBackgroundImage} />
             <div css={hostProfileImage}>
               <Image
-                src={profileImage ? profileImage : images.HostProfileImage}
+                src={hostInfoValue.profileUrl ? hostInfoValue.profileUrl : images.HostProfileImage}
                 variant="round"
                 width="8.2rem"
               />

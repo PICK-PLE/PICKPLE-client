@@ -26,5 +26,4 @@ export const QUERY_KEY = {
   HOST_INFO: 'hostInfo',
   HOST_INFO_CLASS: 'hostInfoClass',
   HOST_INFO_REVIEW: 'hostInfoReview',
-  HOST_INFO_EDIT: 'hostInfoEdit',
 } as const;
