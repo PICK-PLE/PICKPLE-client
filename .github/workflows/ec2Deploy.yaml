@@ -1,0 +1,27 @@
+name: Deploy to EC2
+
+on:
+  push:
+    branches:
+      - deploy/#271/automated-deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.EC2_PEM_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+
+      - name: Add EC2 to known hosts
+        run: ssh-keyscan -H ec2-43-200-222-157.ap-northeast-2.compute.amazonaws.com >> ~/.ssh/known_hosts
+
+      - name: SSH into EC2 and execute deployment script
+        run: |
+          ssh -i ~/.ssh/id_rsa ubuntu@ec2-43-200-222-157.ap-northeast-2.compute.amazonaws.com "cd PICKPLE-client && sh deploy.sh"
