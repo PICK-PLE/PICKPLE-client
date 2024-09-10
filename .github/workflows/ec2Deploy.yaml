@@ -3,7 +3,7 @@ name: Deploy to EC2
 on:
   push:
     branches:
-      - deploy/#271/automated-deploy
+      - main
 
 jobs:
   deploy:
