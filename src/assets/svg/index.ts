@@ -12,6 +12,7 @@ export { default as IcClassPerson } from './IcClassPerson';
 export { default as IcClipboardCopy } from './IcClipboardCopy';
 export { default as IcClose } from './IcClose';
 export { default as IcComment } from './IcComment';
+export { default as IcCommentListEmpty } from './IcCommentListEmpty';
 export { default as IcCopyPlus } from './IcCopyPlus';
 export { default as IcDate } from './IcDate';
 export { default as IcDefaultUserimg } from './IcDefaultUserimg';
