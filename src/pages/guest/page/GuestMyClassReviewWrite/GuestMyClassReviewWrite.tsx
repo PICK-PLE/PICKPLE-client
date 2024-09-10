@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { usePutS3Upload } from '@apis/domains/presignedUrl';
 import { useFetchMoimFromReviewPage } from '@apis/domains/review/useFetchMoimFromReviewPage';
@@ -25,10 +25,14 @@ import {
   writeReviewSection,
 } from './GuestMyClassReviewWrite.style';
 
+import { MoimIdPathParameterType } from '@types';
+
 const GuestMyClassReviewWrite = () => {
-  const [reviewContent, setReviewContent] = useState('');
+  const [content, setContent] = useState('');
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-  const { moimId } = useParams();
+  const { moimId } = useParams<MoimIdPathParameterType>();
+  const moimIdNumber = Number(moimId);
+  const navigate = useNavigate();
 
   const { data: moimData } = useFetchMoimFromReviewPage(moimId ?? '');
   const { data: tagList } = useFetchReviewTagList();
@@ -38,7 +42,7 @@ const GuestMyClassReviewWrite = () => {
   const [selectedHostTags] = useAtom(hostTagsAtom);
 
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setReviewContent(e.target.value);
+    setContent(e.target.value);
   };
 
   const handleButtonClick = async (): Promise<void> => {
@@ -49,24 +53,20 @@ const GuestMyClassReviewWrite = () => {
         putS3Upload: putS3UploadMutateAsync,
         type: 'REVIEW_PREFIX',
       });
-      console.log(imageUrlList);
-
       imageUrl = imageUrlList[0];
     }
 
-    const selectedTags = [...selectedMoimTags, ...selectedHostTags];
+    const tagList = [...selectedMoimTags, ...selectedHostTags];
     const params = {
-      selectedTags,
-      reviewContent,
+      tagList,
+      content,
       imageUrl,
     };
-
-    // await mutateAsync(params);
-
-    console.log(params);
+    await mutateAsync({ params, moimId: moimIdNumber });
+    navigate(`/mypage/guest/myclass/${moimId}/review/complete`);
   };
 
-  if (putS3IsPending) {
+  if (putS3IsPending || isPending) {
     return <Spinner />;
   }
   return (
@@ -96,7 +96,7 @@ const GuestMyClassReviewWrite = () => {
                 size="medium"
                 maxLength={500}
                 placeholder={'1글자 이상 리뷰를 작성해주세요.'}
-                value={reviewContent}
+                value={content}
                 onChange={handleTextareaChange}
                 isValid={true}
                 errorMessage="1글자 이상 리뷰를 작성해주세요."
