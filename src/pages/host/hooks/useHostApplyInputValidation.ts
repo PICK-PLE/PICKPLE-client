@@ -1,7 +1,3 @@
-import { components } from '@schema';
-
-type Category = components['schemas']['SubmitterCategoryInfo'];
-
 const useHostApplyInputValidation = () => {
   const validateLength = (answer: string) => {
     return answer.trim().length >= 1;
@@ -15,10 +11,6 @@ const useHostApplyInputValidation = () => {
   const validateUrl = (q3: string) => {
     const urlPattern = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+\/?)([^\s]*)?$/i;
     return urlPattern.test(q3);
-  };
-
-  const validateCategory = (category: Category) => {
-    return !!category.category1 || !!category.category2 || !!category.category3;
   };
 
   const validateStepOne = (state: { intro: string; goal: string; link: string }) => {
@@ -37,21 +29,21 @@ const useHostApplyInputValidation = () => {
 
   const validateStepTwo = (state: {
     nickname: string;
+    userKeyword: string;
     plan: string;
     email: string;
-    categoryList: Category;
   }) => {
     const isNicknameValid = validateLength(state.nickname);
+    const isUserKeywordvalid = validateLength(state.userKeyword);
     const isPlanValid = validateLength(state.plan);
     const isEmailValid = validateEmail(state.email);
-    const isCategoryValid = validateCategory(state.categoryList);
-    const isAllValid = isNicknameValid && isPlanValid && isEmailValid && isCategoryValid;
+    const isAllValid = isNicknameValid && isPlanValid && isEmailValid && isUserKeywordvalid;
 
     return {
       isNicknameValid,
+      isUserKeywordvalid,
       isPlanValid,
       isEmailValid,
-      isCategoryValid,
       isAllValid,
     };
   };
@@ -60,7 +52,6 @@ const useHostApplyInputValidation = () => {
     validateLength,
     validateEmail,
     validateUrl,
-    validateCategory,
     validateStepOne,
     validateStepTwo,
   };
