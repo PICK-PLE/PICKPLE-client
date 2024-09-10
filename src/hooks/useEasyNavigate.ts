@@ -14,7 +14,7 @@ const useEasyNavigate = () => {
   };
 
   const goCategories = () => {
-    navigate(routePath.CATEGORY);
+    navigate(routePath.CLASS_LIST);
   };
 
   const goHostMyPage = () => {

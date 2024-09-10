@@ -6,7 +6,7 @@ export const hostInfoWrapper = (theme: Theme) => css`
   ${flexGenerator('row', 'flex-start', 'center')};
   gap: 1.5rem;
   padding: 1.4rem;
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
   border: 1px solid ${theme.color.lightgray0};
   border-radius: 10px;
   width: 100%;

@@ -21,7 +21,6 @@ import {
   ClassInfo,
   ClassNotice,
   ClassNoticeEmptyView,
-  ClassReviewEmptyView,
   HostInfoCard,
 } from '@pages/class/components';
 import Error from '@pages/error/Error';
