@@ -1,4 +1,4 @@
-import { Image } from '@components';
+import { Image, Label } from '@components';
 import {
   iconStyle,
   iconWrapper,
@@ -9,7 +9,7 @@ import {
   profileWrapper,
 } from './HostProfileCard.style';
 import { useState } from 'react';
-import { IcParkMore } from '@svg';
+import { IcLock, IcParkMore } from '@svg';
 import DeleteCard from '../DeleteCard/DeleteCard';
 import { components } from '@schema';
 import { useClickOutside } from '@hooks';
@@ -29,13 +29,10 @@ const HostProfileCard = ({ data: noticeDetail }: HostProfileCardProps) => {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
-    console.log('modalClose');
   };
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
-    console.log('modalOpen');
-    console.log('isModalOpen', isModalOpen);
   };
   const handleIconClick = () => {
     setIsDeleteOpen((prev) => !prev);
@@ -54,18 +51,26 @@ const HostProfileCard = ({ data: noticeDetail }: HostProfileCardProps) => {
         </div>
       </section>
       <div css={iconWrapper}>
-        <span css={iconStyle}>
-          <IcParkMore onClick={handleIconClick} />
-          {isDeleteOpen && (
-            <div ref={deleteCardRef}>
-              <DeleteCard
-                isModalOpen={isModalOpen}
-                handleModalClose={handleModalClose}
-                handleModalOpen={handleModalOpen}
-              />
-            </div>
-          )}
-        </span>
+        {noticeDetail.isOwner === true ? (
+          <span css={iconStyle}>
+            <IcParkMore onClick={handleIconClick} />
+            {isDeleteOpen && (
+              <div ref={deleteCardRef}>
+                <DeleteCard
+                  isModalOpen={isModalOpen}
+                  handleModalClose={handleModalClose}
+                  handleModalOpen={handleModalOpen}
+                />
+              </div>
+            )}
+          </span>
+        ) : (
+          <div>
+            <Label variant="category" icon={<IcLock />}>
+              게스트
+            </Label>
+          </div>
+        )}
       </div>
     </div>
   );

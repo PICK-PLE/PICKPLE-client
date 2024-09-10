@@ -26,9 +26,7 @@ export const profileName = (theme: Theme) => css`
 `;
 
 export const iconWrapper = css`
-  /* margin-right: -0.7rem; */
   position: relative;
-  background-color: pink;
 `;
 
 export const iconStyle = css`
