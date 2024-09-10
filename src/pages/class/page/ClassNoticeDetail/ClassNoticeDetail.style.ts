@@ -84,3 +84,9 @@ export const textStyle = (theme: Theme) => css`
   text-align: center;
   ${theme.font['subhead05-sb-14']}
 `;
+
+export const commentListWrapper = css`
+  ${flexGenerator('column', 'flex-start', 'flex-start')}
+  height: 100%;
+  overflow: scroll;
+`;

@@ -16,6 +16,7 @@ import {
   iconStyle,
   textStyle,
   emptyViewContainer,
+  commentListWrapper,
 } from './ClassNoticeDetail.style';
 
 import CommentBox from '@pages/class/components/\bCommentBox/CommentBox';
@@ -63,10 +64,12 @@ const ClassNoticeDetail = () => {
               </div>
             </div>
           ) : (
-            commentList?.map((comment) => <CommentBox comment={comment} />)
+            <div css={commentListWrapper}>
+              {commentList?.map((comment) => <CommentBox comment={comment} />)}
+            </div>
           )}
           <footer>
-            <CommentInput />
+            <CommentInput noticeId={noticeId ?? ''} />
           </footer>
         </div>
       </div>
