@@ -5,8 +5,9 @@ import { useParams } from 'react-router-dom';
 import { usePutS3Upload } from '@apis/domains/presignedUrl';
 import { useFetchMoimFromReviewPage } from '@apis/domains/review/useFetchMoimFromReviewPage';
 import { useFetchReviewTagList } from '@apis/domains/review/useFetchReviewTagList';
+import { usePostReview } from '@apis/domains/review/usePostReview';
 
-import { Button, Header, ImageSelect, TextArea } from '@components';
+import { Button, Header, ImageSelect, Spinner, TextArea } from '@components';
 import { ClassListCard } from '@pages/classList/components';
 import { handleUpload } from '@utils';
 import TagSelectBox from 'src/components/common/TagSelectBox/TagSelectBox';
@@ -23,7 +24,6 @@ import {
   textareaAndImageWrapper,
   writeReviewSection,
 } from './GuestMyClassReviewWrite.style';
-import { usePostReview } from '@apis/domains/review/usePostReview';
 
 const GuestMyClassReviewWrite = () => {
   const [reviewContent, setReviewContent] = useState('');
@@ -32,7 +32,7 @@ const GuestMyClassReviewWrite = () => {
 
   const { data: moimData } = useFetchMoimFromReviewPage(moimId ?? '');
   const { data: tagList } = useFetchReviewTagList();
-  const putS3UploadMutation = usePutS3Upload();
+  const { mutateAsync: putS3UploadMutateAsync, isPending: putS3IsPending } = usePutS3Upload();
   const { mutateAsync, isPending } = usePostReview();
   const [selectedMoimTags] = useAtom(moimTagsAtom);
   const [selectedHostTags] = useAtom(hostTagsAtom);
@@ -41,27 +41,34 @@ const GuestMyClassReviewWrite = () => {
     setReviewContent(e.target.value);
   };
 
-  const handleButtonClick = async () => {
+  const handleButtonClick = async (): Promise<void> => {
     let imageUrl: undefined | string = undefined;
     if (selectedFiles.length === 1) {
       const imageUrlList = await handleUpload({
         selectedFiles,
-        putS3Upload: putS3UploadMutation.mutateAsync,
+        putS3Upload: putS3UploadMutateAsync,
         type: 'REVIEW_PREFIX',
       });
+      console.log(imageUrlList);
+
       imageUrl = imageUrlList[0];
     }
 
     const selectedTags = [...selectedMoimTags, ...selectedHostTags];
     const params = {
+      selectedTags,
       reviewContent,
       imageUrl,
-      selectedTags,
     };
 
-    await mutateAsync({ params, moimId });
-    // console.log(params);
+    // await mutateAsync(params);
+
+    console.log(params);
   };
+
+  if (putS3IsPending) {
+    return <Spinner />;
+  }
   return (
     <div css={reviewWriteLayout}>
       <Header title="리뷰 쓰기" />
