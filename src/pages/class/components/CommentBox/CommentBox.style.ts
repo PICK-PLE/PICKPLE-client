@@ -9,17 +9,22 @@ export const commentSectionContainer = css`
   min-width: 37.5rem;
 `;
 
-export const commentContainer = (theme: Theme) => css`
+export const commentContainer = (isOwner: boolean) => (theme: Theme) => css`
   ${flexGenerator('row', 'space-between', 'flex-start')};
   padding: 1.7rem 1.3rem 1.7rem 2rem;
   gap: 1rem;
-  background: ${theme.color.white};
+  background: ${isOwner ? theme.color.bg_white1 : theme.color.white};
   width: 100%;
 `;
 
 export const profileImageWrapper = css`
   ${flexGenerator('row', 'flex-start', 'flex-start')};
   width: 4.2rem;
+`;
+
+export const profileWrapper = css`
+  ${flexGenerator('row', 'flex-start', 'flex-start')};
+  gap: 0.4rem;
 `;
 
 export const commentWrapper = css`
@@ -56,4 +61,9 @@ export const iconStyle = css`
   height: 2.4rem;
   position: absolute;
   right: 1.3rem;
+`;
+
+export const spickerIconStyle = css`
+  width: 1.6rem;
+  height: 1.6rem;
 `;

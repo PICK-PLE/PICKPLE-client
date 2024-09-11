@@ -8,9 +8,11 @@ import {
   iconStyle,
   iconWrapper,
   profileImageWrapper,
+  profileWrapper,
+  spickerIconStyle,
   userNickname,
 } from './CommentBox.style';
-import { IcParkMore } from '@svg';
+import { IcParkMore, IcSpickerMark } from '@svg';
 import { components } from '@schema';
 import { formatCreatedDate } from '@utils';
 import DeleteCard from '../DeleteCard/DeleteCard';
@@ -40,17 +42,23 @@ const CommentBox = ({ comment }: CommentBoxProps) => {
 
   const handleIconClick = () => {
     setIsDeleteOpen((prev) => !prev);
-    // setIsModalOpen(false);
   };
 
   return (
     <article css={commentSectionContainer}>
-      <div css={commentContainer}>
+      <div css={commentContainer(comment.isOwner ?? false)}>
         <div css={profileImageWrapper}>
           <Image variant="round" src={comment.commenterImageUrl ?? ''} width="4.2rem" />
         </div>
         <section css={commentWrapper}>
-          <p css={userNickname}>{comment.commenterNickname}</p>
+          <div css={profileWrapper}>
+            <p css={userNickname}>{comment.commenterNickname}</p>
+            {comment.isOwner && (
+              <span css={spickerIconStyle}>
+                <IcSpickerMark />
+              </span>
+            )}
+          </div>
           <div css={commentContent}>{comment.commentContent}</div>
           <div css={commentTime}>{formatCreatedDate(comment.commentDate ?? '')}시간 전</div>
         </section>
