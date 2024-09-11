@@ -17,10 +17,8 @@ export const postPresignedUrl = async (
 ): Promise<PreSignedUrlResponse[] | null> => {
   try {
     const response = await post<ApiResponseType<PreSignedUrlResponse[]>>(`/v2/image/upload`, {
-      body: {
-        prefix,
-        count,
-      },
+      prefix,
+      count,
     });
 
     if (!response) {

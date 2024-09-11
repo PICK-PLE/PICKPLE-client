@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { useFetchHostInfo } from '@apis/domains/host/useFetchHostInfo';
 import { usePatchHostInfo } from '@apis/domains/host/usePatchHostInfo';
+import { usePutS3Upload } from '@apis/domains/presignedUrl';
 
 import { Button, Header, Image, Input, TextArea } from '@components';
 import { images } from '@constants';
@@ -20,6 +21,7 @@ import {
   hostTextAreaWrapper,
 } from '@pages/host/page/HostInfoEditPage/HostInfoEditPage.style';
 import { IcCamera } from '@svg';
+import { handleUpload } from '@utils';
 
 import { components } from '@schema';
 type HostUpdateRequest = components['schemas']['HostUpdateRequest'];
@@ -28,9 +30,11 @@ const HostInfoEditPage = () => {
   const { hostId } = useParams();
   const { data: hostInfoData } = useFetchHostInfo(Number(hostId));
   const { mutate } = usePatchHostInfo(Number(hostId));
+  const { mutateAsync: putS3UploadMutateAsync } = usePutS3Upload();
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [isAllValid, setIsAllValid] = useState(false);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>();
   const [hostInfoValue, setHostInfoValue] = useState({
     profileUrl: images.HostProfileImage,
     nickname: '',
@@ -63,21 +67,20 @@ const HostInfoEditPage = () => {
 
   const handleProfileImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files && e.target.files[0];
+    if (!file) return;
+
+    // 파일 프리뷰 설정하기
     const reader = new FileReader();
+    reader.onloadend = () => {
+      setHostInfoValue((prevState) => ({
+        ...prevState,
+        profileUrl: reader.result as string,
+      }));
+    };
 
-    if (file !== null) {
-      reader.readAsDataURL(file);
-    } else return;
+    reader.readAsDataURL(file);
 
-    return new Promise<void>((resolve) => {
-      reader.onload = () => {
-        setHostInfoValue((prevState) => ({
-          ...prevState,
-          profileUrl: `${reader.result}`,
-        }));
-        resolve();
-      };
-    });
+    setSelectedFiles([file]);
   };
 
   const handleInputChange = (
@@ -95,8 +98,28 @@ const HostInfoEditPage = () => {
     return value.trim().length >= 1;
   };
 
-  const handleButtonClick = () => {
-    mutate({ hostId: Number(hostId), hostInfoValue });
+  const handleButtonClick = async (): Promise<void> => {
+    let imageUrl: string = '';
+
+    // 파일이 선택된 경우 Presigned URL을 얻고 S3에 파일 업로드
+    if (selectedFiles?.length === 1) {
+      try {
+        const imageUrlList = await handleUpload({
+          selectedFiles,
+          putS3Upload: putS3UploadMutateAsync,
+          type: 'HOST_PROFILE_PREFIX',
+        });
+        imageUrl = imageUrlList[0];
+      } catch (error) {
+        console.error('S3 업로드 실패: ', error);
+        alert('이미지 업로드에 실패했습니다.');
+        return;
+      }
+    }
+
+    // 업로드된 이미지 URL로 hostInfoValue 업데이트
+    const updateHostInfoValue = { ...hostInfoValue, profileUrl: imageUrl };
+    mutate({ hostId: Number(hostId), hostInfoValue: updateHostInfoValue });
   };
 
   return (
