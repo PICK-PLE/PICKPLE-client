@@ -10,12 +10,14 @@ import {
   detailWrapper,
   title,
 } from './DeleteModal.style';
+import { useDeleteNoticeComment } from '@apis/domains/notice/useDeleteNoticeComment';
 
 interface DeleteModalProps {
   onClose: () => void;
 }
 
 const DeleteModal = ({ onClose }: DeleteModalProps) => {
+  const { mutate: deleteComment } = useDeleteNoticeComment();
   return (
     <article css={deleteModalContainer}>
       <div css={deleteModalWrapper}>
@@ -25,7 +27,10 @@ const DeleteModal = ({ onClose }: DeleteModalProps) => {
             <Button variant="xSmall" onClick={onClose} customStyle={cancelButtonStyle}>
               <p css={cancelButtonText}>취소</p>
             </Button>
-            <Button variant="xSmall" onClick={() => {}} customStyle={deleteButtonStyle}>
+            <Button
+              variant="xSmall"
+              onClick={() => deleteComment({ noticeId, commentId })}
+              customStyle={deleteButtonStyle}>
               <p css={deleteButtonText}>삭제</p>
             </Button>
           </div>
