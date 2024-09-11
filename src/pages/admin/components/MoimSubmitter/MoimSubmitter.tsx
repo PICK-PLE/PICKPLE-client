@@ -1,3 +1,7 @@
+import { useEffect } from 'react';
+
+import { useFetchMoimSubmitterList } from '@apis/domains/submitter/useFetchMoimSubmitter';
+
 import {
   tableContainerStyle,
   tableLayoutStyle,
@@ -7,66 +11,31 @@ import {
   titleStyle,
 } from '@pages/admin/components/MoimSubmitter/MoimSubmitter.style';
 
-const moimSubmitterData = [
-  {
-    moimSubmissionId: 1,
-    date: '2024.08.15 04:25:55',
-    moimSubmissionState: 'pendingApproval',
-    guestId: 1,
-    guestNickname: '달아오르구마',
-    kakaoNickname: '화랑',
-    moimId: 1,
-    moimTitle: '티엘고마가 알려주는 클래스 성공방법',
-    hostNickname: '소빈',
-    questionList: {
-      question1: '질문1',
-      question2: '질문2',
-      question3: null,
-    },
-    answerList: {
-      answer1: '답변 1',
-      answer2: '답변 2',
-      answer3: null,
-    },
-  },
-  {
-    moimSubmissionId: 1,
-    date: '2024.08.15 04:25:55',
-    moimSubmissionState: 'pendingPayment',
-    guestId: 1,
-    guestNickname: '달아오르구마',
-    kakaoNickname: '화랑',
-    moimId: 1,
-    moimTitle: '티엘고마가 알려주는 클래스 성공방법',
-    hostNickname: '소빈',
-    questionList: {
-      question1: '질문1',
-      question2: '질문2',
-      question3: null,
-    },
-    answerList: {
-      answer1: '답변 1',
-      answer2: '답변 2',
-      answer3: null,
-    },
-  },
-];
-
 const MOIM_SUBMITTER_STATUS = {
   pendingPayment: '입금 대기',
   pendingApproval: '승인 대기',
 };
 
 const MoimSubmitter = () => {
+  const { data: moimSubmitterList, refetch } = useFetchMoimSubmitterList() || [];
+
+  useEffect(() => {
+    refetch();
+  }, [moimSubmitterList, refetch]);
+
+  if (moimSubmitterList === null || moimSubmitterList === undefined) {
+    return null;
+  }
+
   const handleButtonClick = (submitterId: number) => {
-    mutate(
-      { submitterId },
-      {
-        onSuccess: () => {
-          refetch();
-        },
-      }
-    );
+    // mutate(
+    //   { submitterId },
+    //   {
+    //     onSuccess: () => {
+    //       refetch();
+    //     },
+    //   }
+    // );
   };
   return (
     <div css={tableLayoutStyle}>
@@ -94,7 +63,7 @@ const MoimSubmitter = () => {
             </tr>
           </thead>
           <tbody>
-            {moimSubmitterData.map((item, index) => (
+            {moimSubmitterList.map((item, index) => (
               <tr key={index}>
                 <td css={tdStyle}>{item.moimSubmissionId}</td>
                 <td css={tdStyle}>{item.date}</td>
@@ -104,12 +73,12 @@ const MoimSubmitter = () => {
                 <td css={tdStyle}>{item.moimId}</td>
                 <td css={tdStyle}>{item.moimTitle}</td>
                 <td css={tdStyle}>{item.hostNickname}</td>
-                <td css={tdStyle}>{item.questionList.question1}</td>
-                <td css={tdStyle}>{item.answerList.answer1}</td>
-                <td css={tdStyle}>{item.questionList.question2}</td>
-                <td css={tdStyle}>{item.answerList.answer2}</td>
-                <td css={tdStyle}>{item.questionList.question3}</td>
-                <td css={tdStyle}>{item.answerList.answer3}</td>
+                <td css={tdStyle}>{item.questionList?.question1}</td>
+                <td css={tdStyle}>{item.answerList?.answer1}</td>
+                <td css={tdStyle}>{item.questionList?.question2}</td>
+                <td css={tdStyle}>{item.answerList?.answer2}</td>
+                <td css={tdStyle}>{item.questionList?.question3}</td>
+                <td css={tdStyle}>{item.answerList?.answer3}</td>
                 <td css={tdStyle}>
                   {
                     MOIM_SUBMITTER_STATUS[
