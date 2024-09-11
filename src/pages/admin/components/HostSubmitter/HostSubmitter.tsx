@@ -13,7 +13,7 @@ import {
   tableStyle,
   tdStyle,
   thStyle,
-} from '@pages/admin/page/HostSubmitter/HostSubmitter.style';
+} from '@pages/admin/components/HostSubmitter/HostSubmitter.style';
 import { titleStyle } from '@pages/auth/page/Login/Login.style';
 
 const SUBMITTER_STATUS = {
