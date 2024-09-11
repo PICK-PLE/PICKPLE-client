@@ -4,7 +4,7 @@ import { components } from '@schema';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { ApiResponseType } from '@types';
 
-type CommentGetResponse = components['schemas']['CommentGetResponse'];
+export type CommentGetResponse = components['schemas']['CommentGetResponse'];
 
 const getCommentList = async (noticeId: string): Promise<CommentGetResponse[] | null> => {
   try {
