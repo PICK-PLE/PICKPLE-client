@@ -1,6 +1,9 @@
 import { QueryClient } from '@tanstack/react-query';
 
-import { getPresignedUrl, PresignedPrefixType,  } from '@apis/domains/presignedUrl/useFetchPresignedUrl';
+import {
+  getPresignedUrl,
+  PresignedPrefixType,
+} from '@apis/domains/presignedUrl/useFetchPresignedUrl';
 import { PutImageUploadParams } from '@apis/domains/presignedUrl/usePutS3Upload';
 
 interface UploadParams {
@@ -17,14 +20,14 @@ export const handleUpload = async ({
 
   selectedFiles, //선택한 파일들 (최대 3개)
   putS3Upload, // usePutS3Upload 함수 => react hook은 최상위에서 호출해야하는 규칙 때문에 밖에서 주입되게 하였습니다
-  type, // 'notice' || 'moim' 둘 중 하나로 넣으시면 됩니다
+  type, // 'PresignedPrefixType' 타입들 참고해서 이 넷 중 하나로 넣으시면 됩니다
 }: UploadParams): Promise<string[]> => {
   const queryClient = new QueryClient();
   const s3UrlList = [];
   if (selectedFiles.length > 0) {
     const presignedUrls = await queryClient.fetchQuery({
       queryKey: ['presignedUrl', selectedFiles.length],
-      queryFn: () => getPresignedUrl( type, selectedFiles.length),
+      queryFn: () => getPresignedUrl(type, selectedFiles.length),
     });
 
     if (presignedUrls && presignedUrls.length > 0) {
