@@ -1,4 +1,7 @@
 import React, { InputHTMLAttributes, forwardRef, useState } from 'react';
+
+import { IcDelete20 } from '@svg';
+
 import {
   inputContainerStyle,
   inputLabelStyle,
@@ -10,7 +13,6 @@ import {
   deleteButtonStyle,
   labelAndInputWrapper,
 } from './Input.style';
-import { IcDelete20 } from '@svg';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
