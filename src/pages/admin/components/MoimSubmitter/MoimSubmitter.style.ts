@@ -38,6 +38,7 @@ export const thStyle = (theme: Theme) => css`
 export const tdStyle = (theme: Theme) => css`
   padding: 0.5rem;
   text-align: center;
-  border: 1px solid #ddd;
+  border: 1px solid ${theme.color.lightgray0};
+  word-break: break-all;
   ${theme.font['subhead06-m-14']}
 `;
