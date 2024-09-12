@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 import { useFetchMoimSubmitterList } from '@apis/domains/submitter/useFetchMoimSubmitter';
+import { usePatchMoimSubmitter } from '@apis/domains/submitter/usePatchMoimSubmitter';
 
 import {
   tableContainerStyle,
@@ -18,6 +19,7 @@ const MOIM_SUBMITTER_STATUS = {
 
 const MoimSubmitter = () => {
   const { data: moimSubmitterList, refetch } = useFetchMoimSubmitterList() || [];
+  const { mutate } = usePatchMoimSubmitter();
 
   useEffect(() => {
     refetch();
@@ -27,15 +29,15 @@ const MoimSubmitter = () => {
     return null;
   }
 
-  const handleButtonClick = (submitterId: number) => {
-    // mutate(
-    //   { submitterId },
-    //   {
-    //     onSuccess: () => {
-    //       refetch();
-    //     },
-    //   }
-    // );
+  const handleButtonClick = (moimSubmissionId: number) => {
+    mutate(
+      { moimSubmissionId },
+      {
+        onSuccess: () => {
+          refetch();
+        },
+      }
+    );
   };
   return (
     <div css={tableLayoutStyle}>
