@@ -1,5 +1,5 @@
-import { Theme } from '@emotion/react';
-import { css } from '@emotion/react';
+import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const commentSectionContainer = css`
@@ -59,8 +59,6 @@ export const iconWrapper = css`
 export const iconStyle = css`
   width: 2.4rem;
   height: 2.4rem;
-  position: absolute;
-  right: 1.3rem;
 `;
 
 export const spickerIconStyle = css`

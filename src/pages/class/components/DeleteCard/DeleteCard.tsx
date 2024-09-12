@@ -1,26 +1,17 @@
-import { deleteCardContainer, deleteCardWrapper, deleteText } from './DeleteCard.style';
-import { Modal } from '@components';
-import DeleteModal from '../DeleteModal/DeleteModal';
+import { backdropStyle, deleteCardWrapper } from './DeleteCard.style';
 
 interface DeleteCardProps {
-  isModalOpen: boolean;
-  handleModalClose: () => void;
   handleModalOpen: () => void;
+  handleDeleteClose: () => void;
 }
-const DeleteCard = ({ isModalOpen, handleModalClose, handleModalOpen }: DeleteCardProps) => {
+const DeleteCard = ({ handleModalOpen, handleDeleteClose }: DeleteCardProps) => {
   return (
-    <div css={deleteCardContainer} onClick={handleModalOpen}>
-      <div css={deleteCardWrapper}>
-        <p css={deleteText}>삭제하기</p>
+    <>
+      <div css={backdropStyle} onClick={handleDeleteClose} />
+      <div css={deleteCardWrapper} onClick={handleModalOpen}>
+        삭제하기
       </div>
-      {isModalOpen && (
-        <>
-          <Modal onClose={handleModalClose}>
-            <DeleteModal onClose={handleModalClose} />
-          </Modal>
-        </>
-      )}
-    </div>
+    </>
   );
 };
 
