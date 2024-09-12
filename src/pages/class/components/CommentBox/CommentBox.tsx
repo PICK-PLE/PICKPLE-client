@@ -1,4 +1,10 @@
+import { useState } from 'react';
+
 import { Image } from '@components';
+import { useClickOutside } from '@hooks';
+import { IcParkMore, IcSpickerMark } from '@svg';
+import { formatCreatedDate } from '@utils';
+
 import {
   commentContainer,
   commentContent,
@@ -12,12 +18,9 @@ import {
   spickerIconStyle,
   userNickname,
 } from './CommentBox.style';
-import { IcParkMore, IcSpickerMark } from '@svg';
-import { components } from '@schema';
-import { formatCreatedDate } from '@utils';
 import DeleteCard from '../DeleteCard/DeleteCard';
-import { useState } from 'react';
-import { useClickOutside } from '@hooks';
+
+import { components } from '@schema';
 
 type comment = components['schemas']['CommentGetResponse'];
 interface CommentBoxProps {
@@ -27,7 +30,7 @@ interface CommentBoxProps {
 const CommentBox = ({ comment }: CommentBoxProps) => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const deleteCardRef = useClickOutside(() => {
+  const deleteCardRef = useClickOutside<HTMLDivElement>(() => {
     setIsDeleteOpen(false);
     handleModalClose();
   });

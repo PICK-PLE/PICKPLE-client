@@ -1,4 +1,9 @@
+import { useState } from 'react';
+
 import { Image, Label } from '@components';
+import { useClickOutside } from '@hooks';
+import { IcLock, IcParkMore } from '@svg';
+
 import {
   iconStyle,
   iconWrapper,
@@ -8,11 +13,9 @@ import {
   profileTextBox,
   profileWrapper,
 } from './HostProfileCard.style';
-import { useState } from 'react';
-import { IcLock, IcParkMore } from '@svg';
 import DeleteCard from '../DeleteCard/DeleteCard';
+
 import { components } from '@schema';
-import { useClickOutside } from '@hooks';
 
 type NoticeListGetByMoimResponse = components['schemas']['NoticeDetailGetResponse'];
 interface HostProfileCardProps {
@@ -22,7 +25,7 @@ interface HostProfileCardProps {
 const HostProfileCard = ({ data: noticeDetail }: HostProfileCardProps) => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const deleteCardRef = useClickOutside(() => {
+  const deleteCardRef = useClickOutside<HTMLDivElement>(() => {
     setIsDeleteOpen(false);
     handleModalClose();
   });
