@@ -33,11 +33,15 @@ interface hostInfoCardWithLinkListProps {
 }
 const HostInfoCardWithLink = ({ hostInfoCardWithLinkList }: hostInfoCardWithLinkListProps) => {
   const navigate = useNavigate();
-  const { hostNickName, hostImageUrl, keyword, moimCount, attendeeCount } =
+  const { hostNickName, hostImageUrl, keyword, moimCount, attendeeCount, hostId } =
     hostInfoCardWithLinkList;
 
   const handleButtonClick = () => {
     navigate('/class/post/step1');
+  };
+
+  const handleHostInfoButtonClick = () => {
+    navigate(`/host/info/${hostId}`);
   };
 
   return (
@@ -71,8 +75,7 @@ const HostInfoCardWithLink = ({ hostInfoCardWithLinkList }: hostInfoCardWithLink
               </div>
             </div>
 
-            <IcDropdownRight css={nextIconStyle} />
-            {/* hostInfo로 이동하는 부분 추가해야 함 */}
+            <IcDropdownRight css={nextIconStyle} onClick={handleHostInfoButtonClick} />
           </article>
 
           <Button variant="small" onClick={handleButtonClick}>
