@@ -1,7 +1,9 @@
+import { useSuspenseQuery } from '@tanstack/react-query';
+
 import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+
 import { components } from '@schema';
-import { useSuspenseQuery } from '@tanstack/react-query';
 import { ApiResponseType } from '@types';
 
 export type CommentGetResponse = components['schemas']['CommentGetResponse'];
