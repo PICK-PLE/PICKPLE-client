@@ -28,6 +28,7 @@ export const usePostReview = () => {
     mutationFn: ({ params, moimId }: MutateFunctionProps) => postReview(params, moimId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [] });
+      //추후 MOIM_REVIEW_LIST 쿼리키 넣을 예정
     },
   });
 };
