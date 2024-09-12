@@ -1,13 +1,14 @@
 import { useAtom } from 'jotai';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
 
 import {
   Button,
-  Carousel,
   IconButton,
   IconText,
   Label,
@@ -38,13 +39,18 @@ import {
   classLayout,
   classNameStyle,
   floatingButtonWrapper,
+  imageStyle,
   infoSectionStyle,
+  swiperStyle,
   tabButtonStyle,
   tabSectionStyle,
   tabWrapper,
 } from './Class.style';
 
 import { MoimIdPathParameterType } from '@types';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
@@ -72,6 +78,9 @@ const Class = () => {
     return <Error />;
   }
   const { dayOfDay = 0, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
+  const swiperImageList = Object.values(imageList || []).filter(
+    (value) => value !== null && value !== ''
+  );
 
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
 
@@ -100,11 +109,15 @@ const Class = () => {
       <LogoHeader />
       <div css={classLayout}>
         <div css={carouselWrapper}>
-          <Carousel
-            imageList={Object.values(imageList || []).filter(
-              (value) => value !== null && value !== ''
-            )}
-          />
+          <Swiper css={swiperStyle} pagination={true} modules={[Pagination]} loop={true}>
+            {swiperImageList.map((image, index) => {
+              return (
+                <SwiperSlide key={index}>
+                  <img css={imageStyle} src={image} alt={`Carousel ${index}`} />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
         <section css={classInfo}>
           <Label variant="dDay">{`마감${dDayText(dayOfDay)}`}</Label>

@@ -7,6 +7,10 @@ const homePages = {
   HOME: '/',
 };
 
+const articlePages = {
+  ARTICLE_PICKSIGHT: '/article/picksight',
+};
+
 const classListPages = {
   CLASS_LIST: '/class-list',
 };
@@ -51,6 +55,7 @@ const adminPages = {
 export default {
   ...authPages,
   ...homePages,
+  ...articlePages,
   ...classListPages,
   ...classPages,
   ...myPagePages,
