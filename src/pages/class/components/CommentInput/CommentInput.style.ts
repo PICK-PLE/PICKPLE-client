@@ -1,5 +1,5 @@
-import { Theme } from '@emotion/react';
-import { css } from '@emotion/react';
+import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const commentInputContainer = (theme: Theme) => css`
@@ -34,13 +34,7 @@ export const inputStyle = (theme: Theme) => css`
 
   ::placeholder {
     color: ${theme.color.midgray1};
-
-    /* @정안todo font 추가 body/body06-m-15 */
-    font-family: Pretendard;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 140%; /* 21px */
+    ${theme.font['body06-m-15']}
   }
 
   &:focus {

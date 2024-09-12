@@ -1,13 +1,16 @@
+import { useRef } from 'react';
+
+import { useFetchCommentList } from '@apis/domains/notice/useFetchCommentList';
+import { usePostNoticeComment } from '@apis/domains/notice/usePostNoticeComment';
+
 import { IcSend } from '@svg';
+
 import {
   inputStyle,
   commentInputContainer,
   commentInputWrapper,
   iconStyle,
 } from './CommentInput.style';
-import { usePostNoticeComment } from '@apis/domains/notice/usePostNoticeComment';
-import { useRef } from 'react';
-import { useFetchCommentList } from '@apis/domains/notice/useFetchCommentList';
 
 interface CommentInputProps {
   noticeId: string;
@@ -24,7 +27,6 @@ const CommentInput = ({ noticeId }: CommentInputProps) => {
   };
 
   const submitComment = () => {
-    // refetchComments();
     const commentContent = commentRef.current?.value.trim();
     if (!commentContent) return;
     leaveComment(
