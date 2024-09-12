@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
+
 import { noticeCardContainer } from './ClassNotice.style';
 import { NoticeCard } from '..';
+
 import { components } from '@schema';
-import { useNavigate } from 'react-router-dom';
 
 type NoticeListGetByMoimResponse = components['schemas']['NoticeListGetByMoimResponse'];
 
