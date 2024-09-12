@@ -7,14 +7,13 @@ import { buttonStyle, selectedStyle, tagWrapper, unSelectedStyle } from './TagSe
 import Toast from '../Toast/Toast';
 
 interface TagSelectBoxProps {
-  tagList: string[] | undefined;
+  tagList?: string[];
   maxSelection: number;
   tagType: 'moim' | 'host';
 }
 
 const TagSelectBox = ({ tagList, maxSelection, tagType }: TagSelectBoxProps) => {
   const { showToast, isToastVisible } = useToast();
-  // const [selectedTagList, setSelectedTagList] = useState<string[]>([]);
   const [selectedTagList, setSelectedTagList] = useAtom(
     tagType === 'moim' ? moimTagsAtom : hostTagsAtom
   );
