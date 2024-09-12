@@ -44,10 +44,7 @@ const HostProfileCard = ({ data: noticeDetail }: HostProfileCardProps) => {
     <div css={profileContainer}>
       <section css={profileWrapper}>
         {/* @정안TODO Image src 교체 */}
-        <Image
-          width="4.2rem"
-          src="https://pickple-bucket.s3.ap-northeast-2.amazonaws.com/profile/guestProfileImage.png"
-        />
+        <Image width="4.2rem" src={noticeDetail.hostImageUrl ?? ''} variant="round" />
         <div css={profileTextBox}>
           <span css={profilePosition}>스픽커</span>
           <span css={profileName}>{noticeDetail?.hostNickname}</span>
@@ -68,11 +65,9 @@ const HostProfileCard = ({ data: noticeDetail }: HostProfileCardProps) => {
             )}
           </span>
         ) : (
-          <div>
-            <Label variant="category" icon={<IcLock />}>
-              게스트
-            </Label>
-          </div>
+          <Label variant="category" icon={<IcLock />}>
+            게스트
+          </Label>
         )}
       </div>
     </div>
