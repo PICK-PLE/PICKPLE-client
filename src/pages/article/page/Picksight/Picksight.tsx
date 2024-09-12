@@ -15,9 +15,7 @@ import { IcDropdownRight } from '@svg';
 import Footer from 'src/components/common/Footer/Footer';
 import { useNavigate } from 'react-router-dom';
 
-interface PicksightProps {}
-
-const Picksight = ({}: PicksightProps) => {
+const Picksight = () => {
   const navigate = useNavigate();
 
   const handleSpickerApplyClick = () => {
@@ -43,7 +41,7 @@ const Picksight = ({}: PicksightProps) => {
           />
         </div>
         <h3 css={articleSubtitle}>
-          픽플에는 <strong css={articleStrong}>스픽커</strong>와{' '}
+          픽플에는 <strong css={articleStrong}>스픽커</strong>와
           <strong css={articleStrong}>참가자</strong>가 있어요.
         </h3>
         <Image src={PicksightImage} width="100%" />
@@ -53,32 +51,20 @@ const Picksight = ({}: PicksightProps) => {
             title="스픽커는요,"
             content={`평소에 나의 이야기를 하는 것에 즐거움을 느낀 적이 있는 분이라면, 누구나 스픽커가 될 수 있어요.\n다만, 픽플은 관심사에 대한 스픽커님의 깊은 몰입 정도를 파악하기 위해 개인 페이지 링크를 요청 드리고 있어요.\n개인 페이지를 열심히 관리하고 계신 분이었다면, 픽플의 스픽커 소개페이지에 개인 페이지 링크도 홍보할 수 있으니 스픽커님께도 픽플이 매우 좋은 홍보 수단이 될 수 있기를 바랄게요.`}
           />
-          <Button
-            variant="stroke"
-            children={
-              <>
-                <span>스픽커 신청하러 가기</span>
-                <IcDropdownRight css={buttonIcon} />
-              </>
-            }
-            onClick={handleSpickerApplyClick}
-          />
+          <Button variant="stroke" onClick={handleSpickerApplyClick}>
+            <span>스픽커 신청하러 가기</span>
+            <IcDropdownRight css={buttonIcon} />
+          </Button>
         </div>
         <div css={paragraphStyle}>
           <ArticleParagraph
             title="참가자는요,"
             content={`스픽커로부터 듣고 싶은 이야기가 있는 분이라면 누구나 참가자가 될 수 있어요.\n퇴근 후 여유 시간과, 모처럼 약속이 없어 한가로운 주말을 의미 있게 보내고 싶으시다면 배움과 네트워킹을 모두 얻을 수 있는 픽플의 클래스 모임은 어떠세요?\n스픽커로부터 공유 받은 지식과 경험을 나의 삶과 엮게 된다면 더욱 유익한 클래스가 될 거예요!`}
           />
-          <Button
-            variant="stroke"
-            children={
-              <>
-                <span>클래스 모임 참여하러 가기</span>
-                <IcDropdownRight css={buttonIcon} />
-              </>
-            }
-            onClick={handleClassApplyClick}
-          />
+          <Button variant="stroke" onClick={handleClassApplyClick}>
+            <span>클래스 모임 참여하러 가기</span>
+            <IcDropdownRight css={buttonIcon} />
+          </Button>
         </div>
       </main>
       <Footer />

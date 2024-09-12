@@ -78,6 +78,9 @@ const Class = () => {
     return <Error />;
   }
   const { dayOfDay = 0, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
+  const swiperImageList = Object.values(imageList || []).filter(
+    (value) => value !== null && value !== ''
+  );
 
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
 
@@ -107,15 +110,13 @@ const Class = () => {
       <div css={classLayout}>
         <div css={carouselWrapper}>
           <Swiper css={swiperStyle} pagination={true} modules={[Pagination]} loop={true}>
-            {Object.values(imageList || [])
-              .filter((value) => value !== null && value !== '')
-              .map((image, index) => {
-                return (
-                  <SwiperSlide key={index}>
-                    <img css={imageStyle} src={image} alt={`Carousel ${index}`} />
-                  </SwiperSlide>
-                );
-              })}
+            {swiperImageList.map((image, index) => {
+              return (
+                <SwiperSlide key={index}>
+                  <img css={imageStyle} src={image} alt={`Carousel ${index}`} />
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
         </div>
         <section css={classInfo}>
