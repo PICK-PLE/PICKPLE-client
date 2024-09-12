@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import { useFetchHostSubmitterList } from '@apis/domains/submitter/useFetchHostSubmitterList';
 import { usePatchHostSubmitter } from '@apis/domains/submitter/usePatchHostSubmitter';
 
-import { CATEGORY_NAME } from '@constants';
 import {
   tableContainerStyle,
   tableLayoutStyle,
@@ -43,7 +42,7 @@ const HostSubmitter = () => {
 
   return (
     <div css={tableLayoutStyle}>
-      <h1 css={titleStyle}>PICKPLE 호스트 승인</h1>
+      <h1 css={titleStyle}>PICKPLE 스픽커 승인</h1>
       <div css={tableContainerStyle}>
         <table css={tableStyle}>
           <thead>
@@ -55,7 +54,7 @@ const HostSubmitter = () => {
               <th css={thStyle}>[2] 모임 목표</th>
               <th css={thStyle}>[3] 호스트 설명 링크</th>
               <th css={thStyle}>[4] 호스트 닉네임</th>
-              <th css={thStyle}>[5] 카테고리 </th>
+              <th css={thStyle}>[5] 키워드 </th>
               <th css={thStyle}>[6] 모임 계획</th>
               <th css={thStyle}>[7] 이메일 </th>
               <th css={thStyle}> 상태 </th>
@@ -76,11 +75,7 @@ const HostSubmitter = () => {
                   </a>
                 </td>
                 <td css={tdStyle}>{item.nickname}</td>
-                <td css={tdStyle}>
-                  {Object.values(item.categoryList || {})
-                    .map((value) => CATEGORY_NAME[value])
-                    .join(', ')}
-                </td>
+                <td css={tdStyle}>{item.userKeyword}</td>
                 <td css={tdStyle}>{item.plan}</td>
                 <td css={tdStyle}>{item.email}</td>
                 <td css={tdStyle}>
