@@ -26,4 +26,5 @@ export const QUERY_KEY = {
   MOIM_NOTICE_DETAIL: 'moimNoticeDetail',
   COMMENT_LIST: 'commentList',
   NOTICE_COMMENT: 'noticeComment',
+  GUEST_INFO: 'guestInfo',
 } as const;
