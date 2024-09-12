@@ -24,5 +24,5 @@ export const QUERY_KEY = {
   HOST_SUBMITTER: 'hostSubmitter',
   HOST_SUBMIT_REQUEST: 'hostSubmitRequest',
   MOIM_SUBMITTER_ALL: 'moimSubmitterAll',
-  MOIM_SUBMITTER_ALL_REQUEST: 'miomSubmitterAllRequest'
+  MOIM_SUBMITTER_ALL_REQUEST: 'miomSubmitterAllRequest',
 } as const;

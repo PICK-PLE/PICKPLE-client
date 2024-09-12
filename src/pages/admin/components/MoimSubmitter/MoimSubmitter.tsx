@@ -41,7 +41,7 @@ const MoimSubmitter = () => {
   };
   return (
     <div css={tableLayoutStyle}>
-      <h1 css={titleStyle}>PickPle 참가자 입금 확인</h1>
+      <h1 css={titleStyle}>PICKPLE 참가자 입금 확인</h1>
       <div css={tableContainerStyle}>
         <table css={tableStyle}>
           <thead>

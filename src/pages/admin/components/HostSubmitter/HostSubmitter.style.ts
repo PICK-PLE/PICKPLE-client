@@ -29,6 +29,7 @@ export const thStyle = (theme: Theme) => css`
   padding: 0.5rem;
   text-align: center;
   vertical-align: middle;
+  word-break: keep-all;
   border: 1px solid ${theme.color.lightgray1};
   ${theme.font['subhead05-sb-14']}
 

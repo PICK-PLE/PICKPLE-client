@@ -43,7 +43,7 @@ const HostSubmitter = () => {
 
   return (
     <div css={tableLayoutStyle}>
-      <h1 css={titleStyle}>PickPle 호스트 승인</h1>
+      <h1 css={titleStyle}>PICKPLE 호스트 승인</h1>
       <div css={tableContainerStyle}>
         <table css={tableStyle}>
           <thead>
