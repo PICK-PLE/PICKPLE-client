@@ -1,5 +1,5 @@
-import { Theme } from '@emotion/react';
-import { css } from '@emotion/react';
+import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const classNoticeDetailContainer = css`
@@ -72,17 +72,6 @@ export const noticeDate = (theme: Theme) => css`
 export const iconStyle = css`
   width: 15rem;
   height: 15rem;
-`;
-
-export const emptyViewContainer = css`
-  ${flexGenerator('column', 'center', 'center')}
-  margin-top: 12.5rem;
-`;
-
-export const textStyle = (theme: Theme) => css`
-  color: ${theme.color.lightgray2};
-  text-align: center;
-  ${theme.font['subhead05-sb-14']}
 `;
 
 export const commentListWrapper = css`
