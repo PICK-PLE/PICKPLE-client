@@ -1,4 +1,7 @@
 import React, { InputHTMLAttributes, forwardRef, useState } from 'react';
+
+import { IcDelete20 } from '@svg';
+
 import {
   inputContainerStyle,
   inputLabelStyle,
@@ -10,7 +13,6 @@ import {
   deleteButtonStyle,
   labelAndInputWrapper,
 } from './Input.style';
-import { IcDelete20 } from '@svg';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
@@ -87,9 +89,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
             />
-            <div css={deleteButtonStyle} onMouseDown={handleInputDelete}>
-              <IcDelete20 />
-            </div>
+            {isFocused && value.length > 0 && (
+              <div css={deleteButtonStyle} onMouseDown={handleInputDelete}>
+                <IcDelete20 />
+              </div>
+            )}
           </div>
         </div>
         <div css={errorAndLengthWrapper(hasError)}>
