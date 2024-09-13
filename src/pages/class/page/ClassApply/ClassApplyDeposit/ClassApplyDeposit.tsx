@@ -1,7 +1,13 @@
-import { Button, LogoHeader, ProgressBar } from '@components';
+import { useState } from 'react';
+import { useParams } from 'react-router-dom';
+
+import { Button } from '@components';
 import { GuestClassRegisterCard } from '@pages/class/components';
+import { ClassApplyProps } from '@pages/class/page/ClassApply/ClassApplyRule/ClassApplyRule';
+import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
+import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
+
 import {
-  classApplyDepositLayout,
   depositArticleLayout,
   depositCautionTextStyle,
   depositFooterStyle,
@@ -10,13 +16,10 @@ import {
   depositMainStyle,
   dipositWrapperStyle,
 } from './ClassApplyDeposit.style';
-import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
-import { MoimIdPathParameterType } from '@types';
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
-import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
 
-const ClassApplyDeposit = () => {
+import { MoimIdPathParameterType } from '@types';
+
+const ClassApplyDeposit = ({ handlePageChange }: ClassApplyProps) => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -39,44 +42,40 @@ const ClassApplyDeposit = () => {
 
   return (
     <>
-      <LogoHeader />
-      <div css={classApplyDepositLayout}>
-        <ProgressBar progress={75} />
+      <article css={depositArticleLayout}>
+        <div css={dipositWrapperStyle}>
+          <header>
+            <span css={depositSpanStyle}>클래스 모임 신청</span>
+            <h1 css={depositHStyle}>
+              클래스 신청이 완료되었습니다! <br /> 이제 참가비를 입금해주세요.
+            </h1>
+          </header>
 
-        <article css={depositArticleLayout}>
-          <div css={dipositWrapperStyle}>
-            <header>
-              <span css={depositSpanStyle}>클래스 모임 신청</span>
-              <h1 css={depositHStyle}>
-                모임 신청이 완료되었습니다! <br /> 이제 참가비를 입금해주세요.
-              </h1>
-            </header>
+          <main css={depositMainStyle}>
+            <GuestClassRegisterCard
+              moimId={moimId ?? ''}
+              isModalOpen={isModalOpen}
+              handleModalClose={handleModalClose}
+              handlePageChange={handlePageChange}
+            />
+          </main>
+        </div>
 
-            <main css={depositMainStyle}>
-              <GuestClassRegisterCard
-                moimId={moimId ?? ''}
-                isModalOpen={isModalOpen}
-                handleModalClose={handleModalClose}
-              />
-            </main>
-          </div>
+        <footer css={depositFooterStyle}>
+          <Button variant="large" onClick={handleModalOpen}>
+            입금하기
+          </Button>
+          <button css={depositCautionTextStyle} onClick={handleErrorModalOpen}>
+            입금에 문제가 생기셨나요?
+          </button>
+        </footer>
+      </article>
 
-          <footer css={depositFooterStyle}>
-            <Button variant="large" onClick={handleModalOpen}>
-              입금하기
-            </Button>
-            <button css={depositCautionTextStyle} onClick={handleErrorModalOpen}>
-              입금에 문제가 생기셨나요?
-            </button>
-          </footer>
-        </article>
-
-        {isErrorModalOpen && (
-          <AbsoluteModal onClose={handleErrorModalClose}>
-            <DepositErrorModal onClose={handleErrorModalClose} />
-          </AbsoluteModal>
-        )}
-      </div>
+      {isErrorModalOpen && (
+        <AbsoluteModal onClose={handleErrorModalClose}>
+          <DepositErrorModal onClose={handleErrorModalClose} />
+        </AbsoluteModal>
+      )}
     </>
   );
 };

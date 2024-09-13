@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const containerStyle = (theme: Theme) => css`
@@ -8,7 +9,6 @@ export const containerStyle = (theme: Theme) => css`
 
   ${theme.font['head02-b-20']}
   ${theme.color.blackgray}
-  background-color: pink;
 `;
 
 export const buttonWrapperStyle = css`
@@ -24,32 +24,34 @@ export const iconStyle = css`
   height: 4.8rem;
 `;
 
-export const plusAndMinusIconStyle = css`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  pointer-events: none; /* 클릭 이벤트가 아래 요소에 전달되도록 설정 */
-`;
+export const minusStyle = (people: number) => (theme: Theme) => css`
+  circle {
+    stroke: ${people <= 1 ? theme.color.lightgray1 : theme.color.purple1};
+  }
+  path {
+    fill: ${people <= 1 ? theme.color.lightgray1 : theme.color.purple1};
+  }
 
-export const minusStyle = (people: number) => (theme: Theme) =>
-  css`
+  :active {
     circle {
-      stroke: ${people <= 1 ? theme.color.lightgray1 : theme.color.purple1};
+      fill: ${theme.color.purple6};
     }
-    path {
-      fill: ${people <= 1 ? theme.color.lightgray1 : theme.color.purple1};
-    }
-  `;
-export const plusStyle = (people: number) => (theme: Theme) =>
-  css`
+  }
+`;
+export const plusStyle = (people: number) => (theme: Theme) => css`
+  circle {
+    stroke: ${people >= 15 ? theme.color.lightgray1 : theme.color.purple1};
+  }
+  path {
+    fill: ${people >= 15 ? theme.color.lightgray1 : theme.color.purple1};
+  }
+
+  :active {
     circle {
-      stroke: ${people >= 15 ? theme.color.lightgray1 : theme.color.purple1};
+      fill: ${theme.color.purple6};
     }
-    path {
-      fill: ${people >= 15 ? theme.color.lightgray1 : theme.color.purple1};
-    }
-  `;
+  }
+`;
 
 export const disabledStyle = css`
   pointer-events: none;

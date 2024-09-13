@@ -1,15 +1,29 @@
 import { css } from '@emotion/react';
 
 const PretendardFont = css`
-  font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui,
-    Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic',
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
+  font-family:
+    'Pretendard Variable',
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    system-ui,
+    Roboto,
+    'Helvetica Neue',
+    'Segoe UI',
+    'Apple SD Gothic Neo',
+    'Noto Sans KR',
+    'Malgun Gothic',
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    sans-serif;
 `;
 
 const theme = {
   color: {
     white: '#FFFFFF',
-    background: '#F8F9FC',
+    bg_white0: '#F8F9FC',
+    bg_white1: '#F3F5FB',
     lightgray0: '#EDEEF2',
     lightgray1: '#DFE2E7',
     lightgray2: '#C6CAD4',
@@ -18,6 +32,7 @@ const theme = {
     darkgray: '#3E3F45',
     blackgray: '#222224',
     black: '#17171A',
+    bgwhite1: '#F3F5FB',
 
     purple1: '#5451FF',
     purple2: '#7774FF',
@@ -50,7 +65,7 @@ const theme = {
       ${PretendardFont};
       font-size: 1.8rem;
       font-weight: 700;
-      line-height: normal;
+      line-height: 140%;
       letter-spacing: 0px;
     `,
     'head04-b-16': css`
@@ -64,7 +79,7 @@ const theme = {
       ${PretendardFont};
       font-size: 1.8rem;
       font-weight: 600;
-      line-height: normal;
+      line-height: 140%;
       letter-spacing: 0px;
     `,
     'subhead02-sb-16': css`
@@ -92,6 +107,13 @@ const theme = {
       ${PretendardFont};
       font-size: 1.4rem;
       font-weight: 600;
+      line-height: 140%;
+      letter-spacing: 0px;
+    `,
+    'subhead06-m-14': css`
+      ${PretendardFont};
+      font-size: 1.4rem;
+      font-weight: 500;
       line-height: 140%;
       letter-spacing: 0px;
     `,
@@ -128,6 +150,20 @@ const theme = {
       font-size: 1rem;
       font-weight: 400;
       line-height: 140%;
+      letter-spacing: 0px;
+    `,
+    'body06-m-15': css`
+      ${PretendardFont};
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 140%;
+      letter-spacing: 0px;
+    `,
+    'body07-r-15': css`
+      ${PretendardFont};
+      font-size: 1.5rem;
+      font-weight: 400;
+      line-height: 160%;
       letter-spacing: 0px;
     `,
   },

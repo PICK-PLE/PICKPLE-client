@@ -1,15 +1,19 @@
-import { Button, Header, ImageSelect, Input, Spinner, TextArea } from '@components';
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { usePostNotice } from '@apis/domains/notice';
+import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
+
+import { Button, CheckLabel, Header, ImageSelect, Input, Spinner, TextArea } from '@components';
+import { handleUpload } from 'src/utils/image';
+
 import {
   imageSelectWrapper,
   noticePostBackground,
   noticePostLayout,
   noticePostMain,
 } from './ClassNotice.style';
-import { useState, useEffect } from 'react';
-import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
-import { usePostNotice } from '@apis/domains/notice';
-import { handleUpload } from 'src/utils/image';
-import { useNavigate, useParams } from 'react-router-dom';
+
 import { MoimIdPathParameterType } from '@types';
 
 const ClassNotice = () => {
@@ -20,6 +24,9 @@ const ClassNotice = () => {
   const [noticeContent, setNoticeContent] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [isPrivate] = useState(true);
+  const [isOnlyGuest, setIsOnlyGuest] = useState(false);
+
   const putS3UploadMutation = usePutS3Upload();
   const { mutateAsync, isPending } = usePostNotice();
 
@@ -37,6 +44,10 @@ const ClassNotice = () => {
     setNoticeContent(e.target.value);
   };
 
+  const handleCheckboxChange = () => {
+    setIsOnlyGuest((prev) => !prev);
+  };
+
   useEffect(() => {
     setIsButtonDisabled(!(noticeTitle.trim() && noticeContent.trim()));
   }, [noticeTitle, noticeContent]);
@@ -47,7 +58,7 @@ const ClassNotice = () => {
       const imageUrlList = await handleUpload({
         selectedFiles,
         putS3Upload: putS3UploadMutation.mutateAsync,
-        type: 'notice',
+        type: 'NOTICE_PREFIX',
       });
       imageUrl = imageUrlList[0];
     }
@@ -55,6 +66,7 @@ const ClassNotice = () => {
       noticeTitle,
       noticeContent,
       imageUrl,
+      isPrivate,
     };
 
     await mutateAsync({ params, moimId: moimIdNumber });
@@ -89,6 +101,12 @@ const ClassNotice = () => {
           <div css={imageSelectWrapper}>
             <ImageSelect onFileSelect={setSelectedFiles} maxImageLength={1} />
           </div>
+
+          <CheckLabel
+            isChecked={isOnlyGuest}
+            text={'게스트만 볼 수 있어요!'}
+            onClick={handleCheckboxChange}
+          />
         </main>
 
         <Button variant="large" disabled={isButtonDisabled} onClick={handleButtonClick}>

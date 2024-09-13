@@ -1,14 +1,14 @@
+import { useAtom } from 'jotai';
 import { useState } from 'react';
-import {
-  ClassInfo,
-  ClassNotice,
-  ClassNoticeEmptyView,
-  ClassReviewEmptyView,
-  HostInfoCard,
-} from '@pages/class/components';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
+import { useFetchMoimNoticeList } from '@apis/domains/notice';
+
 import {
   Button,
-  Carousel,
   IconButton,
   IconText,
   Label,
@@ -17,6 +17,19 @@ import {
   Spinner,
   Toast,
 } from '@components';
+import { useClipboard, useToast, useWindowSize } from '@hooks';
+import {
+  ClassInfo,
+  ClassNotice,
+  ClassNoticeEmptyView,
+  HostInfoCard,
+} from '@pages/class/components';
+import ClassReviewTab from '@pages/class/components/ClassReviewTab/ClassReviewTab';
+import Error from '@pages/error/Error';
+import { userAtom } from '@stores';
+import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
+import { dDayText, handleShare, smoothScroll } from '@utils';
+
 import {
   buttonContainer,
   carouselWrapper,
@@ -25,27 +38,23 @@ import {
   classLayout,
   classNameStyle,
   floatingButtonWrapper,
+  imageStyle,
   infoSectionStyle,
+  swiperStyle,
   tabButtonStyle,
   tabSectionStyle,
   tabWrapper,
 } from './Class.style';
-import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
 
-import { useNavigate, useParams } from 'react-router-dom';
-import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
-import { useClipboard, useToast, useWindowSize } from '@hooks';
-import { useFetchMoimNoticeList } from '@apis/domains/notice';
 import { MoimIdPathParameterType } from '@types';
-import Error from '@pages/error/Error';
-import { dDayText, handleShare, smoothScroll } from '@utils';
-import { useAtom } from 'jotai';
-import { userAtom } from '@stores';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
   const navigate = useNavigate();
-  const [selectTab, setSelectTab] = useState<'모임소개' | '공지사항' | '리뷰'>('모임소개');
+  const [selectTab, setSelectTab] = useState<'클래스소개' | '공지사항' | '리뷰'>('클래스소개');
   const { moimId } = useParams<MoimIdPathParameterType>();
   const { handleCopyToClipboard } = useClipboard();
   const { showToast, isToastVisible } = useToast();
@@ -56,10 +65,8 @@ const Class = () => {
     moimId ?? ''
   );
   const { data: moimNoticeList, isLoading: isMoimNoticeListLoading } = useFetchMoimNoticeList(
-    moimId ?? '',
-    selectTab
+    moimId ?? ''
   );
-
   if (isMoimDetailLoading || isMoimDescriptionLoading) {
     return <Spinner />;
   }
@@ -68,6 +75,9 @@ const Class = () => {
     return <Error />;
   }
   const { dayOfDay = 0, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
+  const swiperImageList = Object.values(imageList || []).filter(
+    (value) => value !== null && value !== ''
+  );
 
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
 
@@ -81,7 +91,7 @@ const Class = () => {
 
   const handleApplyButtonClick = () => {
     smoothScroll(0);
-    navigate(`/class/${moimId}/apply/rule`);
+    navigate(`/class/${moimId}/apply`);
   };
 
   const handleShareButtonClick = async () => {
@@ -96,11 +106,15 @@ const Class = () => {
       <LogoHeader />
       <div css={classLayout}>
         <div css={carouselWrapper}>
-          <Carousel
-            imageList={Object.values(imageList || []).filter(
-              (value) => value !== null && value !== ''
-            )}
-          />
+          <Swiper css={swiperStyle} pagination={true} modules={[Pagination]} loop={true}>
+            {swiperImageList.map((image, index) => {
+              return (
+                <SwiperSlide key={index}>
+                  <img css={imageStyle} src={image} alt={`Carousel ${index}`} />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
         <section css={classInfo}>
           <Label variant="dDay">{`마감${dDayText(dayOfDay)}`}</Label>
@@ -125,36 +139,36 @@ const Class = () => {
           <HostInfoCard hostId={moimDetail.hostId ?? 0} />
         </section>
         <div css={tabWrapper}>
-            <button
-              css={tabButtonStyle(selectTab === '모임소개')}
-              type="button"
-              onClick={() => setSelectTab('모임소개')}>
-              모임 소개
-            </button>
-            <button
-              css={tabButtonStyle(selectTab === '공지사항')}
-              type="button"
-              onClick={() => setSelectTab('공지사항')}>
-              공지 사항
-            </button>
-            <button
-              css={tabButtonStyle(selectTab === '리뷰')}
-              type="button"
-              onClick={() => setSelectTab('리뷰')}>
-              리뷰
-            </button>
+          <button
+            css={tabButtonStyle(selectTab === '클래스소개')}
+            type="button"
+            onClick={() => setSelectTab('클래스소개')}>
+            클래스 소개
+          </button>
+          <button
+            css={tabButtonStyle(selectTab === '공지사항')}
+            type="button"
+            onClick={() => setSelectTab('공지사항')}>
+            공지 사항
+          </button>
+          <button
+            css={tabButtonStyle(selectTab === '리뷰')}
+            type="button"
+            onClick={() => setSelectTab('리뷰')}>
+            리뷰
+          </button>
         </div>
-        <section css={[tabSectionStyle, selectTab === '모임소개' && infoSectionStyle]}>
-          {selectTab === '모임소개' && <ClassInfo content={moimDescription ?? ''} />}
+        <section css={[tabSectionStyle, selectTab === '클래스소개' && infoSectionStyle]}>
+          {selectTab === '클래스소개' && <ClassInfo content={moimDescription ?? ''} />}
           {selectTab === '공지사항' &&
             (isMoimNoticeListLoading ? (
               <Spinner variant="component" />
             ) : (moimNoticeList || []).length === 0 ? (
               <ClassNoticeEmptyView />
             ) : (
-              <ClassNotice noticeData={moimNoticeList || []} />
+              <ClassNotice noticeData={moimNoticeList || []} moimId={moimId ?? ''} />
             ))}
-          {selectTab === '리뷰' && <ClassReviewEmptyView />}
+          {selectTab === '리뷰' && <ClassReviewTab moimId={moimId ?? ''} />}
         </section>
         {selectTab === '공지사항' && moimDetail?.hostId === hostId && (
           <div

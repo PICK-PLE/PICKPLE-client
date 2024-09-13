@@ -1,4 +1,7 @@
-import { InputHTMLAttributes, forwardRef, useState } from 'react';
+import React, { InputHTMLAttributes, forwardRef, useState } from 'react';
+
+import { IcDelete20 } from '@svg';
+
 import {
   inputContainerStyle,
   inputLabelStyle,
@@ -6,7 +9,10 @@ import {
   inputStyle,
   textLengthStyle,
   errorMessageStyle,
-} from 'src/components/common/inputs/Input/Input.style';
+  errorAndLengthWrapper,
+  deleteButtonStyle,
+  labelAndInputWrapper,
+} from './Input.style';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   value: string;
@@ -48,6 +54,12 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       }
     };
 
+    const handleInputDelete = (e: React.MouseEvent<HTMLDivElement>) => {
+      e.preventDefault();
+      onChange({ target: { value: '' } } as React.ChangeEvent<HTMLInputElement>);
+      setMaxLengthError(false);
+    };
+
     // TODO: constants 파일에 분리하기!
     // 글자 수 에러 메시지
     const textLengthErrorMessage = `* 글자 수 ${maxLength} 이하로 입력해주세요.`;
@@ -61,31 +73,39 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     }
 
     const isError = maxLengthError || !isValid;
+    const hasError = maxLengthError || (isFocused && !isValid);
 
     return (
       <div css={inputContainerStyle}>
-        {inputLabel && <span css={inputLabelStyle}>{inputLabel}</span>}
-        <div css={inputWrapperStyle}>
-          <input
-            ref={ref}
-            css={[inputStyle(isError, isFocused)]}
-            placeholder={placeholder}
-            value={value}
-            onChange={handleInputChange}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-          />
-          {isCountValue ? (
+        <div css={labelAndInputWrapper}>
+          {inputLabel && <span css={inputLabelStyle}>{inputLabel}</span>}
+          <div css={inputWrapperStyle}>
+            <input
+              ref={ref}
+              css={[inputStyle(isError, isFocused)]}
+              placeholder={placeholder}
+              value={value}
+              onChange={handleInputChange}
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+            />
+            {isFocused && value.length > 0 && (
+              <div css={deleteButtonStyle} onMouseDown={handleInputDelete}>
+                <IcDelete20 />
+              </div>
+            )}
+          </div>
+        </div>
+        <div css={errorAndLengthWrapper(hasError)}>
+          {isFocused && displayErrorMessage && (
+            <span css={errorMessageStyle}>{displayErrorMessage}</span>
+          )}
+          {isCountValue && (
             <span css={textLengthStyle(isError, isFocused)}>
               {value.length}/{maxLength}
             </span>
-          ) : (
-            ''
           )}
         </div>
-        {isFocused && displayErrorMessage && (
-          <span css={errorMessageStyle}>{displayErrorMessage}</span>
-        )}
       </div>
     );
   }

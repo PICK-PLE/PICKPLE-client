@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const timeSelectContainer = css`
@@ -15,19 +16,18 @@ export const timeSelectWrapper = (theme: Theme) => css`
   border-radius: 10px;
 `;
 
-export const selectStyle = (hasValue: boolean) => (theme: Theme) =>
-  css`
-    width: 13rem;
-    border: none;
-    border-radius: 4px;
-    color: ${hasValue ? theme.color.blackgray : theme.color.midgray1};
-    ${theme.font['body01-r-15']};
+export const selectStyle = (hasValue: boolean) => (theme: Theme) => css`
+  width: 13rem;
+  border: none;
+  border-radius: 4px;
+  color: ${hasValue ? theme.color.blackgray : theme.color.midgray1};
+  ${theme.font['body01-r-15']};
 
-    cursor: pointer;
+  cursor: pointer;
 
-    appearance: none;
-    -webkit-appearance: none;
-  `;
+  appearance: none;
+  -webkit-appearance: none;
+`;
 
 export const textStyle = (theme: Theme) => css`
   color: ${theme.color.midgray1};
@@ -48,12 +48,11 @@ export const labelWrapper = css`
   position: relative;
 `;
 
-export const svgStyle = (hasValue: boolean) => (theme: Theme) =>
-  css`
-    path {
-      fill: ${hasValue ? theme.color.blackgray : theme.color.midgray1};
-    }
+export const svgStyle = (hasValue: boolean) => (theme: Theme) => css`
+  path {
+    fill: ${hasValue ? theme.color.blackgray : theme.color.midgray1};
+  }
 
-    width: 2.4rem;
-    height: 2.4rem;
-  `;
+  width: 2.4rem;
+  height: 2.4rem;
+`;

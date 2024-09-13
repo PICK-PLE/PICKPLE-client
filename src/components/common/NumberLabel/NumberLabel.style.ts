@@ -3,10 +3,6 @@ import { css, Theme } from '@emotion/react';
 export const wrapperStyle = css`
   position: relative;
   display: inline-block;
-`;
-
-export const iconStyle = css`
-  display: block;
   width: 4.4rem;
   height: 4.4rem;
 `;

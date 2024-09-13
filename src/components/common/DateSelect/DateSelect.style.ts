@@ -1,4 +1,5 @@
 import { css, Theme } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const customInputContainer = css`
@@ -39,12 +40,16 @@ export const customInputStyle = (hasValue: boolean) => (theme: Theme) => css`
   }
 `;
 
-export const iconStyle = css`
+export const iconStyle = (theme: Theme) => css`
   width: 2.4rem;
   height: 2.4rem;
   position: absolute;
   top: 1.95rem;
   right: 1.7rem;
+
+  path {
+    fill: ${theme.color.midgray1};
+  }
 
   cursor: pointer;
 `;

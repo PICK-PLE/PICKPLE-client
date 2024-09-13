@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const selectContainer = (theme: Theme) => css`
@@ -16,9 +17,13 @@ export const selectContainer = (theme: Theme) => css`
   background: ${theme.color.white};
 `;
 
-export const iconStyle = css`
+export const iconStyle = (theme: Theme) => css`
   width: 2.4rem;
   height: 2.4rem;
+
+  path {
+    fill: ${theme.color.midgray1};
+  }
 `;
 
 export const sortList = (theme: Theme) => css`
@@ -45,7 +50,7 @@ export const sortItem = (theme: Theme) => css`
 
   cursor: pointer;
   color: ${theme.color.darkgray};
-  ${theme.font['body01-r-15']};
+  ${theme.font['body06-m-15']};
 
   &:hover {
     background-color: ${theme.color.lightgray1};
@@ -54,10 +59,10 @@ export const sortItem = (theme: Theme) => css`
 
 export const placeholderStyle = (theme: Theme) => css`
   color: ${theme.color.midgray1};
-  ${theme.font['body01-r-15']};
+  ${theme.font['body06-m-15']};
 `;
 
 export const selectedOptionStyle = (theme: Theme) => css`
   color: ${theme.color.darkgray};
-  ${theme.font['body01-r-15']};
+  ${theme.font['body06-m-15']};
 `;

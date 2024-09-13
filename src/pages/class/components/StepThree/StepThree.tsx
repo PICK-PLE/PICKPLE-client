@@ -1,5 +1,16 @@
+import { useAtom } from 'jotai';
+import { useEffect, useState } from 'react';
+
+import { usePostMoim } from '@apis/domains/moim/usePostMoim';
+import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
+
 import { Button, ImageSelect, Input, ProgressBar, Spinner, TextArea } from '@components';
+import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
+import { smoothScroll } from '@utils';
+import { moimIdAtom } from 'src/stores/classPostData';
 import { StepProps } from 'src/types/nextStep';
+import { handleUpload } from 'src/utils/image';
+
 import {
   footerStyle,
   headerSpanStyle,
@@ -12,15 +23,8 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepThree.style';
-import { usePostMoim } from '@apis/domains/moim/usePostMoim';
-import { useEffect, useState } from 'react';
+
 import { ErrorType } from '@types';
-import { handleUpload } from 'src/utils/image';
-import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
-import { smoothScroll } from '@utils';
-import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
-import { useAtom } from 'jotai';
-import { moimIdAtom } from 'src/stores/classPostData';
 
 const StepThree = ({ onNext }: StepProps) => {
   const { classPostState, handleInputChange } = useClassPostInputChange();
@@ -45,7 +49,7 @@ const StepThree = ({ onNext }: StepProps) => {
       const imageUrlList = await handleUpload({
         selectedFiles,
         putS3Upload: putS3UploadMutateAsync,
-        type: 'moim',
+        type: 'MOIM_PREFIX',
       });
 
       postMutateAsync({ ...classPostState, imageList: imageUrlList })
@@ -73,9 +77,9 @@ const StepThree = ({ onNext }: StepProps) => {
       <div css={layoutStyle}>
         <header css={headerStyle}>
           <h4 css={titleStyle}>클래스 모임 개설</h4>
-          <h1 css={subTitleStyle}>개최할 모임을 소개해주세요</h1>
+          <h1 css={subTitleStyle}>개최할 클래스를 소개해주세요</h1>
           <span css={headerSpanStyle}>
-            호스트와 클래스 모임을 잘 나타내는
+            스픽커와 클래스를 잘 나타내는
             <br />
             대표 이미지를 업로드해 주세요!
           </span>
@@ -112,7 +116,7 @@ const StepThree = ({ onNext }: StepProps) => {
         </main>
         <footer css={footerStyle}>
           <Button variant="large" onClick={handleNextClick} disabled={!isAllValid}>
-            모임 개설하기
+            클래스 개설하기
           </Button>
         </footer>
       </div>

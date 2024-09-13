@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const selectContainer = (theme: Theme) => css`
@@ -16,9 +17,13 @@ export const selectContainer = (theme: Theme) => css`
   background: ${theme.color.white};
 `;
 
-export const iconStyle = css`
+export const iconStyle = (theme: Theme) => css`
   width: 2.4rem;
   height: 2.4rem;
+
+  path {
+    stroke: ${theme.color.midgray1};
+  }
 `;
 
 export const sortList = (theme: Theme) => css`

@@ -1,8 +1,9 @@
 import { css, Theme } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const noticePostBackground = (theme: Theme) => css`
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
   padding-top: 6.3rem;
   min-height: 100dvh;
 `;

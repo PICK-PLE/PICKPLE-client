@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const cardContainer = (theme: Theme) => css`
@@ -7,6 +8,7 @@ export const cardContainer = (theme: Theme) => css`
   width: 100%;
   padding: 1.8rem 1.8rem 1.3rem;
 
+  border: 1px solid ${theme.color.lightgray0};
   border-radius: 10px;
 
   background: ${theme.color.white};

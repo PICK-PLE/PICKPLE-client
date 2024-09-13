@@ -1,10 +1,13 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const moimCardLayout = (theme: Theme) => css`
   ${flexGenerator('column')};
   gap: 1.2rem;
   padding: 1.8rem;
+
+  border: 1px solid ${theme.color.lightgray0};
   border-radius: 10px;
 
   background: ${theme.color.white};
@@ -60,12 +63,12 @@ export const detailTitleWrapper = css`
 
 export const detailTitleStyle = (theme: Theme) => css`
   width: 4.2rem;
-  color: ${theme.color.darkgray};
+  color: ${theme.color.midgray1};
   ${theme.font['body03-r-12']};
 `;
 
 export const detailInfoStyle = (theme: Theme) => css`
-  color: ${theme.color.darkgray};
+  color: ${theme.color.midgray2};
   ${theme.font['body04-m-12']};
 `;
 

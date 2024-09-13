@@ -1,5 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Button, Image, Label } from '@components';
 import { IcDropdownRight } from '@svg';
+
 import {
   cardContainer,
   cardContent,
@@ -9,16 +12,17 @@ import {
   cardTitleWrapper,
   imageStyle,
 } from './HostMyClassCard.style';
-import { useNavigate } from 'react-router-dom';
+
 import { components } from '@schema';
 
-type MoimListByHostGetResponse = components['schemas']['MoimListByHostGetResponse'];
+type MoimListByHostAndMoimStateGetResponse =
+  components['schemas']['MoimListByHostAndMoimStateGetResponse'];
 
 interface HostMyClassCardProps {
-  hostMyClassData: MoimListByHostGetResponse;
+  hostMyClassData: MoimListByHostAndMoimStateGetResponse;
 }
 const HostMyClassCard = ({ hostMyClassData }: HostMyClassCardProps) => {
-  const { moimImage, title, approvedGuest, maxGuest, moimId } = hostMyClassData;
+  const { moimId, title, approvedGuest, maxGuest, moimImage } = hostMyClassData;
 
   const navigate = useNavigate();
 
@@ -41,7 +45,7 @@ const HostMyClassCard = ({ hostMyClassData }: HostMyClassCardProps) => {
           <Label variant="textCount">{`승인 현황 ${approvedGuest} / ${maxGuest}`}</Label>
         </div>
       </section>
-      <Button variant="stroke" onClick={handleButtonClick}>
+      <Button variant="xSmallStroke" onClick={handleButtonClick}>
         신청자 관리
       </Button>
     </article>

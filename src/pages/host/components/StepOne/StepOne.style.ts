@@ -1,9 +1,11 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const layoutStyle = css`
   ${flexGenerator('column')};
   padding: 3.2rem 2rem 3rem 2rem;
+  width: 100%;
 `;
 export const headerStyle = css`
   ${flexGenerator('column', 'center', 'start')};
@@ -23,10 +25,11 @@ export const subTitleStyle = (theme: Theme) => css`
 
 export const mainStyle = css`
   ${flexGenerator('column')};
-  gap: 2rem;
+  gap: 3rem;
+  width: 100%;
 
   margin-top: 3.8rem;
-  margin-bottom: 11.9rem;
+  margin-bottom: 5.4rem;
 `;
 
 export const sectionStyle = css`

@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const buttonStyle = css`
@@ -56,14 +57,14 @@ export const buttonSize = {
   `,
   stroke: (theme: Theme) => css`
     width: 100%;
-    height: 5.4rem;
-    padding: 1.7rem 1rem;
+    height: 6rem;
+    padding: 1.4rem 1rem;
 
-    border: 1px solid ${theme.color.lightgray2};
+    border: 1px solid ${theme.color.purple1};
     border-radius: 10px;
 
-    ${theme.font['body02-r-14']}
-    color: ${theme.color.midgray2};
+    ${theme.font['head04-b-16']}
+    color: ${theme.color.purple1};
     background-color: transparent;
   `,
   round: (theme: Theme) => css`
@@ -77,6 +78,30 @@ export const buttonSize = {
     ${theme.font['subhead03-m-16']}
     color: ${theme.color.purple3};
     background-color: transparent;
+  `,
+  smallStroke: (theme: Theme) => css`
+    width: 100%;
+    height: 5rem;
+    padding: 1.4rem 1rem;
+
+    border: 1px solid ${theme.color.purple1};
+    border-radius: 10px;
+
+    ${theme.font['head04-b-16']}
+    color: ${theme.color.purple1};
+    background-color: ${theme.color.white};
+  `,
+  xSmallStroke: (theme: Theme) => css`
+    width: 100%;
+    height: 4.6rem;
+    padding: 0.8rem;
+
+    border: 1px solid ${theme.color.purple1};
+    border-radius: 5px;
+
+    ${theme.font['subhead05-sb-14']}
+    color: ${theme.color.purple1};
+    background-color: ${theme.color.white};
   `,
 };
 

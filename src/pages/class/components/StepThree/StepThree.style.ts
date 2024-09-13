@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const layoutStyle = css`
@@ -30,7 +31,7 @@ export const headerSpanStyle = (theme: Theme) => css`
 
 export const mainStyle = css`
   ${flexGenerator('column')};
-  gap: 3rem;
+  gap: 2rem;
   width: 100%;
 
   margin-top: 3.8rem;

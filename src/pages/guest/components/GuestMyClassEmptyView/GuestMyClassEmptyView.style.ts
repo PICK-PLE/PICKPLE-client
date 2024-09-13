@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const completedTabContainer = (theme: Theme) => css`
@@ -7,7 +8,7 @@ export const completedTabContainer = (theme: Theme) => css`
   padding: 0 auto;
   width: 100%;
 
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
 `;
 
 export const textWrapper = css`

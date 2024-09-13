@@ -1,17 +1,21 @@
-import { Image, Label } from '@components';
-import { CATEGORY_NAME, CATEGORY_SMALL_ICON, images } from '@constants';
+import { useFetchMoimHost } from '@apis/domains/host';
+
+import { Image } from '@components';
+import { images } from '@constants';
+import { IcSpickerMark } from '@svg';
 
 import {
-  hostInfoCardContainer,
-  hostInfoCardWrapper,
-  hostInfoTitleStyle,
-  hostInfoLabelStyle,
-  hostTitleStyle,
   hostNameStyle,
-  countStyle,
-  imageStyle,
+  hostInfoWrapper,
+  hostProfileWrapper,
+  hostNameMarkWrapper,
+  hostNameWrapper,
+  hostMarkIconStyle,
+  hostMarkMessageWrapper,
+  hostMarkMessageStyle,
+  hostKeywordStyle,
+  hostDescriptionWrapper,
 } from './HostInfoCard.style';
-import { useFetchMoimHost } from '@apis/domains/host';
 
 interface HostInfoCardProps {
   hostId: number;
@@ -20,41 +24,28 @@ interface HostInfoCardProps {
 const HostInfoCard = ({ hostId }: HostInfoCardProps) => {
   const { data: moimHostData } = useFetchMoimHost(hostId);
 
-  const { hostNickName, hostImageUrl, count, hostCategoryList } = moimHostData ?? {};
+  const { hostNickName, hostImageUrl, count, keyword, description } = moimHostData ?? {};
 
   return (
-    <div css={hostInfoCardContainer}>
-      <Image
-        variant="round"
-        width="6.1rem"
-        src={images.HostProfileImage || hostImageUrl}
-        customStyle={imageStyle}
-      />
+    <article css={hostInfoWrapper}>
+      <Image variant="round" width="6rem" src={images.HostProfileImage || hostImageUrl} />
 
-      <div css={hostInfoCardWrapper}>
-        <div>
-          <div css={hostInfoTitleStyle}>
-            <span css={hostTitleStyle}>호스트</span>
-            <span css={hostNameStyle}>{hostNickName}</span>
+      <section css={hostProfileWrapper}>
+        <div css={hostNameMarkWrapper}>
+          <div css={hostNameWrapper}>
+            <p css={hostNameStyle}>{hostNickName}</p>
+            <IcSpickerMark css={hostMarkIconStyle} />
           </div>
-
-          <span css={countStyle}>{`모임횟수 ${count} 회`}</span>
+          {count && count >= 2 && (
+            <div css={hostMarkMessageWrapper}>
+              <span css={hostMarkMessageStyle}>베테랑</span>
+            </div>
+          )}
         </div>
-
-        <div css={hostInfoLabelStyle}>
-          {Object.values(hostCategoryList || []).map((value, index) => {
-            return value ? (
-              <Label
-                key={`host-category-${index}`}
-                variant="category"
-                icon={CATEGORY_SMALL_ICON[value]}>
-                {CATEGORY_NAME[value]}
-              </Label>
-            ) : null;
-          })}
-        </div>
-      </div>
-    </div>
+        <span css={hostKeywordStyle}>{keyword}</span>
+        <span css={hostDescriptionWrapper}>{description}</span>
+      </section>
+    </article>
   );
 };
 

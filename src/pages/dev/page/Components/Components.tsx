@@ -1,8 +1,11 @@
+// import { ApplicantListModal } from '@pages/host/components/index';
+// import { DepositModal } from '@pages/guest/components/index';
+
+// import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 import { useState } from 'react';
-import useToast from 'src/hooks/useToast';
+
 import {
   Button,
-  Carousel,
   CategoryButton,
   ClipboardCopyButton,
   //   DateSelect,
@@ -34,7 +37,7 @@ import {
   //   Modal,
   //   CategorySelectBox,
 } from '@components';
-
+import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
 import {
   IcApplicantArrcodionDown,
   IcApplicantArrcodionUp,
@@ -65,6 +68,9 @@ import {
   IcShare,
   IcTossPay,
 } from '@svg';
+import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
+import { options } from 'src/constants/options';
+import useToast from 'src/hooks/useToast';
 
 import {
   iconSvgStyle,
@@ -76,13 +82,6 @@ import {
   iconContainerStyle,
   textStyle,
 } from './Components.style';
-// import { ApplicantListModal } from '@pages/host/components/index';
-// import { DepositModal } from '@pages/guest/components/index';
-
-// import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
-import DepositErrorModal from '@pages/guest/components/DepositErrorModal/DepositErrorModal';
-import AbsoluteModal from 'src/components/common/AbsoluteModal/AbsoluteModal';
-import { options } from 'src/constants/options';
 
 const Components = () => {
   const [value, setValue] = useState('');
@@ -104,13 +103,13 @@ const Components = () => {
   };
   const { showToast, isToastVisible } = useToast();
 
-  const imageList = [
-    'https://placehold.co/600x400',
-    'https://placehold.co/600x400',
-    'https://placehold.co/600x400',
-    'https://placehold.co/600x400',
-    'https://placehold.co/600x400',
-  ];
+  // const imageList = [
+  //   'https://placehold.co/600x400',
+  //   'https://placehold.co/600x400',
+  //   'https://placehold.co/600x400',
+  //   'https://placehold.co/600x400',
+  //   'https://placehold.co/600x400',
+  // ];
 
   return (
     <div css={devContainer}>
@@ -547,10 +546,6 @@ const Components = () => {
         <h2 css={titleStyle}>Modal</h2>
         <Modal></Modal>
       </section> */}
-        <section style={{ width: '400px' }}>
-          <h2 css={titleStyle}>Carousel</h2>
-          <Carousel imageList={imageList} />
-        </section>
         {/* <section css={secttionContainer}>
           <h2 css={titleStyle}>ApplicantListModal</h2>
           <button onClick={handleModalOpen}>모달 열기</button>

@@ -28,7 +28,7 @@
     "paths": {
       "@apis/*": ["src/apis/*"],
       "@svg": ["src/assets/svg"],
-      "@image": ["public/image"],
+      "@image/*": ["/image/*"],
       "@components": ["src/components/common"],
       "@constants": ["src/constants"],
       "@hooks": ["src/hooks"],
@@ -41,5 +41,5 @@
       "@utils": ["src/utils"]
     }
   },
-  "include": ["src", "custom.d.ts", "src/constants/mocks/HostMyClassCardData.ts", "public/image"]
+  "include": ["src", "custom.d.ts", "public/image"]
 }

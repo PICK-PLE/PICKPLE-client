@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const modalContainerStyle = css`
@@ -46,12 +47,11 @@ export const mainStyle = css`
   padding: 1rem;
 `;
 export const ulStyle = css`
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  gap: 2rem 1.5rem;
+  ${flexGenerator('column')};
+  gap: 1.4rem;
   min-width: 28.1rem;
   width: 100%;
-  padding: 0 0.7rem;
+  padding: 1rem 2rem;
 `;
 
 export const liStyle = css`

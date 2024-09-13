@@ -1,4 +1,10 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import { Button, Image, Label, Modal } from '@components';
+import { IcDropdownRight } from '@svg';
+import { statusMapText } from 'src/constants/mappingText';
+
 import {
   detailWrapper,
   detailInfoWrapper,
@@ -12,11 +18,8 @@ import {
   moimCardLayout,
   imageCustomStyle,
 } from './MoimCard.style';
-import { IcDropdownRight } from '@svg';
-import { statusMapText } from 'src/constants/mappingText';
-import { useState } from 'react';
 import DepositModal from '../DepositModal/DepositModal';
-import { useNavigate } from 'react-router-dom';
+
 import { components } from '@schema';
 
 type SubmittedMoimByGuestResponse = components['schemas']['SubmittedMoimByGuestResponse'];
@@ -58,11 +61,11 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
           </div>
           <div css={detailWrapper}>
             <div css={detailTitleWrapper}>
-              <p css={detailTitleStyle}>호스트</p>
+              <p css={detailTitleStyle}>스픽커</p>
               <p css={detailInfoStyle}>{hostNickname}</p>
             </div>
             <div css={detailTitleWrapper}>
-              <p css={detailTitleStyle}>모임날짜</p>
+              <p css={detailTitleStyle}>날짜</p>
               <p css={detailInfoStyle}>{dateList && `${dateList.date} (${dateList.dayOfWeek})`}</p>
             </div>
             <div css={detailTitleWrapper}>
@@ -77,6 +80,11 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
           입금하기
         </Button>
       ) : null}
+      {moimSubmissionState === 'completed' && (
+        <Button variant="xSmall" onClick={handleButtonClick}>
+          리뷰 쓰기
+        </Button>
+      )}
       {isOpen && (
         <Modal onClose={handleButtonClick}>
           <DepositModal onClose={handleButtonClick} />

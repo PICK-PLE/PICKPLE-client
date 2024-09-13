@@ -1,3 +1,6 @@
+import dayjs, { Dayjs } from 'dayjs';
+import { useState } from 'react';
+
 import {
   Button,
   CategorySelectBox,
@@ -10,7 +13,13 @@ import {
   SelectButton,
   TimeSelect,
 } from '@components';
+import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
+import { smoothScroll } from '@utils';
+import AccountNumberInput from 'src/components/common/inputs/AccountNumberInput/AccountNumberInput';
+import { options } from 'src/constants/options';
+import { ClassPostDataType } from 'src/stores/types/classPostDataType';
 import { StepProps } from 'src/types/nextStep';
+
 import {
   footerStyle,
   headerStyle,
@@ -22,14 +31,7 @@ import {
   subTitleStyle,
   titleStyle,
 } from './StepOne.style';
-import { useState } from 'react';
-import dayjs, { Dayjs } from 'dayjs';
 import AddAmountBox from '../AddAmountBox/AddAmountBox';
-import { ClassPostDataType } from 'src/stores/types/classPostDataType';
-import { smoothScroll } from '@utils';
-import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
-import AccountNumberInput from 'src/components/common/inputs/AccountNumberInput/AccountNumberInput';
-import { options } from 'src/constants/options';
 
 const StepOne = ({ onNext }: StepProps) => {
   const {
@@ -100,18 +102,16 @@ const StepOne = ({ onNext }: StepProps) => {
       <div css={layoutStyle}>
         <header css={headerStyle}>
           <h4 css={titleStyle}>클래스 모임 개설</h4>
-          <h1 css={subTitleStyle}>개최할 모임에 대해 알려주세요!</h1>
+          <h1 css={subTitleStyle}>개최할 클래스에 대해 알려주세요!</h1>
         </header>
         <main css={mainStyle}>
           <section css={sectionStyle(2)}>
-            <QuestionText numberLabel="Q1">
-              어떤 주제의 클래스 모임을 진행할 예정이신가요?
-            </QuestionText>
+            <QuestionText numberLabel="Q1">어떤 주제로 진행할 예정이신가요?</QuestionText>
             <CategorySelectBox
               selectedCategories={selectedCategories}
               onUpdateCategories={handleUpdateCategories}
             />
-            <h6 css={referTextStyle}>*최대 3개까지 선택 가능합니다.</h6>
+            <h6 css={referTextStyle}>*최소 1개부터 최대 3개까지 선택 가능합니다.</h6>
           </section>
           <section css={sectionStyle(1)}>
             <QuestionText numberLabel="Q2">어떤 방식으로 진행할 예정이신가요?</QuestionText>

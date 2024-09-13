@@ -1,3 +1,8 @@
+import { Button, Label, Toast } from '@components';
+import { graphicImage } from '@constants';
+import { useClipboard, useToast } from '@hooks';
+import { handleShare } from '@utils';
+
 import {
   countTextStyle,
   countTitleStyle,
@@ -12,10 +17,6 @@ import {
   selectedTextStyle,
   textStyle,
 } from './ClassManageEmptyView.style';
-import { Button, Label, Toast } from '@components';
-import { graphicImage } from '@constants';
-import { useClipboard, useToast } from '@hooks';
-import { handleShare } from '@utils';
 
 interface ClassManageEmptyViewProps {
   moimId: number;
@@ -41,7 +42,7 @@ const ClassManageEmptyView = ({ moimId, maxGuest }: ClassManageEmptyViewProps) =
     <>
       <div css={labelStyle}>
         <div css={textStyle}>
-          <span css={countTitleStyle}>모임 신청자</span>
+          <span css={countTitleStyle}>클래스 신청자</span>
           <span css={countTextStyle}>0</span>
         </div>
         <Label variant="count">
@@ -60,14 +61,14 @@ const ClassManageEmptyView = ({ moimId, maxGuest }: ClassManageEmptyViewProps) =
             />
 
             <div css={emptyText}>
-              <span>아직 게스트를 기다리는 중이에요 </span>
-              <span>모임을 공유해 보세요!</span>
+              <span>아직 참가자를 기다리는 중이에요 </span>
+              <span>클래스를 공유해 보세요!</span>
             </div>
           </div>
 
           <div css={emptyViewButtonStyle}>
             <Button variant="round" onClick={handleButtonClick}>
-              모임 공유하기
+              클래스 공유하기
             </Button>
           </div>
         </div>

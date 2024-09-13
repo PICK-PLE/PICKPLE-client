@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const profileWrapperStyle = css`
@@ -11,7 +12,7 @@ export const profileWrapperSizeStyle = {
     gap: 2rem;
   `,
   large: css`
-    gap: 1rem;
+    gap: 1.2rem;
   `,
   medium: css`
     gap: 1rem;

@@ -1,10 +1,12 @@
-import { patch } from '@apis/api';
-import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
-import { userAtom } from '@stores';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { smoothScroll } from '@utils';
 import { useAtom } from 'jotai';
 import { useNavigate } from 'react-router-dom';
+
+import { patch } from '@apis/api';
+import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+
+import { userAtom } from '@stores';
+import { smoothScroll } from '@utils';
 
 export interface PatchSubmitterRequest {
   moimId: number;
@@ -13,7 +15,7 @@ export interface PatchSubmitterRequest {
 
 const patchSubmitter = async ({ moimId, submitterIdList }: PatchSubmitterRequest) => {
   try {
-    const response = await patch(`/moim/${moimId}/submitter`, { submitterIdList });
+    const response = await patch(`/v1/moim/${moimId}/submitter`, { submitterIdList });
     return response.data;
   } catch (error) {
     console.error(error);

@@ -1,4 +1,17 @@
+import { useAtom } from 'jotai';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { useFetchGuestInfo } from '@apis/domains/guest/useFetchGuestInfo';
+
 import { LogoHeader, Modal, NavigateBox, SimpleUserProfile } from '@components';
+import { routePath } from '@constants';
+import { useEasyNavigate } from '@hooks';
+import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
+import { userAtom } from '@stores';
+import { IcNext } from '@svg';
+import { isLoggedIn } from '@utils';
+
 import {
   navigateBoxWrapper,
   logoutBox,
@@ -10,21 +23,13 @@ import {
   divdier,
   profileWrapper,
 } from './GuestMyPage.style';
-import { images, routePath } from '@constants';
-import { useEasyNavigate } from '@hooks';
-import { IcNext } from '@svg';
-import { isLoggedIn } from '@utils';
-import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAtom } from 'jotai';
-import { userAtom } from '@stores';
-import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 
 const GuestMyPage = () => {
   const [user] = useAtom(userAtom);
 
   const navigate = useNavigate();
   const { goHostMyPage } = useEasyNavigate();
+  const { data: guestInfo } = useFetchGuestInfo(user.guestId as unknown as string);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -55,16 +60,17 @@ const GuestMyPage = () => {
       <>
         <LogoHeader isIcon={false} />
         <nav css={myPageNav}>
-          <p css={[tabStyle, selectedTabStyle]}>게스트</p>
+          <p css={[tabStyle, selectedTabStyle]}>참가자</p>
           <p css={[tabStyle]} onClick={goHostMyPage}>
-            호스트
+            스픽커
           </p>
         </nav>
         <div css={profileWrapper}>
+          {/* @정안TODO guestInfo 타입 설정 후 해당 데이터로 교체 */}
           <SimpleUserProfile
             size="xlarge"
-            userImgUrl={images.GuestProfileImage}
-            username={user.guestNickname || ''}
+            userImgUrl={guestInfo?.guestImageUrl}
+            username={guestInfo?.guestNickname || user.guestNickname || ''}
           />
         </div>
         <div css={divdier} />

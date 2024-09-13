@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const cardContainerStyle = (theme: Theme) => css`
@@ -9,7 +10,7 @@ export const cardContainerStyle = (theme: Theme) => css`
   width: 100%;
   padding: 1.5rem;
 
-  border: 0.5px solid ${theme.color.lightgray1};
+  border: 0.5px solid ${theme.color.lightgray0};
   border-radius: 10px;
 `;
 
@@ -61,7 +62,7 @@ export const feeWrapperStyle = css`
   width: 100%;
 `;
 export const feeSpanStyle = (theme: Theme) => css`
-  color: ${theme.color.midgray1};
+  color: ${theme.color.black};
   ${theme.font['subhead02-sb-16']}
 `;
 export const feeStyle = (theme: Theme) => css`

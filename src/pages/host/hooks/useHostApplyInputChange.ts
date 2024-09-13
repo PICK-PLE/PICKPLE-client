@@ -1,7 +1,9 @@
-import { components } from '@schema';
-import { hostApplyAtom } from '@stores';
 import { useAtom } from 'jotai';
 import React from 'react';
+
+import { hostApplyAtom } from '@stores';
+
+import { components } from '@schema';
 
 const useHostApplyInputChange = () => {
   const [hostApplyState, setHostApplyState] = useAtom(hostApplyAtom);
@@ -16,12 +18,6 @@ const useHostApplyInputChange = () => {
       [key]: value,
     }));
   };
-  const handleCategoryChange = (newCategories: components['schemas']['SubmitterCategoryInfo']) => {
-    setHostApplyState((prevState) => ({
-      ...prevState,
-      categoryList: newCategories,
-    }));
-  };
 
   const resetHostApplyState = () => {
     setHostApplyState({
@@ -29,22 +25,17 @@ const useHostApplyInputChange = () => {
       goal: '',
       link: '',
       nickname: '',
-      categoryList: {
-        category1: '',
-        category2: '',
-        category3: '',
-      },
       plan: '',
       email: '',
+      userKeyword: '',
     });
   };
 
   return {
     hostApplyState,
     handleInputChange,
-    handleCategoryChange,
     resetHostApplyState,
   };
 };
 
-export default useHostApplyInputChange
+export default useHostApplyInputChange;

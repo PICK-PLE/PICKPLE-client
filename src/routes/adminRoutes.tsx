@@ -1,11 +1,12 @@
-import { RouteType } from '@types';
 import { routePath } from '@constants';
-import HostSubmitter from '@pages/admin/page/HostSubmitter/HostSubmitter';
+import AdminPage from '@pages/admin/page/AdminPage/AdminPage';
+
+import { RouteType } from '@types';
 
 const adminRoutes: RouteType[] = [
   {
     path: routePath.ADMIN,
-    element: <HostSubmitter />,
+    element: <AdminPage />,
   },
 ];
 

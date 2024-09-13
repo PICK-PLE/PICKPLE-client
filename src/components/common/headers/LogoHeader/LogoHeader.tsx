@@ -1,6 +1,7 @@
-import { IcLogo, IcMypage } from '@svg';
-import { logoHeaderWrapper, iconStyle, logoWrapper } from './LogoHeader.style';
 import { useEasyNavigate } from '@hooks';
+import { IcLogo, IcMypage } from '@svg';
+
+import { logoHeaderWrapper, iconStyle, logoWrapper } from './LogoHeader.style';
 
 interface LogoHeaderProps {
   isIcon?: boolean;

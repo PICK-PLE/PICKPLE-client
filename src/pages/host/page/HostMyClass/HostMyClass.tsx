@@ -1,3 +1,12 @@
+import { useAtom } from 'jotai';
+import { useState } from 'react';
+
+import { useFetchHostMoimInfo } from '@apis/domains/moim/useFetchHostMoimInfo';
+
+import { Header, Spinner } from '@components';
+import { HostMyClassEmptyView, HostMyClassCard } from '@pages/host/components';
+import { userAtom } from '@stores';
+
 import {
   getTabStyle,
   hostMyClassCardContainer,
@@ -5,14 +14,6 @@ import {
   hostMyClassLayout,
   tabWrapper,
 } from './HostMyClass.style';
-import { useState } from 'react';
-import { HostMyClassEmptyView } from '@pages/host/components';
-import { HostMyClassCard } from '@pages/host/components';
-
-import { Header, Spinner } from '@components';
-import { useFetchHostMoimInfo } from '@apis/domains/moim/useFetchHostMoimInfo';
-import { useAtom } from 'jotai';
-import { userAtom } from '@stores';
 const HostMyClass = () => {
   const [activeTab, setActiveTab] = useState<'진행 중' | '완료'>('진행 중');
   const [moimState, setMoimState] = useState<'ongoing' | 'completed'>('ongoing');
@@ -50,13 +51,13 @@ const HostMyClass = () => {
 
         {data?.length === 0 ? (
           <HostMyClassEmptyView
-            text={activeTab === '진행 중' ? `아직 진행 중인 모임이 없어요` : `완료한 모임이 없어요`}
+            text={
+              activeTab === '진행 중' ? `아직 진행 중인 클래스가 없어요` : `완료한 클래스가 없어요`
+            }
           />
         ) : (
           <div css={hostMyClassCardContainer}>
-            {data?.map((data) => (
-              <HostMyClassCard key={data.moimId} hostMyClassData={data} />
-            ))}
+            {data?.map((data) => <HostMyClassCard key={data.moimId} hostMyClassData={data} />)}
           </div>
         )}
       </article>

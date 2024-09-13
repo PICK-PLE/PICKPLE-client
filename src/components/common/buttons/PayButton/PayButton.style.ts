@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const payButtonStyle = (theme: Theme) => css`
@@ -8,7 +9,7 @@ export const payButtonStyle = (theme: Theme) => css`
   padding: 1.8rem 1rem;
   gap: 0.5rem;
 
-  border: 1px solid ${theme.color.lightgray2};
+  border: 1px solid ${theme.color.lightgray1};
   outline: none;
   border-radius: 10px;
   background-color: ${theme.color.white};

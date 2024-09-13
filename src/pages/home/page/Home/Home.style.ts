@@ -1,9 +1,9 @@
 import { Theme, css } from '@emotion/react';
+
 import { flexGenerator } from '@styles/generator';
 
 export const pageLayout = css`
   ${flexGenerator('column')};
-  gap: 6rem;
   min-height: 100dvh;
   padding-top: 6rem;
 `;
@@ -18,6 +18,30 @@ export const homeBannerStyle = css`
   aspect-ratio: 375 / 280;
 
   cursor: pointer;
+`;
+
+export const swiperStyle = (theme: Theme) => css`
+  width: 100%;
+  height: 100%;
+
+  .swiper-pagination {
+    width: fit-content;
+    bottom: 20px;
+    right: 18px;
+    left: auto;
+    top: auto;
+    background-color: rgba(23, 23, 26, 0.4);
+
+    padding: 0.5rem 1.2rem;
+
+    border-radius: 50px;
+
+    &,
+    span {
+      color: ${theme.color.white};
+      ${theme.font['body04-m-12']}
+    }
+  }
 `;
 
 export const categoryContainer = css`
@@ -54,4 +78,10 @@ export const imageStyle = css`
 export const iconNameStyle = (theme: Theme) => css`
   color: ${theme.color.midgray2};
   ${theme.font['body04-m-12']}
+`;
+
+export const bannerWrapper = css`
+  padding: 4rem 2rem;
+
+  cursor: pointer;
 `;

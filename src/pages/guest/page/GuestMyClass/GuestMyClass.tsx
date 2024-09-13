@@ -1,4 +1,13 @@
+import { useAtom } from 'jotai';
+import { useEffect, useState } from 'react';
+
+import { useFetchGuestApply, useFetchGuestParticipate } from '@apis/domains/moim';
+
 import { FilterSelect, Header, Spinner } from '@components';
+import { GuestMyClassEmptyView, MoimCard } from '@pages/guest/components';
+import { userAtom } from '@stores';
+import { statusMapText } from 'src/constants/mappingText';
+
 import {
   guestMyClassLayout,
   tabWrapper,
@@ -11,12 +20,6 @@ import {
   mainWrapper,
   classCardList,
 } from './GuestMyClass.style';
-import { useEffect, useState } from 'react';
-import { GuestMyClassEmptyView, MoimCard } from '@pages/guest/components';
-import { useAtom } from 'jotai';
-import { userAtom } from '@stores';
-import { statusMapText } from 'src/constants/mappingText';
-import { useFetchGuestApply, useFetchGuestParticipate } from '@apis/domains/moim';
 
 const GuestMyClass = () => {
   const [activeTab, setActiveTab] = useState<'신청한' | '참가한'>('신청한');
@@ -95,7 +98,9 @@ const GuestMyClass = () => {
           {currentData?.length === 0 ? (
             <GuestMyClassEmptyView
               text={
-                activeTab === '신청한' ? '아직 신청한 모임이 없어요' : '아직 참가한 모임이 없어요'
+                activeTab === '신청한'
+                  ? '아직 신청한 클래스가 없어요'
+                  : '아직 참가한 클래스가 없어요'
               }
             />
           ) : (

@@ -1,14 +1,10 @@
 import { css, Theme } from '@emotion/react';
-import { flexGenerator } from '@styles/generator';
 
-export const classApplyQuestionLayout = css`
-width: 100%;
-  padding-top: 6rem;
-`;
+import { flexGenerator } from '@styles/generator';
 
 export const questionArticleLayout = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
-  gap: 7.9rem;
+  gap: 5.4rem;
   padding: 3.2rem 2rem 3rem 2rem;
   width: 100%;
   min-height: calc(100dvh - 6.3rem);
@@ -44,7 +40,7 @@ export const questionMainStyle = css`
 export const questionDataStyle = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   /* padding: 1.2rem 1.6rem 1rem 1rem; */
-  gap: 1rem;
+  gap: 1.5rem;
   width: 100%;
 `;
 
