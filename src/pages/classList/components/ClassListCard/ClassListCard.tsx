@@ -20,7 +20,7 @@ interface ClassListCardProps {
 }
 
 const ClassListCard = ({ classListData, variant }: ClassListCardProps) => {
-  const { dayOfDay = 0, moimImageUrl, title, hostImageUrl, hostNickName, dateList } = classListData;
+  const { dayOfDay, moimImageUrl, title, hostImageUrl, hostNickName, dateList } = classListData;
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
 
   return (
@@ -29,7 +29,11 @@ const ClassListCard = ({ classListData, variant }: ClassListCardProps) => {
         src={moimImageUrl || ''}
         width="9rem"
         label={
-          <Label variant="status">{dDayText(dayOfDay) === '' ? '마감' : dDayText(dayOfDay)}</Label>
+          dayOfDay !== undefined ? (
+            <Label variant="status">
+              {dDayText(dayOfDay) === '' ? '마감' : dDayText(dayOfDay)}
+            </Label>
+          ) : null
         }
         customStyle={classCardCustomStyle}
       />

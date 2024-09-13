@@ -13,8 +13,8 @@ const useEasyNavigate = () => {
     navigate(routePath.HOME);
   };
 
-  const goCategories = () => {
-    navigate(routePath.CATEGORY);
+  const goClassList = () => {
+    navigate(routePath.CLASS_LIST);
   };
 
   const goHostMyPage = () => {
@@ -28,7 +28,7 @@ const useEasyNavigate = () => {
   return {
     goBack,
     goHome,
-    goCategories,
+    goClassList,
     goHostMyPage,
     goGuestMyPage,
   };

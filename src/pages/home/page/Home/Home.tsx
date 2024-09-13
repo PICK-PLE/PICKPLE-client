@@ -1,13 +1,19 @@
 import Lottie from 'lottie-react';
 import { useNavigate } from 'react-router-dom';
+import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { useFetchMoimBanner, useFetchMoimCategories } from '@apis/domains/moim';
 
-import { LogoHeader } from '@components';
+import { Image, LogoHeader } from '@components';
 import { mainBanner } from 'src/assets/lotties';
 import Footer from 'src/components/common/Footer/Footer';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
+import { PicksightBanner } from 'src/constants/images';
 
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { bannerList } from './config';
 import {
   categoryContainer,
   categoryStyle,
@@ -18,6 +24,8 @@ import {
   pageLayout,
   homeBannerStyle,
   imageStyle,
+  bannerWrapper,
+  swiperStyle,
 } from './Home.style';
 
 const Home = () => {
@@ -27,6 +35,10 @@ const Home = () => {
 
   const handleCategoryClick = (category: string) => {
     navigate(`/class-list?category=${category}`);
+  };
+
+  const handleClickBanner = () => {
+    navigate(`/article/picksight`);
   };
 
   return (
@@ -39,7 +51,22 @@ const Home = () => {
             onClick={() => {
               navigate(`class/${bannerId}`);
             }}>
-            <Lottie animationData={mainBanner} width={'100%'} loop={true} />
+            <Swiper
+              css={swiperStyle}
+              pagination={{
+                type: 'fraction',
+              }}
+              modules={[Pagination]}
+              loop={true}
+              className="mySwiper">
+              {bannerList.map((banner) => {
+                return (
+                  <SwiperSlide key={banner.id}>
+                    <Lottie animationData={banner.animationData} width={'100%'} loop={true} />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
           </div>
           <div css={categoryContainer}>
             <p css={titleStyle}>이런 클래스 모임 어때요?</p>
@@ -58,6 +85,9 @@ const Home = () => {
                 );
               })}
             </ul>
+            <section css={bannerWrapper} onClick={handleClickBanner}>
+              <Image src={PicksightBanner} width="100%" />
+            </section>
           </div>
         </main>
         <Footer />

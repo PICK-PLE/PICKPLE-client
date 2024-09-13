@@ -5,6 +5,7 @@ import classListRoutes from './classListRoutes';
 import classRoutes from './classRoutes';
 import guestRoutes from './guestRoutes';
 import homeRoutes from './homeRoutes';
+import articleRoutes from './articleRoutes';
 import hostRoutes from './hostRoutes';
 import myPageRoutes from './myPageRoutes';
 
@@ -16,6 +17,7 @@ export {
   classRoutes,
   guestRoutes,
   homeRoutes,
+  articleRoutes,
   hostRoutes,
   myPageRoutes,
   //devRoutes,

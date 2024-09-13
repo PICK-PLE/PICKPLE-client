@@ -33,7 +33,7 @@ export const questionHStyle = (theme: Theme) => css`
 
 export const questionMainStyle = css`
   ${flexGenerator('column', 'center', 'flex-start')}
-  gap: 1rem;
+  gap: 3rem;
   width: 100%;
 `;
 
