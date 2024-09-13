@@ -1,11 +1,11 @@
 import adminRoutes from 'src/routes/adminRoutes';
 
+import articleRoutes from './articleRoutes';
 import authRoutes from './authRoutes';
 import classListRoutes from './classListRoutes';
 import classRoutes from './classRoutes';
 import guestRoutes from './guestRoutes';
 import homeRoutes from './homeRoutes';
-import articleRoutes from './articleRoutes';
 import hostRoutes from './hostRoutes';
 import myPageRoutes from './myPageRoutes';
 

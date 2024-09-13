@@ -26,3 +26,7 @@ export interface ErrorType {
 export type MoimIdPathParameterType = {
   moimId: string;
 };
+
+export type NoticeIdPathParameterType = {
+  noticeId: string;
+};

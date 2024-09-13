@@ -22,7 +22,7 @@ export const usePatchHostSubmitter = () => {
   return useMutation({
     mutationFn: ({ submitterId }: PatchHostSubmitterRequest) => patchHostSubmitter({ submitterId }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.HOST_SUBMIT_REQUEST] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.HOST_SUBMITTER] });
     },
   });
 };

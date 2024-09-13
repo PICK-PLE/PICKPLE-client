@@ -22,7 +22,7 @@ export const hostInfoCardWithLinkWrapper = css`
 
 export const hostInfoCardWrapper = (theme: Theme) => css`
   ${flexGenerator('row', 'space-between', 'center')};
-  background-color: ${theme.color.background};
+  background-color: ${theme.color.bg_white0};
   border: 1px solid ${theme.color.lightgray0};
   border-radius: 10px;
 

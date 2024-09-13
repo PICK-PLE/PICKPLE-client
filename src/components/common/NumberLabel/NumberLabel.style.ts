@@ -7,7 +7,6 @@ export const wrapperStyle = css`
   height: 4.4rem;
 `;
 
-
 export const textStyle = (theme: Theme) => css`
   position: absolute;
   top: 50%; /* 아이콘 가운데 정렬 */
