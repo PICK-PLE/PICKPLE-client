@@ -23,7 +23,6 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string;
   isCountValue: boolean;
   customStyle?: SerializedStyles;
-  // overLengthError?: (hasError: boolean) => void;
   customBorderColor?: string;
 }
 

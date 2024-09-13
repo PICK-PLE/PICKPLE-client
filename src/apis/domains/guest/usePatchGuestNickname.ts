@@ -16,13 +16,9 @@ const patchGuestNickname = async (
       guestNickname,
     });
 
-    console.log('API response:', response); // 응답 전체를 확인
-    console.log('response.data:', response.data); // data 부분을 확인
-    console.log('response.data.data:', response.data.data); // 기대하는 데이터를 확인
-
-    return response.data.data || null; // data가 없는 경우 null 반환
+    return response.data.data || null;
   } catch (err) {
-    console.error('API error:', err); // 에러 확인
+    console.error('API error:', err);
     throw err;
   }
 };
