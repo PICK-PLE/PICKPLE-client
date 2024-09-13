@@ -114,7 +114,7 @@ const StepTwo = ({ onNext }: StepProps) => {
         </main>
         <footer css={footerStyle}>
           <Button variant="large" onClick={handleNextClick} disabled={!isAllValid}>
-            다음
+            스픽커 신청하기
           </Button>
         </footer>
       </div>

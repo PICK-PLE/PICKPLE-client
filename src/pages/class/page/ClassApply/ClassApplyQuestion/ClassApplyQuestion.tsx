@@ -11,7 +11,9 @@ import { IcCaution } from '@svg';
 import AccountNumberInput from 'src/components/common/inputs/AccountNumberInput/AccountNumberInput';
 
 import {
+  eachQuestionWrapper,
   headerStyle,
+  question4WrapperStyle,
   questionArticleLayout,
   questionCautionIconStyle,
   questionCautionStyle,
@@ -125,7 +127,7 @@ const ClassApplyQuestion = ({ handlePageChange }: ClassApplyProps) => {
             {questionList.map((question, index) => (
               <div css={questionDataStyle} key={`question-${index}`}>
                 {question && (
-                  <>
+                  <div css={eachQuestionWrapper}>
                     <QuestionText numberLabel={`Q${index + 1}`}>{question}</QuestionText>
                     <TextArea
                       value={answer.answerList[`answer${index + 1}`]}
@@ -138,7 +140,7 @@ const ClassApplyQuestion = ({ handlePageChange }: ClassApplyProps) => {
                       isValid={validateLength(answer.answerList[`answer${index + 1}`])}
                       errorMessage="빈칸을 입력해 주세요."
                     />
-                  </>
+                  </div>
                 )}
               </div>
             ))}
@@ -152,7 +154,7 @@ const ClassApplyQuestion = ({ handlePageChange }: ClassApplyProps) => {
               </span>
             </div>
 
-            <div css={questionDataStyle}>
+            <div css={question4WrapperStyle}>
               <QuestionText numberLabel={`Q${questionList.length + 1}`}>
                 승인 거절 시 환불 받을 계좌를 알려주세요
               </QuestionText>
@@ -192,7 +194,7 @@ const ClassApplyQuestion = ({ handlePageChange }: ClassApplyProps) => {
 
         <footer css={questionFooterStyle}>
           <Button variant="large" onClick={handleButtonClick} disabled={isButtonDisabled}>
-            신청하기
+            클래스 신청하기
           </Button>
         </footer>
       </article>
