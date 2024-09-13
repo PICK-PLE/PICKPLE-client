@@ -47,16 +47,12 @@ const HostInfoPage = () => {
   const { hostId } = useParams();
   const navigate = useNavigate();
 
-  const handleClassTabClick = () => {
-    setActiveTab('클래스');
-  };
-
-  const handleReviewTabClick = () => {
-    setActiveTab('리뷰');
+  const handleTabClick = (tab: '클래스' | '리뷰') => {
+    setActiveTab(tab);
   };
 
   const handleHostLinkButtonClick = () => {
-    window.open(socialLink, '_blank');
+    window.open(socialLink);
   };
 
   const handleEditIconClick = () => {
@@ -84,8 +80,8 @@ const HostInfoPage = () => {
               />
             </div>
             {Number(user.hostId) === Number(hostId) && (
-              <div css={hostInfoEditIcon}>
-                <IcEdit onClick={handleEditIconClick} />
+              <div css={hostInfoEditIcon} onClick={handleEditIconClick}>
+                <IcEdit />
               </div>
             )}
           </section>
@@ -99,11 +95,11 @@ const HostInfoPage = () => {
                     <IcSpickerMark css={hostMarkIconStyle} />
                   </div>
 
-                  {count && count >= 2 ? (
+                  {count !== undefined && count >= 2 && (
                     <div css={hostMarkMessageWrapper}>
                       <span css={hostMarkMessageStyle}>베테랑</span>
                     </div>
-                  ) : null}
+                  )}
                 </div>
 
                 <span css={hostKeywordStyle}>{keyword}</span>
@@ -122,12 +118,12 @@ const HostInfoPage = () => {
         <article css={hostTabContainer}>
           <section css={hostTabWrapper}>
             <div
-              onClick={handleClassTabClick}
+              onClick={() => handleTabClick('클래스')}
               css={activeTab === '클래스' ? hostActiveTabTextStyle : hostTabTextStyle}>
               클래스
             </div>
             <div
-              onClick={handleReviewTabClick}
+              onClick={() => handleTabClick('리뷰')}
               css={activeTab === '리뷰' ? hostActiveTabTextStyle : hostTabTextStyle}>
               리뷰
             </div>

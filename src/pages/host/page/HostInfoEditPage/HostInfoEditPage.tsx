@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useFetchHostInfo } from '@apis/domains/host/useFetchHostInfo';
@@ -29,37 +29,22 @@ type HostUpdateRequest = components['schemas']['HostUpdateRequest'];
 const HostInfoEditPage = () => {
   const { hostId } = useParams();
   const { data: hostInfoData } = useFetchHostInfo(Number(hostId));
+  const { profileUrl, nickName, keyword, description, socialLink } = hostInfoData ?? {};
   const { mutate } = usePatchHostInfo(Number(hostId));
   const { mutateAsync: putS3UploadMutateAsync } = usePutS3Upload();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [isAllValid, setIsAllValid] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<File[]>();
   const [hostInfoValue, setHostInfoValue] = useState({
-    profileUrl: images.HostProfileImage,
-    nickname: '',
-    keyword: '',
-    description: '',
-    socialLink: '',
+    profileUrl: profileUrl || images.HostProfileImage,
+    nickname: nickName,
+    keyword: keyword,
+    description: description,
+    socialLink: socialLink,
   });
 
-  useEffect(() => {
-    if (hostInfoData) {
-      const { profileUrl, nickName, keyword, description, socialLink } = hostInfoData;
-      setHostInfoValue({
-        profileUrl: profileUrl || images.HostProfileImage,
-        nickname: `${nickName}`,
-        keyword: `${keyword}`,
-        description: `${description}`,
-        socialLink: `${socialLink}`,
-      });
-    }
-  }, [hostInfoData]);
-
-  useEffect(() => {
-    const allInputFilled = Object.values(hostInfoValue).every((value) => value?.trim() !== '');
-    setIsAllValid(allInputFilled);
-  }, [hostInfoValue]);
+  const allInputFilled = Object.values(hostInfoValue).every((value) => value?.trim() !== '');
 
   const handleProfileImageIconClick = () => {
     fileInputRef.current?.click();
@@ -79,7 +64,6 @@ const HostInfoEditPage = () => {
     };
 
     reader.readAsDataURL(file);
-
     setSelectedFiles([file]);
   };
 
@@ -112,18 +96,20 @@ const HostInfoEditPage = () => {
         imageUrl = imageUrlList[0];
       } catch (error) {
         console.error('S3 업로드 실패: ', error);
-        alert('이미지 업로드에 실패했습니다.');
         return;
       }
     }
-
     // 업로드된 이미지 URL로 hostInfoValue 업데이트
-    const updateHostInfoValue = { ...hostInfoValue, profileUrl: imageUrl };
-    mutate({ hostId: Number(hostId), hostInfoValue: updateHostInfoValue });
+    if (imageUrl !== '') {
+      const updateHostInfoValue = { ...hostInfoValue, profileUrl: imageUrl };
+      mutate({ hostId: Number(hostId), hostInfoValue: updateHostInfoValue});
+    } else {
+      mutate({ hostId: Number(hostId), hostInfoValue });
+    }
   };
 
   return (
-    <div>
+    <>
       <Header title="프로필 관리" isLine={true} />
       <div css={hostInfoLayout}>
         <section css={hostInfoContainer}>
@@ -149,59 +135,60 @@ const HostInfoEditPage = () => {
         </section>
 
         <section css={hostInputContainer}>
-          <div css={hostInputWrapper}>
+          <form css={hostInputWrapper}>
             <Input
-              value={hostInfoValue.nickname}
+              value={hostInfoValue.nickname ?? ''}
               onChange={(e) => handleInputChange(e, 'nickname')}
               inputLabel="닉네임"
               errorMessage="* 필수 입력 항목이에요."
               maxLength={50}
               placeholder="닉네임을 입력해주세요"
               isCountValue={true}
-              isValid={isValid(hostInfoValue.nickname)}
+              isValid={isValid(hostInfoValue.nickname ?? '')}
+              ref={inputRef}
             />
 
             <Input
-              value={hostInfoValue.keyword}
+              value={hostInfoValue.keyword ?? ''}
               onChange={(e) => handleInputChange(e, 'keyword')}
               inputLabel="키워드"
               errorMessage="* 필수 입력 항목이에요."
               maxLength={50}
               placeholder="키워드를 입력해주세요"
               isCountValue={true}
-              isValid={isValid(hostInfoValue.keyword)}
+              isValid={isValid(hostInfoValue.keyword ?? '')}
             />
 
             <div css={hostTextAreaWrapper}>
               <span css={hostTextAreaLabelStyle}>소개글</span>
               <TextArea
-                value={hostInfoValue.description}
+                value={hostInfoValue.description ?? ''}
                 onChange={(e) => handleInputChange(e, 'description')}
                 errorMessage="* 필수 입력 항목이에요."
                 maxLength={70}
                 placeholder="소개글을 입력해주세요"
-                isValid={isValid(hostInfoValue.description)}
+                isValid={isValid(hostInfoValue.description ?? '')}
               />
             </div>
 
             <Input
-              value={hostInfoValue.socialLink}
+              value={hostInfoValue.socialLink ?? ''}
               onChange={(e) => handleInputChange(e, 'socialLink')}
               inputLabel="소셜 링크"
               errorMessage="* 필수 입력 항목이에요."
               maxLength={50}
               placeholder="닉네임을 입력해주세요"
               isCountValue={true}
-              isValid={isValid(hostInfoValue.socialLink)}
+              isValid={isValid(hostInfoValue.socialLink ?? '')}
             />
-          </div>
+          </form>
 
-          <Button variant="medium" disabled={!isAllValid} onClick={handleButtonClick}>
+          <Button variant="medium" disabled={!allInputFilled} onClick={handleButtonClick}>
             저장하기
           </Button>
         </section>
       </div>
-    </div>
+    </>
   );
 };
 

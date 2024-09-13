@@ -46,7 +46,7 @@ export const hostInfoEditIcon = css`
 export const hostProfileContainer = css`
   ${flexGenerator('column', 'center', 'flex-start')};
   gap: 1rem;
-  padding: 5rem 2rem 0rem 2rem;
+  padding: 5rem 2rem 0rem;
   width: 100%;
 `;
 

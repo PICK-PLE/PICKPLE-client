@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
@@ -19,13 +19,10 @@ const getHostInfo = async (hostId: number): Promise<HostIntroGetResponse | null>
 };
 
 export const useFetchHostInfo = (hostId: number) => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: [QUERY_KEY.HOST_INFO, hostId],
     queryFn: () => getHostInfo(hostId),
     staleTime: 1000 * 10,
     gcTime: 1000 * 10,
-    // refetchOnMount: false,
-    // refetchOnWindowFocus: false,
-    // enabled: !!hostId && hostId > 0,
   });
 };

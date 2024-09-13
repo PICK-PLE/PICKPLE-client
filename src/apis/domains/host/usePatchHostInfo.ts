@@ -5,7 +5,7 @@ import { patch } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 
 import { components } from '@schema';
-import { ErrorResponse, ErrorType, MutateResponseType } from '@types';
+import { ApiResponseType, ErrorResponse, ErrorType, MutateResponseType } from '@types';
 
 type HostUpdateRequest = components['schemas']['HostUpdateRequest'];
 export interface PatchHostInfoRequest {
@@ -18,8 +18,11 @@ const patchHostInfo = async ({
   hostInfoValue,
 }: PatchHostInfoRequest): Promise<MutateResponseType> => {
   try {
-    const response = await patch<MutateResponseType>(`/v2/host/${hostId}`, hostInfoValue);
-    return response.data;
+    const response = await patch<ApiResponseType<MutateResponseType>>(
+      `/v2/host/${hostId}`,
+      hostInfoValue
+    );
+    return response.data.data;
   } catch (error) {
     const errorResponse = error as ErrorResponse;
     const errorData = errorResponse.response.data;
@@ -43,9 +46,7 @@ export const usePatchHostInfo = (hostId: number) => {
 
     onError: (error: ErrorType) => {
       if (error.status === 40008) {
-        alert('이미 존재하는 닉네임입니다.');
-      } else {
-        alert('서버 내부 오류입니다.');
+        alert('중복된 닉네임 입니다.');
       }
     },
   });

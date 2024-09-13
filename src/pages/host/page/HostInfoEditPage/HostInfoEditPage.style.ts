@@ -20,7 +20,6 @@ export const hostImageWrapper = css`
 export const hostBackgroundImage = css`
   width: 100%;
   height: 11.6rem;
-  border-radius: 0;
 `;
 
 export const hostProfileImage = css`

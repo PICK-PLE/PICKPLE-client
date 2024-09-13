@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
@@ -22,10 +22,9 @@ const getMoimListByHost = async (hostId: number): Promise<MoimListByHostResponse
 };
 
 export const useFetchMoimListByHost = (hostId: number) => {
-  return useQuery({
+  return useSuspenseQuery({
     queryKey: [QUERY_KEY.HOST_INFO_CLASS, hostId],
     queryFn: () => getMoimListByHost(hostId),
-    enabled: !!hostId,
     staleTime: 1000 * 30, // 30초
     gcTime: 1000 * 60 * 5, // 5분
   });
