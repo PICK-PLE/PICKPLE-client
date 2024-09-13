@@ -14,7 +14,7 @@ import {
 } from './StepThree.style';
 
 const StepThree = () => {
-  const { goCategories } = useEasyNavigate();
+  const { goClassList } = useEasyNavigate();
   return (
     <>
       <ProgressBar progress={100} />
@@ -32,7 +32,7 @@ const StepThree = () => {
           <img src={graphicImage.HostApplyFinishImage} alt="호스트 승인 완료" css={iconStyle} />
         </main>
         <footer css={footerStyle}>
-          <Button variant="large" onClick={goCategories}>
+          <Button variant="large" onClick={goClassList}>
             다른 클래스 둘러보기
           </Button>
         </footer>

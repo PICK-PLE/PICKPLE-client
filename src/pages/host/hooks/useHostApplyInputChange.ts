@@ -18,12 +18,6 @@ const useHostApplyInputChange = () => {
       [key]: value,
     }));
   };
-  const handleCategoryChange = (newCategories: components['schemas']['SubmitterCategoryInfo']) => {
-    setHostApplyState((prevState) => ({
-      ...prevState,
-      categoryList: newCategories,
-    }));
-  };
 
   const resetHostApplyState = () => {
     setHostApplyState({
@@ -31,20 +25,15 @@ const useHostApplyInputChange = () => {
       goal: '',
       link: '',
       nickname: '',
-      categoryList: {
-        category1: '',
-        category2: '',
-        category3: '',
-      },
       plan: '',
       email: '',
+      userKeyword: '',
     });
   };
 
   return {
     hostApplyState,
     handleInputChange,
-    handleCategoryChange,
     resetHostApplyState,
   };
 };

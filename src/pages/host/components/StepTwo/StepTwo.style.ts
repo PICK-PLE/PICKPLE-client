@@ -25,11 +25,11 @@ export const subTitleStyle = (theme: Theme) => css`
 
 export const mainStyle = css`
   ${flexGenerator('column')};
-  gap: 5rem;
+  gap: 3rem;
   width: 100%;
 
   margin-top: 3.8rem;
-  margin-bottom: 8rem;
+  margin-bottom: 5.4rem;
 `;
 
 export const sectionStyle = css`
@@ -37,18 +37,7 @@ export const sectionStyle = css`
   gap: 1rem;
   width: 100%;
 `;
-export const categorySectionStyle = css`
-  ${flexGenerator('column')};
-  gap: 2rem;
-  width: 100%;
-`;
-export const referTextStyle = (theme: Theme) => css`
-  ${flexGenerator('row', 'flex-start')};
-  width: 100%;
 
-  color: ${theme.color.midgray1};
-  ${theme.font['body02-r-14']}
-`;
 export const footerStyle = css`
   width: 100%;
 `;
