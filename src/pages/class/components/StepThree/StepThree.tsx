@@ -49,7 +49,7 @@ const StepThree = ({ onNext }: StepProps) => {
       const imageUrlList = await handleUpload({
         selectedFiles,
         putS3Upload: putS3UploadMutateAsync,
-        type: 'moim',
+        type: 'MOIM_PREFIX',
       });
 
       postMutateAsync({ ...classPostState, imageList: imageUrlList })
