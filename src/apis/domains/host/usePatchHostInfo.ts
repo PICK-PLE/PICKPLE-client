@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import { patch } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 
+import { smoothScroll } from '@utils';
+
 import { components } from '@schema';
 import { ApiResponseType, ErrorResponse, ErrorType, MutateResponseType } from '@types';
 
@@ -54,6 +56,7 @@ export const usePatchHostInfo = (
       if (error.status === 40008) {
         setIsNicknameDuplicate(true);
         nicknameRef.current?.focus();
+        smoothScroll(0);
       } else {
         alert(error.message);
       }
