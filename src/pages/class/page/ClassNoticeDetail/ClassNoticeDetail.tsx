@@ -39,7 +39,11 @@ const ClassNoticeDetail = () => {
         {/* @notice NoticeCard와 똑같은 스타일 코드인데, props 타입이 달라서 그대로 들고 왔습니다. */}
         <div css={noticeLayout}>
           <article css={noticeCardContainer}>
-            <HostProfileCard data={noticeDetail ?? {}} />
+            <HostProfileCard
+              data={noticeDetail ?? {}}
+              noticeId={noticeId ?? ''}
+              moimId={moimId ?? ''}
+            />
             <section>
               <h3 css={noticeTitle}>{noticeDetail?.title}</h3>
               <p css={noticeContent}>{noticeDetail?.content}</p>

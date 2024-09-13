@@ -1,7 +1,6 @@
 import { useState } from 'react';
 
 import { Image, Label, Modal } from '@components';
-import { useClickOutside } from '@hooks';
 import { IcLock, IcParkMore } from '@svg';
 
 import {
@@ -14,16 +13,18 @@ import {
   profileWrapper,
 } from './HostProfileCard.style';
 import DeleteCard from '../DeleteCard/DeleteCard';
-import DeleteModal from '../DeleteModal/DeleteModal';
+import DeleteNoticeModal from '../DeleteNoticeModal/DeleteNoticeModal';
 
 import { components } from '@schema';
 
 type NoticeListGetByMoimResponse = components['schemas']['NoticeDetailGetResponse'];
 interface HostProfileCardProps {
   data: NoticeListGetByMoimResponse;
+  noticeId: string;
+  moimId: string;
 }
 
-const HostProfileCard = ({ data: noticeDetail }: HostProfileCardProps) => {
+const HostProfileCard = ({ data: noticeDetail, noticeId, moimId }: HostProfileCardProps) => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -55,17 +56,13 @@ const HostProfileCard = ({ data: noticeDetail }: HostProfileCardProps) => {
       <div css={iconWrapper}>
         {noticeDetail.isOwner === true ? (
           <span css={iconStyle}>
-            <IcParkMore onClick={handleIconClick} />
+            <IcParkMore onClick={handleDeleteOpen} />
             {isDeleteOpen && (
               <DeleteCard handleModalOpen={handleModalOpen} handleDeleteClose={handleDeleteClose} />
             )}
             {isModalOpen && (
               <Modal onClose={handleModalClose}>
-                <DeleteModal
-                  onClose={handleModalClose}
-                  commentId={comment.commentId ?? 0}
-                  noticeId={noticeId ?? ''}
-                />
+                <DeleteNoticeModal onClose={handleModalClose} noticeId={noticeId} moimId={moimId} />
               </Modal>
             )}
           </span>
