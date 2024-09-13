@@ -66,12 +66,6 @@ export const infoSectionStyle = (theme: Theme) => css`
   background-color: ${theme.color.white};
 `;
 
-export const reviewSectionStyle = css`
-  ${flexGenerator('column')}
-  width: 100%;
-  gap: 2rem;
-`;
-
 export const floatingButtonWrapper = (widowWidth: number) => css`
   position: fixed;
   bottom: 12rem;

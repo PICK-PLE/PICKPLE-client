@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
@@ -19,12 +19,11 @@ const getMoimReviewList = async (moimId: string): Promise<ReviewListGetByMoimRes
   }
 };
 
-export const useFetchMoimReviewList = (moimId: string, selectTab: string) => {
-  return useQuery({
+export const useFetchMoimReviewList = (moimId: string) => {
+  return useSuspenseQuery({
     queryKey: [QUERY_KEY.MOIM_REVIEW_LIST, moimId],
     queryFn: () => getMoimReviewList(moimId),
     staleTime: 1000 * 60,
     gcTime: 1000 * 60 * 5,
-    enabled: selectTab === '리뷰',
   });
 };

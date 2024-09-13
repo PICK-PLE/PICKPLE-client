@@ -4,7 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
-import { useFetchMoimReviewList } from '@apis/domains/review/useFetchMoimReviewList';
 
 import {
   Button,
@@ -22,14 +21,13 @@ import {
   ClassInfo,
   ClassNotice,
   ClassNoticeEmptyView,
-  ClassReviewEmptyView,
   HostInfoCard,
 } from '@pages/class/components';
+import ClassReviewTab from '@pages/class/components/ClassReviewTab/ClassReviewTab';
 import Error from '@pages/error/Error';
 import { userAtom } from '@stores';
 import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
 import { dDayText, handleShare, smoothScroll } from '@utils';
-import Review from 'src/components/common/Review/Review';
 
 import {
   buttonContainer,
@@ -40,7 +38,6 @@ import {
   classNameStyle,
   floatingButtonWrapper,
   infoSectionStyle,
-  reviewSectionStyle,
   tabButtonStyle,
   tabSectionStyle,
   tabWrapper,
@@ -65,11 +62,7 @@ const Class = () => {
     moimId ?? '',
     selectTab
   );
-  const { data: moimReviewList, isLoading: isMoimReviewListLoading } = useFetchMoimReviewList(
-    moimId ?? '',
-    selectTab
-  );
-  if (isMoimDetailLoading || isMoimDescriptionLoading || isMoimReviewListLoading) {
+  if (isMoimDetailLoading || isMoimDescriptionLoading) {
     return <Spinner />;
   }
 
@@ -163,16 +156,7 @@ const Class = () => {
             ) : (
               <ClassNotice noticeData={moimNoticeList || []} />
             ))}
-          {selectTab === '리뷰' &&
-            (isMoimReviewListLoading ? (
-              <Spinner variant="component" />
-            ) : (moimReviewList || []).length === 0 ? (
-              <ClassReviewEmptyView />
-            ) : (
-              <section css={reviewSectionStyle}>
-                {moimReviewList?.map((review, i) => <Review key={i} reviewData={review} />)}
-              </section>
-            ))}
+          {selectTab === '리뷰' && <ClassReviewTab moimId={moimId ?? ''} />}
         </section>
         {selectTab === '공지사항' && moimDetail?.hostId === hostId && (
           <div
