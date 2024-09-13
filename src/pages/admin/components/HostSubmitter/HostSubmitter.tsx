@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import { useFetchHostSubmitterList } from '@apis/domains/submitter/useFetchHostSubmitterList';
 import { usePatchHostSubmitter } from '@apis/domains/submitter/usePatchHostSubmitter';
 
@@ -17,22 +15,11 @@ const SUBMITTER_STATUS = {
 };
 
 const HostSubmitter = () => {
-  const { data: hostSubmitterList, refetch } = useFetchHostSubmitterList() || [];
+  const { data: hostSubmitterList } = useFetchHostSubmitterList() || [];
   const { mutate } = usePatchHostSubmitter();
 
-  useEffect(() => {
-    refetch();
-  }, [hostSubmitterList, refetch]);
-
   const handleButtonClick = (submitterId: number) => {
-    mutate(
-      { submitterId },
-      {
-        onSuccess: () => {
-          refetch();
-        },
-      }
-    );
+    mutate({ submitterId });
   };
 
   return (

@@ -13,16 +13,13 @@ import {
 } from '@pages/admin/page/AdminPage/AdminPage.style';
 
 const AdminPage = () => {
-  const [isVerified, setIsVerified] = useState(false);
   const [password, setPassword] = useState('');
   const [isHostSubmitterPage, setIsHostSubmitterPage] = useState(true);
+  const isVerified = password === import.meta.env.VITE_ADMIN_PASSWORD;
 
+  console.log('isVerified', isVerified);
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
-
-    if (event.target.value === import.meta.env.VITE_ADMIN_PASSWORD) {
-      setIsVerified(true);
-    }
   };
 
   const handleButtonClick = (page: string) => {
