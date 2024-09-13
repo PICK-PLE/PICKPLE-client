@@ -76,7 +76,7 @@ const CommentBox = ({ comment, noticeId }: CommentBoxProps) => {
                 <DeleteModal
                   onClose={handleModalClose}
                   commentId={comment.commentId ?? 0}
-                  noticeId={noticeId}
+                  noticeId={noticeId ?? ''}
                 />
               </Modal>
             </>
