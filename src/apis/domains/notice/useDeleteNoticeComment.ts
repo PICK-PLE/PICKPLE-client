@@ -1,6 +1,7 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { del } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 const deleteNoticeComment = async (noticeId: string, commentId: string) => {
   try {
@@ -19,7 +20,7 @@ export const useDeleteNoticeComment = () => {
     mutationFn: ({ noticeId, commentId }: { noticeId: string; commentId: string }) =>
       deleteNoticeComment(noticeId, commentId),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.NOTICE_COMMENT] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.COMMENT_LIST] });
     },
   });
 };
