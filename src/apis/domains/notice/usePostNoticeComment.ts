@@ -1,7 +1,9 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { post } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+
 import { components } from '@schema';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiResponseType } from '@types';
 
 type CommentCreateRequest = components['schemas']['CommentCreateRequest'];
