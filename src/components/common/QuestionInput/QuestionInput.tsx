@@ -1,6 +1,7 @@
 import { InputHTMLAttributes } from 'react';
 
 import { NumberLabel } from '@components';
+import { IcDelete20 } from '@svg';
 import {
   questionInputStyle,
   inputStyle,
@@ -8,7 +9,7 @@ import {
   textLengthStyle,
   questionInputContainer,
 } from 'src/components/common/QuestionInput/QuestionInput.style';
-import { IcDelete20 } from '@svg';
+
 import { deleteButtonStyle } from '../inputs/Input/Input.style';
 
 export interface QuestionInputProps extends InputHTMLAttributes<HTMLInputElement> {

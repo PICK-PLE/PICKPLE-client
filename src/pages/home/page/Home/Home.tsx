@@ -1,10 +1,9 @@
-import { LogoHeader } from '@components';
 import Lottie from 'lottie-react';
 import { useNavigate } from 'react-router-dom';
 
 import { useFetchMoimBanner, useFetchMoimCategories } from '@apis/domains/moim';
 
-
+import { LogoHeader } from '@components';
 import { mainBanner } from 'src/assets/lotties';
 import Footer from 'src/components/common/Footer/Footer';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';

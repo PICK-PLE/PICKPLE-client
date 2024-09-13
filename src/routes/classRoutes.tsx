@@ -32,8 +32,8 @@ const classRoutes: RouteType[] = [
   },
   {
     path: routePath.CLASS_NOTICE_DETAIL,
-    element: <ClassNoticeDetail />
-  }
+    element: <ClassNoticeDetail />,
+  },
   // {
   //   path: routePath.CLASS_APPLY_RULE,
   //   element: <ClassApplyRule />,
