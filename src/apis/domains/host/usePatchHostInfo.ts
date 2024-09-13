@@ -1,4 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { SetStateAction } from 'jotai';
+import { Dispatch, RefObject } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { patch } from '@apis/api';
@@ -30,7 +32,11 @@ const patchHostInfo = async ({
   }
 };
 
-export const usePatchHostInfo = (hostId: number) => {
+export const usePatchHostInfo = (
+  hostId: number,
+  setIsNicknameDuplicate: Dispatch<SetStateAction<boolean>>,
+  nicknameRef: RefObject<HTMLInputElement>
+) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -46,7 +52,10 @@ export const usePatchHostInfo = (hostId: number) => {
 
     onError: (error: ErrorType) => {
       if (error.status === 40008) {
-        alert('중복된 닉네임 입니다.');
+        setIsNicknameDuplicate(true);
+        nicknameRef.current?.focus();
+      } else {
+        alert(error.message);
       }
     },
   });

@@ -30,18 +30,19 @@ const HostInfoEditPage = () => {
   const { hostId } = useParams();
   const { data: hostInfoData } = useFetchHostInfo(Number(hostId));
   const { profileUrl, nickName, keyword, description, socialLink } = hostInfoData ?? {};
-  const { mutate } = usePatchHostInfo(Number(hostId));
+  const nicknameRef = useRef<HTMLInputElement>(null);
+  const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
+  const { mutate } = usePatchHostInfo(Number(hostId), setIsNicknameDuplicate, nicknameRef);
   const { mutateAsync: putS3UploadMutateAsync } = usePutS3Upload();
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedFiles, setSelectedFiles] = useState<File[]>();
   const [hostInfoValue, setHostInfoValue] = useState({
     profileUrl: profileUrl || images.HostProfileImage,
-    nickname: nickName,
-    keyword: keyword,
-    description: description,
-    socialLink: socialLink,
+    nickname: `${nickName}`,
+    keyword: `${keyword}`,
+    description: `${description}`,
+    socialLink: `${socialLink}`,
   });
 
   const allInputFilled = Object.values(hostInfoValue).every((value) => value?.trim() !== '');
@@ -99,10 +100,11 @@ const HostInfoEditPage = () => {
         return;
       }
     }
+
     // 업로드된 이미지 URL로 hostInfoValue 업데이트
     if (imageUrl !== '') {
       const updateHostInfoValue = { ...hostInfoValue, profileUrl: imageUrl };
-      mutate({ hostId: Number(hostId), hostInfoValue: updateHostInfoValue});
+      mutate({ hostId: Number(hostId), hostInfoValue: updateHostInfoValue });
     } else {
       mutate({ hostId: Number(hostId), hostInfoValue });
     }
@@ -138,14 +140,19 @@ const HostInfoEditPage = () => {
           <form css={hostInputWrapper}>
             <Input
               value={hostInfoValue.nickname ?? ''}
-              onChange={(e) => handleInputChange(e, 'nickname')}
+              onChange={(e) => {
+                setIsNicknameDuplicate((prevState) => (prevState === true ? false : prevState));
+                handleInputChange(e, 'nickname');
+              }}
               inputLabel="닉네임"
-              errorMessage="* 필수 입력 항목이에요."
+              ref={nicknameRef}
+              isValid={isValid(hostInfoValue.nickname ?? '') && !isNicknameDuplicate}
+              errorMessage={
+                isNicknameDuplicate ? '* 이미 존재하는 닉네임이에요.' : '* 필수 입력 항목이에요.'
+              }
               maxLength={50}
               placeholder="닉네임을 입력해주세요"
               isCountValue={true}
-              isValid={isValid(hostInfoValue.nickname ?? '')}
-              ref={inputRef}
             />
 
             <Input
