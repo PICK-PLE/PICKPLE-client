@@ -103,13 +103,13 @@ const Components = () => {
   };
   const { showToast, isToastVisible } = useToast();
 
-  const imageList = [
-    'https://placehold.co/600x400',
-    'https://placehold.co/600x400',
-    'https://placehold.co/600x400',
-    'https://placehold.co/600x400',
-    'https://placehold.co/600x400',
-  ];
+  // const imageList = [
+  //   'https://placehold.co/600x400',
+  //   'https://placehold.co/600x400',
+  //   'https://placehold.co/600x400',
+  //   'https://placehold.co/600x400',
+  //   'https://placehold.co/600x400',
+  // ];
 
   return (
     <div css={devContainer}>

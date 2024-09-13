@@ -6,7 +6,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useFetchMoimBanner, useFetchMoimCategories } from '@apis/domains/moim';
 
 import { Image, LogoHeader } from '@components';
-import { mainBanner } from 'src/assets/lotties';
 import Footer from 'src/components/common/Footer/Footer';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
 import { PicksightBanner } from 'src/constants/images';
