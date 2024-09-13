@@ -30,10 +30,11 @@ export const mainStyle = css`
 `;
 
 export const sectionStyle = (gapSize: number) => css`
-  ${flexGenerator('column')};
+  ${flexGenerator('column', 'flex-start', 'flex-start')};
   gap: ${gapSize}rem;
   width: 100%;
 `;
+
 export const referTextStyle = (theme: Theme) => css`
   ${flexGenerator('row', 'flex-start')};
   width: 100%;

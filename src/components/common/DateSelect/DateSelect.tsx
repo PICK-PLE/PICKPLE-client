@@ -28,7 +28,7 @@ const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
     const hasValue = !!value;
     return (
       <div css={customInputContainer} onClick={onClick}>
-        <label css={customInputLabel}>모임 날짜</label>
+        <label css={customInputLabel}>클래스 날짜</label>
         <IcDropdownPlatformDown css={iconStyle} />
         <input
           css={customInputStyle(hasValue)}
