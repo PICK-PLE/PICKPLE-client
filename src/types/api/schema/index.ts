@@ -2584,11 +2584,6 @@ export interface components {
       message?: string;
       data?: components['schemas']['SubmitterListGetResponse'][];
     };
-    SubmitterCategoryInfo: {
-      category1: string;
-      category2?: string;
-      category3?: string;
-    };
     SubmitterListGetResponse: {
       guestNickname?: string;
       /** Format: int64 */
@@ -2599,7 +2594,7 @@ export interface components {
       goal?: string;
       link?: string;
       nickname?: string;
-      categoryList?: components['schemas']['SubmitterCategoryInfo'];
+      userKeyword?: string;
       plan?: string;
       email?: string;
       submitterState?: string;
