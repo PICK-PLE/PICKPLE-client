@@ -32,6 +32,7 @@ const theme = {
     darkgray: '#3E3F45',
     blackgray: '#222224',
     black: '#17171A',
+    bgwhite1: '#F3F5FB',
 
     purple1: '#5451FF',
     purple2: '#7774FF',

@@ -51,7 +51,9 @@ const HostMyClass = () => {
 
         {data?.length === 0 ? (
           <HostMyClassEmptyView
-            text={activeTab === '진행 중' ? `아직 진행 중인 클래스가 없어요` : `완료한 클래스가 없어요`}
+            text={
+              activeTab === '진행 중' ? `아직 진행 중인 클래스가 없어요` : `완료한 클래스가 없어요`
+            }
           />
         ) : (
           <div css={hostMyClassCardContainer}>

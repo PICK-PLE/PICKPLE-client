@@ -1,4 +1,3 @@
-import { Image, LogoHeader } from '@components';
 import Lottie from 'lottie-react';
 import { useNavigate } from 'react-router-dom';
 import { Pagination } from 'swiper/modules';
@@ -6,9 +5,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { useFetchMoimBanner, useFetchMoimCategories } from '@apis/domains/moim';
 
+import { Image, LogoHeader } from '@components';
 import Footer from 'src/components/common/Footer/Footer';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
+import { PicksightBanner } from 'src/constants/images';
 
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { bannerList } from './config';
 import {
   categoryContainer,
   categoryStyle,
@@ -22,11 +26,6 @@ import {
   bannerWrapper,
   swiperStyle,
 } from './Home.style';
-import { PicksightBanner } from 'src/constants/images';
-
-import 'swiper/css';
-import 'swiper/css/pagination';
-import { bannerList } from './config';
 
 const Home = () => {
   const navigate = useNavigate();

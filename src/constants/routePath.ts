@@ -20,6 +20,7 @@ const classPages = {
   CLASS_NOTICE_POST: '/class/:moimId/notice/post',
   CLASS_POST: '/class/post/:step',
   CLASS_APPLY: '/class/:moimId/apply',
+  CLASS_NOTICE_DETAIL: '/class/:moimId/notice/:noticeId',
 };
 
 const myPagePages = {

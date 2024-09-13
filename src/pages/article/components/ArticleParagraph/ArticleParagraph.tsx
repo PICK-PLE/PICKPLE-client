@@ -1,4 +1,4 @@
-import { articleContainer, articleCotent, articleTitle } from "./ArticleParagraph.style";
+import { articleContainer, articleCotent, articleTitle } from './ArticleParagraph.style';
 
 interface ArticleParagraphProps {
   title: string;

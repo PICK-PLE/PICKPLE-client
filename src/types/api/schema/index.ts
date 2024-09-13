@@ -229,22 +229,23 @@ export interface paths {
         patch: operations["updateGuestProfile"];
         trace?: never;
     };
-    "/api/v1/moim/{moimId}/submitter": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        /** 신청자 승인 */
-        patch: operations["updateSubmitterState"];
-        trace?: never;
+    /** 게스트 프로필 조회 */
+    get: operations['getGuest'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    /** 게스트 프로필 수정 */
+    patch: operations['updateGuestProfile'];
+    trace?: never;
+  };
+  '/api/v1/moim/{moimId}/submitter': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
     };
     "/api/v2/review/tag-list": {
         parameters: {
@@ -689,15 +690,2786 @@ export interface paths {
 }
 export type webhooks = Record<string, never>;
 export interface components {
-    schemas: {
-        SubmitterCreateRequest: {
-            intro: string;
-            goal: string;
-            link: string;
-            nickname: string;
-            plan: string;
-            email: string;
-            userKeyword: string;
+  schemas: {
+    SubmitterCreateRequest: {
+      intro: string;
+      goal: string;
+      link: string;
+      nickname: string;
+      plan: string;
+      email: string;
+      userKeyword: string;
+    };
+    ApiResponseDto: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: Record<string, never>;
+    };
+    CommentCreateRequest: {
+      commentContent?: string;
+    };
+    ReviewCreateReqeust: {
+      tagList: string[];
+      content: string;
+      imageUrl?: string;
+    };
+    NoticeCreateRequest: {
+      noticeTitle: string;
+      noticeContent: string;
+      imageUrl?: string;
+      isPrivate: boolean;
+    };
+    PreSignedUrlClientRequest: {
+      /** @enum {string} */
+      prefix?: 'MOIM_PREFIX' | 'NOTICE_PREFIX' | 'REVIEW_PREFIX' | 'HOST_PROFILE_PREFIX';
+      /** Format: int32 */
+      count?: number;
+    };
+    ApiResponseDtoListPreSignedUrlResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['PreSignedUrlResponse'][];
+    };
+    PreSignedUrlResponse: {
+      fileName?: string;
+      url?: string;
+    };
+    UserLoginRequest: {
+      /**
+       * @description 소셜로그인 타입
+       * @example KAKAO
+       * @enum {string}
+       */
+      socialType: 'KAKAO';
+      /**
+       * @description 리다이텍트 uri 값
+       * @example https://pick-ple.com/kakao/redirection or http://localhost:5173/kakao/redirection
+       */
+      redirectUri: string;
+    };
+    ApiResponseDtoLoginSuccessResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['LoginSuccessResponse'];
+    };
+    LoginSuccessResponse: {
+      guestNickname?: string;
+      /** Format: int64 */
+      guestId?: number;
+      hostNickname?: string;
+      /** Format: int64 */
+      hostId?: number;
+      token?: components['schemas']['TokenDto'];
+    };
+    TokenDto: {
+      accessToken?: string;
+      refreshToken?: string;
+    };
+    AccountInfo: {
+      holder: string;
+      bank: string;
+      accountNumber: string;
+    };
+    CategoryInfo: {
+      category1: string;
+      category2?: string;
+      category3?: string;
+    };
+    DateInfo: {
+      /** Format: date */
+      date: string;
+      dayOfWeek: string;
+      startTime: components['schemas']['LocalTime'];
+      endTime: components['schemas']['LocalTime'];
+    };
+    ImageInfo: {
+      imageUrl1: string;
+      imageUrl2?: string;
+      imageUrl3?: string;
+    };
+    LocalTime: {
+      /** Format: int32 */
+      hour?: number;
+      /** Format: int32 */
+      minute?: number;
+      /** Format: int32 */
+      second?: number;
+      /** Format: int32 */
+      nano?: number;
+    };
+    MoimCreateRequest: {
+      categoryList?: components['schemas']['CategoryInfo'];
+      isOffline?: boolean;
+      spot: string;
+      dateList?: components['schemas']['DateInfo'];
+      /** Format: int32 */
+      maxGuest: number;
+      /** Format: int32 */
+      fee: number;
+      accountList?: components['schemas']['AccountInfo'];
+      questionList?: components['schemas']['QuestionInfo'];
+      title: string;
+      description: string;
+      imageList?: components['schemas']['ImageInfo'];
+    };
+    QuestionInfo: {
+      question1: string;
+      question2?: string;
+      question3?: string;
+    };
+    ApiResponseDtoMoimCreateResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['MoimCreateResponse'];
+    };
+    MoimCreateResponse: {
+      /** Format: int64 */
+      moimId?: number;
+    };
+    AnswerInfo: {
+      answer1: string;
+      answer2?: string;
+      answer3?: string;
+    };
+    MoimSubmitRequest: {
+      answerList?: components['schemas']['AnswerInfo'];
+      accountList?: components['schemas']['AccountInfo'];
+    };
+    HostUpdateRequest: {
+      profileUrl: string;
+      nickname: string;
+      keyword: string;
+      description: string;
+      socialLink: string;
+    };
+    ApiResponseDtoHostUpdateRequest: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['HostUpdateRequest'];
+    };
+    GuestUpdateRequest: {
+      guestNickname: string;
+    };
+    MoimSubmitterUpdateRequest: {
+      submitterIdList: number[];
+    };
+    ApiResponseDtoTagListGetResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['TagListGetResponse'];
+    };
+    TagListGetResponse: {
+      moimTag?: string[];
+      hostTag?: string[];
+    };
+    ApiResponseDtoListCommentGetResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['CommentGetResponse'][];
+    };
+    CommentGetResponse: {
+      /** Format: int64 */
+      commentId?: number;
+      isOwner?: boolean;
+      commenterImageUrl?: string;
+      commenterNickname?: string;
+      commentContent?: string;
+      commentDate?: string;
+    };
+    ApiResponseDtoMoimGetResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['MoimGetResponse'];
+    };
+    MoimGetResponse: {
+      title?: string;
+      moimImage?: string;
+      hostImage?: string;
+      hostNickname?: string;
+      dateList?: components['schemas']['DateInfo'];
+    };
+    ApiResponseDtoListReviewListGetByMoimResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['ReviewListGetByMoimResponse'][];
+    };
+    ReviewListGetByMoimResponse: {
+      tagList?: Record<string, never>[];
+      content?: string;
+      reviewImageUrl?: string;
+      guestNickname?: string;
+      guestImageUrl?: string;
+      date?: string;
+    };
+    ApiResponseDtoNoticeDetailGetResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['NoticeDetailGetResponse'];
+    };
+    NoticeDetailGetResponse: {
+      hostImageUrl?: string;
+      hostNickname?: string;
+      title?: string;
+      content?: string;
+      noticeImageUrl?: string;
+      dateTime?: string;
+      /** Format: int32 */
+      commentNumber?: number;
+      isPrivate?: boolean;
+      isOwner?: boolean;
+    };
+    ApiResponseDtoListNoticeListGetByMoimResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['NoticeListGetByMoimResponse'][];
+    };
+    NoticeListGetByMoimResponse: {
+      /** Format: int64 */
+      noticeId?: number;
+      hostNickName?: string;
+      hostImageUrl?: string;
+      title?: string;
+      content?: string;
+      date?: string;
+      noticeImageUrl?: string;
+      /** Format: int64 */
+      hostId?: number;
+      /** Format: int32 */
+      commentNumber?: number;
+    };
+    ApiResponseDtoListMoimSubmissionAllResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['MoimSubmissionAllResponse'][];
+    };
+    MoimSubmissionAllResponse: {
+      /** Format: int64 */
+      moimSubmissionId?: number;
+      date?: string;
+      moimSubmissionState?: string;
+      /** Format: int64 */
+      guestId?: number;
+      guestNickname?: string;
+      kakaoNickname?: string;
+      /** Format: int64 */
+      moimId?: number;
+      moimTitle?: string;
+      hostNickname?: string;
+      questionList?: components['schemas']['QuestionInfo'];
+      answerList?: components['schemas']['AnswerInfo'];
+    };
+    ApiResponseDtoHostGetResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['HostGetResponse'];
+    };
+    HostGetResponse: {
+      hostNickName?: string;
+      hostImageUrl?: string;
+      hostLink?: string;
+      /** Format: int64 */
+      hostId?: number;
+      keyword?: string;
+      /** Format: int32 */
+      moimCount?: number;
+      /** Format: int32 */
+      attendeeCount?: number;
+    };
+    ApiResponseDtoHostByMoimResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['HostByMoimResponse'];
+    };
+    HostByMoimResponse: {
+      hostNickName?: string;
+      hostImageUrl?: string;
+      /** Format: int32 */
+      count?: number;
+      keyword?: string;
+      description?: string;
+    };
+    ApiResponseDtoListReviewListGetByHostResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['ReviewListGetByHostResponse'][];
+    };
+    ReviewListGetByHostResponse: {
+      /** Format: int64 */
+      moimId?: number;
+      moimTitle?: string;
+      tagList?: Record<string, never>[];
+      content?: string;
+      reviewImageUrl?: string;
+      guestNickname?: string;
+      guestImageUrl?: string;
+      date?: string;
+    };
+    ApiResponseDtoListMoimListByHostGetResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['MoimListByHostGetResponse'][];
+    };
+    MoimListByHostGetResponse: {
+      /** Format: int64 */
+      moimId?: number;
+      /** Format: int32 */
+      dayOfDay?: number;
+      title?: string;
+      hostNickName?: string;
+      dateList?: components['schemas']['DateInfo'];
+      moimImageUrl?: string;
+      hostImageUrl?: string;
+    };
+    ApiResponseDtoHostIntroGetResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['HostIntroGetResponse'];
+    };
+    HostIntroGetResponse: {
+      nickName?: string;
+      profileUrl?: string;
+      /** Format: int32 */
+      count?: number;
+      keyword?: string;
+      description?: string;
+      socialLink?: string;
+    };
+    ApiResponseDtoGuestGetResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['GuestGetResponse'];
+    };
+    GuestGetResponse: {
+      guestImageUrl?: string;
+      guestNickname?: string;
+    };
+    ApiResponseDtoListSubmittedMoimByGuestResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['SubmittedMoimByGuestResponse'][];
+    };
+    SubmittedMoimByGuestResponse: {
+      /** Format: int64 */
+      moimId?: number;
+      moimSubmissionState?: string;
+      title?: string;
+      hostNickname?: string;
+      dateList?: components['schemas']['DateInfo'];
+      /** Format: int32 */
+      fee?: number;
+      imageUrl?: string;
+      isReviewed?: boolean;
+    };
+    AccessTokenGetSuccess: {
+      accessToken?: string;
+    };
+    ApiResponseDtoAccessTokenGetSuccess: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['AccessTokenGetSuccess'];
+    };
+    ApiResponseDtoListSubmitterListGetResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['SubmitterListGetResponse'][];
+    };
+    SubmitterListGetResponse: {
+      guestNickname?: string;
+      /** Format: int64 */
+      guestId?: number;
+      /** Format: int64 */
+      submitterId?: number;
+      intro?: string;
+      goal?: string;
+      link?: string;
+      nickname?: string;
+      userKeyword?: string;
+      plan?: string;
+      email?: string;
+      submitterState?: string;
+    };
+    ApiResponseDtoMoimByGuestResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['MoimByGuestResponse'];
+    };
+    MoimByGuestResponse: {
+      title?: string;
+      hostNickname?: string;
+      isOffline?: boolean;
+      spot?: string;
+      dateList?: components['schemas']['DateInfo'];
+      /** Format: int32 */
+      fee?: number;
+      hostImageUrl?: string;
+      moimImageUrl?: string;
+    };
+    ApiResponseDtoMoimDetailResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['MoimDetailResponse'];
+    };
+    MoimDetailResponse: {
+      /** Format: int32 */
+      dayOfDay?: number;
+      title?: string;
+      dateList?: components['schemas']['DateInfo'];
+      isOffline?: boolean;
+      spot?: string;
+      /** Format: int32 */
+      maxGuest?: number;
+      /** Format: int32 */
+      fee?: number;
+      imageList?: components['schemas']['ImageInfo'];
+      /** Format: int64 */
+      hostId?: number;
+    };
+    ApiResponseDtoSubmittionDetailResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['SubmittionDetailResponse'];
+    };
+    SubmittionDetailResponse: {
+      questionList?: components['schemas']['QuestionInfo'];
+      answerList?: components['schemas']['AnswerInfo'];
+    };
+    ApiResponseDtoMoimSubmissionByMoimResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['MoimSubmissionByMoimResponse'];
+    };
+    MoimSubmissionByMoimResponse: {
+      moimTitle?: string;
+      /** Format: date */
+      moimDate?: string;
+      /** Format: int32 */
+      maxGuest?: number;
+      isApprovable?: boolean;
+      isMoimSubmissionApproved?: boolean;
+      isOngoing?: boolean;
+      submitterList?: components['schemas']['SubmitterInfo'][];
+    };
+    SubmitterInfo: {
+      /** Format: int64 */
+      submitterId?: number;
+      nickname?: string;
+      submitterImageUrl?: string;
+      submittedDate?: string;
+      state?: string;
+    };
+    ApiResponseDtoQuestionInfo: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['QuestionInfo'];
+    };
+    ApiResponseDtoMoimDescriptionResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['MoimDescriptionResponse'];
+    };
+    MoimDescriptionResponse: {
+      description?: string;
+    };
+    ApiResponseDtoListString: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: string[];
+    };
+    ApiResponseDtoLong: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      /** Format: int64 */
+      data?: number;
+    };
+    ApiResponseDtoListMoimByCategoryResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['MoimByCategoryResponse'][];
+    };
+    MoimByCategoryResponse: {
+      /** Format: int64 */
+      moimId?: number;
+      /** Format: int32 */
+      dayOfDay?: number;
+      title?: string;
+      hostNickName?: string;
+      dateList?: components['schemas']['DateInfo'];
+      moimImageUrl?: string;
+      hostImageUrl?: string;
+    };
+    ApiResponseDtoListMoimListByHostAndMoimStateGetResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['MoimListByHostAndMoimStateGetResponse'][];
+    };
+    MoimListByHostAndMoimStateGetResponse: {
+      /** Format: int64 */
+      moimId?: number;
+      title?: string;
+      /** Format: int64 */
+      approvedGuest?: number;
+      /** Format: int32 */
+      maxGuest?: number;
+      moimImage?: string;
+    };
+  };
+  responses: never;
+  parameters: never;
+  requestBodies: never;
+  headers: never;
+  pathItems: never;
+}
+export type $defs = Record<string, never>;
+export interface operations {
+  postSubmitter: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['SubmitterCreateRequest'];
+      };
+    };
+    responses: {
+      /** @description 호스트 승인 신청 성공 */
+      20005: {
+        headers: {
+          [name: string]: unknown;
         };
         ApiResponseDto: {
             /** @enum {string} */
@@ -1355,58 +4127,82 @@ export interface operations {
             };
         };
     };
-    createComment: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                noticeId: number;
-            };
-            cookie?: never;
+  };
+  getGuest: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        guestId: number;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description 게스트 프로필 조회 성공 */
+      20041: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ApiResponseDtoGuestGetResponse'];
+        };
+      };
+      /** @description 존재하지 않는 게스트입니다. */
+      40403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ApiResponseDtoGuestGetResponse'];
+        };
+      };
+    };
+  };
+  updateGuestProfile: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        guestId: number;
+      };
+      cookie?: never;
+    };
+    requestBody: {
+      content: {
+        'application/json': components['schemas']['GuestUpdateRequest'];
+      };
+    };
+    responses: {
+      /** @description 게스트 프로필 수정 성공 */
+      20034: {
+        headers: {
+          [name: string]: unknown;
         };
         requestBody: {
             content: {
                 "application/json": components["schemas"]["CommentCreateRequest"];
             };
         };
-        responses: {
-            /** @description 공지사항 댓글 작성 성공 */
-            20027: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ApiResponseDto"];
-                };
-            };
-            /** @description 존재하지 않는 게스트입니다. */
-            40403: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ApiResponseDto"];
-                };
-            };
-            /** @description 존재하지 않는 호스트입니다. */
-            40405: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ApiResponseDto"];
-                };
-            };
-            /** @description 존재하지 않는 공지사항입니다. */
-            40409: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "*/*": components["schemas"]["ApiResponseDto"];
-                };
-            };
+      };
+      /** @description 이미 존재하는 닉네임입니다. */
+      40008: {
+        headers: {
+          [name: string]: unknown;
         };
+        content: {
+          '*/*': components['schemas']['ApiResponseDto'];
+        };
+      };
+      /** @description 존재하지 않는 게스트입니다. */
+      40403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ApiResponseDto'];
+        };
+      };
     };
     getMoimForReview: {
         parameters: {

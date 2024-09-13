@@ -1,9 +1,6 @@
-import { useQuery } from '@tanstack/react-query';
-
-import { get } from '@apis/api';
 import { useSuspenseQuery } from '@tanstack/react-query';
+import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
-
 
 import { ApiResponseType } from '@types';
 
