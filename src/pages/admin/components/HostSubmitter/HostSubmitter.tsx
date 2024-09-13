@@ -7,9 +7,8 @@ import {
   tableContainerStyle,
   tableLayoutStyle,
   tableStyle,
-  tdStyle,
-  thStyle,
   titleStyle,
+  trStyle,
 } from '@pages/admin/components/HostSubmitter/HostSubmitter.style';
 
 const SUBMITTER_STATUS = {
@@ -24,10 +23,6 @@ const HostSubmitter = () => {
   useEffect(() => {
     refetch();
   }, [hostSubmitterList, refetch]);
-
-  if (hostSubmitterList === null || hostSubmitterList === undefined) {
-    return null;
-  }
 
   const handleButtonClick = (submitterId: number) => {
     mutate(
@@ -46,42 +41,40 @@ const HostSubmitter = () => {
       <div css={tableContainerStyle}>
         <table css={tableStyle}>
           <thead>
-            <tr>
-              <th css={thStyle}>신청 순서</th>
-              <th css={thStyle}>게스트 ID</th>
-              <th css={thStyle}>닉네임</th>
-              <th css={thStyle}>[1] 호스트 소개</th>
-              <th css={thStyle}>[2] 모임 목표</th>
-              <th css={thStyle}>[3] 호스트 설명 링크</th>
-              <th css={thStyle}>[4] 호스트 닉네임</th>
-              <th css={thStyle}>[5] 키워드 </th>
-              <th css={thStyle}>[6] 모임 계획</th>
-              <th css={thStyle}>[7] 이메일 </th>
-              <th css={thStyle}> 상태 </th>
-              <th css={thStyle}> 승인여부 </th>
+            <tr css={trStyle}>
+              <th>신청 순서</th>
+              <th>게스트 ID</th>
+              <th>닉네임</th>
+              <th>[1] 호스트 소개</th>
+              <th>[2] 모임 목표</th>
+              <th>[3] 호스트 설명 링크</th>
+              <th>[4] 호스트 닉네임</th>
+              <th>[5] 키워드 </th>
+              <th>[6] 모임 계획</th>
+              <th>[7] 이메일 </th>
+              <th> 상태 </th>
+              <th> 승인여부 </th>
             </tr>
           </thead>
           <tbody>
-            {hostSubmitterList.map((item, index) => (
-              <tr key={index}>
-                <td css={tdStyle}>{item.submitterId}</td>
-                <td css={tdStyle}>{item.guestId}</td>
-                <td css={tdStyle}>{item.guestNickname}</td>
-                <td css={tdStyle}>{item.intro}</td>
-                <td css={tdStyle}>{item.goal}</td>
-                <td css={tdStyle}>
+            {hostSubmitterList?.map((item, index) => (
+              <tr key={index} css={trStyle}>
+                <td>{item.submitterId}</td>
+                <td>{item.guestId}</td>
+                <td>{item.guestNickname}</td>
+                <td>{item.intro}</td>
+                <td>{item.goal}</td>
+                <td>
                   <a href={`${item.link}`} target="_blank">
                     {item.link}
                   </a>
                 </td>
-                <td css={tdStyle}>{item.nickname}</td>
-                <td css={tdStyle}>{item.userKeyword}</td>
-                <td css={tdStyle}>{item.plan}</td>
-                <td css={tdStyle}>{item.email}</td>
-                <td css={tdStyle}>
-                  {SUBMITTER_STATUS[item.submitterState as keyof typeof SUBMITTER_STATUS]}
-                </td>
-                <td css={tdStyle}>
+                <td>{item.nickname}</td>
+                <td>{item.userKeyword}</td>
+                <td>{item.plan}</td>
+                <td>{item.email}</td>
+                <td>{SUBMITTER_STATUS[item.submitterState as keyof typeof SUBMITTER_STATUS]}</td>
+                <td>
                   {item.submitterState === 'approve' ? (
                     <div>승인</div>
                   ) : (

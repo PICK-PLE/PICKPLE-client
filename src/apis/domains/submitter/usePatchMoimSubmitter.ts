@@ -1,4 +1,4 @@
-import { QueryClient, useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { patch } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
@@ -18,7 +18,7 @@ const patchMoimSubmitter = async ({ moimSubmissionId }: PatchMoimSubmitterReques
 };
 
 export const usePatchMoimSubmitter = () => {
-  const queryClient = new QueryClient();
+  const queryClient = useQueryClient();
   return useMutation({
     mutationFn: ({ moimSubmissionId }: PatchMoimSubmitterRequest) =>
       patchMoimSubmitter({ moimSubmissionId }),
