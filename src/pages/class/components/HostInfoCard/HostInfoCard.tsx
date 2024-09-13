@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { useFetchMoimHost } from '@apis/domains/host';
 
 import { Image } from '@components';
@@ -25,9 +27,13 @@ const HostInfoCard = ({ hostId }: HostInfoCardProps) => {
   const { data: moimHostData } = useFetchMoimHost(hostId);
 
   const { hostNickName, hostImageUrl, count, keyword, description } = moimHostData ?? {};
+  const navigate = useNavigate();
 
+  const handleHostInfoClick = () => {
+    navigate(`/host/info/${hostId}`);
+  };
   return (
-    <article css={hostInfoWrapper}>
+    <article css={hostInfoWrapper} onClick={handleHostInfoClick}>
       <Image variant="round" width="6rem" src={images.HostProfileImage || hostImageUrl} />
 
       <section css={hostProfileWrapper}>
