@@ -192,7 +192,7 @@ const ClassApplyQuestion = ({ handlePageChange }: ClassApplyProps) => {
 
         <footer css={questionFooterStyle}>
           <Button variant="large" onClick={handleButtonClick} disabled={isButtonDisabled}>
-            신청하기
+            클래스 신청하기
           </Button>
         </footer>
       </article>
