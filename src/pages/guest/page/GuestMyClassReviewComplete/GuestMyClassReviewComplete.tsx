@@ -1,3 +1,5 @@
+import { useNavigate, useParams } from 'react-router-dom';
+
 import { Button, Header } from '@components';
 import { graphicImage } from '@constants';
 
@@ -13,7 +15,17 @@ import {
   textSectionStyle,
 } from './GuestMyClassReviewComplete.style';
 
+import { MoimIdPathParameterType } from '@types';
+
 const GuestMyClassReviewComplete = () => {
+  const { moimId } = useParams<MoimIdPathParameterType>();
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    if (moimId) {
+      navigate(`/class/${moimId}`);
+    }
+  };
   return (
     <div css={reviewCompleteLayout}>
       <Header title="리뷰 쓰기" />
@@ -27,7 +39,7 @@ const GuestMyClassReviewComplete = () => {
           <img src={graphicImage.ReviewFinishImage} alt="리뷰 작성 완료" css={imgStyle} />
         </section>
         <section css={buttonSectionStyle}>
-          <Button variant="large" onClick={() => {}}>
+          <Button variant="large" onClick={handleButtonClick}>
             작성한 리뷰 보러 가기
           </Button>
         </section>

@@ -1,10 +1,10 @@
 import { QueryClient } from '@tanstack/react-query';
 
-import { PutImageUploadParams } from '@apis/domains/presignedUrl/usePutS3Upload';
 import {
   postPresignedUrl,
   PresignedPrefixType,
 } from '@apis/domains/presignedUrl/usePostPresignedUrl';
+import { PutImageUploadParams } from '@apis/domains/presignedUrl/usePutS3Upload';
 
 interface UploadParams {
   selectedFiles: File[];
