@@ -7,6 +7,7 @@ import { useFetchGuestInfo } from '@apis/domains/guest/useFetchGuestInfo';
 import { LogoHeader, Modal, NavigateBox, SimpleUserProfile } from '@components';
 import { routePath } from '@constants';
 import { useEasyNavigate } from '@hooks';
+import ChangeNicknameModal from '@pages/myPage/components/ChangeNicknameModal/ChangeNicknameModal';
 import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 import { userAtom } from '@stores';
 import { IcEdit20, IcNext } from '@svg';
@@ -24,7 +25,6 @@ import {
   profileWrapper,
   editIconStyle,
 } from './GuestMyPage.style';
-import ChangeNicknameModal from '@pages/myPage/components/ChangeNicknameModal/ChangeNicknameModal';
 
 const GuestMyPage = () => {
   const [user] = useAtom(userAtom);
