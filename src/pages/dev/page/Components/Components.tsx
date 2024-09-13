@@ -6,7 +6,6 @@ import { useState } from 'react';
 
 import {
   Button,
-  Carousel,
   CategoryButton,
   ClipboardCopyButton,
   //   DateSelect,
@@ -547,10 +546,6 @@ const Components = () => {
         <h2 css={titleStyle}>Modal</h2>
         <Modal></Modal>
       </section> */}
-        <section style={{ width: '400px' }}>
-          <h2 css={titleStyle}>Carousel</h2>
-          <Carousel imageList={imageList} />
-        </section>
         {/* <section css={secttionContainer}>
           <h2 css={titleStyle}>ApplicantListModal</h2>
           <button onClick={handleModalOpen}>모달 열기</button>

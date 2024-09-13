@@ -1,8 +1,17 @@
+import { useAtom } from 'jotai';
 import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import { Button, Header, ImageSelect, TextArea } from '@components';
+import { usePutS3Upload } from '@apis/domains/presignedUrl';
+import { useFetchMoimFromReviewPage } from '@apis/domains/review/useFetchMoimFromReviewPage';
+import { useFetchReviewTagList } from '@apis/domains/review/useFetchReviewTagList';
+import { usePostReview } from '@apis/domains/review/usePostReview';
+
+import { Button, Header, ImageSelect, Spinner, TextArea } from '@components';
 import { ClassListCard } from '@pages/classList/components';
+import { handleUpload } from '@utils';
 import TagSelectBox from 'src/components/common/TagSelectBox/TagSelectBox';
+import { hostTagsAtom, moimTagsAtom } from 'src/stores/tagList';
 
 import {
   bigSpan,
@@ -16,85 +25,69 @@ import {
   writeReviewSection,
 } from './GuestMyClassReviewWrite.style';
 
-import { components } from '@schema';
-
-type MoimByCategoryResponse = components['schemas']['MoimByCategoryResponse'];
-
-const moimData: MoimByCategoryResponse = {
-  moimId: 1,
-  dayOfDay: 1,
-  title: '부산 10년 토박이 달아오르구마와 함께하는 사투리 모임',
-  hostNickName: '달아오르구마',
-  moimDate: '7월 6일 15:00',
-  dateList: [
-    {
-      date: '2024.07.06',
-      dayOfWeek: '토',
-      startTime: '15:00',
-      endTime: '18:00',
-    },
-  ],
-  moimImageUrl: 'example.com',
-  hostImageUrl: 'example.com',
-};
-
-const moimTags = [
-  '🎤 진행이 매끄러워요',
-  '🤩 내용이 흥미로워요',
-  '💼 전문성이 뛰어나요',
-  '💬 네트워킹이 가능해요',
-  '🤩 내용이 깊이 있어요',
-  '👍 내용이 유익해요',
-  '✨ 분위기가 좋아요',
-  '✨ 장소가 깔끔해요',
-  '👥 인원이 적절해요',
-  '🎯 상호작용이 많아요',
-  '📌 새로운 정보가 많아요',
-  '💡 실제 사례가 많아요',
-];
-
-const hostTags = [
-  '⏰ 시간 관리를 잘해요',
-  '📢 정확한 정보를 제공해요',
-  '🙋🏻 질문에 잘 답해줘요',
-  '🙌🏻 분위기를 잘 이끌어요',
-  '✅ 설명이 명확해요',
-  '🔎 준비가 철저해요',
-  '🗣 목소리가 좋아요',
-  '📚 전문성이 있어요',
-  '✈️ 진행이 매끄러워요',
-  '✉️ 전달력이 좋아요',
-  '⏳ 진행 속도가 적당해요',
-  '👀 참여자의 반응을 잘 반영해요',
-];
+import { MoimIdPathParameterType } from '@types';
 
 const GuestMyClassReviewWrite = () => {
-  const [value, setValue] = useState('');
-  const [, setSelectedFiles] = useState<File[]>([]);
+  const [content, setContent] = useState('');
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const { moimId } = useParams<MoimIdPathParameterType>();
+  const moimIdNumber = Number(moimId);
+  const navigate = useNavigate();
+
+  const { data: moimData } = useFetchMoimFromReviewPage(moimId ?? '');
+  const { data: tagList } = useFetchReviewTagList();
+  const { mutateAsync: putS3UploadMutateAsync, isPending: putS3IsPending } = usePutS3Upload();
+  const { mutateAsync, isPending } = usePostReview();
+  const [selectedMoimTags] = useAtom(moimTagsAtom);
+  const [selectedHostTags] = useAtom(hostTagsAtom);
 
   const handleTextareaChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setValue(e.target.value);
+    setContent(e.target.value);
   };
 
+  const handleButtonClick = async (): Promise<void> => {
+    let imageUrl: undefined | string = undefined;
+    if (selectedFiles.length === 1) {
+      const imageUrlList = await handleUpload({
+        selectedFiles,
+        putS3Upload: putS3UploadMutateAsync,
+        type: 'REVIEW_PREFIX',
+      });
+      imageUrl = imageUrlList[0];
+    }
+
+    const tagList = [...selectedMoimTags, ...selectedHostTags];
+    const params = {
+      tagList,
+      content,
+      imageUrl,
+    };
+    await mutateAsync({ params, moimId: moimIdNumber });
+    navigate(`/mypage/guest/myclass/${moimId}/review/complete`);
+  };
+
+  if (putS3IsPending || isPending) {
+    return <Spinner />;
+  }
   return (
     <div css={reviewWriteLayout}>
       <Header title="리뷰 쓰기" />
       <div css={reviewWriteContainer}>
-        <ClassListCard classListData={moimData} />
+        {moimData && <ClassListCard classListData={moimData} variant="classList" />}
         <main css={mainStyle}>
           <section css={tagSectionStyle}>
             <div css={sectionTitleStyle}>
               <span css={bigSpan}>클래스는 어떠셨나요?</span>
               <span css={smallSpan}>최소 1개, 최대 3개</span>
             </div>
-            <TagSelectBox tagList={moimTags} maxSelection={3} tagType="moim" />
+            <TagSelectBox tagList={tagList?.moimTag} maxSelection={3} tagType="moim" />
           </section>
           <section css={tagSectionStyle}>
             <div css={sectionTitleStyle}>
               <span css={bigSpan}>스피커는 어떠셨나요?</span>
               <span css={smallSpan}>최소 1개, 최대 3개</span>
             </div>
-            <TagSelectBox tagList={hostTags} maxSelection={3} tagType="host" />
+            <TagSelectBox tagList={tagList?.hostTag} maxSelection={3} tagType="host" />
           </section>
           <section css={writeReviewSection}>
             <span css={bigSpan}>클래스에 함께한 경험을 공유해 주세요!</span>
@@ -103,7 +96,7 @@ const GuestMyClassReviewWrite = () => {
                 size="medium"
                 maxLength={500}
                 placeholder={'1글자 이상 리뷰를 작성해주세요.'}
-                value={value}
+                value={content}
                 onChange={handleTextareaChange}
                 isValid={true}
                 errorMessage="1글자 이상 리뷰를 작성해주세요."
@@ -112,7 +105,9 @@ const GuestMyClassReviewWrite = () => {
             </div>
           </section>
         </main>
-        <Button variant="large">리뷰 등록하기</Button>
+        <Button variant="large" onClick={handleButtonClick}>
+          리뷰 등록하기
+        </Button>
       </div>
     </div>
   );

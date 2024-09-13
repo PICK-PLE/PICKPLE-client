@@ -22,7 +22,6 @@ import PayButton from './buttons/PayButton/PayButton';
 import SelectButton from './buttons/SelectButton/SelectButton';
 import ShareButton from './buttons/ShareButton/ShareButton';
 import SocialLoginButton from './buttons/SocialLoginButton/SocialLoginButton';
-import Carousel from './Carousel/Carousel';
 import CategorySelectBox from './CategorySelectBox/CategorySelectBox';
 import CountPeople from './CountPeople/CountPeople';
 import DateSelect from './DateSelect/DateSelect';
@@ -64,7 +63,6 @@ export {
   CategoryButton,
   InterestCategoryButton,
   ShareButton,
-  Carousel,
   ApplicantAccordion,
   ApplicantAccordionList,
   Image,

@@ -16,6 +16,7 @@ export const QUERY_KEY = {
   MOIM_DESCRIPTION: 'moimDescription',
   MOIM_HOST: 'moimHost',
   MOIM_NOTICE_LIST: 'moimNoticeList',
+  MOIM_REVIEW_LIST: 'moimReviewList',
   MOIM_SUBMIT_REQUEST: 'moimSubmitRequest',
   MOIM_SUBMITTER: 'moimSubmitter',
   POST_MOIM: 'postMoim',
@@ -26,4 +27,6 @@ export const QUERY_KEY = {
   HOST_INFO: 'hostInfo',
   HOST_INFO_CLASS: 'hostInfoClass',
   HOST_INFO_REVIEW: 'hostInfoReview',
+  REVIEW_MOIM_INFO: 'reviewMoimInfo',
+  REVIEW_TAG_LIST: 'reviewTagList',
 } as const;

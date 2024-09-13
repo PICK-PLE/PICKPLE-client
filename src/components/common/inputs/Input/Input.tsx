@@ -89,9 +89,11 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
               onFocus={() => setIsFocused(true)}
               onBlur={() => setIsFocused(false)}
             />
-            <div css={deleteButtonStyle} onMouseDown={handleInputDelete}>
-              <IcDelete20 />
-            </div>
+            {isFocused && value.length > 0 && (
+              <div css={deleteButtonStyle} onMouseDown={handleInputDelete}>
+                <IcDelete20 />
+              </div>
+            )}
           </div>
         </div>
         <div css={errorAndLengthWrapper(hasError)}>

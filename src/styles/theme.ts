@@ -64,7 +64,7 @@ const theme = {
       ${PretendardFont};
       font-size: 1.8rem;
       font-weight: 700;
-      line-height: normal;
+      line-height: 140%;
       letter-spacing: 0px;
     `,
     'head04-b-16': css`
@@ -78,7 +78,7 @@ const theme = {
       ${PretendardFont};
       font-size: 1.8rem;
       font-weight: 600;
-      line-height: normal;
+      line-height: 140%;
       letter-spacing: 0px;
     `,
     'subhead02-sb-16': css`
@@ -156,6 +156,13 @@ const theme = {
       font-size: 1.5rem;
       font-weight: 500;
       line-height: 140%;
+      letter-spacing: 0px;
+    `,
+    'body07-r-15': css`
+      ${PretendardFont};
+      font-size: 1.5rem;
+      font-weight: 400;
+      line-height: 160%;
       letter-spacing: 0px;
     `,
   },
