@@ -57,7 +57,7 @@ const ClassNoticeDetail = () => {
           ) : (
             <div css={commentListWrapper}>
               {commentList?.map((comment) => (
-                <CommentBox key={comment.commentId} comment={comment} />
+                <CommentBox key={comment.commentId} comment={comment} noticeId={noticeId ?? ''} />
               ))}
             </div>
           )}
