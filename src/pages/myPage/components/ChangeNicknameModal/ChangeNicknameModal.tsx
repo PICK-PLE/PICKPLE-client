@@ -30,7 +30,7 @@ interface ChangeNicknameModalProps {
 
 const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
   const [user, setUser] = useAtom(userAtom);
-  const [value, setValue] = useState<string>(user.guestNickname ?? '');
+  const [value, setValue] = useState(user.guestNickname ?? '');
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const { mutateAsync: changeNickname, isError } = usePatchGuestNickname(
