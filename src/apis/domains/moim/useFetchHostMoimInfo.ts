@@ -6,14 +6,15 @@ import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { components } from '@schema';
 import { ApiResponseType } from '@types';
 
-type MoimListByHostGetResponse = components['schemas']['MoimListByHostGetResponse'];
+type MoimListByHostAndMoimStateGetResponse =
+  components['schemas']['MoimListByHostAndMoimStateGetResponse'];
 
 const getHostMoimInfo = async (
   hostId: number,
   moimState: string
-): Promise<MoimListByHostGetResponse[] | null> => {
+): Promise<MoimListByHostAndMoimStateGetResponse[] | null> => {
   try {
-    const response = await get<ApiResponseType<MoimListByHostGetResponse[]>>(
+    const response = await get<ApiResponseType<MoimListByHostAndMoimStateGetResponse[]>>(
       `/v1/host/${hostId}/moim-list?moimState=${moimState}`
     );
 

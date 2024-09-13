@@ -41,7 +41,7 @@ export const textAreaStyle = (theme: Theme) => css`
 
   &::placeholder {
     color: ${theme.color.midgray1};
-    ${theme.font['body06-m-14']}
+    ${theme.font['body06-m-15']}
   }
 
   &:focus {

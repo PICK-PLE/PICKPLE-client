@@ -27,14 +27,14 @@ type NoticeListGetByMoimResponse = components['schemas']['NoticeListGetByMoimRes
 
 interface NoticeCardProps {
   noticeData: NoticeListGetByMoimResponse;
+  onClick: () => void;
 }
 
-const NoticeCard = ({ noticeData }: NoticeCardProps) => {
+const NoticeCard = ({ noticeData, onClick }: NoticeCardProps) => {
   const { hostNickName, hostImageUrl, title, content, date, noticeImageUrl } = noticeData;
-  console.log(date);
 
   return (
-    <article css={noticeCardContainer}>
+    <article css={noticeCardContainer} onClick={onClick}>
       <section css={profileWrapper}>
         <img css={profileImage} src={hostImageUrl} alt={`${hostNickName}의 프로필`} />
         <div css={profileTextBox}>

@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
+import { wrapRoutes } from '@hooks';
 import {
   authRoutes,
   classListRoutes,
@@ -18,7 +19,6 @@ import {
 
 import errorPageRoutes from './routes/errorRoutes';
 import PrivateRoute from './routes/PrivateRoute/PrivateRoute';
-import { wrapRoutes } from '@hooks';
 import GlobalStyle from './styles/global';
 import theme from './styles/theme';
 

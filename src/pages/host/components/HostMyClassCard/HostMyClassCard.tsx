@@ -15,13 +15,14 @@ import {
 
 import { components } from '@schema';
 
-type MoimListByHostGetResponse = components['schemas']['MoimListByHostGetResponse'];
+type MoimListByHostAndMoimStateGetResponse =
+  components['schemas']['MoimListByHostAndMoimStateGetResponse'];
 
 interface HostMyClassCardProps {
-  hostMyClassData: MoimListByHostGetResponse;
+  hostMyClassData: MoimListByHostAndMoimStateGetResponse;
 }
 const HostMyClassCard = ({ hostMyClassData }: HostMyClassCardProps) => {
-  const { moimImage, title, approvedGuest, maxGuest, moimId } = hostMyClassData;
+  const { moimId, title, approvedGuest, maxGuest, moimImage } = hostMyClassData;
 
   const navigate = useNavigate();
 

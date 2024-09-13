@@ -26,4 +26,8 @@ export const QUERY_KEY = {
   HOST_SUBMIT_REQUEST: 'hostSubmitRequest',
   REVIEW_MOIM_INFO: 'reviewMoimInfo',
   REVIEW_TAG_LIST: 'reviewTagList',
+  MOIM_NOTICE_DETAIL: 'moimNoticeDetail',
+  COMMENT_LIST: 'commentList',
+  NOTICE_COMMENT: 'noticeComment',
+  GUEST_INFO: 'guestInfo',
 } as const;

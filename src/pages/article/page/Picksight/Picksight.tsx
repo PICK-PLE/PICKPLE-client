@@ -1,4 +1,11 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Button, Header, Image } from '@components';
+import ArticleParagraph from '@pages/article/components/ArticleParagraph/ArticleParagraph';
+import { IcDropdownRight } from '@svg';
+import Footer from 'src/components/common/Footer/Footer';
+import { PicksightImage, PicksightMain } from 'src/constants/images';
+
 import {
   articleH1,
   articleH2,
@@ -9,11 +16,6 @@ import {
   buttonIcon,
   paragraphStyle,
 } from './Picksight.style';
-import { PicksightImage, PicksightMain } from 'src/constants/images';
-import ArticleParagraph from '@pages/article/components/ArticleParagraph/ArticleParagraph';
-import { IcDropdownRight } from '@svg';
-import Footer from 'src/components/common/Footer/Footer';
-import { useNavigate } from 'react-router-dom';
 
 const Picksight = () => {
   const navigate = useNavigate();

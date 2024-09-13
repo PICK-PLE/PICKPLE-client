@@ -65,8 +65,7 @@ const Class = () => {
     moimId ?? ''
   );
   const { data: moimNoticeList, isLoading: isMoimNoticeListLoading } = useFetchMoimNoticeList(
-    moimId ?? '',
-    selectTab
+    moimId ?? ''
   );
   if (isMoimDetailLoading || isMoimDescriptionLoading) {
     return <Spinner />;
@@ -167,7 +166,7 @@ const Class = () => {
             ) : (moimNoticeList || []).length === 0 ? (
               <ClassNoticeEmptyView />
             ) : (
-              <ClassNotice noticeData={moimNoticeList || []} />
+              <ClassNotice noticeData={moimNoticeList || []} moimId={moimId ?? ''} />
             ))}
           {selectTab === '리뷰' && <ClassReviewTab moimId={moimId ?? ''} />}
         </section>

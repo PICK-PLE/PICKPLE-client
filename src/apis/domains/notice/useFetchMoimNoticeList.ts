@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useSuspenseQuery } from '@tanstack/react-query';
 
 import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
@@ -20,12 +20,11 @@ const getMoimNoticeList = async (moimId: string): Promise<NoticeListGetByMoimRes
   }
 };
 
-export const useFetchMoimNoticeList = (moimId: string, selectTab: string) => {
-  return useQuery({
+export const useFetchMoimNoticeList = (moimId: string) => {
+  return useSuspenseQuery({
     queryKey: [QUERY_KEY.MOIM_NOTICE_LIST, moimId],
     queryFn: () => getMoimNoticeList(moimId),
     staleTime: 1000 * 60,
     gcTime: 1000 * 60 * 5,
-    enabled: selectTab === '공지사항',
   });
 };
