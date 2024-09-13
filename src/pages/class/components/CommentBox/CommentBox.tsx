@@ -1,0 +1,90 @@
+import { useState } from 'react';
+
+import { Image, Modal } from '@components';
+import { IcParkMore, IcSpickerMark } from '@svg';
+import { formatCreatedDate } from '@utils';
+
+import {
+  commentContainer,
+  commentContent,
+  commentSectionContainer,
+  commentTime,
+  commentWrapper,
+  iconStyle,
+  iconWrapper,
+  profileImageWrapper,
+  profileWrapper,
+  spickerIconStyle,
+  userNickname,
+} from './CommentBox.style';
+import DeleteCard from '../DeleteCard/DeleteCard';
+import DeleteModal from '../DeleteModal/DeleteModal';
+
+import { components } from '@schema';
+
+type comment = components['schemas']['CommentGetResponse'];
+interface CommentBoxProps {
+  comment: comment;
+  noticeId: string;
+}
+
+const CommentBox = ({ comment, noticeId }: CommentBoxProps) => {
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleDeleteOpen = () => {
+    setIsDeleteOpen(true);
+  };
+  const handleDeleteClose = () => {
+    setIsDeleteOpen(false);
+  };
+
+  const handleModalOpen = () => {
+    handleDeleteClose();
+    setIsModalOpen(true);
+  };
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  return (
+    <article css={commentSectionContainer}>
+      <div css={commentContainer(comment.isOwner ?? false)}>
+        <div css={profileImageWrapper}>
+          <Image variant="round" src={comment.commenterImageUrl ?? ''} width="4.2rem" />
+        </div>
+        <section css={commentWrapper}>
+          <div css={profileWrapper}>
+            <p css={userNickname}>{comment.commenterNickname}</p>
+            {comment.isOwner && (
+              <span css={spickerIconStyle}>
+                <IcSpickerMark />
+              </span>
+            )}
+          </div>
+          <div css={commentContent}>{comment.commentContent}</div>
+          <div css={commentTime}>{formatCreatedDate(comment.commentDate ?? '')}시간 전</div>
+        </section>
+        <div css={iconWrapper}>
+          <IcParkMore onClick={handleDeleteOpen} css={iconStyle} />
+          {isDeleteOpen && (
+            <DeleteCard handleModalOpen={handleModalOpen} handleDeleteClose={handleDeleteClose} />
+          )}
+          {isModalOpen && (
+            <>
+              <Modal onClose={handleModalClose}>
+                <DeleteModal
+                  onClose={handleModalClose}
+                  commentId={comment.commentId ?? 0}
+                  noticeId={noticeId ?? ''}
+                />
+              </Modal>
+            </>
+          )}
+        </div>
+      </div>
+    </article>
+  );
+};
+
+export default CommentBox;

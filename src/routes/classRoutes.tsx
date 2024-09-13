@@ -9,6 +9,7 @@ import {
   ClassPostPage,
 } from '@pages/class/page';
 import ClassApply from '@pages/class/page/ClassApply/ClassApply';
+import ClassNoticeDetail from '@pages/class/page/ClassNoticeDetail/ClassNoticeDetail';
 
 import { RouteType } from '@types';
 
@@ -28,6 +29,10 @@ const classRoutes: RouteType[] = [
   {
     path: routePath.CLASS_APPLY,
     element: <ClassApply />,
+  },
+  {
+    path: routePath.CLASS_NOTICE_DETAIL,
+    element: <ClassNoticeDetail />,
   },
   // {
   //   path: routePath.CLASS_APPLY_RULE,

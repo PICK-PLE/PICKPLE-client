@@ -149,6 +149,7 @@ const StepOne = ({ onNext }: StepProps) => {
               onStartTimeChange={handleStartTimeChange}
               onEndTimeChange={handleEndTimeChange}
             />
+            <span css={referTextStyle}>*픽플은 최소 10분 이상의 네트워킹 시간을 권장합니다.</span>
           </section>
           <section css={sectionStyle(2)}>
             <QuestionText numberLabel="Q5">몇 명의 게스트와 함께하고 싶으신가요?</QuestionText>

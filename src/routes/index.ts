@@ -1,5 +1,6 @@
 import adminRoutes from 'src/routes/adminRoutes';
 
+import articleRoutes from './articleRoutes';
 import authRoutes from './authRoutes';
 import classListRoutes from './classListRoutes';
 import classRoutes from './classRoutes';
@@ -16,6 +17,7 @@ export {
   classRoutes,
   guestRoutes,
   homeRoutes,
+  articleRoutes,
   hostRoutes,
   myPageRoutes,
   //devRoutes,

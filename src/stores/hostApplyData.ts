@@ -7,11 +7,7 @@ export const hostApplyAtom = atom<components['schemas']['SubmitterCreateRequest'
   goal: '',
   link: '',
   nickname: '',
-  categoryList: {
-    category1: '',
-    category2: '',
-    category3: '',
-  },
   plan: '',
   email: '',
+  userKeyword: '',
 });

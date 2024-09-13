@@ -1,9 +1,9 @@
-import { get } from '@apis/api';
+import { post } from '@apis/api';
 
 import { components } from '@schema';
 import { ApiResponseType } from '@types';
 
-type PreSignedUrlClientRequest = components['schemas']['PreSignedUrlClientRequest'];
+type PreSignedUrlResponse = components['schemas']['PreSignedUrlResponse'];
 
 export type PresignedPrefixType =
   | 'MOIM_PREFIX'
@@ -11,16 +11,14 @@ export type PresignedPrefixType =
   | 'REVIEW_PREFIX'
   | 'HOST_PROFILE_PREFIX';
 
-export const getPresignedUrl = async (
+export const postPresignedUrl = async (
   prefix: PresignedPrefixType,
   count: number
-): Promise<PreSignedUrlClientRequest[] | null> => {
+): Promise<PreSignedUrlResponse[] | null> => {
   try {
-    const response = await get<ApiResponseType<PreSignedUrlClientRequest[]>>(`/v2/image/upload`, {
-      params: {
-        prefix,
-        count,
-      },
+    const response = await post<ApiResponseType<PreSignedUrlResponse[]>>(`/v2/image/upload`, {
+      prefix,
+      count,
     });
 
     if (!response) {

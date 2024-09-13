@@ -1,13 +1,14 @@
 import { useAtom } from 'jotai';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { Pagination } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
 
 import { useFetchMoimDetail, useFetchMoimDescription } from '@apis/domains/moim';
 import { useFetchMoimNoticeList } from '@apis/domains/notice';
 
 import {
   Button,
-  Carousel,
   IconButton,
   IconText,
   Label,
@@ -21,9 +22,9 @@ import {
   ClassInfo,
   ClassNotice,
   ClassNoticeEmptyView,
-  ClassReviewEmptyView,
   HostInfoCard,
 } from '@pages/class/components';
+import ClassReviewTab from '@pages/class/components/ClassReviewTab/ClassReviewTab';
 import Error from '@pages/error/Error';
 import { userAtom } from '@stores';
 import { IcClassPerson, IcCopyPlus, IcDate, IcMoney, IcOffline, IcOneline } from '@svg';
@@ -37,13 +38,18 @@ import {
   classLayout,
   classNameStyle,
   floatingButtonWrapper,
+  imageStyle,
   infoSectionStyle,
+  swiperStyle,
   tabButtonStyle,
   tabSectionStyle,
   tabWrapper,
 } from './Class.style';
 
 import { MoimIdPathParameterType } from '@types';
+
+import 'swiper/css';
+import 'swiper/css/pagination';
 
 const Class = () => {
   const { windowWidth } = useWindowSize();
@@ -59,10 +65,8 @@ const Class = () => {
     moimId ?? ''
   );
   const { data: moimNoticeList, isLoading: isMoimNoticeListLoading } = useFetchMoimNoticeList(
-    moimId ?? '',
-    selectTab
+    moimId ?? ''
   );
-
   if (isMoimDetailLoading || isMoimDescriptionLoading) {
     return <Spinner />;
   }
@@ -71,6 +75,9 @@ const Class = () => {
     return <Error />;
   }
   const { dayOfDay = 0, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
+  const swiperImageList = Object.values(imageList || []).filter(
+    (value) => value !== null && value !== ''
+  );
 
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
 
@@ -99,11 +106,15 @@ const Class = () => {
       <LogoHeader />
       <div css={classLayout}>
         <div css={carouselWrapper}>
-          <Carousel
-            imageList={Object.values(imageList || []).filter(
-              (value) => value !== null && value !== ''
-            )}
-          />
+          <Swiper css={swiperStyle} pagination={true} modules={[Pagination]} loop={true}>
+            {swiperImageList.map((image, index) => {
+              return (
+                <SwiperSlide key={index}>
+                  <img css={imageStyle} src={image} alt={`Carousel ${index}`} />
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
         <section css={classInfo}>
           <Label variant="dDay">{`마감${dDayText(dayOfDay)}`}</Label>
@@ -155,9 +166,9 @@ const Class = () => {
             ) : (moimNoticeList || []).length === 0 ? (
               <ClassNoticeEmptyView />
             ) : (
-              <ClassNotice noticeData={moimNoticeList || []} />
+              <ClassNotice noticeData={moimNoticeList || []} moimId={moimId ?? ''} />
             ))}
-          {selectTab === '리뷰' && <ClassReviewEmptyView />}
+          {selectTab === '리뷰' && <ClassReviewTab moimId={moimId ?? ''} />}
         </section>
         {selectTab === '공지사항' && moimDetail?.hostId === hostId && (
           <div

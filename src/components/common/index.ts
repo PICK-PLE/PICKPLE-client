@@ -22,10 +22,11 @@ import PayButton from './buttons/PayButton/PayButton';
 import SelectButton from './buttons/SelectButton/SelectButton';
 import ShareButton from './buttons/ShareButton/ShareButton';
 import SocialLoginButton from './buttons/SocialLoginButton/SocialLoginButton';
-import Carousel from './Carousel/Carousel';
 import CategorySelectBox from './CategorySelectBox/CategorySelectBox';
+import CheckLabel from './CheckLabel/CheckLabel';
 import CountPeople from './CountPeople/CountPeople';
 import DateSelect from './DateSelect/DateSelect';
+import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 import Header from './headers/Header/Header';
 import IconText from './IconText/IconText';
 import Label from './Label/Label';
@@ -35,8 +36,6 @@ import ProgressBar from './ProgressBar/ProgressBar';
 import FilterSelect from './select/FilterSelect/FilterSelect';
 import Select from './select/Select/Select';
 import { Spinner } from './Spinner/Spinner';
-import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
-import CheckLabel from './CheckLabel/CheckLabel';
 
 export {
   IconButton,
@@ -64,7 +63,6 @@ export {
   CategoryButton,
   InterestCategoryButton,
   ShareButton,
-  Carousel,
   ApplicantAccordion,
   ApplicantAccordionList,
   Image,

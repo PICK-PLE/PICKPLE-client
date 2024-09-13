@@ -4,39 +4,27 @@ import { usePostHostApply } from '@apis/domains/host';
 
 import { Button, Input, ProgressBar, QuestionText, Spinner, TextArea } from '@components';
 import { useHostApplyInputChange, useHostApplyInputValidation } from '@pages/host/hooks';
-import CategorySelectBox from 'src/components/common/CategorySelectBox/CategorySelectBox';
 import { StepProps } from 'src/types/nextStep';
 
 import {
-  categorySectionStyle,
   footerStyle,
   headerStyle,
   layoutStyle,
   mainStyle,
-  referTextStyle,
   sectionStyle,
   subTitleStyle,
   titleStyle,
 } from './StepTwo.style';
 
-import { components } from '@schema';
-
 const StepTwo = ({ onNext }: StepProps) => {
   const nicknameRef = useRef<HTMLInputElement>(null);
   const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
 
-  const { hostApplyState, handleInputChange, handleCategoryChange, resetHostApplyState } =
-    useHostApplyInputChange();
+  const { hostApplyState, handleInputChange, resetHostApplyState } = useHostApplyInputChange();
   const { validateStepTwo } = useHostApplyInputValidation();
 
-  const [selectedCategories, setSelectedCategories] = useState<
-    components['schemas']['SubmitterCategoryInfo']
-  >(hostApplyState.categoryList || { category1: '', category2: '', category3: '' });
-
-  const { isNicknameValid, isPlanValid, isEmailValid, isAllValid } = validateStepTwo({
-    ...hostApplyState,
-    categoryList: selectedCategories,
-  });
+  const { isNicknameValid, isUserKeywordvalid, isPlanValid, isEmailValid, isAllValid } =
+    validateStepTwo(hostApplyState);
   const { mutate, isPending } = usePostHostApply(
     resetHostApplyState,
     onNext,
@@ -48,13 +36,6 @@ const StepTwo = ({ onNext }: StepProps) => {
     if (isAllValid) {
       mutate(hostApplyState);
     }
-  };
-
-  const handleUpdateCategories = (
-    newCategories: components['schemas']['SubmitterCategoryInfo']
-  ) => {
-    setSelectedCategories(newCategories);
-    handleCategoryChange(newCategories);
   };
 
   if (isPending) {
@@ -88,16 +69,21 @@ const StepTwo = ({ onNext }: StepProps) => {
               isCountValue={true}
             />
           </section>
-          <section css={categorySectionStyle}>
+          <section css={sectionStyle}>
             <QuestionText numberLabel="Q5">
               스픽커님을 잘 나타낼 수 있는 키워드를 <br />
               작성해주세요.
             </QuestionText>
-            <CategorySelectBox
-              selectedCategories={selectedCategories}
-              onUpdateCategories={handleUpdateCategories}
+            <Input
+              value={hostApplyState.userKeyword}
+              onChange={(e) => {
+                handleInputChange(e, 'userKeyword');
+              }}
+              placeholder="ex. 10년차 요리 연구가"
+              isValid={isUserKeywordvalid}
+              maxLength={20}
+              isCountValue={true}
             />
-            <h6 css={referTextStyle}>*최소 1개부터 최대 3개까지 선택 가능합니다.</h6>
           </section>
           <section css={sectionStyle}>
             <QuestionText numberLabel="Q6">클래스 운영 계획에 대해 말해주세요.</QuestionText>
@@ -128,7 +114,7 @@ const StepTwo = ({ onNext }: StepProps) => {
         </main>
         <footer css={footerStyle}>
           <Button variant="large" onClick={handleNextClick} disabled={!isAllValid}>
-            다음
+            스픽커 신청하기
           </Button>
         </footer>
       </div>

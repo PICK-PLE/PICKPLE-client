@@ -2,8 +2,10 @@ import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+import { useFetchGuestInfo } from '@apis/domains/guest/useFetchGuestInfo';
+
 import { LogoHeader, Modal, NavigateBox, SimpleUserProfile } from '@components';
-import { images, routePath } from '@constants';
+import { routePath } from '@constants';
 import { useEasyNavigate } from '@hooks';
 import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 import { userAtom } from '@stores';
@@ -29,6 +31,7 @@ const GuestMyPage = () => {
 
   const navigate = useNavigate();
   const { goHostMyPage } = useEasyNavigate();
+  const { data: guestInfo } = useFetchGuestInfo(user.guestId as unknown as string);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isChangeNicknameModalOpen, setIsChangeNicknameModalOpen] = useState(false);
@@ -74,10 +77,11 @@ const GuestMyPage = () => {
           </p>
         </nav>
         <div css={profileWrapper}>
+          {/* @정안TODO guestInfo 타입 설정 후 해당 데이터로 교체 */}
           <SimpleUserProfile
             size="xlarge"
-            userImgUrl={images.GuestProfileImage}
-            username={user.guestNickname || ''}
+            userImgUrl={guestInfo?.guestImageUrl}
+            username={guestInfo?.guestNickname || user.guestNickname || ''}
           />
           <span css={editIconStyle} onClick={handleChangeNicknameModalOpen}>
             <IcEdit20 />

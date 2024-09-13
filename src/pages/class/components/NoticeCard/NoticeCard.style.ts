@@ -6,7 +6,6 @@ export const noticeCardContainer = (theme: Theme) => css`
   ${flexGenerator('column', 'flex-start', 'flex-start')};
   width: 100%;
   padding: 2rem;
-
   background-color: ${theme.color.white};
   border: 1px solid ${theme.color.lightgray0};
   border-radius: 10px;

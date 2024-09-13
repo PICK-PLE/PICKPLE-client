@@ -33,15 +33,19 @@ export const questionHStyle = (theme: Theme) => css`
 
 export const questionMainStyle = css`
   ${flexGenerator('column', 'center', 'flex-start')}
-  gap: 1rem;
+  gap: 3rem;
   width: 100%;
 `;
 
 export const questionDataStyle = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
-  /* padding: 1.2rem 1.6rem 1rem 1rem; */
-  gap: 1.5rem;
+  gap: 3rem;
   width: 100%;
+`;
+
+export const eachQuestionWrapper = css`
+  ${flexGenerator('column')}
+  gap: 1rem;
 `;
 
 export const questionCautionStyle = (theme: Theme) => css`
@@ -63,6 +67,12 @@ export const questionCautionIconStyle = css`
 export const questionCautionTextStyle = (theme: Theme) => css`
   color: ${theme.color.midgray2};
   ${theme.font['body02-r-14']}
+`;
+
+export const question4WrapperStyle = css`
+  ${flexGenerator('column', 'flex-start', 'flex-start')}
+  width: 100%;
+  gap: 1.5rem;
 `;
 
 export const questionRefundStyle = () => css`
