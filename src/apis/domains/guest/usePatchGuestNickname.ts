@@ -1,7 +1,9 @@
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
 import { patch } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
+
 import { components } from '@schema';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { ApiResponseType, ErrorType } from '@types';
 
 type GuestUpdateRequest = components['schemas']['GuestUpdateRequest'];
@@ -25,34 +27,12 @@ const patchGuestNickname = async (
   }
 };
 
-export const usePatchGuestNickname = (
-  guestId: number,
-  setErrorMessage: (msg: string) => void,
-  setUser: (user: { guestNickname: string }) => void
-) => {
+export const usePatchGuestNickname = (guestId: number, setErrorMessage: (msg: string) => void) => {
   const queryClient = useQueryClient();
-
   return useMutation({
     mutationFn: (guestNickname: string) => patchGuestNickname(guestId, guestNickname),
-    onSuccess: (data) => {
-      console.log('onSuccess called with data:', data);
-      if (data) {
-        setUser({ guestNickname: data?.guestNickname as string });
-
-        const storedUser = localStorage.getItem('user');
-        console.log('storedUser', storedUser);
-        let updatedUser = {};
-
-        if (storedUser) {
-          updatedUser = JSON.parse(storedUser);
-        }
-
-        updatedUser = { ...updatedUser, guestNickname: data?.guestNickname };
-        console.log('updatedUser', updatedUser);
-        localStorage.setItem('user', JSON.stringify(updatedUser));
-        console.log('localStroge', localStorage.getItem('user'));
-        queryClient.invalidateQueries({ queryKey: [QUERY_KEY.GUEST_NICKNAME_CHANGE] });
-      }
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.GUEST_INFO] });
     },
     onError: (error: ErrorType) => {
       if (error.status === 40008) {

@@ -1,4 +1,12 @@
+import { useAtom } from 'jotai';
+import { useState } from 'react';
+
+import { usePatchGuestNickname } from '@apis/domains/guest/usePatchGuestNickname';
+
 import { Button, Input } from '@components';
+import { userAtom } from '@stores';
+import theme from '@styles/theme';
+
 import {
   abledStyle,
   blueColor,
@@ -15,26 +23,19 @@ import {
   modalTitleWrapper,
   titleStyle,
 } from './ChangeNicknameModal.style';
-import { useState } from 'react';
-import theme from '@styles/theme';
-import { useAtom, useSetAtom } from 'jotai';
-import { userAtom } from '@stores';
-import { usePatchGuestNickname } from '@apis/domains/guest/usePatchGuestNickname';
 
 interface ChangeNicknameModalProps {
   onClose: () => void;
 }
 
 const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
-  const [{ guestNickname, guestId }] = useAtom(userAtom);
-  const [value, setValue] = useState<string>(guestNickname as string);
+  const [user, setUser] = useAtom(userAtom);
+  const [value, setValue] = useState<string>(user.guestNickname as string);
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
-  const setUser = useSetAtom(userAtom);
-  const { mutate: changeNickname, isError } = usePatchGuestNickname(
-    guestId ?? 0,
-    setErrorMessage,
-    setUser
+  const { mutateAsync: changeNickname, isError } = usePatchGuestNickname(
+    user.guestId ?? 0,
+    setErrorMessage
   );
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
@@ -51,7 +52,17 @@ const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
 
   const handleButtonClick = () => {
     if (!isError) {
-      changeNickname(value);
+      changeNickname(value).then(() => {
+        setUser({ ...user, guestNickname: value });
+
+        const storedUser = localStorage.getItem('user');
+        if (storedUser) {
+          const updatedUser = JSON.parse(storedUser);
+          updatedUser.guestNickname = value;
+
+          localStorage.setItem('user', JSON.stringify(updatedUser));
+        }
+      });
       onClose();
     } else {
       setErrorMessage('닉네임 변경 중 오류가 발생했습니다. 다시 시도해 주세요.');
@@ -88,7 +99,7 @@ const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
           <Button variant="xSmall" onClick={onClose} customStyle={cancelButtonStyle}>
             취소
           </Button>
-          {guestNickname === value || value?.length === 0 || value?.length > 15 ? (
+          {user.guestNickname === value || value?.length === 0 || value?.length > 15 ? (
             <Button variant="xSmall" onClick={() => {}} customStyle={disabledStyle} disabled>
               저장
             </Button>

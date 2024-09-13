@@ -33,6 +33,7 @@ const GuestMyPage = () => {
   const { goHostMyPage } = useEasyNavigate();
   const { data: guestInfo } = useFetchGuestInfo(user.guestId as unknown as string);
 
+  // console.log(localStorage.key);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isChangeNicknameModalOpen, setIsChangeNicknameModalOpen] = useState(false);
 
