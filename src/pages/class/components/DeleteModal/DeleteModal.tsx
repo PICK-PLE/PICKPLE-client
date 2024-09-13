@@ -36,7 +36,7 @@ const DeleteModal = ({ onClose, noticeId, commentId }: DeleteModalProps) => {
     <article css={deleteModalContainer}>
       <div css={deleteModalWrapper}>
         <div css={detailWrapper}>
-          <p css={title}>삭제하시겠습니까?????</p>
+          <p css={title}>삭제하시겠습니까?</p>
           <div css={buttonWrapper}>
             <Button variant="xSmall" onClick={onClose} customStyle={cancelButtonStyle}>
               <p css={cancelButtonText}>취소</p>

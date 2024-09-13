@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Image, Label } from '@components';
+import { Image, Label, Modal } from '@components';
 import { useClickOutside } from '@hooks';
 import { IcLock, IcParkMore } from '@svg';
 
@@ -14,6 +14,7 @@ import {
   profileWrapper,
 } from './HostProfileCard.style';
 import DeleteCard from '../DeleteCard/DeleteCard';
+import DeleteModal from '../DeleteModal/DeleteModal';
 
 import { components } from '@schema';
 
@@ -25,21 +26,22 @@ interface HostProfileCardProps {
 const HostProfileCard = ({ data: noticeDetail }: HostProfileCardProps) => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const deleteCardRef = useClickOutside<HTMLDivElement>(() => {
-    setIsDeleteOpen(false);
-    handleModalClose();
-  });
 
+  const handleDeleteOpen = () => {
+    setIsDeleteOpen(true);
+  };
+  const handleDeleteClose = () => {
+    setIsDeleteOpen(false);
+  };
+
+  const handleModalOpen = () => {
+    handleDeleteClose();
+    setIsModalOpen(true);
+  };
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
 
-  const handleModalOpen = () => {
-    setIsModalOpen(true);
-  };
-  const handleIconClick = () => {
-    setIsDeleteOpen((prev) => !prev);
-  };
   return (
     <div css={profileContainer}>
       <section css={profileWrapper}>
@@ -55,13 +57,16 @@ const HostProfileCard = ({ data: noticeDetail }: HostProfileCardProps) => {
           <span css={iconStyle}>
             <IcParkMore onClick={handleIconClick} />
             {isDeleteOpen && (
-              <div ref={deleteCardRef}>
-                <DeleteCard
-                  isModalOpen={isModalOpen}
-                  handleModalClose={handleModalClose}
-                  handleModalOpen={handleModalOpen}
+              <DeleteCard handleModalOpen={handleModalOpen} handleDeleteClose={handleDeleteClose} />
+            )}
+            {isModalOpen && (
+              <Modal onClose={handleModalClose}>
+                <DeleteModal
+                  onClose={handleModalClose}
+                  commentId={comment.commentId ?? 0}
+                  noticeId={noticeId ?? ''}
                 />
-              </div>
+              </Modal>
             )}
           </span>
         ) : (
