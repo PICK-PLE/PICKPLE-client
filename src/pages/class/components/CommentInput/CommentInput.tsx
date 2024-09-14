@@ -1,7 +1,8 @@
+import { useQueryClient } from '@tanstack/react-query';
 import { useRef } from 'react';
 
-import { useFetchCommentList } from '@apis/domains/notice/useFetchCommentList';
 import { usePostNoticeComment } from '@apis/domains/notice/usePostNoticeComment';
+import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 
 import { IcSend } from '@svg';
 
@@ -19,7 +20,7 @@ const CommentInput = ({ noticeId }: CommentInputProps) => {
   const { mutate: leaveComment } = usePostNoticeComment();
   const commentRef = useRef<HTMLInputElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-  const { refetch: refetchComments } = useFetchCommentList(noticeId);
+  const queryClient = useQueryClient();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -31,7 +32,12 @@ const CommentInput = ({ noticeId }: CommentInputProps) => {
     if (!commentContent) return;
     leaveComment(
       { noticeId, commentContent: commentContent },
-      { onSuccess: () => refetchComments() }
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: [QUERY_KEY.COMMENT_LIST] });
+          queryClient.invalidateQueries({ queryKey: [QUERY_KEY.MOIM_NOTICE_DETAIL] });
+        },
+      }
     );
     if (commentRef.current) commentRef.current.value = '';
   };
