@@ -30,7 +30,7 @@ const MyClassManage = () => {
   const { moimId } = useParams();
   const { data: applicantData, isLoading } = useFetchSubmitterList(Number(moimId));
   const { showToast, isToastVisible } = useToast();
-  const [isOpenModal, setIsOpenModal] = useState(true);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const [isActive, setIsActive] = useState(false);
 
