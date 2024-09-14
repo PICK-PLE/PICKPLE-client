@@ -135,7 +135,7 @@ const theme = {
       ${PretendardFont};
       font-size: 1.2rem;
       font-weight: 400;
-      line-height: normal;
+      line-height: 140%;
       letter-spacing: 0px;
     `,
     'body04-m-12': css`
