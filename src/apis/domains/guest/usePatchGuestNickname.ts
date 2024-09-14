@@ -16,7 +16,7 @@ const patchGuestNickname = async (
       guestNickname,
     });
 
-    return response.data.data || null;
+    return response.data.data;
   } catch (err) {
     console.error('API error:', err);
     throw err;
