@@ -50,7 +50,7 @@ const ClassNoticeDetail = () => {
               {noticeDetail?.noticeImageUrl && (
                 <img css={noticeImage} src={noticeDetail?.noticeImageUrl} alt="공지사항 이미지" />
               )}
-              <div css={noticeDate}>{formatCreatedDate(noticeDetail?.dateTime ?? '')}시간 전</div>
+              <div css={noticeDate}>{formatCreatedDate(noticeDetail?.dateTime ?? '')}</div>
             </section>
           </article>
 
