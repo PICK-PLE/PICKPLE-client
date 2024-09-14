@@ -10,13 +10,13 @@ export const hostInfoWrapper = (theme: Theme) => css`
   border: 1px solid ${theme.color.lightgray0};
   border-radius: 10px;
   width: 100%;
-  height: 9.7rem;
-  padding: 1rem;
-  border-radius: 10px;
-  background-color: ${theme.color.bg_white0};
+  height: 10.4rem;
+
+  cursor: pointer;
 `;
 
 export const hostProfileWrapper = css`
+  height: 100%;
   ${flexGenerator('column', 'center', 'flex-start')};
   gap: 0.2rem;
 `;
@@ -24,6 +24,7 @@ export const hostProfileWrapper = css`
 export const hostNameMarkWrapper = css`
   ${flexGenerator()}
   gap: 0.8rem;
+  margin: 0.1rem 0;
 `;
 
 export const hostNameWrapper = css`
@@ -46,7 +47,7 @@ export const hostMarkMessageWrapper = (theme: Theme) => css`
 
 export const hostMarkMessageStyle = (theme: Theme) => css`
   color: ${theme.color.purple1};
-  ${theme.font['body03-r-12']}
+  ${theme.font['body03-r-12']};
 `;
 
 export const hostNameStyle = (theme: Theme) => css`
@@ -56,10 +57,18 @@ export const hostNameStyle = (theme: Theme) => css`
 
 export const hostKeywordStyle = (theme: Theme) => css`
   color: ${theme.color.purple2};
-  ${theme.font['body03-r-12']}
+  ${theme.font['body03-r-12']};
+  line-height: 140%;
 `;
 
 export const hostDescriptionWrapper = (theme: Theme) => css`
   color: ${theme.color.midgray2};
   ${theme.font['body03-r-12']};
+  line-height: 140%;
+
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
