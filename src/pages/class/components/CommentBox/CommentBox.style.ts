@@ -2,11 +2,14 @@ import { Theme, css } from '@emotion/react';
 
 import { flexGenerator } from '@styles/generator';
 
-export const commentSectionContainer = css`
+export const commentSectionContainer = (theme: Theme) => css`
   display: grid;
   width: 100%;
   height: calc(100% -6rem);
   min-width: 37.5rem;
+
+  border-bottom: 1px solid ${theme.color.lightgray0};
+  background: ${theme.color.bg_white1};
 `;
 
 export const commentContainer = (isOwner: boolean) => (theme: Theme) => css`
@@ -64,4 +67,6 @@ export const iconStyle = css`
 export const spickerIconStyle = css`
   width: 1.6rem;
   height: 1.6rem;
+
+  cursor: pointer;
 `;
