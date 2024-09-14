@@ -38,3 +38,12 @@ export const iconStyle = css`
 
   cursor: pointer;
 `;
+export const spickerIconStyle = css`
+  width: 1.6rem;
+  height: 1.6rem;
+`;
+
+export const profileNameWrapper = css`
+  display: flex;
+  gap: 0.3rem;
+`;
