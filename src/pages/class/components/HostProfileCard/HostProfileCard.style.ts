@@ -35,4 +35,6 @@ export const iconStyle = css`
   height: 2.4rem;
   position: absolute;
   right: 0.3rem;
+
+  cursor: pointer;
 `;
