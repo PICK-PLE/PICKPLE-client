@@ -39,6 +39,7 @@ import {
 } from '@pages/host/page/HostInfoPage/HostInfoPage.style';
 import { userAtom } from '@stores';
 import { IcEdit, IcSpickerMark } from '@svg';
+import Review from 'src/components/common/Review/Review';
 
 const HostInfoPage = () => {
   const [activeTab, setActiveTab] = useState<'클래스' | '리뷰'>('클래스');
@@ -156,13 +157,12 @@ const HostInfoPage = () => {
                     {hostInfoReviewData &&
                       hostInfoReviewData.map((data) => (
                         <div>
-                          <span>{data.content}</span> <span>{data.moimTitle}</span>
+                          <Review reviewData={data} />
                         </div>
                       ))}
                   </div>
                 )}
               </div>
-              //수정 필요: 리뷰카드 머지되면 반영하기
             )}
           </section>
         </article>
