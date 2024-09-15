@@ -10,6 +10,7 @@ export const QUERY_KEY = {
   MY_HOST_INFO: 'myHostInfo',
   GUEST_PARTICIPATE: 'guestParticipateMoim',
   GUEST_APPLY: 'guestApplyMoim',
+  GUEST_NICKNAME_CHANGE: 'guestNicknameChange',
   HOST_MOIM_INFO: 'hostMoimInfo',
   MOIM_DETAIL: 'moimDetail',
   APPLICANT_LIST: 'applicantList',

@@ -1,3 +1,4 @@
+import { SerializedStyles } from '@emotion/react';
 import React, { InputHTMLAttributes, forwardRef, useState } from 'react';
 
 import { IcDelete20 } from '@svg';
@@ -21,6 +22,8 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   inputLabel?: string;
   errorMessage?: string;
   isCountValue: boolean;
+  customStyle?: SerializedStyles;
+  customBorderColor?: string;
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
@@ -34,6 +37,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       errorMessage,
       maxLength = 10,
       isCountValue = false,
+      customStyle,
+      customBorderColor,
     },
     ref
   ) => {
@@ -82,7 +87,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           <div css={inputWrapperStyle}>
             <input
               ref={ref}
-              css={[inputStyle(isError, isFocused)]}
+              css={[inputStyle(isError, isFocused, customBorderColor), customStyle]}
               placeholder={placeholder}
               value={value}
               onChange={handleInputChange}
@@ -97,12 +102,14 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           </div>
         </div>
         <div css={errorAndLengthWrapper(hasError)}>
-          {isFocused && displayErrorMessage && (
+          {isFocused && displayErrorMessage ? (
             <span css={errorMessageStyle}>{displayErrorMessage}</span>
+          ) : (
+            <div></div>
           )}
           {isCountValue && (
             <span css={textLengthStyle(isError, isFocused)}>
-              {value.length}/{maxLength}
+              {value?.length}/{maxLength}
             </span>
           )}
         </div>

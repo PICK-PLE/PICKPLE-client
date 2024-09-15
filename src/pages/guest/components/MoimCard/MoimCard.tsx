@@ -40,6 +40,9 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
   const handleCardClick = () => {
     navigate(`/class/${moimId}`);
   };
+  const handleWriteReviewClick = () => {
+    navigate(`/mypage/guest/myclass/${moimId}/review/write`);
+  };
 
   return (
     <div css={moimCardLayout}>
@@ -81,7 +84,7 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
         </Button>
       ) : null}
       {moimSubmissionState === 'completed' && (
-        <Button variant="xSmall" onClick={handleButtonClick}>
+        <Button variant="xSmall" onClick={handleWriteReviewClick}>
           리뷰 쓰기
         </Button>
       )}
