@@ -107,7 +107,7 @@ const StepTwo = ({ onNext }: StepProps) => {
               onChange={(e) => handleInputChange(e, 'email')}
               placeholder="ex. pickple@gmail.com"
               isValid={isEmailValid}
-              errorMessage="유효한 이메일 주소를 \n입력해 주세요."
+              errorMessage="유효한 이메일 주소를 입력해 주세요."
               isCountValue={false}
             />
           </section>
