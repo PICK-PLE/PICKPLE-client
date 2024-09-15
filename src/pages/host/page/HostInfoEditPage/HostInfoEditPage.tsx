@@ -22,6 +22,7 @@ import {
 } from '@pages/host/page/HostInfoEditPage/HostInfoEditPage.style';
 import { IcCamera } from '@svg';
 import { handleUpload } from '@utils';
+import { useUpdateNickname } from 'src/hooks/useUpdateNickname';
 
 import { components } from '@schema';
 type HostUpdateRequest = components['schemas']['HostUpdateRequest'];
@@ -32,7 +33,7 @@ const HostInfoEditPage = () => {
   const { profileUrl, nickName, keyword, description, socialLink } = hostInfoData ?? {};
   const nicknameRef = useRef<HTMLInputElement>(null);
   const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
-  const { mutate } = usePatchHostInfo(Number(hostId), setIsNicknameDuplicate, nicknameRef);
+  const { mutateAsync } = usePatchHostInfo(Number(hostId), setIsNicknameDuplicate, nicknameRef);
   const { mutateAsync: putS3UploadMutateAsync } = usePutS3Upload();
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -44,6 +45,8 @@ const HostInfoEditPage = () => {
     description: `${description}`,
     socialLink: `${socialLink}`,
   });
+
+  const { updateNickname } = useUpdateNickname();
 
   const allInputFilled = Object.values(hostInfoValue).every((value) => value?.trim() !== '');
 
@@ -104,9 +107,13 @@ const HostInfoEditPage = () => {
     // 업로드된 이미지 URL로 hostInfoValue 업데이트
     if (imageUrl !== '') {
       const updateHostInfoValue = { ...hostInfoValue, profileUrl: imageUrl };
-      mutate({ hostId: Number(hostId), hostInfoValue: updateHostInfoValue });
+      mutateAsync({ hostId: Number(hostId), hostInfoValue: updateHostInfoValue }).then(() => {
+        updateNickname('hostNickname', hostInfoValue.nickname);
+      });
     } else {
-      mutate({ hostId: Number(hostId), hostInfoValue });
+      mutateAsync({ hostId: Number(hostId), hostInfoValue }).then(() => {
+        updateNickname('hostNickname', hostInfoValue.nickname);
+      });
     }
   };
 
