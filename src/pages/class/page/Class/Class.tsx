@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -64,9 +64,7 @@ const Class = () => {
   const { data: moimDescription, isLoading: isMoimDescriptionLoading } = useFetchMoimDescription(
     moimId ?? ''
   );
-  const { data: moimNoticeList, isLoading: isMoimNoticeListLoading } = useFetchMoimNoticeList(
-    moimId ?? ''
-  );
+  const { data: moimNoticeList } = useFetchMoimNoticeList(moimId ?? '');
   if (isMoimDetailLoading || isMoimDescriptionLoading) {
     return <Spinner />;
   }
@@ -100,7 +98,6 @@ const Class = () => {
       showToast();
     }
   };
-
   return (
     <div>
       <LogoHeader />
@@ -161,14 +158,16 @@ const Class = () => {
         <section css={[tabSectionStyle, selectTab === '클래스소개' && infoSectionStyle]}>
           {selectTab === '클래스소개' && <ClassInfo content={moimDescription ?? ''} />}
           {selectTab === '공지사항' &&
-            (isMoimNoticeListLoading ? (
-              <Spinner variant="component" />
-            ) : (moimNoticeList || []).length === 0 ? (
+            ((moimNoticeList || []).length === 0 ? (
               <ClassNoticeEmptyView />
             ) : (
               <ClassNotice noticeData={moimNoticeList || []} moimId={moimId ?? ''} />
             ))}
-          {selectTab === '리뷰' && <ClassReviewTab moimId={moimId ?? ''} />}
+          {selectTab === '리뷰' && (
+            <Suspense fallback={<Spinner />}>
+              <ClassReviewTab moimId={moimId ?? ''} />
+            </Suspense>
+          )}
         </section>
         {selectTab === '공지사항' && moimDetail?.hostId === hostId && (
           <div
