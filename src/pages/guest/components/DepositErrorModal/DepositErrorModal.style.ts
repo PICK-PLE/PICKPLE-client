@@ -8,12 +8,13 @@ export const modalContainerStyle = (theme: Theme) => css`
   z-index: 5;
   border: 1px solid ${theme.color.lightgray2};
   border-radius: 10px;
+  background-color: ${theme.color.white};
 `;
 export const articleStyle = css`
   ${flexGenerator('column')}
   width: 27.8rem;
   gap: 2rem;
-  padding: 2rem 1.8rem 4.8rem 1.8rem;
+  padding: 1.8rem 1.8rem 4.9rem 1.8rem;
 `;
 
 export const headerStyle = css`
@@ -28,6 +29,7 @@ export const iconStyle = css`
 
 export const mainStyle = css`
   ${flexGenerator('column')};
+  width: 100%;
   gap: 1.7rem;
 `;
 

@@ -38,9 +38,9 @@ const DepositErrorModal = ({ onClose }: DepositErrorModalProps) => {
             <span css={purpleStyle}>스 모임]</span>에서 입금을 진행할 수 있어요.
           </div>
           <div css={bodyTextStyle}>
-            신청 마감일 이전에 입금을 하지 않으
+            신청 마감일 이전에 입금을 하지 않으면,
             <br />
-            면, 클래스에 참가할 수 없으니 유의해 주세요!
+            클래스에 참가할 수 없으니 유의해 주세요!
           </div>
         </main>
       </article>
