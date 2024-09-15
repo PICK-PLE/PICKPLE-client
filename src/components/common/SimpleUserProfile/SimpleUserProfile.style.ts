@@ -5,7 +5,6 @@ import { flexGenerator } from '@styles/generator';
 export const profileWrapperStyle = css`
   ${flexGenerator('row', 'flex-start', 'center')}
   gap: 1rem;
-  width: 100%;
 `;
 export const profileWrapperSizeStyle = {
   xlarge: css`

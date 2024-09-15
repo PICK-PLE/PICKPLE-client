@@ -7,9 +7,10 @@ import { useFetchGuestInfo } from '@apis/domains/guest/useFetchGuestInfo';
 import { LogoHeader, Modal, NavigateBox, SimpleUserProfile } from '@components';
 import { routePath } from '@constants';
 import { useEasyNavigate } from '@hooks';
+import ChangeNicknameModal from '@pages/myPage/components/ChangeNicknameModal/ChangeNicknameModal';
 import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 import { userAtom } from '@stores';
-import { IcNext } from '@svg';
+import { IcEdit20, IcNext } from '@svg';
 import { isLoggedIn } from '@utils';
 
 import {
@@ -22,6 +23,7 @@ import {
   selectedTabStyle,
   divdier,
   profileWrapper,
+  editIconStyle,
 } from './GuestMyPage.style';
 
 const GuestMyPage = () => {
@@ -32,6 +34,7 @@ const GuestMyPage = () => {
   const { data: guestInfo } = useFetchGuestInfo(user.guestId as unknown as string);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isChangeNicknameModalOpen, setIsChangeNicknameModalOpen] = useState(false);
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -39,6 +42,14 @@ const GuestMyPage = () => {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
+  };
+
+  const handleChangeNicknameModalOpen = () => {
+    setIsChangeNicknameModalOpen(true);
+  };
+
+  const handleChangeNicknameModalClose = () => {
+    setIsChangeNicknameModalOpen(false);
   };
 
   const handleOpenKakaoClick = () => {
@@ -72,6 +83,9 @@ const GuestMyPage = () => {
             userImgUrl={guestInfo?.guestImageUrl}
             username={guestInfo?.guestNickname || user.guestNickname || ''}
           />
+          <span css={editIconStyle} onClick={handleChangeNicknameModalOpen}>
+            <IcEdit20 />
+          </span>
         </div>
         <div css={divdier} />
         <article css={navigateBoxWrapper}>
@@ -93,6 +107,12 @@ const GuestMyPage = () => {
         {isModalOpen && (
           <Modal onClose={handleModalClose}>
             <LogoutModal onClose={handleModalClose} />
+          </Modal>
+        )}
+
+        {isChangeNicknameModalOpen && (
+          <Modal onClose={handleChangeNicknameModalClose}>
+            <ChangeNicknameModal onClose={handleChangeNicknameModalClose} />
           </Modal>
         )}
       </>

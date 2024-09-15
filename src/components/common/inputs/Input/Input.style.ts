@@ -12,7 +12,7 @@ export const labelAndInputWrapper = css`
   ${flexGenerator('column', 'center', 'flex-start')}
   gap: 0.8rem;
   width: 100%;
-  min-width: 33.5rem;
+  /* min-width: 33.5rem; 삭제 모달 내 input 크기를 위해 주석처리 */
 `;
 
 export const inputLabelStyle = (theme: Theme) => css`
@@ -27,27 +27,34 @@ export const inputWrapperStyle = css`
   position: relative;
 `;
 
-export const inputStyle = (isError: boolean, isFocused: boolean) => (theme: Theme) => css`
-  width: 100%;
-  height: 5.2rem;
-  padding: 1.5rem;
-  padding-right: 6rem;
-  border: 1px solid ${isError && isFocused ? theme.color.error : theme.color.lightgray1};
-  border-radius: 10px;
+export const inputStyle =
+  (isError: boolean, isFocused: boolean, customBorderColor?: string) => (theme: Theme) => css`
+    width: 100%;
+    height: 5.2rem;
+    padding: 1.5rem;
+    padding-right: 6rem;
+    border: 1px solid
+      ${isError && isFocused ? theme.color.error : theme.color.lightgray1 || customBorderColor};
+    border-radius: 10px;
 
-  color: ${theme.color.blackgray};
-  background-color: ${theme.color.white};
-  ${theme.font['body01-r-15']}
+    color: ${theme.color.blackgray};
+    background-color: ${theme.color.white};
+    ${theme.font['body01-r-15']}
 
-  &::placeholder {
-    color: ${theme.color.midgray1};
-    ${theme.font['body06-m-15']}
-  }
+    &::placeholder {
+      color: ${theme.color.midgray1};
+      ${theme.font['body06-m-15']}
+    }
 
-  &:focus {
-    outline: none;
-  }
-`;
+    &:focus {
+      outline: none;
+    }
+    &:focus-within {
+      ${customBorderColor && !isError
+        ? `border: 1px solid ${theme.color.purple1} `
+        : `${theme.color.error}`}
+    }
+  `;
 
 export const deleteButtonStyle = css`
   position: absolute;
