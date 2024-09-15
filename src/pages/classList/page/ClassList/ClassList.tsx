@@ -77,8 +77,8 @@ const ClassList = () => {
                 css={imageStyle}
                 src={
                   selectedCategory === category
-                    ? CATEGORY_ICON[category]?.fill_selected
-                    : CATEGORY_ICON[category]?.fill
+                    ? CATEGORY_ICON[category]?.active
+                    : CATEGORY_ICON[category]?.inactive
                 }
                 alt={`icon-${category}`}
               />
