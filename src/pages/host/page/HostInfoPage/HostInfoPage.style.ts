@@ -146,3 +146,10 @@ export const hostClassCardWrapper = css`
   ${flexGenerator('column')};
   gap: 1.2rem;
 `;
+
+export const classListCardStyle = css`
+  width: 100%;
+  list-style: none;
+
+  cursor: pointer;
+`;

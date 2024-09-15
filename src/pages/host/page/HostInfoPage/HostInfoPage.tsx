@@ -13,6 +13,7 @@ import { hostNameStyle } from '@pages/class/components/HostInfoCard/HostInfoCard
 import { ClassListCard } from '@pages/classList/components';
 import HostClassEmptyView from '@pages/host/components/HostClassEmptyView/HostClassEmptyView';
 import {
+  classListCardStyle,
   hostActiveTabTextStyle,
   hostBackgroundImage,
   hostClassCardWrapper,
@@ -58,6 +59,10 @@ const HostInfoPage = () => {
 
   const handleEditIconClick = () => {
     navigate(`/host/info/edit/${hostId}`);
+  };
+
+  const handleMoimClick = (moimId: number) => {
+    navigate(`/class/${moimId}`);
   };
 
   const { data: hostInfoData } = useFetchHostInfo(Number(hostId));
@@ -139,11 +144,14 @@ const HostInfoPage = () => {
                   <div css={hostClassCardWrapper}>
                     {hostInfoClassData &&
                       hostInfoClassData.map((data) => (
-                        <ClassListCard
+                        <li
                           key={data.moimId}
-                          classListData={data}
-                          variant={'hostInfo'}
-                        />
+                          css={classListCardStyle}
+                          onClick={() => {
+                            data.moimId && handleMoimClick(data.moimId);
+                          }}>
+                          <ClassListCard classListData={data} variant={'hostInfo'} />
+                        </li>
                       ))}
                   </div>
                 )}
