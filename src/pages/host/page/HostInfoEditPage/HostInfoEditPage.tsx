@@ -150,7 +150,7 @@ const HostInfoEditPage = () => {
               errorMessage={
                 isNicknameDuplicate ? '* 이미 존재하는 닉네임이에요.' : '* 필수 입력 항목이에요.'
               }
-              maxLength={50}
+              maxLength={10}
               placeholder="닉네임을 입력해주세요"
               isCountValue={true}
             />
@@ -160,7 +160,7 @@ const HostInfoEditPage = () => {
               onChange={(e) => handleInputChange(e, 'keyword')}
               inputLabel="키워드"
               errorMessage="* 필수 입력 항목이에요."
-              maxLength={50}
+              maxLength={20}
               placeholder="키워드를 입력해주세요"
               isCountValue={true}
               isValid={isValid(hostInfoValue.keyword ?? '')}
