@@ -1,4 +1,4 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import { get } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
@@ -18,8 +18,9 @@ const getGuestInfo = async (guestId: string): Promise<GuestGetResponse | null> =
 };
 
 export const useFetchGuestInfo = (guestId: string) => {
-  return useSuspenseQuery({
+  return useQuery({
     queryKey: [QUERY_KEY.GUEST_INFO],
     queryFn: () => getGuestInfo(guestId),
+    enabled: !!guestId,
   });
 };

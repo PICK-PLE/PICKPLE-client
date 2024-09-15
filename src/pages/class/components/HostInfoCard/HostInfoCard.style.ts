@@ -58,13 +58,11 @@ export const hostNameStyle = (theme: Theme) => css`
 export const hostKeywordStyle = (theme: Theme) => css`
   color: ${theme.color.purple2};
   ${theme.font['body03-r-12']};
-  line-height: 140%;
 `;
 
 export const hostDescriptionWrapper = (theme: Theme) => css`
   color: ${theme.color.midgray2};
   ${theme.font['body03-r-12']};
-  line-height: 140%;
 
   display: -webkit-box;
   -webkit-line-clamp: 2;
