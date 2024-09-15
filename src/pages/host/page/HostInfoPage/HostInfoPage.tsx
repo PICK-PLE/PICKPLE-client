@@ -16,7 +16,7 @@ import {
   classListCardStyle,
   hostActiveTabTextStyle,
   hostBackgroundImage,
-  hostClassCardWrapper,
+  hostCardWrapper,
   hostDescriptionStyle,
   hostDescriptionWrapper,
   hostImageWrapper,
@@ -69,6 +69,13 @@ const HostInfoPage = () => {
   const { nickName, profileUrl, count, keyword, description, socialLink } = hostInfoData ?? {};
 
   const { data: hostInfoClassData } = useFetchMoimListByHost(Number(hostId));
+
+  const hostInfoClass = hostInfoClassData
+    ?.filter((data) => data.dayOfDay && data.dayOfDay >= 0) // dayOfDay가 0 이상인 요소 필터링
+    .concat(hostInfoClassData.filter((data) => data.dayOfDay && data.dayOfDay < 0)); // dayOfDay가 0 미만인 요소 뒤에 추가
+
+  console.log(hostInfoClass);
+
   const { data: hostInfoReviewData } = useFetchReviewByHost(Number(hostId));
 
   return (
@@ -141,9 +148,9 @@ const HostInfoPage = () => {
                 {hostInfoClassData?.length === 0 ? (
                   <HostClassEmptyView />
                 ) : (
-                  <div css={hostClassCardWrapper}>
-                    {hostInfoClassData &&
-                      hostInfoClassData.map((data) => (
+                  <div css={hostCardWrapper}>
+                    {hostInfoClass &&
+                      hostInfoClass.map((data) => (
                         <li
                           key={data.moimId}
                           css={classListCardStyle}
@@ -161,12 +168,12 @@ const HostInfoPage = () => {
                 {hostInfoReviewData?.length === 0 ? (
                   <ClassReviewEmptyView />
                 ) : (
-                  <div>
+                  <div css={hostCardWrapper}>
                     {hostInfoReviewData &&
                       hostInfoReviewData.map((data) => (
-                        <div>
+                        <li key={data.moimId} css={classListCardStyle}>
                           <Review reviewData={data} />
-                        </div>
+                        </li>
                       ))}
                   </div>
                 )}
