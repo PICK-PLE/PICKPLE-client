@@ -26,9 +26,10 @@ type comment = components['schemas']['CommentGetResponse'];
 interface CommentBoxProps {
   comment: comment;
   noticeId: string;
+  host: boolean | undefined;
 }
 
-const CommentBox = ({ comment, noticeId }: CommentBoxProps) => {
+const CommentBox = ({ comment, noticeId, host }: CommentBoxProps) => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -47,6 +48,8 @@ const CommentBox = ({ comment, noticeId }: CommentBoxProps) => {
     setIsModalOpen(false);
   };
 
+  const canShowIcon = host || !comment.isOwner;
+
   return (
     <article css={commentSectionContainer}>
       <div css={commentContainer(comment.isOwner ?? false)}>
@@ -63,25 +66,28 @@ const CommentBox = ({ comment, noticeId }: CommentBoxProps) => {
             )}
           </div>
           <div css={commentContent}>{comment.commentContent}</div>
-          <div css={commentTime}>{formatCreatedDate(comment.commentDate ?? '')}시간 전</div>
+          <div css={commentTime}>{formatCreatedDate(comment.commentDate ?? '')}</div>
         </section>
-        <div css={iconWrapper}>
-          <IcParkMore onClick={handleDeleteOpen} css={iconStyle} />
-          {isDeleteOpen && (
-            <DeleteCard handleModalOpen={handleModalOpen} handleDeleteClose={handleDeleteClose} />
-          )}
-          {isModalOpen && (
-            <>
-              <Modal onClose={handleModalClose}>
-                <DeleteModal
-                  onClose={handleModalClose}
-                  commentId={comment.commentId ?? 0}
-                  noticeId={noticeId ?? ''}
-                />
-              </Modal>
-            </>
-          )}
-        </div>
+
+        {canShowIcon && (
+          <div css={iconWrapper}>
+            <IcParkMore onClick={handleDeleteOpen} css={iconStyle} />
+            {isDeleteOpen && (
+              <DeleteCard handleModalOpen={handleModalOpen} handleDeleteClose={handleDeleteClose} />
+            )}
+            {isModalOpen && (
+              <>
+                <Modal onClose={handleModalClose}>
+                  <DeleteModal
+                    onClose={handleModalClose}
+                    commentId={comment.commentId ?? 0}
+                    noticeId={noticeId ?? ''}
+                  />
+                </Modal>
+              </>
+            )}
+          </div>
+        )}
       </div>
     </article>
   );
