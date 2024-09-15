@@ -29,14 +29,13 @@ type HostUpdateRequest = components['schemas']['HostUpdateRequest'];
 
 const HostInfoEditPage = () => {
   const { hostId } = useParams();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const nicknameRef = useRef<HTMLInputElement>(null);
+
   const { data: hostInfoData } = useFetchHostInfo(Number(hostId));
   const { profileUrl, nickName, keyword, description, socialLink } = hostInfoData ?? {};
-  const nicknameRef = useRef<HTMLInputElement>(null);
-  const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
-  const { mutateAsync } = usePatchHostInfo(Number(hostId), setIsNicknameDuplicate, nicknameRef);
-  const { mutateAsync: putS3UploadMutateAsync } = usePutS3Upload();
 
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
   const [selectedFiles, setSelectedFiles] = useState<File[]>();
   const [hostInfoValue, setHostInfoValue] = useState({
     profileUrl: profileUrl || images.HostProfileImage,
@@ -45,10 +44,12 @@ const HostInfoEditPage = () => {
     description: `${description}`,
     socialLink: `${socialLink}`,
   });
+  const [isSocailLinkValidate, setIsSocialLinkValidate] = useState(false);
+
+  const { mutateAsync } = usePatchHostInfo(Number(hostId), setIsNicknameDuplicate, nicknameRef);
+  const { mutateAsync: putS3UploadMutateAsync } = usePutS3Upload();
 
   const { updateNickname } = useUpdateNickname();
-
-  const allInputFilled = Object.values(hostInfoValue).every((value) => value?.trim() !== '');
 
   const handleProfileImageIconClick = () => {
     fileInputRef.current?.click();
@@ -71,6 +72,15 @@ const HostInfoEditPage = () => {
     setSelectedFiles([file]);
   };
 
+  const validateUrl = (url: string) => {
+    const urlPattern = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+\/?)([^\s]*)?$/i;
+
+    if (url.length > 0) {
+      setIsSocialLinkValidate(urlPattern.test(url));
+      return urlPattern.test(url);
+    }
+  };
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
     key: keyof HostUpdateRequest
@@ -80,11 +90,15 @@ const HostInfoEditPage = () => {
       ...prevState,
       [key]: value,
     }));
+
+    validateUrl(hostInfoValue.socialLink);
   };
 
   const isValid = (value: string) => {
     return value.trim().length >= 1;
   };
+
+  const allInputFilled = Object.values(hostInfoValue).every((value) => value?.trim() !== '');
 
   const handleButtonClick = async (): Promise<void> => {
     let imageUrl: string = '';
@@ -189,11 +203,12 @@ const HostInfoEditPage = () => {
               value={hostInfoValue.socialLink ?? ''}
               onChange={(e) => handleInputChange(e, 'socialLink')}
               inputLabel="소셜 링크"
-              errorMessage="* 필수 입력 항목이에요."
-              maxLength={50}
+              errorMessage={
+                isSocailLinkValidate ? '* 필수 입력 항목이에요.' : '올바른 URL 형식을 입력해주세요'
+              }
               placeholder="닉네임을 입력해주세요"
-              isCountValue={true}
-              isValid={isValid(hostInfoValue.socialLink ?? '')}
+              isCountValue={false}
+              isValid={isValid(hostInfoValue.socialLink ?? '') && isSocailLinkValidate}
             />
           </form>
 
