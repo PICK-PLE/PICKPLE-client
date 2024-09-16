@@ -25,3 +25,11 @@ jobs:
       - name: SSH into EC2 and execute deployment script
         run: |
           ssh -i ~/.ssh/id_rsa ubuntu@ec2-43-200-222-157.ap-northeast-2.compute.amazonaws.com "cd PICKPLE-client && sh deploy.sh"
+
+      - name: Send Slack notification
+        if: ${{ success() }}
+        uses: rtCamp/action-slack-notify@v2.1.1
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_MESSAGE: |
+            :rocket: 배포가 완료되었습니다!
