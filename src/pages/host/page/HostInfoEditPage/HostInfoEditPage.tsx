@@ -45,6 +45,7 @@ const HostInfoEditPage = () => {
     socialLink: `${socialLink}`,
   });
   const [isSocailLinkValidate, setIsSocialLinkValidate] = useState(false);
+  const [isSocialLinkTouched, setIsSocialLinkTouched] = useState(false);
 
   const { mutateAsync } = usePatchHostInfo(Number(hostId), setIsNicknameDuplicate, nicknameRef);
   const { mutateAsync: putS3UploadMutateAsync } = usePutS3Upload();
@@ -78,6 +79,8 @@ const HostInfoEditPage = () => {
     if (url.length > 0) {
       setIsSocialLinkValidate(urlPattern.test(url));
       return urlPattern.test(url);
+    } else {
+      setIsSocialLinkValidate(true); // 빈 값일 때 필수 입력 항목이라는 오류 메시지를 보여주기 위함,,
     }
   };
 
@@ -91,7 +94,10 @@ const HostInfoEditPage = () => {
       [key]: value,
     }));
 
-    validateUrl(hostInfoValue.socialLink);
+    if (key === 'socialLink') {
+      setIsSocialLinkTouched(true);
+      validateUrl(value);
+    }
   };
 
   const isValid = (value: string) => {
@@ -208,7 +214,10 @@ const HostInfoEditPage = () => {
               }
               placeholder="닉네임을 입력해주세요"
               isCountValue={false}
-              isValid={isValid(hostInfoValue.socialLink ?? '') && isSocailLinkValidate}
+              isValid={
+                !isSocialLinkTouched ||
+                (isValid(hostInfoValue.socialLink ?? '') && isSocailLinkValidate)
+              }
             />
           </form>
 
