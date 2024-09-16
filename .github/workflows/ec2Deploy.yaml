@@ -30,6 +30,7 @@ jobs:
         if: ${{ success() }}
         uses: rtCamp/action-slack-notify@v2.1.1
         env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
           SLACK_MESSAGE: |
             :rocket: 배포가 완료되었습니다!
+            
