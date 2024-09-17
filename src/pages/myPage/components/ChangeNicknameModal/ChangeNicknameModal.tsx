@@ -43,6 +43,7 @@ const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
   const { updateNickname } = useUpdateNickname();
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
+
     setValue(newValue);
   };
 
@@ -56,6 +57,12 @@ const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
       setIsNicknameDuplicate(true);
     }
   };
+
+  const isDisabled =
+    user.guestNickname === value ||
+    value?.length === 0 ||
+    value?.length > 15 ||
+    value?.trim().length === 0;
 
   return (
     <article css={changeNicknameModalLayout}>
@@ -93,7 +100,7 @@ const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
           <Button variant="xSmall" onClick={onClose} customStyle={cancelButtonStyle}>
             취소
           </Button>
-          {user.guestNickname === value || value?.length === 0 || value?.length > 15 ? (
+          {isDisabled ? (
             <Button variant="xSmall" onClick={() => {}} customStyle={disabledStyle} disabled>
               저장
             </Button>
