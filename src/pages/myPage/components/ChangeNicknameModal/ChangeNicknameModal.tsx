@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 
 import { usePatchGuestNickname } from '@apis/domains/guest/usePatchGuestNickname';
 
@@ -32,34 +32,28 @@ interface ChangeNicknameModalProps {
 const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
   const [user] = useAtom(userAtom);
   const [value, setValue] = useState(user.guestNickname ?? '');
-  const [hasError, setHasError] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
-  const { mutateAsync: changeNickname, isError } = usePatchGuestNickname(
+  const [isNicknameDuplicate, setIsNicknameDuplicate] = useState(false);
+  const nicknameRef = useRef<HTMLInputElement>(null);
+
+  const { mutateAsync: changeNickname } = usePatchGuestNickname(
     user.guestId ?? 0,
-    setErrorMessage
+    setIsNicknameDuplicate,
+    nicknameRef
   );
   const { updateNickname } = useUpdateNickname();
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setValue(newValue);
-
-    // 길이가 0 이상이고 15자 이하일 때는 에러 없음
-    if (newValue.length > 0 && newValue.length <= 15) {
-      setErrorMessage('');
-      setHasError(false);
-    } else {
-      setHasError(true);
-    }
   };
 
-  const handleButtonClick = () => {
-    if (!isError) {
-      changeNickname(value).then(() => {
-        updateNickname('guestNickname', value);
-      });
+  const handleButtonClick = async () => {
+    try {
+      await changeNickname(value);
+      updateNickname('guestNickname', value);
+
       onClose();
-    } else {
-      setErrorMessage('닉네임 변경 중 오류가 발생했습니다. 다시 시도해 주세요.');
+    } catch (err) {
+      setIsNicknameDuplicate(true);
     }
   };
 
@@ -79,12 +73,18 @@ const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
           </div>
           <section css={inputWrapper}>
             <Input
+              ref={nicknameRef}
               value={value}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                setIsNicknameDuplicate((prevState) => (prevState === true ? false : prevState));
+                handleInputChange(e);
+              }}
               isCountValue={true}
-              errorMessage={errorMessage}
+              errorMessage={
+                isNicknameDuplicate ? '* 이미 존재하는 닉네임이에요.' : '닉네임을 입력해 주세요.'
+              }
               maxLength={15}
-              isValid={!hasError}
+              isValid={!isNicknameDuplicate}
               customBorderColor={theme.color.purple1}
             />
           </section>
