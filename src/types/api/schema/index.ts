@@ -148,8 +148,7 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
-    /** 모임 상세 조회 */
-    get: operations['getMoimDetail'];
+    get?: never;
     put?: never;
     /** 모임 참여 */
     post: operations['createMoimSubmission'];
@@ -280,6 +279,23 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
+  '/api/v2/moim/{moimId}': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** 모임 상세 조회 */
+    get: operations['getMoimDetail'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
   '/api/v2/moim/{moimId}/review-list': {
     parameters: {
       query?: never;
@@ -304,6 +320,7 @@ export interface paths {
       path?: never;
       cookie?: never;
     };
+    /** 공지사항 상세 조회 */
     get: operations['getNoticeDetail'];
     put?: never;
     post?: never;
@@ -322,6 +339,23 @@ export interface paths {
     };
     /** 모임에 해당하는 공지사항 전체 조회  */
     get: operations['getNoticeListByMoimId'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v2/moim/categories': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** 카테고리 전체 조회 */
+    get: operations['getAllCategories'];
     put?: never;
     post?: never;
     delete?: never;
@@ -407,6 +441,23 @@ export interface paths {
     };
     /** 호스트 소개 조회 */
     get: operations['getHostIntro'];
+    put?: never;
+    post?: never;
+    delete?: never;
+    options?: never;
+    head?: never;
+    patch?: never;
+    trace?: never;
+  };
+  '/api/v2/guest/{guestId}/submitted-moim-list': {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    /** 게스트에 해당하는 신청한 모임 조회 */
+    get: operations['getSubmittedMoimListByGuest'];
     put?: never;
     post?: never;
     delete?: never;
@@ -551,23 +602,6 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/api/v1/moim/categories': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** 카테고리 전체 조회 */
-    get: operations['getAllCategories'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
   '/api/v1/moim/banner': {
     parameters: {
       query?: never;
@@ -619,23 +653,6 @@ export interface paths {
     patch?: never;
     trace?: never;
   };
-  '/api/v1/guest/{guestId}/submitted-moim-list': {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    /** 게스트에 해당하는 신청한 모임 조회 */
-    get: operations['getSubmittedMoimListByGuest'];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
   '/api/v2/notice/{noticeId}': {
     parameters: {
       query?: never;
@@ -646,6 +663,7 @@ export interface paths {
     get?: never;
     put?: never;
     post?: never;
+    /** 공지사항 삭제 */
     delete: operations['deleteNotice'];
     options?: never;
     head?: never;
@@ -1379,6 +1397,99 @@ export interface components {
       commentContent?: string;
       commentDate?: string;
     };
+    ApiResponseDtoMoimDetailResponse: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: components['schemas']['MoimDetailResponse'];
+    };
+    MoimDetailResponse: {
+      /** Format: int32 */
+      dayOfDay?: number;
+      title?: string;
+      dateList?: components['schemas']['DateInfo'];
+      isOffline?: boolean;
+      spot?: string;
+      /** Format: int32 */
+      maxGuest?: number;
+      /** Format: int32 */
+      fee?: number;
+      imageList?: components['schemas']['ImageInfo'];
+      /** Format: int64 */
+      hostId?: number;
+      isSubmitted?: boolean;
+    };
     ApiResponseDtoMoimGetResponse: {
       /** @enum {string} */
       httpStatus?:
@@ -1727,6 +1838,83 @@ export interface components {
       hostId?: number;
       /** Format: int32 */
       commentNumber?: number;
+    };
+    ApiResponseDtoListString: {
+      /** @enum {string} */
+      httpStatus?:
+        | '100 CONTINUE'
+        | '101 SWITCHING_PROTOCOLS'
+        | '102 PROCESSING'
+        | '103 EARLY_HINTS'
+        | '103 CHECKPOINT'
+        | '200 OK'
+        | '201 CREATED'
+        | '202 ACCEPTED'
+        | '203 NON_AUTHORITATIVE_INFORMATION'
+        | '204 NO_CONTENT'
+        | '205 RESET_CONTENT'
+        | '206 PARTIAL_CONTENT'
+        | '207 MULTI_STATUS'
+        | '208 ALREADY_REPORTED'
+        | '226 IM_USED'
+        | '300 MULTIPLE_CHOICES'
+        | '301 MOVED_PERMANENTLY'
+        | '302 FOUND'
+        | '302 MOVED_TEMPORARILY'
+        | '303 SEE_OTHER'
+        | '304 NOT_MODIFIED'
+        | '305 USE_PROXY'
+        | '307 TEMPORARY_REDIRECT'
+        | '308 PERMANENT_REDIRECT'
+        | '400 BAD_REQUEST'
+        | '401 UNAUTHORIZED'
+        | '402 PAYMENT_REQUIRED'
+        | '403 FORBIDDEN'
+        | '404 NOT_FOUND'
+        | '405 METHOD_NOT_ALLOWED'
+        | '406 NOT_ACCEPTABLE'
+        | '407 PROXY_AUTHENTICATION_REQUIRED'
+        | '408 REQUEST_TIMEOUT'
+        | '409 CONFLICT'
+        | '410 GONE'
+        | '411 LENGTH_REQUIRED'
+        | '412 PRECONDITION_FAILED'
+        | '413 PAYLOAD_TOO_LARGE'
+        | '413 REQUEST_ENTITY_TOO_LARGE'
+        | '414 URI_TOO_LONG'
+        | '414 REQUEST_URI_TOO_LONG'
+        | '415 UNSUPPORTED_MEDIA_TYPE'
+        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
+        | '417 EXPECTATION_FAILED'
+        | '418 I_AM_A_TEAPOT'
+        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
+        | '420 METHOD_FAILURE'
+        | '421 DESTINATION_LOCKED'
+        | '422 UNPROCESSABLE_ENTITY'
+        | '423 LOCKED'
+        | '424 FAILED_DEPENDENCY'
+        | '425 TOO_EARLY'
+        | '426 UPGRADE_REQUIRED'
+        | '428 PRECONDITION_REQUIRED'
+        | '429 TOO_MANY_REQUESTS'
+        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
+        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
+        | '500 INTERNAL_SERVER_ERROR'
+        | '501 NOT_IMPLEMENTED'
+        | '502 BAD_GATEWAY'
+        | '503 SERVICE_UNAVAILABLE'
+        | '504 GATEWAY_TIMEOUT'
+        | '505 HTTP_VERSION_NOT_SUPPORTED'
+        | '506 VARIANT_ALSO_NEGOTIATES'
+        | '507 INSUFFICIENT_STORAGE'
+        | '508 LOOP_DETECTED'
+        | '509 BANDWIDTH_LIMIT_EXCEEDED'
+        | '510 NOT_EXTENDED'
+        | '511 NETWORK_AUTHENTICATION_REQUIRED';
+      /** Format: int32 */
+      status?: number;
+      message?: string;
+      data?: string[];
     };
     ApiResponseDtoListMoimSubmissionAllResponse: {
       /** @enum {string} */
@@ -2687,98 +2875,6 @@ export interface components {
       hostImageUrl?: string;
       moimImageUrl?: string;
     };
-    ApiResponseDtoMoimDetailResponse: {
-      /** @enum {string} */
-      httpStatus?:
-        | '100 CONTINUE'
-        | '101 SWITCHING_PROTOCOLS'
-        | '102 PROCESSING'
-        | '103 EARLY_HINTS'
-        | '103 CHECKPOINT'
-        | '200 OK'
-        | '201 CREATED'
-        | '202 ACCEPTED'
-        | '203 NON_AUTHORITATIVE_INFORMATION'
-        | '204 NO_CONTENT'
-        | '205 RESET_CONTENT'
-        | '206 PARTIAL_CONTENT'
-        | '207 MULTI_STATUS'
-        | '208 ALREADY_REPORTED'
-        | '226 IM_USED'
-        | '300 MULTIPLE_CHOICES'
-        | '301 MOVED_PERMANENTLY'
-        | '302 FOUND'
-        | '302 MOVED_TEMPORARILY'
-        | '303 SEE_OTHER'
-        | '304 NOT_MODIFIED'
-        | '305 USE_PROXY'
-        | '307 TEMPORARY_REDIRECT'
-        | '308 PERMANENT_REDIRECT'
-        | '400 BAD_REQUEST'
-        | '401 UNAUTHORIZED'
-        | '402 PAYMENT_REQUIRED'
-        | '403 FORBIDDEN'
-        | '404 NOT_FOUND'
-        | '405 METHOD_NOT_ALLOWED'
-        | '406 NOT_ACCEPTABLE'
-        | '407 PROXY_AUTHENTICATION_REQUIRED'
-        | '408 REQUEST_TIMEOUT'
-        | '409 CONFLICT'
-        | '410 GONE'
-        | '411 LENGTH_REQUIRED'
-        | '412 PRECONDITION_FAILED'
-        | '413 PAYLOAD_TOO_LARGE'
-        | '413 REQUEST_ENTITY_TOO_LARGE'
-        | '414 URI_TOO_LONG'
-        | '414 REQUEST_URI_TOO_LONG'
-        | '415 UNSUPPORTED_MEDIA_TYPE'
-        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
-        | '417 EXPECTATION_FAILED'
-        | '418 I_AM_A_TEAPOT'
-        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
-        | '420 METHOD_FAILURE'
-        | '421 DESTINATION_LOCKED'
-        | '422 UNPROCESSABLE_ENTITY'
-        | '423 LOCKED'
-        | '424 FAILED_DEPENDENCY'
-        | '425 TOO_EARLY'
-        | '426 UPGRADE_REQUIRED'
-        | '428 PRECONDITION_REQUIRED'
-        | '429 TOO_MANY_REQUESTS'
-        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
-        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
-        | '500 INTERNAL_SERVER_ERROR'
-        | '501 NOT_IMPLEMENTED'
-        | '502 BAD_GATEWAY'
-        | '503 SERVICE_UNAVAILABLE'
-        | '504 GATEWAY_TIMEOUT'
-        | '505 HTTP_VERSION_NOT_SUPPORTED'
-        | '506 VARIANT_ALSO_NEGOTIATES'
-        | '507 INSUFFICIENT_STORAGE'
-        | '508 LOOP_DETECTED'
-        | '509 BANDWIDTH_LIMIT_EXCEEDED'
-        | '510 NOT_EXTENDED'
-        | '511 NETWORK_AUTHENTICATION_REQUIRED';
-      /** Format: int32 */
-      status?: number;
-      message?: string;
-      data?: components['schemas']['MoimDetailResponse'];
-    };
-    MoimDetailResponse: {
-      /** Format: int32 */
-      dayOfDay?: number;
-      title?: string;
-      dateList?: components['schemas']['DateInfo'];
-      isOffline?: boolean;
-      spot?: string;
-      /** Format: int32 */
-      maxGuest?: number;
-      /** Format: int32 */
-      fee?: number;
-      imageList?: components['schemas']['ImageInfo'];
-      /** Format: int64 */
-      hostId?: number;
-    };
     ApiResponseDtoSubmittionDetailResponse: {
       /** @enum {string} */
       httpStatus?:
@@ -3113,83 +3209,6 @@ export interface components {
     MoimDescriptionResponse: {
       description?: string;
     };
-    ApiResponseDtoListString: {
-      /** @enum {string} */
-      httpStatus?:
-        | '100 CONTINUE'
-        | '101 SWITCHING_PROTOCOLS'
-        | '102 PROCESSING'
-        | '103 EARLY_HINTS'
-        | '103 CHECKPOINT'
-        | '200 OK'
-        | '201 CREATED'
-        | '202 ACCEPTED'
-        | '203 NON_AUTHORITATIVE_INFORMATION'
-        | '204 NO_CONTENT'
-        | '205 RESET_CONTENT'
-        | '206 PARTIAL_CONTENT'
-        | '207 MULTI_STATUS'
-        | '208 ALREADY_REPORTED'
-        | '226 IM_USED'
-        | '300 MULTIPLE_CHOICES'
-        | '301 MOVED_PERMANENTLY'
-        | '302 FOUND'
-        | '302 MOVED_TEMPORARILY'
-        | '303 SEE_OTHER'
-        | '304 NOT_MODIFIED'
-        | '305 USE_PROXY'
-        | '307 TEMPORARY_REDIRECT'
-        | '308 PERMANENT_REDIRECT'
-        | '400 BAD_REQUEST'
-        | '401 UNAUTHORIZED'
-        | '402 PAYMENT_REQUIRED'
-        | '403 FORBIDDEN'
-        | '404 NOT_FOUND'
-        | '405 METHOD_NOT_ALLOWED'
-        | '406 NOT_ACCEPTABLE'
-        | '407 PROXY_AUTHENTICATION_REQUIRED'
-        | '408 REQUEST_TIMEOUT'
-        | '409 CONFLICT'
-        | '410 GONE'
-        | '411 LENGTH_REQUIRED'
-        | '412 PRECONDITION_FAILED'
-        | '413 PAYLOAD_TOO_LARGE'
-        | '413 REQUEST_ENTITY_TOO_LARGE'
-        | '414 URI_TOO_LONG'
-        | '414 REQUEST_URI_TOO_LONG'
-        | '415 UNSUPPORTED_MEDIA_TYPE'
-        | '416 REQUESTED_RANGE_NOT_SATISFIABLE'
-        | '417 EXPECTATION_FAILED'
-        | '418 I_AM_A_TEAPOT'
-        | '419 INSUFFICIENT_SPACE_ON_RESOURCE'
-        | '420 METHOD_FAILURE'
-        | '421 DESTINATION_LOCKED'
-        | '422 UNPROCESSABLE_ENTITY'
-        | '423 LOCKED'
-        | '424 FAILED_DEPENDENCY'
-        | '425 TOO_EARLY'
-        | '426 UPGRADE_REQUIRED'
-        | '428 PRECONDITION_REQUIRED'
-        | '429 TOO_MANY_REQUESTS'
-        | '431 REQUEST_HEADER_FIELDS_TOO_LARGE'
-        | '451 UNAVAILABLE_FOR_LEGAL_REASONS'
-        | '500 INTERNAL_SERVER_ERROR'
-        | '501 NOT_IMPLEMENTED'
-        | '502 BAD_GATEWAY'
-        | '503 SERVICE_UNAVAILABLE'
-        | '504 GATEWAY_TIMEOUT'
-        | '505 HTTP_VERSION_NOT_SUPPORTED'
-        | '506 VARIANT_ALSO_NEGOTIATES'
-        | '507 INSUFFICIENT_STORAGE'
-        | '508 LOOP_DETECTED'
-        | '509 BANDWIDTH_LIMIT_EXCEEDED'
-        | '510 NOT_EXTENDED'
-        | '511 NETWORK_AUTHENTICATION_REQUIRED';
-      /** Format: int32 */
-      status?: number;
-      message?: string;
-      data?: string[];
-    };
     ApiResponseDtoLong: {
       /** @enum {string} */
       httpStatus?:
@@ -3444,6 +3463,7 @@ export interface components {
       moimImage?: string;
     };
   };
+
   responses: never;
   parameters: never;
   requestBodies: never;
@@ -3807,37 +3827,6 @@ export interface operations {
       };
     };
   };
-  getMoimDetail: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        moimId: number;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description 모임 상세 정보 조회 성공 */
-      20006: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['ApiResponseDtoMoimDetailResponse'];
-        };
-      };
-      /** @description 존재하지 않는 모임입니다. */
-      40404: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['ApiResponseDtoMoimDetailResponse'];
-        };
-      };
-    };
-  };
   createMoimSubmission: {
     parameters: {
       query?: never;
@@ -3920,8 +3909,8 @@ export interface operations {
           '*/*': components['schemas']['ApiResponseDto'];
         };
       };
-      /** @description 존재하지 않는 호스트 승인 신청입니다. */
-      40409: {
+      /** @description 호스트 승인 신청이 존재하지 않습니다. */
+      40408: {
         headers: {
           [name: string]: unknown;
         };
@@ -4198,6 +4187,37 @@ export interface operations {
       };
     };
   };
+  getMoimDetail: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path: {
+        moimId: number;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description 모임 상세 정보 조회 성공 */
+      20006: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ApiResponseDtoMoimDetailResponse'];
+        };
+      };
+      /** @description 존재하지 않는 모임입니다. */
+      40404: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ApiResponseDtoMoimDetailResponse'];
+        };
+      };
+    };
+  };
   getReviewListByMoim: {
     parameters: {
       query?: never;
@@ -4231,9 +4251,7 @@ export interface operations {
   };
   getNoticeDetail: {
     parameters: {
-      query: {
-        userId: number;
-      };
+      query?: never;
       header?: never;
       path: {
         moimId: number;
@@ -4243,8 +4261,17 @@ export interface operations {
     };
     requestBody?: never;
     responses: {
-      /** @description OK */
-      200: {
+      /** @description 공지사항 상세 조회 성공 */
+      20031: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ApiResponseDtoNoticeDetailGetResponse'];
+        };
+      };
+      /** @description 존재하지 않는 공지사항입니다. */
+      40409: {
         headers: {
           [name: string]: unknown;
         };
@@ -4281,6 +4308,26 @@ export interface operations {
         };
         content: {
           '*/*': components['schemas']['ApiResponseDtoListNoticeListGetByMoimResponse'];
+        };
+      };
+    };
+  };
+  getAllCategories: {
+    parameters: {
+      query?: never;
+      header?: never;
+      path?: never;
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description 카테고리 전체 조회 성공 */
+      20004: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ApiResponseDtoListString'];
         };
       };
     };
@@ -4332,8 +4379,26 @@ export interface operations {
           '*/*': components['schemas']['ApiResponseDtoHostGetResponse'];
         };
       };
+      /** @description 대기중인 호스트 승인 신청이 있습니다. */
+      40003: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ApiResponseDtoHostGetResponse'];
+        };
+      };
       /** @description 존재하지 않는 호스트입니다. */
       40405: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ApiResponseDtoHostGetResponse'];
+        };
+      };
+      /** @description 호스트 승인 신청이 존재하지 않습니다. */
+      40408: {
         headers: {
           [name: string]: unknown;
         };
@@ -4441,6 +4506,39 @@ export interface operations {
         };
         content: {
           '*/*': components['schemas']['ApiResponseDtoHostIntroGetResponse'];
+        };
+      };
+    };
+  };
+  getSubmittedMoimListByGuest: {
+    parameters: {
+      query: {
+        moimSubmissionState: string;
+      };
+      header?: never;
+      path: {
+        guestId: number;
+      };
+      cookie?: never;
+    };
+    requestBody?: never;
+    responses: {
+      /** @description 게스트에 해당하는 신청한 모임 리스트 조회 성공 */
+      20018: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ApiResponseDtoListSubmittedMoimByGuestResponse'];
+        };
+      };
+      /** @description 존재하지 않는 게스트입니다. */
+      40403: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ApiResponseDtoListSubmittedMoimByGuestResponse'];
         };
       };
     };
@@ -4710,26 +4808,6 @@ export interface operations {
       };
     };
   };
-  getAllCategories: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description 카테고리 전체 조회 성공 */
-      20004: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['ApiResponseDtoListString'];
-        };
-      };
-    };
-  };
   getMoimBanner: {
     parameters: {
       query?: never;
@@ -4794,55 +4872,11 @@ export interface operations {
           '*/*': components['schemas']['ApiResponseDtoListMoimListByHostAndMoimStateGetResponse'];
         };
       };
-      /** @description 호스트와 상태에 해당하는 모임이 없습니다. */
-      40408: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['ApiResponseDtoListMoimListByHostAndMoimStateGetResponse'];
-        };
-      };
-    };
-  };
-  getSubmittedMoimListByGuest: {
-    parameters: {
-      query: {
-        moimSubmissionState: string;
-      };
-      header?: never;
-      path: {
-        guestId: number;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description 게스트에 해당하는 신청한 모임 리스트 조회 성공 */
-      20018: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['ApiResponseDtoListSubmittedMoimByGuestResponse'];
-        };
-      };
-      /** @description 존재하지 않는 게스트입니다. */
-      40403: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['ApiResponseDtoListSubmittedMoimByGuestResponse'];
-        };
-      };
     };
   };
   deleteNotice: {
     parameters: {
-      query: {
-        hostId: number;
-      };
+      query?: never;
       header?: never;
       path: {
         noticeId: number;
@@ -4851,8 +4885,17 @@ export interface operations {
     };
     requestBody?: never;
     responses: {
-      /** @description OK */
-      200: {
+      /** @description 공지사항 삭제 성공 */
+      20026: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ApiResponseDto'];
+        };
+      };
+      /** @description 존재하지 않는 공지사항입니다. */
+      40409: {
         headers: {
           [name: string]: unknown;
         };
