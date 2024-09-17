@@ -1,6 +1,8 @@
+import { useAtom } from 'jotai';
 import { useState } from 'react';
 
 import { Image, Label, Modal } from '@components';
+import { userAtom } from '@stores';
 import { IcLock, IcParkMore, IcSpickerMark } from '@svg';
 
 import {
@@ -29,6 +31,7 @@ interface HostProfileCardProps {
 const HostProfileCard = ({ data: noticeDetail, noticeId, moimId }: HostProfileCardProps) => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [user] = useAtom(userAtom);
 
   const handleDeleteOpen = () => {
     setIsDeleteOpen(true);
@@ -61,7 +64,7 @@ const HostProfileCard = ({ data: noticeDetail, noticeId, moimId }: HostProfileCa
         </div>
       </section>
       <div css={iconWrapper}>
-        {noticeDetail.isPrivate === false ? (
+        {noticeDetail.hostNickname === user.hostNickname && noticeDetail.isPrivate === false ? (
           <span css={iconStyle}>
             <IcParkMore onClick={handleDeleteOpen} />
             {isDeleteOpen && (
@@ -74,9 +77,11 @@ const HostProfileCard = ({ data: noticeDetail, noticeId, moimId }: HostProfileCa
             )}
           </span>
         ) : (
-          <Label variant="category" icon={<IcLock />}>
-            참가자
-          </Label>
+          noticeDetail.isPrivate && (
+            <Label variant="category" icon={<IcLock />}>
+              참가자
+            </Label>
+          )
         )}
       </div>
     </div>

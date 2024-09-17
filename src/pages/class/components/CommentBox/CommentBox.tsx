@@ -1,6 +1,8 @@
+import { useAtom } from 'jotai';
 import { useState } from 'react';
 
 import { Image, Modal } from '@components';
+import { userAtom } from '@stores';
 import { IcParkMore, IcSpickerMark } from '@svg';
 import { formatCreatedDate } from '@utils';
 
@@ -32,6 +34,7 @@ interface CommentBoxProps {
 const CommentBox = ({ comment, noticeId, host }: CommentBoxProps) => {
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [user] = useAtom(userAtom);
 
   const handleDeleteOpen = () => {
     setIsDeleteOpen(true);
@@ -48,7 +51,7 @@ const CommentBox = ({ comment, noticeId, host }: CommentBoxProps) => {
     setIsModalOpen(false);
   };
 
-  const canShowIcon = host || !comment.isOwner;
+  const canShowIcon = host || comment.commenterNickname === user.guestNickname;
 
   return (
     <article css={commentSectionContainer}>
