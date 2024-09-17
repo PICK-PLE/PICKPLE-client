@@ -23,6 +23,7 @@ const CommentInput = ({ noticeId }: CommentInputProps) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (value.trim().length === 0) return;
     submitComment();
   };
 
@@ -62,7 +63,7 @@ const CommentInput = ({ noticeId }: CommentInputProps) => {
         />
       </div>
       <div css={iconStyle} onClick={handleIconClick}>
-        {value.length === 0 ? <IcSend /> : <IcSendAble />}
+        {value.trim().length === 0 ? <IcSend /> : <IcSendAble />}
       </div>
     </form>
   );
