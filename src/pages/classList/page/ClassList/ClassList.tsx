@@ -8,11 +8,32 @@ import { LogoHeader, Spinner } from '@components';
 import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
 import { ClassListEmptyView, ClassListCard } from '@pages/classList/components';
 import Error from '@pages/error/Error';
+import {
+  IcNjobActive,
+  IcInvestmentActive,
+  IcEmploymentActive,
+  IcProductivityActive,
+  IcSpeechActive,
+  IcSelfActive,
+  IcMarketingActive,
+  IcEducationActive,
+  IcItActive,
+} from 'src/assets/svg/active';
+import {
+  IcNjobInactive,
+  IcInvestmentInactive,
+  IcEmploymentInactive,
+  IcProductivityInactive,
+  IcSpeechInactive,
+  IcSelfInactive,
+  IcMarketingInactive,
+  IcEducationInactive,
+  IcItInactive,
+} from 'src/assets/svg/inactive';
 
 import {
   categoriesContainer,
   categoryWrapper,
-  imageStyle,
   mainLayout,
   moimCardStyle,
   moimListContainer,
@@ -21,6 +42,31 @@ import {
   titleStyle,
   unSeletedIconNameStyle,
 } from './ClassList.style';
+
+const activeCategoryIcon: { [key: string]: JSX.Element } = {
+  njob: <IcNjobActive />,
+  investment: <IcInvestmentActive />,
+  startup: <img src={CATEGORY_ICON.startup.active} alt={`startup-icon-active`} />,
+  employment: <IcEmploymentActive />,
+  productivity: <IcProductivityActive />,
+  speech: <IcSpeechActive />,
+  self: <IcSelfActive />,
+  marketing: <IcMarketingActive />,
+  education: <IcEducationActive />,
+  it: <IcItActive />,
+};
+const inactiveCategoryIcon: { [key: string]: JSX.Element } = {
+  njob: <IcNjobInactive />,
+  investment: <IcInvestmentInactive />,
+  startup: <img src={CATEGORY_ICON.startup.inactive} alt={`startup-icon-inactive`} />,
+  employment: <IcEmploymentInactive />,
+  productivity: <IcProductivityInactive />,
+  speech: <IcSpeechInactive />,
+  self: <IcSelfInactive />,
+  marketing: <IcMarketingInactive />,
+  education: <IcEducationInactive />,
+  it: <IcItInactive />,
+};
 
 const ClassList = () => {
   const navigate = useNavigate();
@@ -75,15 +121,9 @@ const ClassList = () => {
         {(categories ?? []).map((category) => {
           return (
             <li css={categoryWrapper} key={category} onClick={() => handleCategoryClick(category)}>
-              <img
-                css={imageStyle}
-                src={
-                  selectedCategory === category
-                    ? CATEGORY_ICON[category]?.active
-                    : CATEGORY_ICON[category]?.inactive
-                }
-                alt={`icon-${category}`}
-              />
+              {selectedCategory === category
+                ? activeCategoryIcon[category]
+                : inactiveCategoryIcon[category]}
               <p
                 css={selectedCategory === category ? seletedIconNameStyle : unSeletedIconNameStyle}>
                 {CATEGORY_NAME[category]}

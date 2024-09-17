@@ -13,10 +13,11 @@ export const liStyle = css`
   ${flexGenerator('column')}
   gap: 0.5rem;
   list-style: none;
-`;
-export const imgStyle = css`
-  width: 5.7rem;
-  height: 5.7rem;
+
+  svg {
+    width: 5.7rem;
+    height: 5.7rem;
+  }
 `;
 
 export const labelStyle = (theme: Theme) => css`
