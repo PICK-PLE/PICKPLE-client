@@ -36,7 +36,8 @@ export const headerSecondH1Style = (theme: Theme) => css`
   ${theme.font['body02-r-14']};
 `;
 export const headerSpanStyle = (theme: Theme) => css`
-  color: ${theme.color.midgray2} ${theme.font['subhead05-sb-14']};
+  color: ${theme.color.purple1};
+  ${theme.font['subhead05-sb-14']};
 `;
 
 export const mainStyle = css`
@@ -75,7 +76,7 @@ export const payButtonSectionStyle = css`
 `;
 
 export const completeButtonCustomStyle = (theme: Theme) => css`
-  ${theme.font['subhead05-sb-14']}
+  ${theme.font['head04-b-16']}
 `;
 
 export const depositErrorButtonWrapper = css`
@@ -91,7 +92,7 @@ export const depositErrorButtonStyle = (theme: Theme) => css`
   color: ${theme.color.midgray1};
   border: none;
   border-bottom: 1px solid ${theme.color.midgray1};
-  ${theme.font['subhead03-m-16']}
+  ${theme.font['subhead06-m-14']}
 
   cursor: pointer;
 `;
@@ -101,4 +102,5 @@ export const depositErrorModalStyle = css`
   bottom: 4rem;
   left: 50%;
   transform: translateX(-50%);
+  box-shadow: 0rem 0rem 6rem 0rem rgba(0, 0, 0, 0.2);
 `;
