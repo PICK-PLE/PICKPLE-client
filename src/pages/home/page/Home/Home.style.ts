@@ -66,7 +66,7 @@ export const categoryStyle = css`
 
 export const iconStyle = css`
   ${flexGenerator('column')};
-
+  gap: 0.5rem;
   cursor: pointer;
 `;
 

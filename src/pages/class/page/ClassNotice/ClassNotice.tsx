@@ -24,7 +24,6 @@ const ClassNotice = () => {
   const [noticeContent, setNoticeContent] = useState('');
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
-  const [isPrivate] = useState(true);
   const [isOnlyGuest, setIsOnlyGuest] = useState(false);
 
   const putS3UploadMutation = usePutS3Upload();
@@ -66,7 +65,7 @@ const ClassNotice = () => {
       noticeTitle,
       noticeContent,
       imageUrl,
-      isPrivate,
+      isPrivate: isOnlyGuest,
     };
 
     await mutateAsync({ params, moimId: moimIdNumber });
@@ -104,7 +103,7 @@ const ClassNotice = () => {
 
           <CheckLabel
             isChecked={isOnlyGuest}
-            text={'게스트만 볼 수 있어요!'}
+            text={'참가자만 볼 수 있어요!'}
             onClick={handleCheckboxChange}
           />
         </main>

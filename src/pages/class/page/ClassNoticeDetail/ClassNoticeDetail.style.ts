@@ -18,7 +18,9 @@ export const commentSectionWrapper = css`
 `;
 
 export const noticeLayout = css`
-  height: calc(100dvh - 6rem);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15rem;
 `;
 
 export const commentNumber = (theme: Theme) => css`

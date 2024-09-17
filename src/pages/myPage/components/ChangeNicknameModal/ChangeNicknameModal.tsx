@@ -6,6 +6,7 @@ import { usePatchGuestNickname } from '@apis/domains/guest/usePatchGuestNickname
 import { Button, Input } from '@components';
 import { userAtom } from '@stores';
 import theme from '@styles/theme';
+import { useUpdateNickname } from 'src/hooks/useUpdateNickname';
 
 import {
   abledStyle,
@@ -29,7 +30,7 @@ interface ChangeNicknameModalProps {
 }
 
 const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
-  const [user, setUser] = useAtom(userAtom);
+  const [user] = useAtom(userAtom);
   const [value, setValue] = useState(user.guestNickname ?? '');
   const [hasError, setHasError] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -37,6 +38,7 @@ const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
     user.guestId ?? 0,
     setErrorMessage
   );
+  const { updateNickname } = useUpdateNickname();
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     setValue(newValue);
@@ -53,15 +55,7 @@ const ChangeNicknameModal = ({ onClose }: ChangeNicknameModalProps) => {
   const handleButtonClick = () => {
     if (!isError) {
       changeNickname(value).then(() => {
-        setUser({ ...user, guestNickname: value });
-
-        const storedUser = localStorage.getItem('user');
-        if (storedUser) {
-          const updatedUser = JSON.parse(storedUser);
-          updatedUser.guestNickname = value;
-
-          localStorage.setItem('user', JSON.stringify(updatedUser));
-        }
+        updateNickname('guestNickname', value);
       });
       onClose();
     } else {

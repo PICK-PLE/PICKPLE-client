@@ -34,7 +34,7 @@ const HostInfoCard = ({ hostId }: HostInfoCardProps) => {
   };
   return (
     <article css={hostInfoWrapper} onClick={handleHostInfoClick}>
-      <Image variant="round" width="6rem" src={images.HostProfileImage || hostImageUrl} />
+      <Image variant="round" width="6rem" src={hostImageUrl || images.HostProfileImage} />
 
       <section css={hostProfileWrapper}>
         <div css={hostNameMarkWrapper}>

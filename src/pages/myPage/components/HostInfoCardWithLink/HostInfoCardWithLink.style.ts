@@ -27,6 +27,8 @@ export const hostInfoCardWrapper = (theme: Theme) => css`
   border-radius: 10px;
 
   padding: 2rem 1rem 2rem 1.4rem;
+
+  cursor: pointer;
 `;
 
 export const hostInfoWrapper = css`
@@ -93,4 +95,6 @@ export const hostCountColorStyle = (theme: Theme) => css`
 export const nextIconStyle = css`
   width: 2.4rem;
   height: 2.4rem;
+
+  cursor: pointer;
 `;

@@ -4,12 +4,20 @@ import { flexGenerator } from '@styles/generator';
 
 export const modalContainerStyle = css`
   ${flexGenerator('column')}
-  gap: 2.5rem;
-  padding: 4rem 1.7rem 1.7rem 1.7rem;
+  padding: 1.8rem 1.7rem 1.3rem;
+`;
+export const closeIconLayout = css`
+  ${flexGenerator('row', 'end', 'center')}
+  width: 100%;
+`;
+export const closeIconStyle = css`
+  width: 2.4rem;
+  height: 2.4rem;
 `;
 export const headerstyle = css`
   ${flexGenerator('column')}
   gap: 1rem;
+  margin-top: 0.8rem;
 `;
 export const headerFirstH1Style = css`
   ${flexGenerator()}
@@ -34,6 +42,7 @@ export const headerSpanStyle = (theme: Theme) => css`
 export const mainStyle = css`
   ${flexGenerator('column')}
   gap: 1.4rem;
+  margin-top: 2.2rem;
 `;
 
 export const mainFirstSectionStyle = (theme: Theme) => css`
@@ -67,4 +76,29 @@ export const payButtonSectionStyle = css`
 
 export const completeButtonCustomStyle = (theme: Theme) => css`
   ${theme.font['subhead05-sb-14']}
+`;
+
+export const depositErrorButtonWrapper = css`
+  ${flexGenerator()}
+  width: 100%;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+`;
+export const depositErrorButtonStyle = (theme: Theme) => css`
+  padding: 0;
+  background-color: transparent;
+  color: ${theme.color.midgray1};
+  border: none;
+  border-bottom: 1px solid ${theme.color.midgray1};
+  ${theme.font['subhead03-m-16']}
+
+  cursor: pointer;
+`;
+
+export const depositErrorModalStyle = css`
+  position: absolute;
+  bottom: 4rem;
+  left: 50%;
+  transform: translateX(-50%);
 `;

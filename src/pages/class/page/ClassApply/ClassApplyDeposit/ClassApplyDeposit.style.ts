@@ -36,14 +36,3 @@ export const depositFooterStyle = css`
   width: 100%;
   margin-top: auto;
 `;
-
-export const depositCautionTextStyle = (theme: Theme) => css`
-  padding: 0;
-  background-color: transparent;
-  color: ${theme.color.midgray1};
-  border: none;
-  border-bottom: 1px solid ${theme.color.midgray1};
-  ${theme.font['subhead03-m-16']}
-
-  cursor: pointer;
-`;

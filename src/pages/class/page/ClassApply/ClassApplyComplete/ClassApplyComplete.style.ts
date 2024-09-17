@@ -34,7 +34,6 @@ export const completeCautionStyle = (theme: Theme) => css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   gap: 1rem;
   padding: 1.5rem;
-  height: 19.5rem;
   background-color: ${theme.color.bg_white0};
   border-radius: 10px;
 `;
@@ -46,7 +45,6 @@ export const completeCautionTitleStyle = (theme: Theme) => css`
 
 export const completeTextStyle = (theme: Theme) => css`
   padding-left: 1.5rem;
-  margin-bottom: 1rem;
 
   li {
     ${theme.font['body02-r-14']}

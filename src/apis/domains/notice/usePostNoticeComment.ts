@@ -31,7 +31,7 @@ export const usePostNoticeComment = () => {
     mutationFn: ({ noticeId, commentContent }: { noticeId: string; commentContent: string }) =>
       postNoticeComment(noticeId, commentContent),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.NOTICE_COMMENT] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.COMMENT_LIST] });
     },
   });
 };

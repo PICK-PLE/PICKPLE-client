@@ -39,7 +39,6 @@ const Home = () => {
   const handleClickBanner = () => {
     navigate(`/article/picksight`);
   };
-
   return (
     <>
       <LogoHeader isIcon />
@@ -76,7 +75,7 @@ const Home = () => {
                   <li key={index} css={iconStyle} onClick={() => handleCategoryClick(category)}>
                     <img
                       css={imageStyle}
-                      src={CATEGORY_ICON[category].fill_selected}
+                      src={CATEGORY_ICON[category].default}
                       alt={`icon-${index}`}
                     />
                     <p css={iconNameStyle}>{CATEGORY_NAME[category]}</p>

@@ -31,7 +31,7 @@ const HostMyClassCard = ({ hostMyClassData }: HostMyClassCardProps) => {
   };
 
   const handleButtonClick = () => {
-    navigate(`/host/myclass/manage/${moimId}`);
+    navigate(`/mypage/host/myclass/manage/${moimId}`);
   };
   return (
     <article css={cardContainer}>

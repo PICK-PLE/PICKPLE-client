@@ -13,9 +13,10 @@ import { hostNameStyle } from '@pages/class/components/HostInfoCard/HostInfoCard
 import { ClassListCard } from '@pages/classList/components';
 import HostClassEmptyView from '@pages/host/components/HostClassEmptyView/HostClassEmptyView';
 import {
+  classListCardStyle,
   hostActiveTabTextStyle,
   hostBackgroundImage,
-  hostClassCardWrapper,
+  hostCardWrapper,
   hostDescriptionStyle,
   hostDescriptionWrapper,
   hostImageWrapper,
@@ -39,6 +40,7 @@ import {
 } from '@pages/host/page/HostInfoPage/HostInfoPage.style';
 import { userAtom } from '@stores';
 import { IcEdit, IcSpickerMark } from '@svg';
+import Review from 'src/components/common/Review/Review';
 
 const HostInfoPage = () => {
   const [activeTab, setActiveTab] = useState<'클래스' | '리뷰'>('클래스');
@@ -59,10 +61,21 @@ const HostInfoPage = () => {
     navigate(`/host/info/edit/${hostId}`);
   };
 
+  const handleMoimClick = (moimId: number) => {
+    if (moimId) {
+      navigate(`/class/${moimId}`);
+    }
+  };
+
   const { data: hostInfoData } = useFetchHostInfo(Number(hostId));
   const { nickName, profileUrl, count, keyword, description, socialLink } = hostInfoData ?? {};
 
   const { data: hostInfoClassData } = useFetchMoimListByHost(Number(hostId));
+
+  const sortedHostInfoByDayOfDay = hostInfoClassData
+    ?.filter((data) => data.dayOfDay && data.dayOfDay >= 0) // dayOfDay가 0 이상인 요소 필터링
+    .concat(hostInfoClassData.filter((data) => data.dayOfDay && data.dayOfDay < 0)); // dayOfDay가 0 미만인 요소 뒤에 추가
+
   const { data: hostInfoReviewData } = useFetchReviewByHost(Number(hostId));
 
   return (
@@ -135,14 +148,17 @@ const HostInfoPage = () => {
                 {hostInfoClassData?.length === 0 ? (
                   <HostClassEmptyView />
                 ) : (
-                  <div css={hostClassCardWrapper}>
-                    {hostInfoClassData &&
-                      hostInfoClassData.map((data) => (
-                        <ClassListCard
+                  <div css={hostCardWrapper}>
+                    {sortedHostInfoByDayOfDay &&
+                      sortedHostInfoByDayOfDay.map((data) => (
+                        <li
                           key={data.moimId}
-                          classListData={data}
-                          variant={'hostInfo'}
-                        />
+                          css={classListCardStyle}
+                          onClick={() => {
+                            handleMoimClick(data.moimId ?? 0);
+                          }}>
+                          <ClassListCard classListData={data} variant={'hostInfo'} />
+                        </li>
                       ))}
                   </div>
                 )}
@@ -152,17 +168,16 @@ const HostInfoPage = () => {
                 {hostInfoReviewData?.length === 0 ? (
                   <ClassReviewEmptyView />
                 ) : (
-                  <div>
+                  <div css={hostCardWrapper}>
                     {hostInfoReviewData &&
                       hostInfoReviewData.map((data) => (
-                        <div>
-                          <span>{data.content}</span> <span>{data.moimTitle}</span>
-                        </div>
+                        <li key={data.moimId} css={classListCardStyle}>
+                          <Review reviewData={data} />
+                        </li>
                       ))}
                   </div>
                 )}
               </div>
-              //수정 필요: 리뷰카드 머지되면 반영하기
             )}
           </section>
         </article>

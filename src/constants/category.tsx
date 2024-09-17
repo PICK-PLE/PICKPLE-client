@@ -1,24 +1,10 @@
-import { ReactNode } from 'react';
-
-import {
-  IcEmploymentSmall,
-  IcHealthSmall,
-  IcHobbySmall,
-  IcInvestmentSmall,
-  IcLanguageSmall,
-  IcLifestyleSmall,
-  IcMindSmall,
-  IcNjobSmall,
-  IcProductivitySmall,
-  IcStartupSmall,
-} from '@svg';
-
 interface CategoryIcon {
   [key: string]: {
-    fill_selected: string;
-    fill: string;
-    stroke_selected: string;
-    stroke: string;
+    default: string;
+    active: string;
+    inactive: string;
+    line_active: string;
+    line_inactive: string;
   };
 }
 
@@ -26,84 +12,77 @@ interface CategoryName {
   [key: string]: string;
 }
 
-interface CategorySmallIconType {
-  [key: string]: ReactNode;
-}
-
 export const CATEGORY_ICON: CategoryIcon = {
   njob: {
-    fill_selected: '/image/fill-selected/image_njob_fill_selected.png',
-    fill: '/image/fill/image_njob_fill.png',
-    stroke_selected: '/image/stroke-selected/image_njob_stroke_selected.png',
-    stroke: '/image/stroke/image_njob_stroke.png',
+    active: '/image/categories/active/image_njob_active.svg',
+    default: '/image/categories/default/image_njob_default.svg',
+    inactive: '/image/categories/inactive/image_njob_inactive.svg',
+    line_active: '/image/categories/line-active/image_njob_line_active.svg',
+    line_inactive: '/image/categories/line-inactive/image_njob_line_inactive.svg',
   },
   investment: {
-    fill_selected: '/image/fill-selected/image_investment_fill_selected.png',
-    fill: '/image/fill/image_investment_fill.png',
-    stroke_selected: '/image/stroke-selected/image_investment_stroke_selected.png',
-    stroke: '/image/stroke/image_investment_stroke.png',
+    active: '/image/categories/active/image_investment_active.svg',
+    default: '/image/categories/default/image_investment_default.svg',
+    inactive: '/image/categories/inactive/image_investment_inactive.svg',
+    line_active: '/image/categories/line-active/image_investment_line_active.svg',
+    line_inactive: '/image/categories/line-inactive/image_investment_line_inactive.svg',
   },
   startup: {
-    fill_selected: '/image/fill-selected/image_startup_fill_selected.png',
-    fill: '/image/fill/image_startup_fill.png',
-    stroke_selected: '/image/stroke-selected/image_startup_stroke_selected.png',
-    stroke: '/image/stroke/image_startup_stroke.png',
+    active: '/image/categories/active/image_startup_active.png',
+    default: '/image/categories/default/image_startup_default.png',
+    inactive: '/image/categories/inactive/image_startup_inactive.png',
+    line_active: '/image/categories/line-active/image_startup_line_active.svg',
+    line_inactive: '/image/categories/line-inactive/image_startup_line_inactive.svg',
   },
   employment: {
-    fill_selected: '/image/fill-selected/image_employment_fill_selected.png',
-    fill: '/image/fill/image_employment_fill.png',
-    stroke_selected: '/image/stroke-selected/image_employment_stroke_selected.png',
-    stroke: '/image/stroke/image_employment_stroke.png',
+    active: '/image/categories/active/image_employment_active.svg',
+    default: '/image/categories/default/image_employment_default.svg',
+    inactive: '/image/categories/inactive/image_employment_inactive.svg',
+    line_active: '/image/categories/line-active/image_employment_line_active.svg',
+    line_inactive: '/image/categories/line-inactive/image_employment_line_inactive.svg',
   },
   productivity: {
-    fill_selected: '/image/fill-selected/image_productivity_fill_selected.png',
-    fill: '/image/fill/image_productivity_fill.png',
-    stroke_selected: '/image/stroke-selected/image_productivity_stroke_selected.png',
-    stroke: '/image/stroke/image_productivity_stroke.png',
+    active: '/image/categories/active/image_productivity_active.svg',
+    default: '/image/categories/default/image_productivity_default.svg',
+    inactive: '/image/categories/inactive/image_productivity_inactive.svg',
+    line_active: '/image/categories/line-active/image_productivity_line_active.svg',
+    line_inactive: '/image/categories/line-inactive/image_productivity_line_inactive.svg',
   },
-  lifestyle: {
-    fill_selected: '/image/fill-selected/image_lifestyle_fill_selected.png',
-    fill: '/image/fill/image_lifestyle_fill.png',
-    stroke_selected: '/image/stroke-selected/image_lifestyle_stroke_selected.png',
-    stroke: '/image/stroke/image_lifestyle_stroke.png',
+  speech: {
+    active: '/image/categories/active/image_speech_active.svg',
+    default: '/image/categories/default/image_speech_default.svg',
+    inactive: '/image/categories/inactive/image_speech_inactive.svg',
+    line_active: '/image/categories/line-active/image_speech_line_active.svg',
+    line_inactive: '/image/categories/line-inactive/image_speech_line_inactive.svg',
   },
-  health: {
-    fill_selected: '/image/fill-selected/image_health_fill_selected.png',
-    fill: '/image/fill/image_health_fill.png',
-    stroke_selected: '/image/stroke-selected/image_health_stroke_selected.png',
-    stroke: '/image/stroke/image_health_stroke.png',
+  self: {
+    active: '/image/categories/active/image_self_active.svg',
+    default: '/image/categories/default/image_self_default.svg',
+    inactive: '/image/categories/inactive/image_self_inactive.svg',
+    line_active: '/image/categories/line-active/image_self_line_active.svg',
+    line_inactive: '/image/categories/line-inactive/image_self_line_inactive.svg',
   },
-  mind: {
-    fill_selected: '/image/fill-selected/image_mind_fill_selected.png',
-    fill: '/image/fill/image_mind_fill.png',
-    stroke_selected: '/image/stroke-selected/image_mind_stroke_selected.png',
-    stroke: '/image/stroke/image_mind_stroke.png',
+  marketing: {
+    active: '/image/categories/active/image_marketing_active.svg',
+    default: '/image/categories/default/image_marketing_default.svg',
+    inactive: '/image/categories/inactive/image_marketing_inactive.svg',
+    line_active: '/image/categories/line-active/image_marketing_line_active.svg',
+    line_inactive: '/image/categories/line-inactive/image_marketing_line_inactive.svg',
   },
-  hobby: {
-    fill_selected: '/image/fill-selected/image_hobby_fill_selected.png',
-    fill: '/image/fill/image_hobby_fill.png',
-    stroke_selected: '/image/stroke-selected/image_hobby_stroke_selected.png',
-    stroke: '/image/stroke/image_hobby_stroke.png',
+  education: {
+    active: '/image/categories/active/image_education_active.svg',
+    default: '/image/categories/default/image_education_default.svg',
+    inactive: '/image/categories/inactive/image_education_inactive.svg',
+    line_active: '/image/categories/line-active/image_education_line_active.svg',
+    line_inactive: '/image/categories/line-inactive/image_education_line_inactive.svg',
   },
-  language: {
-    fill_selected: '/image/fill-selected/image_language_fill_selected.png',
-    fill: '/image/fill/image_language_fill.png',
-    stroke_selected: '/image/stroke-selected/image_language_stroke_selected.png',
-    stroke: '/image/stroke/image_language_stroke.png',
+  it: {
+    active: '/image/categories/active/image_it_active.svg',
+    default: '/image/categories/default/image_it_default.svg',
+    inactive: '/image/categories/inactive/image_it_inactive.svg',
+    line_active: '/image/categories/line-active/image_it_line_active.svg',
+    line_inactive: '/image/categories/line-inactive/image_it_line_inactive.svg',
   },
-};
-
-export const CATEGORY_SMALL_ICON: CategorySmallIconType = {
-  njob: <IcNjobSmall />,
-  investment: <IcInvestmentSmall />,
-  startup: <IcStartupSmall />,
-  employment: <IcEmploymentSmall />,
-  productivity: <IcProductivitySmall />,
-  lifestyle: <IcLifestyleSmall />,
-  health: <IcHealthSmall />,
-  mind: <IcMindSmall />,
-  hobby: <IcHobbySmall />,
-  language: <IcLanguageSmall />,
 };
 
 export const CATEGORY_NAME: CategoryName = {
@@ -112,9 +91,9 @@ export const CATEGORY_NAME: CategoryName = {
   startup: '창업',
   employment: '취업',
   productivity: '생산성',
-  health: '건강',
-  lifestyle: '라이프',
-  mind: '마인드',
-  hobby: '취미',
-  language: '외국어',
+  speech: '스피치',
+  self: '자기계발',
+  marketing: '마케팅',
+  education: '교육',
+  it: 'IT',
 };

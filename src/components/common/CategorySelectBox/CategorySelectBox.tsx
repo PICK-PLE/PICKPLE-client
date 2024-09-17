@@ -1,70 +1,8 @@
-import { CATEGORY_ICON } from '@constants';
+import { useFetchMoimCategories } from '@apis/domains/moim';
+
+import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
 
 import { imgStyle, labelStyle, liStyle, ulStyle } from './CategorySelectBox.style';
-
-const categoryIcons = [
-  {
-    name: 'njob',
-    title: 'N잡',
-    stroke: CATEGORY_ICON.njob.stroke,
-    stroke_selected: CATEGORY_ICON.njob.stroke_selected,
-  },
-  {
-    name: 'investment',
-    title: '재테크',
-    stroke: CATEGORY_ICON.investment.stroke,
-    stroke_selected: CATEGORY_ICON.investment.stroke_selected,
-  },
-  {
-    name: 'startup',
-    title: '창업',
-    stroke: CATEGORY_ICON.startup.stroke,
-    stroke_selected: CATEGORY_ICON.startup.stroke_selected,
-  },
-  {
-    name: 'employment',
-    title: '취업',
-    stroke: CATEGORY_ICON.employment.stroke,
-    stroke_selected: CATEGORY_ICON.employment.stroke_selected,
-  },
-  {
-    name: 'productivity',
-    title: '생산성',
-    stroke: CATEGORY_ICON.productivity.stroke,
-    stroke_selected: CATEGORY_ICON.productivity.stroke_selected,
-  },
-  {
-    name: 'lifestyle',
-    title: '라이프',
-    stroke: CATEGORY_ICON.lifestyle.stroke,
-    stroke_selected: CATEGORY_ICON.lifestyle.stroke_selected,
-  },
-  {
-    name: 'health',
-    title: '건강',
-    stroke: CATEGORY_ICON.health.stroke,
-    stroke_selected: CATEGORY_ICON.health.stroke_selected,
-  },
-  {
-    name: 'mind',
-    title: '마인드',
-    stroke: CATEGORY_ICON.mind.stroke,
-    stroke_selected: CATEGORY_ICON.mind.stroke_selected,
-  },
-  {
-    name: 'hobby',
-    title: '취미',
-    stroke: CATEGORY_ICON.hobby.stroke,
-    stroke_selected: CATEGORY_ICON.hobby.stroke_selected,
-  },
-  {
-    name: 'language',
-    title: '외국어',
-    stroke: CATEGORY_ICON.language.stroke,
-    stroke_selected: CATEGORY_ICON.language.stroke_selected,
-  },
-];
-
 interface Category {
   category1: string;
   category2?: string;
@@ -80,6 +18,8 @@ const CategorySelectBox = ({
   selectedCategories = { category1: '', category2: '', category3: '' },
   onUpdateCategories,
 }: CategorySelectBoxProps) => {
+  const { data: categories } = useFetchMoimCategories();
+
   const handleIconClick = (name: string) => {
     const newCategories = { ...selectedCategories };
 
@@ -106,19 +46,19 @@ const CategorySelectBox = ({
 
   return (
     <ul css={ulStyle}>
-      {categoryIcons.map((category, i) => (
+      {(categories || []).map((category, i) => (
         <li key={i} css={liStyle}>
           <img
             src={
-              Object.values(selectedCategories).includes(category.name)
-                ? category.stroke_selected
-                : category.stroke
+              Object.values(selectedCategories).includes(category)
+                ? CATEGORY_ICON[category].line_active
+                : CATEGORY_ICON[category].line_inactive
             }
-            alt={category.name}
+            alt={category}
             css={imgStyle}
-            onClick={() => handleIconClick(category.name)}
+            onClick={() => handleIconClick(category)}
           />
-          <label css={labelStyle}>{category.title}</label>
+          <label css={labelStyle}>{CATEGORY_NAME[category]}</label>
         </li>
       ))}
     </ul>
