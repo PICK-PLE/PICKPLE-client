@@ -72,10 +72,21 @@ const Class = () => {
   if (!moimDetail || !moimDescription) {
     return <Error />;
   }
-  const { dayOfDay = 0, title, dateList, isOffline, spot, maxGuest, fee, imageList } = moimDetail;
+  const {
+    dayOfDay = 0,
+    title,
+    dateList,
+    isOffline,
+    spot,
+    maxGuest,
+    fee,
+    imageList,
+    isSubmitted,
+  } = moimDetail;
   const swiperImageList = Object.values(imageList || []).filter(
     (value) => value !== null && value !== ''
   );
+  const isClassClosed = dayOfDay < 0;
 
   const { date, dayOfWeek, startTime, endTime } = dateList ?? {};
 
@@ -89,7 +100,7 @@ const Class = () => {
 
   const handleApplyButtonClick = () => {
     smoothScroll(0);
-    navigate(`/class/${moimId}/apply`);
+    navigate(isSubmitted ? `/mypage/guest/myclass` : `/class/${moimId}/apply`);
   };
 
   const handleShareButtonClick = async () => {
@@ -183,8 +194,8 @@ const Class = () => {
           <Button
             variant="large"
             onClick={handleApplyButtonClick}
-            disabled={dayOfDay < 0 || moimDetail.hostId === hostId}>
-            참여하기
+            disabled={isClassClosed || moimDetail.hostId === hostId}>
+            {isClassClosed ? '모집 완료' : isSubmitted ? `신청 완료` : `참여하기`}
           </Button>
         </section>
       </div>
