@@ -7,10 +7,9 @@ import { useFetchMoimFromReviewPage } from '@apis/domains/review/useFetchMoimFro
 import { useFetchReviewTagList } from '@apis/domains/review/useFetchReviewTagList';
 import { usePostReview } from '@apis/domains/review/usePostReview';
 
-import { Button, Header, ImageSelect, Spinner, TextArea } from '@components';
+import { Button, Header, ImageSelect, Spinner, TagSelectBox, TextArea } from '@components';
 import { ClassListCard } from '@pages/classList/components';
 import { handleUpload } from '@utils';
-import TagSelectBox from 'src/components/common/TagSelectBox/TagSelectBox';
 import { hostTagsAtom, moimTagsAtom } from 'src/stores/tagList';
 
 import {
@@ -66,6 +65,10 @@ const GuestMyClassReviewWrite = () => {
     navigate(`/mypage/guest/myclass/${moimId}/review/complete`);
   };
 
+  const isButtonDisabled = () => {
+    return selectedMoimTags.length < 1 || selectedHostTags.length < 1 || content.length < 5;
+  };
+
   if (putS3IsPending || isPending) {
     return <Spinner />;
   }
@@ -105,7 +108,7 @@ const GuestMyClassReviewWrite = () => {
             </div>
           </section>
         </main>
-        <Button variant="large" onClick={handleButtonClick}>
+        <Button variant="large" onClick={handleButtonClick} disabled={isButtonDisabled()}>
           리뷰 등록하기
         </Button>
       </div>
