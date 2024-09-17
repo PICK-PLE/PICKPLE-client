@@ -32,7 +32,7 @@ export const inputStyle =
     width: 100%;
     height: 5.2rem;
     padding: 1.5rem;
-    padding-right: 6rem;
+    padding-right: 3.8rem;
     border: 1px solid
       ${isError && isFocused
         ? theme.color.error

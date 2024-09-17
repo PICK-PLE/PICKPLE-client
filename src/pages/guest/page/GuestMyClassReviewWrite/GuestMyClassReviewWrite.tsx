@@ -87,7 +87,7 @@ const GuestMyClassReviewWrite = () => {
           </section>
           <section css={tagSectionStyle}>
             <div css={sectionTitleStyle}>
-              <span css={bigSpan}>스피커는 어떠셨나요?</span>
+              <span css={bigSpan}>스픽커는 어떠셨나요?</span>
               <span css={smallSpan}>최소 1개, 최대 3개</span>
             </div>
             <TagSelectBox tagList={tagList?.hostTag} maxSelection={3} tagType="host" />

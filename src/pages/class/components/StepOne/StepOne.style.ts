@@ -4,6 +4,7 @@ import { flexGenerator } from '@styles/generator';
 
 export const layoutStyle = css`
   ${flexGenerator('column')};
+  width: 100%;
   padding: 3.2rem 2rem 3rem 2rem;
 `;
 export const headerStyle = css`
@@ -24,6 +25,7 @@ export const subTitleStyle = (theme: Theme) => css`
 export const mainStyle = css`
   ${flexGenerator('column')};
   gap: 6rem;
+  width: 100%;
 
   margin-top: 3.8rem;
   margin-bottom: 5.4rem;
