@@ -31,7 +31,8 @@ interface NoticeCardProps {
 }
 
 const NoticeCard = ({ noticeData, onClick }: NoticeCardProps) => {
-  const { hostNickName, hostImageUrl, title, content, date, noticeImageUrl } = noticeData;
+  const { hostNickName, hostImageUrl, title, content, date, noticeImageUrl, commentNumber } =
+    noticeData;
 
   return (
     <article css={noticeCardContainer} onClick={onClick}>
@@ -53,8 +54,7 @@ const NoticeCard = ({ noticeData, onClick }: NoticeCardProps) => {
           <div css={noticeDate}>{formatCreatedDate(date ?? '')}</div>
           <div css={noticeComment}>
             <IcComment css={noticeCommentIcon} />
-            <span css={noticeCommentNumber}>12</span>
-            {/* 수정필요: 댓글 수 */}
+            <span css={noticeCommentNumber}>{commentNumber}</span>
           </div>
         </div>
       </section>

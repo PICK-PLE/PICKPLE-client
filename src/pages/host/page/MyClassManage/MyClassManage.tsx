@@ -30,7 +30,7 @@ const MyClassManage = () => {
   const { moimId } = useParams();
   const { data: applicantData, isLoading } = useFetchSubmitterList(Number(moimId));
   const { showToast, isToastVisible } = useToast();
-  const [isOpenModal, setIsOpenModal] = useState(true);
+  const [isOpenModal, setIsOpenModal] = useState(false);
 
   const [isActive, setIsActive] = useState(false);
 
@@ -132,7 +132,7 @@ const MyClassManage = () => {
               <div css={labelStyle}>
                 <div css={textStyle}>
                   <span css={countTitleStyle}>클래스 신청자</span>
-                  <span css={countTextStyle}>{submitterList?.length}</span>
+                  <span css={countTextStyle}>({submitterList?.length})</span>
                 </div>
                 <Label variant="count">
                   <p css={selectedTextStyle}>{`${checkedSubmitter?.length}`}</p>

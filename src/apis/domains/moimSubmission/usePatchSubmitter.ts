@@ -39,7 +39,7 @@ export const usePatchSubmitter = (isOngoing: boolean, onClose: () => void) => {
       });
       onClose();
       smoothScroll(0);
-      navigate('/host/myclass'); // 다시 모임 관리하는 host 페이지로 이동
+      navigate('/myclass/host/myclass'); // 다시 모임 관리하는 host 페이지로 이동
     },
   });
 };

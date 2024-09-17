@@ -140,9 +140,18 @@ export const hostActiveTabTextStyle = (theme: Theme) => css`
 export const hostTabContentWrapper = (theme: Theme) => css`
   background-color: ${theme.color.bg_white0};
   padding: 3rem 2rem;
+  width: 100%;
 `;
 
-export const hostClassCardWrapper = css`
+export const hostCardWrapper = css`
   ${flexGenerator('column')};
   gap: 1.2rem;
+  width: 100%;
+`;
+
+export const classListCardStyle = css`
+  width: 100%;
+  list-style: none;
+
+  cursor: pointer;
 `;

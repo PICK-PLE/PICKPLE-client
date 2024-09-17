@@ -46,6 +46,7 @@ export const questionDataStyle = css`
 export const eachQuestionWrapper = css`
   ${flexGenerator('column')}
   gap: 1rem;
+  width: 100%;
 `;
 
 export const questionCautionStyle = (theme: Theme) => css`
