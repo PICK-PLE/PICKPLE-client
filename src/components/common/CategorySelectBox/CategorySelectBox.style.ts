@@ -24,3 +24,7 @@ export const labelStyle = (theme: Theme) => css`
   color: ${theme.color.lightgray2};
   ${theme.font['body04-m-12']}
 `;
+
+export const selectedLabelStyle = (theme: Theme) => css`
+  color: ${theme.color.purple2};
+`;

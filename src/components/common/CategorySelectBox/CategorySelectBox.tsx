@@ -26,7 +26,7 @@ import {
   IcItLineInactive,
 } from 'src/assets/svg/line-inactive';
 
-import { labelStyle, liStyle, ulStyle } from './CategorySelectBox.style';
+import { labelStyle, liStyle, selectedLabelStyle, ulStyle } from './CategorySelectBox.style';
 interface Category {
   category1: string;
   category2?: string;
@@ -97,10 +97,17 @@ const CategorySelectBox = ({
     <ul css={ulStyle}>
       {(categories || []).map((category, i) => (
         <li key={i} css={liStyle} onClick={() => handleIconClick(category)}>
-          {Object.values(selectedCategories).includes(category)
-            ? activeCategoryIcon[category]
-            : inactiveCategoryIcon[category]}
-          <label css={labelStyle}>{CATEGORY_NAME[category]}</label>
+          {Object.values(selectedCategories).includes(category) ? (
+            <>
+              {activeCategoryIcon[category]}
+              <label css={[labelStyle, selectedLabelStyle]}>{CATEGORY_NAME[category]}</label>
+            </>
+          ) : (
+            <>
+              {inactiveCategoryIcon[category]}
+              <label css={labelStyle}>{CATEGORY_NAME[category]}</label>
+            </>
+          )}
         </li>
       ))}
     </ul>
