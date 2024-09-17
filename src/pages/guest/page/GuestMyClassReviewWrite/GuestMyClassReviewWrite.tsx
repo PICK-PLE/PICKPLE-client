@@ -71,7 +71,7 @@ const GuestMyClassReviewWrite = () => {
   }
   return (
     <div css={reviewWriteLayout}>
-      <Header title="리뷰 쓰기" />
+      <Header title="리뷰 쓰기" isLine={true} />
       <div css={reviewWriteContainer}>
         {moimData && <ClassListCard classListData={moimData} variant="classList" />}
         <main css={mainStyle}>
