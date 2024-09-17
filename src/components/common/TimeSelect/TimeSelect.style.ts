@@ -17,6 +17,7 @@ export const timeSelectWrapper = (theme: Theme) => css`
 `;
 
 export const selectStyle = (hasValue: boolean) => (theme: Theme) => css`
+  display: flex;
   width: 13rem;
   border: none;
   border-radius: 4px;
@@ -55,4 +56,29 @@ export const svgStyle = (hasValue: boolean) => (theme: Theme) => css`
 
   width: 2.4rem;
   height: 2.4rem;
+`;
+
+export const dropdownStyle = (theme: Theme) => css`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: ${theme.color.white};
+  border: 1px solid ${theme.color.lightgray1};
+  border-radius: 10px;
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 0.5rem;
+`;
+
+export const optionStyle = (theme: Theme) => css`
+  padding: 0.8rem 1.6rem;
+  cursor: pointer;
+  ${theme.font['body01-r-15']};
+  color: ${theme.color.blackgray};
+
+  &:hover {
+    background-color: ${theme.color.lightgray1};
+  }
 `;
