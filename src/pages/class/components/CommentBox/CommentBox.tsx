@@ -76,15 +76,13 @@ const CommentBox = ({ comment, noticeId, host }: CommentBoxProps) => {
               <DeleteCard handleModalOpen={handleModalOpen} handleDeleteClose={handleDeleteClose} />
             )}
             {isModalOpen && (
-              <>
-                <Modal onClose={handleModalClose}>
-                  <DeleteModal
-                    onClose={handleModalClose}
-                    commentId={comment.commentId ?? 0}
-                    noticeId={noticeId ?? ''}
-                  />
-                </Modal>
-              </>
+              <Modal onClose={handleModalClose}>
+                <DeleteModal
+                  onClose={handleModalClose}
+                  commentId={comment.commentId ?? 0}
+                  noticeId={noticeId ?? ''}
+                />
+              </Modal>
             )}
           </div>
         )}
