@@ -57,11 +57,15 @@ export const commentTime = (theme: Theme) => css`
 
 export const iconWrapper = css`
   position: relative;
+
+  cursor: pointer;
 `;
 
 export const iconStyle = css`
   width: 2.4rem;
   height: 2.4rem;
+
+  cursor: pointer;
 `;
 
 export const spickerIconStyle = css`
