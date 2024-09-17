@@ -9,7 +9,6 @@ import { useFetchReviewByHost } from '@apis/domains/review/useFetchReviewByHost'
 import { Button, Image, LogoHeader } from '@components';
 import { images } from '@constants';
 import { ClassReviewEmptyView } from '@pages/class/components';
-import { hostNameStyle } from '@pages/class/components/HostInfoCard/HostInfoCard.style';
 import { ClassListCard } from '@pages/classList/components';
 import HostClassEmptyView from '@pages/host/components/HostClassEmptyView/HostClassEmptyView';
 import {
@@ -37,6 +36,7 @@ import {
   hostTabContentWrapper,
   hostTabTextStyle,
   hostTabWrapper,
+  hostNameStyle,
 } from '@pages/host/page/HostInfoPage/HostInfoPage.style';
 import { userAtom } from '@stores';
 import { IcEdit, IcSpickerMark } from '@svg';
