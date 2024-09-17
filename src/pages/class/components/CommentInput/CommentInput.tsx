@@ -1,9 +1,10 @@
-import { useRef } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
+import { useState } from 'react';
 
-import { useFetchCommentList } from '@apis/domains/notice/useFetchCommentList';
 import { usePostNoticeComment } from '@apis/domains/notice/usePostNoticeComment';
+import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 
-import { IcSend } from '@svg';
+import { IcSend, IcSendAble } from '@svg';
 
 import {
   inputStyle,
@@ -17,9 +18,8 @@ interface CommentInputProps {
 }
 const CommentInput = ({ noticeId }: CommentInputProps) => {
   const { mutate: leaveComment } = usePostNoticeComment();
-  const commentRef = useRef<HTMLInputElement>(null);
-  const formRef = useRef<HTMLFormElement>(null);
-  const { refetch: refetchComments } = useFetchCommentList(noticeId);
+  const queryClient = useQueryClient();
+  const [value, setValue] = useState('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,27 +27,42 @@ const CommentInput = ({ noticeId }: CommentInputProps) => {
   };
 
   const submitComment = () => {
-    const commentContent = commentRef.current?.value.trim();
-    if (!commentContent) return;
+    const commentContent = value.trim();
     leaveComment(
       { noticeId, commentContent: commentContent },
-      { onSuccess: () => refetchComments() }
+      {
+        onSuccess: () => {
+          queryClient.invalidateQueries({ queryKey: [QUERY_KEY.COMMENT_LIST] });
+          queryClient.invalidateQueries({ queryKey: [QUERY_KEY.MOIM_NOTICE_DETAIL] });
+        },
+      }
     );
-    if (commentRef.current) commentRef.current.value = '';
+    if (value.length > 0) {
+      setValue('');
+    }
   };
 
   const handleIconClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    formRef.current?.requestSubmit();
+    submitComment();
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setValue(e.target.value);
   };
 
   return (
-    <form css={commentInputContainer} onSubmit={handleSubmit} ref={formRef}>
+    <form css={commentInputContainer} onSubmit={handleSubmit}>
       <div css={commentInputWrapper}>
-        <input ref={commentRef} css={inputStyle} placeholder="댓글을 남겨보세요" />
+        <input
+          value={value}
+          onChange={handleInputChange}
+          css={inputStyle}
+          placeholder="댓글을 남겨보세요"
+        />
       </div>
       <div css={iconStyle} onClick={handleIconClick}>
-        <IcSend />
+        {value.length === 0 ? <IcSend /> : <IcSendAble />}
       </div>
     </form>
   );

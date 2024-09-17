@@ -48,7 +48,7 @@ const HostInfoCardWithLink = ({ hostInfoCardWithLinkList }: hostInfoCardWithLink
     <section css={hostInfoCardWithLinkLayout}>
       <div css={hostInfoCardWithLinkContainer}>
         <section css={hostInfoCardWithLinkWrapper}>
-          <article css={hostInfoCardWrapper}>
+          <article css={hostInfoCardWrapper} onClick={handleHostInfoButtonClick}>
             <div css={hostInfoWrapper}>
               <Image variant="round" width="6rem" src={hostImageUrl ?? images.HostProfileImage} />
 
@@ -75,7 +75,7 @@ const HostInfoCardWithLink = ({ hostInfoCardWithLinkList }: hostInfoCardWithLink
               </div>
             </div>
 
-            <IcDropdownRight css={nextIconStyle} onClick={handleHostInfoButtonClick} />
+            <IcDropdownRight css={nextIconStyle} />
           </article>
 
           <Button variant="small" onClick={handleButtonClick}>

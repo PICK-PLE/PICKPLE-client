@@ -1,15 +1,17 @@
-import React, { useRef } from 'react';
+import { useState } from 'react';
 
 import { IcDropdownPlatformDown } from '@svg';
 
 import {
+  timeSelectContainer,
   timeSelectWrapper,
   selectStyle,
   textStyle,
-  timeSelectContainer,
   iconStyle,
   labelWrapper,
   svgStyle,
+  dropdownStyle,
+  optionStyle,
 } from './TimeSelect.style';
 
 interface TimeselectProps {
@@ -19,89 +21,95 @@ interface TimeselectProps {
   onEndTimeChange: (time: number) => void;
 }
 
+type dropdownType = 'start' | 'end';
+
 const TimeSelect = ({
   startTime,
   endTime,
   onStartTimeChange,
   onEndTimeChange,
 }: TimeselectProps) => {
-  const startTimeRef = useRef<HTMLSelectElement>(null);
-  const endTimeRef = useRef<HTMLSelectElement>(null);
+  const [startDropdownOpen, setStartDropdownOpen] = useState(false);
+  const [endDropdownOpen, setEndDropdownOpen] = useState(false);
 
   const generateTimeOptions = () => {
-    return Array.from({ length: 25 }, (_, i) => (
-      <option key={i} value={i}>
-        {i.toString().padStart(2, '0')}:00
-      </option>
-    ));
+    return Array.from({ length: 25 }, (_, i) => ({
+      value: i,
+      label: `${i.toString().padStart(2, '0')}:00`,
+    }));
   };
 
-  const handleStartTimeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const value = parseInt(e.target.value);
+  const handleStartTimeChange = (value: number) => {
     onStartTimeChange(value);
+    setStartDropdownOpen(false);
     if (endTime !== null && value >= endTime) {
       onEndTimeChange(value + 1);
     }
   };
 
-  const handleEndTimeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    onEndTimeChange(parseInt(e.target.value));
+  const handleEndTimeChange = (value: number) => {
+    onEndTimeChange(value);
+    setEndDropdownOpen(false);
   };
 
-  const focusSelect = (selectRef: React.RefObject<HTMLSelectElement>) => {
-    if (selectRef.current && !selectRef.current.disabled) {
-      selectRef.current.showPicker();
+  const toggleDropdown = (dropdownType: dropdownType) => {
+    if (dropdownType === 'start') {
+      setStartDropdownOpen(!startDropdownOpen);
+      setEndDropdownOpen(false);
+    } else {
+      setEndDropdownOpen(!endDropdownOpen);
+      setStartDropdownOpen(false);
     }
   };
 
   return (
     <section css={timeSelectContainer}>
-      <div css={timeSelectWrapper}>
+      <div css={timeSelectWrapper} onClick={() => toggleDropdown('start')}>
         <div css={labelWrapper}>
-          <label htmlFor="start-time" css={textStyle}>
-            시작 시간
-          </label>
-          <label htmlFor="start-time" onClick={() => focusSelect(startTimeRef)}>
-            <span css={iconStyle} onClick={() => focusSelect(startTimeRef)}>
+          <label css={textStyle}>시작 시간</label>
+          <div css={selectStyle(Boolean(startTime))}>
+            <span>{startTime !== null ? generateTimeOptions()[startTime].label : '선택'}</span>
+            <span css={iconStyle}>
               <IcDropdownPlatformDown css={svgStyle(Boolean(startTime))} />
             </span>
-          </label>
-          <select
-            id="start-time"
-            ref={startTimeRef}
-            css={selectStyle(Boolean(startTime))}
-            value={startTime ?? ''}
-            onChange={handleStartTimeChange}>
-            <option value="" disabled>
-              선택
-            </option>
-            {generateTimeOptions()}
-          </select>
+          </div>
+          {startDropdownOpen && (
+            <div css={dropdownStyle}>
+              {generateTimeOptions().map((option) => (
+                <div
+                  key={option.value}
+                  css={optionStyle}
+                  onClick={() => handleStartTimeChange(option.value)}>
+                  {option.label}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
-
       <div css={timeSelectWrapper}>
-        <div css={labelWrapper}>
-          <label css={textStyle} htmlFor="end-time">
-            종료 시간
-          </label>
-          <span css={iconStyle} onClick={() => focusSelect(endTimeRef)}>
-            <IcDropdownPlatformDown css={svgStyle(Boolean(endTime))} />
-          </span>
-          <select
-            ref={endTimeRef}
-            css={selectStyle(Boolean(startTime))}
-            value={endTime ?? ''}
-            id="end-time"
-            onChange={handleEndTimeChange}
-            disabled={startTime === null}>
-            <option value="" disabled>
-              선택
-            </option>
-            {generateTimeOptions().filter(
-              (option) => startTime === null || parseInt(option.props.value) > startTime
-            )}
-          </select>
+        <div css={labelWrapper} onClick={() => startTime !== null && toggleDropdown('end')}>
+          <label css={textStyle}>종료 시간</label>
+          <div css={selectStyle(Boolean(endTime))}>
+            <span>{endTime !== null ? generateTimeOptions()[endTime].label : '선택'}</span>
+            <span css={iconStyle}>
+              <IcDropdownPlatformDown css={svgStyle(Boolean(endTime))} />
+            </span>
+          </div>
+          {endDropdownOpen && (
+            <div css={dropdownStyle}>
+              {generateTimeOptions()
+                .filter((option) => startTime === null || option.value > startTime)
+                .map((option) => (
+                  <div
+                    key={option.value}
+                    css={optionStyle}
+                    onClick={() => handleEndTimeChange(option.value)}>
+                    {option.label}
+                  </div>
+                ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

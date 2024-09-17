@@ -59,4 +59,6 @@ export const editIconStyle = css`
   ${flexGenerator('row', 'center', 'flex-end')}
   width: 2.4rem;
   height: 2.4rem;
+
+  cursor: pointer;
 `;

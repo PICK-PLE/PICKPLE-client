@@ -62,6 +62,8 @@ const ClassList = () => {
     navigate(`/class/${moimId}`);
   };
 
+  const sortedMoimList = moimList?.slice().sort((a, b) => (a.dayOfDay ?? 0) - (b.dayOfDay ?? 0));
+
   if (moimList === null) {
     return <Error />;
   }
@@ -100,7 +102,7 @@ const ClassList = () => {
           <ClassListEmptyView />
         ) : (
           <ul css={moimListContainer}>
-            {moimList?.map((moim) => {
+            {sortedMoimList?.map((moim) => {
               return (
                 <li
                   css={moimCardStyle}

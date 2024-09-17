@@ -46,6 +46,7 @@ export { default as IcOneline } from './IcOneline';
 export { default as IcParkMore } from './IcParkMore';
 export { default as IcPerson } from './IcPerson';
 export { default as IcSend } from './IcSend';
+export { default as IcSendAble } from './IcSendAble';
 export { default as IcShare } from './IcShare';
 export { default as IcSpickerApply } from './IcSpickerApply';
 export { default as IcSpickerMark } from './IcSpickerMark';

@@ -14,7 +14,7 @@ const getGuestApplyMoim = async (
 ): Promise<SubmittedMoimByGuestResponse[] | null> => {
   try {
     const response = await get<ApiResponseType<SubmittedMoimByGuestResponse[]>>(
-      `/v1/guest/${guestId}/submitted-moim-list?moimSubmissionState=${moimSubmissionState}`
+      `/v2/guest/${guestId}/submitted-moim-list?moimSubmissionState=${moimSubmissionState}`
     );
     return response.data.data;
   } catch (err) {

@@ -1,16 +1,18 @@
 import { useState } from 'react';
 
 import { Image, Label, Modal } from '@components';
-import { IcLock, IcParkMore } from '@svg';
+import { IcLock, IcParkMore, IcSpickerMark } from '@svg';
 
 import {
   iconStyle,
   iconWrapper,
   profileContainer,
   profileName,
+  profileNameWrapper,
   profilePosition,
   profileTextBox,
   profileWrapper,
+  spickerIconStyle,
 } from './HostProfileCard.style';
 import DeleteCard from '../DeleteCard/DeleteCard';
 import DeleteNoticeModal from '../DeleteNoticeModal/DeleteNoticeModal';
@@ -50,11 +52,16 @@ const HostProfileCard = ({ data: noticeDetail, noticeId, moimId }: HostProfileCa
         <Image width="4.2rem" src={noticeDetail.hostImageUrl ?? ''} variant="round" />
         <div css={profileTextBox}>
           <span css={profilePosition}>스픽커</span>
-          <span css={profileName}>{noticeDetail?.hostNickname}</span>
+          <div css={profileNameWrapper}>
+            <span css={profileName}>{noticeDetail?.hostNickname}</span>
+            <span css={spickerIconStyle}>
+              <IcSpickerMark />
+            </span>
+          </div>
         </div>
       </section>
       <div css={iconWrapper}>
-        {noticeDetail.isOwner === true ? (
+        {noticeDetail.isPrivate === false ? (
           <span css={iconStyle}>
             <IcParkMore onClick={handleDeleteOpen} />
             {isDeleteOpen && (
@@ -68,7 +75,7 @@ const HostProfileCard = ({ data: noticeDetail, noticeId, moimId }: HostProfileCa
           </span>
         ) : (
           <Label variant="category" icon={<IcLock />}>
-            게스트
+            참가자
           </Label>
         )}
       </div>
