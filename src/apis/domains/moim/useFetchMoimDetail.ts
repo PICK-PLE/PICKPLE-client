@@ -10,7 +10,7 @@ type MoimDetailResponse = components['schemas']['MoimDetailResponse'];
 
 const getMoimDetail = async (moimId: string): Promise<MoimDetailResponse | null> => {
   try {
-    const response = await get<ApiResponseType<MoimDetailResponse>>(`/v1/moim/${Number(moimId)}`);
+    const response = await get<ApiResponseType<MoimDetailResponse>>(`/v2/moim/${Number(moimId)}`);
     return response.data.data;
   } catch (error) {
     console.error('An error occurred while fetching the class detail:', error);

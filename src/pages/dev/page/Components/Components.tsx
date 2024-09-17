@@ -6,7 +6,6 @@ import { useState } from 'react';
 
 import {
   Button,
-  CategoryButton,
   ClipboardCopyButton,
   //   DateSelect,
   Header,
@@ -62,7 +61,6 @@ import {
   IcKakaoPay,
   IcLogo,
   IcNext,
-  IcNjob,
   IcNumberLabel,
   IcPerson,
   IcShare,
@@ -234,11 +232,6 @@ const Components = () => {
             </div>
 
             <div css={iconWrapperStyle}>
-              <IcNjob css={iconSvgStyle} />
-              <span>IcNjob</span>
-            </div>
-
-            <div css={iconWrapperStyle}>
               <IcNumberLabel css={iconSvgStyle} />
               <span>IcNumberLabel</span>
             </div>
@@ -378,17 +371,6 @@ const Components = () => {
 
           <span css={textStyle}>selected = "right"</span>
           <SelectButton left="left" right="right" selected="right" handleChange={() => {}} />
-
-          <h3 css={subTitleStyle}>CategoryButton</h3>
-          <span css={textStyle}>isSelected = true</span>
-          <CategoryButton icon={<IcNjob />} isSelected={true} handleClick={() => {}}>
-            카테고리
-          </CategoryButton>
-
-          <span css={textStyle}>isSelected = false</span>
-          <CategoryButton icon={<IcNjob />} isSelected={false} handleClick={() => {}}>
-            카테고리
-          </CategoryButton>
 
           <h3 css={subTitleStyle}>InterestCategoryButton</h3>
           <InterestCategoryButton icon={<IcHome />}>부동산</InterestCategoryButton>
