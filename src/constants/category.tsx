@@ -48,12 +48,12 @@ export const CATEGORY_ICON: CategoryIcon = {
     line_active: '/image/categories/line-active/image_productivity_line_active.svg',
     line_inactive: '/image/categories/line-inactive/image_productivity_line_inactive.svg',
   },
-  speach: {
-    active: '/image/categories/active/image_speach_active.svg',
-    default: '/image/categories/default/image_speach_default.svg',
-    inactive: '/image/categories/inactive/image_speach_inactive.svg',
-    line_active: '/image/categories/line-active/image_speach_line_active.svg',
-    line_inactive: '/image/categories/line-inactive/image_speach_line_inactive.svg',
+  speech: {
+    active: '/image/categories/active/image_speech_active.svg',
+    default: '/image/categories/default/image_speech_default.svg',
+    inactive: '/image/categories/inactive/image_speech_inactive.svg',
+    line_active: '/image/categories/line-active/image_speech_line_active.svg',
+    line_inactive: '/image/categories/line-inactive/image_speech_line_inactive.svg',
   },
   self: {
     active: '/image/categories/active/image_self_active.svg',
@@ -91,7 +91,7 @@ export const CATEGORY_NAME: CategoryName = {
   startup: '창업',
   employment: '취업',
   productivity: '생산성',
-  speach: '스피치',
+  speech: '스피치',
   self: '자기계발',
   marketing: '마케팅',
   education: '교육',

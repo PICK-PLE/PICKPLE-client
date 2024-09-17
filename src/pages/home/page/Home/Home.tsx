@@ -39,7 +39,6 @@ const Home = () => {
   const handleClickBanner = () => {
     navigate(`/article/picksight`);
   };
-
   return (
     <>
       <LogoHeader isIcon />
