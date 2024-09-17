@@ -66,10 +66,10 @@ const TimeSelect = ({
 
   return (
     <section css={timeSelectContainer}>
-      <div css={timeSelectWrapper} ref={startTimeRef}>
+      <div css={timeSelectWrapper} ref={startTimeRef} onClick={() => toggleDropdown('start')}>
         <div css={labelWrapper}>
           <label css={textStyle}>시작 시간</label>
-          <div css={selectStyle(Boolean(startTime))} onClick={() => toggleDropdown('start')}>
+          <div css={selectStyle(Boolean(startTime))}>
             <span>{startTime !== null ? generateTimeOptions()[startTime].label : '선택'}</span>
             <span css={iconStyle}>
               <IcDropdownPlatformDown css={svgStyle(Boolean(startTime))} />
@@ -90,11 +90,9 @@ const TimeSelect = ({
         </div>
       </div>
       <div css={timeSelectWrapper} ref={endTimeRef}>
-        <div css={labelWrapper}>
+        <div css={labelWrapper} onClick={() => startTime !== null && toggleDropdown('end')}>
           <label css={textStyle}>종료 시간</label>
-          <div
-            css={selectStyle(Boolean(endTime))}
-            onClick={() => startTime !== null && toggleDropdown('end')}>
+          <div css={selectStyle(Boolean(endTime))}>
             <span>{endTime !== null ? generateTimeOptions()[endTime].label : '선택'}</span>
             <span css={iconStyle}>
               <IcDropdownPlatformDown css={svgStyle(Boolean(endTime))} />

@@ -4,6 +4,7 @@ import { flexGenerator } from '@styles/generator';
 
 export const timeSelectContainer = css`
   ${flexGenerator()}
+  width: 100%;
   gap: 1.1rem;
 `;
 
@@ -14,6 +15,8 @@ export const timeSelectWrapper = (theme: Theme) => css`
   gap: 0.3rem;
   border: 1px solid ${theme.color.lightgray1};
   border-radius: 10px;
+
+  cursor: pointer;
 `;
 
 export const selectStyle = (hasValue: boolean) => (theme: Theme) => css`
@@ -47,6 +50,7 @@ export const iconStyle = css`
 
 export const labelWrapper = css`
   position: relative;
+  width: 100%;
 `;
 
 export const svgStyle = (hasValue: boolean) => (theme: Theme) => css`
