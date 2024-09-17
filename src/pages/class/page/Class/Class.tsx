@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -65,6 +65,10 @@ const Class = () => {
     moimId ?? ''
   );
   const { data: moimNoticeList } = useFetchMoimNoticeList(moimId ?? '');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   if (isMoimDetailLoading || isMoimDescriptionLoading) {
     return <Spinner />;
   }
