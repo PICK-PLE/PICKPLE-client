@@ -24,6 +24,7 @@ export const inputLabelStyle = (theme: Theme) => css`
 export const inputWrapperStyle = css`
   ${flexGenerator('row', 'flex-start', 'center')}
   width: 100%;
+  height: 5.2rem;
   position: relative;
 `;
 
@@ -61,11 +62,18 @@ export const inputStyle =
   `;
 
 export const deleteButtonStyle = css`
+  ${flexGenerator()};
   position: absolute;
-  right: 1.5rem;
-  width: 2rem;
-  height: 2rem;
+  top: 50%;
+  right: 1.1rem;
+  width: 3rem;
+  height: 3rem;
   cursor: pointer;
+  transform: translateY(-50%);
+`;
+export const deleteIconStyle = css`
+  width: 1.8rem;
+  height: 1.8rem;
 `;
 
 export const errorAndLengthWrapper = (hasError: boolean) => css`
