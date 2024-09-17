@@ -104,7 +104,7 @@ const HostMyPage = () => {
 
       {isLoading ? (
         <Spinner variant="component" />
-      ) : errorData && errorData.status === 40408 ? (
+      ) : errorData && errorData.status === 40405 ? (
         <HostMyPageEmptyView />
       ) : errorData && errorData.status === 40003 ? (
         <ApprovalReviewingView />
