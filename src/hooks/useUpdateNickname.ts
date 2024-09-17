@@ -8,9 +8,7 @@ export const useUpdateNickname = () => {
   const [user, setUser] = useAtom(userAtom);
 
   const updateNickname = (nickname: nickNameType, updateNickname: string) => {
-    nickname === 'hostNickname'
-      ? setUser({ ...user, hostNickname: updateNickname })
-      : setUser({ ...user, guestNickname: updateNickname });
+    setUser({ ...user, [nickname]: updateNickname });
 
     const storedUser = localStorage.getItem('user');
     if (storedUser) {

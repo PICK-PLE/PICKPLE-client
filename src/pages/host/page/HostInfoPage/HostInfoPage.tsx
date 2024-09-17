@@ -62,7 +62,9 @@ const HostInfoPage = () => {
   };
 
   const handleMoimClick = (moimId: number) => {
-    navigate(`/class/${moimId}`);
+    if (moimId) {
+      navigate(`/class/${moimId}`);
+    }
   };
 
   const { data: hostInfoData } = useFetchHostInfo(Number(hostId));
@@ -153,7 +155,7 @@ const HostInfoPage = () => {
                           key={data.moimId}
                           css={classListCardStyle}
                           onClick={() => {
-                            data.moimId && handleMoimClick(data.moimId);
+                            handleMoimClick(data.moimId ?? 0);
                           }}>
                           <ClassListCard classListData={data} variant={'hostInfo'} />
                         </li>
