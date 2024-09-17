@@ -30,11 +30,15 @@ export const iconWrapper = css`
   position: relative;
 `;
 
+export const profileIconWrapper = css`
+  display: flex;
+  gap: 1rem;
+`;
+
 export const iconStyle = css`
   width: 2.4rem;
   height: 2.4rem;
-  position: absolute;
-  right: 0.3rem;
+  margin-right: -1rem;
 
   cursor: pointer;
 `;
