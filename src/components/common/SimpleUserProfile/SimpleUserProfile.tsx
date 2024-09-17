@@ -1,12 +1,13 @@
 import React from 'react';
 
 import {
+  imgSizeStyle,
+  imgStyle,
   profileWrapperSizeStyle,
   profileWrapperStyle,
   usernameSizeStyle,
   usernameStyle,
 } from './SimpleUserProfile.style';
-import Image from '../Image/Image';
 
 export interface SimpleUserProfileProps extends React.HTMLAttributes<HTMLDivElement> {
   size: 'small' | 'medium' | 'large' | 'xlarge';
@@ -17,7 +18,7 @@ export interface SimpleUserProfileProps extends React.HTMLAttributes<HTMLDivElem
 const SimpleUserProfile = ({ size, userImgUrl, username }: SimpleUserProfileProps) => {
   return (
     <div css={[profileWrapperStyle, profileWrapperSizeStyle[size]]}>
-      <Image variant="round" src={userImgUrl ?? ''} width="6rem" />
+      <img src={userImgUrl} alt={`${username}의 이미지`} css={[imgStyle, imgSizeStyle[size]]} />
       <span css={[usernameStyle, usernameSizeStyle[size]]}>{username}</span>
     </div>
   );
