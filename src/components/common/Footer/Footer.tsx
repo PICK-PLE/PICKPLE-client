@@ -16,7 +16,6 @@ const Footer = () => {
       <div css={footerWrapper}>
         <Logo css={logoStyle} />
         <div css={termsOfUseStyle}>
-          {/* @정안TODO 각 노션 페이지도 깃헙에 안올라가게 숨겨야할까요? */}
           <p
             css={textStyle}
             onClick={() => window.open('https://www.notion.so/d7259d07f04d48718b1836d704160827')}>
