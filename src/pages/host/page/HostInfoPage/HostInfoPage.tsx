@@ -40,6 +40,7 @@ import {
 } from '@pages/host/page/HostInfoPage/HostInfoPage.style';
 import { userAtom } from '@stores';
 import { IcEdit, IcSpickerMark } from '@svg';
+import { smoothScroll } from '@utils';
 import Review from 'src/components/common/Review/Review';
 
 const HostInfoPage = () => {
@@ -64,6 +65,7 @@ const HostInfoPage = () => {
   const handleMoimClick = (moimId: number) => {
     if (moimId) {
       navigate(`/class/${moimId}`);
+      smoothScroll(0);
     }
   };
 
