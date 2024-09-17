@@ -16,6 +16,11 @@ export const dipositWrapperStyle = css`
   width: 100%;
 `;
 
+export const depositHeaderStyle = css`
+  ${flexGenerator('column', 'flex-start', 'flex-start')}
+  gap: 0.3rem;
+`;
+
 export const depositSpanStyle = (theme: Theme) => css`
   color: ${theme.color.purple2};
   ${theme.font['subhead05-sb-14']}
