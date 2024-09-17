@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 import { IcDropdownPlatformDown } from '@svg';
 
@@ -31,8 +31,6 @@ const TimeSelect = ({
 }: TimeselectProps) => {
   const [startDropdownOpen, setStartDropdownOpen] = useState(false);
   const [endDropdownOpen, setEndDropdownOpen] = useState(false);
-  const startTimeRef = useRef<HTMLDivElement>(null);
-  const endTimeRef = useRef<HTMLDivElement>(null);
 
   const generateTimeOptions = () => {
     return Array.from({ length: 25 }, (_, i) => ({
@@ -66,7 +64,7 @@ const TimeSelect = ({
 
   return (
     <section css={timeSelectContainer}>
-      <div css={timeSelectWrapper} ref={startTimeRef} onClick={() => toggleDropdown('start')}>
+      <div css={timeSelectWrapper} onClick={() => toggleDropdown('start')}>
         <div css={labelWrapper}>
           <label css={textStyle}>시작 시간</label>
           <div css={selectStyle(Boolean(startTime))}>
@@ -89,7 +87,7 @@ const TimeSelect = ({
           )}
         </div>
       </div>
-      <div css={timeSelectWrapper} ref={endTimeRef}>
+      <div css={timeSelectWrapper}>
         <div css={labelWrapper} onClick={() => startTime !== null && toggleDropdown('end')}>
           <label css={textStyle}>종료 시간</label>
           <div css={selectStyle(Boolean(endTime))}>
