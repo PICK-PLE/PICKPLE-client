@@ -34,12 +34,16 @@ export const inputStyle =
     padding: 1.5rem;
     padding-right: 6rem;
     border: 1px solid
-      ${isError && isFocused ? theme.color.error : theme.color.lightgray1 || customBorderColor};
+      ${isError && isFocused
+        ? theme.color.error
+        : isFocused
+          ? theme.color.purple1
+          : theme.color.lightgray1};
     border-radius: 10px;
 
     color: ${theme.color.blackgray};
     background-color: ${theme.color.white};
-    ${theme.font['body01-r-15']}
+    ${theme.font['body06-m-15']}
 
     &::placeholder {
       color: ${theme.color.midgray1};
