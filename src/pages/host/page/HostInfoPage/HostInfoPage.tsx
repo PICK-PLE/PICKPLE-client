@@ -70,11 +70,9 @@ const HostInfoPage = () => {
 
   const { data: hostInfoClassData } = useFetchMoimListByHost(Number(hostId));
 
-  const hostInfoClass = hostInfoClassData
+  const sortedHostInfoByDayOfDay = hostInfoClassData
     ?.filter((data) => data.dayOfDay && data.dayOfDay >= 0) // dayOfDay가 0 이상인 요소 필터링
     .concat(hostInfoClassData.filter((data) => data.dayOfDay && data.dayOfDay < 0)); // dayOfDay가 0 미만인 요소 뒤에 추가
-
-  console.log(hostInfoClass);
 
   const { data: hostInfoReviewData } = useFetchReviewByHost(Number(hostId));
 
@@ -149,8 +147,8 @@ const HostInfoPage = () => {
                   <HostClassEmptyView />
                 ) : (
                   <div css={hostCardWrapper}>
-                    {hostInfoClass &&
-                      hostInfoClass.map((data) => (
+                    {sortedHostInfoByDayOfDay &&
+                      sortedHostInfoByDayOfDay.map((data) => (
                         <li
                           key={data.moimId}
                           css={classListCardStyle}
