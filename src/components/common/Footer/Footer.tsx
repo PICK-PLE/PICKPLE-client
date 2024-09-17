@@ -16,7 +16,17 @@ const Footer = () => {
       <div css={footerWrapper}>
         <Logo css={logoStyle} />
         <div css={termsOfUseStyle}>
-          <p css={textStyle}>개인정보처리방침 이용약관</p>
+          {/* @정안TODO 각 노션 페이지도 깃헙에 안올라가게 숨겨야할까요? */}
+          <p
+            css={textStyle}
+            onClick={() => window.open('https://www.notion.so/d7259d07f04d48718b1836d704160827')}>
+            개인정보처리방침
+          </p>
+          <p
+            css={textStyle}
+            onClick={() => window.open('https://www.notion.so/fd3f3eddcf784f53baa89489a2a69e76')}>
+            이용약관
+          </p>
         </div>
         <div css={contactWrapper}>
           <p css={contactTextStyle}>대표 | 조소빈</p>

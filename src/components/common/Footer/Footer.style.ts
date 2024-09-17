@@ -32,6 +32,8 @@ export const logoStyle = css`
 export const termsOfUseStyle = css`
   ${flexGenerator()};
   gap: 0.8rem;
+
+  cursor: pointer;
 `;
 
 export const textStyle = (theme: Theme) => css`
