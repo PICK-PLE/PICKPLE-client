@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { useFetchCommentList } from '@apis/domains/notice/useFetchCommentList';
@@ -31,6 +32,13 @@ const ClassNoticeDetail = () => {
 
   const { data: noticeDetail } = useFetchMoimNoticeDetail(moimId ?? '', noticeId ?? '');
   const { data: commentList } = useFetchCommentList(noticeId ?? '');
+  const commentEndRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (commentEndRef.current) {
+      commentEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [commentList]);
 
   return (
     <>
@@ -68,6 +76,7 @@ const ClassNoticeDetail = () => {
                   host={noticeDetail?.isOwner}
                 />
               ))}
+              <div ref={commentEndRef} />
             </div>
           )}
           <footer>

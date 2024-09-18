@@ -20,7 +20,7 @@ export const commentSectionWrapper = css`
 export const noticeLayout = css`
   display: flex;
   flex-direction: column;
-  margin-bottom: 15rem;
+  margin-bottom: 6.7rem;
 `;
 
 export const commentNumber = (theme: Theme) => css`
