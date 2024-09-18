@@ -68,7 +68,7 @@ const StepOne = ({ onNext }: StepProps) => {
               onChange={(e) => handleInputChange(e, 'link')}
               placeholder="URL을 첨부해주세요."
               isValid={isLinkValid}
-              errorMessage="올바른 URL 형식을 입력해주세요"
+              errorMessage="https:// 로 시작하는 올바른 URL을 입력해 주세요"
               isCountValue={false}
             />
           </section>
