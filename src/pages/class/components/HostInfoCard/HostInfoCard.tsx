@@ -26,7 +26,7 @@ interface HostInfoCardProps {
 const HostInfoCard = ({ hostId }: HostInfoCardProps) => {
   const { data: moimHostData } = useFetchMoimHost(hostId);
 
-  const { hostNickName, hostImageUrl, count, keyword, description } = moimHostData ?? {};
+  const { hostNickName, hostImageUrl, isVeteran, keyword, description } = moimHostData ?? {};
   const navigate = useNavigate();
 
   const handleHostInfoClick = () => {
@@ -42,7 +42,7 @@ const HostInfoCard = ({ hostId }: HostInfoCardProps) => {
             <p css={hostNameStyle}>{hostNickName}</p>
             <IcSpickerMark css={hostMarkIconStyle} />
           </div>
-          {count && count >= 2 && (
+          {isVeteran && (
             <div css={hostMarkMessageWrapper}>
               <span css={hostMarkMessageStyle}>베테랑</span>
             </div>
