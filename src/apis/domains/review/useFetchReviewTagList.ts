@@ -12,8 +12,8 @@ const getTagList = async (): Promise<TagListResponse | null> => {
   try {
     const response = await get<ApiResponseType<TagListResponse>>('/v2/review/tag-list');
     return response.data.data;
-  } catch {
-    console.log(console.log);
+  } catch (error) {
+    console.error(error);
     return null;
   }
 };

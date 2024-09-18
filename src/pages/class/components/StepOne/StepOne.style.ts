@@ -23,6 +23,7 @@ export const subTitleStyle = (theme: Theme) => css`
   ${theme.font['head01-b-22']};
 `;
 export const mainStyle = css`
+  width: 100%;
   ${flexGenerator('column')};
   gap: 6rem;
   width: 100%;

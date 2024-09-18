@@ -6,6 +6,17 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { useFetchMoimBanner, useFetchMoimCategories } from '@apis/domains/moim';
 
 import { Image, LogoHeader } from '@components';
+import {
+  IcNjobDefault,
+  IcInvestmentDefault,
+  IcEmploymentDefault,
+  IcProductivityDefault,
+  IcSpeechDefault,
+  IcSelfDefault,
+  IcMarketingDefault,
+  IcEducationDefault,
+  IcItDefault,
+} from 'src/assets/svg/default';
 import Footer from 'src/components/common/Footer/Footer';
 import { CATEGORY_ICON, CATEGORY_NAME } from 'src/constants/category';
 import { PicksightBanner } from 'src/constants/images';
@@ -22,10 +33,22 @@ import {
   homeLayout,
   pageLayout,
   homeBannerStyle,
-  imageStyle,
   bannerWrapper,
   swiperStyle,
 } from './Home.style';
+
+const categoryIcon: { [key: string]: JSX.Element } = {
+  njob: <IcNjobDefault />,
+  investment: <IcInvestmentDefault />,
+  startup: <img src={CATEGORY_ICON.startup.default} alt={`startup-icon`} />,
+  employment: <IcEmploymentDefault />,
+  productivity: <IcProductivityDefault />,
+  speech: <IcSpeechDefault />,
+  self: <IcSelfDefault />,
+  marketing: <IcMarketingDefault />,
+  education: <IcEducationDefault />,
+  it: <IcItDefault />,
+};
 
 const Home = () => {
   const navigate = useNavigate();
@@ -73,11 +96,7 @@ const Home = () => {
               {(categories || []).map((category, index) => {
                 return (
                   <li key={index} css={iconStyle} onClick={() => handleCategoryClick(category)}>
-                    <img
-                      css={imageStyle}
-                      src={CATEGORY_ICON[category].default}
-                      alt={`icon-${index}`}
-                    />
+                    {categoryIcon[category]}
                     <p css={iconNameStyle}>{CATEGORY_NAME[category]}</p>
                   </li>
                 );
