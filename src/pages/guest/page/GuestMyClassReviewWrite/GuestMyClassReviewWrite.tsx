@@ -100,7 +100,7 @@ const GuestMyClassReviewWrite = () => {
               <TagSelectBox tagList={tagList?.hostTag} maxSelection={3} tagType="host" />
             </section>
             <section css={writeReviewSection}>
-              <span css={bigSpan}>클래스에서 함께한 경험을 공유해 주세요!</span>
+              <span css={bigSpan}>참가자님의 소중한 경험을 공유해 주세요!</span>
               <div css={textareaAndImageWrapper}>
                 <TextArea
                   size="medium"
