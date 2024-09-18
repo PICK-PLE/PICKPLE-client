@@ -17,7 +17,6 @@ const AdminPage = () => {
   const [isHostSubmitterPage, setIsHostSubmitterPage] = useState(true);
   const isVerified = password === import.meta.env.VITE_ADMIN_PASSWORD;
 
-  console.log('isVerified', isVerified);
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(event.target.value);
   };

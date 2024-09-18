@@ -16,7 +16,6 @@ const getMyHostInfo = async (): Promise<HostGetResponse | ErrorType | null> => {
   } catch (err) {
     if (axios.isAxiosError(err)) {
       console.error(err);
-      console.log(err.response?.data);
       return err.response?.data;
     } else {
       console.error(err);

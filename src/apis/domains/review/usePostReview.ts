@@ -16,7 +16,7 @@ const postReview = async (params: ReviewCreateReqeust, moimId: number) => {
     const response = await post<MutateResponseType>(`/v2/moim/${moimId}/review`, params);
     return response.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return null;
   }
 };
