@@ -15,6 +15,10 @@ import {
 const MOIM_SUBMITTER_STATUS = {
   pendingPayment: '입금 대기',
   pendingApproval: '승인 대기',
+  approved: '승인',
+  rejected: '거절',
+  refunded: '환불',
+  completed: '완료',
 };
 
 const MoimSubmitter = () => {
@@ -89,13 +93,24 @@ const MoimSubmitter = () => {
                   }
                 </td>
                 <td css={tdStyle}>
-                  {item.moimSubmissionState === 'pendingApproval' ? (
-                    <div>확인</div>
-                  ) : (
+                  {item.moimSubmissionState === 'pendingPayment' && (
                     <button onClick={() => handleButtonClick(item.moimSubmissionId || 0)}>
                       확인
                     </button>
                   )}
+
+                  {item.moimSubmissionState === 'pendingApproval' && <div>확인</div>}
+
+                  {item.moimSubmissionState !== 'pendingPayment' &&
+                    item.moimSubmissionState !== 'pendingApproval' && (
+                      <div>
+                        {
+                          MOIM_SUBMITTER_STATUS[
+                            item.moimSubmissionState as keyof typeof MOIM_SUBMITTER_STATUS
+                          ]
+                        }
+                      </div>
+                    )}
                 </td>
               </tr>
             ))}
