@@ -1,4 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import { Dispatch, RefObject, SetStateAction } from 'react';
 
 import { patch } from '@apis/api';
 import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
@@ -23,18 +25,23 @@ const patchGuestNickname = async (
   }
 };
 
-export const usePatchGuestNickname = (guestId: number, setErrorMessage: (msg: string) => void) => {
+export const usePatchGuestNickname = (
+  guestId: number,
+  setIsNicknameDuplicate: Dispatch<SetStateAction<boolean>>,
+  nicknameRef: RefObject<HTMLInputElement>
+) => {
   const queryClient = useQueryClient();
   return useMutation({
     mutationFn: (guestNickname: string) => patchGuestNickname(guestId, guestNickname),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY.GUEST_INFO] });
     },
-    onError: (error: ErrorType) => {
-      if (error.status === 40008) {
-        setErrorMessage('* 이미 존재하는 닉네임이에요.');
+    onError: (error: AxiosError<ErrorType>) => {
+      if (error.response?.data.status === 40008) {
+        setIsNicknameDuplicate(true);
+        nicknameRef.current?.focus();
       } else {
-        setErrorMessage('닉네임 변경 중 오류가 발생했습니다. 다시 시도해 주세요.');
+        alert(error.message);
       }
     },
   });

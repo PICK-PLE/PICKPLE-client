@@ -77,14 +77,13 @@ const GuestMyPage = () => {
           </p>
         </nav>
         <div css={profileWrapper}>
-          {/* @정안TODO guestInfo 타입 설정 후 해당 데이터로 교체 */}
           <SimpleUserProfile
             size="xlarge"
             userImgUrl={guestInfo?.guestImageUrl}
             username={guestInfo?.guestNickname || user.guestNickname || ''}
           />
-          <span css={editIconStyle} onClick={handleChangeNicknameModalOpen}>
-            <IcEdit20 />
+          <span onClick={handleChangeNicknameModalOpen}>
+            <IcEdit20 css={editIconStyle} />
           </span>
         </div>
         <div css={divdier} />

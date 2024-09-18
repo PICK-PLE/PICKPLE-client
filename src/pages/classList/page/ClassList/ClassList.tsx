@@ -62,7 +62,11 @@ const ClassList = () => {
     navigate(`/class/${moimId}`);
   };
 
-  const sortedMoimList = moimList?.slice().sort((a, b) => (a.dayOfDay ?? 0) - (b.dayOfDay ?? 0));
+  const sortedHostInfoByDayOfDay = moimList
+    ?.filter((data) => (data.dayOfDay ?? 0) === 0) // dayOfDay가 0 이상인 요소 필터링
+    .concat(moimList.filter((data) => data.dayOfDay && data.dayOfDay > 0))
+    .sort((a, b) => (a.dayOfDay ?? 0) - (b.dayOfDay ?? 0))
+    .concat(moimList.filter((data) => data.dayOfDay && data.dayOfDay < 0));
 
   if (moimList === null) {
     return <Error />;
@@ -102,7 +106,7 @@ const ClassList = () => {
           <ClassListEmptyView />
         ) : (
           <ul css={moimListContainer}>
-            {sortedMoimList?.map((moim) => {
+            {sortedHostInfoByDayOfDay?.map((moim) => {
               return (
                 <li
                   css={moimCardStyle}

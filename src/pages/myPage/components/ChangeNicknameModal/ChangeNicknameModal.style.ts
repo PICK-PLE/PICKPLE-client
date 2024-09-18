@@ -18,7 +18,7 @@ export const changeNicknameModalLayout = (theme: Theme) => css`
 export const changeNicknameModalWrapper = css`
   ${flexGenerator('column', 'center', 'center')};
   width: 100%;
-  gap: 2rem;
+  gap: 1.6rem;
 `;
 
 export const modalTitleWrapper = css`

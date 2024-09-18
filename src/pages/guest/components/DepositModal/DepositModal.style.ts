@@ -13,6 +13,8 @@ export const closeIconLayout = css`
 export const closeIconStyle = css`
   width: 2.4rem;
   height: 2.4rem;
+
+  cursor: pointer;
 `;
 export const headerstyle = css`
   ${flexGenerator('column')}
