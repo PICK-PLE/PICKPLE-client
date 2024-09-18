@@ -1,4 +1,4 @@
-import { Logo } from '@svg';
+import { IcBlackAndWhiteLogo } from '@svg';
 
 import {
   contactTextStyle,
@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <footer css={footerContainer}>
       <div css={footerWrapper}>
-        <Logo css={logoStyle} />
+        <IcBlackAndWhiteLogo css={logoStyle} />
         <div css={termsOfUseStyle}>
           <p
             css={textStyle}

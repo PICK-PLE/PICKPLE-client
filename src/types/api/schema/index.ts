@@ -14,7 +14,7 @@ export interface paths {
     get?: never;
     put?: never;
     /** 호스트 승인 신청 */
-    post: operations['postSubmitter'];
+    post: operations['createSubmitter'];
     delete?: never;
     options?: never;
     head?: never;
@@ -1396,6 +1396,7 @@ export interface components {
       commenterNickname?: string;
       commentContent?: string;
       commentDate?: string;
+      isVeteran?: boolean;
     };
     ApiResponseDtoMoimDetailResponse: {
       /** @enum {string} */
@@ -1569,9 +1570,9 @@ export interface components {
     };
     MoimGetResponse: {
       title?: string;
-      moimImage?: string;
-      hostImage?: string;
-      hostNickname?: string;
+      moimImageUrl?: string;
+      hostImageUrl?: string;
+      hostNickName?: string;
       dateList?: components['schemas']['DateInfo'];
     };
     ApiResponseDtoListReviewListGetByMoimResponse: {
@@ -1838,6 +1839,7 @@ export interface components {
       hostId?: number;
       /** Format: int32 */
       commentNumber?: number;
+      isPrivate?: boolean;
     };
     ApiResponseDtoListString: {
       /** @enum {string} */
@@ -2097,6 +2099,7 @@ export interface components {
       moimCount?: number;
       /** Format: int32 */
       attendeeCount?: number;
+      isVeteran?: boolean;
     };
     ApiResponseDtoHostByMoimResponse: {
       /** @enum {string} */
@@ -2178,10 +2181,9 @@ export interface components {
     HostByMoimResponse: {
       hostNickName?: string;
       hostImageUrl?: string;
-      /** Format: int32 */
-      count?: number;
       keyword?: string;
       description?: string;
+      isVeteran?: boolean;
     };
     ApiResponseDtoListReviewListGetByHostResponse: {
       /** @enum {string} */
@@ -2439,11 +2441,10 @@ export interface components {
     HostIntroGetResponse: {
       nickName?: string;
       profileUrl?: string;
-      /** Format: int32 */
-      count?: number;
       keyword?: string;
       description?: string;
       socialLink?: string;
+      isVeteran?: boolean;
     };
     ApiResponseDtoGuestGetResponse: {
       /** @enum {string} */
@@ -3463,7 +3464,6 @@ export interface components {
       moimImage?: string;
     };
   };
-
   responses: never;
   parameters: never;
   requestBodies: never;
@@ -3472,7 +3472,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-  postSubmitter: {
+  createSubmitter: {
     parameters: {
       query?: never;
       header?: never;
@@ -3496,6 +3496,15 @@ export interface operations {
       };
       /** @description 대기중인 호스트 승인 신청이 있습니다. */
       40003: {
+        headers: {
+          [name: string]: unknown;
+        };
+        content: {
+          '*/*': components['schemas']['ApiResponseDto'];
+        };
+      };
+      /** @description 이미 호스트 입니다. */
+      40013: {
         headers: {
           [name: string]: unknown;
         };
@@ -4390,15 +4399,6 @@ export interface operations {
       };
       /** @description 존재하지 않는 호스트입니다. */
       40405: {
-        headers: {
-          [name: string]: unknown;
-        };
-        content: {
-          '*/*': components['schemas']['ApiResponseDtoHostGetResponse'];
-        };
-      };
-      /** @description 호스트 승인 신청이 존재하지 않습니다. */
-      40408: {
         headers: {
           [name: string]: unknown;
         };

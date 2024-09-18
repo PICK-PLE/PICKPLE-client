@@ -32,10 +32,10 @@ export const navigateBoxWrapper = css`
   gap: 2.8rem;
 `;
 
-export const divdier = css`
+export const divdier = (theme: Theme) => css`
   width: 100%;
   height: 0.8rem;
-  background-color: #f3f3f3;
+  background-color: ${theme.color.bg_white0};
 `;
 
 export const logoutBox = css`
@@ -53,6 +53,7 @@ export const logoutTextStyle = (theme: Theme) => css`
 export const iconStyle = css`
   width: 2.4rem;
   height: 2.4rem;
+  padding: 0.2rem;
 `;
 
 export const editIconStyle = css`

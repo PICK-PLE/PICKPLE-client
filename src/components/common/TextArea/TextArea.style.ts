@@ -12,9 +12,14 @@ export const textAreaWrapperStyle = (isError: boolean, isFocused: boolean) => (t
   ${flexGenerator('column', 'space-between', 'flex-end')}
   width: 100%;
   min-width: 33.5rem;
-  padding: 1.2rem 1.3rem 1rem 1rem;
+  padding: 1.2rem 1.6rem;
 
-  border: 1px solid ${isError && isFocused ? theme.color.error : theme.color.lightgray1};
+  border: 1px solid
+    ${isError && isFocused
+      ? theme.color.error
+      : isFocused
+        ? theme.color.purple1
+        : theme.color.lightgray1};
   border-radius: 10px;
   background-color: ${theme.color.white};
 `;
@@ -37,7 +42,7 @@ export const textAreaStyle = (theme: Theme) => css`
 
   color: ${theme.color.blackgray};
   background-color: ${theme.color.white};
-  ${theme.font['body01-r-15']};
+  ${theme.font['body06-m-15']};
 
   &::placeholder {
     color: ${theme.color.midgray1};

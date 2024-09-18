@@ -27,14 +27,15 @@ export const profileName = (theme: Theme) => css`
 `;
 
 export const iconWrapper = css`
+  ${flexGenerator()};
+  gap: 1rem;
   position: relative;
 `;
 
 export const iconStyle = css`
   width: 2.4rem;
   height: 2.4rem;
-  position: absolute;
-  right: 0.3rem;
+  margin-right: -1rem;
 
   cursor: pointer;
 `;

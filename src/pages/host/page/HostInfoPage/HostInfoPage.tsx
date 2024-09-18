@@ -68,7 +68,7 @@ const HostInfoPage = () => {
   };
 
   const { data: hostInfoData } = useFetchHostInfo(Number(hostId));
-  const { nickName, profileUrl, count, keyword, description, socialLink } = hostInfoData ?? {};
+  const { nickName, profileUrl, isVeteran, keyword, description, socialLink } = hostInfoData ?? {};
 
   const { data: hostInfoClassData } = useFetchMoimListByHost(Number(hostId));
 
@@ -108,7 +108,7 @@ const HostInfoPage = () => {
                     <IcSpickerMark css={hostMarkIconStyle} />
                   </div>
 
-                  {count !== undefined && count >= 2 && (
+                  {isVeteran && (
                     <div css={hostMarkMessageWrapper}>
                       <span css={hostMarkMessageStyle}>베테랑</span>
                     </div>

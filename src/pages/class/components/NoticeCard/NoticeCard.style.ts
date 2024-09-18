@@ -11,6 +11,7 @@ export const noticeCardContainer = (theme: Theme) => css`
   border-radius: 10px;
 
   gap: 2rem;
+  cursor: pointer;
 `;
 
 export const profileWrapper = css`

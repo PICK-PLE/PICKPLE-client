@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { post } from '@apis/api';
 
 import { components } from '@schema';
-import { MutateResponseType } from '@types';
+import { ErrorResponse, MutateResponseType } from '@types';
 
 type ReviewCreateReqeust = components['schemas']['ReviewCreateReqeust'];
 
@@ -16,8 +16,9 @@ const postReview = async (params: ReviewCreateReqeust, moimId: number) => {
     const response = await post<MutateResponseType>(`/v2/moim/${moimId}/review`, params);
     return response.data;
   } catch (error) {
-    console.error(error);
-    return null;
+    const errorResponse = error as ErrorResponse;
+    const errorData = errorResponse.response.data;
+    throw errorData;
   }
 };
 

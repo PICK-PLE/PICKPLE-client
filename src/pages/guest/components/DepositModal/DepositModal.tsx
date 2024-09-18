@@ -43,7 +43,7 @@ const DepositModal = ({ onClose, fee }: DepositModalProps) => {
     <>
       <article css={modalContainerStyle}>
         <div css={closeIconLayout}>
-          <span css={closeIconStyle}>
+          <span css={closeIconStyle} onClick={onClose}>
             <IcClose />
           </span>
         </div>
