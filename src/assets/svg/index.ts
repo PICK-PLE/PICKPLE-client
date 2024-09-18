@@ -2,6 +2,7 @@ export { default as IcKakaoPay } from './IcKakaoPay';
 export { default as IcTossPay } from './IcTossPay';
 export { default as IcApplicantArrcodionDown } from './IcApplicantArrcodionDown';
 export { default as IcApplicantArrcodionUp } from './IcApplicantArrcodionUp';
+export { default as IcBlackAndWhiteLogo } from './IcBlackAndWhiteLogo';
 export { default as IcBtnMinus } from './IcBtnMinus';
 export { default as IcBtnPlus } from './IcBtnPlus';
 export { default as IcCamera } from './IcCamera';
