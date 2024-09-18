@@ -29,19 +29,22 @@ interface MoimCardProps {
 }
 
 const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
-  const { moimSubmissionState, title, hostNickname, dateList, fee, imageUrl, moimId } =
+  const { moimSubmissionState, title, hostNickname, dateList, fee, imageUrl, moimId, isReviewed } =
     guestMyClassData;
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
+
   const handleButtonClick = () => {
     setIsOpen(!isOpen);
   };
-
   const handleCardClick = () => {
     navigate(`/class/${moimId}`);
   };
   const handleWriteReviewClick = () => {
     navigate(`/mypage/guest/myclass/${moimId}/review/write`);
+  };
+  const handleWatchReviewClick = () => {
+    navigate(`/class/${moimId}`, { state: { tab: 'review' } });
   };
 
   return (
@@ -83,11 +86,15 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
           입금하기
         </Button>
       ) : null}
+
       {moimSubmissionState === 'completed' && (
-        <Button variant="xSmall" onClick={handleWriteReviewClick}>
-          리뷰 쓰기
+        <Button
+          variant={isReviewed ? 'xSmallStroke' : 'xSmall'}
+          onClick={isReviewed ? handleWatchReviewClick : handleWriteReviewClick}>
+          {isReviewed ? '리뷰 보기' : '리뷰 쓰기'}
         </Button>
       )}
+
       {isOpen && (
         <Modal onClose={handleButtonClick}>
           <DepositModal onClose={handleButtonClick} />

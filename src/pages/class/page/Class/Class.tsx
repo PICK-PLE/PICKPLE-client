@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
-import { Suspense, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Suspense, useEffect, useState } from 'react';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -54,7 +54,12 @@ import 'swiper/css/pagination';
 const Class = () => {
   const { windowWidth } = useWindowSize();
   const navigate = useNavigate();
-  const [selectTab, setSelectTab] = useState<'클래스소개' | '공지사항' | '리뷰'>('클래스소개');
+  const location = useLocation();
+  const currentTab = location.state?.tab;
+  const [selectTab, setSelectTab] = useState<'클래스소개' | '공지사항' | '리뷰'>(
+    currentTab === 'review' ? '리뷰' : '클래스소개'
+  );
+
   const { moimId } = useParams<MoimIdPathParameterType>();
   const { handleCopyToClipboard } = useClipboard();
   const { showToast, isToastVisible } = useToast();
@@ -64,6 +69,13 @@ const Class = () => {
   const { data: moimDescription, isLoading: isMoimDescriptionLoading } = useFetchMoimDescription(
     moimId ?? ''
   );
+
+  useEffect(() => {
+    if (currentTab === 'review') {
+      smoothScroll(660);
+    }
+  }, [currentTab]);
+
   const { data: moimNoticeList } = useFetchMoimNoticeList(moimId ?? '');
   if (isMoimDetailLoading || isMoimDescriptionLoading) {
     return <Spinner />;
