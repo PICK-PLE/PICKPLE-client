@@ -65,15 +65,30 @@ export const svgStyle = (hasValue: boolean) => (theme: Theme) => css`
 export const dropdownStyle = (theme: Theme) => css`
   position: absolute;
   top: 100%;
-  left: 0;
+  left: -1.6rem;
   right: 0;
-  z-index: 1000;
+  z-index: 1;
+
   background-color: ${theme.color.white};
   border: 1px solid ${theme.color.lightgray1};
   border-radius: 10px;
+
+  width: 16.2rem;
   max-height: 200px;
+  padding-right: 5rem;
+  margin-top: 1.5rem;
+
   overflow-y: auto;
-  margin-top: 0.5rem;
+
+  &::-webkit-scrollbar {
+    display: block;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${theme.color.lightgray0};
+    border: 5px solid ${theme.color.white};
+    border-radius: 10px;
+  }
 `;
 
 export const optionStyle = (theme: Theme) => css`
