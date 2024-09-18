@@ -30,7 +30,7 @@ const MoimSubmitter = () => {
     mutate({ moimSubmissionId });
   };
 
-  const isApproved = (item: MoImSubmitterListGetResponse) => {
+  const renderApprovalStatus = (item: MoImSubmitterListGetResponse) => {
     switch (item.moimSubmissionState) {
       case 'pendingPayment':
         return <button onClick={() => handleButtonClick(item.moimSubmissionId || 0)}>확인</button>;
@@ -96,7 +96,7 @@ const MoimSubmitter = () => {
                     ]
                   }
                 </td>
-                <td>{isApproved(item)}</td>
+                <td>{renderApprovalStatus(item)}</td>
               </tr>
             ))}
           </tbody>
