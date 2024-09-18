@@ -13,6 +13,7 @@ import {
   errorAndLengthWrapper,
   deleteButtonStyle,
   labelAndInputWrapper,
+  deleteIconStyle,
 } from './Input.style';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -96,7 +97,9 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             />
             {isFocused && value.length > 0 && (
               <div css={deleteButtonStyle} onMouseDown={handleInputDelete}>
-                <IcDelete20 />
+                <span css={deleteIconStyle}>
+                  <IcDelete20 />
+                </span>
               </div>
             )}
           </div>

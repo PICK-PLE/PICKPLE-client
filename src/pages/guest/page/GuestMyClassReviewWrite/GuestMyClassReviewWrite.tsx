@@ -7,10 +7,10 @@ import { useFetchMoimFromReviewPage } from '@apis/domains/review/useFetchMoimFro
 import { useFetchReviewTagList } from '@apis/domains/review/useFetchReviewTagList';
 import { usePostReview } from '@apis/domains/review/usePostReview';
 
-import { Button, Header, ImageSelect, Spinner, TextArea } from '@components';
+import { Button, Header, ImageSelect, Spinner, TagSelectBox, TextArea, Toast } from '@components';
+import { useToast } from '@hooks';
 import { ClassListCard } from '@pages/classList/components';
 import { handleUpload } from '@utils';
-import TagSelectBox from 'src/components/common/TagSelectBox/TagSelectBox';
 import { hostTagsAtom, moimTagsAtom } from 'src/stores/tagList';
 
 import {
@@ -33,6 +33,7 @@ const GuestMyClassReviewWrite = () => {
   const { moimId } = useParams<MoimIdPathParameterType>();
   const moimIdNumber = Number(moimId);
   const navigate = useNavigate();
+  const { showToast, isToastVisible } = useToast();
 
   const { data: moimData } = useFetchMoimFromReviewPage(moimId ?? '');
   const { data: tagList } = useFetchReviewTagList();
@@ -62,54 +63,71 @@ const GuestMyClassReviewWrite = () => {
       content,
       imageUrl,
     };
-    await mutateAsync({ params, moimId: moimIdNumber });
-    navigate(`/mypage/guest/myclass/${moimId}/review/complete`);
+    try {
+      await mutateAsync({ params, moimId: moimIdNumber });
+      navigate(`/mypage/guest/myclass/${moimId}/review/complete`);
+    } catch (error) {
+      showToast();
+    }
+  };
+
+  const isButtonDisabled = () => {
+    return selectedMoimTags.length < 1 || selectedHostTags.length < 1 || content.length < 5;
   };
 
   if (putS3IsPending || isPending) {
     return <Spinner />;
   }
   return (
-    <div css={reviewWriteLayout}>
-      <Header title="리뷰 쓰기" />
-      <div css={reviewWriteContainer}>
-        {moimData && <ClassListCard classListData={moimData} variant="classList" />}
-        <main css={mainStyle}>
-          <section css={tagSectionStyle}>
-            <div css={sectionTitleStyle}>
-              <span css={bigSpan}>클래스는 어떠셨나요?</span>
-              <span css={smallSpan}>최소 1개, 최대 3개</span>
-            </div>
-            <TagSelectBox tagList={tagList?.moimTag} maxSelection={3} tagType="moim" />
-          </section>
-          <section css={tagSectionStyle}>
-            <div css={sectionTitleStyle}>
-              <span css={bigSpan}>스피커는 어떠셨나요?</span>
-              <span css={smallSpan}>최소 1개, 최대 3개</span>
-            </div>
-            <TagSelectBox tagList={tagList?.hostTag} maxSelection={3} tagType="host" />
-          </section>
-          <section css={writeReviewSection}>
-            <span css={bigSpan}>클래스에 함께한 경험을 공유해 주세요!</span>
-            <div css={textareaAndImageWrapper}>
-              <TextArea
-                size="medium"
-                maxLength={500}
-                placeholder={'1글자 이상 리뷰를 작성해주세요.'}
-                value={content}
-                onChange={handleTextareaChange}
-                isValid={true}
-                errorMessage="1글자 이상 리뷰를 작성해주세요."
-              />
-              <ImageSelect isMultiple={false} onFileSelect={setSelectedFiles} maxImageLength={1} />
-            </div>
-          </section>
-        </main>
-        <Button variant="large" onClick={handleButtonClick}>
-          리뷰 등록하기
-        </Button>
+    <>
+      <div css={reviewWriteLayout}>
+        <Header title="리뷰 쓰기" isLine={true} />
+        <div css={reviewWriteContainer}>
+          {moimData && <ClassListCard classListData={moimData} variant="classList" />}
+          <main css={mainStyle}>
+            <section css={tagSectionStyle}>
+              <div css={sectionTitleStyle}>
+                <span css={bigSpan}>클래스는 어떠셨나요?</span>
+                <span css={smallSpan}>최소 1개, 최대 3개</span>
+              </div>
+              <TagSelectBox tagList={tagList?.moimTag} maxSelection={3} tagType="moim" />
+            </section>
+            <section css={tagSectionStyle}>
+              <div css={sectionTitleStyle}>
+                <span css={bigSpan}>스픽커는 어떠셨나요?</span>
+                <span css={smallSpan}>최소 1개, 최대 3개</span>
+              </div>
+              <TagSelectBox tagList={tagList?.hostTag} maxSelection={3} tagType="host" />
+            </section>
+            <section css={writeReviewSection}>
+              <span css={bigSpan}>참가자님의 소중한 경험을 공유해 주세요!</span>
+              <div css={textareaAndImageWrapper}>
+                <TextArea
+                  size="medium"
+                  maxLength={500}
+                  placeholder={'1글자 이상 리뷰를 작성해주세요.'}
+                  value={content}
+                  onChange={handleTextareaChange}
+                  isValid={true}
+                  errorMessage="1글자 이상 리뷰를 작성해주세요."
+                />
+                <ImageSelect
+                  isMultiple={false}
+                  onFileSelect={setSelectedFiles}
+                  maxImageLength={1}
+                />
+              </div>
+            </section>
+          </main>
+          <Button variant="large" onClick={handleButtonClick} disabled={isButtonDisabled()}>
+            리뷰 등록하기
+          </Button>
+        </div>
       </div>
-    </div>
+      <Toast isVisible={isToastVisible} toastBottom={3} toastIcon={true}>
+        이미 리뷰를 작성한 클래스예요
+      </Toast>
+    </>
   );
 };
 
