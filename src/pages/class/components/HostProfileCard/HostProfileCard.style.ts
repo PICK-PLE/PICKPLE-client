@@ -27,12 +27,9 @@ export const profileName = (theme: Theme) => css`
 `;
 
 export const iconWrapper = css`
-  position: relative;
-`;
-
-export const profileIconWrapper = css`
-  display: flex;
+  ${flexGenerator()};
   gap: 1rem;
+  position: relative;
 `;
 
 export const iconStyle = css`

@@ -9,7 +9,6 @@ import {
   iconStyle,
   iconWrapper,
   profileContainer,
-  profileIconWrapper,
   profileName,
   profileNameWrapper,
   profilePosition,
@@ -33,6 +32,7 @@ const HostProfileCard = ({ data: noticeDetail, noticeId, moimId }: HostProfileCa
   const [isDeleteOpen, setIsDeleteOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [user] = useAtom(userAtom);
+  const isHost = noticeDetail.hostNickname === user.hostNickname;
 
   const handleDeleteOpen = () => setIsDeleteOpen(true);
   const handleDeleteClose = () => setIsDeleteOpen(false);
@@ -76,42 +76,16 @@ const HostProfileCard = ({ data: noticeDetail, noticeId, moimId }: HostProfileCa
     );
   };
 
-  const renderProfileIcons = () => {
-    const isHost = noticeDetail.hostNickname === user.hostNickname;
-    if (isHost) {
-      return (
-        <div css={profileIconWrapper}>
-          {renderLabel()}
-          <span css={iconStyle}>
-            <IcParkMore onClick={handleDeleteOpen} />
-          </span>
-          {renderDeleteCard()}
-          {renderModal()}
-        </div>
-      );
-    }
-
-    if (!noticeDetail.isOwner && !noticeDetail.isPrivate) {
-      return (
-        <div css={profileIconWrapper}>
-          <Label variant="category" icon={<IcUnlock />}>
-            전체
-          </Label>
-        </div>
-      );
-    }
-
-    if (noticeDetail.isPrivate) {
-      return (
-        <div css={profileIconWrapper}>
-          <Label variant="category" icon={<IcLock />}>
-            참가자
-          </Label>
-        </div>
-      );
-    }
-
-    return null;
+  const renderMoreIcon = () => {
+    return (
+      <>
+        <span css={iconStyle}>
+          <IcParkMore onClick={handleDeleteOpen} />
+        </span>
+        {renderDeleteCard()}
+        {renderModal()}
+      </>
+    );
   };
 
   return (
@@ -128,7 +102,10 @@ const HostProfileCard = ({ data: noticeDetail, noticeId, moimId }: HostProfileCa
           </div>
         </div>
       </section>
-      <div css={iconWrapper}>{renderProfileIcons()}</div>
+      <div css={iconWrapper}>
+        {renderLabel()}
+        {isHost && renderMoreIcon()}
+      </div>
     </div>
   );
 };
