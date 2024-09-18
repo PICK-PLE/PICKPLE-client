@@ -79,5 +79,6 @@ export const iconStyle = css`
 export const commentListWrapper = css`
   ${flexGenerator('column', 'flex-start', 'flex-start')}
   height: 100%;
+  margin-top: 1.5rem;
   overflow: scroll;
 `;
