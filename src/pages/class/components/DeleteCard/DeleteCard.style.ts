@@ -23,6 +23,7 @@ export const deleteCardWrapper = (theme: Theme) => css`
 
   ${theme.font['subhead03-m-16']};
   color: ${theme.color.darkgray};
+  background-color: ${theme.color.white};
 
   z-index: 4;
   position: absolute;
