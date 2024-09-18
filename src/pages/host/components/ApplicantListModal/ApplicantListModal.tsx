@@ -59,7 +59,7 @@ const ApplicantListModal = ({
             {submitterList?.map((submitter) => (
               <li key={submitter.submitterId} css={liStyle}>
                 <SimpleUserProfile
-                  size="large"
+                  size="medium"
                   userImgUrl={images.GuestProfileImage}
                   username={submitter.nickname || ''}
                 />

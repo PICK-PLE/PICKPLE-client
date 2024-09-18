@@ -41,7 +41,11 @@ const ClassListCard = ({ classListData, variant }: ClassListCardProps) => {
       <div css={classListTextContainer}>
         <span css={titleTextWrapper}>{title}</span>
         <div css={classListTextWrapper}>
-          <SimpleUserProfile size="small" userImgUrl={hostImageUrl} username={hostNickName ?? ''} />
+          <SimpleUserProfile
+            size="xSmall"
+            userImgUrl={hostImageUrl}
+            username={hostNickName ?? ''}
+          />
           <span css={timeTextWraaper}>{`${date}. (${dayOfWeek}) ${startTime}~${endTime}`}</span>
         </div>
       </div>
