@@ -23,7 +23,7 @@ export const usePatchMoimSubmitter = () => {
     mutationFn: ({ moimSubmissionId }: PatchMoimSubmitterRequest) =>
       patchMoimSubmitter({ moimSubmissionId }),
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.MOIM_SUBMITTER_ALL_REQUEST] });
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEY.MOIM_SUBMITTER_ALL] });
     },
   });
 };
