@@ -69,8 +69,6 @@ const MyClassManage = () => {
     }
   }, [submitterList, checkedStates.length]);
 
-  console.log(applicantData);
-
   // 체크상태 바로 반영이 되게
   useEffect(() => {
     if (submitterList) {
