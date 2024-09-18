@@ -44,8 +44,12 @@ const CommentInput = ({ noticeId }: CommentInputProps) => {
   };
 
   const handleIconClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    submitComment();
+    if (value.trim().length === 0) {
+      return;
+    } else {
+      e.preventDefault();
+      submitComment();
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
