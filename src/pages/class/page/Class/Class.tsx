@@ -37,6 +37,7 @@ import {
   classInfoList,
   classLayout,
   classNameStyle,
+  disabledStyle,
   floatingButtonWrapper,
   imageStyle,
   infoSectionStyle,
@@ -59,6 +60,7 @@ const Class = () => {
   const [selectTab, setSelectTab] = useState<'클래스소개' | '공지사항' | '리뷰'>(
     currentTab === 'review' ? '리뷰' : '클래스소개'
   );
+  const [toastText, setToastText] = useState('');
 
   const { moimId } = useParams<MoimIdPathParameterType>();
   const { handleCopyToClipboard } = useClipboard();
@@ -115,13 +117,19 @@ const Class = () => {
   };
 
   const handleApplyButtonClick = () => {
-    smoothScroll(0);
-    navigate(isSubmitted ? `/mypage/guest/myclass` : `/class/${moimId}/apply`);
+    if (moimDetail.hostId === hostId) {
+      setToastText('스픽커님이 개설한 클래스예요!');
+      showToast();
+    } else {
+      smoothScroll(0);
+      navigate(isSubmitted ? `/mypage/guest/myclass` : `/class/${moimId}/apply`);
+    }
   };
 
   const handleShareButtonClick = async () => {
     const shareSuccess = await handleShare(url, shareTitle, text, handleCopyToClipboard);
     if (shareSuccess === false) {
+      setToastText('클립보드에 모임 링크를 복사했어요!');
       showToast();
     }
   };
@@ -210,14 +218,15 @@ const Class = () => {
           <Button
             variant="large"
             onClick={handleApplyButtonClick}
-            disabled={isClassClosed || moimDetail.hostId === hostId}>
+            disabled={isClassClosed}
+            customStyle={moimDetail?.hostId ? disabledStyle : undefined}>
             {isClassClosed ? '모집 완료' : isSubmitted ? `신청 완료` : `참여하기`}
           </Button>
         </section>
       </div>
       {isToastVisible && (
         <Toast isVisible={isToastVisible} toastBottom={10}>
-          클립보드에 모임 링크를 복사했어요!
+          {toastText}
         </Toast>
       )}
     </div>
