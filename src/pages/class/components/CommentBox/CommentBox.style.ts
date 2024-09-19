@@ -15,7 +15,7 @@ export const commentSectionContainer = (theme: Theme) => css`
 export const commentContainer = (isOwner: boolean) => (theme: Theme) => css`
   ${flexGenerator('row', 'space-between', 'flex-start')};
   padding: 1.7rem 1.3rem 1.7rem 2rem;
-  gap: 1rem;
+  gap: 1.2rem;
   background: ${isOwner ? theme.color.bg_white1 : theme.color.white};
   width: 100%;
 `;
@@ -57,11 +57,15 @@ export const commentTime = (theme: Theme) => css`
 
 export const iconWrapper = css`
   position: relative;
+
+  cursor: pointer;
 `;
 
 export const iconStyle = css`
   width: 2.4rem;
   height: 2.4rem;
+
+  cursor: pointer;
 `;
 
 export const spickerIconStyle = css`

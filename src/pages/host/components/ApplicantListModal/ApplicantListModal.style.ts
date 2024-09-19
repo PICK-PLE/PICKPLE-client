@@ -43,15 +43,27 @@ export const applicantCountStyle = (theme: Theme) => css`
 
 export const mainStyle = css`
   ${flexGenerator()};
-  min-width: 30.1rem;
-  padding: 1rem;
+  width: 30.1rem;
+  height: 17.5rem;
+  padding: 1rem 0.7rem 0rem 2rem;
 `;
-export const ulStyle = css`
-  ${flexGenerator('column')};
+
+export const ulStyle = (theme: Theme) => css`
+  overflow-y: auto;
+  ${flexGenerator('column', 'flex-start', 'flex-start')};
   gap: 1.4rem;
-  min-width: 28.1rem;
   width: 100%;
-  padding: 1rem 2rem;
+  height: 100%;
+
+  &::-webkit-scrollbar {
+    display: block;
+    width: 0.4rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: ${theme.color.lightgray0};
+    border-radius: 3px;
+  }
 `;
 
 export const liStyle = css`

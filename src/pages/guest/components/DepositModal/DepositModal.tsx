@@ -33,6 +33,7 @@ interface DepositModalProps {
 
 const DepositModal = ({ onClose, fee }: DepositModalProps) => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+
   const handleErrorModalToggle = () => {
     setIsErrorModalOpen((prev) => !prev);
   };
@@ -43,7 +44,7 @@ const DepositModal = ({ onClose, fee }: DepositModalProps) => {
     <>
       <article css={modalContainerStyle}>
         <div css={closeIconLayout}>
-          <span css={closeIconStyle}>
+          <span css={closeIconStyle} onClick={onClose}>
             <IcClose />
           </span>
         </div>

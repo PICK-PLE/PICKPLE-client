@@ -1,8 +1,10 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Button, Header, Image } from '@components';
 import ArticleParagraph from '@pages/article/components/ArticleParagraph/ArticleParagraph';
 import { IcDropdownRight } from '@svg';
+import { smoothScroll } from '@utils';
 import Footer from 'src/components/common/Footer/Footer';
 import { PicksightImage, PicksightMain } from 'src/constants/images';
 
@@ -19,6 +21,10 @@ import {
 
 const Picksight = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    smoothScroll(0, false);
+  }, []);
 
   const handleSpickerApplyClick = () => {
     navigate('/mypage/host');
@@ -44,7 +50,7 @@ const Picksight = () => {
         </div>
         <h3 css={articleSubtitle}>
           픽플에는 <strong css={articleStrong}>스픽커</strong>와
-          <strong css={articleStrong}>참가자</strong>가 있어요.
+          <strong css={articleStrong}> 참가자</strong>가 있어요.
         </h3>
         <Image src={PicksightImage} width="100%" />
 

@@ -12,6 +12,7 @@ import {
   depositSpanStyle,
   depositMainStyle,
   dipositWrapperStyle,
+  depositHeaderStyle,
 } from './ClassApplyDeposit.style';
 
 import { MoimIdPathParameterType } from '@types';
@@ -31,7 +32,7 @@ const ClassApplyDeposit = ({ handlePageChange }: ClassApplyProps) => {
   return (
     <article css={depositArticleLayout}>
       <div css={dipositWrapperStyle}>
-        <header>
+        <header css={depositHeaderStyle}>
           <span css={depositSpanStyle}>클래스 모임 신청</span>
           <h1 css={depositHStyle}>
             클래스 신청이 완료되었습니다! <br /> 이제 참가비를 입금해주세요.

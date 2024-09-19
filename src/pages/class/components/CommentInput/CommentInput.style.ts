@@ -28,6 +28,8 @@ export const inputStyle = (theme: Theme) => css`
   padding: 1.2rem 1.5rem;
   gap: 1rem;
 
+  ${theme.font['body06-m-15']};
+
   border-radius: 10px;
   background: ${theme.color.lightgray0};
   border: none;

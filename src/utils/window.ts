@@ -1,7 +1,7 @@
-export const smoothScroll = (top: number): void => {
+export const smoothScroll = (top: number, isSmooth: boolean = true): void => {
   window.scrollTo({
     top,
     left: 0,
-    behavior: 'smooth',
+    behavior: isSmooth ? 'smooth' : 'instant',
   });
 };

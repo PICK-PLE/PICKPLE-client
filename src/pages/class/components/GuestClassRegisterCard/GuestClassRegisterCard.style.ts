@@ -10,7 +10,7 @@ export const cardContainerStyle = (theme: Theme) => css`
   width: 100%;
   padding: 1.5rem;
 
-  border: 0.5px solid ${theme.color.lightgray0};
+  border: 1px solid ${theme.color.lightgray0};
   border-radius: 10px;
 `;
 
@@ -36,7 +36,7 @@ export const spotAndDateSectionStyle = css`
 `;
 export const textSpanStyle = (theme: Theme) => css`
   color: ${theme.color.blackgray};
-  ${theme.font['body02-r-14']}
+  ${theme.font['subhead06-m-14']}
 `;
 
 export const iconAndSpanStyle = css`

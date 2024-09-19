@@ -70,12 +70,14 @@ export const tabButtonStyle = (isSelected: boolean) => (theme: Theme) => css`
   margin-bottom: -2px;
   border: none;
   border-bottom: 2px solid ${isSelected ? theme.color.blackgray : theme.color.lightgray1};
+
+  cursor: pointer;
 `;
 
 export const tabSectionStyle = (theme: Theme) => css`
   background-color: ${theme.color.bg_white0};
   width: 100%;
-  min-height: 75rem;
+  min-height: 60rem;
   padding: 2.8rem 2rem;
 `;
 

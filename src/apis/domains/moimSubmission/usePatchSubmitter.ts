@@ -28,8 +28,6 @@ export const usePatchSubmitter = (isOngoing: boolean, onClose: () => void) => {
   const navigate = useNavigate();
   const [user] = useAtom(userAtom);
 
-  console.log(QUERY_KEY.HOST_MOIM_INFO, user.hostId, isOngoing ? 'ongoing' : 'completed');
-
   return useMutation({
     mutationFn: ({ moimId, submitterIdList }: PatchSubmitterRequest) =>
       patchSubmitter({ moimId, submitterIdList }),

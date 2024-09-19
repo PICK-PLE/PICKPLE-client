@@ -22,11 +22,12 @@ export const categoryWrapper = css`
   gap: 0.5rem;
 
   cursor: pointer;
-`;
 
-export const imageStyle = css`
-  width: 5.7rem;
-  height: 5.7rem;
+  svg,
+  img {
+    width: 5.7rem;
+    height: 5.7rem;
+  }
 `;
 
 export const unSeletedIconNameStyle = (theme: Theme) => css`

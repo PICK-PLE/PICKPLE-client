@@ -15,7 +15,7 @@ const getMoimInfo = async (moimId: string): Promise<MoimInfoResponse | null> => 
     );
     return response.data.data;
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return null;
   }
 };

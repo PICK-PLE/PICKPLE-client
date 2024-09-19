@@ -67,8 +67,8 @@ export const hostNameMarkWrapper = css`
 `;
 
 export const hostNameWrapper = css`
-  ${flexGenerator()}
-  gap: 0.4rem
+  ${flexGenerator()};
+  gap: 0.4rem;
 `;
 
 export const hostNameStyle = (theme: Theme) => css`
@@ -125,7 +125,7 @@ export const hostTabTextStyle = (theme: Theme) => css`
   color: ${theme.color.midgray1};
   ${theme.font['subhead01-sb-18']}
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid ${theme.color.midgray1};
+  border-bottom: 1px solid ${theme.color.lightgray1};
 `;
 
 export const hostActiveTabTextStyle = (theme: Theme) => css`
