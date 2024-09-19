@@ -85,7 +85,8 @@ export const hostKeywordStyle = (theme: Theme) => css`
 `;
 
 export const hostCountWrapper = (theme: Theme) => css`
-  color: ${theme.color.darkgray} ${theme.font['body04-m-12']};
+  color: ${theme.color.darkgray};
+  ${theme.font['body04-m-12']};
 `;
 
 export const hostCountColorStyle = (theme: Theme) => css`

@@ -211,9 +211,11 @@ const HostInfoEditPage = () => {
               onChange={(e) => handleInputChange(e, 'socialLink')}
               inputLabel="소셜 링크"
               errorMessage={
-                isSocailLinkValidate ? '* 필수 입력 항목이에요.' : '올바른 URL 형식을 입력해주세요'
+                isSocailLinkValidate
+                  ? '* 필수 입력 항목이에요.'
+                  : '* https:// 로 시작하는 올바른 URL 형식을 입력해주세요'
               }
-              placeholder="닉네임을 입력해주세요"
+              placeholder="소셜 링크를 입력해주세요"
               isCountValue={false}
               isValid={
                 !isSocialLinkTouched ||

@@ -14,9 +14,12 @@ export const profileWrapperSizeStyle = {
     gap: 1.2rem;
   `,
   medium: css`
-    gap: 1rem;
+    gap: 1.2rem;
   `,
   small: css`
+    gap: 1rem;
+  `,
+  xSmall: css`
     gap: 0.5rem;
   `,
 };
@@ -39,10 +42,14 @@ export const imgSizeStyle = {
     height: 4.2rem;
   `,
   medium: css`
+    width: 3.6rem;
+    height: 3.6rem;
+  `,
+  small: css`
     width: 2.5rem;
     height: 2.5rem;
   `,
-  small: css`
+  xSmall: css`
     width: 1.8rem;
     height: 1.8rem;
   `,
@@ -64,6 +71,9 @@ export const usernameSizeStyle = {
     ${theme.font['subhead05-sb-14']}
   `,
   small: (theme: Theme) => css`
+    ${theme.font['subhead05-sb-14']}
+  `,
+  xSmall: (theme: Theme) => css`
     ${theme.font['body04-m-12']}
   `,
 };

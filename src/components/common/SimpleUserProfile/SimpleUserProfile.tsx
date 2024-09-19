@@ -10,7 +10,7 @@ import {
 } from './SimpleUserProfile.style';
 
 export interface SimpleUserProfileProps extends React.HTMLAttributes<HTMLDivElement> {
-  size: 'small' | 'medium' | 'large' | 'xlarge';
+  size: 'xSmall' | 'small' | 'medium' | 'large' | 'xlarge';
   username: string;
   userImgUrl?: string;
 }

@@ -33,7 +33,7 @@ interface hostInfoCardWithLinkListProps {
 }
 const HostInfoCardWithLink = ({ hostInfoCardWithLinkList }: hostInfoCardWithLinkListProps) => {
   const navigate = useNavigate();
-  const { hostNickName, hostImageUrl, keyword, moimCount, attendeeCount, hostId } =
+  const { hostNickName, hostImageUrl, keyword, moimCount, isVeteran, attendeeCount, hostId } =
     hostInfoCardWithLinkList;
 
   const handleButtonClick = () => {
@@ -59,11 +59,11 @@ const HostInfoCardWithLink = ({ hostInfoCardWithLinkList }: hostInfoCardWithLink
                       <p css={hostNameStyle}>{hostNickName}</p>
                       <IcSpickerMark css={hostMarkIconStyle} />
                     </div>
-                    {moimCount && moimCount >= 2 ? (
+                    {isVeteran && (
                       <div css={hostMarkMessageWrapper}>
                         <span css={hostMarkMessageStyle}>베테랑</span>
                       </div>
-                    ) : null}
+                    )}
                   </div>
                   <span css={hostKeywordStyle}>{keyword}</span>
                 </div>

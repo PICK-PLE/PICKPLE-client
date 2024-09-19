@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai';
 import { Suspense, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -54,7 +54,13 @@ import 'swiper/css/pagination';
 const Class = () => {
   const { windowWidth } = useWindowSize();
   const navigate = useNavigate();
-  const [selectTab, setSelectTab] = useState<'클래스소개' | '공지사항' | '리뷰'>('클래스소개');
+  const location = useLocation();
+  const currentTab = location.state?.tab;
+  const [selectTab, setSelectTab] = useState<'클래스소개' | '공지사항' | '리뷰'>(
+    currentTab === 'review' ? '리뷰' : '클래스소개'
+  );
+  const [toastText, setToastText] = useState('');
+
   const { moimId } = useParams<MoimIdPathParameterType>();
   const { handleCopyToClipboard } = useClipboard();
   const { showToast, isToastVisible } = useToast();
@@ -64,11 +70,19 @@ const Class = () => {
   const { data: moimDescription, isLoading: isMoimDescriptionLoading } = useFetchMoimDescription(
     moimId ?? ''
   );
-  const { data: moimNoticeList } = useFetchMoimNoticeList(moimId ?? '');
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    smoothScroll(0, false);
   }, []);
+
+  useEffect(() => {
+    if (currentTab === 'review') {
+      smoothScroll(660);
+    }
+  }, [currentTab]);
+
+  const { data: moimNoticeList } = useFetchMoimNoticeList(moimId ?? '');
+
   if (isMoimDetailLoading || isMoimDescriptionLoading) {
     return <Spinner />;
   }
@@ -103,13 +117,19 @@ const Class = () => {
   };
 
   const handleApplyButtonClick = () => {
-    smoothScroll(0);
-    navigate(isSubmitted ? `/mypage/guest/myclass` : `/class/${moimId}/apply`);
+    if (moimDetail.hostId === hostId) {
+      setToastText('스픽커님이 개설한 클래스예요!');
+      showToast();
+    } else {
+      smoothScroll(0);
+      navigate(isSubmitted ? `/mypage/guest/myclass` : `/class/${moimId}/apply`);
+    }
   };
 
   const handleShareButtonClick = async () => {
     const shareSuccess = await handleShare(url, shareTitle, text, handleCopyToClipboard);
     if (shareSuccess === false) {
+      setToastText('클립보드에 모임 링크를 복사했어요!');
       showToast();
     }
   };
@@ -195,17 +215,14 @@ const Class = () => {
         )}
         <section css={buttonContainer(windowWidth)}>
           <ShareButton onClick={handleShareButtonClick} />
-          <Button
-            variant="large"
-            onClick={handleApplyButtonClick}
-            disabled={isClassClosed || moimDetail.hostId === hostId}>
+          <Button variant="large" onClick={handleApplyButtonClick} disabled={isClassClosed}>
             {isClassClosed ? '모집 완료' : isSubmitted ? `신청 완료` : `참여하기`}
           </Button>
         </section>
       </div>
       {isToastVisible && (
         <Toast isVisible={isToastVisible} toastBottom={10}>
-          클립보드에 모임 링크를 복사했어요!
+          {toastText}
         </Toast>
       )}
     </div>

@@ -33,6 +33,7 @@ interface DepositModalProps {
 
 const DepositModal = ({ onClose, fee }: DepositModalProps) => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+
   const handleErrorModalToggle = () => {
     setIsErrorModalOpen((prev) => !prev);
   };

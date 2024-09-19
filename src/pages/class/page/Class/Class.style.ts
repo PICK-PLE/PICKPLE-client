@@ -77,7 +77,7 @@ export const tabButtonStyle = (isSelected: boolean) => (theme: Theme) => css`
 export const tabSectionStyle = (theme: Theme) => css`
   background-color: ${theme.color.bg_white0};
   width: 100%;
-  min-height: 75rem;
+  min-height: 60rem;
   padding: 2.8rem 2rem;
 `;
 

@@ -9,7 +9,6 @@ import { useFetchReviewByHost } from '@apis/domains/review/useFetchReviewByHost'
 import { Button, Image, LogoHeader } from '@components';
 import { images } from '@constants';
 import { ClassReviewEmptyView } from '@pages/class/components';
-import { hostNameStyle } from '@pages/class/components/HostInfoCard/HostInfoCard.style';
 import { ClassListCard } from '@pages/classList/components';
 import HostClassEmptyView from '@pages/host/components/HostClassEmptyView/HostClassEmptyView';
 import {
@@ -37,6 +36,7 @@ import {
   hostTabContentWrapper,
   hostTabTextStyle,
   hostTabWrapper,
+  hostNameStyle,
 } from '@pages/host/page/HostInfoPage/HostInfoPage.style';
 import { userAtom } from '@stores';
 import { IcEdit, IcSpickerMark } from '@svg';
@@ -73,8 +73,10 @@ const HostInfoPage = () => {
   const { data: hostInfoClassData } = useFetchMoimListByHost(Number(hostId));
 
   const sortedHostInfoByDayOfDay = hostInfoClassData
-    ?.filter((data) => data.dayOfDay && data.dayOfDay >= 0) // dayOfDay가 0 이상인 요소 필터링
-    .concat(hostInfoClassData.filter((data) => data.dayOfDay && data.dayOfDay < 0)); // dayOfDay가 0 미만인 요소 뒤에 추가
+    ?.filter((data) => (data.dayOfDay ?? 0) === 0)
+    .concat(hostInfoClassData.filter((data) => data.dayOfDay && data.dayOfDay > 0))
+    .sort((a, b) => (a.dayOfDay ?? 0) - (b.dayOfDay ?? 0))
+    .concat(hostInfoClassData.filter((data) => data.dayOfDay && data.dayOfDay < 0));
 
   const { data: hostInfoReviewData } = useFetchReviewByHost(Number(hostId));
 
