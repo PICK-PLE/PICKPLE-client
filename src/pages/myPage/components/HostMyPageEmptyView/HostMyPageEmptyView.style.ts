@@ -32,8 +32,3 @@ export const buttonWrapper = css`
   width: 17.7rem;
   gap: 1rem;
 `;
-
-export const hostMyPageEmptyViewBox = css`
-  ${flexGenerator('column', 'center', 'center')};
-  gap: 2rem;
-`;

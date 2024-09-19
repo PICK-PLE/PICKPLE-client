@@ -5,7 +5,6 @@ import { graphicImage } from '@constants';
 
 import {
   buttonWrapper,
-  hostMyPageEmptyViewBox,
   hostMyPageEmptyViewContainer,
   hostMyPageEmptyViewWrapper,
   imageStyle,
@@ -21,16 +20,14 @@ const HostMyPageEmptyView = () => {
   return (
     <div css={hostMyPageEmptyViewContainer}>
       <img css={imageStyle} src={graphicImage.HostApplyImage} alt="HostMyPageImage" />
-      <div css={hostMyPageEmptyViewBox}>
-        <div css={hostMyPageEmptyViewWrapper}>
-          <p css={textStyle}>아직 스픽커로 등록되어 있지 않아요</p>
-          <p css={textStyle}>스픽커가 되어 다양한 참가자들을 만나 보세요!</p>
-        </div>
-        <div css={buttonWrapper}>
-          <Button variant="round" onClick={handleButtonClick}>
-            스픽커 신청하러 가기
-          </Button>
-        </div>
+      <div css={hostMyPageEmptyViewWrapper}>
+        <p css={textStyle}>아직 스픽커로 등록되어 있지 않아요</p>
+        <p css={textStyle}>스픽커가 되어 다양한 참가자들을 만나 보세요!</p>
+      </div>
+      <div css={buttonWrapper}>
+        <Button variant="round" onClick={handleButtonClick}>
+          스픽커 신청하러 가기
+        </Button>
       </div>
     </div>
   );
