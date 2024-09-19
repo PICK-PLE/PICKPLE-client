@@ -10,7 +10,7 @@ export interface NoticeProps extends HTMLAttributes<HTMLDivElement> {
 const Notice = ({ children, numberLabel, ...props }: NoticeProps) => {
   return (
     <div css={noticeStyle} {...props}>
-      <NumberLabel>{numberLabel}</NumberLabel>
+      <NumberLabel withIcon={true}>{numberLabel}</NumberLabel>
       <p css={textStyle}>{children}</p>
     </div>
   );
