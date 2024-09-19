@@ -12,7 +12,7 @@ export const textAreaWrapperStyle = (isError: boolean, isFocused: boolean) => (t
   ${flexGenerator('column', 'space-between', 'flex-end')}
   width: 100%;
   min-width: 33.5rem;
-  padding: 1.2rem 1.6rem;
+  padding: 1.2rem 1.5rem;
 
   border: 1px solid
     ${isError && isFocused
@@ -39,6 +39,7 @@ export const textAreaStyle = (theme: Theme) => css`
   width: 100%;
   height: 100%;
   resize: none;
+  padding: 0;
 
   color: ${theme.color.blackgray};
   background-color: ${theme.color.white};
