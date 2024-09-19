@@ -1,4 +1,5 @@
-import { IcSpickerMark, IcComment } from '@svg';
+import { Label } from '@components';
+import { IcSpickerMark, IcComment, IcLock, IcUnlock } from '@svg';
 import { formatCreatedDate } from '@utils';
 
 import {
@@ -19,6 +20,7 @@ import {
   noticeComment,
   noticeCommentNumber,
   noticeWrapper,
+  profileCardWrapper,
 } from './NoticeCard.style';
 
 import { components } from '@schema';
@@ -31,19 +33,40 @@ interface NoticeCardProps {
 }
 
 const NoticeCard = ({ noticeData, onClick }: NoticeCardProps) => {
-  const { hostNickName, hostImageUrl, title, content, date, noticeImageUrl, commentNumber } =
-    noticeData;
+  const {
+    hostNickName,
+    hostImageUrl,
+    title,
+    content,
+    date,
+    noticeImageUrl,
+    commentNumber,
+    isPrivate,
+  } = noticeData;
 
   return (
     <article css={noticeCardContainer} onClick={onClick}>
       <section css={profileWrapper}>
-        <img css={profileImage} src={hostImageUrl} alt={`${hostNickName}의 프로필`} />
-        <div css={profileTextBox}>
-          <span css={profilePosition}>스픽커</span>
-          <div css={profileHostInfo}>
-            <span css={profileName}>{hostNickName}</span>
-            <IcSpickerMark css={porfileHostMark} />
+        <div css={profileCardWrapper}>
+          <img css={profileImage} src={hostImageUrl} alt={`${hostNickName}의 프로필`} />
+          <div css={profileTextBox}>
+            <span css={profilePosition}>스픽커</span>
+            <div css={profileHostInfo}>
+              <span css={profileName}>{hostNickName}</span>
+              <IcSpickerMark css={porfileHostMark} />
+            </div>
           </div>
+        </div>
+        <div>
+          {isPrivate ? (
+            <Label variant="category" icon={<IcLock />}>
+              참가자
+            </Label>
+          ) : (
+            <Label variant="category" icon={<IcUnlock />}>
+              전체
+            </Label>
+          )}
         </div>
       </section>
       <section css={noticeWrapper}>

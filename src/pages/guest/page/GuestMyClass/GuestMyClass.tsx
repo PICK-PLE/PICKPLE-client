@@ -77,7 +77,7 @@ const GuestMyClass = () => {
         </article>
 
         <main css={mainWrapper}>
-          {activeTab === '신청한' && (
+          {activeTab === '신청한' && (currentData?.length ?? 0) > 0 && (
             <article css={filterSelectWrapper}>
               <div css={filterSelectStyle}>
                 <FilterSelect

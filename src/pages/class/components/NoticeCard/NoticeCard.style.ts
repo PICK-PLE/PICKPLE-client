@@ -15,7 +15,8 @@ export const noticeCardContainer = (theme: Theme) => css`
 `;
 
 export const profileWrapper = css`
-  ${flexGenerator('row', 'flex-start')};
+  ${flexGenerator('row', 'space-between', 'flex-start')};
+  width: 100%;
   gap: 1.2rem;
 `;
 
@@ -27,6 +28,7 @@ export const profileImage = css`
 
 export const profileTextBox = css`
   ${flexGenerator('column', 'center', 'flex-start')};
+  margin-top: 0.4rem;
 `;
 
 export const profilePosition = (theme: Theme) => css`
@@ -96,4 +98,9 @@ export const noticeCommentIcon = css`
 export const noticeCommentNumber = (theme: Theme) => css`
   color: ${theme.color.midgray2};
   ${theme.font['body04-m-12']};
+`;
+
+export const profileCardWrapper = css`
+  ${flexGenerator('row', 'flex-start', 'center')}
+  gap:1.2rem
 `;
