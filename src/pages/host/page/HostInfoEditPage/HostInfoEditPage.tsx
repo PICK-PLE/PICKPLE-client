@@ -74,7 +74,7 @@ const HostInfoEditPage = () => {
   };
 
   const validateUrl = (url: string) => {
-    const urlPattern = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+\/?)([^\s]*)?$/i;
+    const urlPattern = /^https:\/\/www\.[\w-]+(\.[\w-]+)+\/?([^\s]*)?$/i;
 
     if (url.length > 0) {
       setIsSocialLinkValidate(urlPattern.test(url));
