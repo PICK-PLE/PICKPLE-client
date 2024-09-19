@@ -3,8 +3,8 @@ import { Theme, css } from '@emotion/react';
 import { flexGenerator } from '@styles/generator';
 
 export const hostMyPageEmptyViewContainer = css`
-  height: calc(100dvh - 12.55rem);
   ${flexGenerator('column')};
+  margin-top: 10.1rem;
   width: 100%;
   gap: 2rem;
 `;
@@ -28,6 +28,12 @@ export const textWrapper = css`
 `;
 
 export const buttonWrapper = css`
-  width: 100%;
-  padding: 0 9.3rem;
+  ${flexGenerator('row', 'center', ' center')};
+  width: 17.7rem;
+  gap: 1rem;
+`;
+
+export const hostMyPageEmptyViewBox = css`
+  ${flexGenerator('column', 'center', 'center')};
+  gap: 2rem;
 `;
