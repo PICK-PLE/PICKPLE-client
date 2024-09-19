@@ -43,6 +43,15 @@ export const reviewImgSection = (theme: Theme) => css`
   height: 21rem;
   background-color: ${theme.color.lightgray1};
   border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+`;
+
+export const imgStyle = css`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
 `;
 
 export const moimTitleWrapper = (theme: Theme) => css`

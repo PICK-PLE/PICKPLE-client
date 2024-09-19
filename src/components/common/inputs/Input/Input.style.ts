@@ -24,6 +24,7 @@ export const inputLabelStyle = (theme: Theme) => css`
 export const inputWrapperStyle = css`
   ${flexGenerator('row', 'flex-start', 'center')}
   width: 100%;
+  height: 5.2rem;
   position: relative;
 `;
 
@@ -32,14 +33,18 @@ export const inputStyle =
     width: 100%;
     height: 5.2rem;
     padding: 1.5rem;
-    padding-right: 6rem;
+    padding-right: 3.8rem;
     border: 1px solid
-      ${isError && isFocused ? theme.color.error : theme.color.lightgray1 || customBorderColor};
+      ${isError && isFocused
+        ? theme.color.error
+        : isFocused
+          ? theme.color.purple1
+          : theme.color.lightgray1};
     border-radius: 10px;
 
     color: ${theme.color.blackgray};
     background-color: ${theme.color.white};
-    ${theme.font['body01-r-15']}
+    ${theme.font['body06-m-15']}
 
     &::placeholder {
       color: ${theme.color.midgray1};
@@ -57,11 +62,18 @@ export const inputStyle =
   `;
 
 export const deleteButtonStyle = css`
+  ${flexGenerator()};
   position: absolute;
-  right: 1.5rem;
-  width: 2rem;
-  height: 2rem;
+  top: 50%;
+  right: 1.1rem;
+  width: 3rem;
+  height: 3rem;
   cursor: pointer;
+  transform: translateY(-50%);
+`;
+export const deleteIconStyle = css`
+  width: 1.8rem;
+  height: 1.8rem;
 `;
 
 export const errorAndLengthWrapper = (hasError: boolean) => css`

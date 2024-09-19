@@ -156,6 +156,7 @@ const HostInfoEditPage = () => {
               <input
                 ref={fileInputRef}
                 type="file"
+                accept="image/jpeg, image/png, image/gif, image/heic, image/webp"
                 onChange={(e) => handleProfileImageChange(e)}
                 css={hostInfoEditInput}
               />

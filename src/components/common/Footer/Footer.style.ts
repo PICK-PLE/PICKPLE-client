@@ -18,15 +18,16 @@ export const footerWrapper = css`
   width: 100%;
   flex-direction: column;
   align-items: flex-start;
-  gap: 12px;
+  gap: 1.2rem;
   flex-shrink: 0;
   align-self: stretch;
 `;
 
 export const logoStyle = css`
-  ${flexGenerator()};
+  ${flexGenerator('row', 'flex-start', 'flex-start')};
   height: 1.8rem;
-  gap: 0.1303px;
+  align-items: center;
+  gap: 0.1303rem;
 `;
 
 export const termsOfUseStyle = css`

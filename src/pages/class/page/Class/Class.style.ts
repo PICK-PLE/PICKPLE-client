@@ -70,6 +70,8 @@ export const tabButtonStyle = (isSelected: boolean) => (theme: Theme) => css`
   margin-bottom: -2px;
   border: none;
   border-bottom: 2px solid ${isSelected ? theme.color.blackgray : theme.color.lightgray1};
+
+  cursor: pointer;
 `;
 
 export const tabSectionStyle = (theme: Theme) => css`

@@ -13,13 +13,18 @@ export const liStyle = css`
   ${flexGenerator('column')}
   gap: 0.5rem;
   list-style: none;
-`;
-export const imgStyle = css`
-  width: 5.7rem;
-  height: 5.7rem;
+
+  svg {
+    width: 5.7rem;
+    height: 5.7rem;
+  }
 `;
 
 export const labelStyle = (theme: Theme) => css`
   color: ${theme.color.lightgray2};
   ${theme.font['body04-m-12']}
+`;
+
+export const selectedLabelStyle = (theme: Theme) => css`
+  color: ${theme.color.purple2};
 `;

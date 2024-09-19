@@ -6,6 +6,7 @@ import { formatCreatedDate } from '@utils';
 import {
   iconStyle,
   imgAndTitleContainer,
+  imgStyle,
   moimTitleWrapper,
   reviewContent,
   reviewContentContainer,
@@ -67,7 +68,7 @@ const Review = ({ reviewData }: ReviewProps) => {
       <div css={imgAndTitleContainer}>
         {reviewImageUrl && (
           <div css={reviewImgSection}>
-            <img src={reviewImageUrl} alt="리뷰 이미지" />
+            <img css={imgStyle} src={reviewImageUrl} alt="리뷰 이미지" />
           </div>
         )}
         {/* 클래스 뷰, 스픽커 소개뷰에서 모두 사용하기 위해 api에서 moimId 유무에 따라 보여주기 위함 */}

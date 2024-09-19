@@ -6,7 +6,8 @@ import { useFetchMyHost } from '@apis/domains/moim/useFetchMyHost';
 import { LogoHeader, Modal, NavigateBox, Spinner } from '@components';
 import { routePath } from '@constants';
 import { useEasyNavigate } from '@hooks';
-import { HostMyPageEmptyView } from '@pages/myPage/components';
+import { Error } from '@pages/error';
+import { ApprovalReviewingView, HostMyPageEmptyView } from '@pages/myPage/components';
 import HostInfoCardWithLink from '@pages/myPage/components/HostInfoCardWithLink/HostInfoCardWithLink';
 import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 import { userAtom } from '@stores';
@@ -24,18 +25,45 @@ import {
   tabStyle,
 } from './HostMyPage.style';
 
+import { components } from '@schema';
+import { ErrorType } from '@types';
+
+type HostGetResponse = components['schemas']['HostGetResponse'];
+
+// 타입 가드
+const isHostGetResponse = (data: unknown): data is HostGetResponse => {
+  if (typeof data === 'object' && data !== null) {
+    const obj = data as Record<string, unknown>;
+    return typeof obj.hostId === 'number' && typeof obj.hostNickName === 'string';
+  }
+  return false;
+};
+
+// 타입 가드
+const isErrorResponseType = (data: unknown): data is ErrorType => {
+  if (typeof data === 'object' && data !== null) {
+    const obj = data as { [key: string]: unknown };
+    return typeof obj.message === 'string' && typeof obj.status === 'number';
+  }
+  return false;
+};
 const HostMyPage = () => {
-  const [user, setUser] = useAtom(userAtom);
-  const { data: hostInfoData, isSuccess, isLoading } = useFetchMyHost();
+  const [, setUser] = useAtom(userAtom);
+
+  const { data: hostInfoResponse, isSuccess, isLoading } = useFetchMyHost();
   const { goGuestMyPage } = useEasyNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { hostId: jotaiHostId, hostNickname: jotaiHostNickname } = user;
-  const hasHostInfoInJotai =
-    jotaiHostId && jotaiHostId !== 0 && jotaiHostNickname && jotaiHostNickname !== '';
+  let hostInfoData: HostGetResponse | null = null;
+  let errorData: ErrorType | null = null;
 
-  const hasHostInfoInResponse =
-    hostInfoData && hostInfoData.hostId !== 0 && hostInfoData && hostInfoData.hostNickName !== '';
+  if (isSuccess && hostInfoResponse) {
+    if (isHostGetResponse(hostInfoResponse)) {
+      hostInfoData = hostInfoResponse;
+    } else if (isErrorResponseType(hostInfoResponse)) {
+      errorData = hostInfoResponse;
+    }
+  }
 
   const handleModalOpen = () => {
     setIsModalOpen(true);
@@ -76,34 +104,34 @@ const HostMyPage = () => {
 
       {isLoading ? (
         <Spinner variant="component" />
+      ) : errorData && errorData.status === 40405 ? (
+        <HostMyPageEmptyView />
+      ) : errorData && errorData.status === 40003 ? (
+        <ApprovalReviewingView />
+      ) : hostInfoData ? (
+        <main>
+          <div css={profileWrapper}>
+            <HostInfoCardWithLink hostInfoCardWithLinkList={hostInfoData ?? {}} />
+          </div>
+          <div css={divdier} />
+          <section css={navigateBoxContainer}>
+            <NavigateBox path={routePath.HOST_MY_CLASS}>my 클래스 모임</NavigateBox>
+            <div css={logoutBox} onClick={handleOpenKakaoClick}>
+              <span css={logoutTextStyle}>픽플에 문의하기</span>
+              <span css={iconStyle}>
+                <IcNext />
+              </span>
+            </div>
+            <div css={logoutBox} onClick={handleLogoutClick}>
+              <span css={logoutTextStyle}>로그아웃</span>
+              <span css={iconStyle}>
+                <IcNext />
+              </span>
+            </div>
+          </section>
+        </main>
       ) : (
-        <>
-          {hasHostInfoInJotai || hasHostInfoInResponse ? (
-            <main>
-              <div css={profileWrapper}>
-                <HostInfoCardWithLink hostInfoCardWithLinkList={hostInfoData ?? {}} />
-              </div>
-              <div css={divdier} />
-              <section css={navigateBoxContainer}>
-                <NavigateBox path={routePath.HOST_MY_CLASS}>my 클래스 모임</NavigateBox>
-                <div css={logoutBox} onClick={handleOpenKakaoClick}>
-                  <span css={logoutTextStyle}>픽플에 문의하기</span>
-                  <span css={iconStyle}>
-                    <IcNext />
-                  </span>
-                </div>
-                <div css={logoutBox} onClick={handleLogoutClick}>
-                  <span css={logoutTextStyle}>로그아웃</span>
-                  <span css={iconStyle}>
-                    <IcNext />
-                  </span>
-                </div>
-              </section>
-            </main>
-          ) : (
-            <HostMyPageEmptyView />
-          )}
-        </>
+        <Error />
       )}
 
       {isModalOpen && (

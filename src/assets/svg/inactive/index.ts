@@ -1,0 +1,9 @@
+export { default as IcEducationInactive } from './IcEducationInactive';
+export { default as IcEmploymentInactive } from './IcEmploymentInactive';
+export { default as IcInvestmentInactive } from './IcInvestmentInactive';
+export { default as IcItInactive } from './IcItInactive';
+export { default as IcMarketingInactive } from './IcMarketingInactive';
+export { default as IcNjobInactive } from './IcNjobInactive';
+export { default as IcProductivityInactive } from './IcProductivityInactive';
+export { default as IcSelfInactive } from './IcSelfInactive';
+export { default as IcSpeechInactive } from './IcSpeechInactive';

@@ -5,7 +5,7 @@ const useClipboard = () => {
     try {
       await navigator.clipboard.writeText(text);
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   }, []);
 
