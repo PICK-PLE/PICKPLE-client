@@ -105,8 +105,3 @@ export const buttonContainer = (widowWidth: number) => (theme: Theme) => css`
 
   z-index: 3;
 `;
-
-export const disabledStyle = (theme: Theme) => css`
-  color: ${theme.color.midgray2};
-  background-color: ${theme.color.lightgray1};
-`;

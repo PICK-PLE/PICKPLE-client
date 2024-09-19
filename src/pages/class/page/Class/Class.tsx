@@ -37,7 +37,6 @@ import {
   classInfoList,
   classLayout,
   classNameStyle,
-  disabledStyle,
   floatingButtonWrapper,
   imageStyle,
   infoSectionStyle,
@@ -73,6 +72,10 @@ const Class = () => {
   );
 
   useEffect(() => {
+    smoothScroll(0, false);
+  }, []);
+
+  useEffect(() => {
     if (currentTab === 'review') {
       smoothScroll(660);
     }
@@ -80,9 +83,6 @@ const Class = () => {
 
   const { data: moimNoticeList } = useFetchMoimNoticeList(moimId ?? '');
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   if (isMoimDetailLoading || isMoimDescriptionLoading) {
     return <Spinner />;
   }
@@ -215,11 +215,7 @@ const Class = () => {
         )}
         <section css={buttonContainer(windowWidth)}>
           <ShareButton onClick={handleShareButtonClick} />
-          <Button
-            variant="large"
-            onClick={handleApplyButtonClick}
-            disabled={isClassClosed}
-            customStyle={moimDetail?.hostId ? disabledStyle : undefined}>
+          <Button variant="large" onClick={handleApplyButtonClick} disabled={isClassClosed}>
             {isClassClosed ? '모집 완료' : isSubmitted ? `신청 완료` : `참여하기`}
           </Button>
         </section>
