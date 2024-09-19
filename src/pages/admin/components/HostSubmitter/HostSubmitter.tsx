@@ -22,6 +22,12 @@ const HostSubmitter = () => {
     mutate({ submitterId });
   };
 
+  const sortedHostSubmitterList = hostSubmitterList?.sort((a, b) => {
+    const idA = a.submitterId ?? Number.MAX_SAFE_INTEGER; // undefined일 경우 가장 뒤로 정렬
+    const idB = b.submitterId ?? Number.MAX_SAFE_INTEGER;
+    return idA - idB;
+  });
+
   return (
     <div css={tableLayoutStyle}>
       <h1 css={titleStyle}>PICKPLE 스픽커 승인</h1>
@@ -44,8 +50,8 @@ const HostSubmitter = () => {
             </tr>
           </thead>
           <tbody>
-            {hostSubmitterList?.map((item, index) => (
-              <tr key={index} css={trStyle}>
+            {sortedHostSubmitterList?.map((item) => (
+              <tr key={item.submitterId} css={trStyle}>
                 <td>{item.submitterId}</td>
                 <td>{item.guestId}</td>
                 <td>{item.guestNickname}</td>

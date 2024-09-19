@@ -30,6 +30,12 @@ const MoimSubmitter = () => {
     mutate({ moimSubmissionId });
   };
 
+  const sortedMoimSubmitterList = moimSubmitterList?.sort((a, b) => {
+    const idA = a.moimSubmissionId ?? Number.MAX_SAFE_INTEGER; // undefined일 경우 가장 뒤로 정렬
+    const idB = b.moimSubmissionId ?? Number.MAX_SAFE_INTEGER;
+    return idA - idB;
+  });
+
   const renderApprovalStatus = (item: MoImSubmitterListGetResponse) => {
     switch (item.moimSubmissionState) {
       case 'pendingPayment':
@@ -73,8 +79,8 @@ const MoimSubmitter = () => {
             </tr>
           </thead>
           <tbody>
-            {moimSubmitterList?.map((item, index) => (
-              <tr key={index} css={trStyle}>
+            {sortedMoimSubmitterList?.map((item) => (
+              <tr key={item.moimSubmissionId} css={trStyle}>
                 <td>{item.moimSubmissionId}</td>
                 <td>{item.date}</td>
                 <td>{item.guestId}</td>
