@@ -8,6 +8,7 @@ import { LogoHeader, Spinner } from '@components';
 import { CATEGORY_ICON, CATEGORY_NAME } from '@constants';
 import { ClassListEmptyView, ClassListCard } from '@pages/classList/components';
 import Error from '@pages/error/Error';
+import { smoothScroll } from '@utils';
 import {
   IcNjobActive,
   IcInvestmentActive,
@@ -99,6 +100,10 @@ const ClassList = () => {
   useEffect(() => {
     refetch();
   }, [selectedCategory, refetch]);
+
+  useEffect(() => {
+    smoothScroll(0, false);
+  }, []);
 
   const handleCategoryClick = (category: string) => {
     setSearchParams({ category });

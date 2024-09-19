@@ -50,7 +50,7 @@ const Picksight = () => {
         </div>
         <h3 css={articleSubtitle}>
           픽플에는 <strong css={articleStrong}>스픽커</strong>와
-          <strong css={articleStrong}>참가자</strong>가 있어요.
+          <strong css={articleStrong}> 참가자</strong>가 있어요.
         </h3>
         <Image src={PicksightImage} width="100%" />
 
