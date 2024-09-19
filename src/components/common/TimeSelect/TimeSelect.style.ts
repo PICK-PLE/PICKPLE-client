@@ -10,18 +10,25 @@ export const timeSelectContainer = css`
 
 export const timeSelectWrapper = (theme: Theme) => css`
   ${flexGenerator('column', 'center', 'flex-start')};
-  width: 100%;
-  padding: 1rem 1.6rem;
   gap: 0.3rem;
+  width: 100%;
   border: 1px solid ${theme.color.lightgray1};
   border-radius: 10px;
+  position: relative;
 
   cursor: pointer;
 `;
 
+export const labelWrapper = css`
+  ${flexGenerator()};
+  width: 100%;
+  padding: 1rem 1.6rem;
+`;
+
 export const selectStyle = (hasValue: boolean) => (theme: Theme) => css`
-  display: flex;
-  width: 13rem;
+  ${flexGenerator('column', 'flex-start', 'flex-start')}
+  gap: 0.3rem;
+  width: 100%;
   border: none;
   border-radius: 4px;
   color: ${hasValue ? theme.color.blackgray : theme.color.midgray1};
@@ -38,25 +45,12 @@ export const textStyle = (theme: Theme) => css`
   ${theme.font['body03-r-12']};
 `;
 
-export const iconStyle = css`
-  ${flexGenerator()}
-  width: 2.4rem;
-  height: 2.4rem;
-  right: 0;
-  position: absolute;
-
-  cursor: pointer;
-`;
-
-export const labelWrapper = css`
-  position: relative;
-  width: 100%;
-`;
-
 export const svgStyle = (hasValue: boolean) => (theme: Theme) => css`
   path {
     fill: ${hasValue ? theme.color.blackgray : theme.color.midgray1};
   }
+
+  cursor: pointer;
 
   width: 2.4rem;
   height: 2.4rem;
@@ -65,18 +59,15 @@ export const svgStyle = (hasValue: boolean) => (theme: Theme) => css`
 export const dropdownStyle = (theme: Theme) => css`
   position: absolute;
   top: 100%;
-  left: -1.6rem;
-  right: 0;
   z-index: 1;
 
   background-color: ${theme.color.white};
   border: 1px solid ${theme.color.lightgray1};
   border-radius: 10px;
 
-  width: 16.2rem;
+  width: 100%;
   max-height: 200px;
-  padding-right: 5rem;
-  margin-top: 1.5rem;
+  margin-top: 0.5rem;
 
   overflow-y: auto;
 
