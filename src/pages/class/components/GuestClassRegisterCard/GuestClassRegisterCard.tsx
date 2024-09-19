@@ -56,7 +56,6 @@ const GuestClassRegisterCard = ({
 
   const handleButtonClick = () => {
     handleModalClose();
-    handlePageChange();
   };
 
   return (
@@ -88,7 +87,11 @@ const GuestClassRegisterCard = ({
 
       {isModalOpen && (
         <Modal onClose={handleBackdropClick}>
-          <DepositModal onClose={handleButtonClick} fee={fee ?? 0} />
+          <DepositModal
+            onClose={handleButtonClick}
+            fee={fee ?? 0}
+            handlePageChange={handlePageChange}
+          />
         </Modal>
       )}
     </article>

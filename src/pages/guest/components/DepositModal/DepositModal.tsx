@@ -28,10 +28,11 @@ import DepositErrorModal from '../DepositErrorModal/DepositErrorModal';
 
 interface DepositModalProps {
   onClose: () => void;
+  handlePageChange?: () => void;
   fee?: number;
 }
 
-const DepositModal = ({ onClose, fee }: DepositModalProps) => {
+const DepositModal = ({ onClose, fee, handlePageChange = () => {} }: DepositModalProps) => {
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
   const handleErrorModalToggle = () => {
@@ -39,6 +40,10 @@ const DepositModal = ({ onClose, fee }: DepositModalProps) => {
   };
   const handleErrorModalClose = () => {
     setIsErrorModalOpen(false);
+  };
+  const handleCompleteButtonClick = () => {
+    onClose();
+    handlePageChange();
   };
   return (
     <>
@@ -73,7 +78,10 @@ const DepositModal = ({ onClose, fee }: DepositModalProps) => {
             <PayButton variant="kakao" totalPrice={fee || 0} />
             <PayButton variant="toss" totalPrice={fee || 0} />
           </section>
-          <Button variant="medium" onClick={onClose} customStyle={completeButtonCustomStyle}>
+          <Button
+            variant="medium"
+            onClick={handleCompleteButtonClick}
+            customStyle={completeButtonCustomStyle}>
             입금을 완료했어요
           </Button>
         </main>
