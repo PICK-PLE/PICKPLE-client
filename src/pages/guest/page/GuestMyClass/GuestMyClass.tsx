@@ -112,7 +112,7 @@ const GuestMyClass = () => {
             <GuestMyClassEmptyView
               text={
                 activeTab === '신청한'
-                  ? `${selectedStatus} 클래스가 없어요`
+                  ? `${selectedStatus} 중인 클래스가 없어요`
                   : '아직 참가한 클래스가 없어요'
               }
             />
