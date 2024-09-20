@@ -44,8 +44,15 @@ const MyClassManage = () => {
 
   //check하는 과정
   const toggleChecked = (index: number) => {
-    // isOngoing = false / isMoimSubmissionApproved = true 일 때 체크 불가능 + '참가자 확정인 클래스' 토스트 띄우기
-    if (isMoimSubmissionApproved || !isOngoing) {
+    // isOngoing = false 일 때 체크 불가능 + '완료된 모임 안내' 토스트 띄우기
+    if (!isOngoing) {
+      setToastText('이미 진행이 완료된 클래스예요.');
+      showToast();
+      return;
+    }
+
+    // isMoimSubmissionApproved = true 일 때 체크 불가능 + '참가자 확정인 클래스' 토스트 띄우기
+    if (isOngoing && isMoimSubmissionApproved) {
       setToastText('이미 참가자가 확정된 클래스예요.');
       showToast();
       return;
@@ -180,7 +187,7 @@ const MyClassManage = () => {
         )}
 
         {isToastVisible && (
-          <Toast isVisible={isToastVisible} toastBottom={10} toastIcon={true}>
+          <Toast isVisible={isToastVisible} toastBottom={isOngoing ? 10 : 3} toastIcon={true}>
             {toastText}
           </Toast>
         )}
