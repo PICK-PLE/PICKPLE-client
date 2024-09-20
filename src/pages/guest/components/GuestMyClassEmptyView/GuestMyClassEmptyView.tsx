@@ -5,10 +5,10 @@ import { graphicImage, routePath } from '@constants';
 
 import {
   completedTabContainer,
-  detailWrapper,
   textStyle,
   textWrapper,
   svgStyle,
+  buttonWrapper,
 } from './GuestMyClassEmptyView.style';
 
 interface GuestMyClassEmptyViewProps {
@@ -23,11 +23,11 @@ const GuestMyClassEmptyView = ({ text }: GuestMyClassEmptyViewProps) => {
   return (
     <article css={completedTabContainer}>
       <img src={graphicImage.GuestMyPageImage} alt="게스트 마이페이지 이미지" css={svgStyle} />
-      <div css={detailWrapper}>
-        <div css={textWrapper}>
-          <p css={textStyle}>{text}</p>
-          <p css={textStyle}>다양한 클래스를 둘러보세요:{')'}</p>
-        </div>
+      <div css={textWrapper}>
+        <p css={textStyle}>{text}</p>
+        <p css={textStyle}>다양한 클래스를 둘러보세요:{')'}</p>
+      </div>
+      <div css={buttonWrapper}>
         <Button variant="round" onClick={handleButtonClick}>
           클래스 둘러보기
         </Button>
