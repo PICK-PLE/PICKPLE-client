@@ -74,7 +74,7 @@ const CommentBox = ({ comment, noticeId, host }: CommentBoxProps) => {
 
         {canShowIcon && (
           <div css={iconWrapper}>
-            <IcParkMore onClick={handleDeleteOpen} css={iconStyle} />
+            <IcParkMore onClick={handleDeleteOpen} css={iconStyle} width={24} height={24} />
             {isDeleteOpen && (
               <DeleteCard handleModalOpen={handleModalOpen} handleDeleteClose={handleDeleteClose} />
             )}
