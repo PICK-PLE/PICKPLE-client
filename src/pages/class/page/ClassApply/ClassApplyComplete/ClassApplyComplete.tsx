@@ -45,7 +45,7 @@ const ClassApplyComplete = () => {
               <li>승인이 거절될 시, 클래스 참가비는 개인 계좌로 환불됩니다.</li>
               <li>
                 {
-                  '승인 완료 후 클래스 신청 취소는 [마이페이지] > [픽플에 문의하기]를 통해서 가능하며, 환불규정에 따라 처리됩니다.'
+                  '승인 완료 후 클래스 신청 취소 문의는 [마이페이지] > [픽플에 문의하기]에서 가능하며, 환불 규정에 따라 처리됩니다.'
                 }
               </li>
             </ul>
@@ -55,7 +55,7 @@ const ClassApplyComplete = () => {
 
       <footer css={completeFooterStyle}>
         <Button variant="large" onClick={handleButtonClick}>
-          다른 클래스 모임 둘러보기
+          다른 클래스 둘러보기
         </Button>
       </footer>
     </article>

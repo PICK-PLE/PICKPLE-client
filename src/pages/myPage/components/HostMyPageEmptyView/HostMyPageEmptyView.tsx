@@ -22,7 +22,7 @@ const HostMyPageEmptyView = () => {
       <img css={imageStyle} src={graphicImage.HostApplyImage} alt="HostMyPageImage" />
       <div css={hostMyPageEmptyViewWrapper}>
         <p css={textStyle}>아직 스픽커로 등록되어 있지 않아요</p>
-        <p css={textStyle}>스픽커가 되어 다양한 참가자들을 만나 보세요!</p>
+        <p css={textStyle}>스픽커가 되어 다양한 참가자들을 만나보세요!</p>
       </div>
       <div css={buttonWrapper}>
         <Button variant="round" onClick={handleButtonClick}>

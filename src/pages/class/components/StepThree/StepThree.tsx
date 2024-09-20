@@ -89,20 +89,20 @@ const StepThree = ({ onNext }: StepProps) => {
             <Input
               value={classPostState.title}
               onChange={(e) => handleInputChange(e, 'title')}
-              placeholder="제목을 입력하세요."
+              placeholder="제목을 입력해 주세요."
               isValid={isTitleValid}
-              errorMessage="제목을 입력해주세요"
+              errorMessage="제목을 입력해 주세요."
               maxLength={28}
               isCountValue={true}
             />
             <TextArea
               size="medium"
               maxLength={2000}
-              placeholder={`5글자 이상 답변을 작성해주세요.`}
+              placeholder={`5글자 이상 내용을 작성해 주세요.`}
               value={classPostState.description}
               onChange={(e) => handleInputChange(e, 'description')}
               isValid={isDescriptionValid}
-              errorMessage="5글자 이상 답변을 작성해주세요."
+              errorMessage="5글자 이상 내용을 작성해 주세요."
             />
           </section>
           <section css={imageSelectSection}>

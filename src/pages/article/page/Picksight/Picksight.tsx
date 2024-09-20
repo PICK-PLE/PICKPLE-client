@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { Button, Header, Image } from '@components';
+import { Button, Header } from '@components';
 import ArticleParagraph from '@pages/article/components/ArticleParagraph/ArticleParagraph';
 import { IcDropdownRight } from '@svg';
 import { smoothScroll } from '@utils';
@@ -40,11 +40,11 @@ const Picksight = () => {
           <h2 css={articleH2}>1호 스픽커가 알려주는</h2>
           <h1 css={articleH1}>픽플 사용설명서</h1>
         </div>
-        <Image src={PicksightMain} width="100%" />
+        <img src={PicksightMain} width="100%" />
 
         <div css={paragraphStyle}>
           <ArticleParagraph
-            title="픽플은 내가 가진 지식과 경험을 이야기하고 공유할 수 있는 곳이에요."
+            title={`픽플은 내가 가진 지식과 경험을 \n이야기하고 공유할 수 있는 곳이에요.`}
             content={`내가 가진 지식과 경험이, 누군가에게는 큰 인사이트가 되고, 힘이 될 수 있어요. 관심 분야에 대해 배우고 싶지만, 형식적인 분위기 속에서 긴 시간을 투자해야 하는 강의가 부담스럽게 느껴졌다면 픽플에 찾아와 주세요. \n픽플에서는 스픽커의 지식과 경험을 소규모로 공유 받으며, 배움의 즐거움과 네트워킹의 즐거움을 모두 얻을 수 있답니다.`}
           />
         </div>
@@ -52,7 +52,7 @@ const Picksight = () => {
           픽플에는 <strong css={articleStrong}>스픽커</strong>와
           <strong css={articleStrong}> 참가자</strong>가 있어요.
         </h3>
-        <Image src={PicksightImage} width="100%" />
+        <img src={PicksightImage} width="100%" />
 
         <div css={paragraphStyle}>
           <ArticleParagraph

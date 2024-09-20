@@ -1,13 +1,16 @@
-import { PropsWithChildren } from 'react';
-
 import { IcNumberLabel } from '@svg';
 
 import { wrapperStyle, textStyle } from './NumberLabel.style';
 
-const NumberLabel = ({ children, ...props }: PropsWithChildren) => {
+interface NumberLabelProps {
+  withIcon?: boolean;
+  children: React.ReactNode;
+}
+
+const NumberLabel = ({ withIcon = false, children, ...props }: NumberLabelProps) => {
   return (
     <div css={wrapperStyle} {...props}>
-      <IcNumberLabel />
+      {withIcon && <IcNumberLabel />}
       <span css={textStyle}>{children}</span>
     </div>
   );

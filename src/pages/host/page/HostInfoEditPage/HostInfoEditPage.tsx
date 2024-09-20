@@ -74,7 +74,7 @@ const HostInfoEditPage = () => {
   };
 
   const validateUrl = (url: string) => {
-    const urlPattern = /^(https?:\/\/)?([\w-]+(\.[\w-]+)+\/?)([^\s]*)?$/i;
+    const urlPattern = /^https:\/\/www\.[\w-]+(\.[\w-]+)+\/?([^\s]*)?$/i;
 
     if (url.length > 0) {
       setIsSocialLinkValidate(urlPattern.test(url));
@@ -179,7 +179,7 @@ const HostInfoEditPage = () => {
                 isNicknameDuplicate ? '* 이미 존재하는 닉네임이에요.' : '* 필수 입력 항목이에요.'
               }
               maxLength={10}
-              placeholder="닉네임을 입력해주세요"
+              placeholder="닉네임을 입력해 주세요"
               isCountValue={true}
             />
 
@@ -189,7 +189,7 @@ const HostInfoEditPage = () => {
               inputLabel="키워드"
               errorMessage="* 필수 입력 항목이에요."
               maxLength={20}
-              placeholder="키워드를 입력해주세요"
+              placeholder="키워드를 입력해 주세요"
               isCountValue={true}
               isValid={isValid(hostInfoValue.keyword ?? '')}
             />
@@ -201,7 +201,7 @@ const HostInfoEditPage = () => {
                 onChange={(e) => handleInputChange(e, 'description')}
                 errorMessage="* 필수 입력 항목이에요."
                 maxLength={70}
-                placeholder="소개글을 입력해주세요"
+                placeholder="소개글을 입력해 주세요"
                 isValid={isValid(hostInfoValue.description ?? '')}
               />
             </div>
@@ -213,9 +213,9 @@ const HostInfoEditPage = () => {
               errorMessage={
                 isSocailLinkValidate
                   ? '* 필수 입력 항목이에요.'
-                  : '* https:// 로 시작하는 올바른 URL 형식을 입력해주세요'
+                  : '* https:// 로 시작하는 올바른 URL 형식을 입력해 주세요'
               }
-              placeholder="소셜 링크를 입력해주세요"
+              placeholder="URL을 첨부해 주세요."
               isCountValue={false}
               isValid={
                 !isSocialLinkTouched ||

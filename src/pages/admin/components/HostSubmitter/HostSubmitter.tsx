@@ -22,6 +22,12 @@ const HostSubmitter = () => {
     mutate({ submitterId });
   };
 
+  const sortedHostSubmitterList = hostSubmitterList?.sort((a, b) => {
+    const idA = a.submitterId ?? Number.MAX_SAFE_INTEGER; // undefined일 경우 가장 뒤로 정렬
+    const idB = b.submitterId ?? Number.MAX_SAFE_INTEGER;
+    return idA - idB;
+  });
+
   return (
     <div css={tableLayoutStyle}>
       <h1 css={titleStyle}>PICKPLE 스픽커 승인</h1>
@@ -30,22 +36,22 @@ const HostSubmitter = () => {
           <thead>
             <tr css={trStyle}>
               <th>신청 순서</th>
-              <th>게스트 ID</th>
+              <th>참가자 ID</th>
               <th>닉네임</th>
-              <th>[1] 호스트 소개</th>
-              <th>[2] 모임 목표</th>
-              <th>[3] 호스트 설명 링크</th>
-              <th>[4] 호스트 닉네임</th>
+              <th>[1] 스픽커 소개</th>
+              <th>[2] 클래스 목표</th>
+              <th>[3] 스픽커 설명 링크</th>
+              <th>[4] 스픽커 닉네임</th>
               <th>[5] 키워드 </th>
-              <th>[6] 모임 계획</th>
+              <th>[6] 클래스 계획</th>
               <th>[7] 이메일 </th>
               <th> 상태 </th>
               <th> 승인여부 </th>
             </tr>
           </thead>
           <tbody>
-            {hostSubmitterList?.map((item, index) => (
-              <tr key={index} css={trStyle}>
+            {sortedHostSubmitterList?.map((item) => (
+              <tr key={item.submitterId} css={trStyle}>
                 <td>{item.submitterId}</td>
                 <td>{item.guestId}</td>
                 <td>{item.guestNickname}</td>

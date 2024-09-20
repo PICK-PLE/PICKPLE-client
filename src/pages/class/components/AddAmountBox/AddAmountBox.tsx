@@ -43,7 +43,7 @@ const AddAmountBox = ({ value, handleAmountChange }: AddAmountBoxProps) => {
         <Input
           value={value === 0 ? '' : value.toLocaleString()}
           onChange={handleInputChange}
-          placeholder="최소 10,000원 이상 가격을 설정해주세요."
+          placeholder="최소 10,000원 이상"
           isValid={true}
           isCountValue={false}
         />

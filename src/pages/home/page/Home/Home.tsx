@@ -55,6 +55,14 @@ const Home = () => {
   const { data: bannerId } = useFetchMoimBanner();
   const { data: categories } = useFetchMoimCategories();
 
+  const handleBannerClick = (banner: number) => {
+    if (banner === 0) {
+      navigate(`class/${bannerId}`);
+    } else if (banner === 1) {
+      navigate(`mypage/host`);
+    }
+  };
+
   const handleCategoryClick = (category: string) => {
     navigate(`/class-list?category=${category}`);
   };
@@ -67,11 +75,7 @@ const Home = () => {
       <LogoHeader isIcon />
       <div css={pageLayout}>
         <main css={homeLayout}>
-          <div
-            css={homeBannerStyle}
-            onClick={() => {
-              navigate(`class/${bannerId}`);
-            }}>
+          <div css={homeBannerStyle}>
             <Swiper
               css={swiperStyle}
               pagination={{
@@ -80,9 +84,9 @@ const Home = () => {
               modules={[Pagination]}
               loop={true}
               className="mySwiper">
-              {bannerList.map((banner) => {
+              {bannerList.map((banner, index) => {
                 return (
-                  <SwiperSlide key={banner.id}>
+                  <SwiperSlide key={banner.id} onClick={() => handleBannerClick(index)}>
                     <Lottie animationData={banner.animationData} width={'100%'} loop={true} />
                   </SwiperSlide>
                 );

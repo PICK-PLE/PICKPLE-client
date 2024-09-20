@@ -11,6 +11,7 @@ export const articleContainer = css`
 export const articleTitle = (theme: Theme) => css`
   color: ${theme.color.blackgray};
   ${theme.font['subhead01-sb-18']}
+  white-space: pre-wrap;
 `;
 
 export const articleCotent = (theme: Theme) => css`

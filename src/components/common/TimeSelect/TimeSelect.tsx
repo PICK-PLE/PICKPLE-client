@@ -7,7 +7,6 @@ import {
   timeSelectWrapper,
   selectStyle,
   textStyle,
-  iconStyle,
   labelWrapper,
   svgStyle,
   dropdownStyle,
@@ -66,51 +65,49 @@ const TimeSelect = ({
     <section css={timeSelectContainer}>
       <div css={timeSelectWrapper} onClick={() => toggleDropdown('start')}>
         <div css={labelWrapper}>
-          <label css={textStyle}>시작 시간</label>
           <div css={selectStyle(Boolean(startTime))}>
+            <label css={textStyle}>시작 시간</label>
             <span>{startTime !== null ? generateTimeOptions()[startTime].label : '선택'}</span>
-            <span css={iconStyle}>
-              <IcDropdownPlatformDown css={svgStyle(Boolean(startTime))} />
-            </span>
           </div>
-          {startDropdownOpen && (
-            <div css={dropdownStyle}>
-              {generateTimeOptions().map((option) => (
+
+          <IcDropdownPlatformDown css={svgStyle(Boolean(startTime))} />
+        </div>
+        {startDropdownOpen && (
+          <div css={dropdownStyle}>
+            {generateTimeOptions().map((option) => (
+              <div
+                key={option.value}
+                css={optionStyle}
+                onClick={() => handleStartTimeChange(option.value)}>
+                {option.label}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      <div css={timeSelectWrapper}>
+        <div css={labelWrapper} onClick={() => startTime !== null && toggleDropdown('end')}>
+          <div css={selectStyle(Boolean(endTime))}>
+            <label css={textStyle}>종료 시간</label>
+            <span>{endTime !== null ? generateTimeOptions()[endTime].label : '선택'}</span>
+          </div>
+          <IcDropdownPlatformDown css={svgStyle(Boolean(endTime))} />
+        </div>
+        {endDropdownOpen && (
+          <div css={dropdownStyle}>
+            {generateTimeOptions()
+              .filter((option) => startTime === null || option.value > startTime)
+              .map((option) => (
                 <div
                   key={option.value}
                   css={optionStyle}
-                  onClick={() => handleStartTimeChange(option.value)}>
+                  onClick={() => handleEndTimeChange(option.value)}>
                   {option.label}
                 </div>
               ))}
-            </div>
-          )}
-        </div>
-      </div>
-      <div css={timeSelectWrapper}>
-        <div css={labelWrapper} onClick={() => startTime !== null && toggleDropdown('end')}>
-          <label css={textStyle}>종료 시간</label>
-          <div css={selectStyle(Boolean(endTime))}>
-            <span>{endTime !== null ? generateTimeOptions()[endTime].label : '선택'}</span>
-            <span css={iconStyle}>
-              <IcDropdownPlatformDown css={svgStyle(Boolean(endTime))} />
-            </span>
           </div>
-          {endDropdownOpen && (
-            <div css={dropdownStyle}>
-              {generateTimeOptions()
-                .filter((option) => startTime === null || option.value > startTime)
-                .map((option) => (
-                  <div
-                    key={option.value}
-                    css={optionStyle}
-                    onClick={() => handleEndTimeChange(option.value)}>
-                    {option.label}
-                  </div>
-                ))}
-            </div>
-          )}
-        </div>
+        )}
       </div>
     </section>
   );

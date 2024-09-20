@@ -52,7 +52,7 @@ export const tabWrapper = (theme: Theme) => css`
 
   background-color: ${theme.color.white};
 
-  border-bottom: 2px solid ${theme.color.lightgray1};
+  border-bottom: 1px solid ${theme.color.lightgray1};
   padding-left: 2.8rem;
   gap: 2.3rem;
 `;
@@ -60,18 +60,20 @@ export const tabWrapper = (theme: Theme) => css`
 export const tabButtonStyle = (isSelected: boolean) => (theme: Theme) => css`
   display: inline-flex;
   flex-shrink: 0;
-  ${theme.font['subhead01-sb-18']};
 
   background-color: ${theme.color.white};
   color: ${isSelected ? theme.color.blackgray : theme.color.midgray1};
 
   padding: 0;
   padding-bottom: 1.6rem;
-  margin-bottom: -2px;
+  margin-bottom: -1.5px;
   border: none;
-  border-bottom: 2px solid ${isSelected ? theme.color.blackgray : theme.color.lightgray1};
+  border-bottom: ${isSelected
+    ? `2px solid ${theme.color.blackgray}`
+    : `1px solid ${theme.color.lightgray1}`};
 
   cursor: pointer;
+  ${isSelected ? theme.font['head03-b-18'] : theme.font['subhead01-sb-18']};
 `;
 
 export const tabSectionStyle = (theme: Theme) => css`

@@ -136,9 +136,9 @@ const ClassApplyQuestion = ({ handlePageChange }: ClassApplyProps) => {
                       }
                       maxLength={200}
                       size="medium"
-                      placeholder="답변을 작성해주세요."
+                      placeholder="답변을 작성해 주세요."
                       isValid={validateLength(answer.answerList[`answer${index + 1}`])}
-                      errorMessage="빈칸을 입력해 주세요."
+                      errorMessage="답변을 작성해 주세요."
                     />
                   </div>
                 )}
@@ -149,8 +149,8 @@ const ClassApplyQuestion = ({ handlePageChange }: ClassApplyProps) => {
               <IcCaution css={questionCautionIconStyle} />
 
               <span css={questionCautionTextStyle}>
-                전화번호, 카카오톡 아이디 등 과도한 개인 정보를 요구하는 경우 가이드 위반 모임이므로
-                픽플에게 신고해 주세요.
+                전화번호, 카카오톡 아이디 등 과도한 개인 정보를 요구하는 경우 가이드 위반
+                클래스이므로 픽플에게 신고해 주세요.
               </span>
             </div>
 
@@ -170,7 +170,7 @@ const ClassApplyQuestion = ({ handlePageChange }: ClassApplyProps) => {
               />
               <Input
                 inputLabel="입금 은행"
-                placeholder="은행명을 입력해주세요."
+                placeholder="은행명을 입력해 주세요."
                 isValid={true}
                 isCountValue={false}
                 value={answer.accountList.bank}
@@ -185,7 +185,7 @@ const ClassApplyQuestion = ({ handlePageChange }: ClassApplyProps) => {
                 }
               />
               <span css={questionRefundTextStyle}>
-                * 환불 처리를 위해 계좌 정보를 수집, 이용하며 <br />
+                * 환불 처리를 위해 계좌 정보를 수집하며 <br />
                 입력하신 정보는 환불 목적으로만 이용됩니다.
               </span>
             </div>

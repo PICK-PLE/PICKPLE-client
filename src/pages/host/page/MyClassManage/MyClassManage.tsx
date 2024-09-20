@@ -31,8 +31,8 @@ const MyClassManage = () => {
   const { data: applicantData, isLoading } = useFetchSubmitterList(Number(moimId));
   const { showToast, isToastVisible } = useToast();
   const [isOpenModal, setIsOpenModal] = useState(false);
-
   const [isActive, setIsActive] = useState(false);
+  const [toastText, setToastText] = useState('');
 
   // 모임 정보 추출
   const { moimTitle, maxGuest, isApprovable, submitterList, isOngoing, isMoimSubmissionApproved } =
@@ -44,11 +44,16 @@ const MyClassManage = () => {
 
   //check하는 과정
   const toggleChecked = (index: number) => {
-    // isOngoing = false / isMoimSubmissionApproved = true 일 때 체크 불가능
-    if (!isOngoing || isMoimSubmissionApproved) return;
+    // isOngoing = false / isMoimSubmissionApproved = true 일 때 체크 불가능 + '참가자 확정인 클래스' 토스트 띄우기
+    if (isMoimSubmissionApproved || !isOngoing) {
+      setToastText('이미 참가자가 확정된 클래스예요.');
+      showToast();
+      return;
+    }
 
-    // isApprovable = false 일 때 체크 불가능 + 토스트 띄우기
+    // isApprovable = false 일 때 체크 불가능 + '신청 마감일 이후에 승인 가능' 토스트 띄우기
     if (!isApprovable) {
+      setToastText('모집 마감일 이후에 신청자를 승인할 수 있어요.');
       showToast();
       return;
     }
@@ -176,7 +181,7 @@ const MyClassManage = () => {
 
         {isToastVisible && (
           <Toast isVisible={isToastVisible} toastBottom={10} toastIcon={true}>
-            신청 마감일 이후에 신청자를 승인할 수 있어요.
+            {toastText}
           </Toast>
         )}
       </article>

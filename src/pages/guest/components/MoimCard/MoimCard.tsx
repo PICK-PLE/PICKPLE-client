@@ -91,7 +91,7 @@ const MoimCard = ({ guestMyClassData }: MoimCardProps) => {
         <Button
           variant={isReviewed ? 'xSmallStroke' : 'xSmall'}
           onClick={isReviewed ? handleWatchReviewClick : handleWriteReviewClick}>
-          {isReviewed ? '리뷰 보기' : '리뷰 쓰기'}
+          {isReviewed ? '작성한 리뷰 보기' : '리뷰 쓰기'}
         </Button>
       )}
 

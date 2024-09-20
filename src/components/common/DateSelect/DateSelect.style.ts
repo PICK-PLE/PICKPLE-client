@@ -38,6 +38,10 @@ export const customInputStyle = (hasValue: boolean) => (theme: Theme) => css`
     box-shadow: none;
     background-color: ${theme.color.white};
   }
+
+  &::placeholder {
+    color: ${theme.color.midgray1};
+  }
 `;
 
 export const iconStyle = (theme: Theme) => css`
