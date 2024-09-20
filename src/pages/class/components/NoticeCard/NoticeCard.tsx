@@ -72,7 +72,7 @@ const NoticeCard = ({ noticeData, onClick }: NoticeCardProps) => {
       <section css={noticeWrapper}>
         <h3 css={noticeTitle}>{title}</h3>
         <p css={noticeContent}>{content}</p>
-        {noticeImageUrl && <img css={noticeImage} src={noticeImageUrl} alt="공지사항 이미지" />}
+        {noticeImageUrl && <img css={noticeImage} src={noticeImageUrl} alt="공지 사항 이미지" />}
         <div css={noticeInfo}>
           <div css={noticeDate}>{formatCreatedDate(date ?? '')}</div>
           <div css={noticeComment}>

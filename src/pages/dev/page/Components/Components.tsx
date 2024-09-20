@@ -496,7 +496,7 @@ const Components = () => {
           <LogoHeader />
 
           <h3 css={subTitleStyle}>Header</h3>
-          <Header title="공지사항" />
+          <Header title="공지 사항" />
         </section>
 
         <section css={secttionContainer}>
@@ -521,7 +521,7 @@ const Components = () => {
 
         <section css={secttionContainer}>
           <h2 css={titleStyle}>NavigateBox</h2>
-          <NavigateBox path="">공지사항</NavigateBox>
+          <NavigateBox path="">공지 사항</NavigateBox>
         </section>
 
         {/* <section css={secttionContainer}>

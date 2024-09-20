@@ -78,7 +78,7 @@ const ClassNotice = () => {
 
   return (
     <div css={noticePostBackground}>
-      <Header title="공지사항 작성하기" />
+      <Header title="공지 사항 작성하기" />
       <div css={noticePostLayout}>
         <main css={noticePostMain}>
           <Input
