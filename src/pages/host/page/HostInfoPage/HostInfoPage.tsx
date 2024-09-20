@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useFetchHostInfo } from '@apis/domains/host/useFetchHostInfo';
@@ -40,6 +40,7 @@ import {
 } from '@pages/host/page/HostInfoPage/HostInfoPage.style';
 import { userAtom } from '@stores';
 import { IcEdit, IcSpickerMark } from '@svg';
+import { smoothScroll } from '@utils';
 import Review from 'src/components/common/Review/Review';
 
 const HostInfoPage = () => {
@@ -66,6 +67,10 @@ const HostInfoPage = () => {
       navigate(`/class/${moimId}`);
     }
   };
+
+  useEffect(() => {
+    smoothScroll(0, false);
+  }, []);
 
   const { data: hostInfoData } = useFetchHostInfo(Number(hostId));
   const { nickName, profileUrl, isVeteran, keyword, description, socialLink } = hostInfoData ?? {};

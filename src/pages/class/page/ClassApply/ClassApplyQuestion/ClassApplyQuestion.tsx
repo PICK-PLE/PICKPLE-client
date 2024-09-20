@@ -185,7 +185,7 @@ const ClassApplyQuestion = ({ handlePageChange }: ClassApplyProps) => {
                 }
               />
               <span css={questionRefundTextStyle}>
-                * 환불 처리를 위해 계좌 정보를 수집, 이용하며 <br />
+                * 환불 처리를 위해 계좌 정보를 수집하며 <br />
                 입력하신 정보는 환불 목적으로만 이용됩니다.
               </span>
             </div>
