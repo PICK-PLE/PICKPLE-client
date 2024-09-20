@@ -80,7 +80,7 @@ const HostProfileCard = ({ data: noticeDetail, noticeId, moimId }: HostProfileCa
     return (
       <>
         <span css={iconStyle}>
-          <IcParkMore onClick={handleDeleteOpen} />
+          <IcParkMore onClick={handleDeleteOpen} width={24} height={24} />
         </span>
         {renderDeleteCard()}
         {renderModal()}
