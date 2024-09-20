@@ -6,7 +6,7 @@ import { QUERY_KEY } from '@apis/queryKeys/queryKeys';
 import { components } from '@schema';
 import { ApiResponseType } from '@types';
 
-type SubmittedMoimByGuestResponse = components['schemas']['SubmittedMoimByGuestResponse'];
+export type SubmittedMoimByGuestResponse = components['schemas']['SubmittedMoimByGuestResponse'];
 
 const getGuestApplyMoim = async (
   guestId: number,
