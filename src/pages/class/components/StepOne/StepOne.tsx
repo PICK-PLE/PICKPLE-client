@@ -26,6 +26,7 @@ import {
   layoutStyle,
   mainStyle,
   preventDragStyle,
+  referPurpleTextStyle,
   referTextStyle,
   sectionStyle,
   subTitleStyle,
@@ -125,19 +126,29 @@ const StepOne = ({ onNext }: StepProps) => {
           <section css={sectionStyle(1)}>
             <QuestionText numberLabel="Q3">어디에서 진행할 예정이신가요?</QuestionText>
             {classPostState.isOffline ? (
-              <Input
-                value={classPostState.offlineSpot}
-                onChange={(e) => handleInputChange(e, 'offlineSpot')}
-                placeholder="ex. 00시 00구 00동"
-                isValid={true}
-                isCountValue={false}
-              />
+              <>
+                <Input
+                  value={classPostState.offlineSpot}
+                  onChange={(e) => handleInputChange(e, 'offlineSpot')}
+                  placeholder="ex. 00시 00구 00동"
+                  isValid={true}
+                  isCountValue={false}
+                />
+                <h6 css={referPurpleTextStyle}>
+                  *정확한 장소는 추후 참가자에게만 공지 사항으로 전달해 주세요.
+                </h6>
+              </>
             ) : (
-              <Select
-                value={classPostState.onlineSpot}
-                onChange={handleSelectChange}
-                placeholder="사용할 플랫폼을 선택해 주세요."
-                options={options}></Select>
+              <>
+                <Select
+                  value={classPostState.onlineSpot}
+                  onChange={handleSelectChange}
+                  placeholder="사용할 플랫폼을 선택해 주세요."
+                  options={options}></Select>
+                <h6 css={referPurpleTextStyle}>
+                  *접속 링크는 추후 참가자에게만 공지 사항으로 전달해 주세요.
+                </h6>
+              </>
             )}
           </section>
           <section css={sectionStyle(1)}>

@@ -40,7 +40,7 @@ const StepTwo = ({ onNext }: StepProps) => {
           <span css={headerSpanStyle}>
             참가자가 해당 질문에 답변할 예정이에요.
             <br />
-            질문은 1개 이상 작성해 주세요.
+            질문은 최소 1개 이상 작성해 주세요.
           </span>
         </header>
         <main css={mainStyle}>
@@ -49,21 +49,21 @@ const StepTwo = ({ onNext }: StepProps) => {
               numberLabel="Q1"
               maxLength={50}
               value={classPostState.questionList.question1}
-              placeholder="질문을 입력하세요."
+              placeholder="질문을 입력해 주세요."
               onChange={(e) => handleQuestionChange(e, 'question1')}
             />
             <QuestionInput
               numberLabel="Q2"
               maxLength={50}
               value={classPostState.questionList.question2}
-              placeholder="(선택) 질문을 입력하세요."
+              placeholder="(선택) 질문을 입력해 주세요."
               onChange={(e) => handleQuestionChange(e, 'question2')}
             />
             <QuestionInput
               numberLabel="Q3"
               maxLength={50}
               value={classPostState.questionList.question3}
-              placeholder="(선택) 질문을 입력하세요."
+              placeholder="(선택) 질문을 입력해 주세요."
               onChange={(e) => handleQuestionChange(e, 'question3')}
             />
           </section>

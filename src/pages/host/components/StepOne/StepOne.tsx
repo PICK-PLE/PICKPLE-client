@@ -43,11 +43,11 @@ const StepOne = ({ onNext }: StepProps) => {
               value={hostApplyState.intro}
               onChange={(e) => handleInputChange(e, 'intro')}
               isValid={isIntroValid}
-              errorMessage="답변을 작성해 주세요."
+              errorMessage="내용을 입력해 주세요."
             />
           </section>
           <section css={sectionStyle}>
-            <QuestionText numberLabel="Q2">스픽커가 되고 싶은 이유를 말해주세요!</QuestionText>
+            <QuestionText numberLabel="Q2">스픽커가 되고 싶은 이유를 이야기해 주세요!</QuestionText>
             <TextArea
               size="medium"
               maxLength={300}
@@ -55,7 +55,7 @@ const StepOne = ({ onNext }: StepProps) => {
               value={hostApplyState.goal}
               onChange={(e) => handleInputChange(e, 'goal')}
               isValid={isGoalValid}
-              errorMessage="답변을 작성해 주세요."
+              errorMessage="내용을 입력해 주세요."
             />
           </section>
           <section css={sectionStyle}>

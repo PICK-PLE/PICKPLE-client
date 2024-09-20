@@ -63,7 +63,7 @@ const StepTwo = ({ onNext }: StepProps) => {
               placeholder="ex. 픽픽이 (최대 10자)"
               isValid={!isNicknameDuplicate && isNicknameValid}
               errorMessage={
-                isNicknameDuplicate ? '* 이미 존재하는 닉네임이에요.' : '닉네임을 입력해 주세요.'
+                isNicknameDuplicate ? '* 이미 존재하는 닉네임이에요.' : '내용을 입력해 주세요.'
               }
               maxLength={10}
               isCountValue={true}
@@ -83,10 +83,11 @@ const StepTwo = ({ onNext }: StepProps) => {
               isValid={isUserKeywordvalid}
               maxLength={20}
               isCountValue={true}
+              errorMessage="내용을 입력해 주세요."
             />
           </section>
           <section css={sectionStyle}>
-            <QuestionText numberLabel="Q6">클래스 운영 계획에 대해 말해주세요.</QuestionText>
+            <QuestionText numberLabel="Q6">클래스 운영 계획에 대해 이야기해 주세요.</QuestionText>
             <TextArea
               size="medium"
               maxLength={300}
@@ -94,7 +95,7 @@ const StepTwo = ({ onNext }: StepProps) => {
               value={hostApplyState.plan}
               onChange={(e) => handleInputChange(e, 'plan')}
               isValid={isPlanValid}
-              errorMessage="운영 계획을 입력해 주세요."
+              errorMessage="내용을 입력해 주세요."
             />
           </section>
           <section css={sectionStyle}>
