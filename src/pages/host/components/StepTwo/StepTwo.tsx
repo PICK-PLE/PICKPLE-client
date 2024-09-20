@@ -52,7 +52,7 @@ const StepTwo = ({ onNext }: StepProps) => {
         </header>
         <main css={mainStyle}>
           <section css={sectionStyle}>
-            <QuestionText numberLabel="Q4">픽플에서 사용할 닉네임을 작성해주세요.</QuestionText>
+            <QuestionText numberLabel="Q4">픽플에서 사용할 닉네임을 작성해 주세요.</QuestionText>
             <Input
               ref={nicknameRef}
               value={hostApplyState.nickname}
@@ -72,7 +72,7 @@ const StepTwo = ({ onNext }: StepProps) => {
           <section css={sectionStyle}>
             <QuestionText numberLabel="Q5">
               스픽커님을 잘 나타낼 수 있는 키워드를 <br />
-              작성해주세요.
+              작성해 주세요.
             </QuestionText>
             <Input
               value={hostApplyState.userKeyword}
@@ -90,7 +90,7 @@ const StepTwo = ({ onNext }: StepProps) => {
             <TextArea
               size="medium"
               maxLength={300}
-              placeholder={`픽플에서 개최하고 싶은 클래스의 주제, 내용 등을 작성해 주세요!`}
+              placeholder={'픽플에서 개최하고 싶은 클래스의 주제, 내용 등을 \n작성해 주세요!'}
               value={hostApplyState.plan}
               onChange={(e) => handleInputChange(e, 'plan')}
               isValid={isPlanValid}

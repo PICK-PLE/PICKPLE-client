@@ -43,7 +43,7 @@ const StepOne = ({ onNext }: StepProps) => {
               value={hostApplyState.intro}
               onChange={(e) => handleInputChange(e, 'intro')}
               isValid={isIntroValid}
-              errorMessage="빈칸을 입력해주세요."
+              errorMessage="답변을 작성해 주세요."
             />
           </section>
           <section css={sectionStyle}>
@@ -55,7 +55,7 @@ const StepOne = ({ onNext }: StepProps) => {
               value={hostApplyState.goal}
               onChange={(e) => handleInputChange(e, 'goal')}
               isValid={isGoalValid}
-              errorMessage="빈칸을 입력해주세요."
+              errorMessage="답변을 작성해 주세요."
             />
           </section>
           <section css={sectionStyle}>
