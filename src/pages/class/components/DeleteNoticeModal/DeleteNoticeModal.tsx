@@ -31,8 +31,8 @@ const DeleteNoticeModal = ({ onClose, noticeId, moimId }: DeleteNoticeModalProps
       onClose();
       navigate(`/class/${moimId}`);
     } else {
-      console.error('공지사항을 삭제하는데 에러가 발생했습니다.');
-      alert('공지사항을 삭제하는데 에러가 발생했습니다.');
+      console.error('공지 사항을 삭제하는데 에러가 발생했습니다.');
+      alert('공지 사항을 삭제하는데 에러가 발생했습니다.');
     }
   };
 

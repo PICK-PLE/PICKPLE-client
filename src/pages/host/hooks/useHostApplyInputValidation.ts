@@ -9,7 +9,7 @@ const useHostApplyInputValidation = () => {
   };
 
   const validateUrl = (q3: string) => {
-    const urlPattern = /^https:\/\/www\.[\w-]+(\.[\w-]+)+\/?([^\s]*)?$/i;
+    const urlPattern = /^https:\/\/[\w-]+(\.[\w-]+)+\/?([^\s]*)?$/i;
     return urlPattern.test(q3);
   };
 

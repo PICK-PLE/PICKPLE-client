@@ -22,12 +22,12 @@ export const textStyle = (theme: Theme) => css`
   ${theme.font['subhead05-sb-14']}
 `;
 
-export const detailWrapper = css`
-  ${flexGenerator('column', 'center', 'center')}
-  gap: 2rem;
-`;
-
 export const svgStyle = css`
   width: 15rem;
   height: 15rem;
+`;
+
+export const buttonWrapper = css`
+  width: 17.7rem;
+  margin-top: 2rem;
 `;

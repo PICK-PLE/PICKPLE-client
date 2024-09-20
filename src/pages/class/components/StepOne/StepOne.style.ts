@@ -45,6 +45,15 @@ export const referTextStyle = (theme: Theme) => css`
   color: ${theme.color.midgray1};
   ${theme.font['body02-r-14']}
 `;
+
+export const referPurpleTextStyle = (theme: Theme) => css`
+  ${flexGenerator('row', 'flex-start')};
+  width: 100%;
+
+  color: ${theme.color.purple1};
+  ${theme.font['body02-r-14']}
+`;
+
 export const footerStyle = css`
   width: 100%;
 `;

@@ -149,7 +149,7 @@ const Class = () => {
           </Swiper>
         </div>
         <section css={classInfo}>
-          <Label variant="dDay">{`마감${dDayText(dayOfDay)}`}</Label>
+          <Label variant="dDay">{dayOfDay < 0 ? '모집 마감' : `모집${dDayText(dayOfDay)}`}</Label>
           <h1 css={classNameStyle}>{title}</h1>
           <ul css={classInfoList}>
             <li>

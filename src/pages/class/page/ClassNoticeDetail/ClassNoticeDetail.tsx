@@ -47,7 +47,7 @@ const ClassNoticeDetail = () => {
   return (
     <>
       <div css={classNoticeDetailContainer}>
-        <Header title="공지사항" isLine={true} />
+        <Header title="공지 사항" isLine={true} />
         {/* @notice NoticeCard와 똑같은 스타일 코드인데, props 타입이 달라서 그대로 들고 왔습니다. */}
         <div css={noticeLayout}>
           <article css={noticeCardContainer}>
@@ -72,14 +72,16 @@ const ClassNoticeDetail = () => {
             <ClassCommentListEmptyView />
           ) : (
             <div css={commentListWrapper}>
-              {commentList?.map((comment) => (
-                <CommentBox
-                  key={comment.commentId}
-                  comment={comment}
-                  noticeId={noticeId ?? ''}
-                  host={noticeDetail?.isOwner}
-                />
-              ))}
+              {commentList
+                ?.sort((a, b) => (a.commentId ?? 0) - (b.commentId ?? 0))
+                .map((comment) => (
+                  <CommentBox
+                    key={comment.commentId}
+                    comment={comment}
+                    noticeId={noticeId ?? ''}
+                    host={noticeDetail?.isOwner}
+                  />
+                ))}
               <div ref={commentEndRef} />
             </div>
           )}
