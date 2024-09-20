@@ -63,7 +63,7 @@ const CommentInput = ({ noticeId }: CommentInputProps) => {
           value={value}
           onChange={handleInputChange}
           css={inputStyle}
-          placeholder="댓글을 남겨보세요"
+          placeholder="댓글을 남겨보세요."
         />
       </div>
       <div css={iconStyle} onClick={handleIconClick}>

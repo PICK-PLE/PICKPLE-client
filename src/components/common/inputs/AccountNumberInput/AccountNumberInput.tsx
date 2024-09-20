@@ -26,7 +26,7 @@ const AccountNumberInput = ({ value, onChange }: AccountNumberInputProps) => {
       value={value}
       onChange={handleInputChange}
       inputLabel="계좌 번호"
-      placeholder="'-' 없이 입력해 주세요."
+      placeholder="'-' 없이 숫자만 입력해 주세요."
       isValid={true}
       isCountValue={false}
     />

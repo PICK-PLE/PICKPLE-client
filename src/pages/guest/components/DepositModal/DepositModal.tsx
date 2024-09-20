@@ -55,7 +55,7 @@ const DepositModal = ({ onClose, fee, handlePageChange = () => {} }: DepositModa
         </div>
         <header css={headerstyle}>
           <h1 css={headerFirstH1Style}>
-            <span css={headerH1SpanStyle}>아래 계좌로 입금해주세요!</span>
+            <span css={headerH1SpanStyle}>아래 계좌로 입금해 주세요!</span>
           </h1>
           <h1 css={headerSecondH1Style}>
             <span>반드시 입금자명을</span>

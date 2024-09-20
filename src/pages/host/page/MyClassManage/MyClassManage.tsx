@@ -53,7 +53,7 @@ const MyClassManage = () => {
 
     // isApprovable = false 일 때 체크 불가능 + '신청 마감일 이후에 승인 가능' 토스트 띄우기
     if (!isApprovable) {
-      setToastText('신청 마감일 이후에 신청자를 승인할 수 있어요.');
+      setToastText('모집 마감일 이후에 신청자를 승인할 수 있어요.');
       showToast();
       return;
     }

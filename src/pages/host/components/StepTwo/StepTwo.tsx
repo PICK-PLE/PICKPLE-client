@@ -90,7 +90,7 @@ const StepTwo = ({ onNext }: StepProps) => {
             <TextArea
               size="medium"
               maxLength={300}
-              placeholder={`픽플에서 개최할 클래스의 주제, 운영 방식 등을 작성해 주세요!`}
+              placeholder={`픽플에서 개최하고 싶은 클래스의 주제, 내용 등을 작성해 주세요!`}
               value={hostApplyState.plan}
               onChange={(e) => handleInputChange(e, 'plan')}
               isValid={isPlanValid}

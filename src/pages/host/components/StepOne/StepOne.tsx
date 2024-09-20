@@ -66,7 +66,7 @@ const StepOne = ({ onNext }: StepProps) => {
             <Input
               value={hostApplyState.link}
               onChange={(e) => handleInputChange(e, 'link')}
-              placeholder="URL을 첨부해주세요."
+              placeholder="URL을 첨부해 주세요."
               isValid={isLinkValid}
               errorMessage="https:// 로 시작하는 올바른 URL을 입력해 주세요"
               isCountValue={false}

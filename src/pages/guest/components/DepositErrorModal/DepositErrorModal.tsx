@@ -28,7 +28,7 @@ const DepositErrorModal = ({ onClose }: DepositErrorModalProps) => {
         </header>
         <main css={mainStyle}>
           <div css={bodyTextStyle}>
-            클래스 신청을 완료했다면, 우선
+            지금 입금이 불가하다면, 우선
             <br />
             <span css={purpleStyle}>[입금을 완료했어요]</span> 버튼을 클릭해 주세요.
           </div>

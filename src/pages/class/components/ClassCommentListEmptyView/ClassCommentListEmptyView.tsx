@@ -8,7 +8,7 @@ const ClassCommentListEmptyView = () => {
       <img css={iconStyle} src={graphicImage.CommentEmptyView} alt="댓글이 없어요" />
 
       <div>
-        <p css={textStyle}>아직 작성된 댓글이 없어요.</p>
+        <p css={textStyle}>아직 작성된 댓글이 없어요</p>
       </div>
     </div>
   );

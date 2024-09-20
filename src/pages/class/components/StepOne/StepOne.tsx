@@ -136,7 +136,7 @@ const StepOne = ({ onNext }: StepProps) => {
               <Select
                 value={classPostState.onlineSpot}
                 onChange={handleSelectChange}
-                placeholder="사용할 플랫폼을 선택해주세요."
+                placeholder="사용할 플랫폼을 선택해 주세요."
                 options={options}></Select>
             )}
           </section>
@@ -152,17 +152,17 @@ const StepOne = ({ onNext }: StepProps) => {
             <span css={referTextStyle}>*픽플은 최소 10분 이상의 네트워킹 시간을 권장합니다.</span>
           </section>
           <section css={sectionStyle(2)}>
-            <QuestionText numberLabel="Q5">몇 명의 게스트와 함께하고 싶으신가요?</QuestionText>
+            <QuestionText numberLabel="Q5">몇 명의 참가자와 함께하고 싶으신가요?</QuestionText>
             <CountPeople people={classPostState.maxGuest} onPeopleChange={handleMaxGuestChange} />
             <h6 css={[referTextStyle, preventDragStyle]}>
               *참가자는 최대 15명까지 모집 가능합니다.
             </h6>
           </section>
           <section css={sectionStyle(1)}>
-            <QuestionText numberLabel="Q6">참가비를 알려주세요.</QuestionText>
+            <QuestionText numberLabel="Q6">참가비를 등록해 주세요.</QuestionText>
             <AddAmountBox value={classPostState.fee} handleAmountChange={handleAmountChange} />
             <h6 css={[referTextStyle, preventDragStyle]}>
-              *모임 인원과 주제, 시간 등을 고려하여 정해주세요.
+              *클래스 인원과 주제, 시간 등을 고려하여 설정해주세요.
             </h6>
           </section>
           <section css={sectionStyle(1.5)}>
@@ -178,7 +178,7 @@ const StepOne = ({ onNext }: StepProps) => {
             <Input
               value={classPostState.accountList.bank}
               onChange={(e) => handleAccountChange(e, 'bank')}
-              placeholder="은행명을 입력해주세요."
+              placeholder="은행명을 입력해 주세요."
               inputLabel="입금 은행"
               isValid={true}
               isCountValue={false}
