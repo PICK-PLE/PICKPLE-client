@@ -2,13 +2,16 @@ import { articleContainer, articleCotent, articleTitle } from './ArticleParagrap
 
 interface ArticleParagraphProps {
   title: string;
+  title2?: string;
   content: string;
 }
 
-const ArticleParagraph = ({ title, content }: ArticleParagraphProps) => {
+const ArticleParagraph = ({ title, title2, content }: ArticleParagraphProps) => {
   return (
     <article css={articleContainer}>
-      <h3 css={articleTitle}>{title}</h3>
+      <h3 css={articleTitle}>
+        {title} <br /> {title2}
+      </h3>
       <p css={articleCotent}>{content}</p>
     </article>
   );
