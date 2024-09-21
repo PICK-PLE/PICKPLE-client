@@ -9,7 +9,7 @@ export const profileContainer = css`
 
 export const profileWrapper = css`
   ${flexGenerator('row', 'flex-start')};
-  gap: 0.7rem;
+  gap: 1.2rem;
 `;
 
 export const profileTextBox = css`

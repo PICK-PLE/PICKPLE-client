@@ -23,10 +23,10 @@ export const profileWrapper = css`
   padding: 0 2rem 2.8rem;
 `;
 
-export const divdier = css`
+export const divdier = (theme: Theme) => css`
   width: 100%;
   height: 0.8rem;
-  background-color: #f3f3f3;
+  background-color: ${theme.color.bg_white0};
 `;
 
 export const navigateBoxContainer = css`
@@ -47,6 +47,7 @@ export const logoutTextStyle = (theme: Theme) => css`
   ${theme.font['subhead03-m-16']}
   color: ${theme.color.blackgray}
 `;
+
 export const iconStyle = css`
   width: 2.4rem;
   height: 2.4rem;
