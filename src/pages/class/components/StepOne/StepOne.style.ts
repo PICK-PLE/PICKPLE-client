@@ -51,7 +51,7 @@ export const referPurpleTextStyle = (theme: Theme) => css`
   width: 100%;
 
   color: ${theme.color.purple1};
-  ${theme.font['body02-r-14']}
+  ${theme.font['body04-m-12']}
 `;
 
 export const footerStyle = css`
