@@ -74,6 +74,9 @@ const MoimSubmitter = () => {
               <th>[2] 답변 </th>
               <th>[3] 질문</th>
               <th>[3] 답변</th>
+              <th>예금주</th>
+              <th>은행</th>
+              <th>계좌번호</th>
               <th>상태</th>
               <th>승인여부</th>
             </tr>
@@ -95,6 +98,9 @@ const MoimSubmitter = () => {
                 <td>{item.answerList?.answer2}</td>
                 <td>{item.questionList?.question3}</td>
                 <td>{item.answerList?.answer3}</td>
+                <td>{item.accountList?.holder}</td>
+                <td>{item.accountList?.bank}</td>
+                <td>{item.accountList?.accountNumber}</td>
                 <td>
                   {
                     MOIM_SUBMITTER_STATUS[

@@ -17,6 +17,7 @@ export const tableContainerStyle = css`
 export const tableStyle = css`
   border-collapse: collapse;
   table-layout: fixed;
+  overflow: auto;
   width: 100%;
 `;
 
