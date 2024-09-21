@@ -105,11 +105,11 @@ const GuestMyClassReviewWrite = () => {
                 <TextArea
                   size="medium"
                   maxLength={500}
-                  placeholder={'1글자 이상 리뷰를 작성해주세요.'}
+                  placeholder={'5글자 이상 내용을 작성해 주세요.'}
                   value={content}
                   onChange={handleTextareaChange}
                   isValid={true}
-                  errorMessage="1글자 이상 리뷰를 작성해주세요."
+                  errorMessage="5글자 이상 내용을 작성해 주세요."
                 />
                 <ImageSelect
                   isMultiple={false}
