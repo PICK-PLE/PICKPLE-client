@@ -23,10 +23,10 @@ export const profileWrapper = css`
   padding: 0 2rem 2.8rem;
 `;
 
-export const divdier = css`
+export const divdier = (theme: Theme) => css`
   width: 100%;
   height: 0.8rem;
-  background-color: #f3f3f3;
+  background-color: ${theme.color.bg_white0};
 `;
 
 export const navigateBoxContainer = css`

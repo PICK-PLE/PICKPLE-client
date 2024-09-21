@@ -16,5 +16,4 @@ export const childrenStyle = (theme: Theme) => css`
 export const iconStyle = css`
   width: 2.4rem;
   height: 2.4rem;
-  padding: 0.2rem;
 `;
