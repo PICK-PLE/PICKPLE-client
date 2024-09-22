@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
+import { smoothScroll } from '@utils';
 import { FunnelProps, StepProps } from 'src/hooks/useFunnel';
 
 import StepFour from '../StepFour/StepFour';
@@ -15,6 +16,9 @@ export interface ClassPostProps {
 }
 
 const ClassPost = ({ steps, nextClickHandler, Funnel, Step }: ClassPostProps) => {
+  useEffect(() => {
+    smoothScroll(0, false);
+  }, []);
   return (
     <Funnel>
       <Step name={steps[0]}>
