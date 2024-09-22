@@ -84,13 +84,19 @@ const Home = () => {
               modules={[Pagination]}
               loop={true}
               className="mySwiper">
-              {bannerList.map((banner, index) => {
-                return (
-                  <SwiperSlide key={banner.id} onClick={() => handleBannerClick(index)}>
-                    <Lottie animationData={banner.animationData} width={'100%'} loop={true} />
-                  </SwiperSlide>
-                );
-              })}
+              {bannerId ? (
+                bannerList.map((banner, index) => {
+                  return (
+                    <SwiperSlide key={banner.id} onClick={() => handleBannerClick(index)}>
+                      <Lottie animationData={banner.animationData} width={'100%'} loop={true} />
+                    </SwiperSlide>
+                  );
+                })
+              ) : (
+                <SwiperSlide onClick={() => handleBannerClick(1)}>
+                  <Lottie animationData={bannerList[1].animationData} width={'100%'} loop={true} />
+                </SwiperSlide>
+              )}
             </Swiper>
           </div>
           <div css={categoryContainer}>

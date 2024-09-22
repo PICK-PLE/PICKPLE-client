@@ -64,6 +64,21 @@ const GuestMyClass = () => {
     '환불 완료': currentData?.filter((data) => data.moimSubmissionState === 'refunded'),
   };
 
+  const GuestMyClassEmptyViewText = (state: string) => {
+    switch (state) {
+      case '전체': {
+        return '아직 신청한 클래스가 없어요';
+      }
+      case '입금 대기':
+      case '승인 대기': {
+        return `${state} 중인 클래스가 없어요`;
+      }
+      default: {
+        return `${state}된 클래스가 없어요`;
+      }
+    }
+  };
+
   if (isApplyLoading || isParticipateLoading) {
     return <Spinner />;
   }
@@ -112,9 +127,7 @@ const GuestMyClass = () => {
             <GuestMyClassEmptyView
               text={
                 activeTab === '신청한'
-                  ? selectedStatus === '입금 대기' || selectedStatus === '승인 대기'
-                    ? `${selectedStatus} 중인 클래스가 없어요`
-                    : `${selectedStatus}된 클래스가 없어요`
+                  ? GuestMyClassEmptyViewText(selectedStatus)
                   : '아직 참가한 클래스가 없어요'
               }
             />
