@@ -2,19 +2,17 @@ import { css, Theme } from '@emotion/react';
 
 import { flexGenerator } from '@styles/generator';
 
-export const emptyViewContainer = css`
-  ${flexGenerator('column', 'center', 'center')}
-  margin-top: 3rem;
-  margin-bottom: 7rem;
+export const emptyReviewContainer = css`
+  ${flexGenerator('column')};
+  height: 30rem;
 `;
 
-export const iconStyle = css`
+export const imageStyle = css`
   width: 15rem;
   height: 15rem;
 `;
 
 export const textStyle = (theme: Theme) => css`
+  ${theme.font['subhead04-sb-15']};
   color: ${theme.color.lightgray2};
-  text-align: center;
-  ${theme.font['subhead05-sb-14']}
 `;

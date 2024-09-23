@@ -136,7 +136,7 @@ const ClassApplyQuestion = ({ handlePageChange }: ClassApplyProps) => {
                       }
                       maxLength={200}
                       size="medium"
-                      placeholder="답변을 작성해 주세요."
+                      placeholder={`스픽커가 답변을 읽고, 참가자를 승인해요.\n답변을 정성스럽게 작성해 주세요.`}
                       isValid={validateLength(answer.answerList[`answer${index + 1}`])}
                       errorMessage="답변을 작성해 주세요."
                     />

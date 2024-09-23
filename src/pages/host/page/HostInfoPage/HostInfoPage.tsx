@@ -8,9 +8,9 @@ import { useFetchReviewByHost } from '@apis/domains/review/useFetchReviewByHost'
 
 import { Button, Image, LogoHeader } from '@components';
 import { images } from '@constants';
-import { ClassReviewEmptyView } from '@pages/class/components';
 import { ClassListCard } from '@pages/classList/components';
-import { HostMyClassEmptyView } from '@pages/host/components';
+import HostInfoClassEmptyView from '@pages/host/components/HostInfoClassEmptyView/HostInfoClassEmptyView';
+import HostInfoReviewEmptyView from '@pages/host/components/HostInfoReviewEmptyView/HostInfoReviewEmptyView';
 import {
   classListCardStyle,
   hostActiveTabTextStyle,
@@ -153,7 +153,7 @@ const HostInfoPage = () => {
             {activeTab === '클래스' ? (
               <div>
                 {hostInfoClassData?.length === 0 ? (
-                  <HostMyClassEmptyView text="아직 개설한 클래스가 없어요" />
+                  <HostInfoClassEmptyView />
                 ) : (
                   <div css={hostCardWrapper}>
                     {sortedHostInfoByDayOfDay &&
@@ -173,7 +173,7 @@ const HostInfoPage = () => {
             ) : (
               <div>
                 {hostInfoReviewData?.length === 0 ? (
-                  <ClassReviewEmptyView />
+                  <HostInfoReviewEmptyView />
                 ) : (
                   <div css={hostCardWrapper}>
                     {hostInfoReviewData &&
