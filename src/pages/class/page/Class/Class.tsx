@@ -112,6 +112,11 @@ const Class = () => {
   const shareTitle = 'PICK!PLE';
   const text = title ?? '';
 
+  const handleTabClick = (activeTab: '클래스소개' | '공지사항' | '리뷰') => {
+    setSelectTab(activeTab);
+    smoothScroll(660);
+  };
+
   const handleNoticePostClick = (moimId: string) => {
     navigate(`/class/${moimId}/notice/post`);
   };
@@ -174,19 +179,19 @@ const Class = () => {
           <button
             css={tabButtonStyle(selectTab === '클래스소개')}
             type="button"
-            onClick={() => setSelectTab('클래스소개')}>
+            onClick={() => handleTabClick('클래스소개')}>
             클래스 소개
           </button>
           <button
             css={tabButtonStyle(selectTab === '공지사항')}
             type="button"
-            onClick={() => setSelectTab('공지사항')}>
+            onClick={() => handleTabClick('공지사항')}>
             공지 사항
           </button>
           <button
             css={tabButtonStyle(selectTab === '리뷰')}
             type="button"
-            onClick={() => setSelectTab('리뷰')}>
+            onClick={() => handleTabClick('리뷰')}>
             리뷰
           </button>
         </div>
