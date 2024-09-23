@@ -93,8 +93,8 @@ const Home = () => {
                   );
                 })
               ) : (
-                <SwiperSlide onClick={() => handleBannerClick(0)}>
-                  <Lottie animationData={bannerList[0].animationData} width={'100%'} loop={true} />
+                <SwiperSlide onClick={() => handleBannerClick(1)}>
+                  <Lottie animationData={bannerList[1].animationData} width={'100%'} loop={true} />
                 </SwiperSlide>
               )}
             </Swiper>
