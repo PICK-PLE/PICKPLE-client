@@ -4,7 +4,8 @@ import { flexGenerator } from '@styles/generator';
 
 export const emptyViewContainer = css`
   ${flexGenerator('column', 'center', 'center')}
-  margin-top: 12.5rem;
+  margin-top: 3rem;
+  margin-bottom: 7rem;
 `;
 
 export const iconStyle = css`
