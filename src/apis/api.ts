@@ -61,22 +61,34 @@ instance.interceptors.response.use(
     const errorData = error?.response;
     const accessToken = localStorage.getItem('accessToken');
 
-    // 에러 데이터와 기존 accessToken이 있는지 확인
-    if (errorData && errorData.status === 401 && accessToken) {
-      const originalRequest = error.config;
+    if (errorData && accessToken) {
+      // 리프레시 토큰 만료 시. 로그아웃 처리
+      if (errorData.status === 40101) {
+        console.error('리프레시 토큰 만료:', errorData);
+        localStorage.removeItem('user');
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        window.location.href = '/login';
+        return Promise.reject(error);
+      }
 
-      try {
-        // 새로운 accessToken 발급 시도
-        const newAccessToken = await fetchAccessToken();
+      // 액세스 토큰 만료 시. 리프레시 토큰으로 재발급 시도
+      if (errorData.status === 40100) {
+        const originalRequest = error.config;
 
-        // 새로운 accessToken으로 헤더 업데이트
-        originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+        try {
+          // 새로운 accessToken 발급 시도
+          const newAccessToken = await fetchAccessToken();
 
-        // 요청 재시도
-        return axios.request(originalRequest);
-      } catch (tokenError) {
-        console.error('토큰 갱신 후 재시도 실패:', tokenError);
-        return Promise.reject(tokenError);
+          // 새로운 accessToken으로 헤더 업데이트
+          originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+
+          // 요청 재시도
+          return axios.request(originalRequest);
+        } catch (tokenError) {
+          console.error('토큰 갱신 후 재시도 실패:', tokenError);
+          return Promise.reject(tokenError);
+        }
       }
     }
 
