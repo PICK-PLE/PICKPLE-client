@@ -48,11 +48,12 @@ const isErrorResponseType = (data: unknown): data is ErrorType => {
   return false;
 };
 const HostMyPage = () => {
-  const [, setUser] = useAtom(userAtom);
-
+  const [user] = useAtom(userAtom);
   const { data: hostInfoResponse, isSuccess, isLoading } = useFetchMyHost();
   const { goGuestMyPage } = useEasyNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { hostId: jotaiHostId, hostNickname: jotaiHostNickname } = user;
 
   let hostInfoData: HostGetResponse | null = null;
   let errorData: ErrorType | null = null;
@@ -82,15 +83,19 @@ const HostMyPage = () => {
   };
 
   useEffect(() => {
-    if (isSuccess && hostInfoData) {
+    if (isSuccess && hostInfoData && !jotaiHostId && !jotaiHostNickname) {
       const { hostId, hostNickName } = hostInfoData;
-      if (hostId && hostNickName) {
-        setUser((prevState) => {
-          return { ...prevState, hostId, hostNickname: hostNickName };
-        });
+      const isFirstApproval = hostId && hostNickName;
+      if (isFirstApproval) {
+        // TODO: alert 2번 뜨는 문제 해결
+        alert('호스트 최초 승인 후 재로그인이 필요합니다.');
+        localStorage.removeItem('user');
+        localStorage.removeItem('accessToken');
+        localStorage.removeItem('refreshToken');
+        window.location.href = '/login';
       }
     }
-  }, [isSuccess, hostInfoData, setUser]);
+  }, [isSuccess, hostInfoData, jotaiHostId, jotaiHostNickname]);
 
   return (
     <>

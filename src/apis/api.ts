@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 import { components } from '@schema';
-import { ApiResponseType } from '@types';
+import { ApiResponseType, ErrorType } from '@types';
 
 type AccessTokenGetSuccess = components['schemas']['AccessTokenGetSuccess'];
 
@@ -38,8 +38,8 @@ const fetchAccessToken = async () => {
   const refreshToken = localStorage.getItem('refreshToken');
 
   try {
-    const response = await get<ApiResponseType<AccessTokenGetSuccess>>(
-      `/v1/user/token-refresh?refreshToken=${refreshToken}`
+    const response = await axios.get<ApiResponseType<AccessTokenGetSuccess>>(
+      `${import.meta.env.VITE_APP_BASE_URL}/v1/user/token-refresh?refreshToken=${refreshToken}`
     );
 
     const accessToken = response.data.data.accessToken;
@@ -51,27 +51,28 @@ const fetchAccessToken = async () => {
     return accessToken;
   } catch (error) {
     console.error('토큰 재발급 실패:', error);
-    throw new Error('토큰 재발급에 실패했습니다.');
+
+    const errorData = (error as AxiosError)?.response?.data as ErrorType;
+
+    // 리프레시 토큰 만료 시. 로그아웃 처리
+    if (errorData.status === 40101) {
+      console.error('리프레시 토큰 만료:', errorData);
+      localStorage.removeItem('user');
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      window.location.href = '/login';
+      return Promise.reject(error);
+    }
   }
 };
 
 instance.interceptors.response.use(
   (response) => response, // 성공적인 응답은 그대로 반환
   async (error) => {
-    const errorData = error?.response;
+    const errorData = error?.response.data;
     const accessToken = localStorage.getItem('accessToken');
 
-    if (errorData && accessToken) {
-      // 리프레시 토큰 만료 시. 로그아웃 처리
-      if (errorData.status === 40101) {
-        console.error('리프레시 토큰 만료:', errorData);
-        localStorage.removeItem('user');
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
-        window.location.href = '/login';
-        return Promise.reject(error);
-      }
-
+    if (errorData && errorData.status && accessToken) {
       // 액세스 토큰 만료 시. 리프레시 토큰으로 재발급 시도
       if (errorData.status === 40100) {
         const originalRequest = error.config;
