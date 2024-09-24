@@ -22,8 +22,9 @@ export const usePostLogout = () => {
   return useMutation({
     mutationFn: () => postLogout(),
     onSuccess: () => {
-      localStorage.removeItem('accessToken');
       localStorage.removeItem('user');
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
       setUser(RESET);
       goHome();
     },

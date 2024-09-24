@@ -2,6 +2,7 @@ export const QUERY_KEY = {
   HEALTH: 'health',
   TEST: 'test',
   KAKAO_LOGIN: 'kakaoLogin',
+  ACCESS_TOKEN: 'accessToken',
   MOIM_CATEGORIES: 'moimCategories',
   HOST_APPLY: 'hostApply',
   QUESTION_LIST: 'questionList',

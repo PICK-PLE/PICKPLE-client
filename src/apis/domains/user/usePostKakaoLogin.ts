@@ -41,8 +41,9 @@ export const usePostKakaoLogin = () => {
 
         setUser({ ...user, guestNickname, guestId, hostNickname, hostId });
 
-        if (token && token.accessToken) {
+        if (token && token.accessToken && token.refreshToken) {
           localStorage.setItem('accessToken', token.accessToken);
+          localStorage.setItem('refreshToken', token.refreshToken);
           instance.defaults.headers.Authorization = `Bearer ${token.accessToken}`;
         }
 
