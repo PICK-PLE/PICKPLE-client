@@ -12,6 +12,7 @@ import HostInfoCardWithLink from '@pages/myPage/components/HostInfoCardWithLink/
 import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
 import { userAtom } from '@stores';
 import { IcNext } from '@svg';
+import { clearLocalStorage } from '@utils';
 
 import {
   divdier,
@@ -89,9 +90,7 @@ const HostMyPage = () => {
       if (isFirstApproval) {
         // TODO: alert 2번 뜨는 문제 해결
         alert('호스트 최초 승인 후 재로그인이 필요합니다.');
-        localStorage.removeItem('user');
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
+        clearLocalStorage();
         window.location.href = '/login';
       }
     }

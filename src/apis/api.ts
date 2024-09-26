@@ -1,5 +1,7 @@
 import axios, { AxiosError } from 'axios';
 
+import { clearLocalStorage } from '@utils';
+
 import { components } from '@schema';
 import { ApiResponseType, ErrorType } from '@types';
 
@@ -34,7 +36,7 @@ export function del<T>(...args: Parameters<typeof instance.delete>) {
   return instance.delete<T>(...args);
 }
 
-const fetchAccessToken = async () => {
+const fetchAccessToken = async (): Promise<string | null> => {
   const refreshToken = localStorage.getItem('refreshToken');
 
   try {
@@ -57,12 +59,11 @@ const fetchAccessToken = async () => {
     // 리프레시 토큰 만료 시. 로그아웃 처리
     if (errorData.status === 40101) {
       console.error('리프레시 토큰 만료:', errorData);
-      localStorage.removeItem('user');
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('refreshToken');
+      clearLocalStorage();
       window.location.href = '/login';
       return Promise.reject(error);
     }
+    return null;
   }
 };
 
