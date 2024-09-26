@@ -27,7 +27,7 @@ import {
 import { ErrorType } from '@types';
 
 const StepThree = ({ onNext }: StepProps) => {
-  const { classPostState, handleInputChange } = useClassPostInputChange();
+  const { classPostState, handleInputChange, resetClassPostState } = useClassPostInputChange();
   const [, setMoimId] = useAtom(moimIdAtom);
   const { validateStepThree } = useClassPostInputValidation();
   const { isTitleValid, isDescriptionValid } = validateStepThree(classPostState);
@@ -58,6 +58,7 @@ const StepThree = ({ onNext }: StepProps) => {
             setMoimId(data);
           }
           onNext();
+          resetClassPostState();
           smoothScroll(0);
         })
         .catch((error: ErrorType) => {
