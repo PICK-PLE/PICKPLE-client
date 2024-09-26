@@ -6,6 +6,7 @@ import { post } from '@apis/api';
 
 import { useEasyNavigate } from '@hooks';
 import { userAtom } from '@stores';
+import { clearLocalStorage } from '@utils';
 
 const postLogout = async () => {
   try {
@@ -22,8 +23,7 @@ export const usePostLogout = () => {
   return useMutation({
     mutationFn: () => postLogout(),
     onSuccess: () => {
-      localStorage.removeItem('accessToken');
-      localStorage.removeItem('user');
+      clearLocalStorage();
       setUser(RESET);
       goHome();
     },
