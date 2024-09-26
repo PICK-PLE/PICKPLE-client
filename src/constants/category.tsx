@@ -19,6 +19,7 @@ export const CATEGORY_ICON: CategoryIcon = {
 };
 
 export const CATEGORY_NAME: CategoryName = {
+  all: '전체',
   njob: 'N잡',
   investment: '재테크',
   startup: '창업',
