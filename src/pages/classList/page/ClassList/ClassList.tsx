@@ -79,7 +79,6 @@ const ClassList = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { data: categories } = useFetchMoimCategories();
-  // const selectedCategory = searchParams.get('category') || (categories ?? [])[0];
   const selectedCategory = searchParams.get('category') || 'all';
   const { data: moimList, refetch, isLoading } = useFetchMoimListByCategory(selectedCategory);
 
