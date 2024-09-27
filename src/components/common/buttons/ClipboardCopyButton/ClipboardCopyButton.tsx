@@ -26,7 +26,7 @@ const ClipboardCopyButton = () => {
     }
   };
   return (
-    <button css={buttonWrapperStyle} onClick={handleCopyClick}>
+    <button type="button" css={buttonWrapperStyle} onClick={handleCopyClick}>
       <span css={accountNumberStyle}>{accountNumber}</span>
       <span css={iconStyle}>
         <IcClipboardCopy />
