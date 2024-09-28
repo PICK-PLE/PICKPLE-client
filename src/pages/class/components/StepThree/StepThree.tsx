@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import { usePostMoim } from '@apis/domains/moim/usePostMoim';
 import { usePutS3Upload } from '@apis/domains/presignedUrl/usePutS3Upload';
 
-import { Button, ImageSelect, Input, ProgressBar, Spinner, TextArea } from '@components';
+import { Button, ImageSelect, Input, ProgressBar, Spinner, TextArea, Toast } from '@components';
+import { useToast } from '@hooks';
 import { useClassPostInputChange, useClassPostInputValidation } from '@pages/class/hooks';
 import { smoothScroll } from '@utils';
 import { moimIdAtom } from 'src/stores/classPostData';
@@ -34,6 +35,7 @@ const StepThree = ({ onNext }: StepProps) => {
 
   const { mutateAsync: putS3UploadMutateAsync, isPending: putS3IsPending } = usePutS3Upload();
   const { mutateAsync: postMutateAsync, isPending: postIsPending } = usePostMoim();
+  const { showToast, isToastVisible } = useToast();
 
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [isAllValid, setIsAllValid] = useState(false);
@@ -63,6 +65,9 @@ const StepThree = ({ onNext }: StepProps) => {
         .catch((error: ErrorType) => {
           const { status, message } = error;
           console.error(status, message);
+          if (error.status === 40004) {
+            showToast();
+          }
         });
     }
   };
@@ -119,6 +124,12 @@ const StepThree = ({ onNext }: StepProps) => {
             클래스 개설하기
           </Button>
         </footer>
+        {isToastVisible && (
+          <Toast isVisible={isToastVisible} toastBottom={10}>
+            필수 입력 칸이 비어있어요.
+            {/* 정안TODO 에러 메세지 기획과 논의 후 수정 */}
+          </Toast>
+        )}
       </div>
     </>
   );
