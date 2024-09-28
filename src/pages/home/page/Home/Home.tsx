@@ -57,7 +57,7 @@ const Home = () => {
 
   const handleBannerClick = (banner: number) => {
     if (banner === 0) {
-      navigate(`class/${bannerId}`);
+      navigate(`/class-list?category=all`);
     } else if (banner === 1) {
       navigate(`mypage/host`);
     }

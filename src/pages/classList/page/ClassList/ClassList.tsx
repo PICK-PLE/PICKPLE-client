@@ -19,6 +19,7 @@ import {
   IcMarketingActive,
   IcEducationActive,
   IcItActive,
+  IcAllActive,
 } from 'src/assets/svg/active';
 import {
   IcNjobInactive,
@@ -30,6 +31,7 @@ import {
   IcMarketingInactive,
   IcEducationInactive,
   IcItInactive,
+  IcAllInactive,
 } from 'src/assets/svg/inactive';
 
 import {
@@ -45,6 +47,7 @@ import {
 } from './ClassList.style';
 
 const activeCategoryIcon: { [key: string]: JSX.Element } = {
+  all: <IcAllActive />,
   njob: <IcNjobActive />,
   investment: <IcInvestmentActive />,
   startup: <img src={CATEGORY_ICON.startup.active} alt={`startup-icon-active`} />,
@@ -57,6 +60,7 @@ const activeCategoryIcon: { [key: string]: JSX.Element } = {
   it: <IcItActive />,
 };
 const inactiveCategoryIcon: { [key: string]: JSX.Element } = {
+  all: <IcAllInactive />,
   njob: <IcNjobInactive />,
   investment: <IcInvestmentInactive />,
   startup: <img src={CATEGORY_ICON.startup.inactive} alt={`startup-icon-inactive`} />,
@@ -75,7 +79,7 @@ const ClassList = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { data: categories } = useFetchMoimCategories();
-  const selectedCategory = searchParams.get('category') || (categories ?? [])[0];
+  const selectedCategory = searchParams.get('category') || 'all';
   const { data: moimList, refetch, isLoading } = useFetchMoimListByCategory(selectedCategory);
 
   useEffect(() => {
@@ -123,10 +127,18 @@ const ClassList = () => {
     return <Error />;
   }
 
+  console.log(categories);
+
   return (
     <>
       <LogoHeader />
       <ul css={categoriesContainer} ref={categoriesRef}>
+        <li css={categoryWrapper} onClick={() => handleCategoryClick('all')}>
+          {selectedCategory === 'all' ? activeCategoryIcon['all'] : inactiveCategoryIcon['all']}
+          <p css={selectedCategory === 'all' ? seletedIconNameStyle : unSeletedIconNameStyle}>
+            {CATEGORY_NAME['all']}
+          </p>
+        </li>
         {(categories ?? []).map((category) => {
           return (
             <li css={categoryWrapper} key={category} onClick={() => handleCategoryClick(category)}>
