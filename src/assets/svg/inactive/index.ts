@@ -1,3 +1,4 @@
+export { default as IcAllInactive } from './IcAllInactive';
 export { default as IcEducationInactive } from './IcEducationInactive';
 export { default as IcEmploymentInactive } from './IcEmploymentInactive';
 export { default as IcInvestmentInactive } from './IcInvestmentInactive';
