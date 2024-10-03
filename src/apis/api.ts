@@ -70,6 +70,11 @@ const fetchAccessToken = async (): Promise<string | null> => {
 instance.interceptors.response.use(
   (response) => response, // 성공적인 응답은 그대로 반환
   async (error) => {
+    if (error.response.status === 401) {
+      clearLocalStorage();
+      window.location.href = '/login';
+      return;
+    }
     const errorData = error?.response.data;
     const accessToken = localStorage.getItem('accessToken');
 
