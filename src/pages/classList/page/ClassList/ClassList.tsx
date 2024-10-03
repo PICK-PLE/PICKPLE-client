@@ -86,12 +86,27 @@ const ClassList = () => {
     if (categoriesRef.current) {
       const selectedIndex = (categories ?? []).indexOf(selectedCategory);
       setTimeout(() => {
-        if (selectedIndex < 5) {
+        if (selectedIndex === 4) {
+          if (categoriesRef.current?.scrollLeft === 0) {
+            categoriesRef.current?.scrollTo({
+              left: 353,
+              // left: categoriesRef.current?.scrollWidth,
+              behavior: 'smooth',
+            });
+          } else {
+            categoriesRef.current?.scrollTo({
+              left: 30,
+              behavior: 'smooth',
+            });
+          }
+        }
+
+        if (selectedIndex < 4) {
           categoriesRef.current?.scrollTo({
             left: 0,
             behavior: 'smooth',
           });
-        } else {
+        } else if (selectedIndex > 4) {
           categoriesRef.current?.scrollTo({
             left: categoriesRef.current?.scrollWidth,
             behavior: 'smooth',
