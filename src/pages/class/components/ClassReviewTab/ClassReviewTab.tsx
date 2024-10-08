@@ -12,8 +12,6 @@ interface ClassReviewTabProps {
 const ClassReviewTab = ({ moimId }: ClassReviewTabProps) => {
   const { data: moimReviewList } = useFetchMoimReviewList(moimId ?? '');
 
-  console.log(moimReviewList);
-
   if ((moimReviewList || []).length === 0) {
     return <ClassReviewEmptyView />;
   }
