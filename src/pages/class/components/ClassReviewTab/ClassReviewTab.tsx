@@ -17,7 +17,8 @@ const ClassReviewTab = ({ moimId }: ClassReviewTabProps) => {
   }
   return (
     <section css={reviewSectionStyle}>
-      {moimReviewList?.map((review, i) => <Review key={i} reviewData={review} />)}
+      {/* reverse메서드로 최신순으로 정렬 */}
+      {moimReviewList?.map((review, i) => <Review key={i} reviewData={review} />).reverse()}
     </section>
   );
 };

@@ -12,24 +12,13 @@ interface CategoryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon: React.ReactNode;
   isSelected: boolean;
   setIsSelected?: React.Dispatch<React.SetStateAction<boolean>>;
-  handleClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-const CategoryButton = ({
-  children,
-  icon,
-  isSelected = false,
-  handleClick,
-  ...props
-}: CategoryButtonProps) => {
+const CategoryButton = ({ children, icon, isSelected = false, ...props }: CategoryButtonProps) => {
   return (
     <section css={categoryButtonContainer}>
       <div css={[categoryButtonWrapper(isSelected)]}>
-        <button
-          type="button"
-          onClick={handleClick}
-          css={[categoryButtonStyle(isSelected)]}
-          {...props}>
+        <button type="button" css={[categoryButtonStyle(isSelected)]} {...props}>
           <span css={iconWrapper(isSelected)}>{icon}</span>
         </button>
       </div>

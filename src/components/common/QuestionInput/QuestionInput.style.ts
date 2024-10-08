@@ -15,6 +15,7 @@ export const questionInputStyle = (theme: Theme) => css`
   gap: 1rem;
   position: relative;
   padding: 1rem;
+  padding-right: 3.8rem;
   border: 1px solid ${theme.color.lightgray1};
   border-radius: 10px;
   background-color: ${theme.color.bg_white0};
@@ -61,4 +62,9 @@ export const textLengthStyle = (theme: Theme) => css`
   width: 100%;
   color: ${theme.color.midgray1};
   ${theme.font['body02-r-14']}
+`;
+
+export const deleteIconStyle = css`
+  width: 1.8rem;
+  height: 1.8rem;
 `;

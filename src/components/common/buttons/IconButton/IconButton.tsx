@@ -6,9 +6,9 @@ interface IconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   icon?: React.ReactNode;
 }
 
-const IconButton = ({ onClick, icon, children }: IconButtonProps) => {
+const IconButton = ({ icon, children, ...props }: IconButtonProps) => {
   return (
-    <button css={buttonStyle} onClick={onClick} type={'button'}>
+    <button css={buttonStyle} type="button" {...props}>
       <span css={iconWrapperStyle}>{icon}</span>
       {children}
     </button>

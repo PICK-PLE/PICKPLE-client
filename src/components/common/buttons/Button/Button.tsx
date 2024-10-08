@@ -17,12 +17,13 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   customStyle?: ((theme: Theme) => SerializedStyles) | SerializedStyles;
 }
 
-const Button = ({ variant, disabled, customStyle, onClick, children }: ButtonProps) => {
+const Button = ({ variant, disabled, customStyle, children, ...props }: ButtonProps) => {
   return (
     <button
+      type="button"
       css={[buttonStyle, buttonSize[variant], disabled && disabledStyle, customStyle]}
-      onClick={onClick}
-      disabled={disabled}>
+      disabled={disabled}
+      {...props}>
       {children}
     </button>
   );
