@@ -66,6 +66,8 @@ export const deleteButtonStyle = css`
   position: absolute;
   top: 50%;
   right: 1.1rem;
+  width: 3rem;
+  height: 3rem;
   cursor: pointer;
   transform: translateY(-50%);
 `;
