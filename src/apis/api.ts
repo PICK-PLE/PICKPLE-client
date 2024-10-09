@@ -102,12 +102,11 @@ instance.interceptors.response.use(
           return axios.request(originalRequest);
         } catch (tokenError) {
           console.error('토큰 갱신 후 재시도 실패:', tokenError);
-          clearLocalStorage();
-          window.location.href = '/login';
           return Promise.reject(tokenError);
         }
       } else {
         // 그 외의 40101, 40102, 40103, 40104 에러는 로그아웃 처리
+        console.error('인증 에러');
         clearLocalStorage();
         window.location.href = '/login';
         return;
