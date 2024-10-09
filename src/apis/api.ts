@@ -66,8 +66,13 @@ const fetchAccessToken = async (): Promise<string | null> => {
     const axiosError = error as AxiosError<ErrorType>;
     const errorData = axiosError.response?.data;
 
-    // 리프레시 토큰 만료 시. 로그아웃 처리
-    if (errorData?.status === 40101) {
+    // 리프레시 토큰 재발급 오류 시. 로그아웃 처리
+    if (
+      errorData?.status === 40101 ||
+      errorData?.status === 40102 ||
+      errorData?.status === 40103 ||
+      errorData?.status === 40104
+    ) {
       console.error('리프레시 토큰 만료:', errorData);
       clearLocalStorage();
       window.location.href = '/login';
