@@ -142,8 +142,6 @@ const ClassList = () => {
     return <Error />;
   }
 
-  console.log(categories);
-
   return (
     <>
       <LogoHeader />
