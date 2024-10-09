@@ -39,13 +39,22 @@ export function del<T>(...args: Parameters<typeof instance.delete>) {
 const fetchAccessToken = async (): Promise<string | null> => {
   const refreshToken = localStorage.getItem('refreshToken');
 
+  // 리프레시 토큰이 없는 경우 로그아웃 처리
+  if (!refreshToken) {
+    console.error('리프레시 토큰이 없습니다. 로그아웃 처리합니다.');
+    clearLocalStorage();
+    window.location.href = '/login';
+    return null;
+  }
+
   try {
     const response = await axios.get<ApiResponseType<AccessTokenGetSuccess>>(
-      `${import.meta.env.VITE_APP_BASE_URL}/v1/user/token-refresh?refreshToken=${refreshToken}`
+      `${import.meta.env.VITE_APP_BASE_URL}/v1/user/token-refresh?refreshToken=${encodeURIComponent(refreshToken)}`
     );
 
     const accessToken = response.data.data.accessToken;
     if (!accessToken) {
+      console.error('액세스 토큰을 받지 못했습니다.');
       return null;
     }
     localStorage.setItem('accessToken', accessToken);
@@ -54,15 +63,17 @@ const fetchAccessToken = async (): Promise<string | null> => {
   } catch (error) {
     console.error('토큰 재발급 실패:', error);
 
-    const errorData = (error as AxiosError)?.response?.data as ErrorType;
+    const axiosError = error as AxiosError<ErrorType>;
+    const errorData = axiosError.response?.data;
 
     // 리프레시 토큰 만료 시. 로그아웃 처리
-    if (errorData.status === 40101) {
+    if (errorData?.status === 40101) {
       console.error('리프레시 토큰 만료:', errorData);
       clearLocalStorage();
       window.location.href = '/login';
       return Promise.reject(error);
     }
+
     return null;
   }
 };
@@ -70,17 +81,14 @@ const fetchAccessToken = async (): Promise<string | null> => {
 instance.interceptors.response.use(
   (response) => response, // 성공적인 응답은 그대로 반환
   async (error) => {
-    if (error.response.status === 401) {
-      clearLocalStorage();
-      window.location.href = '/login';
-      return;
-    }
-    const errorData = error?.response.data;
+    const status = error?.response?.status;
+    const errorData = error?.response?.data;
     const accessToken = localStorage.getItem('accessToken');
 
-    if (errorData && errorData.status && accessToken) {
-      // 액세스 토큰 만료 시. 리프레시 토큰으로 재발급 시도
-      if (errorData.status === 40100) {
+    // 401 계열 에러 처리
+    if (status === 401) {
+      // 40100인 경우에만 리프레시 토큰을 사용한 재발급 로직 실행
+      if (errorData?.status === 40100 && accessToken) {
         const originalRequest = error.config;
 
         try {
@@ -94,8 +102,15 @@ instance.interceptors.response.use(
           return axios.request(originalRequest);
         } catch (tokenError) {
           console.error('토큰 갱신 후 재시도 실패:', tokenError);
+          clearLocalStorage();
+          window.location.href = '/login';
           return Promise.reject(tokenError);
         }
+      } else {
+        // 그 외의 40101, 40102, 40103, 40104 에러는 로그아웃 처리
+        clearLocalStorage();
+        window.location.href = '/login';
+        return;
       }
     }
 
