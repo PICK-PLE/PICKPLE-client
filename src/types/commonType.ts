@@ -30,3 +30,10 @@ export type MoimIdPathParameterType = {
 export type NoticeIdPathParameterType = {
   noticeId: string;
 };
+
+export interface localStorageUserType {
+  guestId: number;
+  guestNickname: string;
+  hostId: number;
+  hostNickname: string;
+}

@@ -1,4 +1,3 @@
-import { useAtom } from 'jotai';
 import { useEffect, useState } from 'react';
 
 import { useFetchMyHost } from '@apis/domains/moim/useFetchMyHost';
@@ -10,7 +9,6 @@ import { Error } from '@pages/error';
 import { ApprovalReviewingView, HostMyPageEmptyView } from '@pages/myPage/components';
 import HostInfoCardWithLink from '@pages/myPage/components/HostInfoCardWithLink/HostInfoCardWithLink';
 import LogoutModal from '@pages/myPage/components/LogoutModal/LogoutModal';
-import { userAtom } from '@stores';
 import { IcNext } from '@svg';
 import { clearLocalStorage } from '@utils';
 
@@ -27,7 +25,7 @@ import {
 } from './HostMyPage.style';
 
 import { components } from '@schema';
-import { ErrorType } from '@types';
+import { ErrorType, localStorageUserType } from '@types';
 
 type HostGetResponse = components['schemas']['HostGetResponse'];
 
@@ -48,13 +46,14 @@ const isErrorResponseType = (data: unknown): data is ErrorType => {
   }
   return false;
 };
+
 const HostMyPage = () => {
-  const [user] = useAtom(userAtom);
   const { data: hostInfoResponse, isSuccess, isLoading } = useFetchMyHost();
   const { goGuestMyPage } = useEasyNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const { hostId: jotaiHostId, hostNickname: jotaiHostNickname } = user;
+  const localStorageUser: localStorageUserType = JSON.parse(localStorage.getItem('user') || '{}');
+  const { hostId: localStorageHostId, hostNickname: localStorageHostNickname } = localStorageUser;
 
   let hostInfoData: HostGetResponse | null = null;
   let errorData: ErrorType | null = null;
@@ -84,7 +83,7 @@ const HostMyPage = () => {
   };
 
   useEffect(() => {
-    if (isSuccess && hostInfoData && !jotaiHostId && !jotaiHostNickname) {
+    if (isSuccess && hostInfoData && !localStorageHostId && !localStorageHostNickname) {
       const { hostId, hostNickName } = hostInfoData;
       const isFirstApproval = hostId && hostNickName;
       if (isFirstApproval) {
@@ -94,7 +93,7 @@ const HostMyPage = () => {
         window.location.href = '/login';
       }
     }
-  }, [isSuccess, hostInfoData, jotaiHostId, jotaiHostNickname]);
+  }, [isSuccess, hostInfoData, localStorageHostId, localStorageHostNickname]);
 
   return (
     <>
