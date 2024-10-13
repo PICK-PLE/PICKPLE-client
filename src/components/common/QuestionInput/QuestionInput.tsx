@@ -10,7 +10,7 @@ import {
   questionInputContainer,
 } from 'src/components/common/QuestionInput/QuestionInput.style';
 
-import { deleteButtonStyle } from '../inputs/Input/Input.style';
+import { deleteButtonStyle, deleteIconStyle } from '../inputs/Input/Input.style';
 
 export interface QuestionInputProps extends InputHTMLAttributes<HTMLInputElement> {
   numberLabel: string;
@@ -54,7 +54,9 @@ const QuestionInput = ({
         />
         {isFocused && value && value.length > 0 && (
           <div css={deleteButtonStyle} onMouseDown={handleInputDelete}>
-            <IcDelete20 />
+            <span css={deleteIconStyle}>
+              <IcDelete20 />
+            </span>
           </div>
         )}
       </div>

@@ -1,8 +1,9 @@
 import { atom } from 'jotai';
+import { atomWithStorage } from 'jotai/utils';
 
 import { ClassPostDataType } from './types/classPostDataType';
 
-export const classPostAtom = atom<ClassPostDataType>({
+export const classPostAtom = atomWithStorage<ClassPostDataType>('classPost', {
   categoryList: {
     category1: '',
     category2: '',

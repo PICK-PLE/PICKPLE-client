@@ -14,13 +14,12 @@ const InterestCategoryButton = ({
   children,
   variant = 'default',
   icon,
-  onClick,
   ...props
 }: InterestCategoryButtonProps) => {
   return (
     <button
+      type="button"
       css={[InterestCategoryButtonStyle, InterestCategoryButtonVariant[variant]]}
-      onClick={onClick}
       {...props}>
       <span css={iconWrapperStyle}>{icon}</span>
       {children}
